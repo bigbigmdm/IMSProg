@@ -100,7 +100,7 @@ border: 2px solid #094065;border-radius:8px;font-weight:600;</string>
     </rect>
    </property>
    <property name="text">
-    <string>Version: 1.0.15 beta</string>
+    <string>Version: 1.0.17 beta</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_6">
