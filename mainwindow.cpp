@@ -1077,52 +1077,6 @@ void MainWindow::ch341StatusFlashing()
     }
 }
 
-void MainWindow::on_pushButton_4_clicked()
-{
-    //int32_t ch341writeEEPROM_param(uint8_t *buffer, uint32_t offset, uint32_t bytesum, uint32_t ic_size, uint32_t block_size, uint8_t algorithm)
-    org = 1;
-    int res = 0, start_addr=0;
-    uint32_t j;
-    uint8_t alg = 0;
-    statusCH341 = ch341a_init_i2c();
-    config_stream(1);
-    res = mw_gpio_init();
-     qDebug()<<"init="<<res;
-    i2c_init(); //crash int mw_eeprom_read(unsigned char *buf, unsigned long from, unsigned long len)
-    ch341StatusFlashing();
-    uint8_t *buf;
-    buf = (uint8_t *)malloc(256);
-    for (j = 0; j < 256; j++)
-       {
-             buf[j] = 0xff;
-
-       }
-    //res = mw_eeprom_read(buf, 0, 128);
-    //int Read_EEPROM_3wire_param(unsigned char *buffer, int start_addr, int block_size, int size_eeprom, uint8_t algorithm)
-    start_addr = 16;
-    alg = 0x07;
-   res = Read_EEPROM_3wire_param(buf,start_addr, 16,128, alg);
-    for (j = 0; j < 256; j++)
-       {
-             chipData[j+start_addr] = buf[j];
-             qDebug() << buf[j];
-       }
-
-
-
-    qDebug() << "res="<< res;
-                        //buf,start_addr,len,ic_size,block_size,algorithm
-    //ch341writeEEPROM_param(uint8_t *buffer, uint32_t offset, uint32_t bytesum, uint32_t ic_size, uint32_t block_size, uint8_t algorithm)
-
-
-
-
-    hexEdit->setData(chipData);
-
-    ch341a_spi_shutdown();
-    qDebug()<<"sh";
-}
-
 void MainWindow::on_comboBox_type_currentIndexChanged(int index)
 {
     int i, index2;

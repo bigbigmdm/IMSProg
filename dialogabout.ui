@@ -77,14 +77,14 @@ border: 2px solid #094065;border-radius:8px;font-weight:600;</string>
   <widget class="QLabel" name="label_4">
    <property name="geometry">
     <rect>
-     <x>20</x>
+     <x>30</x>
      <y>20</y>
-     <width>571</width>
+     <width>491</width>
      <height>51</height>
     </rect>
    </property>
    <property name="text">
-    <string>IMSProg - I2C, SPI and MicroWire EEPROM/Flash chip programmer for CH341a devices.</string>
+    <string>IMSProg - free software I2C, SPI and MicroWire EEPROM/Flash chip programmer for CH341a devices.</string>
    </property>
    <property name="wordWrap">
     <bool>true</bool>
@@ -114,6 +114,22 @@ border: 2px solid #094065;border-radius:8px;font-weight:600;</string>
    </property>
    <property name="text">
     <string>Written by 2023 Mikhail Medvedev</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_7">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>270</y>
+     <width>491</width>
+     <height>71</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>In this program QhexEditor widget (https://github.com/Simsys/qhexedit2) and modified programmer SNANDer (https://github.com/McMCCRU/SNANDer) were used.</string>
+   </property>
+   <property name="wordWrap">
+    <bool>true</bool>
    </property>
   </widget>
  </widget>

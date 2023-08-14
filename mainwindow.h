@@ -63,50 +63,26 @@ public slots:
 
 private slots:
     void on_pushButton_clicked();
-
     void on_pushButton_2_clicked();
-
     void on_comboBox_size_currentIndexChanged(int index);
-
     void on_comboBox_page_currentIndexChanged(int index);
-
     void on_actionDetect_triggered();
-
     void on_actionSave_triggered();
-
     void on_actionErase_triggered();
-
     void on_actionUndo_triggered();
-
     void on_actionRedo_triggered();
-
     void on_actionOpen_triggered();
-
     void on_actionWrite_triggered();
-
     void on_actionRead_triggered();
-
     void on_actionExit_triggered();
-
     void on_comboBox_man_currentIndexChanged(int index);
-
     void on_comboBox_name_currentIndexChanged(const QString &arg1);
-
     void on_actionVerify_triggered();
-
     void on_pushButton_3_clicked();
-
     void on_actionSave_Part_triggered();
-
     void on_actionLoad_Part_triggered();
-
     void on_actionFind_Replace_triggered();
-
-
-    void on_pushButton_4_clicked();
-
     void on_comboBox_type_currentIndexChanged(int index);
-
     void on_actionAbout_triggered();
 
 private:

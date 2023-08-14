@@ -86,7 +86,7 @@
    <widget class="QProgressBar" name="progressBar">
     <property name="geometry">
      <rect>
-      <x>260</x>
+      <x>270</x>
       <y>450</y>
       <width>611</width>
       <height>21</height>
@@ -469,19 +469,6 @@ border: 2px solid #094065;border-radius:8px;font-weight:600;</string>
      </property>
      <property name="text">
       <string>Go!</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="pushButton_4">
-     <property name="geometry">
-      <rect>
-       <x>110</x>
-       <y>40</y>
-       <width>89</width>
-       <height>25</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>test_i2c</string>
      </property>
     </widget>
    </widget>
