@@ -240,7 +240,8 @@ void MainWindow::on_pushButton_clicked()
 {
   //Reading data from chip
   int res = 0;
-  statusCH341 = ch341a_spi_init();
+  if (currentChipType!=1) statusCH341 = ch341a_spi_init();
+  else statusCH341 = ch341a_init_i2c();
   if (statusCH341 == 0)
   {
     if (((currentNumBlocks > 0) && (currentBlockSize >0) && (currentChipType == 0)) || ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 1)) || ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 2)))
@@ -621,7 +622,8 @@ void MainWindow::on_actionWrite_triggered()
     int res = 0;
     if (((currentNumBlocks > 0) && (currentBlockSize >0) && (currentChipType == 0)) || ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 1)) || ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 2)))
         {
-        statusCH341 = ch341a_spi_init();
+        if (currentChipType!=1) statusCH341 = ch341a_spi_init();
+        else statusCH341 = ch341a_init_i2c();
         if (currentChipType == 1)
         {
             config_stream(2);
@@ -815,7 +817,8 @@ void MainWindow::on_actionVerify_triggered()
 {
     //Reading and veryfying data from chip
     int res =0;
-    statusCH341 = ch341a_spi_init();
+    if (currentChipType!=1) statusCH341 = ch341a_spi_init();
+    else statusCH341 = ch341a_init_i2c();
     if (statusCH341 == 0)
     {
        if (((currentNumBlocks > 0) && (currentBlockSize >0) && (currentChipType == 0)) || ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 1)) || ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 2)))
@@ -1081,11 +1084,11 @@ void MainWindow::on_pushButton_4_clicked()
     int res = 0, start_addr=0;
     uint32_t j;
     uint8_t alg = 0;
-    statusCH341 = ch341a_spi_init();
+    statusCH341 = ch341a_init_i2c();
     config_stream(1);
     res = mw_gpio_init();
      qDebug()<<"init="<<res;
-    //i2c_init(); //crash int mw_eeprom_read(unsigned char *buf, unsigned long from, unsigned long len)
+    i2c_init(); //crash int mw_eeprom_read(unsigned char *buf, unsigned long from, unsigned long len)
     ch341StatusFlashing();
     uint8_t *buf;
     buf = (uint8_t *)malloc(256);

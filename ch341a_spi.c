@@ -501,3 +501,108 @@ close_handle:
 	return -1;
 }
 /* End of [ch341a_spi.c] package */
+
+
+
+int ch341a_init_i2c(void)
+{
+    if (handle != NULL) {
+        printf("%s: handle already set!\n", __func__);
+        return -1;
+    }
+
+    int32_t ret = libusb_init(NULL);
+    if (ret < 0) {
+        printf("Couldnt initialize libusb!\n");
+        return -1;
+    }
+#if LIBUSB_API_VERSION >= 0x01000106
+    libusb_set_option(NULL, LIBUSB_OPTION_LOG_LEVEL, 3);
+#else
+    libusb_set_debug(NULL, 3); // Enable information, warning and error messages (only).
+#endif
+    uint16_t vid = devs_ch341a_spi[0].vendor_id;
+    uint16_t pid = devs_ch341a_spi[0].device_id;
+    handle = libusb_open_device_with_vid_pid(NULL, vid, pid);
+    if (handle == NULL) {
+        printf("Couldn't open device %04x:%04x.\n", vid, pid);
+        return -1;
+    }
+    printf("Found programmer device: %s - %s\n", devs_ch341a_spi[0].vendor_name, devs_ch341a_spi[0].device_name);
+
+#ifdef __gnu_linux__
+    /* libusb_detach_kernel_driver() and friends basically only work on Linux. We simply try to detach on Linux
+     * without a lot of passion here. If that works fine else we will fail on claiming the interface anyway. */
+    ret = libusb_detach_kernel_driver(handle, 0);
+    if (ret == LIBUSB_ERROR_NOT_SUPPORTED) {
+        printf("Detaching kernel drivers is not supported. Further accesses may fail.\n");
+    } else if (ret != 0 && ret != LIBUSB_ERROR_NOT_FOUND) {
+        printf("Failed to detach kernel driver: '%s'. Further accesses will probably fail.\n",
+              libusb_error_name(ret));
+    }
+#endif
+
+    ret = libusb_claim_interface(handle, 0);
+    if (ret != 0) {
+        printf("Failed to claim interface 0: '%s'\n", libusb_error_name(ret));
+        goto close_handle;
+    }
+
+    struct libusb_device *dev;
+    if (!(dev = libusb_get_device(handle))) {
+        printf("Failed to get device from device handle.\n");
+        goto close_handle;
+    }
+
+    struct libusb_device_descriptor desc;
+    ret = libusb_get_device_descriptor(dev, &desc);
+    if (ret < 0) {
+        printf("Failed to get device descriptor: '%s'\n", libusb_error_name(ret));
+        goto release_interface;
+    }
+
+    printf("Device revision is %d.%01d.%01d\n",
+        (desc.bcdDevice >> 8) & 0x00FF,
+        (desc.bcdDevice >> 4) & 0x000F,
+        (desc.bcdDevice >> 0) & 0x000F);
+
+    /* Allocate and pre-fill transfer structures. */
+    transfer_out = libusb_alloc_transfer(0);
+    if (!transfer_out) {
+        printf("Failed to alloc libusb OUT transfer\n");
+        goto release_interface;
+    }
+    int i;
+    for (i = 0; i < USB_IN_TRANSFERS; i++) {
+        transfer_ins[i] = libusb_alloc_transfer(0);
+        if (transfer_ins[i] == NULL) {
+            printf("Failed to alloc libusb IN transfer %d\n", i);
+            goto dealloc_transfers;
+        }
+    }
+    /* We use these helpers but dont fill the actual buffer yet. */
+    libusb_fill_bulk_transfer(transfer_out, handle, WRITE_EP, NULL, 0, cb_out, NULL, USB_TIMEOUT);
+    for (i = 0; i < USB_IN_TRANSFERS; i++)
+        libusb_fill_bulk_transfer(transfer_ins[i], handle, READ_EP, NULL, 0, cb_in, NULL, USB_TIMEOUT);
+
+    //if ((config_stream(CH341A_STM_I2C_750K) < 0) || (enable_pins(true) < 0))
+    //    goto dealloc_transfers;
+
+    return 0;
+
+dealloc_transfers:
+    for (i = 0; i < USB_IN_TRANSFERS; i++) {
+        if (transfer_ins[i] == NULL)
+            break;
+        libusb_free_transfer(transfer_ins[i]);
+        transfer_ins[i] = NULL;
+    }
+    libusb_free_transfer(transfer_out);
+    transfer_out = NULL;
+release_interface:
+    libusb_release_interface(handle, 0);
+close_handle:
+    libusb_close(handle);
+    handle = NULL;
+    return -1;
+}
