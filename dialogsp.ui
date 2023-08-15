@@ -6,100 +6,117 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>270</width>
+    <width>272</width>
     <height>160</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Save part of image</string>
   </property>
-  <widget class="QPushButton" name="pushButton">
-   <property name="geometry">
-    <rect>
-     <x>160</x>
-     <y>120</y>
-     <width>89</width>
-     <height>25</height>
-    </rect>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="spacing">
+    <number>13</number>
    </property>
-   <property name="styleSheet">
-    <string notr="true">color: rgb(255, 255, 255);
+   <item>
+    <widget class="QLabel" name="label_2">
+     <property name="text">
+      <string>All values in HEX format!</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <layout class="QFormLayout" name="formLayout">
+     <property name="horizontalSpacing">
+      <number>12</number>
+     </property>
+     <item row="0" column="0">
+      <widget class="QLabel" name="label">
+       <property name="text">
+        <string>Start address:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QLineEdit" name="lineEditStart">
+       <property name="minimumSize">
+        <size>
+         <width>120</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">border: 2px solid gray;border-radius: 5px;color:#000;font-weight:600;border-style: inset;</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QComboBox" name="comboBox_end">
+       <property name="minimumSize">
+        <size>
+         <width>120</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">border: 2px solid gray;border-radius: 5px;color:#000;font-weight:600;border-style: inset;</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QLineEdit" name="lineEditEnd">
+       <property name="minimumSize">
+        <size>
+         <width>120</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">border: 2px solid gray;border-radius: 5px;color:#000;font-weight:600;border-style: inset;</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>118</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton">
+       <property name="minimumSize">
+        <size>
+         <width>80</width>
+         <height>22</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(255, 255, 255);
 background-color: rgb(120, 183, 140);
 border-radius: 20px;
 border: 2px solid #094065;border-radius:8px;font-weight:600;</string>
-   </property>
-   <property name="text">
-    <string>Save</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>40</y>
-     <width>101</width>
-     <height>17</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Start address:</string>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="lineEditStart">
-   <property name="geometry">
-    <rect>
-     <x>150</x>
-     <y>40</y>
-     <width>101</width>
-     <height>21</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">border: 2px solid gray;border-radius: 5px;color:#000;font-weight:600;border-style: inset;</string>
-   </property>
-  </widget>
-  <widget class="QComboBox" name="comboBox_end">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>70</y>
-     <width>111</width>
-     <height>21</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">border: 2px solid gray;border-radius: 5px;color:#000;font-weight:600;border-style: inset;</string>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="lineEditEnd">
-   <property name="geometry">
-    <rect>
-     <x>150</x>
-     <y>70</y>
-     <width>101</width>
-     <height>21</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">border: 2px solid gray;border-radius: 5px;color:#000;font-weight:600;border-style: inset;</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_2">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>10</y>
-     <width>231</width>
-     <height>17</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>All values in HEX format!</string>
-   </property>
-   <property name="alignment">
-    <set>Qt::AlignCenter</set>
-   </property>
-  </widget>
+       </property>
+       <property name="text">
+        <string>Save</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
  </widget>
  <resources/>
  <connections/>
