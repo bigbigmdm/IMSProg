@@ -15,7 +15,7 @@
 #ifndef __I2C_EEPROM_API_H__
 #define __I2C_EEPROM_API_H__
 
-int i2c_eeprom_read(unsigned char *buf, unsigned long from, unsigned long len);
+//int i2c_eeprom_read(unsigned char *buf, unsigned long from, unsigned long len);
 int i2c_eeprom_erase(unsigned long offs, unsigned long len);
 int i2c_eeprom_write(unsigned char *buf, unsigned long to, unsigned long len);
 long i2c_init(void);

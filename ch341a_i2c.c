@@ -4,7 +4,7 @@
 //  Programming tool for the 24Cxx serial EEPROMs using the Winchiphead CH341A IC
 //
 // (c) December 2011 asbokid <ballymunboy@gmail.com>
-//
+//  (c) August 2023 Mikhail Medvedev <e-ink-reader@yandex.ru>
 //   This program is free software: you can redistribute it and/or modify
 //   it under the terms of the GNU General Public License as published by
 //   the Free Software Foundation, either version 3 of the License, or
@@ -101,7 +101,7 @@ void ch341ReadCmdMarshall(uint8_t *buffer, uint32_t addr, struct EEPROM *eeprom_
 
 	assert(ptr - buffer == CH341_EEPROM_READ_CMD_SZ);
 }
-
+/*
 // --------------------------------------------------------------------------
 // ch341readEEPROM()
 //      read n bytes from device (in packets of 32 bytes)
@@ -190,7 +190,7 @@ int32_t ch341readEEPROM(uint8_t *buffer, uint32_t bytestoread, struct EEPROM *ee
 	libusb_free_transfer(xferBulkOut);
 	return 0;
 }
-
+*/
 
 // --------------------------------------------------------------------------
 // ch341readEEPROM()
@@ -207,7 +207,7 @@ int32_t ch341readEEPROM_param(uint8_t *buffer, uint32_t offset, uint32_t bytesto
     struct EEPROM eeprom_info;
     eeprom_info.name = "24c01";
     eeprom_info.size = ic_size;
-    eeprom_info.page_size = block_size;
+    eeprom_info.page_size = (uint16_t)block_size;
     eeprom_info.addr_size = 0x0f & algorithm;
     eeprom_info.i2c_addr_mask = (0xf0 & algorithm) / 16;
     printf("addr_size=%x addr_mask=%x",eeprom_info.addr_size, eeprom_info.i2c_addr_mask);
@@ -329,10 +329,11 @@ void cbBulkOut(struct libusb_transfer *transfer)
 // --------------------------------------------------------------------------
 // ch341writeEEPROM()
 //      write n bytes to 24c32/24c64 device (in packets of 32 bytes)
-int32_t ch341writeEEPROM(uint8_t *buffer, uint32_t bytesum, struct EEPROM *eeprom_info)
-{
-	uint8_t ch341outBuffer[512/*EEPROM_WRITE_BUF_SZ*/];
-	uint8_t *outptr, *bufptr;
+
+//int32_t ch341writeEEPROM(uint8_t *buffer, uint32_t bytesum, struct EEPROM *eeprom_info)
+//{
+//	uint8_t ch341outBuffer[512/*EEPROM_WRITE_BUF_SZ*/];
+/*	uint8_t *outptr, *bufptr;
 	uint8_t i2cCmdBuffer[256];
 	int32_t ret = 0, i;
 	uint32_t payload_size, byteoffset = 0;
@@ -424,13 +425,14 @@ int32_t ch341writeEEPROM(uint8_t *buffer, uint32_t bytesum, struct EEPROM *eepro
 			return -1;
 		}
 		*/
-		printf("\bWritten %d%% [%d] of [%d] bytes      ", 100 * (bytesum - bytes) / bytesum, bytesum - bytes, bytesum);
+/*		printf("\bWritten %d%% [%d] of [%d] bytes      ", 100 * (bytesum - bytes) / bytesum, bytesum - bytes, bytesum);
 		printf("\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b");
 		fflush(stdout);
 	}
 	printf("Written 100%% [%d] of [%d] bytes      \n", bytesum - bytes, bytesum);
 	return 0;
 }
+*/
 // --------------------------------------------------------------------------
 // ch341writeEEPROM()
 //      write n bytes to 24c32/24c64 device (in packets of 32 bytes)
@@ -542,7 +544,7 @@ int32_t ch341writeEEPROM_param(uint8_t *buffer, uint32_t offset, uint32_t bytesu
 // --------------------------------------------------------------------------
 // parseEEPsize()
 //   passed an EEPROM name (case-sensitive), returns its byte size
-int32_t parseEEPsize(char *eepromname, struct EEPROM *eeprom)
+/*int32_t parseEEPsize(char *eepromname, struct EEPROM *eeprom)
 {
 	int i;
 
@@ -555,3 +557,4 @@ int32_t parseEEPsize(char *eepromname, struct EEPROM *eeprom)
 
 	return -1;
 }
+*/

@@ -346,24 +346,24 @@ struct EEPROM {
 	uint8_t i2c_addr_mask;
 };
 
-const static struct EEPROM eepromlist[] = {
-	{ "24c01",   128,     8,  1, 0x00 }, // 16 pages of 8 bytes each = 128 bytes
-	{ "24c02",   256,     8,  1, 0x00 }, // 32 pages of 8 bytes each = 256 bytes
-	{ "24c04",   512,    16,  1, 0x01 }, // 32 pages of 16 bytes each = 512 bytes
-	{ "24c08",   1024,   16,  1, 0x03 }, // 64 pages of 16 bytes each = 1024 bytes
-	{ "24c16",   2048,   16,  1, 0x07 }, // 128 pages of 16 bytes each = 2048 bytes
-	{ "24c32",   4096,   32,  2, 0x00 }, // 32kbit = 4kbyte
-	{ "24c64",   8192,   32,  2, 0x00 },
-	{ "24c128",  16384,  32/*64*/,  2, 0x00 },
-	{ "24c256",  32768,  32/*64*/,  2, 0x00 },
-	{ "24c512",  65536,  32/*128*/, 2, 0x00 },
-	{ "24c1024", 131072, 32/*128*/, 2, 0x01 },
-	{ 0, 0, 0, 0 }
-};
+//const static struct EEPROM eepromlist[] = {
+//	{ "24c01",   128,     8,  1, 0x00 }, // 16 pages of 8 bytes each = 128 bytes
+//	{ "24c02",   256,     8,  1, 0x00 }, // 32 pages of 8 bytes each = 256 bytes
+//	{ "24c04",   512,    16,  1, 0x01 }, // 32 pages of 16 bytes each = 512 bytes
+//	{ "24c08",   1024,   16,  1, 0x03 }, // 64 pages of 16 bytes each = 1024 bytes
+//	{ "24c16",   2048,   16,  1, 0x07 }, // 128 pages of 16 bytes each = 2048 bytes
+//	{ "24c32",   4096,   32,  2, 0x00 }, // 32kbit = 4kbyte
+//	{ "24c64",   8192,   32,  2, 0x00 },
+//	{ "24c128",  16384,  32/*64*/,  2, 0x00 },
+//	{ "24c256",  32768,  32/*64*/,  2, 0x00 },
+//	{ "24c512",  65536,  32/*128*/, 2, 0x00 },
+//	{ "24c1024", 131072, 32/*128*/, 2, 0x01 },
+//	{ 0, 0, 0, 0 }
+//};
 
 
-int32_t ch341readEEPROM(uint8_t *buf, uint32_t bytes, struct EEPROM *eeprom_info);
-int32_t ch341writeEEPROM(uint8_t *buf, uint32_t bytes, struct EEPROM *eeprom_info);
+//int32_t ch341readEEPROM(uint8_t *buf, uint32_t bytes, struct EEPROM *eeprom_info);
+//int32_t ch341writeEEPROM(uint8_t *buf, uint32_t bytes, struct EEPROM *eeprom_info);
 int32_t parseEEPsize(char *eepromname, struct EEPROM *eeprom);
 int32_t ch341readEEPROM_param(uint8_t *buffer, uint32_t offset, uint32_t bytestoread, uint32_t ic_size, uint32_t block_size, uint8_t algorithm);
 int32_t ch341writeEEPROM_param(uint8_t *buffer, uint32_t offset, uint32_t bytesum, uint32_t block_size, uint8_t algorithm);

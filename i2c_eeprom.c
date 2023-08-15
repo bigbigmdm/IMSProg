@@ -22,7 +22,7 @@ struct EEPROM eeprom_info;
 char eepromname[12];
 int eepromsize = 0;
 
-int i2c_eeprom_read(unsigned char *buf, unsigned long from, unsigned long len)
+/*int i2c_eeprom_read(unsigned char *buf, unsigned long from, unsigned long len)
 {
 	unsigned char *pbuf, ebuf[MAX_EEPROM_SIZE];
 
@@ -45,8 +45,8 @@ int i2c_eeprom_read(unsigned char *buf, unsigned long from, unsigned long len)
 
 	return (int)len;
 }
-
-int i2c_eeprom_erase(unsigned long offs, unsigned long len)
+*/
+/*int i2c_eeprom_erase(unsigned long offs, unsigned long len)
 {
 	unsigned char *pbuf, ebuf[MAX_EEPROM_SIZE];
 
@@ -75,8 +75,8 @@ int i2c_eeprom_erase(unsigned long offs, unsigned long len)
 
 	return 0;
 }
-
-int i2c_eeprom_write(unsigned char *buf, unsigned long to, unsigned long len)
+*/
+/*int i2c_eeprom_write(unsigned char *buf, unsigned long to, unsigned long len)
 {
 	unsigned char *pbuf, ebuf[MAX_EEPROM_SIZE];
 
@@ -135,4 +135,5 @@ void support_i2c_eeprom_list(void)
 		printf("%03d. %s\n", i + 1, eepromlist[i].name);
 	}
 }
+*/
 /* End of [i2c_eeprom.c] package */

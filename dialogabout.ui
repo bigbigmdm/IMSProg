@@ -77,9 +77,9 @@ border: 2px solid #094065;border-radius:8px;font-weight:600;</string>
   <widget class="QLabel" name="label_4">
    <property name="geometry">
     <rect>
-     <x>30</x>
+     <x>40</x>
      <y>20</y>
-     <width>491</width>
+     <width>481</width>
      <height>51</height>
     </rect>
    </property>
@@ -100,7 +100,7 @@ border: 2px solid #094065;border-radius:8px;font-weight:600;</string>
     </rect>
    </property>
    <property name="text">
-    <string>Version: 1.0.17 beta</string>
+    <string>Version: 1.0.18 beta</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_6">

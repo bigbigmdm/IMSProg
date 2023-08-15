@@ -240,8 +240,9 @@ void MainWindow::on_pushButton_clicked()
 {
   //Reading data from chip
   int res = 0;
-  if (currentChipType!=1) statusCH341 = ch341a_spi_init();
-  else statusCH341 = ch341a_init_i2c();
+  //if (currentChipType!=1) statusCH341 = ch341a_spi_init();
+  //else statusCH341 = ch341a_init_i2c();
+  statusCH341 = ch341a_init(currentChipType);
   if (statusCH341 == 0)
   {
     if (((currentNumBlocks > 0) && (currentBlockSize >0) && (currentChipType == 0)) || ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 1)) || ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 2)))
@@ -249,7 +250,7 @@ void MainWindow::on_pushButton_clicked()
 
        if (currentChipType == 1)
        {
-           config_stream(2);
+           //config_stream(2);
            currentBlockSize = 128;
            //currentBlockSize = currentPageSize;
            currentNumBlocks = currentChipSize / currentBlockSize;
@@ -257,8 +258,8 @@ void MainWindow::on_pushButton_clicked()
        if (currentChipType == 2)
        {
            //org = (currentAlgorithm & 0xF0) / 16;
-           config_stream(1);
-           res = mw_gpio_init();
+           //config_stream(1);
+           //res = mw_gpio_init();
            currentBlockSize = currentPageSize;
            currentNumBlocks = currentChipSize / currentBlockSize;
        }
@@ -525,7 +526,8 @@ void MainWindow::on_actionSave_triggered()
 
 void MainWindow::on_actionErase_triggered()
 {
-    statusCH341 = ch341a_spi_init();
+    //statusCH341 = ch341a_spi_init();
+    statusCH341 = ch341a_init(currentChipType);
     ch341StatusFlashing();
     if (statusCH341 != 0)
       {
@@ -622,11 +624,12 @@ void MainWindow::on_actionWrite_triggered()
     int res = 0;
     if (((currentNumBlocks > 0) && (currentBlockSize >0) && (currentChipType == 0)) || ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 1)) || ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 2)))
         {
-        if (currentChipType!=1) statusCH341 = ch341a_spi_init();
-        else statusCH341 = ch341a_init_i2c();
+        //if (currentChipType!=1) statusCH341 = ch341a_spi_init();
+        //else statusCH341 = ch341a_init_i2c();
+        statusCH341 = ch341a_init(currentChipType);
         if (currentChipType == 1)
         {
-            config_stream(2);
+            //config_stream(2);
             currentBlockSize = 128;
             //currentBlockSize = currentPageSize;
             currentNumBlocks = currentChipSize / currentBlockSize;
@@ -634,8 +637,8 @@ void MainWindow::on_actionWrite_triggered()
         if (currentChipType == 2)
         {
             //org = (currentAlgorithm & 0xF0) / 16;
-            config_stream(1);
-            res = mw_gpio_init();
+            //config_stream(1);
+            //res = mw_gpio_init();
             currentBlockSize = currentPageSize;
             currentNumBlocks = currentChipSize / currentBlockSize;
         }
@@ -727,7 +730,7 @@ void MainWindow::on_comboBox_man_currentIndexChanged(int index)
        for (i = 0; i<max_rec; i++)
        {
            //replacing items to combobox chip Name
-           if (txt.compare(chips[i].chipManuf)==0)
+           if (txt.compare(chips[i].chipManuf)==0 && (currentChipType == chips[i].chipTypeHex))
            {
            index2 = ui->comboBox_name->findText(chips[i].chipName);
                     if ( index2 == -1 ) ui->comboBox_name->addItem(chips[i].chipName);
@@ -817,23 +820,24 @@ void MainWindow::on_actionVerify_triggered()
 {
     //Reading and veryfying data from chip
     int res =0;
-    if (currentChipType!=1) statusCH341 = ch341a_spi_init();
-    else statusCH341 = ch341a_init_i2c();
+    //if (currentChipType!=1) statusCH341 = ch341a_spi_init();
+    //else statusCH341 = ch341a_init_i2c();
+    statusCH341 = ch341a_init(currentChipType);
     if (statusCH341 == 0)
     {
        if (((currentNumBlocks > 0) && (currentBlockSize >0) && (currentChipType == 0)) || ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 1)) || ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 2)))
            {
                if (currentChipType == 1)
                {
-                 config_stream(2);
+                 //config_stream(2);
                  currentBlockSize = 128;
                  currentNumBlocks = currentChipSize / currentBlockSize;
                }
                if (currentChipType == 2)
                {
                   //org = (currentAlgorithm & 0xF0) / 16;
-                  config_stream(1);
-                  res = mw_gpio_init();
+                  //config_stream(1);
+                  //res = mw_gpio_init();
                   currentBlockSize = currentPageSize;
                   currentNumBlocks = currentChipSize / currentBlockSize;
                }

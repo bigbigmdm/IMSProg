@@ -20,7 +20,9 @@
 
 #include <string.h>
 #include <stdio.h>
+#include <stdint.h>
 #include <stdbool.h>
+
 
 #define min(a,b) (((a)<(b))?(a):(b))
 #define max(a,b) (((a)>(b))?(a):(b))
@@ -31,5 +33,6 @@ int ch341a_spi_send_command(unsigned int writecnt, unsigned int readcnt, const u
 int enable_pins(bool enable);
 int config_stream(unsigned int speed);
 int ch341a_init_i2c(void);
+int ch341a_init(uint8_t chipType);
 #endif /* __CH341_SPI_H__ */
 /* End of [ch341a_spi.h] package */
