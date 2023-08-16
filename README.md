@@ -9,4 +9,4 @@ The chip database format is clone with EZP2019, EZP2020, EZP2023, Minpro I, XP86
 
 ![CH341A EEPROM programmer](img/IMSProg.png) 
 
-You can download compiled application from the `build` folder or compiling the source code using the QT creator.
+You can download the compiled application from the build folder or compile the source code using the QT creator program.
