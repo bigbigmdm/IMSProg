@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>891</width>
-    <height>594</height>
+    <height>599</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -448,6 +448,12 @@ border: 2px solid #094065;border-radius:8px;font-weight:600;</string>
              <height>25</height>
             </rect>
            </property>
+           <property name="maximumSize">
+            <size>
+             <width>120</width>
+             <height>25</height>
+            </size>
+           </property>
            <property name="styleSheet">
             <string notr="true">border: 2px solid gray;border-radius: 5px;color:#000;font-weight:600;border-style: inset;</string>
            </property>
@@ -462,7 +468,7 @@ border: 2px solid #094065;border-radius:8px;font-weight:600;</string>
             </rect>
            </property>
            <property name="text">
-            <string>  JEDEC ID</string>
+            <string>  JEDEC ID:</string>
            </property>
            <property name="alignment">
             <set>Qt::AlignCenter</set>
@@ -489,6 +495,47 @@ border: 2px solid #094065;border-radius:8px;font-weight:600;</string>
              <width>31</width>
              <height>21</height>
             </rect>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>120</width>
+             <height>25</height>
+            </size>
+           </property>
+          </widget>
+          <widget class="QLabel" name="cLabel">
+           <property name="geometry">
+            <rect>
+             <x>230</x>
+             <y>350</y>
+             <width>67</width>
+             <height>17</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>CRC32:</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+          <widget class="QLineEdit" name="crcEdit">
+           <property name="geometry">
+            <rect>
+             <x>290</x>
+             <y>350</y>
+             <width>21</width>
+             <height>25</height>
+            </rect>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>120</width>
+             <height>25</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">border: 2px solid gray;border-radius: 5px;color:#000;font-weight:600;border-style: inset;</string>
            </property>
           </widget>
          </widget>
@@ -567,6 +614,8 @@ border: 2px solid #094065;border-radius:8px;font-weight:600;</string>
     </property>
     <addaction name="actionUndo"/>
     <addaction name="actionRedo"/>
+    <addaction name="actionFind_Replace"/>
+    <addaction name="actionChecksum_calculate"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
@@ -774,6 +823,14 @@ border: 2px solid #094065;border-radius:8px;font-weight:600;</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+H</string>
+   </property>
+  </action>
+  <action name="actionChecksum_calculate">
+   <property name="text">
+    <string>Checksum calculate</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+A</string>
    </property>
   </action>
  </widget>

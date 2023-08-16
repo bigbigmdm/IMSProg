@@ -85,6 +85,8 @@ private slots:
     void on_comboBox_type_currentIndexChanged(int index);
     void on_actionAbout_triggered();
 
+    void on_actionChecksum_calculate_triggered();
+
 private:
     Ui::MainWindow *ui;
     int statusCH341;
@@ -118,6 +120,7 @@ private:
     QString sizeConvert(int a);
     QString hexiAddr(uint32_t a);
     uint32_t hexToInt(QString str);
+    QString getCRC32();
     void ch341StatusFlashing();
     QByteArray block;
     uint32_t blockStartAddr, blockLen;
