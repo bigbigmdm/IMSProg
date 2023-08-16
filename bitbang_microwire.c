@@ -173,7 +173,8 @@ static int convert_size(int eeprom_size)
 
 static void send_to_di(unsigned int val, int nbit)
 {
-	int b = 0, i = 0;
+    unsigned int b = 0;
+    int i = 0;
 
 	while (i < nbit)
 	{
@@ -192,7 +193,7 @@ static void send_to_di(unsigned int val, int nbit)
 static unsigned char get_from_do()
 {
 	unsigned char val = 0;
-	int b = 0, i = 0;
+    unsigned int b = 0, i = 0;
 	while (i < 8)
 	{
 		clock_0();
