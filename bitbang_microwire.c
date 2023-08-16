@@ -409,11 +409,14 @@ int Write_EEPROM_3wire_param(unsigned char *buffer, int start_addr, int block_si
 {
     int i, l, address, num_bit;
 
-    num_bit = addr_nbits(__func__, size_eeprom);
+    //num_bit = addr_nbits(__func__, size_eeprom);
+    org = (algorithm & 0xf0) / 16;
+    num_bit = algorithm & 0x0f;
     if (org == 1)
     {
         block_size = block_size / 2;
         start_addr = start_addr / 2;
+        num_bit--;
     }
     size_eeprom = convert_size(size_eeprom);
 
@@ -431,7 +434,7 @@ int Write_EEPROM_3wire_param(unsigned char *buffer, int start_addr, int block_si
         clock_1();
         delay_ms(1);
         send_to_di(1, 2);
-        send_to_di(l, num_bit);
+        send_to_di((unsigned int)l, num_bit);
 
         if (org == 0 ) send_to_di(buffer[address], 8);
         if (org == 1)
@@ -471,12 +474,12 @@ int Write_EEPROM_3wire_param(unsigned char *buffer, int start_addr, int block_si
         delay_ms(1);
         clock_1();
         delay_ms(1);
-        printf("\bWritten %d%% [%d] of [%d] bytes      ", 100 * l / block_size, l, block_size);
-        printf("\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b");
-        fflush(stdout);
+        //printf("\bWritten %d%% [%d] of [%d] bytes      ", 100 * l / block_size, l, block_size);
+        //printf("\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b");
+        //fflush(stdout);
         address++;
     }
-    printf("Written 100%% [%d] of [%d] bytes      \n", l, block_size);
+    //printf("Written 100%% [%d] of [%d] bytes      \n", l, block_size);
     disable_write_3wire(num_bit);
 
     return 0;
