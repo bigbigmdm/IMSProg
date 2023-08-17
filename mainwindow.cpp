@@ -1056,12 +1056,11 @@ void MainWindow::on_actionEdit_chips_Database_triggered()
 {
     if(QFileInfo::exists("IMSProg_editor.appimage") && !QDir("IMSProg_editor.appimage").exists()){
         //The file exists and is not a folder
-        QProcess::execute("IMSProg_editor");
+        QProcess::execute("IMSProg_editor.appimage");
     }
-    else{
+    else {
         //The file doesn't exist, either the path doesn't exist or is the path of a folder
          QMessageBox::about(this, "Error", "Not found file `IMSProg_editor`!");
-
     }
 }
 
