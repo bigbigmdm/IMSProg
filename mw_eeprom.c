@@ -30,7 +30,7 @@ extern struct gpio_cmd bb_func;
 extern char eepromname[12];
 extern unsigned int bsize;
 
-int mw_eeprom_read(unsigned char *buf, unsigned long from, unsigned long len)
+/*int mw_eeprom_read(unsigned char *buf, unsigned long from, unsigned long len)
 {
 	unsigned char *pbuf, ebuf[MAX_MW_EEPROM_SIZE];
 
@@ -49,8 +49,8 @@ int mw_eeprom_read(unsigned char *buf, unsigned long from, unsigned long len)
 
 	return (int)len;
 }
-
-int mw_eeprom_erase(unsigned long offs, unsigned long len)
+*/
+/*int mw_eeprom_erase(unsigned long offs, unsigned long len)
 {
 	unsigned char *pbuf, ebuf[MAX_MW_EEPROM_SIZE];
 
@@ -109,7 +109,7 @@ int mw_eeprom_write(unsigned char *buf, unsigned long to, unsigned long len)
 
 	return (int)len;
 }
-
+*/
 /*
                25xx  93xx
  PIN 22 - D7 - MISO  DO
@@ -146,16 +146,16 @@ int mw_gpio_init(void)
 	return 0;
 }
 
-static char *__itoa(int a)
+/*static char *__itoa(int a)
 {
 	char *p, tmp[32];
 	p = tmp;
 	snprintf(p, sizeof(tmp), "%d", a);
 	return p;
 }
+*/
 
-
-long mw_init(void)
+/*long mw_init(void)
 {
 	if (mw_eepromsize <= 0) {
 		printf("Microwire EEPROM Not Detected!\n");
@@ -172,8 +172,8 @@ long mw_init(void)
 
 	return (long)mw_eepromsize;
 }
-
-void support_mw_eeprom_list(void)
+*/
+/*void support_mw_eeprom_list(void)
 {
 	int i;
 
@@ -185,4 +185,5 @@ void support_mw_eeprom_list(void)
 		printf("%03d. %s\n", i + 1, mw_eepromlist[i].name);
 	}
 }
+*/
 /* End of [mw_eeprom.c] package */

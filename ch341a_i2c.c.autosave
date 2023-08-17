@@ -415,7 +415,7 @@ void cbBulkOut(struct libusb_transfer *transfer)
 			printf("Failed to write to EEPROM: '%s'\n", strerror(-ret));
 			return -1;
 		}
-
+*/
 		/*
 		struct timeval tv = {0, 100};                   // our async polling interval
 		ret = libusb_handle_events_timeout(NULL, &tv);

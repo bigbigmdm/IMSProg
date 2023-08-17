@@ -1,4 +1,5 @@
 /*  Copyright (C) 2005-2021 Mokrushin I.V. aka McMCC mcmcc@mail.ru
+ *  Copyright (C) 2023 Mikhail Medvedev e-ink-reader@yandex.ru
     A simple bitbang protocol for Microwire 8-pin serial EEPROMs
     (93XX devices). Support organization 8bit and 16bit(8bit emulation).
 
@@ -45,14 +46,15 @@ struct gpio_cmd {
 	int (*gpio_getbits)(unsigned char *data);
 };
 
-void Erase_EEPROM_3wire(int size_eeprom);
-int Read_EEPROM_3wire(unsigned char *buffer, int size_eeprom);
-int Write_EEPROM_3wire(unsigned char *buffer, int size_eeprom);
-int deviceSize_3wire(char *eepromname);
+//void Erase_EEPROM_3wire(int size_eeprom);
+//int Read_EEPROM_3wire(unsigned char *buffer, int size_eeprom);
+//int Write_EEPROM_3wire(unsigned char *buffer, int size_eeprom);
+//int deviceSize_3wire(char *eepromname);
 int Read_EEPROM_3wire_param(unsigned char *buffer, int start_addr, int block_size, int size_eeprom, unsigned char algorithm);
 int Write_EEPROM_3wire_param(unsigned char *buffer, int start_addr, int block_size, int size_eeprom, unsigned char algorithm);
+void Erase_EEPROM_3wire_param(unsigned char algorithm);
 
-const static struct MW_EEPROM mw_eepromlist[] = {
+/*const static struct MW_EEPROM mw_eepromlist[] = {
 	{ "93c06", 32 },
 	{ "93c16", 64 },
 	{ "93c46", 128 },
@@ -63,7 +65,7 @@ const static struct MW_EEPROM mw_eepromlist[] = {
 	{ "93c96", 4096 },
 	{ 0, 0 }
 };
-
+*/
 #define MAX_MW_EEPROM_SIZE	4096
 
 #endif /* _BITBANG_MICROWIRE_H */

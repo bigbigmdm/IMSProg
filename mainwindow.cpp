@@ -524,7 +524,8 @@ void MainWindow::on_actionErase_triggered()
         config_stream(1);
         mw_gpio_init();
         ui->progressBar->setValue(50);
-        mw_eeprom_erase(0, currentChipSize);
+        //mw_eeprom_erase(0, currentChipSize);
+        Erase_EEPROM_3wire_param(currentAlgorithm);
         sleep(1);
     }
     if (currentChipType == 1)

@@ -364,7 +364,7 @@ struct EEPROM {
 
 //int32_t ch341readEEPROM(uint8_t *buf, uint32_t bytes, struct EEPROM *eeprom_info);
 //int32_t ch341writeEEPROM(uint8_t *buf, uint32_t bytes, struct EEPROM *eeprom_info);
-int32_t parseEEPsize(char *eepromname, struct EEPROM *eeprom);
+//int32_t parseEEPsize(char *eepromname, struct EEPROM *eeprom);
 int32_t ch341readEEPROM_param(uint8_t *buffer, uint32_t offset, uint32_t bytestoread, uint32_t ic_size, uint32_t block_size, uint8_t algorithm);
 int32_t ch341writeEEPROM_param(uint8_t *buffer, uint32_t offset, uint32_t bytesum, uint32_t block_size, uint8_t algorithm);
 #endif /* __CH341A_I2C_H__ */

@@ -120,40 +120,6 @@ static unsigned int get_data()
 	return ((b & DO) == DO);
 }
 
-static int addr_nbits(const char *func, int size)
-{
-	int i = 0;
-
-	if (fix_addr_len) {
-		printf("%s: Set address len %d bits\n", func, fix_addr_len);
-		return fix_addr_len;
-	}
-
-	switch (size) {
-		case 128: /* 93c46 */
-            i = org ? 6 : 7;
-			break;
-		case 256: /* 93c56 */
-		case 512: /* 93c66 */
-			i = org ? 8 : 9;
-			break;
-		case 1024: /* 93c76 */
-		case 2048: /* 93c86 */
-			i = org ? 10 : 11;
-			break;
-		case 4096: /* 93c96(not original name) */
-			i = org ? 12 : 13;
-			break;
-		default:
-			i = 6; /* 93c06 and 93c16(not original name) */
-			break;
-	}
-
-	printf("%s: Set address len %d bits\n", func, i);
-
-	return i;
-}
-
 static int convert_size(int eeprom_size)
 {
 	int k = 1;
@@ -247,107 +213,62 @@ static void chip_busy(void)
 	printf("Error: Always BUSY! Communication problem...The broken microwire chip?\n");
 }
 
-void Erase_EEPROM_3wire(int size_eeprom)
+
+void Erase_EEPROM_3wire_param(unsigned char algorithm)
 {
-	int i, num_bit;
+    int i, num_bit;
 
-	num_bit = addr_nbits(__func__, size_eeprom);
+    num_bit = algorithm & 0x0f;
 
-	enable_write_3wire(num_bit);
-	csel_0();
-	clock_0();
-	delay_ms(1);
-	data_1();
-	csel_1();
-	delay_ms(1);
-	clock_1();
-	delay_ms(1);
+    enable_write_3wire(num_bit);
+    csel_0();
+    clock_0();
+    delay_ms(1);
+    data_1();
+    csel_1();
+    delay_ms(1);
+    clock_1();
+    delay_ms(1);
 
-	send_to_di(2, 4);
-	send_to_di(0, num_bit - 2);
-	clock_0();
-	data_0();
-	delay_ms(1);
-	csel_0();
-	delay_ms(1);
-	csel_1();
-	delay_ms(1);
-	clock_1();
-	delay_ms(1);
-	i = 0;
-	while (!get_data() && i < 10000)
-	{
-		clock_0();
-		delay_ms(1);
-		clock_1();
-		delay_ms(1);
-		i++;
-	}
-	
-	if (i == 10000)
-	{
-		chip_busy();
-		return;
-	}
+    send_to_di(2, 4);
+    send_to_di(0, num_bit - 2);
+    clock_0();
+    data_0();
+    delay_ms(1);
+    csel_0();
+    delay_ms(1);
+    csel_1();
+    delay_ms(1);
+    clock_1();
+    delay_ms(1);
+    i = 0;
+    while (!get_data() && i < 10000)
+    {
+        clock_0();
+        delay_ms(1);
+        clock_1();
+        delay_ms(1);
+        i++;
+    }
 
-	csel_0();
-	delay_ms(1);
-	clock_0();
-	delay_ms(1);
-	clock_1();
-	delay_ms(1);
+    if (i == 10000)
+    {
+        chip_busy();
+        return;
+    }
 
-	disable_write_3wire(num_bit);
+    csel_0();
+    delay_ms(1);
+    clock_0();
+    delay_ms(1);
+    clock_1();
+    delay_ms(1);
+
+    disable_write_3wire(num_bit);
 }
 
-int Read_EEPROM_3wire(unsigned char *buffer, int size_eeprom)
-{
-	int address, num_bit, l;
 
-	num_bit = addr_nbits(__func__, size_eeprom);
-	size_eeprom = convert_size(size_eeprom);
 
-	address = 0;
-
-	for (l = 0; l < size_eeprom; l++)
-	{
-		csel_0();
-		clock_0();
-		delay_ms(1);
-		data_1();
-		csel_1();
-		delay_ms(1);
-		clock_1();
-		delay_ms(1);
-
-		send_to_di(2, 2);
-		send_to_di(l, num_bit);
-
-		data_0();
-		clock_0();
-		delay_ms(1);
-		clock_1();
-		delay_ms(1);
-		buffer[address] = get_from_do();
-		if (org)
-		{
-			address++;
-			buffer[address] = get_from_do();
-		}
-		csel_0();
-		delay_ms(1);
-		clock_0();
-		delay_ms(1);
-		clock_1();
-		delay_ms(1);
-		printf("\bRead %d%% [%d] of [%d] bytes      ", 100 * l / size_eeprom, l, size_eeprom);
-		printf("\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b");
-		fflush(stdout);
-		address++;
-	}
-	printf("Read 100%% [%d] of [%d] bytes      \n", l, size_eeprom);
-	return 0;
-}
 int Read_EEPROM_3wire_param(unsigned char *buffer, int start_addr, int block_size, int size_eeprom, unsigned char algorithm)
 {
     int address, num_bit, l;
@@ -485,7 +406,143 @@ int Write_EEPROM_3wire_param(unsigned char *buffer, int start_addr, int block_si
 
     return 0;
 }
+//static int addr_nbits(const char *func, int size)
+//{
+//	int i = 0;
+//
+//	if (fix_addr_len) {
+//		printf("%s: Set address len %d bits\n", func, fix_addr_len);
+//		return fix_addr_len;
+//	}
+//
+//	switch (size) {
+//		case 128: /* 93c46 */
+//           i = org ? 6 : 7;
+//			break;
+//		case 256: /* 93c56 */
+//		case 512: /* 93c66 */
+//			i = org ? 8 : 9;
+//			break;
+//		case 1024: /* 93c76 */
+//		case 2048: /* 93c86 */
+//			i = org ? 10 : 11;
+//			break;
+//		case 4096: /* 93c96(not original name) */
+//			i = org ? 12 : 13;
+//			break;
+//		default:
+//			i = 6; /* 93c06 and 93c16(not original name) */
+//			break;
+//	}
+//
+//	printf("%s: Set address len %d bits\n", func, i);
+//
+//	return i;
+//}
 
+/*int Read_EEPROM_3wire(unsigned char *buffer, int size_eeprom)
+{
+    int address, num_bit, l;
+
+    num_bit = addr_nbits(__func__, size_eeprom);
+    size_eeprom = convert_size(size_eeprom);
+
+    address = 0;
+
+    for (l = 0; l < size_eeprom; l++)
+    {
+        csel_0();
+        clock_0();
+        delay_ms(1);
+        data_1();
+        csel_1();
+        delay_ms(1);
+        clock_1();
+        delay_ms(1);
+
+        send_to_di(2, 2);
+        send_to_di(l, num_bit);
+
+        data_0();
+        clock_0();
+        delay_ms(1);
+        clock_1();
+        delay_ms(1);
+        buffer[address] = get_from_do();
+        if (org)
+        {
+            address++;
+            buffer[address] = get_from_do();
+        }
+        csel_0();
+        delay_ms(1);
+        clock_0();
+        delay_ms(1);
+        clock_1();
+        delay_ms(1);
+        printf("\bRead %d%% [%d] of [%d] bytes      ", 100 * l / size_eeprom, l, size_eeprom);
+        printf("\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b");
+        fflush(stdout);
+        address++;
+    }
+    printf("Read 100%% [%d] of [%d] bytes      \n", l, size_eeprom);
+    return 0;
+}
+*/
+/*void Erase_EEPROM_3wire(int size_eeprom)
+{
+    int i, num_bit;
+
+    num_bit = addr_nbits(__func__, size_eeprom);
+
+    enable_write_3wire(num_bit);
+    csel_0();
+    clock_0();
+    delay_ms(1);
+    data_1();
+    csel_1();
+    delay_ms(1);
+    clock_1();
+    delay_ms(1);
+
+    send_to_di(2, 4);
+    send_to_di(0, num_bit - 2);
+    clock_0();
+    data_0();
+    delay_ms(1);
+    csel_0();
+    delay_ms(1);
+    csel_1();
+    delay_ms(1);
+    clock_1();
+    delay_ms(1);
+    i = 0;
+    while (!get_data() && i < 10000)
+    {
+        clock_0();
+        delay_ms(1);
+        clock_1();
+        delay_ms(1);
+        i++;
+    }
+
+    if (i == 10000)
+    {
+        chip_busy();
+        return;
+    }
+
+    csel_0();
+    delay_ms(1);
+    clock_0();
+    delay_ms(1);
+    clock_1();
+    delay_ms(1);
+
+    disable_write_3wire(num_bit);
+}
+*/
+/*
 int Write_EEPROM_3wire(unsigned char *buffer, int size_eeprom)
 {
 	int i, l, address, num_bit;
@@ -568,4 +625,5 @@ int deviceSize_3wire(char *eepromname)
 
 	return -1;
 }
+*/
 /* End of [bitbang_microwire.c] package */

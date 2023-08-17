@@ -15,12 +15,12 @@
 #ifndef __MW_EEPROM_API_H__
 #define __MW_EEPROM_API_H__
 
-int mw_eeprom_read(unsigned char *buf, unsigned long from, unsigned long len);
-int mw_eeprom_erase(unsigned long offs, unsigned long len);
-int mw_eeprom_write(unsigned char *buf, unsigned long to, unsigned long len);
-long mw_init(void);
+//int mw_eeprom_read(unsigned char *buf, unsigned long from, unsigned long len);
+//int mw_eeprom_erase(unsigned long offs, unsigned long len);
+//int mw_eeprom_write(unsigned char *buf, unsigned long to, unsigned long len);
+//long mw_init(void);
 int mw_gpio_init(void);
-void support_mw_eeprom_list(void);
+//void support_mw_eeprom_list(void);
 
 #endif /* __MW_EEPROM_API_H__ */
 /* End of [mw_eeprom_api.h] package */
