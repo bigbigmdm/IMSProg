@@ -87,6 +87,8 @@ private slots:
 
     void on_actionChecksum_calculate_triggered();
 
+    void on_actionEdit_chips_Database_triggered();
+
 private:
     Ui::MainWindow *ui;
     int statusCH341;

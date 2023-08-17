@@ -20,6 +20,7 @@
 #include <QErrorMessage>
 #include <QDragEnterEvent>
 #include <QtGui>
+#include <QFileInfo>
 #include "qhexedit.h"
 #include "dialogsp.h"
 #include "dialogrp.h"
@@ -425,7 +426,6 @@ void MainWindow::on_comboBox_size_currentIndexChanged(int index)
     if ((currentChipSize !=0) && (currentBlockSize!=0) && (currentChipType == 0))
     {
         currentNumBlocks = currentChipSize / currentBlockSize;
-        qDebug()<<"blocks="<<currentNumBlocks;
         chipData.resize(static_cast<int>(currentChipSize));
         for (uint32_t i=0; i < currentChipSize; i++)
         {
@@ -755,7 +755,6 @@ void MainWindow::on_comboBox_name_currentIndexChanged(const QString &arg1)
        if ((currentChipSize !=0) && (currentBlockSize!=0) && (currentChipType == 0))
        {
            currentNumBlocks = currentChipSize / currentBlockSize;
-           qDebug()<<"blocks="<<currentNumBlocks;
            chipData.resize(static_cast<int>(currentChipSize));
            for (uint32_t i=0; i < currentChipSize; i++)
            {
@@ -1004,7 +1003,6 @@ void MainWindow::on_comboBox_type_currentIndexChanged(int index)
     ui->comboBox_man->addItem("");
     ui->comboBox_name->addItem("");
     currentChipType = static_cast<uint8_t>(index);
-    qDebug() << "ic_type=" << currentChipType;
     for (i = 0; i<max_rec; i++)
     {
         //replacing items to combobox Manufacture
@@ -1027,6 +1025,10 @@ void MainWindow::on_comboBox_type_currentIndexChanged(int index)
          ui->comboBox_addr4bit->hide();
          ui->label_8->hide();
          ui->label_9->hide();
+         //QMenu::actionAt(on_actionDetect_triggered()).setDisabled;
+         //ui->menuBar->actionAt(QPoint(0,0))->setDisabled(true);
+         ui->actionDetect->setDisabled(true);
+
      }
      if (index == 0)
      {
@@ -1035,6 +1037,7 @@ void MainWindow::on_comboBox_type_currentIndexChanged(int index)
          ui->comboBox_addr4bit->show();
          ui->label_8->show();
          ui->label_9->show();
+         ui->actionDetect->setEnabled(true);
      }
 }
 
@@ -1047,6 +1050,19 @@ void MainWindow::on_actionChecksum_calculate_triggered()
 {
    //Refreshing CRC32
     ui->crcEdit->setText(getCRC32());
+}
+
+void MainWindow::on_actionEdit_chips_Database_triggered()
+{
+    if(QFileInfo::exists("IMSProg_editor.appimage") && !QDir("IMSProg_editor.appimage").exists()){
+        //The file exists and is not a folder
+        QProcess::execute("IMSProg_editor");
+    }
+    else{
+        //The file doesn't exist, either the path doesn't exist or is the path of a folder
+         QMessageBox::about(this, "Error", "Not found file `IMSProg_editor`!");
+
+    }
 }
 
 //*****************************************************

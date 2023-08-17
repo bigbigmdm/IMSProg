@@ -300,7 +300,7 @@ long spi_eeprom_init(void)
 
 void support_spi_eeprom_list(void)
 {
-	int i;
+    unsigned int i;
 
 	printf("SPI EEPROM Support List:\n");
 	for ( i = 0; i < (sizeof(seepromlist)/sizeof(struct spi_eeprom)); i++)

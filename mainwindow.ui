@@ -597,6 +597,8 @@ border: 2px solid #094065;border-radius:8px;font-weight:600;</string>
     <addaction name="actionLoad_Part"/>
     <addaction name="actionSave_Part"/>
     <addaction name="separator"/>
+    <addaction name="actionEdit_chips_Database"/>
+    <addaction name="separator"/>
     <addaction name="actionExit"/>
    </widget>
    <widget class="QMenu" name="menuProgrammer">
@@ -645,6 +647,7 @@ border: 2px solid #094065;border-radius:8px;font-weight:600;</string>
    <addaction name="actionSave"/>
    <addaction name="actionSave_Part"/>
    <addaction name="actionLoad_Part"/>
+   <addaction name="actionEdit_chips_Database"/>
    <addaction name="actionExit"/>
    <addaction name="separator"/>
    <addaction name="actionDetect"/>
@@ -826,11 +829,27 @@ border: 2px solid #094065;border-radius:8px;font-weight:600;</string>
    </property>
   </action>
   <action name="actionChecksum_calculate">
+   <property name="icon">
+    <iconset resource="recource.qrc">
+     <normaloff>:/res/img/checkSum64.png</normaloff>:/res/img/checkSum64.png</iconset>
+   </property>
    <property name="text">
     <string>Checksum calculate</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+A</string>
+   </property>
+  </action>
+  <action name="actionEdit_chips_Database">
+   <property name="icon">
+    <iconset resource="recource.qrc">
+     <normaloff>:/res/img/chipEdit64.png</normaloff>:/res/img/chipEdit64.png</iconset>
+   </property>
+   <property name="text">
+    <string>Edit chips Database</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Q</string>
    </property>
   </action>
  </widget>

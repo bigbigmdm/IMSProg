@@ -17,5 +17,7 @@
         <file>img/hexsearch64.png</file>
         <file>img/ch341_black150.png</file>
         <file>img/ch341_green150.png</file>
+        <file>img/chipEdit64.png</file>
+        <file>img/checkSum64.png</file>
     </qresource>
 </RCC>

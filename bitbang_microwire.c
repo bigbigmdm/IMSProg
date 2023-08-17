@@ -377,7 +377,7 @@ int Read_EEPROM_3wire_param(unsigned char *buffer, int start_addr, int block_siz
         delay_ms(1);
 
         send_to_di(2, 2);
-        send_to_di(l, num_bit);
+        send_to_di((unsigned int)l, num_bit);
 
         data_0();
         clock_0();
@@ -507,7 +507,7 @@ int Write_EEPROM_3wire(unsigned char *buffer, int size_eeprom)
 		clock_1();
 		delay_ms(1);
 		send_to_di(1, 2);
-		send_to_di(l, num_bit);
+        send_to_di((unsigned int)l, num_bit);
 		send_to_di(buffer[address], 8);
 		if (org)
 		{
@@ -562,7 +562,7 @@ int deviceSize_3wire(char *eepromname)
 
 	for (i = 0; mw_eepromlist[i].size; i++) {
 		if (strstr(mw_eepromlist[i].name, eepromname)) {
-			return (mw_eepromlist[i].size);
+            return ((int)mw_eepromlist[i].size);
 		}
 	}
 
