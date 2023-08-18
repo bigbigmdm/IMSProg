@@ -1,0 +1,14 @@
+<RCC>
+    <qresource prefix="/res"/>
+    <qresource prefix="/">
+        <file>img/redo.png</file>
+        <file>img/open.png</file>
+        <file>img/save.png</file>
+        <file>img/exit.png</file>
+        <file>img/del.png</file>
+        <file>img/undo.png</file>
+        <file>img/plus.png</file>
+        <file>img/tocsv.png</file>
+        <file>img/import.png</file>
+    </qresource>
+</RCC>

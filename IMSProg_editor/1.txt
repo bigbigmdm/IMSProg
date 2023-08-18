@@ -1,0 +1,16 @@
+итого 144
+-rw-rw-r-- 1 mimi mimi     0 авг 18 08:44 1.txt
+-rw-rw-r-- 1 mimi mimi  2384 авг 18 08:27 CmakeList.txt
+-rw-rw-r-- 1 mimi mimi  6082 авг  2 12:46 delegates.cpp
+-rw-rw-r-- 1 mimi mimi  3424 авг  2 12:46 delegates.h
+-rw-rw-r-- 1 mimi mimi 31727 авг  2 12:46 ezp_chip_editor.cpp
+-rw-rw-r-- 1 mimi mimi  3136 авг  2 12:46 ezp_chip_editor.h
+-rw-rw-r-- 1 mimi mimi  6384 авг 18 07:41 ezp_chip_editor.ui
+drwxrwxr-x 2 mimi mimi  4096 авг 18 08:28 img
+-rw-rw-r-- 1 mimi mimi  2236 авг 18 07:38 IMSProg_editor.pro
+-rw-rw-r-- 1 mimi mimi 24153 авг 18 08:14 IMSProg_editor.pro.user
+-rw-rw-r-- 1 mimi mimi 35149 авг  2 12:46 LICENSE
+-rw-rw-r-- 1 mimi mimi   177 авг  2 12:46 main.cpp
+drwxrwxr-x 2 mimi mimi  4096 авг 18 08:39 other
+-rw-rw-r-- 1 mimi mimi  1198 авг  2 12:46 README.md
+-rw-rw-r-- 1 mimi mimi   396 авг  2 12:46 resources.qrc

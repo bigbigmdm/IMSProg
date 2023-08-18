@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>880</width>
+    <height>394</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>IMSProg chip database editor</string>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QTableView" name="tableView">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>9</pointsize>
+       </font>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>880</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <addaction name="actionOpen"/>
+    <addaction name="actionSave"/>
+    <addaction name="actionExit"/>
+    <addaction name="separator"/>
+    <addaction name="actionExport_to_CSV_2"/>
+    <addaction name="actionImport_from_CSV"/>
+   </widget>
+   <widget class="QMenu" name="menuEdit">
+    <property name="title">
+     <string>Edit</string>
+    </property>
+    <addaction name="actionDelete_string"/>
+    <addaction name="actionAdd_string"/>
+    <addaction name="actionMove_up"/>
+    <addaction name="actionMove_down"/>
+    <addaction name="separator"/>
+    <addaction name="actionExport_to_CSV"/>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuEdit"/>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+  <widget class="QToolBar" name="mainToolBar">
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionOpen"/>
+   <addaction name="actionSave"/>
+   <addaction name="separator"/>
+   <addaction name="actionExit"/>
+   <addaction name="separator"/>
+   <addaction name="actionDelete_string"/>
+   <addaction name="actionAdd_string"/>
+   <addaction name="actionMove_up"/>
+   <addaction name="actionMove_down"/>
+   <addaction name="separator"/>
+   <addaction name="actionExport_to_CSV"/>
+  </widget>
+  <action name="actionOpen">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/img/open.png</normaloff>:/img/open.png</iconset>
+   </property>
+   <property name="text">
+    <string>Open</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
+   </property>
+  </action>
+  <action name="actionExit">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/img/exit.png</normaloff>:/img/exit.png</iconset>
+   </property>
+   <property name="text">
+    <string>Exit</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+X</string>
+   </property>
+  </action>
+  <action name="actionSave">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/img/save.png</normaloff>:/img/save.png</iconset>
+   </property>
+   <property name="text">
+    <string>Save</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
+   </property>
+  </action>
+  <action name="actionDelete_string">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/img/del.png</normaloff>:/img/del.png</iconset>
+   </property>
+   <property name="text">
+    <string>Delete lines</string>
+   </property>
+   <property name="toolTip">
+    <string>Delete selected lines</string>
+   </property>
+   <property name="shortcut">
+    <string>Del</string>
+   </property>
+  </action>
+  <action name="actionAdd_string">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/img/plus.png</normaloff>:/img/plus.png</iconset>
+   </property>
+   <property name="text">
+    <string>Add line</string>
+   </property>
+   <property name="toolTip">
+    <string>Add selected lines and duplicate data</string>
+   </property>
+   <property name="shortcut">
+    <string>Ins</string>
+   </property>
+  </action>
+  <action name="actionMove_up">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/img/undo.png</normaloff>:/img/undo.png</iconset>
+   </property>
+   <property name="text">
+    <string>Move up</string>
+   </property>
+   <property name="toolTip">
+    <string>Move lines up</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Up</string>
+   </property>
+  </action>
+  <action name="actionMove_down">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/img/redo.png</normaloff>:/img/redo.png</iconset>
+   </property>
+   <property name="text">
+    <string>Move down</string>
+   </property>
+   <property name="toolTip">
+    <string>Move lines down</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Down</string>
+   </property>
+  </action>
+  <action name="actionExport_to_CSV">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/img/tocsv.png</normaloff>:/img/tocsv.png</iconset>
+   </property>
+   <property name="text">
+    <string>Export selected lines to CSV file</string>
+   </property>
+  </action>
+  <action name="actionExport_to_CSV_2">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/img/tocsv.png</normaloff>:/img/tocsv.png</iconset>
+   </property>
+   <property name="text">
+    <string>Export to CSV</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+X</string>
+   </property>
+  </action>
+  <action name="actionImport_from_CSV">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/img/import.png</normaloff>:/img/import.png</iconset>
+   </property>
+   <property name="text">
+    <string>Import from CSV</string>
+   </property>
+   <property name="shortcut">
+    <string>, Ctrl+Shift+X</string>
+   </property>
+  </action>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources>
+  <include location="resources.qrc"/>
+ </resources>
+ <connections/>
+</ui>
