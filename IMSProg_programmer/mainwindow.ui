@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>892</width>
-    <height>602</height>
+    <width>899</width>
+    <height>610</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -25,7 +25,7 @@
    <string>IMSProg - I2C/MicroWire/SPI CH341a Programmer</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background:#eee</string>
+   <string notr="true"/>
   </property>
   <widget class="QWidget" name="centralWidget">
    <property name="sizePolicy">
@@ -586,7 +586,7 @@ border: 2px solid #094065;border-radius:8px;font-weight:600;</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>892</width>
+     <width>899</width>
      <height>24</height>
     </rect>
    </property>
