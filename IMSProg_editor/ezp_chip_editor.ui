@@ -13,6 +13,9 @@
   <property name="windowTitle">
    <string>IMSProg chip database editor</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">background:#eee</string>
+  </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
@@ -38,7 +41,7 @@
      <x>0</x>
      <y>0</y>
      <width>880</width>
-     <height>22</height>
+     <height>24</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
