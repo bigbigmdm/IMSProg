@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>891</width>
-    <height>599</height>
+    <width>892</width>
+    <height>602</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -23,6 +23,9 @@
   </property>
   <property name="windowTitle">
    <string>IMSProg - I2C/MicroWire/SPI CH341a Programmer</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background:#eee</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <property name="sizePolicy">
@@ -583,8 +586,8 @@ border: 2px solid #094065;border-radius:8px;font-weight:600;</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>891</width>
-     <height>21</height>
+     <width>892</width>
+     <height>24</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
