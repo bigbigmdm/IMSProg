@@ -8,3 +8,32 @@ This is a GUI program used widget QhexEditor. For setting the SPI chip parameter
 The chip database format is clone with EZP2019, EZP2020, EZP2023, Minpro I, XP866+ programmers. You can edit the database use the [EZP Chip data Editor](https://github.com/bigbigmdm/EZP2019-EZP2025_chip_data_editor)
 
 ![CH341A EEPROM programmer](img/IMSProg.png) 
+
+## Building programmer
+```
+cd IMSProg_programmer
+mkdir build
+cd build
+cmake ..
+make -j4
+sudo make install
+```
+## Building editor
+```
+cd IMSProg_editor
+mkdir build
+cd build
+cmake ..
+make -j4
+sudo make install
+```
+
+
+## System requirements
+- cmake library
+  
+`sudo apt install cmake`
+
+- libusb library
+
+`sudo apt-get install libusb-1.0-0-dev`
