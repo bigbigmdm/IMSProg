@@ -1,0 +1,23 @@
+<RCC>
+    <qresource prefix="/"/>
+    <qresource prefix="/res">
+        <file>img/verify64.png</file>
+        <file>img/erase64.png</file>
+        <file>img/read64.png</file>
+        <file>img/write64.png</file>
+        <file>img/redo64.png</file>
+        <file>img/undo.png</file>
+        <file>img/save64.png</file>
+        <file>img/open64.png</file>
+        <file>img/exit64.png</file>
+        <file>img/test64.png</file>
+        <file>img/unprotect64.png</file>
+        <file>img/saveBlock64.png</file>
+        <file>img/loadBlock64.png</file>
+        <file>img/hexsearch64.png</file>
+        <file>img/ch341_black150.png</file>
+        <file>img/ch341_green150.png</file>
+        <file>img/chipEdit64.png</file>
+        <file>img/checkSum64.png</file>
+    </qresource>
+</RCC>

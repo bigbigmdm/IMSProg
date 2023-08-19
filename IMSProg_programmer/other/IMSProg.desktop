@@ -1,0 +1,15 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=IMSProg
+Icon=/opt/IMSProg/write64.png
+Exec=/opt/IMSProg/IMSProg
+Path=/opt/IMSProg/
+NoDisplay=false
+Categories=Electronics;Development;
+StartupNotify=true
+Terminal=false
+Comment=i2C,SPI,MW programmer for CH341a devices
+Comment[en]=i2c,SPI,MW chips programmer for CH341a devices
+Comment[ru]=Программатор i2c,SPI,MW микросхем для CH341a
+GenericName=i2c,SPI,MW chips programmer for CH341a devices

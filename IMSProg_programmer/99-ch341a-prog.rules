@@ -1,0 +1,3 @@
+# udev rule that sets permissions for CH341A programmer in Linux.
+# Put this file in /etc/udev/rules.d and reload udev rules or reboot to install
+SUBSYSTEM=="usb", ATTRS{idVendor}=="1a86", ATTRS{idProduct}=="5512", MODE="0666"
