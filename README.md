@@ -38,6 +38,6 @@ sudo make install
 
 `sudo apt-get install libusb-1.0-0 libusb-dev libusb-1.0-0-dev`
 
--Qt5 library
+- Qt5 library
 
 `sudo apt-get install  `qtbase5-dev`
