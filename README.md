@@ -60,3 +60,9 @@ When using `24xxx` or `93xxx` series chips, it is necessary to manually enter th
   
 - Pressing ![Detect](img/write64.png) or `<Ctrl+W>` to write data from the computer buffer into the chip.
 
+- Pressing ![Detect](img/erase64.png) or `<Ctrl+E>` will erase all data in the chip.
+- Pressing the ![Detect](img/verify64.png) or `<Ctrl+T>` button causes the data in the chip and in the computer buffer to be compared.
+
+The progress bar shows the progress of the read, erase, and verify operations.
+  
+
