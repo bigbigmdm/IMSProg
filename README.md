@@ -64,5 +64,7 @@ When using `24xxx` or `93xxx` series chips, it is necessary to manually enter th
 - Pressing the ![Detect](img/verify64.png) or `<Ctrl+T>` button causes the data in the chip and in the computer buffer to be compared.
 
 The progress bar shows the progress of the read, erase, and verify operations.
-  
 
+- The `Auto' button is used to perform erase, write and verify operations in sequence. If one of these operations is not needed, you can uncheck the checkbox for that operation.
+
+### File operations
