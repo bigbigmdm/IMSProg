@@ -73,3 +73,7 @@ The progress bar shows the progress of the read, erase, and verify operations.
 - The ![Open](img/open64.png) or `<Ctrl+O>` button is used to save the file in the computer buffer.
 
 - The ![SavePart](img/saveBlock64.png) or `<Ctrl+Shift-S>` button is used to save a part of the computer buffer to a file (the start address and length of the part must be entered). This operation can be used when splitting a binary data image into parts. 
+
+- The ![LoadPart](img/loadBlock64.png) or `<Ctrl+Shift-S>` button is used to load a small file to a certain address in the buffer. The data fragment in the buffer will be replaced with new data from the file.
+
+### Buffer (Hex editor) operations
