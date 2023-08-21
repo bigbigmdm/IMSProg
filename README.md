@@ -42,7 +42,7 @@ sudo make install
 
 - Qt5 library
 
-`sudo apt-get install qtbase5-dev
+`sudo apt-get install qtbase5-dev`
 
 ## How to use:
 
