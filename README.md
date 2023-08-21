@@ -81,5 +81,5 @@ The progress bar shows the progress of the read, erase, and verify operations.
 ### Buffer (Hex editor) operations
 The hexadecimal chip editor (right side of the screen) is used to display and modify buffer data.
 
-It contains the following controls: ![Undo](img/undo.png) undo, ![Redo](img/redo64.png) redo, and the ![Search](img/hexSearch64.png) search/replace. The `[Ctrl+A]` key used to update the CRC24 checksum.
+It contains the following controls: ![Undo](img/undo.png) undo, ![Redo](img/redo64.png) redo, and the ![Search](img/hexsearch64.png) search/replace. The `[Ctrl+A]` key used to update the CRC24 checksum.
 
