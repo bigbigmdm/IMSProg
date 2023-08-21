@@ -79,3 +79,7 @@ The progress bar shows the progress of the read, erase, and verify operations.
 - The ![Edit](img/chipEdit64.png) or `<Ctrl+Q>` button is used to invoke the chip database editor.
 
 ### Buffer (Hex editor) operations
+The hexadecimal chip editor (right side of the screen) is used to display and modify buffer data.
+
+It contains the following controls: ![Undo](img/undo.png) undo, ![Redo](img/redo.png) redo, and the ![Ctrl+A]` key used to update the CRC24 checksum.
+
