@@ -56,6 +56,7 @@ When using `25xxx` series SPI NOR FLASH chips, the `Detect` button will be avail
 When using `24xxx` or `93xxx` series chips, it is necessary to manually enter the `Manufacturing` and `Name` pop-up menu data - all other parameters will be automatically loaded from the chip database.  
 
 ### Basic programmer operations
-Pressing `Read` or ![Detect](img/read64.png) or `<Ctrl+R>` to read data from the chip into the computer buffer.
-Pressing ![Detect](img/write64.png) or `<Ctrl+W>` to write data from the computer buffer into the chip.
+- Pressing `Read` or ![Detect](img/read64.png) or `<Ctrl+R>` to read data from the chip into the computer buffer.
+  
+- Pressing ![Detect](img/write64.png) or `<Ctrl+W>` to write data from the computer buffer into the chip.
 
