@@ -70,6 +70,6 @@ The progress bar shows the progress of the read, erase, and verify operations.
 ### File operations
 - The ![Save](img/save64.png) or `<Ctrl+S>` button is used to save the computer buffer to a file.
 
-- The ![Open](img/read64.png) or `<Ctrl+O>` button is used to save the file in the computer buffer.
+- The ![Open](img/open64.png) or `<Ctrl+O>` button is used to save the file in the computer buffer.
 
 - 
