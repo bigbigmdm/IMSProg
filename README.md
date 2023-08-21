@@ -56,15 +56,20 @@ When using `25xxx` series SPI NOR FLASH chips, the `Detect` button will be avail
 When using `24xxx` or `93xxx` series chips, it is necessary to manually enter the `Manufacture` and `Name` pop-up menu data - all other parameters will be automatically loaded from the chip database.  
 
 ### Basic programmer operations
-- Pressing `Read` or ![Detect](img/read64.png) or `<Ctrl+R>` to read data from the chip into the computer buffer.
+- Pressing `Read` or ![Read](img/read64.png) or `<Ctrl+R>` to read data from the chip into the computer buffer.
   
-- Pressing ![Detect](img/write64.png) or `<Ctrl+W>` to write data from the computer buffer into the chip.
+- Pressing ![Write](img/write64.png) or `<Ctrl+W>` to write data from the computer buffer into the chip.
 
-- Pressing ![Detect](img/erase64.png) or `<Ctrl+E>` will erase all data in the chip.
-- Pressing the ![Detect](img/verify64.png) or `<Ctrl+T>` button causes the data in the chip and in the computer buffer to be compared.
+- Pressing ![Erase](img/erase64.png) or `<Ctrl+E>` will erase all data in the chip.
+- Pressing the ![Verify](img/verify64.png) or `<Ctrl+T>` button causes the data in the chip and in the computer buffer to be compared.
 
 The progress bar shows the progress of the read, erase, and verify operations.
 
 - The `Auto' button is used to perform erase, write and verify operations in sequence. If one of these operations is not needed, you can uncheck the checkbox for that operation.
 
 ### File operations
+- The ![Save](img/save64.png) or `<Ctrl+S>` button is used to save the computer buffer to a file.
+
+- The ![Open](img/read64.png) or `<Ctrl+O>` button is used to save the file in the computer buffer.
+
+- 
