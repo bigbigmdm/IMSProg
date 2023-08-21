@@ -52,7 +52,7 @@ sudo make install
 
 ### Chip type selecting
 Select the type of chip used from the `Type` pop-up menu: `SPI FLASH` when using SPI NOR FLASH chips of the `25xxx` series, `24_EEPROM` when using i2c EEPROM of the `24xxx` series, `93_EEPROM` when using MicroWire EEPROM of the `93xxx` series.
-When using `25xxx` series SPI NOR FLASH chips, the `Detect` button will be available. When the `Detect` button is pressed, the JEDEC information is read from the chip and all parameters of that chip are loaded from the chip database. Any parameter (`size`, `page size`, `block size`, `VCC voltage`, `and 4-bit address length`) can be changed manually.  You can manually enter the `Manufacture` and `Name` pop-up menu data - all other parameters will be automatically loaded from the chip database.  
+When using `25xxx` series SPI NOR FLASH chips, the `Detect` button will be available. When the `Detect` button or ![Detect](imgt/detect64.png) or `<Ctrl+D>` is pressed, the JEDEC information is read from the chip and all parameters of that chip are loaded from the chip database. Any parameter (`size`, `page size`, `block size`, `VCC voltage`, `and 4-bit address length`) can be changed manually.  You can manually enter the `Manufacture` and `Name` pop-up menu data - all other parameters will be automatically loaded from the chip database.  
 When using `24xxx` or `93xxx` series chips, it is necessary to manually enter the `Manufacturing` and `Name` pop-up menu data - all other parameters will be automatically loaded from the chip database.  
 
 ### Basic operations
