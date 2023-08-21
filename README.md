@@ -55,5 +55,7 @@ Select the type of chip used from the `Type` pop-up menu: `SPI FLASH` when using
 When using `25xxx` series SPI NOR FLASH chips, the `Detect` button will be available. When the `Detect` button or ![Detect](img/test64.png) or `<Ctrl+D>` is pressed, the JEDEC information is read from the chip and all parameters of that chip are loaded from the chip database. Any parameter (`size`, `page size`, `block size`, `VCC voltage`, `and 4-bit address length`) can be changed manually.  You can manually enter the `Manufacture` and `Name` pop-up menu data - all other parameters will be automatically loaded from the chip database.  
 When using `24xxx` or `93xxx` series chips, it is necessary to manually enter the `Manufacturing` and `Name` pop-up menu data - all other parameters will be automatically loaded from the chip database.  
 
-### Basic operations
+### Basic programmer operations
+Pressing `Read` or ![Detect](img/read64.png) or `<Ctrl+R>` to read data from the chip into the computer buffer.
+Pressing ![Detect](img/write64.png) or `<Ctrl+W>` to write data from the computer buffer into the chip.
 
