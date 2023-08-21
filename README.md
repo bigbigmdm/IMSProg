@@ -76,4 +76,6 @@ The progress bar shows the progress of the read, erase, and verify operations.
 
 - The ![LoadPart](img/loadBlock64.png) or `<Ctrl+Shift-S>` button is used to load a small file to a certain address in the buffer. The data fragment in the buffer will be replaced with new data from the file.
 
+- The ![Edit](img/chipEdit64.png) or `<Ctrl+Q>` button is used to invoke the chip database editor.
+
 ### Buffer (Hex editor) operations
