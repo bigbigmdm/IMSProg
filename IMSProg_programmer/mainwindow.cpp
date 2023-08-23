@@ -302,7 +302,7 @@ void MainWindow::on_pushButton_clicked()
     {
        //Not correct Number found size of blocks
        if (currentChipType == 0) QMessageBox::about(this, "Error", "Before reading from chip please press 'Detect' button.");
-       if (currentChipType == 1) QMessageBox::about(this, "Error", "Please select the chip parameters.");
+       if (currentChipType  >0 ) QMessageBox::about(this, "Error", "Please select the chip parameters.");
     }
     hexEdit->setData(chipData);
     ui->statusBar->showMessage("");
