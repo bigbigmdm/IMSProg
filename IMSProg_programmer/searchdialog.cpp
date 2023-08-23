@@ -113,3 +113,50 @@ qint64 SearchDialog::replaceOccurrence(qint64 idx, const QByteArray &replaceBa)
     }
     return result;
 }
+
+void SearchDialog::on_pb_png_clicked()
+{
+    ui->cbFind->setCurrentText("89504e470d0a1a0a");
+}
+
+void SearchDialog::on_pb_jpg_clicked()
+{
+    ui->cbFind->setCurrentText("ffd8ff");
+}
+
+
+void SearchDialog::on_pb_gif_clicked()
+{
+    ui->cbFind->setCurrentText("47494638");
+}
+
+
+void SearchDialog::on_pb_zip_clicked()
+{
+    ui->cbFind->setCurrentText("504b0304");
+}
+
+
+void SearchDialog::on_pb_tar_clicked()
+{
+    ui->cbFind->setCurrentText("7573746172003030");
+}
+
+
+void SearchDialog::on_pb_bios_clicked()
+{
+   ui->cbFind->setCurrentText("FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF5AA5F00F");
+}
+
+
+void SearchDialog::on_pb_uefi_clicked()
+{
+   ui->cbFind->setCurrentText("0000000000000000000000000000000078E58C8C3D8A1C4F9935896185C32DD3");
+}
+
+
+void SearchDialog::on_pb_gpt_clicked()
+{
+   ui->cbFind->setCurrentText("4546492050415254");
+}
+
