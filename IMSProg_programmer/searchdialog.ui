@@ -131,7 +131,7 @@
        <item>
         <widget class="QGroupBox" name="gbHeaders">
          <property name="title">
-          <string>Standart headers:</string>
+          <string>Standard headers:</string>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_5">
           <property name="spacing">
