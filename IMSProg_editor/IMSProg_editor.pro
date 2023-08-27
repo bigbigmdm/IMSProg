@@ -48,14 +48,16 @@ CONFIG += c++11
 SOURCES += \
         main.cpp \
         ezp_chip_editor.cpp \
-    delegates.cpp
+        delegates.cpp
 
 HEADERS += \
         ezp_chip_editor.h \
-    delegates.h
+        delegates.h
 
 FORMS += \
         ezp_chip_editor.ui
+
+TRANSLATIONS += language/chipEditor_ru_RU.ts
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
