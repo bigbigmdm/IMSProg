@@ -14,7 +14,7 @@
    <string>IMSProg chip database editor</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background:#eee</string>
+   <string notr="true"/>
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QVBoxLayout" name="verticalLayout">
