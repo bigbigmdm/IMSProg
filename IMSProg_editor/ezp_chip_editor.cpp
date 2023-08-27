@@ -80,7 +80,7 @@ void MainWindow::on_actionOpen_triggered()
     horizontalHeader.append("Algo-\nrithm");
     horizontalHeader.append("Delay");
     horizontalHeader.append("Extend");
-    horizontalHeader.append("Block size");
+    horizontalHeader.append("Block\nsize K");
     horizontalHeader.append("EEPROM\npages");
     horizontalHeader.append("VCC");
     model->setHorizontalHeaderLabels(horizontalHeader);
