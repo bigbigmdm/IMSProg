@@ -76,7 +76,7 @@ private:
     Ui::MainWindow *ui;
 
 signals:
-    void dataChanged(const QModelIndex&, const QModelIndex&);
+    void dataChanged(QModelIndex, QModelIndex);
 
 private slots:
     void on_actionOpen_triggered();
@@ -84,7 +84,6 @@ private slots:
     void onDataChanged(const QModelIndex& topLeft, const QModelIndex& bottomRight);
     void on_actionDelete_string_triggered();
     void on_actionSave_triggered();
-
     void on_actionAdd_string_triggered();
     void on_actionMove_up_triggered();
     void on_actionMove_down_triggered();

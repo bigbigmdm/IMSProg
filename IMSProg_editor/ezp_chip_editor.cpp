@@ -1,5 +1,5 @@
 /*
- * This file is part of the EZP_Chip_Editor project.
+ * This file is part of the IMSProg_Editor project.
  *
  * Copyright (C) 2023 Mikhail Medvedev (e-ink-reader@yandex.ru)
  *
@@ -47,11 +47,10 @@ void MainWindow::on_actionOpen_triggered()
                                 QDir::currentPath(),
                                 "Data Images (*.Dat);;All files (*.*)");
     ui->statusBar->showMessage("Current file: " + fileName);
-    QFile file(fileName); // создаем объект класса QFile
-    QByteArray data; // Создаем объект класса QByteArray, куда мы будем считывать данные
-    if (!file.open(QIODevice::ReadOnly)) // Проверяем, возможно ли открыть наш файл для чтения
-        return; // если это сделать невозможно, то завершаем функцию
-    data = file.readAll(); //считываем все данные с файла в объект data
+    QFile file(fileName);
+    QByteArray data;
+    if (!file.open(QIODevice::ReadOnly)) return;
+    data = file.readAll();
     file.close();
     dataPoz = 0;
     recNo = 0;
@@ -81,7 +80,7 @@ void MainWindow::on_actionOpen_triggered()
     horizontalHeader.append("Algo-\nrithm");
     horizontalHeader.append("Delay");
     horizontalHeader.append("Extend");
-    horizontalHeader.append("EEPROM");
+    horizontalHeader.append("Block size");
     horizontalHeader.append("EEPROM\npages");
     horizontalHeader.append("VCC");
     model->setHorizontalHeaderLabels(horizontalHeader);
@@ -203,14 +202,9 @@ void MainWindow::on_actionOpen_triggered()
     }
     //String headers
     model->setVerticalHeaderLabels(verticalHeader);
-
-
     ui->tableView->setStyleSheet("QTableView { border: none;"
                                      "selection-background-color: #8EDE21;"
                                      "color: green}");
-
-
-    //Закидываем данные
     ui->tableView->setModel(model);
     ui->tableView->resizeRowsToContents();
     ui->tableView->resizeColumnsToContents();
@@ -226,10 +220,7 @@ void MainWindow::on_actionOpen_triggered()
     //-combobox Block Size
     chBlSizeDelegate* delegateBlSize = new chBlSizeDelegate(this);
     ui->tableView->setItemDelegateForColumn(5,delegateBlSize);
-   //пример обращения к строке 2,2
-   QModelIndex index = model->index(2, 2, QModelIndex());
-   //отслеживание изменений
-   connect(ui->tableView->model(), SIGNAL(dataChanged(const QModelIndex&, const QModelIndex&)), this, SLOT(onDataChanged(const QModelIndex&, const QModelIndex&)));
+    connect(ui->tableView->model(), SIGNAL(dataChanged(const QModelIndex&, const QModelIndex&)), this, SLOT(onDataChanged(const QModelIndex&, const QModelIndex&)));
 
 }
 
@@ -286,7 +277,6 @@ void MainWindow::on_actionSave_triggered()
 {
     //creating new QBytearray to saving
     uint32_t size;
-    uint16_t pages;
     unsigned char A,B,C,D;
     QString fileName;
     QString tmpStr;
@@ -494,7 +484,6 @@ void MainWindow::on_actionSave_triggered()
 unsigned char MainWindow::dualDigitToByte(QString q, int poz)
 {
     unsigned char buf, rez;
-   rez = 0x00;
    if (poz < 3)
      {
         poz = poz *2;
@@ -519,15 +508,11 @@ void MainWindow::on_actionAdd_string_triggered()
     QModelIndex indFrom, indTo;
     QString tmpStr;
     int sel, decsel;
-
-    int recNo;
-    recNo = 0;
     if(ui->tableView->model() != nullptr)
     {
        QItemSelectionModel *select = ui->tableView->selectionModel();
        select->selectedRows();
        QModelIndexList selection = ui->tableView->selectionModel()->selectedRows();
-       recNo = ui->tableView->model()->rowCount();
        if (selection.count() <=0)
        {
            QMessageBox::warning(this, "Warning","No string selected.");
@@ -627,7 +612,6 @@ void MainWindow::on_actionMove_down_triggered()
   {
     QModelIndex indFrom, indTo;
     QString tmpStr;
-    QBrush setRGB;
     int sel, incsel, rowCount;
     chip_data tmpRec;
     QItemSelectionModel *select = ui->tableView->selectionModel();
@@ -642,7 +626,7 @@ void MainWindow::on_actionMove_down_triggered()
     {
         QModelIndex index = selection.at(i);
         sel = index.row();
-        rowCount = rowCount = ui->tableView->model()->rowCount();
+        rowCount = ui->tableView->model()->rowCount();
         incsel = sel + 1;
         if (index.row() < rowCount -1)
         {
@@ -666,7 +650,7 @@ void MainWindow::on_actionExport_to_CSV_triggered()
 {
     QString fileName;
     QString toCSV = csvHeader;
-    int i,j, rowCount;
+    int j;
     if(ui->tableView->model() != nullptr)
     {
         QModelIndex indFrom;
@@ -718,7 +702,7 @@ void MainWindow::on_actionExport_to_CSV_2_triggered()
     {
         QModelIndex indFrom;
 
-       rowCount = rowCount = ui->tableView->model()->rowCount();
+       rowCount = ui->tableView->model()->rowCount();
        if (rowCount > 0)
        {
           for (i=0; i < rowCount; i++)
@@ -735,7 +719,7 @@ void MainWindow::on_actionExport_to_CSV_2_triggered()
     //Saving QString to file
     ui->statusBar->showMessage("Saving file");
     fileName = QFileDialog::getSaveFileName(this,
-                                QString::fromUtf8("Открыть файл"),
+                                QString::fromUtf8("Open the file"),
                                 QDir::currentPath(),
                                 "Data Images (*.csv);;All files (*.*)");
        ui->statusBar->showMessage("Current file: " + fileName);
@@ -756,15 +740,14 @@ void MainWindow::on_actionImport_from_CSV_triggered()
         int j = 0, recNo, curPoz = -1, fromPoz;
         ui->statusBar->showMessage("Opening file");
         fileName = QFileDialog::getOpenFileName(this,
-                                    QString::fromUtf8("Открыть файл"),
+                                    QString::fromUtf8("Open the file"),
                                     QDir::currentPath(),
                                     "Data Images (*.csv);;All files (*.*)");
         ui->statusBar->showMessage("Current file: " + fileName);
-        QFile file(fileName); // создаем объект класса QFile
-        QByteArray data; // Создаем объект класса QByteArray, куда мы будем считывать данные
-        if (!file.open(QIODevice::ReadOnly)) // Проверяем, возможно ли открыть наш файл для чтения
-            return; // если это сделать невозможно, то завершаем функцию
-        data = file.readAll(); //считываем все данные с файла в объект data
+        QFile file(fileName);
+        QByteArray data;
+        if (!file.open(QIODevice::ReadOnly)) return;
+        data = file.readAll();
         file.close();
         fromCSV = QString(data);
         curPoz = fromCSV.indexOf(csvHeader);
