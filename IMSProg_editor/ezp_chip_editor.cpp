@@ -75,7 +75,7 @@ void MainWindow::on_actionOpen_triggered()
     horizontalHeader.append("IC Name");
     horizontalHeader.append("JEDEC ID");
     horizontalHeader.append("Size");
-    horizontalHeader.append("Block\nsize");
+    horizontalHeader.append("Sector\nsize");
     horizontalHeader.append("Type\nHEX");
     horizontalHeader.append("Algo-\nrithm");
     horizontalHeader.append("Delay");
