@@ -19,6 +19,10 @@ int main(int argc, char *argv[])
 {
     QApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
     QApplication a(argc, argv);
+    QTranslator translator;
+        QString translateName = "chipProgrammer_" + QLocale::system().name();
+        if(translator.load(translateName, "language/")) a.installTranslator(&translator);
+        a.installTranslator(&translator);
     MainWindow w;
     w.show();
 
