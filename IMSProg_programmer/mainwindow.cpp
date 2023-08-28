@@ -110,18 +110,18 @@ MainWindow::MainWindow(QWidget *parent) :
     hexEdit->setGeometry(0,0,ui->frame->width(),ui->frame->height());
     hexEdit->setData(chipData);
     //opening chip database file
-    ui->statusBar->showMessage("Opening DAT file");
+    ui->statusBar->showMessage(tr("Opening DAT file"));
     QFile datfile("IMSProg.Dat");
     QByteArray dataChips;
     if (!datfile.open(QIODevice::ReadOnly))
     {
-        QMessageBox::about(this, "Error", "Error loading chip database file!");
+        QMessageBox::about(this, tr("Error"), tr("Error loading chip database file!"));
         return;
     }
     dataChips = datfile.readAll();
     datfile.close();
     //parsing dat file
-    ui->statusBar->showMessage("Parsing DAT file");
+    ui->statusBar->showMessage(tr("Parsing DAT file"));
     //parsing qbytearray
     char txtBuf[0x30];
     int i, j, recNo, dataPoz, dataSize, delay;
@@ -263,7 +263,7 @@ void MainWindow::on_pushButton_clicked()
        uint8_t *buf;
        buf = (uint8_t *)malloc(currentBlockSize);
        ui->pushButton->setStyleSheet("QPushButton{color:#fff;background-color:#f66;border-radius: 20px;border: 2px solid #094065;border-radius:8px;font-weight:600;}");
-       ui->statusBar->showMessage("Reading data from " + ui->comboBox_name->currentText());
+       ui->statusBar->showMessage(tr("Reading data from ") + ui->comboBox_name->currentText());
        for (k = 0; k < currentNumBlocks; k++)
        {
           if (currentChipType == 0) res = snor_read_param(buf,curBlock * currentBlockSize, currentBlockSize, currentBlockSize, currentAddr4bit);
@@ -280,12 +280,12 @@ void MainWindow::on_pushButton_clicked()
           // if res=-1 - error, stop
           if (statusCH341 != 0)
             {
-                QMessageBox::about(this, "Error", "Programmer CH341a is not connected!");
+                QMessageBox::about(this, tr("Error"), tr("Programmer CH341a is not connected!"));
                 break;
             }
           if (res == 0)
             {
-               QMessageBox::about(this, "Error", "Error reading block " + QString::number(curBlock));
+               QMessageBox::about(this, tr("Error"), tr("Error reading block ") + QString::number(curBlock));
                break;
             }
          for (j = 0; j < currentBlockSize; j++)
@@ -301,8 +301,8 @@ void MainWindow::on_pushButton_clicked()
     else
     {
        //Not correct Number found size of blocks
-       if (currentChipType == 0) QMessageBox::about(this, "Error", "Before reading from chip please press 'Detect' button.");
-       if (currentChipType  >0 ) QMessageBox::about(this, "Error", "Please select the chip parameters.");
+       if (currentChipType == 0) QMessageBox::about(this, tr("Error"), tr("Before reading from chip please press 'Detect' button."));
+       if (currentChipType  >0 ) QMessageBox::about(this, tr("Error"), tr("Please select the chip parameters - manufacture and chip name"));
     }
     hexEdit->setData(chipData);
     ui->statusBar->showMessage("");
@@ -313,7 +313,7 @@ void MainWindow::on_pushButton_clicked()
   else
   {
       ch341StatusFlashing();
-      QMessageBox::about(this, "Error", "Programmer CH341a is not connected!");      
+      QMessageBox::about(this, tr("Error"), tr("Programmer CH341a is not connected!"));
   }
   ch341a_spi_shutdown();
 }
@@ -325,7 +325,7 @@ void MainWindow::on_pushButton_2_clicked()
     ch341StatusFlashing();
     if (statusCH341 != 0)
       {
-        QMessageBox::about(this, "Error", "Programmer CH341a is not connected!");
+        QMessageBox::about(this, tr("Error"), tr("Programmer CH341a is not connected!"));
         return;
       }
 
@@ -337,7 +337,7 @@ void MainWindow::on_pushButton_2_clicked()
     snor_read_devid(bufid, 5);
     if ((bufid[0] == 0xff) && (bufid[1] == 0xff) && (bufid[2] == 0xff))
     {
-        QMessageBox::about(this, "Error", "The chip is not connect or missing!");
+        QMessageBox::about(this, tr("Error"), tr("The chip is not connect or missing!"));
         ui->pushButton_2->setStyleSheet("QPushButton{color:#fff;background-color:rgb(120, 183, 140);border-radius: 20px;border: 2px solid #094065;border-radius:8px;font-weight:600;}");
         return;
     }
@@ -483,15 +483,15 @@ void MainWindow::on_actionDetect_triggered()
 void MainWindow::on_actionSave_triggered()
 {
 
-    ui->statusBar->showMessage("Saving file");
+    ui->statusBar->showMessage(tr("Saving file"));
     fileName = QFileDialog::getSaveFileName(this,
-                                QString::fromUtf8("Save file"),
+                                QString(tr("Save file")),
                                 QDir::currentPath(),
                                 "Data Images (*.bin);;All files (*.*)");
     QFile file(fileName);
     if (!file.open(QIODevice::WriteOnly))
     {
-        QMessageBox::about(this, "Error", "Error saving file!");
+        QMessageBox::about(this, tr("Error"), tr("Error saving file!"));
         return;
     }
     file.write(hexEdit->data());
@@ -505,10 +505,10 @@ void MainWindow::on_actionErase_triggered()
     ch341StatusFlashing();
     if (statusCH341 != 0)
       {
-        QMessageBox::about(this, "Error", "Programmer CH341a is not connected!");
+        QMessageBox::about(this, tr("Error"), tr("Programmer CH341a is not connected!"));
         return;
       }
-    ui->statusBar->showMessage("Erasing the " + ui->comboBox_name->currentText());
+    ui->statusBar->showMessage(tr("Erasing the ") + ui->comboBox_name->currentText());
     ui->checkBox->setStyleSheet("QCheckBox{font-weight:600;}");
     ui->centralWidget->repaint();
     ui->progressBar->setRange(0, 100);
@@ -549,7 +549,7 @@ void MainWindow::on_actionErase_triggered()
             ui->progressBar->setValue( static_cast<int>(curBlock));
             if (res != 0)
               {
-                QMessageBox::about(this, "Error", "Error erasing sector " + QString::number(curBlock));
+                QMessageBox::about(this, tr("Error"), tr("Error erasing sector ") + QString::number(curBlock));
                 ch341a_spi_shutdown();
                 return;
               }
@@ -575,12 +575,12 @@ void MainWindow::on_actionRedo_triggered()
 
 void MainWindow::on_actionOpen_triggered()
 {
-    ui->statusBar->showMessage("Opening file");
+    ui->statusBar->showMessage(tr("Opening file"));
     fileName = QFileDialog::getOpenFileName(this,
-                                QString::fromUtf8("Open file"),
+                                QString(tr("Open file")),
                                 QDir::currentPath(),
                                 "Data Images (*.bin);;All files (*.*)");
-    ui->statusBar->showMessage("Current file: " + fileName);
+    ui->statusBar->showMessage(tr("Current file: ") + fileName);
     QFile file(fileName);
     if (!file.open(QIODevice::ReadOnly))
     {
@@ -615,7 +615,7 @@ void MainWindow::on_actionWrite_triggered()
     uint32_t addr = 0;
     uint32_t curBlock = 0;    
     uint32_t j, k;
-    ui->statusBar->showMessage("Writing data to " + ui->comboBox_name->currentText());
+    ui->statusBar->showMessage(tr("Writing data to ") + ui->comboBox_name->currentText());
     //progerssbar settings
     ui->progressBar->setRange(0, static_cast<int>(currentNumBlocks));
     ui->checkBox_2->setStyleSheet("QCheckBox{font-weight:800;}");
@@ -644,12 +644,12 @@ void MainWindow::on_actionWrite_triggered()
          // if res=-1 - error, stop
          if (statusCH341 != 0)
            {
-             QMessageBox::about(this, "Error", "Programmer CH341a is not connected!");
+             QMessageBox::about(this, tr("Error"), tr("Programmer CH341a is not connected!"));
              break;
            }
          if (res == 0)
            {
-             QMessageBox::about(this, "Error", "Error writing sector " + QString::number(curBlock));
+             QMessageBox::about(this, tr("Error"), tr("Error writing sector ") + QString::number(curBlock));
              break;
            }
          addr = addr + currentBlockSize;
@@ -661,7 +661,7 @@ void MainWindow::on_actionWrite_triggered()
     else
     {
     //Not correct Number fnd size of blocks
-     QMessageBox::about(this, "Error", "Before reading from chip please press 'Detect' button.");
+     QMessageBox::about(this, tr("Error"), tr("Before reading from chip please press 'Detect' button."));
     }
     ui->progressBar->setValue(0);
     ui->checkBox_2->setStyleSheet("");
@@ -809,7 +809,7 @@ void MainWindow::on_actionVerify_triggered()
                buf = (uint8_t *)malloc(currentBlockSize);
                chipData = hexEdit->data();
                ui->checkBox_3->setStyleSheet("QCheckBox{font-weight:800;}");
-               ui->statusBar->showMessage("Veryfing data from " + ui->comboBox_name->currentText());
+               ui->statusBar->showMessage(tr("Veryfing data from ") + ui->comboBox_name->currentText());
                for (k = 0; k < currentNumBlocks; k++)
                {
                     if (currentChipType == 0) res = snor_read_param(buf,curBlock * currentBlockSize, currentBlockSize, currentBlockSize, currentAddr4bit);
@@ -826,12 +826,12 @@ void MainWindow::on_actionVerify_triggered()
                     // if res=-1 - error, stop
                     if (statusCH341 != 0)
                     {
-                       QMessageBox::about(this, "Error", "Programmer CH341a is not connected!");
+                       QMessageBox::about(this, tr("Error"), tr("Programmer CH341a is not connected!"));
                        break;
                     }
                     if (res == 0)
                     {
-                        QMessageBox::about(this, "Error", "Error reading block " + QString::number(curBlock));
+                        QMessageBox::about(this, tr("Error"), tr("Error reading block ") + QString::number(curBlock));
                         break;
                     }
                     for (j = 0; j < currentBlockSize; j++)
@@ -839,7 +839,7 @@ void MainWindow::on_actionVerify_triggered()
                       if (chipData[addr + j] != char(buf[addr + j - k * currentBlockSize]))
                           {
                             //error compare
-                            QMessageBox::about(this, "Error", "Error comparing data!\nAddress:   " + hexiAddr(addr + j) + "\nBuffer: " + bytePrint( static_cast<unsigned char>(chipData[addr + j])) + "    Chip: " + bytePrint(buf[addr + j - k * currentBlockSize]));
+                            QMessageBox::about(this, tr("Error"), tr("Error comparing data!\nAddress:   ") + hexiAddr(addr + j) + tr("\nBuffer: ") + bytePrint( static_cast<unsigned char>(chipData[addr + j])) + tr("    Chip: ") + bytePrint(buf[addr + j - k * currentBlockSize]));
                             ui->statusBar->showMessage("");
                             ui->checkBox_3->setStyleSheet("");
                             ch341a_spi_shutdown();
@@ -854,8 +854,8 @@ void MainWindow::on_actionVerify_triggered()
              else
              {
                 //Not correct Number fnd size of blocks
-               if (currentChipType == 0) QMessageBox::about(this, "Error", "Before reading from chip please press 'Detect' button.");
-               if (currentChipType == 1) QMessageBox::about(this, "Error", "Please select the chip parameters.");
+               if (currentChipType == 0) QMessageBox::about(this, tr("Error"), tr("Before reading from chip please press 'Detect' button."));
+               if (currentChipType == 1) QMessageBox::about(this, tr("Error"), tr("Please select the chip parameters - manufacture and chip name."));
 
              }
              ui->statusBar->showMessage("");
@@ -867,7 +867,7 @@ void MainWindow::on_actionVerify_triggered()
       else
       {
           ch341StatusFlashing();
-          QMessageBox::about(this, "Error", "Programmer CH341a is not connected!");
+          QMessageBox::about(this, tr("Error"), tr("Programmer CH341a is not connected!"));
       }
 }
 
@@ -896,7 +896,7 @@ void MainWindow::receiveAddr(QString addressData)
         blockEndAddr = hexToInt(addressData.mid(e + 1, t - e - 2));
         if (blockEndAddr < blockStartAddr)
         {
-            QMessageBox::about(this, "Error", "The end address must be greater than the starting addres.");
+            QMessageBox::about(this, tr("Error"), tr("The end address must be greater than the starting addres."));
             return;
         }
         blockLen = blockEndAddr - blockStartAddr + 1;
@@ -908,15 +908,15 @@ void MainWindow::receiveAddr(QString addressData)
     {
         block[ee] = chipData[ee + blockStartAddr];
     }
-    ui->statusBar->showMessage("Saving block");
+    ui->statusBar->showMessage(tr("Saving block"));
     fileName = QFileDialog::getSaveFileName(this,
-                                QString::fromUtf8("Save block"),
+                                QString(tr("Save block")),
                                 QDir::currentPath(),
                                 "Data Images (*.bin);;All files (*.*)");
     QFile file(fileName);
     if (!file.open(QIODevice::WriteOnly))
     {
-        QMessageBox::about(this, "Error", "Error saving file!");
+        QMessageBox::about(this, tr("Error"), tr("Error saving file!"));
         return;
     }
     file.write(block);
@@ -930,12 +930,12 @@ void MainWindow::receiveAddr2(QString addressData)
     blockStartAddr = 0;
     blockLen = 0;
     blockStartAddr = hexToInt(addressData);
-    ui->statusBar->showMessage("Opening block");
+    ui->statusBar->showMessage(tr("Opening block"));
     fileName = QFileDialog::getOpenFileName(this,
-                                QString::fromUtf8("Open block"),
+                                QString(tr("Open block")),
                                 QDir::currentPath(),
                                 "Data Images (*.bin);;All files (*.*)");
-    ui->statusBar->showMessage("Current file: " + fileName);
+    ui->statusBar->showMessage(tr("Current file: ") + fileName);
     QFile file(fileName);
     if (!file.open(QIODevice::ReadOnly))
     {
@@ -947,7 +947,7 @@ void MainWindow::receiveAddr2(QString addressData)
     chipData = hexEdit->data();
     if (blockStartAddr + blockLen > static_cast<uint32_t>(chipData.size()))
     {
-        QMessageBox::about(this, "Error", "The end address out of image size!");
+        QMessageBox::about(this, tr("Error"), tr("The end address out of image size!"));
         return;
     }
     for (ee=0; ee < blockLen; ee++)
@@ -986,12 +986,12 @@ void MainWindow::ch341StatusFlashing()
 {
     if (statusCH341 == 0)
     {
-        ui->eStatus->setText("Connected");
+        ui->eStatus->setText(tr("Connected"));
         ui->eStatus -> setStyleSheet("QLineEdit {border: 2px solid gray;border-radius: 5px;color:#000;background:#9f0;font-weight:600;border-style:inset;}");
     }
     else
     {
-        ui->eStatus->setText("Not connected");
+        ui->eStatus->setText(tr("Not connected"));
         ui->eStatus -> setStyleSheet("QLineEdit {border: 2px solid gray;border-radius: 5px;color:#fff;background:#f00;font-weight:600;border-style:inset;}");
     }
 }
@@ -1061,7 +1061,7 @@ void MainWindow::on_actionEdit_chips_Database_triggered()
     }
     else {
         //The file doesn't exist, either the path doesn't exist or is the path of a folder
-         QMessageBox::about(this, "Error", "Not found file `IMSProg_editor`!");
+         QMessageBox::about(this, tr("Error"), tr("Not found file `IMSProg_editor`!"));
     }
 }
 
