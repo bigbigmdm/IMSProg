@@ -81,7 +81,8 @@ FORMS += \
         searchdialog.ui \
     dialogabout.ui
 
-TRANSLATIONS += language/chipProgrammer_ru_RU.ts
+TRANSLATIONS += language/chipProgrammer_ru_RU.ts \
+         language/chipProgrammer_es_ES.ts
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
