@@ -86,5 +86,6 @@ install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/img/write64.png" DESTINATION /opt/IMS
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/database/IMSProg.Dat" DESTINATION /opt/IMSProg)
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/other/99-CH341.rules" DESTINATION /etc/udev/rules.d)
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/language/chipProgrammer_ru_RU.qm" DESTINATION /opt/IMSProg/language)
+install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/language/chipProgrammer_es_ES.qm" DESTINATION /opt/IMSProg/language)
 
 
