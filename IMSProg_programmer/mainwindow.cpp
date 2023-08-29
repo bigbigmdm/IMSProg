@@ -598,9 +598,11 @@ void MainWindow::on_actionWrite_triggered()
 {
     //Writting data to chip
     int res = 0;
+    statusCH341 = ch341a_init(currentChipType);
+    if (statusCH341 == 0)
+    {
     if (((currentNumBlocks > 0) && (currentBlockSize >0) && (currentChipType == 0)) || ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 1)) || ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 2)))
         {
-        statusCH341 = ch341a_init(currentChipType);
         if (currentChipType == 1)
         {
             currentBlockSize = 128;
@@ -665,7 +667,13 @@ void MainWindow::on_actionWrite_triggered()
     }
     ui->progressBar->setValue(0);
     ui->checkBox_2->setStyleSheet("");
-    ui->statusBar->showMessage("");
+    ui->statusBar->showMessage("");    
+    }
+    else
+    {
+        ch341StatusFlashing();
+        QMessageBox::about(this, tr("Error"), tr("Programmer CH341a is not connected!"));
+    }
     ch341a_spi_shutdown();
 }
 
