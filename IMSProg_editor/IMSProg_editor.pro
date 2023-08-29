@@ -57,7 +57,8 @@ HEADERS += \
 FORMS += \
         ezp_chip_editor.ui
 
-TRANSLATIONS += language/chipEditor_ru_RU.ts
+TRANSLATIONS += language/chipEditor_ru_RU.ts \
+        language/chipEditor_es_ES.ts
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
