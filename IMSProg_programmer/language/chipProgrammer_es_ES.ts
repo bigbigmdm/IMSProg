@@ -416,7 +416,7 @@
     <message>
         <location filename="../mainwindow.cpp" line="124"/>
         <source>Parsing DAT file</source>
-        <translation>Обработка файла данных</translation>
+        <translation>Análisis de archivos DAT</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="266"/>
