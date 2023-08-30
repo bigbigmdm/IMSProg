@@ -30,8 +30,12 @@
     </message>
     <message>
         <location filename="../dialogabout.ui" line="102"/>
+        <source>Version: 1.0.22</source>
+        <translation>Версия 1.0.22</translation>
+    </message>
+    <message>
         <source>Version: 1.0.21</source>
-        <translation>Версия 1.0.21</translation>
+        <translation type="vanished">Версия 1.0.21</translation>
     </message>
     <message>
         <location filename="../dialogabout.ui" line="136"/>
@@ -348,7 +352,7 @@
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="583"/>
-        <location filename="../mainwindow.cpp" line="938"/>
+        <location filename="../mainwindow.cpp" line="946"/>
         <source>Current file: </source>
         <translation>Текущий файл:</translation>
     </message>
@@ -392,19 +396,20 @@
         <location filename="../mainwindow.cpp" line="494"/>
         <location filename="../mainwindow.cpp" line="508"/>
         <location filename="../mainwindow.cpp" line="552"/>
-        <location filename="../mainwindow.cpp" line="647"/>
-        <location filename="../mainwindow.cpp" line="652"/>
-        <location filename="../mainwindow.cpp" line="664"/>
-        <location filename="../mainwindow.cpp" line="829"/>
-        <location filename="../mainwindow.cpp" line="834"/>
+        <location filename="../mainwindow.cpp" line="649"/>
+        <location filename="../mainwindow.cpp" line="654"/>
+        <location filename="../mainwindow.cpp" line="666"/>
+        <location filename="../mainwindow.cpp" line="675"/>
+        <location filename="../mainwindow.cpp" line="837"/>
         <location filename="../mainwindow.cpp" line="842"/>
-        <location filename="../mainwindow.cpp" line="857"/>
-        <location filename="../mainwindow.cpp" line="858"/>
-        <location filename="../mainwindow.cpp" line="870"/>
-        <location filename="../mainwindow.cpp" line="899"/>
-        <location filename="../mainwindow.cpp" line="919"/>
-        <location filename="../mainwindow.cpp" line="950"/>
-        <location filename="../mainwindow.cpp" line="1064"/>
+        <location filename="../mainwindow.cpp" line="850"/>
+        <location filename="../mainwindow.cpp" line="865"/>
+        <location filename="../mainwindow.cpp" line="866"/>
+        <location filename="../mainwindow.cpp" line="878"/>
+        <location filename="../mainwindow.cpp" line="907"/>
+        <location filename="../mainwindow.cpp" line="927"/>
+        <location filename="../mainwindow.cpp" line="958"/>
+        <location filename="../mainwindow.cpp" line="1072"/>
         <source>Error</source>
         <translation>Ошибка</translation>
     </message>
@@ -428,22 +433,23 @@
         <location filename="../mainwindow.cpp" line="316"/>
         <location filename="../mainwindow.cpp" line="328"/>
         <location filename="../mainwindow.cpp" line="508"/>
-        <location filename="../mainwindow.cpp" line="647"/>
-        <location filename="../mainwindow.cpp" line="829"/>
-        <location filename="../mainwindow.cpp" line="870"/>
+        <location filename="../mainwindow.cpp" line="649"/>
+        <location filename="../mainwindow.cpp" line="675"/>
+        <location filename="../mainwindow.cpp" line="837"/>
+        <location filename="../mainwindow.cpp" line="878"/>
         <source>Programmer CH341a is not connected!</source>
         <translation>Программатор CH341a не подключен</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="288"/>
-        <location filename="../mainwindow.cpp" line="834"/>
+        <location filename="../mainwindow.cpp" line="842"/>
         <source>Error reading block </source>
         <translation>Ошибка чтения блока </translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="304"/>
-        <location filename="../mainwindow.cpp" line="664"/>
-        <location filename="../mainwindow.cpp" line="857"/>
+        <location filename="../mainwindow.cpp" line="666"/>
+        <location filename="../mainwindow.cpp" line="865"/>
         <source>Before reading from chip please press &apos;Detect&apos; button.</source>
         <translation>Перед считыванием нажмите кнопку &apos;Поиск&apos;.</translation>
     </message>
@@ -469,7 +475,7 @@
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="494"/>
-        <location filename="../mainwindow.cpp" line="919"/>
+        <location filename="../mainwindow.cpp" line="927"/>
         <source>Error saving file!</source>
         <translation>Ошибка сохранения файла!</translation>
     </message>
@@ -494,86 +500,86 @@
         <translation>Открыть файл</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="618"/>
+        <location filename="../mainwindow.cpp" line="620"/>
         <source>Writing data to </source>
         <translation>Запись данных в </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="652"/>
+        <location filename="../mainwindow.cpp" line="654"/>
         <source>Error writing sector </source>
         <translation>Ошибка записи сектора </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="812"/>
+        <location filename="../mainwindow.cpp" line="820"/>
         <source>Veryfing data from </source>
         <translation>Проверяются данные МС </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="842"/>
+        <location filename="../mainwindow.cpp" line="850"/>
         <source>Error comparing data!
 Address:   </source>
         <translation>Ошибка сравнения данных!
 Адрес:   </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="842"/>
+        <location filename="../mainwindow.cpp" line="850"/>
         <source>
 Buffer: </source>
-        <translation type="unfinished">
+        <translation>
 Буфер: </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="842"/>
+        <location filename="../mainwindow.cpp" line="850"/>
         <source>    Chip: </source>
         <translation> Микросхема: </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="858"/>
+        <location filename="../mainwindow.cpp" line="866"/>
         <source>Please select the chip parameters - manufacture and chip name.</source>
         <translation>Выберите параметры МС - &apos;Произв.&apos; и &apos;Название&apos;.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="899"/>
+        <location filename="../mainwindow.cpp" line="907"/>
         <source>The end address must be greater than the starting addres.</source>
         <translation>Конечный адрес больше начального!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="911"/>
+        <location filename="../mainwindow.cpp" line="919"/>
         <source>Saving block</source>
         <translation>Сохраняется блок</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="913"/>
+        <location filename="../mainwindow.cpp" line="921"/>
         <source>Save block</source>
         <translation>Сохранить блок</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="933"/>
+        <location filename="../mainwindow.cpp" line="941"/>
         <source>Opening block</source>
         <translation>Открывается блок</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="935"/>
+        <location filename="../mainwindow.cpp" line="943"/>
         <source>Open block</source>
         <translation>Открыть блок</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="950"/>
+        <location filename="../mainwindow.cpp" line="958"/>
         <source>The end address out of image size!</source>
         <translation>Конечный адрес больше размера буфера!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="989"/>
+        <location filename="../mainwindow.cpp" line="997"/>
         <source>Connected</source>
         <translation>Подключен</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="994"/>
+        <location filename="../mainwindow.cpp" line="1002"/>
         <source>Not connected</source>
         <translation>Не подключен</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1064"/>
+        <location filename="../mainwindow.cpp" line="1072"/>
         <source>Not found file `IMSProg_editor`!</source>
         <translation>Не найден файл &apos;IMSProg_editor&apos;!</translation>
     </message>

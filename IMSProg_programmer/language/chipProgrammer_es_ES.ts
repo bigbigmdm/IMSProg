@@ -30,8 +30,12 @@
     </message>
     <message>
         <location filename="../dialogabout.ui" line="102"/>
+        <source>Version: 1.0.22</source>
+        <translation>Versión: 1.0.22</translation>
+    </message>
+    <message>
         <source>Version: 1.0.21</source>
-        <translation>Versión: 1.0.21</translation>
+        <translation type="vanished">Versión: 1.0.21</translation>
     </message>
     <message>
         <location filename="../dialogabout.ui" line="136"/>
@@ -348,7 +352,7 @@
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="583"/>
-        <location filename="../mainwindow.cpp" line="938"/>
+        <location filename="../mainwindow.cpp" line="946"/>
         <source>Current file: </source>
         <translation>Archivo actual: </translation>
     </message>
@@ -392,19 +396,20 @@
         <location filename="../mainwindow.cpp" line="494"/>
         <location filename="../mainwindow.cpp" line="508"/>
         <location filename="../mainwindow.cpp" line="552"/>
-        <location filename="../mainwindow.cpp" line="647"/>
-        <location filename="../mainwindow.cpp" line="652"/>
-        <location filename="../mainwindow.cpp" line="664"/>
-        <location filename="../mainwindow.cpp" line="829"/>
-        <location filename="../mainwindow.cpp" line="834"/>
+        <location filename="../mainwindow.cpp" line="649"/>
+        <location filename="../mainwindow.cpp" line="654"/>
+        <location filename="../mainwindow.cpp" line="666"/>
+        <location filename="../mainwindow.cpp" line="675"/>
+        <location filename="../mainwindow.cpp" line="837"/>
         <location filename="../mainwindow.cpp" line="842"/>
-        <location filename="../mainwindow.cpp" line="857"/>
-        <location filename="../mainwindow.cpp" line="858"/>
-        <location filename="../mainwindow.cpp" line="870"/>
-        <location filename="../mainwindow.cpp" line="899"/>
-        <location filename="../mainwindow.cpp" line="919"/>
-        <location filename="../mainwindow.cpp" line="950"/>
-        <location filename="../mainwindow.cpp" line="1064"/>
+        <location filename="../mainwindow.cpp" line="850"/>
+        <location filename="../mainwindow.cpp" line="865"/>
+        <location filename="../mainwindow.cpp" line="866"/>
+        <location filename="../mainwindow.cpp" line="878"/>
+        <location filename="../mainwindow.cpp" line="907"/>
+        <location filename="../mainwindow.cpp" line="927"/>
+        <location filename="../mainwindow.cpp" line="958"/>
+        <location filename="../mainwindow.cpp" line="1072"/>
         <source>Error</source>
         <translation>Error</translation>
     </message>
@@ -428,22 +433,23 @@
         <location filename="../mainwindow.cpp" line="316"/>
         <location filename="../mainwindow.cpp" line="328"/>
         <location filename="../mainwindow.cpp" line="508"/>
-        <location filename="../mainwindow.cpp" line="647"/>
-        <location filename="../mainwindow.cpp" line="829"/>
-        <location filename="../mainwindow.cpp" line="870"/>
+        <location filename="../mainwindow.cpp" line="649"/>
+        <location filename="../mainwindow.cpp" line="675"/>
+        <location filename="../mainwindow.cpp" line="837"/>
+        <location filename="../mainwindow.cpp" line="878"/>
         <source>Programmer CH341a is not connected!</source>
         <translation>¡El programador CH341a no está conectado!</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="288"/>
-        <location filename="../mainwindow.cpp" line="834"/>
+        <location filename="../mainwindow.cpp" line="842"/>
         <source>Error reading block </source>
         <translation>Bloque de lectura de errores </translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="304"/>
-        <location filename="../mainwindow.cpp" line="664"/>
-        <location filename="../mainwindow.cpp" line="857"/>
+        <location filename="../mainwindow.cpp" line="666"/>
+        <location filename="../mainwindow.cpp" line="865"/>
         <source>Before reading from chip please press &apos;Detect&apos; button.</source>
         <translation>Antes de leer el chip, pulse el botón &apos;Detectar&apos;.</translation>
     </message>
@@ -469,7 +475,7 @@
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="494"/>
-        <location filename="../mainwindow.cpp" line="919"/>
+        <location filename="../mainwindow.cpp" line="927"/>
         <source>Error saving file!</source>
         <translation>¡Error al guardar el archivo!</translation>
     </message>
@@ -494,86 +500,86 @@
         <translation>Abrir expediente</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="618"/>
+        <location filename="../mainwindow.cpp" line="620"/>
         <source>Writing data to </source>
         <translation>Escritura de datos en </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="652"/>
+        <location filename="../mainwindow.cpp" line="654"/>
         <source>Error writing sector </source>
         <translation>Error al escribir el sector </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="812"/>
+        <location filename="../mainwindow.cpp" line="820"/>
         <source>Veryfing data from </source>
         <translation>Datos muy escasos de </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="842"/>
+        <location filename="../mainwindow.cpp" line="850"/>
         <source>Error comparing data!
 Address:   </source>
         <translation>Error comparing data!
 Address:   </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="842"/>
+        <location filename="../mainwindow.cpp" line="850"/>
         <source>
 Buffer: </source>
         <translation>
 Buffer: </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="842"/>
+        <location filename="../mainwindow.cpp" line="850"/>
         <source>    Chip: </source>
         <translation>    Chip: </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="858"/>
+        <location filename="../mainwindow.cpp" line="866"/>
         <source>Please select the chip parameters - manufacture and chip name.</source>
         <translation>Seleccione los parámetros del chip: &apos;Fabricación&apos; y &apos;Nombre&apos; del chip</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="899"/>
+        <location filename="../mainwindow.cpp" line="907"/>
         <source>The end address must be greater than the starting addres.</source>
         <translation>La dirección final debe ser mayor que la dirección inicial.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="911"/>
+        <location filename="../mainwindow.cpp" line="919"/>
         <source>Saving block</source>
         <translation>Bloque de ahorro</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="913"/>
+        <location filename="../mainwindow.cpp" line="921"/>
         <source>Save block</source>
         <translation>Guardar bloque</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="933"/>
+        <location filename="../mainwindow.cpp" line="941"/>
         <source>Opening block</source>
         <translation>Bloque de apertura</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="935"/>
+        <location filename="../mainwindow.cpp" line="943"/>
         <source>Open block</source>
         <translation>Bloque abierto</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="950"/>
+        <location filename="../mainwindow.cpp" line="958"/>
         <source>The end address out of image size!</source>
         <translation>¡La dirección final fuera del tamaño de la imagen!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="989"/>
+        <location filename="../mainwindow.cpp" line="997"/>
         <source>Connected</source>
         <translation>Conectado</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="994"/>
+        <location filename="../mainwindow.cpp" line="1002"/>
         <source>Not connected</source>
         <translation>No conectado</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1064"/>
+        <location filename="../mainwindow.cpp" line="1072"/>
         <source>Not found file `IMSProg_editor`!</source>
         <translation>¡No se ha encontrado el archivo `IMSProg_editor`!</translation>
     </message>
