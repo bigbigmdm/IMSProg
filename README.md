@@ -46,7 +46,7 @@ sudo make install
 
 - pkg config
 
-  `sudo apt-get install pkg-config`
+`sudo apt-get install pkg-config`
 
 ## How to use:
 
