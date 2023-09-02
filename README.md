@@ -44,6 +44,10 @@ sudo make install
 
 `sudo apt-get install qtbase5-dev`
 
+- pkg config
+
+  `sudo apt-get install pkg-config`
+
 ## How to use:
 
 ### Connecting
