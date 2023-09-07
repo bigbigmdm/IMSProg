@@ -426,7 +426,7 @@
     <message>
         <location filename="../mainwindow.cpp" line="266"/>
         <source>Reading data from </source>
-        <translation></translation>
+        <translation type="unfinished">Считывается МС </translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="283"/>
