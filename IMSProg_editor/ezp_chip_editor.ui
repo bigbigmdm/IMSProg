@@ -13,6 +13,10 @@
   <property name="windowTitle">
    <string>IMSProg chip database editor</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="resources.qrc">
+    <normaloff>:/img/plus.png</normaloff>:/img/plus.png</iconset>
+  </property>
   <property name="styleSheet">
    <string notr="true"/>
   </property>
