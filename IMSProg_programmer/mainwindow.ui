@@ -24,6 +24,10 @@
   <property name="windowTitle">
    <string>IMSProg - I2C/MicroWire/SPI CH341a Programmer</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="recource.qrc">
+    <normaloff>:/res/img/write64.png</normaloff>:/res/img/write64.png</iconset>
+  </property>
   <property name="styleSheet">
    <string notr="true"/>
   </property>
@@ -587,7 +591,7 @@ border: 2px solid #094065;border-radius:8px;font-weight:600;</string>
      <x>0</x>
      <y>0</y>
      <width>899</width>
-     <height>24</height>
+     <height>23</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
