@@ -591,7 +591,7 @@ border: 2px solid #094065;border-radius:8px;font-weight:600;</string>
      <x>0</x>
      <y>0</y>
      <width>899</width>
-     <height>23</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -616,6 +616,7 @@ border: 2px solid #094065;border-radius:8px;font-weight:600;</string>
     <addaction name="actionErase"/>
     <addaction name="actionWrite"/>
     <addaction name="actionVerify"/>
+    <addaction name="actionDetect"/>
    </widget>
    <widget class="QMenu" name="menuHex_Editor">
     <property name="title">
