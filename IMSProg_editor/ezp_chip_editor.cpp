@@ -204,7 +204,7 @@ void MainWindow::on_actionOpen_triggered()
     model->setVerticalHeaderLabels(verticalHeader);
     ui->tableView->setStyleSheet("QTableView { border: none;"
                                      "selection-background-color: #8EDE21;"
-                                     "color: green}");
+                                     "}");
     ui->tableView->setModel(model);
     ui->tableView->resizeRowsToContents();
     ui->tableView->resizeColumnsToContents();
