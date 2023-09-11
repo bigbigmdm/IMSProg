@@ -72,7 +72,7 @@
             </size>
            </property>
            <property name="styleSheet">
-            <string notr="true">border: 2px solid gray;border-radius: 5px;color:#000;font-weight:600;border-style: inset;</string>
+            <string notr="true">border: 2px solid gray;border-radius: 5px;font-weight:600;border-style: inset;</string>
            </property>
           </widget>
          </item>
@@ -92,7 +92,7 @@
             </size>
            </property>
            <property name="styleSheet">
-            <string notr="true">border: 2px solid gray;border-radius: 5px;color:#000;font-weight:600;border-style: inset;</string>
+            <string notr="true">border: 2px solid gray;border-radius: 5px;font-weight:600;border-style: inset;</string>
            </property>
           </widget>
          </item>
@@ -112,7 +112,7 @@
             </size>
            </property>
            <property name="styleSheet">
-            <string notr="true">border: 2px solid gray;border-radius: 5px;color:#000;font-weight:600;border-style: inset;</string>
+            <string notr="true">border: 2px solid gray;border-radius: 5px;font-weight:600;border-style: inset;</string>
            </property>
           </widget>
          </item>
@@ -132,7 +132,7 @@
             </size>
            </property>
            <property name="styleSheet">
-            <string notr="true">border: 2px solid gray;border-radius: 5px;color:#000;font-weight:600;border-style: inset;</string>
+            <string notr="true">border: 2px solid gray;border-radius: 5px;font-weight:600;border-style: inset;</string>
            </property>
           </widget>
          </item>
@@ -152,7 +152,7 @@
             </size>
            </property>
            <property name="styleSheet">
-            <string notr="true">border: 2px solid gray;border-radius: 5px;color:#000;font-weight:600;border-style: inset;</string>
+            <string notr="true">border: 2px solid gray;border-radius: 5px;font-weight:600;border-style: inset;</string>
            </property>
           </widget>
          </item>
@@ -172,7 +172,7 @@
             </size>
            </property>
            <property name="styleSheet">
-            <string notr="true">border: 2px solid gray;border-radius: 5px;color:#000;font-weight:600;border-style: inset;</string>
+            <string notr="true">border: 2px solid gray;border-radius: 5px;font-weight:600;border-style: inset;</string>
            </property>
           </widget>
          </item>
@@ -192,7 +192,7 @@
             </size>
            </property>
            <property name="styleSheet">
-            <string notr="true">border: 2px solid gray;border-radius: 5px;color:#000;font-weight:600;border-style: inset;</string>
+            <string notr="true">border: 2px solid gray;border-radius: 5px;font-weight:600;border-style: inset;</string>
            </property>
           </widget>
          </item>
@@ -215,7 +215,7 @@
             </size>
            </property>
            <property name="styleSheet">
-            <string notr="true">border: 2px solid gray;border-radius: 5px;color:#000;font-weight:600;border-style: inset;</string>
+            <string notr="true">border: 2px solid gray;border-radius: 5px;font-weight:600;border-style: inset;</string>
            </property>
           </widget>
          </item>
@@ -462,7 +462,7 @@ border: 2px solid #094065;border-radius:8px;font-weight:600;</string>
             </size>
            </property>
            <property name="styleSheet">
-            <string notr="true">border: 2px solid gray;border-radius: 5px;color:#000;font-weight:600;border-style: inset;</string>
+            <string notr="true">border: 2px solid gray;border-radius: 5px;font-weight:600;border-style: inset;</string>
            </property>
           </widget>
           <widget class="QLabel" name="jLabel">
@@ -542,7 +542,7 @@ border: 2px solid #094065;border-radius:8px;font-weight:600;</string>
             </size>
            </property>
            <property name="styleSheet">
-            <string notr="true">border: 2px solid gray;border-radius: 5px;color:#000;font-weight:600;border-style: inset;</string>
+            <string notr="true">border: 2px solid gray;border-radius: 5px;font-weight:600;border-style: inset;</string>
            </property>
           </widget>
          </widget>
@@ -591,7 +591,7 @@ border: 2px solid #094065;border-radius:8px;font-weight:600;</string>
      <x>0</x>
      <y>0</y>
      <width>899</width>
-     <height>21</height>
+     <height>23</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">

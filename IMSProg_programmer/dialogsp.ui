@@ -48,7 +48,7 @@
         </size>
        </property>
        <property name="styleSheet">
-        <string notr="true">border: 2px solid gray;border-radius: 5px;color:#000;font-weight:600;border-style: inset;</string>
+        <string notr="true">border: 2px solid gray;border-radius: 5px;font-weight:600;border-style: inset;</string>
        </property>
       </widget>
      </item>
@@ -61,7 +61,7 @@
         </size>
        </property>
        <property name="styleSheet">
-        <string notr="true">border: 2px solid gray;border-radius: 5px;color:#000;font-weight:600;border-style: inset;</string>
+        <string notr="true">border: 2px solid gray;border-radius: 5px;font-weight:600;border-style: inset;</string>
        </property>
       </widget>
      </item>
@@ -74,7 +74,7 @@
         </size>
        </property>
        <property name="styleSheet">
-        <string notr="true">border: 2px solid gray;border-radius: 5px;color:#000;font-weight:600;border-style: inset;</string>
+        <string notr="true">border: 2px solid gray;border-radius: 5px;font-weight:600;border-style: inset;</string>
        </property>
       </widget>
      </item>
