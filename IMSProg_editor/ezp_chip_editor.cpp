@@ -29,6 +29,24 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+        // Create light palette
+    QPalette mainPalette;
+    // configure light palette
+    mainPalette.setColor(QPalette::Window, QColor(216, 216, 216));
+    mainPalette.setColor(QPalette::WindowText, Qt::black);
+    mainPalette.setColor(QPalette::Base, QColor(250, 250, 250));
+    mainPalette.setColor(QPalette::AlternateBase, QColor(250, 250, 250));
+    mainPalette.setColor(QPalette::ToolTipBase, Qt::black);
+    mainPalette.setColor(QPalette::ToolTipText, Qt::black);
+    mainPalette.setColor(QPalette::Text, Qt::black);
+    mainPalette.setColor(QPalette::Button, QColor(250, 250, 250));
+    mainPalette.setColor(QPalette::ButtonText, Qt::black);
+    mainPalette.setColor(QPalette::BrightText, Qt::red);
+    mainPalette.setColor(QPalette::Link, QColor(42, 130, 218));
+    mainPalette.setColor(QPalette::Highlight, QColor(42, 130, 218));
+    mainPalette.setColor(QPalette::HighlightedText, Qt::white);
+    // Setting up this palette
+    qApp->setPalette(mainPalette);
     }
 
 MainWindow::~MainWindow()
