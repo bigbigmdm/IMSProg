@@ -165,7 +165,7 @@ static uint8_t eeprom_read_byte(struct spi_eeprom *dev, uint32_t address)
 	return data;
 }
 
-int32_t parseSEEPsize(char *seepromname, struct spi_eeprom *seeprom)
+/*int32_t parseSEEPsize(char *seepromname, struct spi_eeprom *seeprom)
 {
 	int i;
 
@@ -178,7 +178,7 @@ int32_t parseSEEPsize(char *seepromname, struct spi_eeprom *seeprom)
 
 	return -1;
 }
-
+*/
 int spi_eeprom_read(unsigned char *buf, unsigned long from, unsigned long len)
 {
 	unsigned char *pbuf, ebuf[MAX_SEEP_SIZE];
@@ -298,7 +298,7 @@ long spi_eeprom_init(void)
 	return (long)seepromsize;
 }
 
-void support_spi_eeprom_list(void)
+/*void support_spi_eeprom_list(void)
 {
     unsigned int i;
 
@@ -310,4 +310,5 @@ void support_spi_eeprom_list(void)
 		printf("%03d. %s\n", i + 1, seepromlist[i].name);
 	}
 }
+*/
 /* End of [spi_eeprom.c] package */

@@ -29,7 +29,7 @@ struct spi_eeprom
 	uint8_t addr_bits;    /* Number of address bit */
 };
 
-const static struct spi_eeprom seepromlist[] = {
+/*const static struct spi_eeprom seepromlist[] = {
 	{  "25010",    128,  7 },
 	{  "25020",    256,  8 },
 	{  "25040",    512,  9 },
@@ -43,7 +43,7 @@ const static struct spi_eeprom seepromlist[] = {
 	{ "251024", 131072, 17 },
 	{        0,      0,  0 }
 };
-
+*/
 #define MAX_SEEP_SIZE		131072
 #define MAX_SEEP_PSIZE		1024
 
