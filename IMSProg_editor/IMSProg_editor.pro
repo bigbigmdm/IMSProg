@@ -59,7 +59,8 @@ FORMS += \
 
 TRANSLATIONS += language/chipEditor_ru_RU.ts \
         language/chipEditor_es_ES.ts \
-        language/chipEditor_de_DE.ts
+        language/chipEditor_de_DE.ts \
+        language/chipEditor_zn_CH.ts
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
