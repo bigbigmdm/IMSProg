@@ -83,7 +83,8 @@ FORMS += \
 
 TRANSLATIONS += language/chipProgrammer_ru_RU.ts \
          language/chipProgrammer_es_ES.ts \
-         language/chipProgrammer_de_DE.ts
+         language/chipProgrammer_de_DE.ts \
+         language/chipProgrammer_zn_CH.ts
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
