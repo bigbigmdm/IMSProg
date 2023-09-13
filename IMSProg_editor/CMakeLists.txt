@@ -39,6 +39,6 @@ install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/img/chipEdit64.png" DESTINATION /opt/
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/language/chipEditor_ru_RU.qm" DESTINATION /opt/IMSProg/language)
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/language/chipEditor_de_DE.qm" DESTINATION /opt/IMSProg/language)
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/language/chipEditor_es_ES.qm" DESTINATION /opt/IMSProg/language)
-
+install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/language/chipEditor_zn_CH.qm" DESTINATION /opt/IMSProg/language)
 
 
