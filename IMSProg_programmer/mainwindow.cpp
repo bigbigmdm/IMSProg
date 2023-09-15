@@ -1015,6 +1015,7 @@ void MainWindow::on_comboBox_type_currentIndexChanged(int index)
     ui->comboBox_name->clear();
     ui->comboBox_man->addItem("");
     ui->comboBox_name->addItem("");
+    ui->jedecEdit->setText("");
     currentChipType = static_cast<uint8_t>(index);
     for (i = 0; i<max_rec; i++)
     {
