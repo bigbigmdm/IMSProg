@@ -25,7 +25,7 @@ extern int seepromsize;
 #define __EEPROM___	""
 #endif
 
-long flash_cmd_init(struct flash_cmd *cmd)
+/*long flash_cmd_init(struct flash_cmd *cmd)
 {
 	long flen = -1;
 
@@ -63,8 +63,8 @@ long flash_cmd_init(struct flash_cmd *cmd)
 
 	return flen;
 }
-
-void support_flash_list(void)
+*/
+/*void support_flash_list(void)
 {
 	support_snand_list();
 	printf("\n");
@@ -78,4 +78,5 @@ void support_flash_list(void)
 	support_spi_eeprom_list();
 #endif
 }
+*/
 /* End of [flashcmd.c] package */

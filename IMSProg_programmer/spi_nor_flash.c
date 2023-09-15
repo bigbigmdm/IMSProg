@@ -295,9 +295,9 @@ static int full_erase_chip(void)
 	return 0;
 }
 
-static struct chip_info chips_data [] = {
+//static struct chip_info chips_data [] = {
 	/* REVISIT: fill in JEDEC ids, for parts that have them */
-	{ "AT25DF321",		0x1f, 0x47000000, 64 * 1024, 64,  0 },
+/*	{ "AT25DF321",		0x1f, 0x47000000, 64 * 1024, 64,  0 },
 	{ "AT26DF161",		0x1f, 0x46000000, 64 * 1024, 32,  0 },
 
 	{ "F25L016",		0x8c, 0x21150000, 64 * 1024, 32,  0 }, //ESMT
@@ -434,7 +434,7 @@ static struct chip_info chips_data [] = {
 	{ "P25Q64H",		0x85, 0x60170000, 64 * 1024, 128, 0 },
 	{ "P25Q128H",		0x85, 0x60180000, 64 * 1024, 256, 0 },
 };
-
+*/
 /*
  * read SPI flash device ID
  */
@@ -494,7 +494,7 @@ static int snor_write_sr(u8 *val)
 	return 0;
 }
 
-struct chip_info *chip_prob(void)
+/*struct chip_info *chip_prob(void)
 {
 	struct chip_info *info = NULL, *match = NULL;
 	u8 buf[5];
@@ -525,12 +525,14 @@ struct chip_info *chip_prob(void)
 		}
 	}
 	printf("SPI NOR Flash Not Detected!\n");
-	match = NULL; /* Not support JEDEC calculate info */
+*/
 
-	return match;
-}
+//match = NULL; /* Not support JEDEC calculate info */
 
-long snor_init(void)
+//	return match;
+//}
+
+/*long snor_init(void)
 {
 	spi_chip_info = chip_prob();
 
@@ -541,14 +543,14 @@ long snor_init(void)
 
 	return spi_chip_info->sector_size * spi_chip_info->n_sectors;
 }
-
-int snor_erase(unsigned long offs, unsigned long len)
+*/
+/*int snor_erase(unsigned long offs, unsigned long len)
 {
 	unsigned long plen = len;
 	snor_dbg("%s: offs:%x len:%x\n", __func__, offs, len);
-
+*/
 	/* sanity checks */
-	if (len == 0)
+/*	if (len == 0)
 		return -1;
 
 	if(!offs && len == (spi_chip_info->sector_size * spi_chip_info->n_sectors))
@@ -560,9 +562,9 @@ int snor_erase(unsigned long offs, unsigned long len)
 	timer_start();
 
 	snor_unprotect();
-
+*/
 	/* now erase those sectors */
-	while (len > 0) {
+/*	while (len > 0) {
 		if (snor_erase_sector(offs)) {
 			return -1;
 		}
@@ -581,7 +583,7 @@ int snor_erase(unsigned long offs, unsigned long len)
 
 	return 0;
 }
-
+*/
 int snor_erase_param(unsigned long offs, unsigned long len, unsigned int sector_size, unsigned int n_sectors)
 {
     unsigned long plen = len;
@@ -623,21 +625,22 @@ int snor_erase_param(unsigned long offs, unsigned long len, unsigned int sector_
 }
 
 
-int snor_read(unsigned char *buf, unsigned long from, unsigned long len)
+/*int snor_read(unsigned char *buf, unsigned long from, unsigned long len)
 {
 	u32 read_addr, physical_read_addr, remain_len, data_offset;
 
 	snor_dbg("%s: from:%x len:%x \n", __func__, from, len);
-
+*/
 	/* sanity checks */
-	if (len == 0)
+/*	if (len == 0)
 		return 0;
 
 	timer_start();
-	/* Wait till previous write/erase is done. */
-	if (snor_wait_ready(1)) {
-		/* REVISIT status return?? */
-		return -1;
+*/
+    /* Wait till previous write/erase is done. */
+//	if (snor_wait_ready(1)) {
+        /* REVISIT status return?? */
+/*		return -1;
 	}
 
 	read_addr = from;
@@ -652,9 +655,9 @@ int snor_read(unsigned char *buf, unsigned long from, unsigned long len)
 			snor_4byte_mode(1);
 
 		SPI_CONTROLLER_Chip_Select_Low();
-
+*/
 		/* Set up the write data buffer. */
-		SPI_CONTROLLER_Write_One_Byte(OPCODE_READ);
+/*		SPI_CONTROLLER_Write_One_Byte(OPCODE_READ);
 
 		if (spi_chip_info->addr4b)
 			SPI_CONTROLLER_Write_One_Byte((physical_read_addr >> 24) & 0xff);
@@ -699,7 +702,7 @@ int snor_read(unsigned char *buf, unsigned long from, unsigned long len)
 
 	return len;
 }
-
+*/
 int snor_read_param(unsigned char *buf, unsigned long from, unsigned long len, unsigned int sector_size, unsigned int addr4b)
 {
     u32 read_addr, physical_read_addr, remain_len, data_offset;
@@ -865,47 +868,50 @@ int snor_write_param(unsigned char *buf, unsigned long to, unsigned long len, un
 
     return retlen;
 }
-int snor_write(unsigned char *buf, unsigned long to, unsigned long len)
+/*int snor_write(unsigned char *buf, unsigned long to, unsigned long len)
 {
 	u32 page_offset, page_size;
 	int rc = 0, retlen = 0;
 	unsigned long plen = len;
 
 	snor_dbg("%s: to:%x len:%x \n", __func__, to, len);
-
+*/
 	/* sanity checks */
-	if (len == 0)
+/*	if (len == 0)
 		return 0;
 
 	if (to + len > spi_chip_info->sector_size * spi_chip_info->n_sectors)
 		return -1;
 
 	timer_start();
+*/
 	/* Wait until finished previous write command. */
-	if (snor_wait_ready(2)) {
+/*	if (snor_wait_ready(2)) {
 		return -1;
 	}
 
-
+*/
 	/* what page do we start with? */
-	page_offset = to % FLASH_PAGESIZE;
+/*	page_offset = to % FLASH_PAGESIZE;
 
 	if (spi_chip_info->addr4b)
 		snor_4byte_mode(1);
-
+*/
 	/* write everything in PAGESIZE chunks */
-	while (len > 0) {
+/*	while (len > 0) {
 		page_size = min(len, FLASH_PAGESIZE - page_offset);
 		page_offset = 0;
-		/* write the next page to flash */
-
+*/
+        /* write the next page to flash */
+/*
 		snor_wait_ready(3);
 		snor_write_enable();
 		snor_unprotect();
 
 		SPI_CONTROLLER_Chip_Select_Low();
-		/* Set up the opcode in the write buffer. */
-		SPI_CONTROLLER_Write_One_Byte(OPCODE_PP);
+*/
+    /* Set up the opcode in the write buffer. */
+/*		SPI_CONTROLLER_Write_One_Byte(OPCODE_PP);
 
 		if (spi_chip_info->addr4b)
 			SPI_CONTROLLER_Write_One_Byte((to >> 24) & 0xff);
@@ -953,8 +959,8 @@ int snor_write(unsigned char *buf, unsigned long to, unsigned long len)
 
 	return retlen;
 }
-
-void support_snor_list(void)
+*/
+/*void support_snor_list(void)
 {
 	int i;
 
@@ -964,4 +970,5 @@ void support_snor_list(void)
 		printf("%03d. %s\n", i + 1, chips_data[i].name);
 	}
 }
+*/
 /* End of [spi_nor_flash.c] package */
