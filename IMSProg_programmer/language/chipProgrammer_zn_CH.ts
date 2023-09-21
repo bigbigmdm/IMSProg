@@ -11,7 +11,7 @@
     <message>
         <location filename="../dialogabout.ui" line="22"/>
         <source>IMSProg - free software I2C, SPI and MicroWire EEPROM/Flash chip programmer for CH341a devices.</source>
-        <translation>IMSProg - 用于 CH341a 器件的 I2C、SPI 和 MicroWire EEPROM/Flash 芯片编程器免费软件。</translation>
+        <translation>IMSProg –基于CH341A的免费I2C、SPI、MicroWire EEPROM/Flash芯片编程器。</translation>
     </message>
     <message>
         <location filename="../dialogabout.ui" line="44"/>
@@ -36,7 +36,7 @@
     <message>
         <location filename="../dialogabout.ui" line="136"/>
         <source>Close</source>
-        <translation>结束</translation>
+        <translation>关闭</translation>
     </message>
 </context>
 <context>
@@ -95,7 +95,7 @@
     <message>
         <location filename="../mainwindow.ui" line="703"/>
         <source>Open</source>
-        <translation>开放</translation>
+        <translation>打开</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="706"/>
@@ -162,7 +162,7 @@
         <location filename="../mainwindow.ui" line="308"/>
         <location filename="../mainwindow.ui" line="751"/>
         <source>Read</source>
-        <translation>阅读</translation>
+        <translation>读取</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="340"/>
@@ -189,7 +189,7 @@
     <message>
         <location filename="../mainwindow.ui" line="429"/>
         <source>Go!</source>
-        <translation>去！</translation>
+        <translation>开始吧！</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="456"/>
@@ -280,7 +280,7 @@
     <message>
         <location filename="../mainwindow.ui" line="823"/>
         <source>Save Part</source>
-        <translation>保存部件</translation>
+        <translation>保存部分</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="826"/>
@@ -290,7 +290,7 @@
     <message>
         <location filename="../mainwindow.ui" line="835"/>
         <source>Load Part</source>
-        <translation>负载部分</translation>
+        <translation>加载部分</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="838"/>
@@ -361,7 +361,7 @@
     <message>
         <location filename="../mainwindow.ui" line="133"/>
         <source>Size</source>
-        <translation>尺寸</translation>
+        <translation>大小</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="117"/>
@@ -410,7 +410,7 @@
     <message>
         <location filename="../mainwindow.cpp" line="270"/>
         <source>Reading data from </source>
-        <translation>Lectura de datos de </translation>
+        <translation>读取的数据来自</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="287"/>
@@ -486,7 +486,7 @@
     <message>
         <location filename="../mainwindow.cpp" line="624"/>
         <source>Writing data to </source>
-        <translation>Escritura de datos en </translation>
+        <translation>将数据写入 </translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="658"/>
@@ -670,7 +670,7 @@ Buffer: </source>
     <message>
         <location filename="../searchdialog.ui" line="307"/>
         <source>&amp;Replace</source>
-        <translation>更换</translation>
+        <translation>替换</translation>
     </message>
     <message>
         <location filename="../searchdialog.ui" line="320"/>
