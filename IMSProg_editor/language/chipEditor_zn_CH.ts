@@ -21,7 +21,7 @@
     <message>
         <location filename="../ezp_chip_editor.ui" line="98"/>
         <source>Open</source>
-        <translation>开放</translation>
+        <translation>打开</translation>
     </message>
     <message>
         <location filename="../ezp_chip_editor.ui" line="101"/>
@@ -31,7 +31,7 @@
     <message>
         <location filename="../ezp_chip_editor.ui" line="110"/>
         <source>Exit</source>
-        <translation>出口</translation>
+        <translation>退出</translation>
     </message>
     <message>
         <location filename="../ezp_chip_editor.ui" line="113"/>
@@ -42,7 +42,7 @@
     <message>
         <location filename="../ezp_chip_editor.ui" line="122"/>
         <source>Save</source>
-        <translation>节省</translation>
+        <translation>保存</translation>
     </message>
     <message>
         <location filename="../ezp_chip_editor.ui" line="125"/>
@@ -174,7 +174,7 @@
         <location filename="../ezp_chip_editor.cpp" line="78"/>
         <source>Sector
 size</source>
-        <translation>部门
+        <translation>扇区
 尺寸</translation>
     </message>
     <message>
@@ -214,7 +214,7 @@ tamaño K</translation>
         <source>EEPROM
 pages</source>
         <translation>EEPROM
-页面</translation>
+页</translation>
     </message>
     <message>
         <location filename="../ezp_chip_editor.cpp" line="85"/>
