@@ -616,7 +616,7 @@ border: 2px solid #094065;border-radius:8px;font-weight:600;</string>
      <x>0</x>
      <y>0</y>
      <width>899</width>
-     <height>21</height>
+     <height>23</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -642,6 +642,7 @@ border: 2px solid #094065;border-radius:8px;font-weight:600;</string>
     <addaction name="actionWrite"/>
     <addaction name="actionVerify"/>
     <addaction name="actionDetect"/>
+    <addaction name="actionStop"/>
    </widget>
    <widget class="QMenu" name="menuHex_Editor">
     <property name="title">
@@ -681,13 +682,13 @@ border: 2px solid #094065;border-radius:8px;font-weight:600;</string>
    <addaction name="actionSave_Part"/>
    <addaction name="actionLoad_Part"/>
    <addaction name="actionEdit_chips_Database"/>
-   <addaction name="actionExit"/>
    <addaction name="separator"/>
    <addaction name="actionDetect"/>
    <addaction name="actionRead"/>
    <addaction name="actionErase"/>
    <addaction name="actionWrite"/>
    <addaction name="actionVerify"/>
+   <addaction name="actionStop"/>
    <addaction name="separator"/>
    <addaction name="actionUndo"/>
    <addaction name="actionRedo"/>
@@ -883,6 +884,21 @@ border: 2px solid #094065;border-radius:8px;font-weight:600;</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+Q</string>
+   </property>
+  </action>
+  <action name="actionStop">
+   <property name="icon">
+    <iconset resource="recource.qrc">
+     <normaloff>:/res/img/stop64.png</normaloff>:/res/img/stop64.png</iconset>
+   </property>
+   <property name="text">
+    <string>Stop</string>
+   </property>
+   <property name="toolTip">
+    <string>Forced stop of read, write, erase and verification operations</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+I</string>
    </property>
   </action>
  </widget>

@@ -84,10 +84,12 @@ private slots:
     void on_actionFind_Replace_triggered();
     void on_comboBox_type_currentIndexChanged(int index);
     void on_actionAbout_triggered();
-
     void on_actionChecksum_calculate_triggered();
-
     void on_actionEdit_chips_Database_triggered();
+    void doNotDisturb();
+    void doNotDisturbCancel();
+
+    void on_actionStop_triggered();
 
 private:
     Ui::MainWindow *ui;
@@ -97,6 +99,7 @@ private:
     uint32_t currentChipSize, currentNumBlocks, currentBlockSize, currentPageSize;
     uint8_t currentAlgorithm, currentChipType;
     unsigned int currentAddr4bit;
+    bool isHalted;
     QString bytePrint(unsigned char z);
     QVector <QString> chType = {"SPI_FLASH","25_EEPROM","93_EEPROM","24_EEPROM","95_EEPROM"};
     struct chip_data {

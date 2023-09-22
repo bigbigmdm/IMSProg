@@ -32,7 +32,9 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     int index2;
     max_rec = 0;
+    isHalted = false;
     ui->setupUi(this);
+    ui->actionStop->setDisabled(true);
     ui->statusBar->addPermanentWidget(ui->lStatus,0);
     ui->statusBar->addPermanentWidget(ui->eStatus,0);
     ui->statusBar->addPermanentWidget(ui->jLabel,0);
@@ -244,7 +246,7 @@ void MainWindow::on_pushButton_clicked()
     ui->crcEdit->setText("");
     if (((currentNumBlocks > 0) && (currentBlockSize >0) && (currentChipType == 0)) || ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 1)) || ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 2)))
     {
-
+       doNotDisturb();
        if (currentChipType == 1)
        {
            currentBlockSize = 128;
@@ -285,11 +287,13 @@ void MainWindow::on_pushButton_clicked()
           if (statusCH341 != 0)
             {
                 QMessageBox::about(this, tr("Error"), tr("Programmer CH341a is not connected!"));
+                doNotDisturbCancel();
                 break;
             }
           if (res == 0)
             {
                QMessageBox::about(this, tr("Error"), tr("Error reading block ") + QString::number(curBlock));
+               doNotDisturbCancel();
                break;
             }
          for (j = 0; j < currentBlockSize; j++)
@@ -299,7 +303,15 @@ void MainWindow::on_pushButton_clicked()
           addr = addr + currentBlockSize;
           curBlock++;
           if (curBlock * currentBlockSize < 413300) hexEdit->setData(chipData); //show buffer in hehedit while chip data is being loaded
+          qApp->processEvents();
           ui->progressBar->setValue(static_cast<int>(curBlock));
+          if (isHalted)
+          {
+              isHalted = false;
+              ch341a_spi_shutdown();
+              doNotDisturbCancel();
+              return;
+          }
        }
     }
     else
@@ -320,6 +332,7 @@ void MainWindow::on_pushButton_clicked()
       QMessageBox::about(this, tr("Error"), tr("Programmer CH341a is not connected!"));
   }
   ch341a_spi_shutdown();
+  doNotDisturbCancel();
 }
 
 void MainWindow::on_pushButton_2_clicked()
@@ -516,6 +529,7 @@ void MainWindow::on_actionErase_triggered()
     ui->checkBox->setStyleSheet("QCheckBox{font-weight:600;}");
     ui->centralWidget->repaint();
     ui->progressBar->setRange(0, 100);
+    doNotDisturb();
     if (currentChipType == 0)
     {
        ui->progressBar->setValue(50);
@@ -542,6 +556,13 @@ void MainWindow::on_actionErase_triggered()
         uint8_t *buf;
         buf = (uint8_t *)malloc(currentBlockSize);
         config_stream(2);
+        if (isHalted)
+        {
+            isHalted = false;
+            ch341a_spi_shutdown();
+            doNotDisturbCancel();
+            return;
+        }
         ui->progressBar->setRange(0, static_cast<int>(currentNumBlocks));
         for (k = 0; k < currentBlockSize; k++)
         {
@@ -550,16 +571,19 @@ void MainWindow::on_actionErase_triggered()
         for (curBlock = 0; curBlock < currentNumBlocks; curBlock++)
         {
             res = ch341writeEEPROM_param(buf, curBlock * 128, 128, currentPageSize, currentAlgorithm);
+            qApp->processEvents();
             ui->progressBar->setValue( static_cast<int>(curBlock));
             if (res != 0)
               {
                 QMessageBox::about(this, tr("Error"), tr("Error erasing sector ") + QString::number(curBlock));
                 ch341a_spi_shutdown();
+                doNotDisturbCancel();
                 return;
               }
         }
 
     }
+    doNotDisturbCancel();
     ui->checkBox->setStyleSheet("");
     ui->statusBar->showMessage("");
     ui->progressBar->setValue(0);
@@ -607,6 +631,7 @@ void MainWindow::on_actionWrite_triggered()
     {
     if (((currentNumBlocks > 0) && (currentBlockSize >0) && (currentChipType == 0)) || ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 1)) || ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 2)))
         {
+        doNotDisturb();
         if (currentChipType == 1)
         {
             currentBlockSize = 128;
@@ -651,17 +676,28 @@ void MainWindow::on_actionWrite_triggered()
          if (statusCH341 != 0)
            {
              QMessageBox::about(this, tr("Error"), tr("Programmer CH341a is not connected!"));
+             doNotDisturbCancel();
+             ch341a_spi_shutdown();
              break;
            }
          if (res == 0)
            {
              QMessageBox::about(this, tr("Error"), tr("Error writing sector ") + QString::number(curBlock));
+             doNotDisturbCancel();
+             ch341a_spi_shutdown();
              break;
            }
          addr = addr + currentBlockSize;
          curBlock++;
+         qApp->processEvents();
+         if (isHalted)
+         {
+             isHalted = false;
+             ch341a_spi_shutdown();
+             doNotDisturbCancel();
+             return;
+         }
          ui->progressBar->setValue( static_cast<int>(curBlock));
-
       }
     }
     else
@@ -669,6 +705,7 @@ void MainWindow::on_actionWrite_triggered()
     //Not correct Number fnd size of blocks
      QMessageBox::about(this, tr("Error"), tr("Before reading from chip please press 'Detect' button."));
     }
+    doNotDisturbCancel();
     ui->progressBar->setValue(0);
     ui->checkBox_2->setStyleSheet("");
     ui->statusBar->showMessage("");    
@@ -799,6 +836,7 @@ void MainWindow::on_actionVerify_triggered()
        if (((currentNumBlocks > 0) && (currentBlockSize >0) && (currentChipType == 0)) || ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 1)) || ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 2)))
            {
                ui->crcEdit->setText("");
+               doNotDisturb();
                if (currentChipType == 1)
                {
                  currentBlockSize = 128;
@@ -839,11 +877,13 @@ void MainWindow::on_actionVerify_triggered()
                     if (statusCH341 != 0)
                     {
                        QMessageBox::about(this, tr("Error"), tr("Programmer CH341a is not connected!"));
+                       doNotDisturbCancel();
                        break;
                     }
                     if (res == 0)
                     {
                         QMessageBox::about(this, tr("Error"), tr("Error reading block ") + QString::number(curBlock));
+                        doNotDisturbCancel();
                         break;
                     }
                     for (j = 0; j < currentBlockSize; j++)
@@ -855,11 +895,20 @@ void MainWindow::on_actionVerify_triggered()
                             ui->statusBar->showMessage("");
                             ui->checkBox_3->setStyleSheet("");
                             ch341a_spi_shutdown();
+                            doNotDisturbCancel();
                             return;
                            }
                      }
                      addr = addr + currentBlockSize;
                      curBlock++;
+                     qApp->processEvents();
+                     if (isHalted)
+                     {
+                         isHalted = false;
+                         ch341a_spi_shutdown();
+                         doNotDisturbCancel();
+                         return;
+                     }
                      ui->progressBar->setValue(static_cast<int>(curBlock));
                  }
              }
@@ -870,6 +919,7 @@ void MainWindow::on_actionVerify_triggered()
                if (currentChipType == 1) QMessageBox::about(this, tr("Error"), tr("Please select the chip parameters - manufacture and chip name."));
 
              }
+             doNotDisturbCancel();
              ui->statusBar->showMessage("");
              ui->progressBar->setValue(0);
              ui->checkBox_3->setStyleSheet("");
@@ -1078,6 +1128,80 @@ void MainWindow::on_actionEdit_chips_Database_triggered()
     }
 }
 
+void MainWindow::doNotDisturb()
+{
+   ui->actionDetect->setDisabled(true);
+   ui->actionOpen->setDisabled(true);
+   ui->actionSave->setDisabled(true);
+   ui->actionLoad_Part->setDisabled(true);
+   ui->actionSave_Part->setDisabled(true);
+   ui->actionEdit_chips_Database->setDisabled(true);
+   ui->actionExit->setDisabled(true);
+   ui->actionRead->setDisabled(true);
+   ui->actionWrite->setDisabled(true);
+   ui->actionErase->setDisabled(true);
+   ui->actionVerify->setDisabled(true);
+   ui->actionFind_Replace->setDisabled(true);
+   ui->actionUndo->setDisabled(true);
+   ui->actionRedo->setDisabled(true);
+   ui->actionStop->setDisabled(false);
+
+   ui->pushButton->blockSignals(true);
+   ui->pushButton_2->blockSignals(true);
+   ui->pushButton_3->blockSignals(true);
+
+   ui->comboBox_type->setDisabled(true);
+   ui->comboBox_man->setDisabled(true);
+   ui->comboBox_name->setDisabled(true);
+   ui->comboBox_size->setDisabled(true);
+   ui->comboBox_page->setDisabled(true);
+   ui->comboBox_block->setDisabled(true);
+   ui->comboBox_vcc->setDisabled(true);
+   ui->comboBox_addr4bit->setDisabled(true);
+
+   hexEdit->blockSignals(true);
+}
+void MainWindow::doNotDisturbCancel()
+{
+      if (currentChipType == 0) ui->actionDetect->setDisabled(false);
+      ui->actionOpen->setDisabled(false);
+      ui->actionSave->setDisabled(false);
+      ui->actionLoad_Part->setDisabled(false);
+      ui->actionSave_Part->setDisabled(false);
+      ui->actionEdit_chips_Database->setDisabled(false);
+      ui->actionExit->setDisabled(false);
+      ui->actionRead->setDisabled(false);
+      ui->actionWrite->setDisabled(false);
+      ui->actionErase->setDisabled(false);
+      ui->actionVerify->setDisabled(false);
+      ui->actionFind_Replace->setDisabled(false);
+      ui->actionUndo->setDisabled(false);
+      ui->actionRedo->setDisabled(false);
+      ui->actionStop->setDisabled(true);
+
+      ui->pushButton->blockSignals(false);
+      ui->pushButton_2->blockSignals(false);
+      ui->pushButton_3->blockSignals(false);
+
+      ui->comboBox_type->setDisabled(false);
+      ui->comboBox_man->setDisabled(false);
+      ui->comboBox_name->setDisabled(false);
+      ui->comboBox_size->setDisabled(false);
+      ui->comboBox_page->setDisabled(false);
+      ui->comboBox_block->setDisabled(false);
+      ui->comboBox_vcc->setDisabled(false);
+      ui->comboBox_addr4bit->setDisabled(false);
+
+      hexEdit->blockSignals(false);
+}
+void MainWindow::on_actionStop_triggered()
+{
+  //ch341a_spi_shutdown();
+  isHalted = true;
+  QMessageBox::about(this, tr("Stop"), tr("Operation aborted!"));
+  return;
+}
+
 //*****************************************************
 //       HEX ULTLITY by Mikhail Medvedev
 //*****************************************************
@@ -1220,4 +1344,5 @@ QString MainWindow::getCRC32()
             }
         return hexiAddr(crc ^ 0xFFFFFFFF);
 }
+
 
