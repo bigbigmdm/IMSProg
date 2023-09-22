@@ -202,7 +202,7 @@ W25P80, W25P16, W25P32, W25X05, W25X10, W25X20, W25X40, W25X80, W25X16, W25X32VS
 FM25Q04A, FM25Q08A, FM25Q16A, FM25Q32A, FM25Q64A, FM25Q128A, FM25M04A(1.8V), FM25M08A(1.8V)
 FM25M16A(1.8V), FM25M32B(1.8V), FM25M64A(1.8V)
 
-#Revision history
+## Revision history
 - Ver. 1.0.0 - 1.0.20 - Partially working versions.
 - Ver. 1.0.21 - Working, unstable version
 - Ver. 1.0.22 - Working, stable version. Added languages.
