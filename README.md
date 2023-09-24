@@ -203,7 +203,9 @@ FM25Q04A, FM25Q08A, FM25Q16A, FM25Q32A, FM25Q64A, FM25Q128A, FM25M04A(1.8V), FM2
 FM25M16A(1.8V), FM25M32B(1.8V), FM25M64A(1.8V)
 
 ## Revision history
-- Ver. 1.0.0 - 1.0.20 - Partially working versions.
+- Ver. 1.0.0 - 1.0.18 - Partially working versions.
+-Version 1.0.19 - Fixed wrong level on SDA pin in i2c EEPROM. Removed old function "ch341a_spi_init" in file "ch341spi.c", replaced by "ch341a_init" (this is SNANDer bug).
+- Ver. 1.0.20 - Fixed incorrect byte sequence error when reading/writing Microwire EEPROM in 16 bitmode (The SNANder program file "bitbang_microwire.c" bad functions - Write_EEPROM_3wire, Read_EEPROM_3wine replaced to Write_EEPROM_3wire_param, Write_READ_3wire_param).
 - Ver. 1.0.21 - Working, unstable version
 - Ver. 1.0.22 - Working, stable version. Added languages. Added font colour compatibility in light and dark interface theme.
 - Ver. 1.0.23 - Working, stable version. Removed unused C-functions and variable tables in code. Fix translations. Corrected cleaning of JEDEC ID line edit. Added chips to the database. Correction of database entries.
