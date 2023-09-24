@@ -79,6 +79,8 @@ The progress bar shows the progress of the read, erase, and verify operations.
 
 - The `Auto' button is used to perform erase, write and verify operations in sequence. If one of these operations is not needed, you can uncheck the checkbox for that operation.
 
+- The ![Stop](img/stop64.png) key is used to force interruption of chip read/write/erase/verify operations.
+
 ### File operations
 - The ![Save](img/save64.png) or `<Ctrl+S>` button is used to save the computer buffer to a file.
 
