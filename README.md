@@ -204,6 +204,8 @@ W25P80, W25P16, W25P32, W25X05, W25X10, W25X20, W25X40, W25X80, W25X16, W25X32VS
 FM25Q04A, FM25Q08A, FM25Q16A, FM25Q32A, FM25Q64A, FM25Q128A, FM25M04A(1.8V), FM25M08A(1.8V)
 FM25M16A(1.8V), FM25M32B(1.8V), FM25M64A(1.8V)
 
+[![Watch the video](img/IMSProg_1_0_24.mp4)](img/IMSProg_1_0_24.mp4)
+
 ## Revision history
 - Ver. 1.0.0 - 1.0.18 - Partially working versions.
 - Version 1.0.19 - Fixed wrong level on SDA pin in i2c EEPROM. Removed old function "ch341a_spi_init" in file "ch341spi.c", replaced by "ch341a_init" (this is SNANDer bug).
