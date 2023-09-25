@@ -940,6 +940,7 @@ void MainWindow::on_pushButton_3_clicked()
     if (ui->checkBox_2->isChecked()) MainWindow::on_actionWrite_triggered();
     if (ui->checkBox_3->isChecked()) MainWindow::on_actionVerify_triggered();
     ui->pushButton_3->setStyleSheet("QPushButton{color:#fff;background-color:rgb(120, 183, 140);border-radius: 20px;border: 2px solid #094065;border-radius:8px;font-weight:600;}");
+    QMessageBox::about(this, tr("Ok!"), tr("The operation was successful!"));
 }
 
 void MainWindow::receiveAddr(QString addressData)
@@ -1205,6 +1206,7 @@ void MainWindow::on_actionStop_triggered()
   ui->checkBox_3->setStyleSheet("");
   ui->pushButton_3->setStyleSheet("QPushButton{color:#fff;background-color:rgb(120, 183, 140);border-radius: 20px;border: 2px solid #094065;border-radius:8px;font-weight:600;}");
   return;
+  ui->statusBar->showMessage("");
 }
 
 //*****************************************************
