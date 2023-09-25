@@ -1199,6 +1199,11 @@ void MainWindow::on_actionStop_triggered()
   //ch341a_spi_shutdown();
   isHalted = true;
   QMessageBox::about(this, tr("Stop"), tr("Operation aborted!"));
+  ui->pushButton->setStyleSheet("QPushButton{color:#fff;background-color:rgb(120, 183, 140);border-radius: 20px;border: 2px solid #094065;border-radius:8px;font-weight:600;}");
+  ui->checkBox->setStyleSheet("");
+  ui->checkBox_2->setStyleSheet("");
+  ui->checkBox_3->setStyleSheet("");
+  ui->pushButton_3->setStyleSheet("QPushButton{color:#fff;background-color:rgb(120, 183, 140);border-radius: 20px;border: 2px solid #094065;border-radius:8px;font-weight:600;}");
   return;
 }
 
