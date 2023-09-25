@@ -356,6 +356,7 @@ void MainWindow::on_pushButton_2_clicked()
     {
         QMessageBox::about(this, tr("Error"), tr("The chip is not connect or missing!"));
         ui->pushButton_2->setStyleSheet("QPushButton{color:#fff;background-color:rgb(120, 183, 140);border-radius: 20px;border: 2px solid #094065;border-radius:8px;font-weight:600;}");
+        ch341a_spi_shutdown();
         return;
     }
     ui->jedecEdit->setText(bytePrint(bufid[0]) + " " + bytePrint(bufid[1]) + " " + bytePrint(bufid[2]));
