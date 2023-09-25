@@ -200,7 +200,7 @@
     <message>
         <location filename="../mainwindow.ui" line="503"/>
         <source>  JEDEC ID:</source>
-        <translation>JEDEC ID</translation>
+        <translation>JEDEC ID:</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="519"/>
