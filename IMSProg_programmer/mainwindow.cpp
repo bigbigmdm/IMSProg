@@ -111,6 +111,7 @@ MainWindow::MainWindow(QWidget *parent) :
     hexEdit = new QHexEdit(ui->frame);
     hexEdit->setGeometry(0,0,ui->frame->width(),ui->frame->height());
     hexEdit->setData(chipData);
+    hexEdit->setHexCaps(true);
     defaultTextColor = ui->label->palette().color(QPalette::Text);
     hexEdit->setAsciiFontColor(defaultTextColor);
     hexEdit->setAddressFontColor(defaultTextColor);
