@@ -45,7 +45,8 @@ SOURCES += \
        spi_nand_flash.c \
        spi_nor_flash.c \
        timer.c \
-    dialogabout.cpp
+    dialogabout.cpp \
+    dialoginfo.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -71,7 +72,8 @@ HEADERS += \
        spi_nand_flash.h \
        timer.h \
        types.h \
-    dialogabout.h
+    dialogabout.h \
+    dialoginfo.h
 
 
 FORMS += \
@@ -79,7 +81,8 @@ FORMS += \
         dialogsp.ui \
         dialogrp.ui \
         searchdialog.ui \
-    dialogabout.ui
+    dialogabout.ui \
+    dialoginfo.ui
 
 TRANSLATIONS += language/chipProgrammer_ru_RU.ts \
          language/chipProgrammer_es_ES.ts \

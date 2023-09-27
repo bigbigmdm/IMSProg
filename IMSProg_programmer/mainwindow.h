@@ -23,6 +23,7 @@
 #include "qhexedit.h"
 #include "dialogsp.h"
 #include "dialogabout.h"
+#include "dialoginfo.h"
 #include "searchdialog.h"
 extern "C" {
 #include "bitbang_microwire.h"
@@ -90,6 +91,8 @@ private slots:
     void doNotDisturbCancel();
 
     void on_actionStop_triggered();
+
+    void on_pushButton_4_clicked();
 
 private:
     Ui::MainWindow *ui;

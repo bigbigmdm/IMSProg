@@ -44,7 +44,11 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->progressBar->setValue(0);
     ui->comboBox_name->addItems({""});
     ui->comboBox_man->addItems({""});
-    ui->comboBox_vcc->addItems({ " ", "3.3 V", "1.8 V", "5.0 V"});
+    //ui->comboBox_vcc->addItems({ " ", "3.3 V", "1.8 V", "5.0 V"});
+    ui->comboBox_vcc->addItem(" ", 0);
+    ui->comboBox_vcc->addItem("3.3 V", 1);
+    ui->comboBox_vcc->addItem("1.8 V", 2);
+    ui->comboBox_vcc->addItem("5.0 V", 3);
 
     ui->comboBox_type->addItem("SPI_FLASH", 0);
     ui->comboBox_type->addItem("24_EEPROM", 1);
@@ -1207,10 +1211,19 @@ void MainWindow::on_actionStop_triggered()
   ui->checkBox_2->setStyleSheet("");
   ui->checkBox_3->setStyleSheet("");
   ui->pushButton_3->setStyleSheet("QPushButton{color:#fff;background-color:rgb(120, 183, 140);border-radius: 20px;border: 2px solid #094065;border-radius:8px;font-weight:600;}");
-  return;
   ui->statusBar->showMessage("");
+  return;
 }
-
+void MainWindow::on_pushButton_4_clicked()
+{
+    //info form showing
+    DialogInfo* infoDialog = new DialogInfo();
+    infoDialog->show();
+    if ((currentChipType == 0) && (ui->comboBox_vcc->currentIndex() == 1)) infoDialog->setChip(2);
+    if ((currentChipType == 0) && (ui->comboBox_vcc->currentIndex() == 2)) infoDialog->setChip(3);
+    if ((currentChipType == 1) && (ui->comboBox_vcc->currentIndex() == 1)) infoDialog->setChip(1);
+    if ((currentChipType == 2) && (ui->comboBox_vcc->currentIndex() == 1)) infoDialog->setChip(4);
+}
 //*****************************************************
 //       HEX ULTLITY by Mikhail Medvedev
 //*****************************************************
@@ -1353,5 +1366,4 @@ QString MainWindow::getCRC32()
             }
         return hexiAddr(crc ^ 0xFFFFFFFF);
 }
-
 

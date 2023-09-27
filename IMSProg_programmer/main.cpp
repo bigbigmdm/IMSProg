@@ -18,6 +18,10 @@
 int main(int argc, char *argv[])
 {
     QApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+    QFont font("Ubuntu");
+    font.setStyleHint(QFont::Monospace);
+    font.setPointSize(12);
+    QApplication::setFont(font);
     QApplication a(argc, argv);
     QTranslator translator;
         QString translateName = "chipProgrammer_" + QLocale::system().name();

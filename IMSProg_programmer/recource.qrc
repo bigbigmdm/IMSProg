@@ -20,5 +20,10 @@
         <file>img/chipEdit64.png</file>
         <file>img/checkSum64.png</file>
         <file>img/stop64.png</file>
+        <file>img/ch341_unknown.png</file>
+        <file>img/ch341_24.png</file>
+        <file>img/ch341_93.png</file>
+        <file>img/ch341_spi.png</file>
+        <file>img/ch341_spi_18.png</file>
     </qresource>
 </RCC>

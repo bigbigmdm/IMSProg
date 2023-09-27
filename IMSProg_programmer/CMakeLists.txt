@@ -30,6 +30,7 @@ commands.cpp
 dialogsp.cpp
 dialogrp.cpp
 searchdialog.cpp
+dialoginfo.cpp
 bitbang_microwire.c
 ch341a_gpio.c
 ch341a_i2c.c
@@ -49,6 +50,7 @@ chunks.h
 commands.h
 dialogsp.h
 dialogrp.h
+dialoginfo.h
 searchdialog.h
 bitbang_microwire.h
 ch341a_gpio.h
@@ -70,6 +72,7 @@ dialogabout.h
 mainwindow.ui
 dialogsp.ui
 dialogrp.ui
+dialoginfo.ui
 searchdialog.ui
 dialogabout.ui
 recource.qrc
