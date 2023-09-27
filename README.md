@@ -216,5 +216,5 @@ FM25M16A(1.8V), FM25M32B(1.8V), FM25M64A(1.8V)
 - Ver. 1.0.21 - Working, unstable version
 - Ver. 1.0.22 - Working, stable version. Added languages. Added font colour compatibility in light and dark interface theme.
 - Ver. 1.0.23 - Working, stable version. Removed unused C-functions and variable tables in code. Fix translations. Corrected cleaning of JEDEC ID line edit. Added chips to the database. Correction of database entries.
-- Ver. 1.0.24 - Added STOP key to the interface. Improved interface rendering. Fixes to translations.
+- Ver. 1.0.24 - Added `STOP` key to the interface. Improved interface rendering. Fixes to translations.
 - Ver. 1.0.25 - Added `i` key to the interface. Added connection information form.
