@@ -73,6 +73,7 @@ When using `24xxx` or `93xxx` series chips, it is necessary to manually enter th
 - Pressing ![Write](img/write64.png) or `<Ctrl+W>` to write data from the computer buffer into the chip.
 
 - Pressing ![Erase](img/erase64.png) or `<Ctrl+E>` will erase all data in the chip.
+
 - Pressing the ![Verify](img/verify64.png) or `<Ctrl+T>` button causes the data in the chip and in the computer buffer to be compared.
 
 The progress bar shows the progress of the read, erase, and verify operations.
@@ -80,6 +81,8 @@ The progress bar shows the progress of the read, erase, and verify operations.
 - The `Auto' button is used to perform erase, write and verify operations in sequence. If one of these operations is not needed, you can uncheck the checkbox for that operation.
 
 - The ![Stop](img/stop64.png) or `<Ctrl+I>` key is used to force interruption of chip read/write/erase/verify operations.
+
+- The `i` key show the connection chip to CH341a device image form.
 
 ### File operations
 - The ![Save](img/save64.png) or `<Ctrl+S>` button is used to save the computer buffer to a file.
@@ -213,4 +216,5 @@ FM25M16A(1.8V), FM25M32B(1.8V), FM25M64A(1.8V)
 - Ver. 1.0.21 - Working, unstable version
 - Ver. 1.0.22 - Working, stable version. Added languages. Added font colour compatibility in light and dark interface theme.
 - Ver. 1.0.23 - Working, stable version. Removed unused C-functions and variable tables in code. Fix translations. Corrected cleaning of JEDEC ID line edit. Added chips to the database. Correction of database entries.
-- Version 1.0.24 - Added STOP key to the interface. Improved interface rendering. Fixes to translations.
+- Ver. 1.0.24 - Added STOP key to the interface. Improved interface rendering. Fixes to translations.
+- Ver. 1.0.25 - Added `i` key to the interface. Added connection information form.
