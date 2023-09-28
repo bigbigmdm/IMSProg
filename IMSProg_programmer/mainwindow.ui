@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>899</width>
+    <width>900</width>
     <height>610</height>
    </rect>
   </property>
@@ -15,6 +15,12 @@
     <horstretch>0</horstretch>
     <verstretch>0</verstretch>
    </sizepolicy>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>900</width>
+    <height>0</height>
+   </size>
   </property>
   <property name="font">
    <font>
@@ -301,7 +307,7 @@ border: 2px solid #094065;border-radius:8px;font-weight:600;</string>
          <item row="6" column="1">
           <layout class="QHBoxLayout" name="horizontalLayout_6">
            <property name="spacing">
-            <number>8</number>
+            <number>28</number>
            </property>
            <property name="sizeConstraint">
             <enum>QLayout::SetDefaultConstraint</enum>
@@ -319,13 +325,13 @@ border: 2px solid #094065;border-radius:8px;font-weight:600;</string>
             <widget class="QComboBox" name="comboBox_vcc">
              <property name="minimumSize">
               <size>
-               <width>100</width>
+               <width>95</width>
                <height>22</height>
               </size>
              </property>
              <property name="maximumSize">
               <size>
-               <width>22</width>
+               <width>95</width>
                <height>22</height>
               </size>
              </property>
@@ -690,8 +696,8 @@ border: 2px solid #094065;border-radius:8px;font-weight:600;</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>899</width>
-     <height>21</height>
+     <width>900</width>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
