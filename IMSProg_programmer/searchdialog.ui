@@ -156,6 +156,12 @@
             </property>
             <item>
              <widget class="QPushButton" name="pb_zip">
+              <property name="minimumSize">
+               <size>
+                <width>90</width>
+                <height>25</height>
+               </size>
+              </property>
               <property name="styleSheet">
                <string notr="true">color: rgb(255, 255, 255);
 background-color: rgb(120, 183, 140);
@@ -169,6 +175,12 @@ border: 2px solid #094065;border-radius:8px;font-weight:600;</string>
             </item>
             <item>
              <widget class="QPushButton" name="pb_png">
+              <property name="minimumSize">
+               <size>
+                <width>90</width>
+                <height>25</height>
+               </size>
+              </property>
               <property name="styleSheet">
                <string notr="true">color: rgb(255, 255, 255);
 background-color: rgb(120, 183, 140);
@@ -182,6 +194,12 @@ border: 2px solid #094065;border-radius:8px;font-weight:600;</string>
             </item>
             <item>
              <widget class="QPushButton" name="pb_jpg">
+              <property name="minimumSize">
+               <size>
+                <width>90</width>
+                <height>25</height>
+               </size>
+              </property>
               <property name="styleSheet">
                <string notr="true">color: rgb(255, 255, 255);
 background-color: rgb(120, 183, 140);
@@ -195,6 +213,12 @@ border: 2px solid #094065;border-radius:8px;font-weight:600;</string>
             </item>
             <item>
              <widget class="QPushButton" name="pb_gif">
+              <property name="minimumSize">
+               <size>
+                <width>90</width>
+                <height>25</height>
+               </size>
+              </property>
               <property name="styleSheet">
                <string notr="true">color: rgb(255, 255, 255);
 background-color: rgb(120, 183, 140);
@@ -215,6 +239,12 @@ border: 2px solid #094065;border-radius:8px;font-weight:600;</string>
             </property>
             <item>
              <widget class="QPushButton" name="pb_tar">
+              <property name="minimumSize">
+               <size>
+                <width>90</width>
+                <height>25</height>
+               </size>
+              </property>
               <property name="styleSheet">
                <string notr="true">color: rgb(255, 255, 255);
 background-color: rgb(120, 183, 140);
@@ -228,6 +258,12 @@ border: 2px solid #094065;border-radius:8px;font-weight:600;</string>
             </item>
             <item>
              <widget class="QPushButton" name="pb_uefi">
+              <property name="minimumSize">
+               <size>
+                <width>90</width>
+                <height>25</height>
+               </size>
+              </property>
               <property name="styleSheet">
                <string notr="true">color: rgb(255, 255, 255);
 background-color: rgb(120, 183, 140);
@@ -241,6 +277,12 @@ border: 2px solid #094065;border-radius:8px;font-weight:600;</string>
             </item>
             <item>
              <widget class="QPushButton" name="pb_bios">
+              <property name="minimumSize">
+               <size>
+                <width>90</width>
+                <height>25</height>
+               </size>
+              </property>
               <property name="styleSheet">
                <string notr="true">color: rgb(255, 255, 255);
 background-color: rgb(120, 183, 140);
@@ -254,6 +296,12 @@ border: 2px solid #094065;border-radius:8px;font-weight:600;</string>
             </item>
             <item>
              <widget class="QPushButton" name="pb_gpt">
+              <property name="minimumSize">
+               <size>
+                <width>90</width>
+                <height>25</height>
+               </size>
+              </property>
               <property name="styleSheet">
                <string notr="true">color: rgb(255, 255, 255);
 background-color: rgb(120, 183, 140);
@@ -278,6 +326,12 @@ border: 2px solid #094065;border-radius:8px;font-weight:600;</string>
     <layout class="QVBoxLayout" name="verticalLayout">
      <item>
       <widget class="QPushButton" name="pbFind">
+       <property name="minimumSize">
+        <size>
+         <width>90</width>
+         <height>25</height>
+        </size>
+       </property>
        <property name="styleSheet">
         <string notr="true">color: rgb(255, 255, 255);
 background-color: rgb(120, 183, 140);
@@ -297,6 +351,12 @@ border: 2px solid #094065;border-radius:8px;font-weight:600;</string>
      </item>
      <item>
       <widget class="QPushButton" name="pbReplace">
+       <property name="minimumSize">
+        <size>
+         <width>90</width>
+         <height>25</height>
+        </size>
+       </property>
        <property name="styleSheet">
         <string notr="true">color: rgb(255, 255, 255);
 background-color: rgb(120, 183, 140);
@@ -310,6 +370,12 @@ border: 2px solid #094065;border-radius:8px;font-weight:600;</string>
      </item>
      <item>
       <widget class="QPushButton" name="pbReplaceAll">
+       <property name="minimumSize">
+        <size>
+         <width>90</width>
+         <height>25</height>
+        </size>
+       </property>
        <property name="styleSheet">
         <string notr="true">color: rgb(255, 255, 255);
 background-color: rgb(120, 183, 140);
@@ -323,6 +389,12 @@ border: 2px solid #094065;border-radius:8px;font-weight:600;</string>
      </item>
      <item>
       <widget class="QPushButton" name="pbCancel">
+       <property name="minimumSize">
+        <size>
+         <width>90</width>
+         <height>25</height>
+        </size>
+       </property>
        <property name="styleSheet">
         <string notr="true">color: rgb(255, 255, 255);
 background-color: rgb(120, 183, 140);

@@ -79,8 +79,8 @@
       <widget class="QPushButton" name="pushButton">
        <property name="minimumSize">
         <size>
-         <width>60</width>
-         <height>22</height>
+         <width>90</width>
+         <height>25</height>
         </size>
        </property>
        <property name="styleSheet">
