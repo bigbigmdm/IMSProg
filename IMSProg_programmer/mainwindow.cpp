@@ -33,6 +33,8 @@ MainWindow::MainWindow(QWidget *parent) :
     int index2;
     max_rec = 0;
     isHalted = false;
+    grnKeyStyle = "QPushButton{color:#fff;background-color: rgb(120, 183, 140);border-radius: 20px;border: 2px solid #094065;border-radius:8px;font-weight:600;}QPushButton::pressed{background-color: rgb(115, 210, 22);}";
+    redKeyStyle = "QPushButton{color:#fff;background-color:#f66;border-radius: 20px;border: 2px solid #094065;border-radius:8px;font-weight:600;}";
     ui->setupUi(this);
     ui->actionStop->setDisabled(true);
     ui->statusBar->addPermanentWidget(ui->lStatus,0);
@@ -273,7 +275,7 @@ void MainWindow::on_pushButton_clicked()
        //uint8_t buf[currentBlockSize];
        uint8_t *buf;
        buf = (uint8_t *)malloc(currentBlockSize);
-       ui->pushButton->setStyleSheet("QPushButton{color:#fff;background-color:#f66;border-radius: 20px;border: 2px solid #094065;border-radius:8px;font-weight:600;}");
+       ui->pushButton->setStyleSheet(redKeyStyle);
        ui->statusBar->showMessage(tr("Reading data from ") + ui->comboBox_name->currentText());
        for (k = 0; k < currentNumBlocks; k++)
        {
@@ -328,7 +330,7 @@ void MainWindow::on_pushButton_clicked()
     hexEdit->setData(chipData);
     ui->statusBar->showMessage("");
     ui->progressBar->setValue(0);
-    ui->pushButton->setStyleSheet("QPushButton{color:#fff;background-color:rgb(120, 183, 140);border-radius: 20px;border: 2px solid #094065;border-radius:8px;font-weight:600;}");
+    ui->pushButton->setStyleSheet(grnKeyStyle);
     ui->crcEdit->setText(getCRC32());
   }
   else
@@ -351,7 +353,7 @@ void MainWindow::on_pushButton_2_clicked()
         return;
       }
 
-    ui->pushButton_2->setStyleSheet("QPushButton {color:#fff;background-color:#f66;border-radius: 20px;border: 2px solid #094065;border-radius:8px;font-weight:600;}");
+    ui->pushButton_2->setStyleSheet(redKeyStyle);
     ui->crcEdit->setText("");
     int i, index;
     // print JEDEC info
@@ -360,7 +362,7 @@ void MainWindow::on_pushButton_2_clicked()
     if ((bufid[0] == 0xff) && (bufid[1] == 0xff) && (bufid[2] == 0xff))
     {
         QMessageBox::about(this, tr("Error"), tr("The chip is not connect or missing!"));
-        ui->pushButton_2->setStyleSheet("QPushButton{color:#fff;background-color:rgb(120, 183, 140);border-radius: 20px;border: 2px solid #094065;border-radius:8px;font-weight:600;}");
+        ui->pushButton_2->setStyleSheet(grnKeyStyle);
         ch341a_spi_shutdown();
         return;
     }
@@ -406,7 +408,7 @@ void MainWindow::on_pushButton_2_clicked()
                ui->comboBox_vcc->setCurrentIndex(index);
             }
 
-            ui->pushButton_2->setStyleSheet("QPushButton{color:#fff;background-color:rgb(120, 183, 140);border-radius: 20px;border: 2px solid #094065;border-radius:8px;font-weight:600;}");
+            ui->pushButton_2->setStyleSheet(grnKeyStyle);
             break;
         }
     }
@@ -434,7 +436,7 @@ void MainWindow::on_pushButton_2_clicked()
     }
     hexEdit->setData(chipData);
     }
-    ui->pushButton_2->setStyleSheet("QPushButton{color:#fff;background-color:rgb(120, 183, 140);border-radius: 20px;border: 2px solid #094065;border-radius:8px;font-weight:600;}");
+    ui->pushButton_2->setStyleSheet(grnKeyStyle);
     ui->crcEdit->setText(getCRC32());
     ch341a_spi_shutdown();
 }
@@ -942,11 +944,11 @@ void MainWindow::on_actionVerify_triggered()
 
 void MainWindow::on_pushButton_3_clicked()
 {
-    ui->pushButton_3->setStyleSheet("QPushButton{color:#fff;background-color:#f66;border-radius: 20px;border: 2px solid #094065;border-radius:8px;font-weight:600;}");
+    ui->pushButton_3->setStyleSheet(redKeyStyle);
     if (ui->checkBox->isChecked()) MainWindow::on_actionErase_triggered();
     if (ui->checkBox_2->isChecked()) MainWindow::on_actionWrite_triggered();
     if (ui->checkBox_3->isChecked()) MainWindow::on_actionVerify_triggered();
-    ui->pushButton_3->setStyleSheet("QPushButton{color:#fff;background-color:rgb(120, 183, 140);border-radius: 20px;border: 2px solid #094065;border-radius:8px;font-weight:600;}");
+    ui->pushButton_3->setStyleSheet(grnKeyStyle);
 }
 
 void MainWindow::receiveAddr(QString addressData)
@@ -1206,11 +1208,11 @@ void MainWindow::on_actionStop_triggered()
   //ch341a_spi_shutdown();
   isHalted = true;
   QMessageBox::about(this, tr("Stop"), tr("Operation aborted!"));
-  ui->pushButton->setStyleSheet("QPushButton{color:#fff;background-color:rgb(120, 183, 140);border-radius: 20px;border: 2px solid #094065;border-radius:8px;font-weight:600;}");
+  ui->pushButton->setStyleSheet(grnKeyStyle);
   ui->checkBox->setStyleSheet("");
   ui->checkBox_2->setStyleSheet("");
   ui->checkBox_3->setStyleSheet("");
-  ui->pushButton_3->setStyleSheet("QPushButton{color:#fff;background-color:rgb(120, 183, 140);border-radius: 20px;border: 2px solid #094065;border-radius:8px;font-weight:600;}");
+  ui->pushButton_3->setStyleSheet(grnKeyStyle);
   ui->statusBar->showMessage("");
   return;
 }

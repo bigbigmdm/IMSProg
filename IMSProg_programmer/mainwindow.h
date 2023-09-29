@@ -97,6 +97,7 @@ private slots:
 private:
     Ui::MainWindow *ui;
     QColor defaultTextColor;
+    QString grnKeyStyle, redKeyStyle;
     int statusCH341;
     QByteArray chipData;
     uint32_t currentChipSize, currentNumBlocks, currentBlockSize, currentPageSize;

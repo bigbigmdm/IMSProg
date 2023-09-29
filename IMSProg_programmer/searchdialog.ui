@@ -163,10 +163,13 @@
                </size>
               </property>
               <property name="styleSheet">
-               <string notr="true">color: rgb(255, 255, 255);
+               <string notr="true">QPushButton{
+color: rgb(255, 255, 255);
 background-color: rgb(120, 183, 140);
 border-radius: 20px;
-border: 2px solid #094065;border-radius:8px;font-weight:600;</string>
+border: 2px solid #094065;border-radius:8px;font-weight:600;
+}
+QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
               </property>
               <property name="text">
                <string>ZIP</string>
@@ -182,10 +185,13 @@ border: 2px solid #094065;border-radius:8px;font-weight:600;</string>
                </size>
               </property>
               <property name="styleSheet">
-               <string notr="true">color: rgb(255, 255, 255);
+               <string notr="true">QPushButton{
+color: rgb(255, 255, 255);
 background-color: rgb(120, 183, 140);
 border-radius: 20px;
-border: 2px solid #094065;border-radius:8px;font-weight:600;</string>
+border: 2px solid #094065;border-radius:8px;font-weight:600;
+}
+QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
               </property>
               <property name="text">
                <string>PNG</string>
@@ -201,10 +207,13 @@ border: 2px solid #094065;border-radius:8px;font-weight:600;</string>
                </size>
               </property>
               <property name="styleSheet">
-               <string notr="true">color: rgb(255, 255, 255);
+               <string notr="true">QPushButton{
+color: rgb(255, 255, 255);
 background-color: rgb(120, 183, 140);
 border-radius: 20px;
-border: 2px solid #094065;border-radius:8px;font-weight:600;</string>
+border: 2px solid #094065;border-radius:8px;font-weight:600;
+}
+QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
               </property>
               <property name="text">
                <string>JPG</string>
@@ -220,10 +229,13 @@ border: 2px solid #094065;border-radius:8px;font-weight:600;</string>
                </size>
               </property>
               <property name="styleSheet">
-               <string notr="true">color: rgb(255, 255, 255);
+               <string notr="true">QPushButton{
+color: rgb(255, 255, 255);
 background-color: rgb(120, 183, 140);
 border-radius: 20px;
-border: 2px solid #094065;border-radius:8px;font-weight:600;</string>
+border: 2px solid #094065;border-radius:8px;font-weight:600;
+}
+QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
               </property>
               <property name="text">
                <string>GIF</string>
@@ -246,10 +258,13 @@ border: 2px solid #094065;border-radius:8px;font-weight:600;</string>
                </size>
               </property>
               <property name="styleSheet">
-               <string notr="true">color: rgb(255, 255, 255);
+               <string notr="true">QPushButton{
+color: rgb(255, 255, 255);
 background-color: rgb(120, 183, 140);
 border-radius: 20px;
-border: 2px solid #094065;border-radius:8px;font-weight:600;</string>
+border: 2px solid #094065;border-radius:8px;font-weight:600;
+}
+QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
               </property>
               <property name="text">
                <string>TAR</string>
@@ -265,10 +280,13 @@ border: 2px solid #094065;border-radius:8px;font-weight:600;</string>
                </size>
               </property>
               <property name="styleSheet">
-               <string notr="true">color: rgb(255, 255, 255);
+               <string notr="true">QPushButton{
+color: rgb(255, 255, 255);
 background-color: rgb(120, 183, 140);
 border-radius: 20px;
-border: 2px solid #094065;border-radius:8px;font-weight:600;</string>
+border: 2px solid #094065;border-radius:8px;font-weight:600;
+}
+QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
               </property>
               <property name="text">
                <string>UEFI</string>
@@ -284,10 +302,13 @@ border: 2px solid #094065;border-radius:8px;font-weight:600;</string>
                </size>
               </property>
               <property name="styleSheet">
-               <string notr="true">color: rgb(255, 255, 255);
+               <string notr="true">QPushButton{
+color: rgb(255, 255, 255);
 background-color: rgb(120, 183, 140);
 border-radius: 20px;
-border: 2px solid #094065;border-radius:8px;font-weight:600;</string>
+border: 2px solid #094065;border-radius:8px;font-weight:600;
+}
+QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
               </property>
               <property name="text">
                <string>BIOS</string>
@@ -303,10 +324,13 @@ border: 2px solid #094065;border-radius:8px;font-weight:600;</string>
                </size>
               </property>
               <property name="styleSheet">
-               <string notr="true">color: rgb(255, 255, 255);
+               <string notr="true">QPushButton{
+color: rgb(255, 255, 255);
 background-color: rgb(120, 183, 140);
 border-radius: 20px;
-border: 2px solid #094065;border-radius:8px;font-weight:600;</string>
+border: 2px solid #094065;border-radius:8px;font-weight:600;
+}
+QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
               </property>
               <property name="text">
                <string>GPT</string>
@@ -333,10 +357,13 @@ border: 2px solid #094065;border-radius:8px;font-weight:600;</string>
         </size>
        </property>
        <property name="styleSheet">
-        <string notr="true">color: rgb(255, 255, 255);
+        <string notr="true">QPushButton{
+color: rgb(255, 255, 255);
 background-color: rgb(120, 183, 140);
 border-radius: 20px;
-border: 2px solid #094065;border-radius:8px;font-weight:600;</string>
+border: 2px solid #094065;border-radius:8px;font-weight:600;
+}
+QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
        </property>
        <property name="text">
         <string>&amp;Find</string>
@@ -358,10 +385,13 @@ border: 2px solid #094065;border-radius:8px;font-weight:600;</string>
         </size>
        </property>
        <property name="styleSheet">
-        <string notr="true">color: rgb(255, 255, 255);
+        <string notr="true">QPushButton{
+color: rgb(255, 255, 255);
 background-color: rgb(120, 183, 140);
 border-radius: 20px;
-border: 2px solid #094065;border-radius:8px;font-weight:600;</string>
+border: 2px solid #094065;border-radius:8px;font-weight:600;
+}
+QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
        </property>
        <property name="text">
         <string>&amp;Replace</string>
@@ -377,10 +407,13 @@ border: 2px solid #094065;border-radius:8px;font-weight:600;</string>
         </size>
        </property>
        <property name="styleSheet">
-        <string notr="true">color: rgb(255, 255, 255);
+        <string notr="true">QPushButton{
+color: rgb(255, 255, 255);
 background-color: rgb(120, 183, 140);
 border-radius: 20px;
-border: 2px solid #094065;border-radius:8px;font-weight:600;</string>
+border: 2px solid #094065;border-radius:8px;font-weight:600;
+}
+QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
        </property>
        <property name="text">
         <string>Replace &amp;All</string>
@@ -396,10 +429,13 @@ border: 2px solid #094065;border-radius:8px;font-weight:600;</string>
         </size>
        </property>
        <property name="styleSheet">
-        <string notr="true">color: rgb(255, 255, 255);
+        <string notr="true">QPushButton{
+color: rgb(255, 255, 255);
 background-color: rgb(120, 183, 140);
 border-radius: 20px;
-border: 2px solid #094065;border-radius:8px;font-weight:600;</string>
+border: 2px solid #094065;border-radius:8px;font-weight:600;
+}
+QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
        </property>
        <property name="text">
         <string>&amp;Close</string>

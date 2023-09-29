@@ -258,10 +258,13 @@ QGroupBox::title {
             </size>
            </property>
            <property name="styleSheet">
-            <string notr="true">color: rgb(255, 255, 255);
+            <string notr="true">QPushButton{
+color: rgb(255, 255, 255);
 background-color: rgb(120, 183, 140);
 border-radius: 20px;
-border: 2px solid #094065;border-radius:8px;font-weight:600;</string>
+border: 2px solid #094065;border-radius:8px;font-weight:600;
+}
+QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
            </property>
            <property name="text">
             <string>Detect</string>
@@ -292,10 +295,13 @@ border: 2px solid #094065;border-radius:8px;font-weight:600;</string>
               </size>
              </property>
              <property name="styleSheet">
-              <string notr="true">color: rgb(255, 255, 255);
+              <string notr="true">QPushButton{
+color: rgb(255, 255, 255);
 background-color: rgb(120, 183, 140);
 border-radius: 20px;
-border: 2px solid #094065;border-radius:8px;font-weight:600;</string>
+border: 2px solid #094065;border-radius:8px;font-weight:600;
+}
+QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
              </property>
              <property name="text">
               <string>Read</string>
@@ -373,10 +379,13 @@ border: 2px solid #094065;border-radius:8px;font-weight:600;</string>
               </font>
              </property>
              <property name="styleSheet">
-              <string notr="true">color: rgb(255, 255, 255);
+              <string notr="true">QPushButton{
+color: rgb(255, 255, 255);
 background-color: rgb(120, 183, 140);
 border-radius: 20px;
-border: 2px solid #094065;border-radius:11px;font-weight:600;</string>
+border: 2px solid #094065;border-radius:8px;font-weight:600;
+}
+QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
              </property>
              <property name="text">
               <string>i</string>
@@ -494,10 +503,13 @@ QGroupBox::title {
               </size>
              </property>
              <property name="styleSheet">
-              <string notr="true">color: rgb(255, 255, 255);
+              <string notr="true">QPushButton{
+color: rgb(255, 255, 255);
 background-color: rgb(120, 183, 140);
 border-radius: 20px;
-border: 2px solid #094065;border-radius:8px;font-weight:600;</string>
+border: 2px solid #094065;border-radius:8px;font-weight:600;
+}
+QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
              </property>
              <property name="text">
               <string>Go!</string>
