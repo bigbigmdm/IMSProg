@@ -279,17 +279,29 @@ void MainWindow::on_pushButton_clicked()
        ui->statusBar->showMessage(tr("Reading data from ") + ui->comboBox_name->currentText());
        for (k = 0; k < currentNumBlocks; k++)
        {
-          if (currentChipType == 0) res = snor_read_param(buf,curBlock * currentBlockSize, currentBlockSize, currentBlockSize, currentAddr4bit);
-          if (currentChipType == 1)
-          {
-            res = ch341readEEPROM_param(buf, curBlock * currentBlockSize, currentBlockSize, currentChipSize, currentPageSize, currentAlgorithm);//currentAlgorithm);
-            if (res==0) res = 1;
-          }
-          if (currentChipType == 2)
-          {
-             res = Read_EEPROM_3wire_param(buf, static_cast<int>(curBlock * currentBlockSize), static_cast<int>(currentBlockSize), static_cast<int>(currentChipSize), currentAlgorithm);
-             if (res==0) res = 1;
-          }
+           switch (currentChipType)
+              {
+              case 0:
+                 //SPI
+                 res = snor_read_param(buf,curBlock * currentBlockSize, currentBlockSize, currentBlockSize, currentAddr4bit);
+              break;
+              case 1:
+                 //I2C
+               res = ch341readEEPROM_param(buf, curBlock * currentBlockSize, currentBlockSize, currentChipSize, currentPageSize, currentAlgorithm);//currentAlgorithm);
+               if (res==0) res = 1;
+              break;
+              case 2:
+                 //MicroWire
+               res = Read_EEPROM_3wire_param(buf, static_cast<int>(curBlock * currentBlockSize), static_cast<int>(currentBlockSize), static_cast<int>(currentChipSize), currentAlgorithm);
+               if (res==0) res = 1;
+              break;
+              default:
+                 //Unsupport
+                 QMessageBox::about(this, tr("Error"), tr("Unsupported chip type!"));
+                 doNotDisturbCancel();
+                 ch341a_spi_shutdown();
+              return;
+              }
           // if res=-1 - error, stop
           if (statusCH341 != 0)
             {
@@ -669,17 +681,29 @@ void MainWindow::on_actionWrite_triggered()
             {
                buf[addr + j - k * currentBlockSize] =  static_cast<uint8_t>(chipData[addr + j]) ;
             }
-         if (currentChipType == 0) res =  snor_write_param(buf, addr, currentBlockSize, currentBlockSize, currentAddr4bit);
-         if (currentChipType == 1)
-         {
-              res = ch341writeEEPROM_param(buf, curBlock * 128, 128, currentPageSize, currentAlgorithm);
-              if (res==0) res = 1;
-         }
-         if (currentChipType == 2)
-         {
-               res = Write_EEPROM_3wire_param(buf, static_cast<int>(curBlock * currentBlockSize), static_cast<int>(currentBlockSize), static_cast<int>(currentChipSize), currentAlgorithm);
-               if (res==0) res = 1;
-         }
+         switch (currentChipType)
+                       {
+                       case 0:
+                          //SPI
+                          res =  snor_write_param(buf, addr, currentBlockSize, currentBlockSize, currentAddr4bit);
+                       break;
+                       case 1:
+                          //I2C
+                          res = ch341writeEEPROM_param(buf, curBlock * 128, 128, currentPageSize, currentAlgorithm);
+                          if (res==0) res = 1;
+                       break;
+                       case 2:
+                          //MicroWire
+                          res = Write_EEPROM_3wire_param(buf, static_cast<int>(curBlock * currentBlockSize), static_cast<int>(currentBlockSize), static_cast<int>(currentChipSize), currentAlgorithm);
+                          if (res==0) res = 1;
+                       break;
+                       default:
+                          //Unsupport
+                          QMessageBox::about(this, tr("Error"), tr("Unsupported chip type!"));
+                          doNotDisturbCancel();
+                          ch341a_spi_shutdown();
+                       return;
+                       }
          // if res=-1 - error, stop
          if (statusCH341 != 0)
            {
@@ -870,17 +894,29 @@ void MainWindow::on_actionVerify_triggered()
                ui->statusBar->showMessage(tr("Veryfing data from ") + ui->comboBox_name->currentText());
                for (k = 0; k < currentNumBlocks; k++)
                {
-                    if (currentChipType == 0) res = snor_read_param(buf,curBlock * currentBlockSize, currentBlockSize, currentBlockSize, currentAddr4bit);
-                    if (currentChipType == 1)
-                    {
-                       res = ch341readEEPROM_param(buf, curBlock * currentBlockSize, currentBlockSize, currentChipSize, currentPageSize, currentAlgorithm);
-                       if (res == 0) res = 1;
-                     }
-                    if (currentChipType == 2)
-                    {
-                        res = Read_EEPROM_3wire_param(buf, static_cast<int>(curBlock * currentBlockSize), static_cast<int>(currentBlockSize), static_cast<int>(currentChipSize), currentAlgorithm);
-                        if (res == 0) res = 1;
-                    }
+                   switch (currentChipType)
+                      {
+                      case 0:
+                         //SPI
+                         res = snor_read_param(buf,curBlock * currentBlockSize, currentBlockSize, currentBlockSize, currentAddr4bit);
+                      break;
+                      case 1:
+                         //I2C
+                       res = ch341readEEPROM_param(buf, curBlock * currentBlockSize, currentBlockSize, currentChipSize, currentPageSize, currentAlgorithm);//currentAlgorithm);
+                       if (res==0) res = 1;
+                      break;
+                      case 2:
+                         //MicroWire
+                       res = Read_EEPROM_3wire_param(buf, static_cast<int>(curBlock * currentBlockSize), static_cast<int>(currentBlockSize), static_cast<int>(currentChipSize), currentAlgorithm);
+                       if (res==0) res = 1;
+                      break;
+                      default:
+                         //Unsupport
+                         QMessageBox::about(this, tr("Error"), tr("Unsupported chip type!"));
+                         doNotDisturbCancel();
+                         ch341a_spi_shutdown();
+                      return;
+                      }
                     // if res=-1 - error, stop
                     if (statusCH341 != 0)
                     {
