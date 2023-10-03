@@ -1111,7 +1111,7 @@ void MainWindow::on_comboBox_type_currentIndexChanged(int index)
     ui->comboBox_man->addItem("");
     ui->comboBox_name->addItem("");
     ui->jedecEdit->setText("");
-    currentChipType = static_cast<uint8_t>(index);
+    currentChipType = static_cast<uint8_t>(ui->comboBox_type->itemData(index).toInt());
     for (i = 0; i<max_rec; i++)
     {
         //replacing items to combobox Manufacture
