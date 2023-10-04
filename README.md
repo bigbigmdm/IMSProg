@@ -108,6 +108,10 @@ It contains the following controls: ![Undo](img/undo.png) undo, ![Redo](img/redo
 ### MicroWire EEPROM
 93C46, 93C56, 93C66, 93C76, 93C86
 
+### Serial SPI Bus EEPROM
+- ST
+M95010, M95020, M95040, M95080, M95160, M95320, M95640, M95128, M95256, M95512, M95M01, M95M02
+
 ### SPI NOR Flash
 - SPANSION
 
@@ -218,3 +222,5 @@ FM25M16A(1.8V), FM25M32B(1.8V), FM25M64A(1.8V)
 - Ver. 1.0.23 - Working, stable version. Removed unused C-functions and variable tables in code. Fix translations. Corrected cleaning of JEDEC ID line edit. Added chips to the database. Correction of database entries.
 - Ver. 1.0.24 - Added `STOP` key to the interface. Improved interface rendering. Fixes to translations.
 - Ver. 1.0.25 - Added `i` key to the interface. Added connection information form.
+- Ver. 1.0.26 - Added support M95xxx chips. Deleting the diagnostics bugs.
+  
