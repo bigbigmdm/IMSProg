@@ -110,6 +110,7 @@ It contains the following controls: ![Undo](img/undo.png) undo, ![Redo](img/redo
 
 ### Serial SPI Bus EEPROM
 - ST
+  
 M95010, M95020, M95040, M95080, M95160, M95320, M95640, M95128, M95256, M95512, M95M01, M95M02
 
 ### SPI NOR Flash
