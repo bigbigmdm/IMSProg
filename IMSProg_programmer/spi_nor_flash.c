@@ -91,6 +91,10 @@ struct chip_info *spi_chip_info;
 static int snor_wait_ready(int sleep_ms);
 static int snor_read_sr(u8 *val);
 static int snor_write_sr(u8 *val);
+static int s95_read_sr(u8 *val);
+static int s95_write_sr(u8 *val);
+int s95_wait_ready(int sleep_ms);
+int s95_unprotect(void);
 
 extern unsigned int bsize;
 
@@ -111,7 +115,19 @@ static inline void snor_write_disable(void)
 	SPI_CONTROLLER_Write_One_Byte(OPCODE_WRDI);
 	SPI_CONTROLLER_Chip_Select_High();
 }
+static inline void s95_write_enable(void)
+{
+    SPI_CONTROLLER_Chip_Select_Low();
+    SPI_CONTROLLER_Write_One_Byte(0x06);
+    SPI_CONTROLLER_Chip_Select_High();
+}
 
+static inline void s95_write_disable(void)
+{
+    SPI_CONTROLLER_Chip_Select_Low();
+    SPI_CONTROLLER_Write_One_Byte(0x04);
+    SPI_CONTROLLER_Chip_Select_High();
+}
 /*
  * Set all sectors (global) unprotected if they are protected.
  * Returns negative if error occurred.
@@ -697,7 +713,7 @@ int snor_erase_param(unsigned long offs, unsigned long len, unsigned int sector_
         if (spi_chip_info->addr4b)
 			snor_4byte_mode(0);
 	}
-	printf("Read 100%% [%lu] of [%lu] bytes      \n", len - remain_len, len);
+    //printf("Read 100%% [%lu] of [%lu] bytes      \n", len - remain_len, len);
 	timer_end();
 
 	return len;
@@ -774,7 +790,7 @@ int snor_read_param(unsigned char *buf, unsigned long from, unsigned long len, u
         if (addr4b)
             snor_4byte_mode(0);
     }
-    printf("Read 100%% [%lu] of [%lu] bytes      \n", len - remain_len, len);
+    //printf("Read 100%% [%lu] of [%lu] bytes      \n", len - remain_len, len);
     timer_end();
 
     return len;
@@ -863,10 +879,226 @@ int snor_write_param(unsigned char *buf, unsigned long to, unsigned long len, un
 
     snor_write_disable();
 
-    printf("Written 100%% [%ld] of [%ld] bytes      \n", plen - len, plen);
+    //printf("Written 100%% [%ld] of [%ld] bytes      \n", plen - len, plen);
     timer_end();
 
     return retlen;
+}
+
+int s95_read_param(unsigned char *buf, unsigned long from, unsigned long len, unsigned int sector_size, unsigned char currentAlgorithm)
+{
+    u32 physical_read_addr, remain_len, data_offset;
+    u32 read_addr;
+    unsigned char algorythm = currentAlgorithm & 0x0f;
+    snor_dbg("%s: from:%x len:%x \n", __func__, from, len);
+
+    /* sanity checks */
+    if (len == 0)
+        return 0;
+
+    timer_start();
+    /* Wait till previous write/erase is done. */
+    if (s95_wait_ready(1)) {
+        /* REVISIT status return?? */
+        return -1;
+    }
+
+    read_addr = (u32)from;
+    remain_len = (u32)len;
+
+    while(remain_len > 0) {
+
+        physical_read_addr = read_addr;
+        data_offset = (physical_read_addr % (sector_size));
+
+
+        SPI_CONTROLLER_Chip_Select_Low();
+
+        /* Set up the write data buffer. */
+        SPI_CONTROLLER_Write_One_Byte(OPCODE_READ);
+
+        if (algorythm == 2) SPI_CONTROLLER_Write_One_Byte((physical_read_addr >> 16) & 0xff);
+        if (algorythm > 0)  SPI_CONTROLLER_Write_One_Byte((physical_read_addr >> 8) & 0xff);
+        SPI_CONTROLLER_Write_One_Byte(physical_read_addr & 0xff);
+
+        if( (data_offset + remain_len) < sector_size )
+        {
+            if(SPI_CONTROLLER_Read_NByte(&buf[len - remain_len], remain_len, SPI_CONTROLLER_SPEED_SINGLE)) {
+                SPI_CONTROLLER_Chip_Select_High();
+                len = -1;
+                break;
+            }
+            remain_len = 0;
+        } else {
+            if(SPI_CONTROLLER_Read_NByte(&buf[len - remain_len], sector_size - data_offset, SPI_CONTROLLER_SPEED_SINGLE)) {
+                SPI_CONTROLLER_Chip_Select_High();
+                len = -1;
+                break;
+            }
+            remain_len -= sector_size - data_offset;
+            read_addr += sector_size - data_offset;
+            if( timer_progress() ) {
+                //printf("\bRead %ld%% [%lu] of [%lu] bytes      ", 100 * (len - remain_len) / len, len - remain_len, len);
+                //printf("\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b");
+                fflush(stdout);
+            }
+        }
+
+        SPI_CONTROLLER_Chip_Select_High();
+
+    }
+    //printf("Read 100%% [%lu] of [%lu] bytes from [%u]      \n", len - remain_len, len, from);
+    timer_end();
+
+    return len;
+}
+
+int s95_write_param(unsigned char *buf, unsigned long to, unsigned long len, unsigned int sector_size, unsigned char currentAlgorithm)
+{
+    u32 page_offset, page_size;
+    int rc = 0, retlen = 0;
+    unsigned long plen = len;
+    unsigned char algorythm = currentAlgorithm & 0x0f;
+    snor_dbg("%s: to:%x len:%x \n", __func__, to, len);
+
+    /* sanity checks */
+    if (len == 0) return 0;
+
+//    if (to + len > len * sector_size ){
+//        printf("STRING969");
+//        return -3;
+//    }
+    timer_start();
+    /* Wait until finished previous write command. */
+    if (s95_wait_ready(2)) return -1;
+
+    /* what page do we start with? */
+    page_offset = to % sector_size;//FLASH_PAGESIZE;
+
+    /* write everything in PAGESIZE chunks */
+    while (len > 0) {
+        page_size = min(len, sector_size - page_offset);
+        page_offset = 0;
+        /* write the next page to flash */
+
+        s95_wait_ready(3);
+        s95_write_enable();
+        s95_unprotect();
+
+        SPI_CONTROLLER_Chip_Select_Low();
+        /* Set up the opcode in the write buffer. */
+        SPI_CONTROLLER_Write_One_Byte(OPCODE_PP);
+
+        if (algorythm == 2) SPI_CONTROLLER_Write_One_Byte((to >> 16) & 0xff);
+        if (algorythm > 0) SPI_CONTROLLER_Write_One_Byte((to >> 8) & 0xff);
+        SPI_CONTROLLER_Write_One_Byte(to & 0xff);
+
+        if(!SPI_CONTROLLER_Write_NByte(buf, page_size, SPI_CONTROLLER_SPEED_SINGLE))
+            rc = page_size;
+        else
+            rc = 1;
+
+        SPI_CONTROLLER_Chip_Select_High();
+
+        snor_dbg("%s: to:%x page_size:%x ret:%x\n", __func__, to, page_size, rc);
+
+        if( timer_progress() ) {
+            //printf("\bWritten %ld%% [%lu] of [%lu] bytes      ", 100 * (plen - len) / plen, plen - len, plen);
+            //printf("\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b");
+            fflush(stdout);
+        }
+
+        if (rc > 0) {
+            retlen += rc;
+            if (rc < page_size) {
+                printf("%s: rc:%x page_size:%x\n",
+                        __func__, rc, page_size);
+                s95_write_disable();
+                return retlen - rc;
+            }
+        }
+
+        len -= page_size;
+        to += page_size;
+        buf += page_size;
+    }
+
+
+    s95_write_disable();
+
+    //printf("Written 100%% [%ld] of [%ld] bytes      \n", plen - len, plen);
+    timer_end();
+
+    return retlen;
+}
+
+static int s95_read_sr(u8 *val)
+{
+    int retval = 0;
+
+    SPI_CONTROLLER_Chip_Select_Low();
+    SPI_CONTROLLER_Write_One_Byte(0x05);
+
+    retval = SPI_CONTROLLER_Read_NByte(val, 1, SPI_CONTROLLER_SPEED_SINGLE);
+    SPI_CONTROLLER_Chip_Select_High();
+    if (retval) {
+        printf("%s: ret: %x\n", __func__, retval);
+        return retval;
+    }
+
+    return 0;
+}
+static int s95_write_sr(u8 *val)
+{
+    int retval = 0;
+
+    SPI_CONTROLLER_Chip_Select_Low();
+    SPI_CONTROLLER_Write_One_Byte(0x01);
+
+    retval = SPI_CONTROLLER_Write_NByte(val, 1, SPI_CONTROLLER_SPEED_SINGLE);
+    SPI_CONTROLLER_Chip_Select_High();
+    if (retval) {
+        printf("%s: ret: %x\n", __func__, retval);
+        return retval;
+    }
+    return 0;
+}
+int s95_unprotect(void)
+{
+    u8 sr = 0;
+
+    if (s95_read_sr(&sr) < 0) {
+        printf("%s: read_sr fail: %x\n", __func__, sr);
+        return -1;
+    }
+
+    if ((sr & (SR_BP0 | SR_BP1 )) != 0) {
+        sr = 0;
+        s95_write_sr(&sr);
+    }
+    return 0;
+}
+
+int s95_wait_ready(int sleep_ms)
+{
+    int count;
+    int sr = 0;
+
+    /* one chip guarantees max 5 msec wait here after page writes,
+     * but potentially three seconds (!) after page erase.
+     */
+    for (count = 0; count < ((sleep_ms + 1) * 1000); count++) {
+        //printf("sr= %x\n",snor_read_sr((u8 *)&sr));
+        if ((snor_read_sr((u8 *)&sr)) < 0)
+            break;
+        else if (!(sr & (SR_WIP | SR_WEL))) {
+            return 0;
+        }
+        udelay(500);
+        /* REVISIT sometimes sleeping would be best */
+    }
+    printf("%s: read_sr fail: %x\n", __func__, sr);
+    return -1;
 }
 /*int snor_write(unsigned char *buf, unsigned long to, unsigned long len)
 {

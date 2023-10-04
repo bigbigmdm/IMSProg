@@ -26,6 +26,7 @@
 #include "dialogrp.h"
 #include <stddef.h>
 #include <stdint.h>
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -55,6 +56,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->comboBox_type->addItem("SPI_FLASH", 0);
     ui->comboBox_type->addItem("24_EEPROM", 1);
     ui->comboBox_type->addItem("93_EEPROM", 2);
+    ui->comboBox_type->addItem("95_EEPROM", 4);
 
     ui->comboBox_addr4bit->addItem("No", 0);
     ui->comboBox_addr4bit->addItem("Yes", 1);
@@ -251,7 +253,7 @@ void MainWindow::on_pushButton_clicked()
   if (statusCH341 == 0)
   {
     ui->crcEdit->setText("");
-    if (((currentNumBlocks > 0) && (currentBlockSize >0) && (currentChipType == 0)) || ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 1)) || ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 2)))
+    if (((currentNumBlocks > 0) && (currentBlockSize >0) && (currentChipType == 0)) || ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 1)) || ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 2) || ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 4))))
     {
        doNotDisturb();
        if (currentChipType == 1)
@@ -259,11 +261,12 @@ void MainWindow::on_pushButton_clicked()
            currentBlockSize = 128;
            currentNumBlocks = currentChipSize / currentBlockSize;
        }
-       if (currentChipType == 2)
+       if ((currentChipType == 2) || (currentChipType == 4))
        {
            currentBlockSize = currentPageSize;
            currentNumBlocks = currentChipSize / currentBlockSize;
        }
+
        ch341StatusFlashing();
        uint32_t addr = 0;
        uint32_t curBlock = 0;
@@ -295,6 +298,10 @@ void MainWindow::on_pushButton_clicked()
                res = Read_EEPROM_3wire_param(buf, static_cast<int>(curBlock * currentBlockSize), static_cast<int>(currentBlockSize), static_cast<int>(currentChipSize), currentAlgorithm);
                if (res==0) res = 1;
               break;
+              case 4:
+                 //95xxx
+                 res = s95_read_param(buf,curBlock * currentBlockSize, currentBlockSize, currentBlockSize, currentAlgorithm);
+              break;
               default:
                  //Unsupport
                  QMessageBox::about(this, tr("Error"), tr("Unsupported chip type!"));
@@ -302,6 +309,7 @@ void MainWindow::on_pushButton_clicked()
                  ch341a_spi_shutdown();
               return;
               }
+          //qDebug() << "res=" << res;
           // if res=-1 - error, stop
           if (statusCH341 != 0)
             {
@@ -309,7 +317,7 @@ void MainWindow::on_pushButton_clicked()
                 doNotDisturbCancel();
                 break;
             }
-          if (res == 0)
+          if (res <= 0)
             {
                QMessageBox::about(this, tr("Error"), tr("Error reading block ") + QString::number(curBlock));
                doNotDisturbCancel();
@@ -557,6 +565,44 @@ void MainWindow::on_actionErase_triggered()
        snor_erase_param(0, 65536, 65536, 1);
        sleep(1);
     }
+    if (currentChipType == 4)
+    {
+        uint32_t curBlock = 0;
+        uint32_t k;
+        int res = 0;
+        currentBlockSize = currentPageSize;
+        currentNumBlocks = currentChipSize / currentBlockSize;
+        uint8_t *buf;
+        buf = (uint8_t *)malloc(currentBlockSize);
+        config_stream(2);
+        if (isHalted)
+        {
+            isHalted = false;
+            ch341a_spi_shutdown();
+            doNotDisturbCancel();
+            return;
+        }
+        ui->progressBar->setRange(0, static_cast<int>(currentNumBlocks));
+        for (k = 0; k < currentBlockSize; k++)
+        {
+            buf[k] = 0xff;
+        }
+        for (curBlock = 0; curBlock < currentNumBlocks; curBlock++)
+        {
+            //res = ch341writeEEPROM_param(buf, curBlock * 128, 128, currentPageSize, currentAlgorithm);
+            res =  s95_write_param(buf, curBlock * currentBlockSize, currentBlockSize, currentBlockSize, currentAlgorithm);
+            qApp->processEvents();
+            ui->progressBar->setValue( static_cast<int>(curBlock));
+            //qDebug() << "res=" << res;
+            if (res <= 0)
+              {
+                QMessageBox::about(this, tr("Error"), tr("Error erasing sector ") + QString::number(curBlock));
+                ch341a_spi_shutdown();
+                doNotDisturbCancel();
+                return;
+              }
+        }
+    }
     if (currentChipType == 2)
     {
         config_stream(1);
@@ -591,9 +637,11 @@ void MainWindow::on_actionErase_triggered()
         for (curBlock = 0; curBlock < currentNumBlocks; curBlock++)
         {
             res = ch341writeEEPROM_param(buf, curBlock * 128, 128, currentPageSize, currentAlgorithm);
+            if (res==0) res = 1;
             qApp->processEvents();
             ui->progressBar->setValue( static_cast<int>(curBlock));
-            if (res != 0)
+            //qDebug() << "res=" << res;
+            if (res <= 0)
               {
                 QMessageBox::about(this, tr("Error"), tr("Error erasing sector ") + QString::number(curBlock));
                 ch341a_spi_shutdown();
@@ -649,7 +697,7 @@ void MainWindow::on_actionWrite_triggered()
     statusCH341 = ch341a_init(currentChipType);
     if (statusCH341 == 0)
     {
-    if (((currentNumBlocks > 0) && (currentBlockSize >0) && (currentChipType == 0)) || ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 1)) || ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 2)))
+    if (((currentNumBlocks > 0) && (currentBlockSize >0) && (currentChipType == 0)) || ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 1)) || ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 2)) || ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 4)))
         {
         doNotDisturb();
         if (currentChipType == 1)
@@ -657,7 +705,7 @@ void MainWindow::on_actionWrite_triggered()
             currentBlockSize = 128;
             currentNumBlocks = currentChipSize / currentBlockSize;
         }
-        if (currentChipType == 2)
+        if ((currentChipType == 2) || (currentChipType == 4))
         {
             currentBlockSize = currentPageSize;
             currentNumBlocks = currentChipSize / currentBlockSize;
@@ -697,22 +745,28 @@ void MainWindow::on_actionWrite_triggered()
                           res = Write_EEPROM_3wire_param(buf, static_cast<int>(curBlock * currentBlockSize), static_cast<int>(currentBlockSize), static_cast<int>(currentChipSize), currentAlgorithm);
                           if (res==0) res = 1;
                        break;
+                       case 4:
+                          //M95xx
+                          res =  s95_write_param(buf, addr, currentBlockSize, currentBlockSize, currentAlgorithm);                         
+                       break;
                        default:
                           //Unsupport
                           QMessageBox::about(this, tr("Error"), tr("Unsupported chip type!"));
                           doNotDisturbCancel();
                           ch341a_spi_shutdown();
+                          ui->checkBox_2->setStyleSheet("");
                        return;
                        }
          // if res=-1 - error, stop
+         //qDebug() << "res=" << res;
          if (statusCH341 != 0)
            {
              QMessageBox::about(this, tr("Error"), tr("Programmer CH341a is not connected!"));
              doNotDisturbCancel();
              ch341a_spi_shutdown();
              break;
-           }
-         if (res == 0)
+           }         
+         if (res <= 0)
            {
              QMessageBox::about(this, tr("Error"), tr("Error writing sector ") + QString::number(curBlock));
              doNotDisturbCancel();
@@ -865,7 +919,7 @@ void MainWindow::on_actionVerify_triggered()
     statusCH341 = ch341a_init(currentChipType);
     if (statusCH341 == 0)
     {
-       if (((currentNumBlocks > 0) && (currentBlockSize >0) && (currentChipType == 0)) || ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 1)) || ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 2)))
+       if (((currentNumBlocks > 0) && (currentBlockSize >0) && (currentChipType == 0)) || ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 1)) || ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 2)) || ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 4)))
            {
                ui->crcEdit->setText("");
                doNotDisturb();
@@ -874,10 +928,10 @@ void MainWindow::on_actionVerify_triggered()
                  currentBlockSize = 128;
                  currentNumBlocks = currentChipSize / currentBlockSize;
                }
-               if (currentChipType == 2)
+               if ((currentChipType == 2) || (currentChipType == 4))
                {
-                  currentBlockSize = currentPageSize;
-                  currentNumBlocks = currentChipSize / currentBlockSize;
+                   currentBlockSize = currentPageSize;
+                   currentNumBlocks = currentChipSize / currentBlockSize;
                }
                ch341StatusFlashing();
                uint32_t addr = 0;
@@ -910,21 +964,27 @@ void MainWindow::on_actionVerify_triggered()
                        res = Read_EEPROM_3wire_param(buf, static_cast<int>(curBlock * currentBlockSize), static_cast<int>(currentBlockSize), static_cast<int>(currentChipSize), currentAlgorithm);
                        if (res==0) res = 1;
                       break;
+                      case 4:
+                         //95xxx
+                         res = s95_read_param(buf,curBlock * currentBlockSize, currentBlockSize, currentBlockSize, currentAlgorithm);
+                      break;
                       default:
                          //Unsupport
                          QMessageBox::about(this, tr("Error"), tr("Unsupported chip type!"));
                          doNotDisturbCancel();
                          ch341a_spi_shutdown();
+                         ui->checkBox_3->setStyleSheet("");
                       return;
                       }
                     // if res=-1 - error, stop
+                    //qDebug() << "res=" << res;
                     if (statusCH341 != 0)
                     {
                        QMessageBox::about(this, tr("Error"), tr("Programmer CH341a is not connected!"));
                        doNotDisturbCancel();
                        break;
                     }
-                    if (res == 0)
+                    if (res <= 0)
                     {
                         QMessageBox::about(this, tr("Error"), tr("Error reading block ") + QString::number(curBlock));
                         doNotDisturbCancel();
@@ -1261,6 +1321,7 @@ void MainWindow::on_pushButton_4_clicked()
     if ((currentChipType == 0) && (ui->comboBox_vcc->currentIndex() == 2)) infoDialog->setChip(3);
     if ((currentChipType == 1) && (ui->comboBox_vcc->currentIndex() == 1)) infoDialog->setChip(1);
     if ((currentChipType == 2) && (ui->comboBox_vcc->currentIndex() == 1)) infoDialog->setChip(4);
+    if ((currentChipType == 4) && (ui->comboBox_vcc->currentIndex() == 1)) infoDialog->setChip(2);
 }
 //*****************************************************
 //       HEX ULTLITY by Mikhail Medvedev
