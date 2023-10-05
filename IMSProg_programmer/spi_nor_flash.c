@@ -890,6 +890,7 @@ int s95_read_param(unsigned char *buf, unsigned long from, unsigned long len, un
     u32 physical_read_addr, remain_len, data_offset;
     u32 read_addr;
     unsigned char algorythm = currentAlgorithm & 0x0f;
+    unsigned char a8 = currentAlgorithm & 0xf0;
     snor_dbg("%s: from:%x len:%x \n", __func__, from, len);
 
     /* sanity checks */
@@ -915,7 +916,8 @@ int s95_read_param(unsigned char *buf, unsigned long from, unsigned long len, un
         SPI_CONTROLLER_Chip_Select_Low();
 
         /* Set up the write data buffer. */
-        SPI_CONTROLLER_Write_One_Byte(OPCODE_READ);
+        if ((from > 255) && (a8 > 0)) SPI_CONTROLLER_Write_One_Byte(0x11); //read command + a8 bit
+        else SPI_CONTROLLER_Write_One_Byte(0x03); //read command
 
         if (algorythm == 2) SPI_CONTROLLER_Write_One_Byte((physical_read_addr >> 16) & 0xff);
         if (algorythm > 0)  SPI_CONTROLLER_Write_One_Byte((physical_read_addr >> 8) & 0xff);
@@ -959,6 +961,7 @@ int s95_write_param(unsigned char *buf, unsigned long to, unsigned long len, uns
     int rc = 0, retlen = 0;
     unsigned long plen = len;
     unsigned char algorythm = currentAlgorithm & 0x0f;
+    unsigned char a8 = currentAlgorithm & 0xf0;
     snor_dbg("%s: to:%x len:%x \n", __func__, to, len);
 
     /* sanity checks */
@@ -987,7 +990,8 @@ int s95_write_param(unsigned char *buf, unsigned long to, unsigned long len, uns
 
         SPI_CONTROLLER_Chip_Select_Low();
         /* Set up the opcode in the write buffer. */
-        SPI_CONTROLLER_Write_One_Byte(OPCODE_PP);
+        if ((to > 255) && (a8 > 0)) SPI_CONTROLLER_Write_One_Byte(0x10); //read command + a8 bit
+        else SPI_CONTROLLER_Write_One_Byte(0x02); //read command
 
         if (algorythm == 2) SPI_CONTROLLER_Write_One_Byte((to >> 16) & 0xff);
         if (algorythm > 0) SPI_CONTROLLER_Write_One_Byte((to >> 8) & 0xff);
