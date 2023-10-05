@@ -216,6 +216,11 @@ FM25M16A(1.8V), FM25M32B(1.8V), FM25M64A(1.8V)
 
 [![Watch the video](img/IMSProg_1_0_24.mp4)](img/IMSProg_1_0_24.mp4)
 
+## Downloading the build release
+- The `Debian package` can be downloaded [here](https://github.com/bigbigmdm/IMSProg/tree/main/release/debian_package)
+- The `RPM package` can be downloaded [here](https://github.com/bigbigmdm/IMSProg/tree/main/release/redhat_package)
+- The `appimage` can be downloaded [here](https://github.com/bigbigmdm/IMSProg/tree/main/release/build)
+
 ## Revision history
 - Ver. 1.0.0 - 1.0.18 - Partially working versions.
 - Version 1.0.19 - Fixed wrong level on SDA pin in i2c EEPROM. Removed old function "ch341a_spi_init" in file "ch341spi.c", replaced by "ch341a_init" (this is SNANDer bug).
