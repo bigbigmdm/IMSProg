@@ -6,6 +6,9 @@ DialogAbout::DialogAbout(QWidget *parent) :
     ui(new Ui::DialogAbout)
 {
     ui->setupUi(this);
+    ui->label_7->setTextFormat(Qt::RichText);
+    ui->label_7->setTextInteractionFlags(Qt::TextBrowserInteraction);
+    ui->label_7->setOpenExternalLinks(true);
 }
 
 DialogAbout::~DialogAbout()
