@@ -1283,6 +1283,7 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
          <property name="font">
           <font>
            <family>Ubuntu Mono</family>
+           <pointsize>11</pointsize>
           </font>
          </property>
          <property name="layoutDirection">
