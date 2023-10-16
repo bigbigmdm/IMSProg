@@ -13,6 +13,10 @@
   <property name="windowTitle">
    <string>About IMSProg</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="recource.qrc">
+    <normaloff>:/res/img/write64.png</normaloff>:/res/img/write64.png</iconset>
+  </property>
   <layout class="QVBoxLayout" name="verticalLayout_3">
    <item>
     <layout class="QVBoxLayout" name="verticalLayout">

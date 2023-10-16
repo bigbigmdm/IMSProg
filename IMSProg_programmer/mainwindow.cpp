@@ -1197,6 +1197,7 @@ void MainWindow::on_comboBox_type_currentIndexChanged(int index)
          //QMenu::actionAt(on_actionDetect_triggered()).setDisabled;
          //ui->menuBar->actionAt(QPoint(0,0))->setDisabled(true);
          ui->actionDetect->setDisabled(true);
+         ui->actionChip_info->setDisabled(true);
 
      }
      if (index == 0)
@@ -1207,6 +1208,7 @@ void MainWindow::on_comboBox_type_currentIndexChanged(int index)
          ui->label_8->show();
          ui->label_9->show();
          ui->actionDetect->setEnabled(true);
+         ui->actionChip_info->setEnabled(true);
      }
 }
 
@@ -1249,6 +1251,7 @@ void MainWindow::doNotDisturb()
    ui->actionFind_Replace->setDisabled(true);
    ui->actionUndo->setDisabled(true);
    ui->actionRedo->setDisabled(true);
+   ui->actionChip_info->setDisabled(true);
    ui->actionStop->setDisabled(false);
 
    ui->pushButton->blockSignals(true);
@@ -1282,6 +1285,7 @@ void MainWindow::doNotDisturbCancel()
       ui->actionFind_Replace->setDisabled(false);
       ui->actionUndo->setDisabled(false);
       ui->actionRedo->setDisabled(false);
+      if (currentChipType == 0) ui->actionChip_info->setDisabled(false);
       ui->actionStop->setDisabled(true);
 
       ui->pushButton->blockSignals(false);
@@ -1466,3 +1470,9 @@ QString MainWindow::getCRC32()
         return hexiAddr(crc ^ 0xFFFFFFFF);
 }
 
+
+void MainWindow::on_actionChip_info_triggered()
+{
+     DialogSFDP* sfdpDialog = new DialogSFDP();
+     sfdpDialog->show();
+}

@@ -24,6 +24,7 @@
 #include "dialogsp.h"
 #include "dialogabout.h"
 #include "dialoginfo.h"
+#include "dialogsfdp.h"
 #include "searchdialog.h"
 extern "C" {
 #include "bitbang_microwire.h"
@@ -89,10 +90,9 @@ private slots:
     void on_actionEdit_chips_Database_triggered();
     void doNotDisturb();
     void doNotDisturbCancel();
-
     void on_actionStop_triggered();
-
     void on_pushButton_4_clicked();
+    void on_actionChip_info_triggered();
 
 private:
     Ui::MainWindow *ui;

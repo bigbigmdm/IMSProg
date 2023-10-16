@@ -13,6 +13,10 @@
   <property name="windowTitle">
    <string>Load block from file</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="recource.qrc">
+    <normaloff>:/res/img/write64.png</normaloff>:/res/img/write64.png</iconset>
+  </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <property name="spacing">
     <number>12</number>
@@ -101,6 +105,8 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="recource.qrc"/>
+ </resources>
  <connections/>
 </ui>

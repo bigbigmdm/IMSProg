@@ -736,6 +736,7 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
     <addaction name="actionVerify"/>
     <addaction name="actionDetect"/>
     <addaction name="actionStop"/>
+    <addaction name="actionChip_info"/>
    </widget>
    <widget class="QMenu" name="menuHex_Editor">
     <property name="title">
@@ -758,11 +759,17 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
    <addaction name="menuHelp"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
+   <property name="movable">
+    <bool>false</bool>
+   </property>
    <property name="iconSize">
     <size>
      <width>48</width>
      <height>48</height>
     </size>
+   </property>
+   <property name="floatable">
+    <bool>true</bool>
    </property>
    <attribute name="toolBarArea">
     <enum>TopToolBarArea</enum>
@@ -992,6 +999,21 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+I</string>
+   </property>
+  </action>
+  <action name="actionChip_info">
+   <property name="icon">
+    <iconset resource="recource.qrc">
+     <normaloff>:/res/img/info64.png</normaloff>:/res/img/info64.png</iconset>
+   </property>
+   <property name="text">
+    <string>Chip info</string>
+   </property>
+   <property name="toolTip">
+    <string>Information about SFDP and status registers</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+P</string>
    </property>
   </action>
  </widget>
