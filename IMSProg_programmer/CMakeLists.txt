@@ -29,6 +29,7 @@ chunks.cpp
 commands.cpp
 dialogsp.cpp
 dialogrp.cpp
+dialogsfdp.cpp
 searchdialog.cpp
 dialoginfo.cpp
 bitbang_microwire.c
@@ -50,6 +51,7 @@ chunks.h
 commands.h
 dialogsp.h
 dialogrp.h
+dialogsfdp.h
 dialoginfo.h
 searchdialog.h
 bitbang_microwire.h
@@ -72,6 +74,7 @@ dialogabout.h
 mainwindow.ui
 dialogsp.ui
 dialogrp.ui
+dialogsfdp.ui
 dialoginfo.ui
 searchdialog.ui
 dialogabout.ui
@@ -83,9 +86,8 @@ target_link_libraries(${PROJECT_NAME} Qt5::Core)
 target_link_libraries(${PROJECT_NAME} Qt5::Widgets ${LibUSB_LIBRARIES})
 
 install(TARGETS ${PROJECT_NAME} DESTINATION /opt/IMSProg)
-install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/other/IMSProg.desktop" DESTINATION /opt/IMSProg)
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/other/IMSProg.desktop" DESTINATION /usr/share/applications)
-install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/img/write64.png" DESTINATION /opt/IMSProg)
+install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/img/IMSProg64.png" DESTINATION /usr/share/pixmaps)
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/database/IMSProg.Dat" DESTINATION /opt/IMSProg)
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/other/99-CH341.rules" DESTINATION /etc/udev/rules.d)
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/language/chipProgrammer_ru_RU.qm" DESTINATION /opt/IMSProg/language)
