@@ -85,6 +85,9 @@ The progress bar shows the progress of the read, erase, and verify operations.
 - The ![Stop](img/stop64.png) or `<Ctrl+I>` key is used to force interruption of chip read/write/erase/verify operations.
 
 - The `i` key show the connection chip to CH341a device image form.
+- The `Main menu -> Programmer -> Chip info` or `<Ctrl+P>` item shows the Serial Flash Discoverable Parameter (SFDP) register and the status registers of the SPI NOR flash memory chips.
+
+![SFDP](img/IMSProg_SFDP_eng.png)
 
 ### File operations
 - The ![Save](img/save64.png) or `<Ctrl+S>` button is used to save the computer buffer to a file.
@@ -231,4 +234,5 @@ FM25M16A(1.8V), FM25M32B(1.8V), FM25M64A(1.8V)
 - Ver. 1.0.24 - Added `STOP` key to the interface. Improved interface rendering. Fixes to translations.
 - Ver. 1.0.25 - Added `i` key to the interface. Added connection information form.
 - Ver. 1.0.26 - Added support for M95xxx chips. Removed diagnostic errors and changed "About" screen.
+- Ver. 1.0.27 - Added the SFDP and status register information form.
   
