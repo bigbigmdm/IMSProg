@@ -2,7 +2,7 @@
 Version=1.0
 Type=Application
 Name=IMSProg
-Icon=/opt/IMSProg/write64.png
+Icon=/usr/share/pixmaps/IMSProg64.png
 Exec=/opt/IMSProg/IMSProg
 Path=/opt/IMSProg/
 NoDisplay=false
