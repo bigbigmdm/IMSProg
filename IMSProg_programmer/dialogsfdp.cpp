@@ -1,6 +1,5 @@
 #include "dialogsfdp.h"
 #include "ui_dialogsfdp.h"
-#include <QThread>
 DialogSFDP::DialogSFDP(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::DialogSFDP)
