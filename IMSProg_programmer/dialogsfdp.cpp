@@ -19,7 +19,7 @@ void DialogSFDP::on_pushButton_clicked()
     uint64_t sfdpSize = 0;
     uint32_t sfdpBlockSize = 0;
     bool sfdpSupport = false;
-    unsigned char i, imax, twoAreaAddress=0xff, manufAreaAddress=0xff, twoAreaLen = 0xff;
+    unsigned char i, imax, twoAreaAddress=0xff, manufAreaAddress=0xff, twoAreaLen = 0xff, manAreaLen = 0xff;
     uint8_t *sfdpBuf;
     sfdpBuf = (uint8_t *)malloc(256);
     QString regData = "", VCCmin = "", VCCmax = "", speeds = "Single", addrTxt="";
@@ -68,6 +68,7 @@ void DialogSFDP::on_pushButton_clicked()
             twoAreaAddress = sfdpBuf[0x0c];
             twoAreaLen = sfdpBuf[0x0b] * 4;
             manufAreaAddress = sfdpBuf[0x1c];
+            manAreaLen = sfdpBuf[0x1b] * 4;
             if (manufAreaAddress != 0xff)
             {
                if ((sfdpBuf[manufAreaAddress] != 0xff) && (sfdpBuf[manufAreaAddress + 1] != 0xff))
@@ -126,7 +127,7 @@ void DialogSFDP::on_pushButton_clicked()
                if (i == twoAreaAddress) regData = regData + "<span style=\" background:#f77;\">";
                if (i == twoAreaAddress + twoAreaLen) regData = regData + "</span>";
                if (i == manufAreaAddress) regData = regData + "<span style=\" background:#7f7;\">";
-               if (i == manufAreaAddress + 0x0f) regData = regData + "</span>";
+               if (i == manufAreaAddress + manAreaLen) regData = regData + "</span>";
                regData = regData + bP(sfdpBuf[i]) + " ";
             }
             regData = regData + "</p></body></html>";
