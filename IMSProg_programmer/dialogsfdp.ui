@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>874</width>
-    <height>418</height>
+    <height>444</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -1194,7 +1194,34 @@
        </item>
       </layout>
      </item>
-     <item row="12" column="0">
+     <item row="13" column="1">
+      <widget class="QLineEdit" name="lineEdit_chipid">
+       <property name="minimumSize">
+        <size>
+         <width>130</width>
+         <height>24</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">border: 2px solid gray;border-radius: 5px;font-weight:600;border-style: inset;</string>
+       </property>
+      </widget>
+     </item>
+     <item row="13" column="0">
+      <widget class="QLabel" name="label_33">
+       <property name="text">
+        <string>Unique ID:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="14" column="0">
       <widget class="QPushButton" name="pushButton">
        <property name="minimumSize">
         <size>
