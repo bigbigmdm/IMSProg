@@ -244,72 +244,83 @@
         <translation>Объем</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.ui" line="1215"/>
+        <location filename="../dialogsfdp.ui" line="1220"/>
+        <source>Unique ID:</source>
+        <translation>ID микросхемы</translation>
+    </message>
+    <message>
+        <location filename="../dialogsfdp.ui" line="1242"/>
         <source>Read</source>
         <translation>Считать</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.ui" line="1292"/>
+        <location filename="../dialogsfdp.ui" line="1320"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p/&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p/&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.ui" line="1330"/>
+        <location filename="../dialogsfdp.ui" line="1358"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Legend:&lt;/p&gt;&lt;p&gt;** - Basic area&lt;br&gt;** - Extended area&lt;br&gt;** - Manufacture area &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Обозначения:&lt;/p&gt;&lt;p&gt;** - Основная область&lt;br&gt;** - Дополнит. область&lt;br&gt;** - Область производителя &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.ui" line="1375"/>
+        <location filename="../dialogsfdp.ui" line="1403"/>
         <source>Close</source>
         <translation>Закрыть</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.cpp" line="49"/>
-        <location filename="../dialogsfdp.cpp" line="143"/>
-        <location filename="../dialogsfdp.cpp" line="172"/>
-        <location filename="../dialogsfdp.cpp" line="180"/>
+        <location filename="../dialogsfdp.cpp" line="44"/>
+        <location filename="../dialogsfdp.cpp" line="64"/>
+        <location filename="../dialogsfdp.cpp" line="167"/>
+        <location filename="../dialogsfdp.cpp" line="199"/>
+        <location filename="../dialogsfdp.cpp" line="214"/>
         <source>Error</source>
         <translation>Ошибка</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.cpp" line="49"/>
-        <location filename="../dialogsfdp.cpp" line="143"/>
+        <location filename="../dialogsfdp.cpp" line="64"/>
+        <location filename="../dialogsfdp.cpp" line="167"/>
         <source>Error reading register!</source>
         <translation>Ошибка чтения регистра!</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.cpp" line="109"/>
+        <location filename="../dialogsfdp.cpp" line="132"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Legend:&lt;/p&gt;&lt;p&gt;00 - Basic area&lt;br&gt;&lt;span style=&quot; background:#f77;&quot;&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Обозначения:&lt;/p&gt;&lt;p&gt;00 - Основная область&lt;br&gt;&lt;span style=&quot; background:#f77;&quot;&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.cpp" line="109"/>
+        <location filename="../dialogsfdp.cpp" line="132"/>
         <source>&lt;/span&gt; - Extended area&lt;br&gt;&lt;span style=&quot; background:#7f7;&quot;&gt;</source>
         <translation>&lt;/span&gt; - Дополнительная область&lt;br&gt;&lt;span style=&quot; background:#7f7;&quot;&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.cpp" line="109"/>
+        <location filename="../dialogsfdp.cpp" line="132"/>
         <source>&lt;/span&gt; - Manufacture area &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;/span&gt; - Область производителя &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.cpp" line="111"/>
+        <location filename="../dialogsfdp.cpp" line="134"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt; Hex SFDP register data:
 </source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt; Данные области SFDP:</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.cpp" line="112"/>
+        <location filename="../dialogsfdp.cpp" line="135"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Addr:&lt;br&gt;</source>
-        <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Адр.&lt;br&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Адр.&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.cpp" line="172"/>
+        <location filename="../dialogsfdp.cpp" line="44"/>
         <source>Error reading JEDEC ID!</source>
         <translation>Ошибка чтения JEDEC ID!</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.cpp" line="180"/>
+        <location filename="../dialogsfdp.cpp" line="199"/>
+        <source>Error reading unique ID!</source>
+        <translation>Ошибка чтения ID микросхемы!</translation>
+    </message>
+    <message>
+        <location filename="../dialogsfdp.cpp" line="214"/>
         <source>Programmer CH341a is not connected!</source>
         <translation>Программатор CH341a не подключен!</translation>
     </message>

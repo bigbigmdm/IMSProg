@@ -244,73 +244,84 @@
         <translation>Capacidad</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.ui" line="1215"/>
+        <location filename="../dialogsfdp.ui" line="1220"/>
+        <source>Unique ID:</source>
+        <translation>ID único:</translation>
+    </message>
+    <message>
+        <location filename="../dialogsfdp.ui" line="1242"/>
         <source>Read</source>
         <translation>Leer</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.ui" line="1292"/>
+        <location filename="../dialogsfdp.ui" line="1320"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p/&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p/&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.ui" line="1330"/>
+        <location filename="../dialogsfdp.ui" line="1358"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Legend:&lt;/p&gt;&lt;p&gt;** - Basic area&lt;br&gt;** - Extended area&lt;br&gt;** - Manufacture area &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;body&gt;&lt;p&gt;Legend:&lt;/p&gt;&lt;p&gt;** - Zona básica&lt;br&gt;** - Zona ampliada&lt;br&gt;** - Zona de fabricación&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.ui" line="1375"/>
+        <location filename="../dialogsfdp.ui" line="1403"/>
         <source>Close</source>
         <translation>Cerrar</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.cpp" line="49"/>
-        <location filename="../dialogsfdp.cpp" line="143"/>
-        <location filename="../dialogsfdp.cpp" line="172"/>
-        <location filename="../dialogsfdp.cpp" line="180"/>
+        <location filename="../dialogsfdp.cpp" line="44"/>
+        <location filename="../dialogsfdp.cpp" line="64"/>
+        <location filename="../dialogsfdp.cpp" line="167"/>
+        <location filename="../dialogsfdp.cpp" line="199"/>
+        <location filename="../dialogsfdp.cpp" line="214"/>
         <source>Error</source>
         <translation>Error</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.cpp" line="49"/>
-        <location filename="../dialogsfdp.cpp" line="143"/>
+        <location filename="../dialogsfdp.cpp" line="64"/>
+        <location filename="../dialogsfdp.cpp" line="167"/>
         <source>Error reading register!</source>
         <translation>¡Error al leer el registro!</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.cpp" line="109"/>
+        <location filename="../dialogsfdp.cpp" line="132"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Legend:&lt;/p&gt;&lt;p&gt;00 - Basic area&lt;br&gt;&lt;span style=&quot; background:#f77;&quot;&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Leyenda:&lt;/p&gt;&lt;p&gt;00 - Zona básica&lt;br&gt;&lt;span style=&quot; background:#f77;&quot;&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.cpp" line="109"/>
+        <location filename="../dialogsfdp.cpp" line="132"/>
         <source>&lt;/span&gt; - Extended area&lt;br&gt;&lt;span style=&quot; background:#7f7;&quot;&gt;</source>
         <translation>&lt;/span&gt; - Área ampliada&lt;br&gt;&lt;span style=&quot; background:#7f7;&quot;&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.cpp" line="109"/>
+        <location filename="../dialogsfdp.cpp" line="132"/>
         <source>&lt;/span&gt; - Manufacture area &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;/span&gt; - Zona de fabricación &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.cpp" line="111"/>
+        <location filename="../dialogsfdp.cpp" line="134"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt; Hex SFDP register data:
 </source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt; Datos hexadecimales del registro SFDP:
 </translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.cpp" line="112"/>
+        <location filename="../dialogsfdp.cpp" line="135"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Addr:&lt;br&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Addr:&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.cpp" line="172"/>
+        <location filename="../dialogsfdp.cpp" line="44"/>
         <source>Error reading JEDEC ID!</source>
         <translation>¡Error al leer el ID JEDEC!</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.cpp" line="180"/>
+        <location filename="../dialogsfdp.cpp" line="199"/>
+        <source>Error reading unique ID!</source>
+        <translation>¡Error al leer el identificador único!</translation>
+    </message>
+    <message>
+        <location filename="../dialogsfdp.cpp" line="214"/>
         <source>Programmer CH341a is not connected!</source>
         <translation>¡El programador CH341a no está conectado!</translation>
     </message>
