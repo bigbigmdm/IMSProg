@@ -10,6 +10,12 @@
     <height>121</height>
    </rect>
   </property>
+  <property name="font">
+   <font>
+    <weight>50</weight>
+    <bold>false</bold>
+   </font>
+  </property>
   <property name="windowTitle">
    <string>Load block from file</string>
   </property>
@@ -51,8 +57,14 @@
          <height>0</height>
         </size>
        </property>
+       <property name="font">
+        <font>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
        <property name="styleSheet">
-        <string notr="true">border: 2px solid gray;border-radius: 5px;font-weight:600;border-style: inset;</string>
+        <string notr="true"/>
        </property>
       </widget>
      </item>

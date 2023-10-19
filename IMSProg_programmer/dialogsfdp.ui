@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>874</width>
-    <height>444</height>
+    <height>465</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -47,15 +47,27 @@
      </item>
      <item row="0" column="1">
       <widget class="QLineEdit" name="lineEdit_sfdp">
+       <property name="font">
+        <font>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
        <property name="styleSheet">
-        <string notr="true">border: 2px solid gray;border-radius: 5px;font-weight:600;border-style: inset;</string>
+        <string notr="true"/>
        </property>
       </widget>
      </item>
      <item row="1" column="1">
       <widget class="QLineEdit" name="lineEdit_vcc_min">
+       <property name="font">
+        <font>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
        <property name="styleSheet">
-        <string notr="true">border: 2px solid gray;border-radius: 5px;font-weight:600;border-style: inset;</string>
+        <string notr="true"/>
        </property>
       </widget>
      </item>
@@ -68,8 +80,14 @@
      </item>
      <item row="2" column="1">
       <widget class="QLineEdit" name="lineEdit_vcc_max">
+       <property name="font">
+        <font>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
        <property name="styleSheet">
-        <string notr="true">border: 2px solid gray;border-radius: 5px;font-weight:600;border-style: inset;</string>
+        <string notr="true"/>
        </property>
       </widget>
      </item>
@@ -82,8 +100,14 @@
      </item>
      <item row="3" column="1">
       <widget class="QLineEdit" name="lineEdit_size">
+       <property name="font">
+        <font>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
        <property name="styleSheet">
-        <string notr="true">border: 2px solid gray;border-radius: 5px;font-weight:600;border-style: inset;</string>
+        <string notr="true"/>
        </property>
       </widget>
      </item>
@@ -96,8 +120,14 @@
      </item>
      <item row="4" column="1">
       <widget class="QLineEdit" name="lineEdit_block">
+       <property name="font">
+        <font>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
        <property name="styleSheet">
-        <string notr="true">border: 2px solid gray;border-radius: 5px;font-weight:600;border-style: inset;</string>
+        <string notr="true"/>
        </property>
        <property name="text">
         <string/>
@@ -113,8 +143,14 @@
      </item>
      <item row="5" column="1">
       <widget class="QLineEdit" name="lineEdit_speeds">
+       <property name="font">
+        <font>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
        <property name="styleSheet">
-        <string notr="true">border: 2px solid gray;border-radius: 5px;font-weight:600;border-style: inset;</string>
+        <string notr="true"/>
        </property>
       </widget>
      </item>
@@ -133,8 +169,14 @@
          <height>0</height>
         </size>
        </property>
+       <property name="font">
+        <font>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
        <property name="styleSheet">
-        <string notr="true">border: 2px solid gray;border-radius: 5px;font-weight:600;border-style: inset;</string>
+        <string notr="true"/>
        </property>
       </widget>
      </item>
@@ -176,8 +218,14 @@
            <height>16777215</height>
           </size>
          </property>
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
          <property name="styleSheet">
-          <string notr="true">border: 2px solid gray;border-radius: 5px;font-weight:600;border-style: inset;</string>
+          <string notr="true"/>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
@@ -198,8 +246,14 @@
            <height>16777215</height>
           </size>
          </property>
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
          <property name="styleSheet">
-          <string notr="true">border: 2px solid gray;border-radius: 5px;font-weight:600;border-style: inset;</string>
+          <string notr="true"/>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
@@ -220,8 +274,14 @@
            <height>16777215</height>
           </size>
          </property>
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
          <property name="styleSheet">
-          <string notr="true">border: 2px solid gray;border-radius: 5px;font-weight:600;border-style: inset;</string>
+          <string notr="true"/>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
@@ -242,8 +302,14 @@
            <height>16777215</height>
           </size>
          </property>
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
          <property name="styleSheet">
-          <string notr="true">border: 2px solid gray;border-radius: 5px;font-weight:600;border-style: inset;</string>
+          <string notr="true"/>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
@@ -264,8 +330,14 @@
            <height>16777215</height>
           </size>
          </property>
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
          <property name="styleSheet">
-          <string notr="true">border: 2px solid gray;border-radius: 5px;font-weight:600;border-style: inset;</string>
+          <string notr="true"/>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
@@ -286,8 +358,14 @@
            <height>16777215</height>
           </size>
          </property>
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
          <property name="styleSheet">
-          <string notr="true">border: 2px solid gray;border-radius: 5px;font-weight:600;border-style: inset;</string>
+          <string notr="true"/>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
@@ -308,8 +386,14 @@
            <height>16777215</height>
           </size>
          </property>
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
          <property name="styleSheet">
-          <string notr="true">border: 2px solid gray;border-radius: 5px;font-weight:600;border-style: inset;</string>
+          <string notr="true"/>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
@@ -330,8 +414,14 @@
            <height>16777215</height>
           </size>
          </property>
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
          <property name="styleSheet">
-          <string notr="true">border: 2px solid gray;border-radius: 5px;font-weight:600;border-style: inset;</string>
+          <string notr="true"/>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
@@ -627,8 +717,14 @@
            <height>16777215</height>
           </size>
          </property>
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
          <property name="styleSheet">
-          <string notr="true">border: 2px solid gray;border-radius: 5px;font-weight:600;border-style: inset;</string>
+          <string notr="true"/>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
@@ -649,8 +745,14 @@
            <height>16777215</height>
           </size>
          </property>
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
          <property name="styleSheet">
-          <string notr="true">border: 2px solid gray;border-radius: 5px;font-weight:600;border-style: inset;</string>
+          <string notr="true"/>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
@@ -671,8 +773,14 @@
            <height>16777215</height>
           </size>
          </property>
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
          <property name="styleSheet">
-          <string notr="true">border: 2px solid gray;border-radius: 5px;font-weight:600;border-style: inset;</string>
+          <string notr="true"/>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
@@ -693,8 +801,14 @@
            <height>16777215</height>
           </size>
          </property>
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
          <property name="styleSheet">
-          <string notr="true">border: 2px solid gray;border-radius: 5px;font-weight:600;border-style: inset;</string>
+          <string notr="true"/>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
@@ -715,8 +829,14 @@
            <height>16777215</height>
           </size>
          </property>
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
          <property name="styleSheet">
-          <string notr="true">border: 2px solid gray;border-radius: 5px;font-weight:600;border-style: inset;</string>
+          <string notr="true"/>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
@@ -737,8 +857,14 @@
            <height>16777215</height>
           </size>
          </property>
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
          <property name="styleSheet">
-          <string notr="true">border: 2px solid gray;border-radius: 5px;font-weight:600;border-style: inset;</string>
+          <string notr="true"/>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
@@ -759,8 +885,14 @@
            <height>16777215</height>
           </size>
          </property>
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
          <property name="styleSheet">
-          <string notr="true">border: 2px solid gray;border-radius: 5px;font-weight:600;border-style: inset;</string>
+          <string notr="true"/>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
@@ -781,8 +913,14 @@
            <height>16777215</height>
           </size>
          </property>
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
          <property name="styleSheet">
-          <string notr="true">border: 2px solid gray;border-radius: 5px;font-weight:600;border-style: inset;</string>
+          <string notr="true"/>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
@@ -1072,8 +1210,14 @@
            <height>0</height>
           </size>
          </property>
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
          <property name="styleSheet">
-          <string notr="true">border: 2px solid gray;border-radius: 5px;font-weight:600;border-style: inset;</string>
+          <string notr="true"/>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
@@ -1088,8 +1232,14 @@
            <height>0</height>
           </size>
          </property>
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
          <property name="styleSheet">
-          <string notr="true">border: 2px solid gray;border-radius: 5px;font-weight:600;border-style: inset;</string>
+          <string notr="true"/>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
@@ -1104,8 +1254,14 @@
            <height>0</height>
           </size>
          </property>
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
          <property name="styleSheet">
-          <string notr="true">border: 2px solid gray;border-radius: 5px;font-weight:600;border-style: inset;</string>
+          <string notr="true"/>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
@@ -1210,7 +1366,7 @@
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">border: 2px solid gray;border-radius: 5px;font-weight:600;border-style: inset;</string>
+        <string notr="true"/>
        </property>
       </widget>
      </item>
@@ -1280,8 +1436,8 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
          </property>
          <property name="font">
           <font>
-           <family>Ubuntu Mono</family>
-           <pointsize>11</pointsize>
+           <family>Monospace</family>
+           <pointsize>10</pointsize>
            <stylestrategy>PreferDefault</stylestrategy>
           </font>
          </property>
@@ -1309,8 +1465,8 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
          </property>
          <property name="font">
           <font>
-           <family>Ubuntu Mono</family>
-           <pointsize>11</pointsize>
+           <family>Monospace</family>
+           <pointsize>10</pointsize>
           </font>
          </property>
          <property name="layoutDirection">

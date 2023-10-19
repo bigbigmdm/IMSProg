@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>900</width>
-    <height>614</height>
+    <height>610</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -85,11 +85,17 @@ QGroupBox::title {
            <property name="minimumSize">
             <size>
              <width>111</width>
-             <height>25</height>
+             <height>21</height>
             </size>
            </property>
+           <property name="font">
+            <font>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
            <property name="styleSheet">
-            <string notr="true">border: 2px solid gray;border-radius: 5px;font-weight:600;border-style: inset;combobox-popup: 0;</string>
+            <string notr="true"/>
            </property>
           </widget>
          </item>
@@ -105,14 +111,17 @@ QGroupBox::title {
            <property name="minimumSize">
             <size>
              <width>111</width>
-             <height>25</height>
+             <height>21</height>
             </size>
            </property>
-           <property name="styleSheet">
-            <string notr="true">border: 2px solid gray;border-radius: 5px;font-weight:600;border-style: inset;combobox-popup: 0;</string>
+           <property name="font">
+            <font>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
            </property>
-           <property name="editable">
-            <bool>false</bool>
+           <property name="styleSheet">
+            <string notr="true"/>
            </property>
           </widget>
          </item>
@@ -128,11 +137,17 @@ QGroupBox::title {
            <property name="minimumSize">
             <size>
              <width>111</width>
-             <height>25</height>
+             <height>21</height>
             </size>
            </property>
+           <property name="font">
+            <font>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
            <property name="styleSheet">
-            <string notr="true">border: 2px solid gray;border-radius: 5px;font-weight:600;border-style: inset;combobox-popup: 0;</string>
+            <string notr="true"/>
            </property>
           </widget>
          </item>
@@ -148,11 +163,17 @@ QGroupBox::title {
            <property name="minimumSize">
             <size>
              <width>111</width>
-             <height>25</height>
+             <height>21</height>
             </size>
            </property>
+           <property name="font">
+            <font>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
            <property name="styleSheet">
-            <string notr="true">border: 2px solid gray;border-radius: 5px;font-weight:600;border-style: inset;combobox-popup: 0;</string>
+            <string notr="true"/>
            </property>
           </widget>
          </item>
@@ -168,11 +189,17 @@ QGroupBox::title {
            <property name="minimumSize">
             <size>
              <width>111</width>
-             <height>25</height>
+             <height>21</height>
             </size>
            </property>
+           <property name="font">
+            <font>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
            <property name="styleSheet">
-            <string notr="true">border: 2px solid gray;border-radius: 5px;font-weight:600;border-style: inset;combobox-popup: 0;</string>
+            <string notr="true"/>
            </property>
           </widget>
          </item>
@@ -188,11 +215,17 @@ QGroupBox::title {
            <property name="minimumSize">
             <size>
              <width>111</width>
-             <height>25</height>
+             <height>21</height>
             </size>
            </property>
+           <property name="font">
+            <font>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
            <property name="styleSheet">
-            <string notr="true">border: 2px solid gray;border-radius: 5px;font-weight:600;border-style: inset;combobox-popup: 0;</string>
+            <string notr="true"/>
            </property>
           </widget>
          </item>
@@ -218,11 +251,17 @@ QGroupBox::title {
            <property name="minimumSize">
             <size>
              <width>111</width>
-             <height>25</height>
+             <height>21</height>
             </size>
            </property>
+           <property name="font">
+            <font>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
            <property name="styleSheet">
-            <string notr="true">border: 2px solid gray;border-radius: 5px;font-weight:600;border-style: inset;combobox-popup: 0;</string>
+            <string notr="true"/>
            </property>
           </widget>
          </item>
@@ -335,7 +374,7 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
              <property name="minimumSize">
               <size>
                <width>95</width>
-               <height>25</height>
+               <height>22</height>
               </size>
              </property>
              <property name="maximumSize">
@@ -356,7 +395,7 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
               <enum>Qt::LeftToRight</enum>
              </property>
              <property name="styleSheet">
-              <string notr="true">border: 2px solid gray;border-radius: 5px;font-weight:600;border-style: inset;combobox-popup: 0;</string>
+              <string notr="true"/>
              </property>
             </widget>
            </item>
@@ -582,8 +621,14 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
              <height>25</height>
             </size>
            </property>
+           <property name="font">
+            <font>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
            <property name="styleSheet">
-            <string notr="true">border: 2px solid gray;border-radius: 5px;font-weight:600;border-style: inset;</string>
+            <string notr="true">border: 2px solid gray;border-radius: 5px;font-weight:600;border-style:inset;</string>
            </property>
           </widget>
           <widget class="QLabel" name="jLabel">
@@ -594,6 +639,9 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
              <width>67</width>
              <height>17</height>
             </rect>
+           </property>
+           <property name="styleSheet">
+            <string/>
            </property>
            <property name="text">
             <string>  JEDEC ID:</string>
@@ -630,6 +678,15 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
              <height>25</height>
             </size>
            </property>
+           <property name="font">
+            <font>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string>border: 2px solid gray;border-radius: 5px;font-weight:600;border-style:inset;</string>
+           </property>
           </widget>
           <widget class="QLabel" name="cLabel">
            <property name="geometry">
@@ -662,8 +719,14 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
              <height>25</height>
             </size>
            </property>
+           <property name="font">
+            <font>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
            <property name="styleSheet">
-            <string notr="true">border: 2px solid gray;border-radius: 5px;font-weight:600;border-style: inset;</string>
+            <string notr="true">border: 2px solid gray;border-radius: 5px;font-weight:600;border-style:inset;</string>
            </property>
           </widget>
          </widget>
@@ -712,7 +775,7 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
      <x>0</x>
      <y>0</y>
      <width>900</width>
-     <height>25</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
