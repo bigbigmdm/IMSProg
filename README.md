@@ -235,5 +235,5 @@ FM25M16A(1.8V), FM25M32B(1.8V), FM25M64A(1.8V)
 - Ver. 1.0.25 - Added `i` key to the interface. Added connection information form.
 - Ver. 1.0.26 - Added support for M95xxx chips. Removed diagnostic errors and changed "About" screen.
 - Ver. 1.0.27 - Added the SFDP and status register information form.
-- ( KDE QComboBox bad display bug removed )
+- Ver. 1.0.28 - Bad display of qComboBoxes in UBUNTU, Manjaro linux fixed, display of monospaced font in Manjaro linux fixed.
   
