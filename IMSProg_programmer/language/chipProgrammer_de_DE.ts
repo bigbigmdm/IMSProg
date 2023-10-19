@@ -19,9 +19,8 @@
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;In diesem Programm wurden das &lt;a href=&quot;https://github.com/Simsys/qhexedit2/&quot;&gt;QhexEditor2&lt;/a&gt; Widget und der modifizierte Programmierer &lt;a href=&quot;https://github.com/McMCCRU/SNANDer&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;SNANDer&lt;/span&gt;&lt;/a&gt; verwendet.&lt;/p&gt;&lt;p&gt;Die Seite auf GitHub ist &lt;a href=&quot;https://github.com/bigbigmdm/IMSProg&quot;&gt;hier&lt;/a&gt;, die Support-Seite ist &lt;a href=&quot;https://antenna-dvb-t2.ru/IMSProg.php&quot;&gt;hier&lt;/a&gt;. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogabout.ui" line="106"/>
         <source>Version: 1.0.27</source>
-        <translation>Version: 1.0.27</translation>
+        <translation type="vanished">Version: 1.0.27</translation>
     </message>
     <message>
         <location filename="../dialogabout.ui" line="48"/>
@@ -32,6 +31,11 @@
         <location filename="../dialogabout.ui" line="99"/>
         <source>Written by 2023 Mikhail Medvedev</source>
         <translation>Geschrieben von 2023 Mikhail Medvedev</translation>
+    </message>
+    <message>
+        <location filename="../dialogabout.ui" line="106"/>
+        <source>Version: 1.0.28</source>
+        <translation>Version: 1.0.28</translation>
     </message>
     <message>
         <location filename="../dialogabout.ui" line="143"/>
@@ -71,22 +75,22 @@
 <context>
     <name>DialogRP</name>
     <message>
-        <location filename="../dialogrp.ui" line="14"/>
+        <location filename="../dialogrp.ui" line="20"/>
         <source>Load block from file</source>
         <translation>Block aus Datei laden</translation>
     </message>
     <message>
-        <location filename="../dialogrp.ui" line="27"/>
+        <location filename="../dialogrp.ui" line="33"/>
         <source>All values in HEX format!</source>
         <translation>Alle Werte im HEX-Format!</translation>
     </message>
     <message>
-        <location filename="../dialogrp.ui" line="42"/>
+        <location filename="../dialogrp.ui" line="48"/>
         <source>Start address:</source>
         <translation>Startadresse:</translation>
     </message>
     <message>
-        <location filename="../dialogrp.ui" line="100"/>
+        <location filename="../dialogrp.ui" line="112"/>
         <source>Load</source>
         <translation>Laden</translation>
     </message>
@@ -104,225 +108,225 @@
         <translation>SFDP:</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.ui" line="65"/>
+        <location filename="../dialogsfdp.ui" line="77"/>
         <source>Minimum VCC:</source>
         <translation>Minimum VCC:</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.ui" line="79"/>
+        <location filename="../dialogsfdp.ui" line="97"/>
         <source>Maximum VCC:</source>
         <translation>Maximale VCC:</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.ui" line="93"/>
+        <location filename="../dialogsfdp.ui" line="117"/>
         <source>Chip size:</source>
         <translation>Chip-Größe:</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.ui" line="110"/>
+        <location filename="../dialogsfdp.ui" line="140"/>
         <source>Block size:</source>
         <translation>Blockgröße:</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.ui" line="124"/>
+        <location filename="../dialogsfdp.ui" line="160"/>
         <source>Speeds:</source>
         <translation>Geschwindigkeiten:</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.ui" line="144"/>
+        <location filename="../dialogsfdp.ui" line="186"/>
         <source>OTP support:</source>
         <translation>OTP:</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.ui" line="346"/>
+        <location filename="../dialogsfdp.ui" line="436"/>
         <source>Status Register 0</source>
         <translation>Statusregister 0</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.ui" line="382"/>
+        <location filename="../dialogsfdp.ui" line="472"/>
         <source>SPR0</source>
         <translation>SPR0</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.ui" line="413"/>
+        <location filename="../dialogsfdp.ui" line="503"/>
         <source>BP4</source>
         <translation>BP4</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.ui" line="444"/>
+        <location filename="../dialogsfdp.ui" line="534"/>
         <source>BP3</source>
         <translation>BP3</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.ui" line="475"/>
+        <location filename="../dialogsfdp.ui" line="565"/>
         <source>BP2</source>
         <translation>BP2</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.ui" line="506"/>
+        <location filename="../dialogsfdp.ui" line="596"/>
         <source>BP1</source>
         <translation>BP1</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.ui" line="537"/>
+        <location filename="../dialogsfdp.ui" line="627"/>
         <source>BP0</source>
         <translation>BP0</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.ui" line="568"/>
+        <location filename="../dialogsfdp.ui" line="658"/>
         <source>WEL</source>
         <translation>WEL</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.ui" line="599"/>
+        <location filename="../dialogsfdp.ui" line="689"/>
         <source>WIP</source>
         <translation>WIP</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.ui" line="826"/>
+        <location filename="../dialogsfdp.ui" line="964"/>
         <source>SUS1</source>
         <translation>SUS1</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.ui" line="857"/>
+        <location filename="../dialogsfdp.ui" line="995"/>
         <source>CMP</source>
         <translation>CMP</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.ui" line="888"/>
+        <location filename="../dialogsfdp.ui" line="1026"/>
         <source>LB3</source>
         <translation>LB3</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.ui" line="919"/>
+        <location filename="../dialogsfdp.ui" line="1057"/>
         <source>LB2</source>
         <translation>LB2</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.ui" line="950"/>
+        <location filename="../dialogsfdp.ui" line="1088"/>
         <source>LB1</source>
         <translation>LB1</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.ui" line="981"/>
+        <location filename="../dialogsfdp.ui" line="1119"/>
         <source>SUS2</source>
         <translation>SUS2</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.ui" line="1012"/>
+        <location filename="../dialogsfdp.ui" line="1150"/>
         <source>QE</source>
         <translation>QE</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.ui" line="1043"/>
+        <location filename="../dialogsfdp.ui" line="1181"/>
         <source>SPR1</source>
         <translation>SPR1</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.ui" line="1055"/>
+        <location filename="../dialogsfdp.ui" line="1193"/>
         <source>Status Register 1</source>
         <translation>Statusregister 1</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.ui" line="1120"/>
+        <location filename="../dialogsfdp.ui" line="1276"/>
         <source>JEDEC info:</source>
         <translation>JEDEC-Infos:</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.ui" line="1144"/>
+        <location filename="../dialogsfdp.ui" line="1300"/>
         <source>Man. ID</source>
         <translatorcomment>Hers. Art</translatorcomment>
         <translation>Herstellen ID</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.ui" line="1166"/>
+        <location filename="../dialogsfdp.ui" line="1322"/>
         <source>Man. type</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.ui" line="1188"/>
+        <location filename="../dialogsfdp.ui" line="1344"/>
         <source>Capacity</source>
         <translation>Größe:</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.ui" line="1220"/>
+        <location filename="../dialogsfdp.ui" line="1376"/>
         <source>Unique ID:</source>
         <translation>Eindeutige ID:</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.ui" line="1242"/>
+        <location filename="../dialogsfdp.ui" line="1398"/>
         <source>Read</source>
         <translation>Lesen</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.ui" line="1320"/>
+        <location filename="../dialogsfdp.ui" line="1476"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p/&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p/&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.ui" line="1358"/>
+        <location filename="../dialogsfdp.ui" line="1514"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Legend:&lt;/p&gt;&lt;p&gt;** - Basic area&lt;br&gt;** - Extended area&lt;br&gt;** - Manufacture area &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Legende:&lt;/p&gt;&lt;p&gt;** - Basisbereich&lt;br&gt;** - Erweiterter Bereich&lt;br&gt;** - Manufakturbereich &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.ui" line="1403"/>
+        <location filename="../dialogsfdp.ui" line="1559"/>
         <source>Close</source>
         <translation>Schließen</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.cpp" line="44"/>
-        <location filename="../dialogsfdp.cpp" line="64"/>
-        <location filename="../dialogsfdp.cpp" line="167"/>
-        <location filename="../dialogsfdp.cpp" line="199"/>
-        <location filename="../dialogsfdp.cpp" line="214"/>
+        <location filename="../dialogsfdp.cpp" line="43"/>
+        <location filename="../dialogsfdp.cpp" line="63"/>
+        <location filename="../dialogsfdp.cpp" line="166"/>
+        <location filename="../dialogsfdp.cpp" line="198"/>
+        <location filename="../dialogsfdp.cpp" line="213"/>
         <source>Error</source>
         <translation>Fehler</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.cpp" line="64"/>
-        <location filename="../dialogsfdp.cpp" line="167"/>
+        <location filename="../dialogsfdp.cpp" line="63"/>
+        <location filename="../dialogsfdp.cpp" line="166"/>
         <source>Error reading register!</source>
         <translation>Fehler beim Lesen des Registers!</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.cpp" line="132"/>
+        <location filename="../dialogsfdp.cpp" line="131"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Legend:&lt;/p&gt;&lt;p&gt;00 - Basic area&lt;br&gt;&lt;span style=&quot; background:#f77;&quot;&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Legend:&lt;/p&gt;&lt;p&gt;00 - Basisbereich&lt;br&gt;&lt;span style=&quot; background:#f77;&quot;&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.cpp" line="132"/>
+        <location filename="../dialogsfdp.cpp" line="131"/>
         <source>&lt;/span&gt; - Extended area&lt;br&gt;&lt;span style=&quot; background:#7f7;&quot;&gt;</source>
         <translation>&lt;/span&gt; - Erweiterter Bereich&lt;br&gt;&lt;span style=&quot; background:#7f7;&quot;&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.cpp" line="132"/>
+        <location filename="../dialogsfdp.cpp" line="131"/>
         <source>&lt;/span&gt; - Manufacture area &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;/span&gt; - Herstellungsgebiet &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.cpp" line="134"/>
+        <location filename="../dialogsfdp.cpp" line="133"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt; Hex SFDP register data:
 </source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt; Hex SFDP-Registerdaten:
 </translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.cpp" line="135"/>
+        <location filename="../dialogsfdp.cpp" line="134"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Addr:&lt;br&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Adr.:&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.cpp" line="44"/>
+        <location filename="../dialogsfdp.cpp" line="43"/>
         <source>Error reading JEDEC ID!</source>
         <translation>Fehler beim Lesen der JEDEC-ID!</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.cpp" line="199"/>
+        <location filename="../dialogsfdp.cpp" line="198"/>
         <source>Error reading unique ID!</source>
         <translation>Fehler beim Lesen der eindeutigen ID!</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.cpp" line="214"/>
+        <location filename="../dialogsfdp.cpp" line="213"/>
         <source>Programmer CH341a is not connected!</source>
         <translation>Das Programmiergerät CH341a ist nicht angeschlossen!</translation>
     </message>
@@ -353,32 +357,32 @@
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../mainwindow.ui" line="717"/>
+        <location filename="../mainwindow.ui" line="783"/>
         <source>File</source>
         <translation>Datei</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="804"/>
+        <location filename="../mainwindow.ui" line="870"/>
         <source>Open</source>
         <translation>Öffnen</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="807"/>
+        <location filename="../mainwindow.ui" line="873"/>
         <source>Ctrl+O</source>
         <translation>Ctrl+O</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="828"/>
+        <location filename="../mainwindow.ui" line="894"/>
         <source>Exit</source>
         <translation>Ausfahrt</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="831"/>
+        <location filename="../mainwindow.ui" line="897"/>
         <source>Ctrl+X</source>
         <translation>Ctrl+X</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="816"/>
+        <location filename="../mainwindow.ui" line="882"/>
         <source>Save</source>
         <translation>Speichern</translation>
     </message>
@@ -393,253 +397,258 @@
         <translation>Chip</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="119"/>
+        <location filename="../mainwindow.ui" line="131"/>
         <source>Name</source>
         <translation>Name</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="159"/>
+        <location filename="../mainwindow.ui" line="183"/>
         <source>Page size</source>
         <translation>Größe der Seite</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="179"/>
+        <location filename="../mainwindow.ui" line="209"/>
         <source>Block size</source>
         <translation>Blockgröße</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="199"/>
+        <location filename="../mainwindow.ui" line="235"/>
         <source>VCC, Volt</source>
         <translation>VCC, Volt</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="209"/>
+        <location filename="../mainwindow.ui" line="245"/>
         <source>4bit Addr.</source>
         <translation>4bit Adresse</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="270"/>
-        <location filename="../mainwindow.ui" line="840"/>
+        <location filename="../mainwindow.ui" line="312"/>
+        <location filename="../mainwindow.ui" line="906"/>
         <source>Detect</source>
         <translation>Erkennen</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="307"/>
-        <location filename="../mainwindow.ui" line="852"/>
+        <location filename="../mainwindow.ui" line="349"/>
+        <location filename="../mainwindow.ui" line="918"/>
         <source>Read</source>
         <translation>Lesen</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="391"/>
+        <location filename="../mainwindow.ui" line="433"/>
         <source>i</source>
         <translation>i</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="423"/>
+        <location filename="../mainwindow.ui" line="465"/>
         <source>Auto Options</source>
         <translation>Auto-Optionen</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="440"/>
-        <location filename="../mainwindow.ui" line="864"/>
+        <location filename="../mainwindow.ui" line="482"/>
+        <location filename="../mainwindow.ui" line="930"/>
         <source>Erase</source>
         <translation>Löschen</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="450"/>
+        <location filename="../mainwindow.ui" line="492"/>
         <source>Program</source>
         <translation>Schreiben</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="460"/>
-        <location filename="../mainwindow.ui" line="888"/>
+        <location filename="../mainwindow.ui" line="502"/>
+        <location filename="../mainwindow.ui" line="954"/>
         <source>Verify</source>
         <translation>Überprüfen</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="515"/>
+        <location filename="../mainwindow.ui" line="557"/>
         <source>Go!</source>
         <translation>Start!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="549"/>
-        <location filename="../mainwindow.ui" line="743"/>
+        <location filename="../mainwindow.ui" line="591"/>
+        <location filename="../mainwindow.ui" line="809"/>
         <source>Hex Editor</source>
         <translation>Hexadezimal-Editor</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="596"/>
+        <location filename="../mainwindow.ui" line="647"/>
         <source>  JEDEC ID:</source>
         <translation>JEDEC ID</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="612"/>
+        <location filename="../mainwindow.ui" line="663"/>
         <source>CH341a:</source>
         <translation>CH341a:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="641"/>
+        <location filename="../mainwindow.ui" line="688"/>
+        <source>border: 2px solid gray;border-radius: 5px;font-weight:600;border-style:inset;</source>
+        <translation>border: 2px solid gray;border-radius: 5px;font-weight:600;border-style:inset;</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="701"/>
         <source>CRC32:</source>
         <translation>CRC32:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="731"/>
+        <location filename="../mainwindow.ui" line="797"/>
         <source>Programmer</source>
         <translation>Programmierer</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="752"/>
+        <location filename="../mainwindow.ui" line="818"/>
         <source>Help</source>
         <translation>Hilfe</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="819"/>
+        <location filename="../mainwindow.ui" line="885"/>
         <source>Ctrl+S</source>
         <translation>Ctrl+S</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="843"/>
+        <location filename="../mainwindow.ui" line="909"/>
         <source>Ctrl+D</source>
         <translation>Ctrl+D</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="855"/>
+        <location filename="../mainwindow.ui" line="921"/>
         <source>Ctrl+R</source>
         <translation>Ctrl+R</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="867"/>
+        <location filename="../mainwindow.ui" line="933"/>
         <source>Ctrl+E</source>
         <translation>Ctrl+E</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="876"/>
+        <location filename="../mainwindow.ui" line="942"/>
         <source>Write</source>
         <translation>Schreiben</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="879"/>
+        <location filename="../mainwindow.ui" line="945"/>
         <source>Ctrl+W</source>
         <translation>Ctrl+W</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="891"/>
+        <location filename="../mainwindow.ui" line="957"/>
         <source>Ctrl+T</source>
         <translation>Ctrl+T</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="900"/>
+        <location filename="../mainwindow.ui" line="966"/>
         <source>Undo</source>
         <translation>Rückgängig</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="903"/>
+        <location filename="../mainwindow.ui" line="969"/>
         <source>Ctrl+Z</source>
         <translation>Ctrl+Z</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="912"/>
+        <location filename="../mainwindow.ui" line="978"/>
         <source>Redo</source>
         <translation>Wiederholen</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="915"/>
+        <location filename="../mainwindow.ui" line="981"/>
         <source>, Ctrl+Shift+Z</source>
         <translation>, Ctrl+Shift+Z</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="924"/>
+        <location filename="../mainwindow.ui" line="990"/>
         <source>Save Part</source>
         <translation>Teil speichern</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="927"/>
+        <location filename="../mainwindow.ui" line="993"/>
         <source>, Ctrl+Shift+S</source>
         <translation>, Ctrl+Shift+S</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="936"/>
+        <location filename="../mainwindow.ui" line="1002"/>
         <source>Load Part</source>
         <translation>Teil laden</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="939"/>
+        <location filename="../mainwindow.ui" line="1005"/>
         <source>, Ctrl+Shift+O</source>
         <translation>, Ctrl+Shift+O</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="948"/>
+        <location filename="../mainwindow.ui" line="1014"/>
         <source>Find / Replace</source>
         <translation>Suchen / Ersetzen</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="951"/>
+        <location filename="../mainwindow.ui" line="1017"/>
         <source>Ctrl+F</source>
         <translation>Ctrl+F</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="956"/>
+        <location filename="../mainwindow.ui" line="1022"/>
         <source>About</source>
         <translation>Über</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="959"/>
+        <location filename="../mainwindow.ui" line="1025"/>
         <source>About IMSProgrammer</source>
         <translation>Über IMSProgrammer</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="962"/>
+        <location filename="../mainwindow.ui" line="1028"/>
         <source>Ctrl+H</source>
         <translation>Ctrl+H</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="971"/>
+        <location filename="../mainwindow.ui" line="1037"/>
         <source>Checksum calculate</source>
         <translation>Prüfsumme berechnen</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="974"/>
+        <location filename="../mainwindow.ui" line="1040"/>
         <source>Ctrl+A</source>
         <translation>Ctrl+A</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="983"/>
+        <location filename="../mainwindow.ui" line="1049"/>
         <source>Edit chips Database</source>
         <translation>Chips-Datenbank bearbeiten</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="986"/>
+        <location filename="../mainwindow.ui" line="1052"/>
         <source>Ctrl+Q</source>
         <translation>Ctrl+Q</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="995"/>
+        <location filename="../mainwindow.ui" line="1061"/>
         <location filename="../mainwindow.cpp" line="1310"/>
         <source>Stop</source>
         <translation>Stop</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="998"/>
+        <location filename="../mainwindow.ui" line="1064"/>
         <source>Forced stop of read, write, erase and verification operations</source>
         <translation>Erzwungener Stopp von Lese-, Schreib-, Lösch- und Prüfvorgängen</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1001"/>
+        <location filename="../mainwindow.ui" line="1067"/>
         <source>Ctrl+I</source>
         <translation>Ctrl+I</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1010"/>
+        <location filename="../mainwindow.ui" line="1076"/>
         <source>Chip info</source>
         <translation>Chip-Infos</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1013"/>
+        <location filename="../mainwindow.ui" line="1079"/>
         <source>Information about SFDP and status registers</source>
         <translation>Informationen zu SFDP und Statusregistern</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1016"/>
+        <location filename="../mainwindow.ui" line="1082"/>
         <source>Ctrl+P</source>
         <translation>Ctrl+P</translation>
     </message>
@@ -655,12 +664,12 @@
         <translation>Typ</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="99"/>
+        <location filename="../mainwindow.ui" line="105"/>
         <source>Manufacture</source>
         <translation>Herstellung</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="139"/>
+        <location filename="../mainwindow.ui" line="157"/>
         <source>Size</source>
         <translation>Größe</translation>
     </message>
@@ -910,103 +919,103 @@ Puffer: </translation>
     </message>
     <message>
         <location filename="../searchdialog.ui" line="33"/>
-        <location filename="../searchdialog.ui" line="72"/>
+        <location filename="../searchdialog.ui" line="78"/>
         <source>Hex</source>
         <translation>Hex</translation>
     </message>
     <message>
         <location filename="../searchdialog.ui" line="38"/>
-        <location filename="../searchdialog.ui" line="77"/>
+        <location filename="../searchdialog.ui" line="83"/>
         <source>UTF-8</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../searchdialog.ui" line="65"/>
+        <location filename="../searchdialog.ui" line="71"/>
         <source>Replace</source>
         <translation>Ersetzen Sie</translation>
     </message>
     <message>
-        <location filename="../searchdialog.ui" line="104"/>
+        <location filename="../searchdialog.ui" line="116"/>
         <source>Options</source>
         <translation>Optionen</translation>
     </message>
     <message>
-        <location filename="../searchdialog.ui" line="110"/>
+        <location filename="../searchdialog.ui" line="122"/>
         <source>&amp;Backwards</source>
         <translation>Rückwärts</translation>
     </message>
     <message>
-        <location filename="../searchdialog.ui" line="117"/>
+        <location filename="../searchdialog.ui" line="129"/>
         <source>&amp;Prompt on replace</source>
         <translation>Aufforderung zum Ersetzen</translation>
     </message>
     <message>
-        <location filename="../searchdialog.ui" line="138"/>
+        <location filename="../searchdialog.ui" line="150"/>
         <source>Standard headers:</source>
         <translation>Standard-Header:</translation>
     </message>
     <message>
-        <location filename="../searchdialog.ui" line="179"/>
+        <location filename="../searchdialog.ui" line="191"/>
         <source>ZIP</source>
         <translation>ZIP</translation>
     </message>
     <message>
-        <location filename="../searchdialog.ui" line="201"/>
+        <location filename="../searchdialog.ui" line="213"/>
         <source>PNG</source>
         <translation>PNG</translation>
     </message>
     <message>
-        <location filename="../searchdialog.ui" line="223"/>
+        <location filename="../searchdialog.ui" line="235"/>
         <source>JPG</source>
         <translation>JPG</translation>
     </message>
     <message>
-        <location filename="../searchdialog.ui" line="245"/>
+        <location filename="../searchdialog.ui" line="257"/>
         <source>GIF</source>
         <translation>GIF</translation>
     </message>
     <message>
-        <location filename="../searchdialog.ui" line="274"/>
+        <location filename="../searchdialog.ui" line="286"/>
         <source>TAR</source>
         <translation>TAR</translation>
     </message>
     <message>
-        <location filename="../searchdialog.ui" line="296"/>
+        <location filename="../searchdialog.ui" line="308"/>
         <source>UEFI</source>
         <translation>UEFI</translation>
     </message>
     <message>
-        <location filename="../searchdialog.ui" line="318"/>
+        <location filename="../searchdialog.ui" line="330"/>
         <source>BIOS</source>
         <translation>BIOS</translation>
     </message>
     <message>
-        <location filename="../searchdialog.ui" line="340"/>
+        <location filename="../searchdialog.ui" line="352"/>
         <source>GPT</source>
         <translation>GPT</translation>
     </message>
     <message>
-        <location filename="../searchdialog.ui" line="373"/>
+        <location filename="../searchdialog.ui" line="385"/>
         <source>&amp;Find</source>
         <translation>Finden</translation>
     </message>
     <message>
-        <location filename="../searchdialog.ui" line="376"/>
+        <location filename="../searchdialog.ui" line="388"/>
         <source>F3</source>
         <translation>F3</translation>
     </message>
     <message>
-        <location filename="../searchdialog.ui" line="401"/>
+        <location filename="../searchdialog.ui" line="413"/>
         <source>&amp;Replace</source>
         <translation>Ersetzen</translation>
     </message>
     <message>
-        <location filename="../searchdialog.ui" line="423"/>
+        <location filename="../searchdialog.ui" line="435"/>
         <source>Replace &amp;All</source>
         <translation>Alle ersetzen</translation>
     </message>
     <message>
-        <location filename="../searchdialog.ui" line="445"/>
+        <location filename="../searchdialog.ui" line="457"/>
         <source>&amp;Close</source>
         <translation>Schließen</translation>
     </message>
