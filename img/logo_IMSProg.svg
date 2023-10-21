@@ -1,4 +1,4 @@
-<svg width="300" height="400" viewBox="0 0 300 400" version="1.1" xmlns="http://www.w3.org/2000/svg">
+<svg width="300" height="400" viewBox="0 0 300 400" xmlns="http://www.w3.org/2000/svg">
 <style>
 .dim{stroke:#333;fill:none;stroke-width:2;stroke-linejoin:round;stroke-linecap:round;}
 </style>
@@ -28,16 +28,16 @@
 <rect x="7" y="7" width="286" height="286" stroke="#888" fill="none" stroke-width="4" rx="50" ry="50"/>
 <rect x="8" y="8" width="284" height="284" stroke="#ccc" fill="url(#RadialGradient1)" stroke-width="4" rx="50" ry="50"/>
 <rect x="10" y="10" width="280" height="280" stroke="#888" fill="none" stroke-width="2" rx="50" ry="50"/>
-<use xlink:href="#pin2" x="150" y="110" />
-<use xlink:href="#pin2" x="170" y="130" />
-<use xlink:href="#pin2" x="190" y="150" />
-<use xlink:href="#pin2" x="210" y="170" />
-<use xlink:href="#case2" x="59" y="128" />
-<use xlink:href="#pin1" x="129" y="215" />
-<use xlink:href="#pin1" x="109" y="195" />
-<use xlink:href="#pin1" x="89" y="175" />
-<use xlink:href="#pin1" x="69" y="155" />
+<use href="#pin2" x="150" y="110" />
+<use href="#pin2" x="170" y="130" />
+<use href="#pin2" x="190" y="150" />
+<use href="#pin2" x="210" y="170" />
+<use href="#case2" x="59" y="128" />
+<use href="#pin1" x="129" y="215" />
+<use href="#pin1" x="109" y="195" />
+<use href="#pin1" x="89" y="175" />
+<use href="#pin1" x="69" y="155" />
 <path d="M 135 190 Q 150 205 165 190 L 210 130 Q 215 115 200 110 L 180 110 C 170 48 212 22 265 61 C 285 75 295 70 270 50 C 205 0 105 5 120 110 L 100 110 Q 85 115 90 130 L 135 190" stroke="#f22" stroke-width="4" fill="#f33" stroke-linejoin="round" stroke-linecap="round"/>
 <path d="M 140 190 L 93 128 Q 88 113 107 113 L 124 113 C 107 18 192 -1 267 51 C 287 65 290 75 260 55 C 180 5 168 85 177 113 L 198 113 Q 212 116 206 130 L 160 190 Q 150 198 140 190 " stroke="#faa" stroke-width="4" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
-<text x="150" y="332" font-size="44" font-weight="bold" font-family="Avenir, Helvetica, sans-serif" font-weight="600" stroke="#f22" fill="#f88" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" text-anchor="middle">IMSProg</text>
+<text x="150" y="332" font-size="44" fill="#f88" font-weight="600" font-family="Avenir, Helvetica, sans-serif" stroke="#f22" stroke-width="2" text-anchor="middle" stroke-linecap="round" stroke-linejoin="round">IMSProg</text>
 </svg>
