@@ -37,7 +37,7 @@
 <use href="#pin1" x="109" y="195" />
 <use href="#pin1" x="89" y="175" />
 <use href="#pin1" x="69" y="155" />
-<path d="M 135 190 Q 150 205 165 190 L 210 130 Q 215 115 200 110 L 180 110 C 170 48 212 22 265 61 C 285 75 295 70 270 50 C 205 0 105 5 120 110 L 100 110 Q 85 115 90 130 L 135 190" stroke="#f22" stroke-width="4" fill="#f33" stroke-linejoin="round" stroke-linecap="round"/>
-<path d="M 140 190 L 93 128 Q 88 113 107 113 L 124 113 C 107 18 192 -1 267 51 C 287 65 290 75 260 55 C 180 5 168 85 177 113 L 198 113 Q 212 116 206 130 L 160 190 Q 150 198 140 190 " stroke="#faa" stroke-width="4" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M 135 190 Q 150 212 165 190 L 210 130 Q 215 115 200 110 L 180 110 C 170 48 212 22 265 61 C 285 75 295 70 270 50 C 205 0 105 5 120 110 L 100 110 Q 85 115 90 130 L 135 190" stroke="#f22" stroke-width="4" fill="#f33" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M 140 190 L 93 128 Q 88 113 107 113 L 124 113 C 107 18 192 -1 267 51 C 287 65 290 75 260 55 C 180 5 168 85 177 113 L 198 113 Q 212 116 206 130 L 160 190 Q 150 204 140 190 " stroke="#faa" stroke-width="4" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
 <text x="150" y="332" font-size="44" fill="#f88" font-weight="600" font-family="Avenir, Helvetica, sans-serif" stroke="#f22" stroke-width="2" text-anchor="middle" stroke-linecap="round" stroke-linejoin="round">IMSProg</text>
 </svg>
