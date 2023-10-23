@@ -1227,7 +1227,7 @@ void MainWindow::on_actionEdit_chips_Database_triggered()
 {
     if(QFileInfo::exists("IMSProg_editor") && !QDir("IMSProg_editor").exists()){
         //The file exists and is not a folder
-        QProcess::execute("IMSProg_editor");
+        QProcess::execute("./IMSProg_editor");
     }
     else {
         //The file doesn't exist, either the path doesn't exist or is the path of a folder
