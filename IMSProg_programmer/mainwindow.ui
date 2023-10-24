@@ -55,6 +55,12 @@
           <height>91</height>
          </size>
         </property>
+        <property name="maximumSize">
+         <size>
+          <width>400</width>
+          <height>16777215</height>
+         </size>
+        </property>
         <property name="styleSheet">
          <string notr="true">QGroupBox {
     font: bold;
@@ -88,6 +94,12 @@ QGroupBox::title {
              <height>21</height>
             </size>
            </property>
+           <property name="maximumSize">
+            <size>
+             <width>250</width>
+             <height>21</height>
+            </size>
+           </property>
            <property name="font">
             <font>
              <weight>75</weight>
@@ -111,6 +123,12 @@ QGroupBox::title {
            <property name="minimumSize">
             <size>
              <width>111</width>
+             <height>21</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>250</width>
              <height>21</height>
             </size>
            </property>
@@ -140,6 +158,12 @@ QGroupBox::title {
              <height>21</height>
             </size>
            </property>
+           <property name="maximumSize">
+            <size>
+             <width>250</width>
+             <height>21</height>
+            </size>
+           </property>
            <property name="font">
             <font>
              <weight>75</weight>
@@ -163,6 +187,12 @@ QGroupBox::title {
            <property name="minimumSize">
             <size>
              <width>111</width>
+             <height>21</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>250</width>
              <height>21</height>
             </size>
            </property>
@@ -192,6 +222,12 @@ QGroupBox::title {
              <height>21</height>
             </size>
            </property>
+           <property name="maximumSize">
+            <size>
+             <width>250</width>
+             <height>21</height>
+            </size>
+           </property>
            <property name="font">
             <font>
              <weight>75</weight>
@@ -215,6 +251,12 @@ QGroupBox::title {
            <property name="minimumSize">
             <size>
              <width>111</width>
+             <height>21</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>250</width>
              <height>21</height>
             </size>
            </property>
@@ -251,6 +293,12 @@ QGroupBox::title {
            <property name="minimumSize">
             <size>
              <width>111</width>
+             <height>21</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>250</width>
              <height>21</height>
             </size>
            </property>
@@ -379,7 +427,7 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
              </property>
              <property name="maximumSize">
               <size>
-               <width>95</width>
+               <width>185</width>
                <height>22</height>
               </size>
              </property>
@@ -445,6 +493,12 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
          <size>
           <width>221</width>
           <height>41</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>400</width>
+          <height>16777215</height>
          </size>
         </property>
         <property name="styleSheet">
@@ -598,6 +652,12 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
            <size>
             <width>611</width>
             <height>401</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>700</height>
            </size>
           </property>
           <property name="frameShape">
@@ -775,7 +835,7 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
      <x>0</x>
      <y>0</y>
      <width>900</width>
-     <height>22</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
