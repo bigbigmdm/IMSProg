@@ -24,7 +24,6 @@
 <path d="M0 0m10 18v-8l9 -4a14,14 0 0,1 14,8a6,6 0 0,0 6,3l14 -8v8l-15 8a6,6 0 0,1 -6,-3a14,14 0 0,0 -14,-8z" stroke="#ccc" stroke-width="1" fill="#ccc" stroke-linejoin="round" stroke-linecap="round"/>
 </g>
 </defs>
-<rect x="1" y="1" width="298" height="348" class="dim" />
 <rect x="7" y="7" width="286" height="286" stroke="#888" fill="none" stroke-width="4" rx="50" ry="50"/>
 <rect x="8" y="8" width="284" height="284" stroke="#ccc" fill="url(#RadialGradient1)" stroke-width="4" rx="50" ry="50"/>
 <rect x="10" y="10" width="280" height="280" stroke="#888" fill="none" stroke-width="2" rx="50" ry="50"/>
