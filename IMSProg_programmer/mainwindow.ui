@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>900</width>
-    <height>610</height>
+    <height>620</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -23,9 +23,7 @@
    </size>
   </property>
   <property name="font">
-   <font>
-    <family>Ubuntu</family>
-   </font>
+   <font/>
   </property>
   <property name="windowTitle">
    <string>IMSProg - I2C/MicroWire/SPI CH341a Programmer</string>
@@ -100,6 +98,12 @@ QGroupBox::title {
              <height>21</height>
             </size>
            </property>
+           <property name="baseSize">
+            <size>
+             <width>150</width>
+             <height>0</height>
+            </size>
+           </property>
            <property name="font">
             <font>
              <weight>75</weight>
@@ -108,6 +112,12 @@ QGroupBox::title {
            </property>
            <property name="styleSheet">
             <string notr="true"/>
+           </property>
+           <property name="sizeAdjustPolicy">
+            <enum>QComboBox::AdjustToMinimumContentsLengthWithIcon</enum>
+           </property>
+           <property name="minimumContentsLength">
+            <number>22</number>
            </property>
           </widget>
          </item>
@@ -132,6 +142,12 @@ QGroupBox::title {
              <height>21</height>
             </size>
            </property>
+           <property name="baseSize">
+            <size>
+             <width>150</width>
+             <height>0</height>
+            </size>
+           </property>
            <property name="font">
             <font>
              <weight>75</weight>
@@ -140,6 +156,12 @@ QGroupBox::title {
            </property>
            <property name="styleSheet">
             <string notr="true"/>
+           </property>
+           <property name="sizeAdjustPolicy">
+            <enum>QComboBox::AdjustToMinimumContentsLengthWithIcon</enum>
+           </property>
+           <property name="minimumContentsLength">
+            <number>22</number>
            </property>
           </widget>
          </item>
@@ -173,6 +195,12 @@ QGroupBox::title {
            <property name="styleSheet">
             <string notr="true"/>
            </property>
+           <property name="sizeAdjustPolicy">
+            <enum>QComboBox::AdjustToMinimumContentsLengthWithIcon</enum>
+           </property>
+           <property name="minimumContentsLength">
+            <number>22</number>
+           </property>
           </widget>
          </item>
          <item row="3" column="0">
@@ -204,6 +232,12 @@ QGroupBox::title {
            </property>
            <property name="styleSheet">
             <string notr="true"/>
+           </property>
+           <property name="sizeAdjustPolicy">
+            <enum>QComboBox::AdjustToMinimumContentsLengthWithIcon</enum>
+           </property>
+           <property name="minimumContentsLength">
+            <number>22</number>
            </property>
           </widget>
          </item>
@@ -237,6 +271,12 @@ QGroupBox::title {
            <property name="styleSheet">
             <string notr="true"/>
            </property>
+           <property name="sizeAdjustPolicy">
+            <enum>QComboBox::AdjustToMinimumContentsLengthWithIcon</enum>
+           </property>
+           <property name="minimumContentsLength">
+            <number>22</number>
+           </property>
           </widget>
          </item>
          <item row="5" column="0">
@@ -268,6 +308,12 @@ QGroupBox::title {
            </property>
            <property name="styleSheet">
             <string notr="true"/>
+           </property>
+           <property name="sizeAdjustPolicy">
+            <enum>QComboBox::AdjustToMinimumContentsLengthWithIcon</enum>
+           </property>
+           <property name="minimumContentsLength">
+            <number>22</number>
            </property>
           </widget>
          </item>
@@ -310,6 +356,12 @@ QGroupBox::title {
            </property>
            <property name="styleSheet">
             <string notr="true"/>
+           </property>
+           <property name="sizeAdjustPolicy">
+            <enum>QComboBox::AdjustToMinimumContentsLengthWithIcon</enum>
+           </property>
+           <property name="minimumContentsLength">
+            <number>22</number>
            </property>
           </widget>
          </item>
@@ -444,6 +496,12 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
              </property>
              <property name="styleSheet">
               <string notr="true"/>
+             </property>
+             <property name="sizeAdjustPolicy">
+              <enum>QComboBox::AdjustToMinimumContentsLengthWithIcon</enum>
+             </property>
+             <property name="minimumContentsLength">
+              <number>18</number>
              </property>
             </widget>
            </item>
@@ -636,7 +694,6 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
           </property>
           <property name="font">
            <font>
-            <family>Ubuntu</family>
             <weight>75</weight>
             <bold>true</bold>
            </font>
@@ -835,7 +892,7 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
      <x>0</x>
      <y>0</y>
      <width>900</width>
-     <height>21</height>
+     <height>29</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -895,7 +952,7 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
     </size>
    </property>
    <property name="floatable">
-    <bool>true</bool>
+    <bool>false</bool>
    </property>
    <attribute name="toolBarArea">
     <enum>TopToolBarArea</enum>
@@ -1038,7 +1095,7 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
     <string>Redo</string>
    </property>
    <property name="shortcut">
-    <string>, Ctrl+Shift+Z</string>
+    <string/>
    </property>
   </action>
   <action name="actionSave_Part">
@@ -1050,7 +1107,7 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
     <string>Save Part</string>
    </property>
    <property name="shortcut">
-    <string>, Ctrl+Shift+S</string>
+    <string/>
    </property>
   </action>
   <action name="actionLoad_Part">
@@ -1062,7 +1119,7 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
     <string>Load Part</string>
    </property>
    <property name="shortcut">
-    <string>, Ctrl+Shift+O</string>
+    <string/>
    </property>
   </action>
   <action name="actionFind_Replace">
