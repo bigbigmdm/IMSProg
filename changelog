@@ -1,0 +1,77 @@
+IMSProg (1.0.23-1) stable; urgency=medium
+
+  * New upstream release.
+  * Added chips to the database. 
+  + Removed unused C-functions and variable tables in code.
+  + Fix translations.
+  + Corrected cleaning of JEDEC ID line edit.
+  + Correction of database entries.
+ 
+ -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Fri, 15 Sep 2023 15:04:41 +1000 
+  
+IMSProg (1.0.24-1) stable; urgency=medium
+
+  * New upstream release.
+  * Added STOP key to the interface.
+  + Improved interface rendering. 
+  + Fixes to translations.
+ 
+ -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Fri, 25 Sep 2023 09:58:24 +1000 
+  
+IMSProg (1.0.25-1) stable; urgency=medium
+
+  * New upstream release.
+  * Added i key to the interface. 
+  * Added connection information form.
+ 
+ -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Fri, 27 Sep 2023 16:08:45 +1000 
+  
+IMSProg (1.0.26-1) stable; urgency=medium
+
+   * New upstream release.
+   * Added support for M95xxx chips.
+   + Removed diagnostic errors.
+ 
+ -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Fri, 04 Okt 2023 13:34:52 +1000 
+  
+IMSProg (1.0.27-1) stable; urgency=medium
+
+   * New upstream release.
+   * Added the SFDP and status register information form.
+ 
+ -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Fri, 16 Okt 2023 16:28:16 +1000 
+
+IMSProg (1.0.28-1) stable; urgency=medium
+
+   * New upstream release.
+   + Bad display of qComboBoxes in UBUNTU, Manjaro linux fixed.
+   + Display of monospaced font in Manjaro linux fixed.
+
+ -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Fri, 19 Okt 2023 12:33:05 +1000 
+   
+IMSProg (1.0.28-2) stable; urgency=medium
+
+   + Fixing the call of the chip editor function from the chip programmer.
+
+ -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Fri, 23 Okt 2023 10:12:35 +1000 
+
+IMSProg (1.0.28-3) stable; urgency=medium
+
+   * Changing application font from Ubuntu to Monospace.
+   + Fix for different combobox sizes in Fedora 38.
+
+ -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Fri,MSProg (1.0.28-4) stable; urgency=medium
+
+IMSProg (1.0.28-4) stable; urgency=medium
+
+   + Degreese the mainform size to correct showing in UBUNTU 22.04.
+
+ -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Fri, 26 Okt 2023 10:16:00 +1000
+
+IMSProg (1.0.28-5) stable; urgency=medium
+
+   * Changed the default file path to the home directory. 
+   * The last file path is saved and new file operations are processed using the last path.
+
+ -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Fri, 27 Okt 2023 10:18:00 +1000
+
