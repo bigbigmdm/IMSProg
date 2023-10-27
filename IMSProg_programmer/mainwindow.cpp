@@ -26,7 +26,6 @@
 #include "dialogrp.h"
 #include <stddef.h>
 #include <stdint.h>
-
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -34,6 +33,7 @@ MainWindow::MainWindow(QWidget *parent) :
     int index2;
     max_rec = 0;
     isHalted = false;
+    lastDirectory = QDir::homePath(); //"/home/";
     grnKeyStyle = "QPushButton{color:#fff;background-color: rgb(120, 183, 140);border-radius: 20px;border: 2px solid #094065;border-radius:8px;font-weight:600;}QPushButton::pressed{background-color: rgb(115, 210, 22);}";
     redKeyStyle = "QPushButton{color:#fff;background-color:#f66;border-radius: 20px;border: 2px solid #094065;border-radius:8px;font-weight:600;}";
     ui->setupUi(this);
@@ -531,8 +531,11 @@ void MainWindow::on_actionSave_triggered()
     ui->statusBar->showMessage(tr("Saving file"));
     fileName = QFileDialog::getSaveFileName(this,
                                 QString(tr("Save file")),
-                                QDir::currentPath(),
-                                "Data Images (*.bin);;All files (*.*)");
+                                lastDirectory,
+                                "Data Images (*.bin *.BIN);;All files (*.*)");
+    QFileInfo info(fileName);
+    lastDirectory = info.filePath();
+    if (QString::compare(info.suffix(), "bin", Qt::CaseInsensitive)) fileName = fileName + ".bin";
     QFile file(fileName);
     if (!file.open(QIODevice::WriteOnly))
     {
@@ -671,13 +674,17 @@ void MainWindow::on_actionRedo_triggered()
 
 void MainWindow::on_actionOpen_triggered()
 {
+
     ui->statusBar->showMessage(tr("Opening file"));
     fileName = QFileDialog::getOpenFileName(this,
                                 QString(tr("Open file")),
-                                QDir::currentPath(),
-                                "Data Images (*.bin);;All files (*.*)");
+                                lastDirectory,
+                                "Data Images (*.bin *.BIN);;All files (*.*)");
     ui->statusBar->showMessage(tr("Current file: ") + fileName);
+    QFileInfo info(fileName);
+    lastDirectory = info.filePath();
     QFile file(fileName);
+    qDebug() << QDir::tempPath();
     if (!file.open(QIODevice::ReadOnly))
     {
 
