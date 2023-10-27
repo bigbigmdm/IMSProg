@@ -1085,8 +1085,11 @@ void MainWindow::receiveAddr(QString addressData)
     ui->statusBar->showMessage(tr("Saving block"));
     fileName = QFileDialog::getSaveFileName(this,
                                 QString(tr("Save block")),
-                                QDir::currentPath(),
-                                "Data Images (*.bin);;All files (*.*)");
+                                lastDirectory,
+                                "Data Images (*.bin *.BIN);;All files (*.*)");
+    QFileInfo info(fileName);
+    lastDirectory = info.filePath();
+    if (QString::compare(info.suffix(), "bin", Qt::CaseInsensitive)) fileName = fileName + ".bin";
     QFile file(fileName);
     if (!file.open(QIODevice::WriteOnly))
     {
@@ -1107,9 +1110,11 @@ void MainWindow::receiveAddr2(QString addressData)
     ui->statusBar->showMessage(tr("Opening block"));
     fileName = QFileDialog::getOpenFileName(this,
                                 QString(tr("Open block")),
-                                QDir::currentPath(),
-                                "Data Images (*.bin);;All files (*.*)");
+                                lastDirectory,
+                                "Data Images (*.bin *.BIN);;All files (*.*)");
     ui->statusBar->showMessage(tr("Current file: ") + fileName);
+    QFileInfo info(fileName);
+    lastDirectory = info.filePath();
     QFile file(fileName);
     if (!file.open(QIODevice::ReadOnly))
     {
