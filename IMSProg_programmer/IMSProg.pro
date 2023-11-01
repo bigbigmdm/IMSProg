@@ -25,8 +25,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
-        main.cpp \
-        mainwindow.cpp \
+       main.cpp \
+       mainwindow.cpp \
        qhexedit.cpp \
        chunks.cpp \
        commands.cpp \
@@ -45,12 +45,12 @@ SOURCES += \
        spi_nand_flash.c \
        spi_nor_flash.c \
        timer.c \
-    dialogabout.cpp \
-    dialoginfo.cpp \
-    dialogsfdp.cpp
+       dialogabout.cpp \
+       dialoginfo.cpp \
+       dialogsfdp.cpp
 
 HEADERS += \
-        mainwindow.h \
+       mainwindow.h \
        qhexedit.h \
        chunks.h \
        commands.h \
@@ -73,18 +73,18 @@ HEADERS += \
        spi_nand_flash.h \
        timer.h \
        types.h \
-    dialogabout.h \
-    dialoginfo.h \
-    dialogsfdp.h
+       dialogabout.h \
+       dialoginfo.h \
+       dialogsfdp.h
 
 FORMS += \
         mainwindow.ui \
         dialogsp.ui \
         dialogrp.ui \
         searchdialog.ui \
-    dialogabout.ui \
-    dialoginfo.ui \
-    dialogsfdp.ui
+        dialogabout.ui \
+        dialoginfo.ui \
+        dialogsfdp.ui
 
 TRANSLATIONS += language/chipProgrammer_ru_RU.ts \
          language/chipProgrammer_es_ES.ts \
