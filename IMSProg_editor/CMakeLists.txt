@@ -33,7 +33,6 @@ target_link_libraries(${PROJECT_NAME} Qt5::Core)
 target_link_libraries(${PROJECT_NAME} Qt5::Widgets)
 
 install(TARGETS ${PROJECT_NAME} DESTINATION /opt/IMSProg)
-install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/other/IMSProg_editor.desktop" DESTINATION /opt/IMSProg)
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/other/IMSProg_editor.desktop" DESTINATION /usr/share/applications)
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/img/chipEdit64.png" DESTINATION /usr/share/pixmaps)
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/language/chipEditor_ru_RU.qm" DESTINATION /opt/IMSProg/language)
