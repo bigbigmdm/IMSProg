@@ -61,7 +61,6 @@ TRANSLATIONS += language/chipEditor_ru_RU.ts \
         language/chipEditor_es_ES.ts \
         language/chipEditor_de_DE.ts \
         language/chipEditor_zn_CH.ts \
-        language/chipEditor_ua_UA.ts \
         language/chipEditor_uk_UA.ts
 
 # Default rules for deployment.
