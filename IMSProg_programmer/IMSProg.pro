@@ -77,7 +77,6 @@ HEADERS += \
     dialoginfo.h \
     dialogsfdp.h
 
-
 FORMS += \
         mainwindow.ui \
         dialogsp.ui \
