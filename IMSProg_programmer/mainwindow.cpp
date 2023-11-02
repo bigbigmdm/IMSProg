@@ -30,214 +30,102 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
-    int index2;
-    max_rec = 0;
-    isHalted = false;
-    lastDirectory = QDir::homePath(); //"/home/";
-    grnKeyStyle = "QPushButton{color:#fff;background-color: rgb(120, 183, 140);border-radius: 20px;border: 2px solid #094065;border-radius:8px;font-weight:600;}QPushButton::pressed{background-color: rgb(115, 210, 22);}";
-    redKeyStyle = "QPushButton{color:#fff;background-color:#f66;border-radius: 20px;border: 2px solid #094065;border-radius:8px;font-weight:600;}";
-    ui->setupUi(this);
-    ui->actionStop->setDisabled(true);
-    ui->statusBar->addPermanentWidget(ui->lStatus,0);
-    ui->statusBar->addPermanentWidget(ui->eStatus,0);
-    ui->statusBar->addPermanentWidget(ui->jLabel,0);
-    ui->statusBar->addPermanentWidget(ui->jedecEdit,0);
-    ui->statusBar->addPermanentWidget(ui->cLabel,0);
-    ui->statusBar->addPermanentWidget(ui->crcEdit,0);
-    ui->progressBar->setValue(0);
-    ui->comboBox_name->addItems({""});
-    ui->comboBox_man->addItems({""});
-    //ui->comboBox_vcc->addItems({ " ", "3.3 V", "1.8 V", "5.0 V"});
-    ui->comboBox_vcc->addItem(" ", 0);
-    ui->comboBox_vcc->addItem("3.3 V", 1);
-    ui->comboBox_vcc->addItem("1.8 V", 2);
-    ui->comboBox_vcc->addItem("5.0 V", 3);
+ ui->setupUi(this);
 
-    ui->comboBox_type->addItem("SPI_FLASH", 0);
-    ui->comboBox_type->addItem("24_EEPROM", 1);
-    ui->comboBox_type->addItem("93_EEPROM", 2);
-    ui->comboBox_type->addItem("95_EEPROM", 4);
+ max_rec = 0;
+ isHalted = false;
+ lastDirectory = QDir::homePath(); //"/home/";
+ grnKeyStyle = "QPushButton{color:#fff;background-color: rgb(120, 183, 140);border-radius: 20px;border: 2px solid #094065;border-radius:8px;font-weight:600;}QPushButton::pressed{background-color: rgb(115, 210, 22);}";
+ redKeyStyle = "QPushButton{color:#fff;background-color:#f66;border-radius: 20px;border: 2px solid #094065;border-radius:8px;font-weight:600;}";
 
-    ui->comboBox_addr4bit->addItem("No", 0);
-    ui->comboBox_addr4bit->addItem("Yes", 1);
+ ui->actionStop->setDisabled(true);
+ ui->statusBar->addPermanentWidget(ui->lStatus,0);
+ ui->statusBar->addPermanentWidget(ui->eStatus,0);
+ ui->statusBar->addPermanentWidget(ui->jLabel,0);
+ ui->statusBar->addPermanentWidget(ui->jedecEdit,0);
+ ui->statusBar->addPermanentWidget(ui->cLabel,0);
+ ui->statusBar->addPermanentWidget(ui->crcEdit,0);
+ ui->progressBar->setValue(0);
+ ui->comboBox_name->addItems({""});
+ ui->comboBox_man->addItems({""});
+ //ui->comboBox_vcc->addItems({ " ", "3.3 V", "1.8 V", "5.0 V"});
+ ui->comboBox_vcc->addItem(" ", 0);
+ ui->comboBox_vcc->addItem("3.3 V", 1);
+ ui->comboBox_vcc->addItem("1.8 V", 2);
+ ui->comboBox_vcc->addItem("5.0 V", 3);
 
-    ui->comboBox_page->addItem(" ", 0);
-    ui->comboBox_page->addItem("1", 1);
-    ui->comboBox_page->addItem("2", 2);
-    ui->comboBox_page->addItem("4", 4);
-    ui->comboBox_page->addItem("8", 8);
-    ui->comboBox_page->addItem("16", 16);
-    ui->comboBox_page->addItem("32", 32);
-    ui->comboBox_page->addItem("64", 64);
-    ui->comboBox_page->addItem("128", 128);
-    ui->comboBox_page->addItem("256", 256);
-    ui->comboBox_page->addItem("512", 512);
+ ui->comboBox_type->addItem("SPI_FLASH", 0);
+ ui->comboBox_type->addItem("24_EEPROM", 1);
+ ui->comboBox_type->addItem("93_EEPROM", 2);
+ ui->comboBox_type->addItem("95_EEPROM", 4);
 
-    ui->comboBox_size->addItem(" ", 0);
-    ui->comboBox_size->addItem("128 B", 128);
-    ui->comboBox_size->addItem("256 B", 256);
-    ui->comboBox_size->addItem("512 B", 512);
-    ui->comboBox_size->addItem("1 K", 1 * 1024);
-    ui->comboBox_size->addItem("2 K", 2 * 1024);
-    ui->comboBox_size->addItem("4 K", 4 * 1024);
-    ui->comboBox_size->addItem("8 K", 8 * 1024);
-    ui->comboBox_size->addItem("16 K", 16 * 1024);
-    ui->comboBox_size->addItem("32 K", 32 * 1024);
-    ui->comboBox_size->addItem("64 K", 64 * 1024);
-    ui->comboBox_size->addItem("128 K", 128 * 1024);
-    ui->comboBox_size->addItem("256 K", 256 * 1024);
-    ui->comboBox_size->addItem("512 K", 512 * 1024);
-    ui->comboBox_size->addItem("1 M", 1024 * 1024);
-    ui->comboBox_size->addItem("2 M", 2048 * 1024);
-    ui->comboBox_size->addItem("4 M", 4096 * 1024);
-    ui->comboBox_size->addItem("8 M", 8192 * 1024);
-    ui->comboBox_size->addItem("16 M", 16384 * 1024);
-    ui->comboBox_size->addItem("32 M", 32768 * 1024);
-    ui->comboBox_size->addItem("64 M", 65536 * 1024);
+ ui->comboBox_addr4bit->addItem("No", 0);
+ ui->comboBox_addr4bit->addItem("Yes", 1);
 
-    ui->comboBox_block->addItem(" ", 0);
-    ui->comboBox_block->addItem("64 K", 64 * 1024);
+ ui->comboBox_page->addItem(" ", 0);
+ ui->comboBox_page->addItem("1", 1);
+ ui->comboBox_page->addItem("2", 2);
+ ui->comboBox_page->addItem("4", 4);
+ ui->comboBox_page->addItem("8", 8);
+ ui->comboBox_page->addItem("16", 16);
+ ui->comboBox_page->addItem("32", 32);
+ ui->comboBox_page->addItem("64", 64);
+ ui->comboBox_page->addItem("128", 128);
+ ui->comboBox_page->addItem("256", 256);
+ ui->comboBox_page->addItem("512", 512);
 
-    currentChipSize = 0;
-    currentNumBlocks = 0;
-    currentBlockSize = 0;
-    currentPageSize = 0;
-    currentAlgorithm = 0;
-    currentChipType = 0;
-    blockStartAddr = 0;
-    blockLen = 0;
-    currentAddr4bit = 0;
-    // connect and status check
-    statusCH341 = ch341a_spi_init();
-    ch341StatusFlashing();
-    chipData.resize(256);
-    for (int i=0; i < 256; i++)
-    {
-        chipData[i] = char(0xff);
-    }
-    ch341a_spi_shutdown();
-    hexEdit = new QHexEdit(ui->frame);
-    hexEdit->setGeometry(0,0,ui->frame->width(),ui->frame->height());
-    hexEdit->setData(chipData);
-    hexEdit->setHexCaps(true);
-    defaultTextColor = ui->label->palette().color(QPalette::Text);
-    hexEdit->setAsciiFontColor(defaultTextColor);
-    hexEdit->setAddressFontColor(defaultTextColor);
-    hexEdit->setHexFontColor(defaultTextColor);
-    //opening chip database file
-    ui->statusBar->showMessage(tr("Opening DAT file"));
-    QFile datfile("IMSProg.Dat");
-    QByteArray dataChips;
-    if (!datfile.open(QIODevice::ReadOnly))
-    {
-        QMessageBox::about(this, tr("Error"), tr("Error loading chip database file!"));
-        return;
-    }
-    dataChips = datfile.readAll();
-    datfile.close();
-    //parsing dat file
-    ui->statusBar->showMessage(tr("Parsing DAT file"));
-    //parsing qbytearray
-    char txtBuf[0x30];
-    int i, j, recNo, dataPoz, dataSize, delay;
-    uint32_t chipSize;
-    uint16_t blockSize;
-    unsigned char tmpBuf;
-    dataPoz = 0;
-    recNo = 0;
-    QStringList verticalHeader;
-    dataSize = dataChips.length();
-    while (dataPoz < dataSize)
-    {
-        for (j=0; j<0x30; j++)
-             {
-                 txtBuf[j] = 0;
-             }
-        j = 0;
-             while ((j < 0x10) && (dataChips[recNo * 0x44 + j] != ',')) // ASCII data reading
-             {
-                 txtBuf[j] = dataChips[recNo * 0x44 + j];
-                 j++;
-             }
-             if (txtBuf[1] == 0x00) break;
-             chips[recNo].chipTypeTxt = QByteArray::fromRawData(txtBuf, 0x30);
-         for (i=0; i<0x30; i++)
-             {
-                 txtBuf[i] = 0;
-             }
-         j++;
-         i = 0;
-         while ((i < 0x20) && (dataChips[recNo * 0x44 + j] != ',')) // ASCII data reading
-         {
-             txtBuf[i] = dataChips[recNo * 0x44 + j];
-             j++;
-             i++;
-         }
-             chips[recNo].chipManuf = QByteArray::fromRawData(txtBuf, 0x30);
-             for (i=0; i<0x30; i++)
-                 {
-                     txtBuf[i] = 0;
-                 }
-             j++;
-             i = 0;
-             while ((i < 0x30) && (dataChips[recNo * 0x44 + j] != '\0')) // ASCII data reading
-             {
-                 txtBuf[i] = dataChips[recNo * 0x44 + j];
-                 j++;
-                 i++;
-             }
-             chips[recNo].chipName = QByteArray::fromRawData(txtBuf, 0x30);            
-             chips[recNo].chipJedecIDMan = static_cast<uint8_t>(dataChips[recNo * 0x44 + 0x32]);
-             chips[recNo].chipJedecIDDev = static_cast<uint8_t>(dataChips[recNo * 0x44 + 0x31]);
-             chips[recNo].chipJedecIDCap = static_cast<uint8_t>(dataChips[recNo * 0x44 + 0x30]);
-             tmpBuf = static_cast<unsigned char>(dataChips[recNo * 0x44 + 0x34]);
-             chipSize = tmpBuf;
-             tmpBuf = static_cast<unsigned char>(dataChips[recNo * 0x44 + 0x35]);
-             chipSize = chipSize + tmpBuf * 256;
-             tmpBuf = static_cast<unsigned char>(dataChips[recNo * 0x44 + 0x36]);
-             chipSize = chipSize + tmpBuf * 256 * 256;
-             tmpBuf = static_cast<unsigned char>(dataChips[recNo * 0x44 + 0x37]);
-             chipSize = chipSize + tmpBuf * 256 * 256 * 256;
-             chips[recNo].chipSize = chipSize;
-             tmpBuf = static_cast<unsigned char>(dataChips[recNo * 0x44 + 0x38]);
-             blockSize = tmpBuf;
-             tmpBuf = static_cast<unsigned char>(dataChips[recNo * 0x44 + 0x39]);
-             blockSize = blockSize + tmpBuf * 256;
-             chips[recNo].sectorSize = blockSize;
-             tmpBuf = static_cast<unsigned char>(dataChips[recNo * 0x44 + 0x3a]);
-             chips[recNo].chipTypeHex = tmpBuf;
-             tmpBuf = static_cast<unsigned char>(dataChips[recNo * 0x44 + 0x3b]);
-             chips[recNo].algorithmCode = tmpBuf;
-             tmpBuf = static_cast<unsigned char>(dataChips[recNo * 0x44 + 0x3c]);
-             delay = tmpBuf;
-             tmpBuf = static_cast<unsigned char>(dataChips[recNo * 0x44 + 0x3d]);
-             delay = delay + tmpBuf * 256;
-             chips[recNo].delay = delay;
-             tmpBuf = static_cast<unsigned char>(dataChips[recNo * 0x44 + 0x3e]);
-             chips[recNo].addr4bit = tmpBuf;
-             tmpBuf = static_cast<unsigned char>(dataChips[recNo * 0x44 + 0x40]);
-             chips[recNo].blockSize = tmpBuf * 1024;
-             tmpBuf = static_cast<unsigned char>(dataChips[recNo * 0x44 + 0x42]);
-             chips[recNo].eepromPages = tmpBuf;
-             tmpBuf = static_cast<unsigned char>(dataChips[recNo * 0x44 + 0x43]);
-             if (tmpBuf == 0x00) chips[recNo].chipVCC = "3.3 V";
-             if (tmpBuf == 0x01) chips[recNo].chipVCC = "1.8 V";
-             if (tmpBuf == 0x02) chips[recNo].chipVCC = "5.0 V";
-             dataPoz = dataPoz + 0x44; //next record
-             verticalHeader.append(QString::number(recNo));
-             recNo++;
-    }
-    max_rec = recNo;
-    //ui->comboBox_man->addItem("");
-    for (i = 0; i<max_rec; i++)
-    {
-        //replacing items to combobox Manufacture
-        index2 = ui->comboBox_man->findText(chips[i].chipManuf);
-                    if ((index2 == -1) && (chips[i].chipTypeHex ==0)) ui->comboBox_man->addItem(chips[i].chipManuf);
-    }
-     ui->comboBox_man->setCurrentIndex(0);
-     ui->statusBar->showMessage("");
+ ui->comboBox_size->addItem(" ", 0);
+ ui->comboBox_size->addItem("128 B", 128);
+ ui->comboBox_size->addItem("256 B", 256);
+ ui->comboBox_size->addItem("512 B", 512);
+ ui->comboBox_size->addItem("1 K", 1 * 1024);
+ ui->comboBox_size->addItem("2 K", 2 * 1024);
+ ui->comboBox_size->addItem("4 K", 4 * 1024);
+ ui->comboBox_size->addItem("8 K", 8 * 1024);
+ ui->comboBox_size->addItem("16 K", 16 * 1024);
+ ui->comboBox_size->addItem("32 K", 32 * 1024);
+ ui->comboBox_size->addItem("64 K", 64 * 1024);
+ ui->comboBox_size->addItem("128 K", 128 * 1024);
+ ui->comboBox_size->addItem("256 K", 256 * 1024);
+ ui->comboBox_size->addItem("512 K", 512 * 1024);
+ ui->comboBox_size->addItem("1 M", 1024 * 1024);
+ ui->comboBox_size->addItem("2 M", 2048 * 1024);
+ ui->comboBox_size->addItem("4 M", 4096 * 1024);
+ ui->comboBox_size->addItem("8 M", 8192 * 1024);
+ ui->comboBox_size->addItem("16 M", 16384 * 1024);
+ ui->comboBox_size->addItem("32 M", 32768 * 1024);
+ ui->comboBox_size->addItem("64 M", 65536 * 1024);
 
+ ui->comboBox_block->addItem(" ", 0);
+ ui->comboBox_block->addItem("64 K", 64 * 1024);
+
+ currentChipSize = 0;
+ currentNumBlocks = 0;
+ currentBlockSize = 0;
+ currentPageSize = 0;
+ currentAlgorithm = 0;
+ currentChipType = 0;
+ blockStartAddr = 0;
+ blockLen = 0;
+ currentAddr4bit = 0;
+ // connect and status check
+ statusCH341 = ch341a_spi_init();
+ ch341StatusFlashing();
+ chipData.resize(256);
+ for (int i=0; i < 256; i++)
+ {
+     chipData[i] = char(0xff);
+ }
+ ch341a_spi_shutdown();
+ hexEdit = new QHexEdit(ui->frame);
+ hexEdit->setGeometry(0,0,ui->frame->width(),ui->frame->height());
+ hexEdit->setData(chipData);
+ hexEdit->setHexCaps(true);
+ defaultTextColor = ui->label->palette().color(QPalette::Text);
+ hexEdit->setAsciiFontColor(defaultTextColor);
+ hexEdit->setAddressFontColor(defaultTextColor);
+ hexEdit->setHexFontColor(defaultTextColor);
+ progInit();
 }
 
 MainWindow::~MainWindow()
@@ -1240,6 +1128,7 @@ void MainWindow::on_actionEdit_chips_Database_triggered()
     if(QFileInfo::exists("IMSProg_editor") && !QDir("IMSProg_editor").exists()){
         //The file exists and is not a folder
         QProcess::execute("./IMSProg_editor");
+        progInit();
     }
     else {
         //The file doesn't exist, either the path doesn't exist or is the path of a folder
@@ -1339,6 +1228,133 @@ void MainWindow::on_pushButton_4_clicked()
     if ((currentChipType == 2) && (ui->comboBox_vcc->currentIndex() == 1)) infoDialog->setChip(4);
     if ((currentChipType == 4) && (ui->comboBox_vcc->currentIndex() == 1)) infoDialog->setChip(2);
 }
+
+void MainWindow::on_actionChip_info_triggered()
+{
+     DialogSFDP* sfdpDialog = new DialogSFDP();
+     sfdpDialog->show();
+}
+
+void MainWindow::progInit()
+{
+    int index2;
+    //opening chip database file
+    ui->statusBar->showMessage(tr("Opening DAT file"));
+    QFile datfile("IMSProg.Dat");
+    QByteArray dataChips;
+    if (!datfile.open(QIODevice::ReadOnly))
+    {
+        QMessageBox::about(this, tr("Error"), tr("Error loading chip database file!"));
+        return;
+    }
+    dataChips = datfile.readAll();
+    datfile.close();
+    //parsing dat file
+    ui->statusBar->showMessage(tr("Parsing DAT file"));
+    //parsing qbytearray
+    char txtBuf[0x30];
+    int i, j, recNo, dataPoz, dataSize, delay;
+    uint32_t chipSize;
+    uint16_t blockSize;
+    unsigned char tmpBuf;
+    dataPoz = 0;
+    recNo = 0;
+    QStringList verticalHeader;
+    dataSize = dataChips.length();
+    while (dataPoz < dataSize)
+    {
+        for (j=0; j<0x30; j++)
+             {
+                 txtBuf[j] = 0;
+             }
+        j = 0;
+             while ((j < 0x10) && (dataChips[recNo * 0x44 + j] != ',')) // ASCII data reading
+             {
+                 txtBuf[j] = dataChips[recNo * 0x44 + j];
+                 j++;
+             }
+             if (txtBuf[1] == 0x00) break;
+             chips[recNo].chipTypeTxt = QByteArray::fromRawData(txtBuf, 0x30);
+         for (i=0; i<0x30; i++)
+             {
+                 txtBuf[i] = 0;
+             }
+         j++;
+         i = 0;
+         while ((i < 0x20) && (dataChips[recNo * 0x44 + j] != ',')) // ASCII data reading
+         {
+             txtBuf[i] = dataChips[recNo * 0x44 + j];
+             j++;
+             i++;
+         }
+             chips[recNo].chipManuf = QByteArray::fromRawData(txtBuf, 0x30);
+             for (i=0; i<0x30; i++)
+                 {
+                     txtBuf[i] = 0;
+                 }
+             j++;
+             i = 0;
+             while ((i < 0x30) && (dataChips[recNo * 0x44 + j] != '\0')) // ASCII data reading
+             {
+                 txtBuf[i] = dataChips[recNo * 0x44 + j];
+                 j++;
+                 i++;
+             }
+             chips[recNo].chipName = QByteArray::fromRawData(txtBuf, 0x30);
+             chips[recNo].chipJedecIDMan = static_cast<uint8_t>(dataChips[recNo * 0x44 + 0x32]);
+             chips[recNo].chipJedecIDDev = static_cast<uint8_t>(dataChips[recNo * 0x44 + 0x31]);
+             chips[recNo].chipJedecIDCap = static_cast<uint8_t>(dataChips[recNo * 0x44 + 0x30]);
+             tmpBuf = static_cast<unsigned char>(dataChips[recNo * 0x44 + 0x34]);
+             chipSize = tmpBuf;
+             tmpBuf = static_cast<unsigned char>(dataChips[recNo * 0x44 + 0x35]);
+             chipSize = chipSize + tmpBuf * 256;
+             tmpBuf = static_cast<unsigned char>(dataChips[recNo * 0x44 + 0x36]);
+             chipSize = chipSize + tmpBuf * 256 * 256;
+             tmpBuf = static_cast<unsigned char>(dataChips[recNo * 0x44 + 0x37]);
+             chipSize = chipSize + tmpBuf * 256 * 256 * 256;
+             chips[recNo].chipSize = chipSize;
+             tmpBuf = static_cast<unsigned char>(dataChips[recNo * 0x44 + 0x38]);
+             blockSize = tmpBuf;
+             tmpBuf = static_cast<unsigned char>(dataChips[recNo * 0x44 + 0x39]);
+             blockSize = blockSize + tmpBuf * 256;
+             chips[recNo].sectorSize = blockSize;
+             tmpBuf = static_cast<unsigned char>(dataChips[recNo * 0x44 + 0x3a]);
+             chips[recNo].chipTypeHex = tmpBuf;
+             tmpBuf = static_cast<unsigned char>(dataChips[recNo * 0x44 + 0x3b]);
+             chips[recNo].algorithmCode = tmpBuf;
+             tmpBuf = static_cast<unsigned char>(dataChips[recNo * 0x44 + 0x3c]);
+             delay = tmpBuf;
+             tmpBuf = static_cast<unsigned char>(dataChips[recNo * 0x44 + 0x3d]);
+             delay = delay + tmpBuf * 256;
+             chips[recNo].delay = delay;
+             tmpBuf = static_cast<unsigned char>(dataChips[recNo * 0x44 + 0x3e]);
+             chips[recNo].addr4bit = tmpBuf;
+             tmpBuf = static_cast<unsigned char>(dataChips[recNo * 0x44 + 0x40]);
+             chips[recNo].blockSize = tmpBuf * 1024;
+             tmpBuf = static_cast<unsigned char>(dataChips[recNo * 0x44 + 0x42]);
+             chips[recNo].eepromPages = tmpBuf;
+             tmpBuf = static_cast<unsigned char>(dataChips[recNo * 0x44 + 0x43]);
+             if (tmpBuf == 0x00) chips[recNo].chipVCC = "3.3 V";
+             if (tmpBuf == 0x01) chips[recNo].chipVCC = "1.8 V";
+             if (tmpBuf == 0x02) chips[recNo].chipVCC = "5.0 V";
+             dataPoz = dataPoz + 0x44; //next record
+             verticalHeader.append(QString::number(recNo));
+             recNo++;
+    }
+    max_rec = recNo;
+    //ui->comboBox_man->addItem("");
+    for (i = 0; i<max_rec; i++)
+    {
+        //replacing items to combobox Manufacture
+        index2 = ui->comboBox_man->findText(chips[i].chipManuf);
+                    if ((index2 == -1) && (chips[i].chipTypeHex ==0)) ui->comboBox_man->addItem(chips[i].chipManuf);
+    }
+     ui->comboBox_man->setCurrentIndex(0);
+     ui->statusBar->showMessage("");
+     currentChipType = 0;
+     ui->comboBox_type->setCurrentIndex(0);
+}
+
 //*****************************************************
 //       HEX ULTLITY by Mikhail Medvedev
 //*****************************************************
@@ -1480,11 +1496,4 @@ QString MainWindow::getCRC32()
               i++;
             }
         return hexiAddr(crc ^ 0xFFFFFFFF);
-}
-
-
-void MainWindow::on_actionChip_info_triggered()
-{
-     DialogSFDP* sfdpDialog = new DialogSFDP();
-     sfdpDialog->show();
 }
