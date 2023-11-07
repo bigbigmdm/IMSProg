@@ -221,6 +221,7 @@ FM25M16A(1.8V), FM25M32B(1.8V), FM25M64A(1.8V)
 
 The latest version of the chip database can be found [here](https://antenna-dvb-t2.ru/dl_all/IMSProg.Dat).
 You can download it and copy it to the /opt/IMSProg folder with sudo:
+
 `sudo cp IMSProg.Dat /opt/IMSProg`
 
 [![Watch the video](img/IMSProg_1_0_24.mp4)](img/IMSProg_1_0_24.mp4)
