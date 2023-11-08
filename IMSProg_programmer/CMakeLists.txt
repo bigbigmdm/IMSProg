@@ -99,4 +99,3 @@ PERMISSIONS OWNER_EXECUTE OWNER_WRITE OWNER_READ GROUP_EXECUTE GROUP_READ WORLD_
 DESTINATION /opt/IMSProg)
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/other/IMSProg_database_update.desktop" DESTINATION /usr/share/applications)
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/img/IMSProg_database_update.png" DESTINATION /usr/share/pixmaps)
-#execute_process(COMMAND chmod 755  /opt/IMSProg/IMSProg_database_update.sh)
