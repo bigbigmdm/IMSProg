@@ -94,3 +94,6 @@ install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/language/chipProgrammer_es_ES.qm" DES
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/language/chipProgrammer_de_DE.qm" DESTINATION /opt/IMSProg/language)
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/language/chipProgrammer_zn_CH.qm" DESTINATION /opt/IMSProg/language)
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/language/chipProgrammer_uk_UA.qm" DESTINATION /opt/IMSProg/language)
+install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/other/IMSProg_database_update.sh" DESTINATION /opt/IMSProg)
+install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/other/IMSProg_database_update.desktop" DESTINATION /usr/share/applications)
+install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/img/IMSProg_database_update.png" DESTINATION /usr/share/pixmaps)
