@@ -80,3 +80,11 @@ IMSProg (1.0.29-1) stable; urgency=medium
    * Reloading the chip database after the chipEditor is finishes. 
    
  -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Fri, 02 Now 2023 11:04:00 +1000
+
+IMSProg (1.0.29-3) stable; urgency=medium
+
+   * Adding the chip database update script.
+   * Adding new chips into the database.
+
+ -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Fri, 08 Now 2023 09:30:00 +1000
+
