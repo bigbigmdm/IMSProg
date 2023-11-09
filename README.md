@@ -244,3 +244,4 @@ You can download it and copy it to the /opt/IMSProg folder with sudo:
 - Ver. 1.0.27 - Added the SFDP and status register information form.
 - Ver. 1.0.28 - Bad display of qComboBoxes in UBUNTU, Manjaro linux fixed, display of monospaced font in Manjaro linux fixed. Changed the default file path to the home directory. The last file path is saved and new file operations are processed using the last path. Added new language translation.
 - Ver. 1.0.29 - Added: Reloading the chip database after the `chipEditor` is finishes. Added chips to the database.
+- Ver. 1.1.1  - Changing application folders according to Debian policy.
