@@ -248,7 +248,7 @@ You can download it and copy it to the /opt/IMSProg folder with sudo:
 
 ## Project structure
 
-`
+```
 IMSProg _files_							                    _folder_
 ===================================================================================
 IMSProg														/usr/bin
@@ -279,4 +279,4 @@ IMSProg_programmer/img/IMSProg64.png						/usr/share/pixmaps
 IMSProg_programmer/img/IMSProg_database_update.png			/usr/share/pixmaps
 IMSProg_editor/img/chipEdit64.png							/usr/share/pixmaps
 
-`
+```
