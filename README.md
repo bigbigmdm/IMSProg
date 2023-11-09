@@ -251,32 +251,32 @@ You can download it and copy it to the /opt/IMSProg folder with sudo:
 ```
 IMSProg _files_							                    _folder_
 ===================================================================================
-IMSProg														/usr/bin
-IMSProg_editor												/usr/bin
-IMSProg_programmer/other/IMSProg_database_update.sh 		/usr/bin
+IMSProg                                                     /usr/bin
+IMSProg_editor                                              /usr/bin
+IMSProg_programmer/other/IMSProg_database_update.sh         /usr/bin
 
-IMSProg_programmer/database/IMSProg.Dat						/etc/imsprog
+IMSProg_programmer/database/IMSProg.Dat                     /etc/imsprog
 
-IMSProg_programmer/other/99-CH341.rules						/etc/udev/rules.d
+IMSProg_programmer/other/99-CH341.rules                     /etc/udev/rules.d
 
-IMSProg_programmer/language/chipProgrammer_ru_RU.qm			/usr/share/imsprog
-IMSProg_programmer/language/chipProgrammer_es_ES.qm			/usr/share/imsprog
-IMSProg_programmer/language/chipProgrammer_de_DE.qm			/usr/share/imsprog
-IMSProg_programmer/language/chipProgrammer_zn_CH.qm			/usr/share/imsprog
-IMSProg_programmer/language/chipProgrammer_uk_UA.qm			/usr/share/imsprog
+IMSProg_programmer/language/chipProgrammer_ru_RU.qm         /usr/share/imsprog
+IMSProg_programmer/language/chipProgrammer_es_ES.qm         /usr/share/imsprog
+IMSProg_programmer/language/chipProgrammer_de_DE.qm         /usr/share/imsprog
+IMSProg_programmer/language/chipProgrammer_zn_CH.qm         /usr/share/imsprog
+IMSProg_programmer/language/chipProgrammer_uk_UA.qm         /usr/share/imsprog
 
-IMSProg_editor/language/chipEditor_ru_RU.qm					/usr/share/imsprog
-IMSProg_editor/language/chipEditor_de_DE.qm					/usr/share/imsprog
-IMSProg_editor/language/chipEditor_es_ES.qm					/usr/share/imsprog
-IMSProg_editor/language/chipEditor_zn_CH.qm					/usr/share/imsprog
-IMSProg_editor/language/chipEditor_uk_UA.qm					/usr/share/imsprog
+IMSProg_editor/language/chipEditor_ru_RU.qm                 /usr/share/imsprog
+IMSProg_editor/language/chipEditor_de_DE.qm                 /usr/share/imsprog
+IMSProg_editor/language/chipEditor_es_ES.qm                 /usr/share/imsprog
+IMSProg_editor/language/chipEditor_zn_CH.qm                 /usr/share/imsprog
+IMSProg_editor/language/chipEditor_uk_UA.qm                 /usr/share/imsprog
 
-IMSProg_programmer/other/IMSProg.desktop					/usr/share/applications
-IMSProg_programmer/other/IMSProg_editor.desktop				/usr/share/applications
-IMSProg_programmer/other/IMSProg_database_update.desktop	/usr/share/applications
+IMSProg_programmer/other/IMSProg.desktop                    /usr/share/applications
+IMSProg_programmer/other/IMSProg_editor.desktop             /usr/share/applications
+IMSProg_programmer/other/IMSProg_database_update.desktop    /usr/share/applications
 
-IMSProg_programmer/img/IMSProg64.png						/usr/share/pixmaps
-IMSProg_programmer/img/IMSProg_database_update.png			/usr/share/pixmaps
-IMSProg_editor/img/chipEdit64.png							/usr/share/pixmaps
+IMSProg_programmer/img/IMSProg64.png                        /usr/share/pixmaps
+IMSProg_programmer/img/IMSProg_database_update.png          /usr/share/pixmaps
+IMSProg_editor/img/chipEdit64.png                           /usr/share/pixmaps
 
 ```
