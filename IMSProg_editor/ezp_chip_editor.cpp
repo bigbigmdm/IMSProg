@@ -44,7 +44,7 @@ void MainWindow::on_actionOpen_triggered()
     ui->statusBar->showMessage(tr("Open the file"));
     fileName = QFileDialog::getOpenFileName(this,
                                 QString(tr("Open the file")),
-                                QDir::currentPath(),
+                                "/etc/imsprog",
                                 "Data Images (*.Dat);;All files (*.*)");
     ui->statusBar->showMessage(tr("Current file: ") + fileName);
     QFile file(fileName);

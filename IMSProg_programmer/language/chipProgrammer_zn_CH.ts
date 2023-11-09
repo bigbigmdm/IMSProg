@@ -20,8 +20,12 @@
     </message>
     <message>
         <location filename="../dialogabout.ui" line="106"/>
+        <source>Version: 1.1.1</source>
+        <translation>版本： 1.1.1</translation>
+    </message>
+    <message>
         <source>Version: 1.0.29</source>
-        <translation>版本： 1.0.29</translation>
+        <translation type="vanished">版本： 1.0.29</translation>
     </message>
     <message>
         <source>Version: 1.0.27</source>

@@ -19,6 +19,11 @@
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;У цій програмі використовується віджет &lt;a href=&quot;https://github.com/Simsys/qhexedit2/&quot;&gt;QhexEditor2&lt;/a&gt; та модифікований код програми &lt;a href=&quot;https://github.com/McMCCRU/SNANDer&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;SNANDer&lt;/span&gt;&lt;/a&gt; .&lt;/p&gt;&lt;p&gt;Сторінка на GitHub знаходиться &lt;a href=&quot;https://github.com/bigbigmdm/IMSProg&quot;&gt;тут&lt;/a&gt;, сторінка підтримки - &lt;a href=&quot;https://antenna-dvb-t2.ru/IMSProg.php&quot;&gt;тут&lt;/a&gt;. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
+        <location filename="../dialogabout.ui" line="106"/>
+        <source>Version: 1.1.1</source>
+        <translation>Версія 1.1.1</translation>
+    </message>
+    <message>
         <source>Version: 1.0.27</source>
         <translation type="vanished">Версія 1.0.27</translation>
     </message>
@@ -33,9 +38,8 @@
         <translation>Створено у 2023 році Михайлом Медведєвим</translation>
     </message>
     <message>
-        <location filename="../dialogabout.ui" line="106"/>
         <source>Version: 1.0.29</source>
-        <translation>Версія 1.0.29</translation>
+        <translation type="vanished">Версія 1.0.29</translation>
     </message>
     <message>
         <location filename="../dialogabout.ui" line="143"/>

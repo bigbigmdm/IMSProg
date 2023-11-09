@@ -1240,7 +1240,7 @@ void MainWindow::progInit()
     int index2;
     //opening chip database file
     ui->statusBar->showMessage(tr("Opening DAT file"));
-    QFile datfile("IMSProg.Dat");
+    QFile datfile("/etc/imsprog/IMSProg.Dat");
     QByteArray dataChips;
     if (!datfile.open(QIODevice::ReadOnly))
     {
