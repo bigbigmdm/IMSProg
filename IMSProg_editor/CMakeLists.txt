@@ -40,5 +40,5 @@ install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/language/chipEditor_de_DE.qm" DESTINA
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/language/chipEditor_es_ES.qm" DESTINATION /usr/share/imsprog)
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/language/chipEditor_zn_CH.qm" DESTINATION /usr/share/imsprog)
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/language/chipEditor_uk_UA.qm" DESTINATION /usr/share/imsprog)
-
+install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/language/chipEditor_hu_HU.qm" DESTINATION /usr/share/imsprog)
 
