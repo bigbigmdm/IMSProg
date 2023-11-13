@@ -94,6 +94,7 @@ install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/language/chipProgrammer_es_ES.qm" DES
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/language/chipProgrammer_de_DE.qm" DESTINATION /usr/share/imsprog)
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/language/chipProgrammer_zn_CH.qm" DESTINATION /usr/share/imsprog)
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/language/chipProgrammer_uk_UA.qm" DESTINATION /usr/share/imsprog)
+install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/language/chipProgrammer_hu_HU.qm" DESTINATION /usr/share/imsprog)
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/other/IMSProg_database_update.sh" 
 PERMISSIONS OWNER_EXECUTE OWNER_WRITE OWNER_READ GROUP_EXECUTE GROUP_READ WORLD_EXECUTE WORLD_READ
 DESTINATION /usr/bin)
