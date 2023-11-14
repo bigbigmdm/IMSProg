@@ -21,12 +21,16 @@ public:
 
 private slots:
     void on_pushButton_clicked();
-
     void on_pushButton_2_clicked();
+    void on_pushButton_3_clicked();
+    void r1Disable();
+    void r1Enable();
 
 private:
     Ui::DialogSFDP *ui;
     QString bP(unsigned char z);
+    void setLineEditFilter();
+    int numOfRegisters;
 };
 
 #endif // DIALOGSFDP_H
