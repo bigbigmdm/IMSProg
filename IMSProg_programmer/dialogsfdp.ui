@@ -1406,13 +1406,13 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
       <widget class="QPushButton" name="pushButton_3">
        <property name="minimumSize">
         <size>
-         <width>150</width>
+         <width>160</width>
          <height>23</height>
         </size>
        </property>
        <property name="maximumSize">
         <size>
-         <width>150</width>
+         <width>160</width>
          <height>23</height>
         </size>
        </property>
