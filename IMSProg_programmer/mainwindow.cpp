@@ -1125,25 +1125,14 @@ void MainWindow::on_actionChecksum_calculate_triggered()
 
 void MainWindow::on_actionEdit_chips_Database_triggered()
 {
-    QString programPath = "./IMSProg_editor";
-    bool programExists = QFileInfo::exists(programPath) && !QDir(programPath).exists();
-
-    if (!programExists) {
-        // if does not exists on realive path check another
-        QString systemProgramPath = QStandardPaths::findExecutable(programPath);
-
-        if (!systemProgramPath.isEmpty()) {
-            // exists on system path
-            programPath = systemProgramPath;
-            programExists = true;
-        }
-    }
-
-    if (programExists) {
-        QProcess::execute(programPath);
+    if(QFileInfo::exists("IMSProg_editor") && !QDir("IMSProg_editor").exists()){
+        //The file exists and is not a folder
+        QProcess::execute("./IMSProg_editor");
         progInit();
-    } else {
-        QMessageBox::about(this, tr("Error"), tr("File 'IMSProg_editor' not found!"));
+    }
+    else {
+        //The file doesn't exist, either the path doesn't exist or is the path of a folder
+         QMessageBox::about(this, tr("Error"), tr("Not found file `IMSProg_editor`!"));
     }
 }
 

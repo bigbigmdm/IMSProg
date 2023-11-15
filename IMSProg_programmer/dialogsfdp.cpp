@@ -1,10 +1,16 @@
 #include "dialogsfdp.h"
 #include "ui_dialogsfdp.h"
+#include <QValidator>
+#include <QRegExp>
+#include "unistd.h"
 DialogSFDP::DialogSFDP(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::DialogSFDP)
 {
     ui->setupUi(this);
+    setLineEditFilter();
+    r1Enable();
+    numOfRegisters = 2; // 2-not reading, 1 - two registers, 0 - one register
 }
 
 DialogSFDP::~DialogSFDP()
@@ -156,11 +162,12 @@ void DialogSFDP::on_pushButton_clicked()
 
         }
 
-        //READING STATUS REGISTERS
+        //READING STATUS REGISTER 0
         SPI_CONTROLLER_Chip_Select_Low();
         SPI_CONTROLLER_Write_One_Byte(0x05);
         retval = SPI_CONTROLLER_Read_NByte(sfdpBuf,2,SPI_CONTROLLER_SPEED_SINGLE);
         SPI_CONTROLLER_Chip_Select_High();
+        usleep(1);
         if (retval)
         {
            QMessageBox::about(this, tr("Error"), tr("Error reading register!"));
@@ -174,16 +181,36 @@ void DialogSFDP::on_pushButton_clicked()
         ui->lineEdit_sr02->setText(QString::number(((sfdpBuf[0] & 4) >> 2)));
         ui->lineEdit_sr01->setText(QString::number(((sfdpBuf[0] & 2) >> 1)));
         ui->lineEdit_sr00->setText(QString::number((sfdpBuf[0] & 1)));
+        //READING STATUS REGISTER 1
+        SPI_CONTROLLER_Chip_Select_Low();
+        SPI_CONTROLLER_Write_One_Byte(0x35);
+        retval = SPI_CONTROLLER_Read_NByte(sfdpBuf,2,SPI_CONTROLLER_SPEED_SINGLE);
+        SPI_CONTROLLER_Chip_Select_High();
+        usleep(1);
+        if (retval)
+        {
+           QMessageBox::about(this, tr("Error"), tr("Error reading register!"));
+           return;
+        }
+        if (sfdpBuf[0] == 0xff) numOfRegisters = 0;
+        else
+        {
+            numOfRegisters = 1;
+            r1Enable();
+        }
+        if (numOfRegisters == 1)
+        {
+            ui->lineEdit_sr17->setText(QString::number(((sfdpBuf[0] & 128) >> 7)));
+            ui->lineEdit_sr16->setText(QString::number(((sfdpBuf[0] & 64) >> 6)));
+            ui->lineEdit_sr15->setText(QString::number(((sfdpBuf[0] & 32) >> 5)));
+            ui->lineEdit_sr14->setText(QString::number(((sfdpBuf[0] & 16) >> 4)));
+            ui->lineEdit_sr13->setText(QString::number(((sfdpBuf[0] & 8) >> 3)));
+            ui->lineEdit_sr12->setText(QString::number(((sfdpBuf[0] & 4) >> 2)));
+            ui->lineEdit_sr11->setText(QString::number(((sfdpBuf[0] & 2) >> 1)));
+            ui->lineEdit_sr10->setText(QString::number((sfdpBuf[0] & 1)));
 
-        ui->lineEdit_sr17->setText(QString::number(((sfdpBuf[1] & 128) >> 7)));
-        ui->lineEdit_sr16->setText(QString::number(((sfdpBuf[1] & 64) >> 6)));
-        ui->lineEdit_sr15->setText(QString::number(((sfdpBuf[1] & 32) >> 5)));
-        ui->lineEdit_sr14->setText(QString::number(((sfdpBuf[1] & 16) >> 4)));
-        ui->lineEdit_sr13->setText(QString::number(((sfdpBuf[1] & 8) >> 3)));
-        ui->lineEdit_sr12->setText(QString::number(((sfdpBuf[1] & 4) >> 2)));
-        ui->lineEdit_sr11->setText(QString::number(((sfdpBuf[1] & 2) >> 1)));
-        ui->lineEdit_sr10->setText(QString::number((sfdpBuf[1] & 1)));
-
+        }
+        else r1Disable();
         //Reading Unique ID
         SPI_CONTROLLER_Chip_Select_Low();
         SPI_CONTROLLER_Write_One_Byte(0x4b);
@@ -228,4 +255,121 @@ QString DialogSFDP::bP(unsigned char z)
 void DialogSFDP::on_pushButton_2_clicked()
 {
     DialogSFDP::close();
+}
+
+void DialogSFDP::on_pushButton_3_clicked()
+{
+   if (numOfRegisters < 2)
+   {
+    int stCH341 = 0, retval;
+    stCH341 = ch341a_spi_init();
+    if (stCH341 == 0)
+    {
+       uint8_t *sfdpBuf, r0, r1;
+       sfdpBuf = (uint8_t *)malloc(4);
+       r0 = 0;
+       r1 = 0;
+       if (QString::compare(ui->lineEdit_sr07->text(), "0", Qt::CaseInsensitive)) r0 = r0 + 128;
+       if (QString::compare(ui->lineEdit_sr06->text(), "0", Qt::CaseInsensitive)) r0 = r0 +  64;
+       if (QString::compare(ui->lineEdit_sr05->text(), "0", Qt::CaseInsensitive)) r0 = r0 +  32;
+       if (QString::compare(ui->lineEdit_sr04->text(), "0", Qt::CaseInsensitive)) r0 = r0 +  16;
+       if (QString::compare(ui->lineEdit_sr03->text(), "0", Qt::CaseInsensitive)) r0 = r0 +   8;
+       if (QString::compare(ui->lineEdit_sr02->text(), "0", Qt::CaseInsensitive)) r0 = r0 +   4;
+       if (QString::compare(ui->lineEdit_sr01->text(), "0", Qt::CaseInsensitive)) r0 = r0 +   2;
+       if (QString::compare(ui->lineEdit_sr00->text(), "0", Qt::CaseInsensitive)) r0 = r0 +   1;
+
+       if (QString::compare(ui->lineEdit_sr17->text(), "0", Qt::CaseInsensitive)) r1 = r1 + 128;
+       if (QString::compare(ui->lineEdit_sr16->text(), "0", Qt::CaseInsensitive)) r1 = r1 +  64;
+       if (QString::compare(ui->lineEdit_sr15->text(), "0", Qt::CaseInsensitive)) r1 = r1 +  32;
+       if (QString::compare(ui->lineEdit_sr14->text(), "0", Qt::CaseInsensitive)) r1 = r1 +  16;
+       if (QString::compare(ui->lineEdit_sr13->text(), "0", Qt::CaseInsensitive)) r1 = r1 +   8;
+       if (QString::compare(ui->lineEdit_sr12->text(), "0", Qt::CaseInsensitive)) r1 = r1 +   4;
+       if (QString::compare(ui->lineEdit_sr11->text(), "0", Qt::CaseInsensitive)) r1 = r1 +   2;
+       if (QString::compare(ui->lineEdit_sr10->text(), "0", Qt::CaseInsensitive)) r1 = r1 +   1;
+
+       //Writing status registers
+       SPI_CONTROLLER_Chip_Select_Low();
+       SPI_CONTROLLER_Write_One_Byte(0x06);
+       SPI_CONTROLLER_Chip_Select_High();
+       usleep(1);
+
+       SPI_CONTROLLER_Chip_Select_Low();
+       SPI_CONTROLLER_Write_One_Byte(0x50);
+       SPI_CONTROLLER_Chip_Select_High();
+       usleep(1);
+
+       SPI_CONTROLLER_Chip_Select_Low();
+       SPI_CONTROLLER_Write_One_Byte(0x01);
+       SPI_CONTROLLER_Write_One_Byte(r0);
+       if (numOfRegisters == 1) SPI_CONTROLLER_Write_One_Byte(r1);
+       SPI_CONTROLLER_Chip_Select_High();
+       usleep(1);
+
+       SPI_CONTROLLER_Chip_Select_Low();
+       SPI_CONTROLLER_Write_One_Byte(0x04);
+       SPI_CONTROLLER_Chip_Select_High();
+       usleep(1);
+       //Close the CH341a device
+       ch341a_spi_shutdown();
+   }
+   else QMessageBox::about(this, tr("Error"), tr("Programmer CH341a is not connected!"));
+  }
+  else QMessageBox::about(this, tr("Error"), tr("Before writing the registers, please press the `Read` button!"));
+}
+
+void DialogSFDP::setLineEditFilter()
+{
+    QRegExp reHex( "[0-1]{1}" );
+    QRegExpValidator *validator = new QRegExpValidator(reHex, this);
+    ui->lineEdit_sr00->setValidator(validator);
+    ui->lineEdit_sr01->setValidator(validator);
+    ui->lineEdit_sr02->setValidator(validator);
+    ui->lineEdit_sr03->setValidator(validator);
+    ui->lineEdit_sr04->setValidator(validator);
+    ui->lineEdit_sr05->setValidator(validator);
+    ui->lineEdit_sr06->setValidator(validator);
+    ui->lineEdit_sr07->setValidator(validator);
+
+    ui->lineEdit_sr10->setValidator(validator);
+    ui->lineEdit_sr11->setValidator(validator);
+    ui->lineEdit_sr12->setValidator(validator);
+    ui->lineEdit_sr13->setValidator(validator);
+    ui->lineEdit_sr14->setValidator(validator);
+    ui->lineEdit_sr15->setValidator(validator);
+    ui->lineEdit_sr16->setValidator(validator);
+    ui->lineEdit_sr17->setValidator(validator);
+}
+
+void DialogSFDP::r1Disable()
+{
+   ui->lineEdit_sr10->setDisabled(true);
+   ui->lineEdit_sr11->setDisabled(true);
+   ui->lineEdit_sr12->setDisabled(true);
+   ui->lineEdit_sr13->setDisabled(true);
+   ui->lineEdit_sr14->setDisabled(true);
+   ui->lineEdit_sr15->setDisabled(true);
+   ui->lineEdit_sr16->setDisabled(true);
+   ui->lineEdit_sr17->setDisabled(true);
+   ui->label_11->setDisabled(true);
+   ui->lineEdit_sr10->setText("");
+   ui->lineEdit_sr11->setText("");
+   ui->lineEdit_sr12->setText("");
+   ui->lineEdit_sr13->setText("");
+   ui->lineEdit_sr14->setText("");
+   ui->lineEdit_sr15->setText("");
+   ui->lineEdit_sr16->setText("");
+   ui->lineEdit_sr17->setText("");
+}
+
+void DialogSFDP::r1Enable()
+{
+    ui->lineEdit_sr10->setDisabled(false);
+    ui->lineEdit_sr11->setDisabled(false);
+    ui->lineEdit_sr12->setDisabled(false);
+    ui->lineEdit_sr13->setDisabled(false);
+    ui->lineEdit_sr14->setDisabled(false);
+    ui->lineEdit_sr15->setDisabled(false);
+    ui->lineEdit_sr16->setDisabled(false);
+    ui->lineEdit_sr17->setDisabled(false);
+    ui->label_11->setDisabled(false);
 }
