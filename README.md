@@ -33,7 +33,7 @@ cmake ..
 make -j4
 sudo make install
 ```
-
+This commands included in file `build_all.sh`.
 
 ## System software requirements
 - cmake library
