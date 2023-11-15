@@ -91,7 +91,7 @@ The progress bar shows the progress of the read, erase, and verify operations.
 
 ![SFDP](img/IMSProg_SFDP_eng.png)
 
-IIf the SPI NOR FLASH chip is detected normally, but is not read (gives the message `Error reading sector 0`), then in the `Chip info` window you can change bits `BP4` and `BP3` to zero and press the `Write registers` button. Then repeat the chip reading operation.
+If the SPI NOR FLASH chip is detected normally, but is not read (gives the message `Error reading sector 0`), then in the `Chip info` window you can change bits `BP4` and `BP3` to zero and press the `Write registers` button. Then repeat the chip reading operation.
 
 ### File operations
 - The ![Save](img/save64.png) or `<Ctrl+S>` button is used to save the computer buffer to a file.
