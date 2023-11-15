@@ -89,7 +89,7 @@ The progress bar shows the progress of the read, erase, and verify operations.
 - The `i` key show the connection chip to CH341a device image form.
 - The `Main menu -> Programmer -> Chip info` or `<Ctrl+P>` item shows the Serial Flash Discoverable Parameter (SFDP) register and the status registers of the SPI NOR flash memory chips.
 
-![SFDP](img/IMSProg_SFDP_eng.png)
+![SFDP](img/sfdp_unblock_en.png)
 
 If the SPI NOR FLASH chip is detected normally, but is not read (gives the message `Error reading sector 0`), then in the `Chip info` window you can change bits `BP4` and `BP3` to zero and press the `Write registers` button. Then repeat the chip reading operation.
 
