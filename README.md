@@ -33,7 +33,7 @@ cmake ..
 make -j4
 sudo make install
 ```
-This commands included in file `build_all.sh`.
+These commands are included in the `build_all.sh` file.
 
 ## System software requirements
 - cmake library
@@ -90,6 +90,8 @@ The progress bar shows the progress of the read, erase, and verify operations.
 - The `Main menu -> Programmer -> Chip info` or `<Ctrl+P>` item shows the Serial Flash Discoverable Parameter (SFDP) register and the status registers of the SPI NOR flash memory chips.
 
 ![SFDP](img/IMSProg_SFDP_eng.png)
+
+If the SPI NOR FLASH chip is detected normally but not read (gives the message 'Error reading sector 0'), you can change bit BP4 to zero in the `Chip info` window. Then read the chip again.
 
 ### File operations
 - The ![Save](img/save64.png) or `<Ctrl+S>` button is used to save the computer buffer to a file.
