@@ -98,12 +98,12 @@ IMSProg (1.1.2-1) stable; urgency=medium
 
    * Added function for writing the Status Registers.
 
- -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Fri, 09 Now 2023 13:22:00 +1000
+ -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Fri, 14 Now 2023 13:22:00 +1000
 
 IMSProg (1.1.2-2) stable; urgency=medium
 
    + Deleting compiler warning.
    + Adding standart cmake folder names
 
- -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Fri, 09 Now 2023 13:22:00 +1000
+ -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Fri, 16 Now 2023 11:42:00 +1000
 
