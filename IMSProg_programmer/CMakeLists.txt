@@ -14,6 +14,21 @@ if (CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
 	set(CMAKE_INSTALL_PREFIX "/usr" CACHE PATH "The default install prefix" FORCE)
 endif()
 
+# Set the CMAKE_INSTALL_BINDIR to /bin if not specified
+if(NOT DEFINED CMAKE_INSTALL_BINDIR)
+  set(CMAKE_INSTALL_BINDIR "bin" CACHE PATH "user executables (bin)")
+endif()
+
+# Set the CMAKE_INSTALL_DATAROOTDIR to /share if not specified
+if(NOT DEFINED CMAKE_INSTALL_DATAROOTDIR)
+  set(CMAKE_INSTALL_DATAROOTDIR "share" CACHE PATH "read-only architecture-independent data root (share)")
+endif()
+
+# Set the CMAKE_INSTALL_SYSCONFDIR to /etc if not specified
+if(NOT DEFINED CMAKE_INSTALL_SYSCONFDIR)
+  set(CMAKE_INSTALL_SYSCONFDIR "/etc" CACHE PATH "read-only single-machine data (etc)")
+endif()
+
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 
 find_package(Qt5 REQUIRED COMPONENTS Core Widgets)
@@ -84,19 +99,19 @@ target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 target_link_libraries(${PROJECT_NAME} Qt5::Core)
 target_link_libraries(${PROJECT_NAME} Qt5::Widgets ${LibUSB_LIBRARIES})
 
-install(TARGETS ${PROJECT_NAME} DESTINATION /usr/bin)
-install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/other/IMSProg.desktop" DESTINATION /usr/share/applications)
-install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/img/IMSProg64.png" DESTINATION /usr/share/pixmaps)
-install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/database/IMSProg.Dat" DESTINATION /etc/imsprog)
-install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/other/99-CH341.rules" DESTINATION /etc/udev/rules.d)
-install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/language/chipProgrammer_ru_RU.qm" DESTINATION /usr/share/imsprog)
-install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/language/chipProgrammer_es_ES.qm" DESTINATION /usr/share/imsprog)
-install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/language/chipProgrammer_de_DE.qm" DESTINATION /usr/share/imsprog)
-install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/language/chipProgrammer_zn_CH.qm" DESTINATION /usr/share/imsprog)
-install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/language/chipProgrammer_uk_UA.qm" DESTINATION /usr/share/imsprog)
-install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/language/chipProgrammer_hu_HU.qm" DESTINATION /usr/share/imsprog)
+install(TARGETS ${PROJECT_NAME} DESTINATION ${CMAKE_INSTALL_BINDIR})
+install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/other/IMSProg.desktop" DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/applications")
+install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/img/IMSProg64.png" DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/pixmaps")
+install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/database/IMSProg.Dat" DESTINATION "${CMAKE_INSTALL_SYSCONFDIR}/imsprog")
+install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/other/99-CH341.rules" DESTINATION "${CMAKE_INSTALL_SYSCONFDIR}/udev/rules.d")
+install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/language/chipProgrammer_ru_RU.qm" DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/imsprog")
+install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/language/chipProgrammer_es_ES.qm" DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/imsprog")
+install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/language/chipProgrammer_de_DE.qm" DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/imsprog")
+install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/language/chipProgrammer_zn_CH.qm" DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/imsprog")
+install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/language/chipProgrammer_uk_UA.qm" DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/imsprog")
+install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/language/chipProgrammer_hu_HU.qm" DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/imsprog")
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/other/IMSProg_database_update.sh" 
 PERMISSIONS OWNER_EXECUTE OWNER_WRITE OWNER_READ GROUP_EXECUTE GROUP_READ WORLD_EXECUTE WORLD_READ
-DESTINATION /usr/bin)
-install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/other/IMSProg_database_update.desktop" DESTINATION /usr/share/applications)
-install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/img/IMSProg_database_update.png" DESTINATION /usr/share/pixmaps)
+DESTINATION ${CMAKE_INSTALL_BINDIR})
+install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/other/IMSProg_database_update.desktop" DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/applications")
+install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/img/IMSProg_database_update.png" DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/pixmaps")
