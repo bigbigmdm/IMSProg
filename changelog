@@ -1,4 +1,97 @@
-IMSProg (1.0.23-1) stable; urgency=medium
+imsprog (1.1.2-2) stable; urgency=medium
+
+  + Deleting compiler warning.
+  + Adding standart cmake folder names
+  * Added chips to the database. 
+
+ -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Thu, 16 Nov 2023 11:42:00 +1000
+
+imsprog (1.1.2-1) stable; urgency=medium
+
+  * Added function for writing the Status Registers.
+
+ -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Tue, 14 Nov 2023 13:22:00 +1000
+
+imsprog (1.1.1-1) stable; urgency=medium
+
+  * Changing application folders according to Debian policy
+
+ -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Thu, 09 Nov 2023 13:22:00 +1000
+
+imsprog (1.0.29-3) stable; urgency=medium
+
+  * Adding the chip database update script.
+  * Adding new chips into the database.
+
+ -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Wed, 08 Nov 2023 09:30:00 +1000
+
+imsprog (1.0.29-1) stable; urgency=medium
+
+  * Reloading the chip database after the chipEditor is finishes. 
+   
+ -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Thu, 02 Nov 2023 11:04:00 +1000
+
+imsprog (1.0.28-5) stable; urgency=medium
+
+  * Changed the default file path to the home directory. 
+  * The last file path is saved and new file operations are processed using the last path.
+
+ -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Fri, 27 Okt 2023 10:18:00 +1000
+
+imsprog (1.0.28-4) stable; urgency=medium
+
+  + Degreese the mainform size to correct showing in UBUNTU 22.04.
+
+ -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Thu, 26 Okt 2023 10:16:00 +1000
+
+imsprog (1.0.28-3) stable; urgency=medium
+
+  * Changing application font from Ubuntu to Monospace.
+  + Fix for different combobox sizes in Fedora 38.
+
+ -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Fri, 20 Okt 2023 14:08:00 +1000
+
+imsprog (1.0.28-1) stable; urgency=medium
+
+  * New upstream release.
+  + Bad display of qComboBoxes in UBUNTU, Manjaro linux fixed.
+  + Display of monospaced font in Manjaro linux fixed.
+
+ -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Thu, 19 Okt 2023 12:33:05 +1000 
+
+imsprog (1.0.27-1) stable; urgency=medium
+
+  * New upstream release.
+  * Added the SFDP and status register information form.
+ 
+ -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Mon, 16 Okt 2023 16:28:16 +1000 
+
+imsprog (1.0.26-1) stable; urgency=medium
+
+  * New upstream release.
+  * Added support for M95xxx chips.
+  + Removed diagnostic errors.
+ 
+ -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Wed, 04 Okt 2023 13:34:52 +1000 
+
+imsprog (1.0.25-1) stable; urgency=medium
+
+  * New upstream release.
+  * Added i key to the interface. 
+  * Added connection information form.
+ 
+ -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Wed, 27 Sep 2023 16:08:45 +1000 
+  
+imsprog (1.0.24-1) stable; urgency=medium
+
+  * New upstream release.
+  * Added STOP key to the interface.
+  + Improved interface rendering. 
+  + Fixes to translations.
+ 
+ -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Mon, 25 Sep 2023 09:58:24 +1000 
+  
+imsprog (1.0.23-1) stable; urgency=medium
 
   * New upstream release.
   * Added chips to the database. 
@@ -8,102 +101,3 @@ IMSProg (1.0.23-1) stable; urgency=medium
   + Correction of database entries.
  
  -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Fri, 15 Sep 2023 15:04:41 +1000 
-  
-IMSProg (1.0.24-1) stable; urgency=medium
-
-  * New upstream release.
-  * Added STOP key to the interface.
-  + Improved interface rendering. 
-  + Fixes to translations.
- 
- -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Fri, 25 Sep 2023 09:58:24 +1000 
-  
-IMSProg (1.0.25-1) stable; urgency=medium
-
-  * New upstream release.
-  * Added i key to the interface. 
-  * Added connection information form.
- 
- -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Fri, 27 Sep 2023 16:08:45 +1000 
-  
-IMSProg (1.0.26-1) stable; urgency=medium
-
-   * New upstream release.
-   * Added support for M95xxx chips.
-   + Removed diagnostic errors.
- 
- -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Fri, 04 Okt 2023 13:34:52 +1000 
-  
-IMSProg (1.0.27-1) stable; urgency=medium
-
-   * New upstream release.
-   * Added the SFDP and status register information form.
- 
- -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Fri, 16 Okt 2023 16:28:16 +1000 
-
-IMSProg (1.0.28-1) stable; urgency=medium
-
-   * New upstream release.
-   + Bad display of qComboBoxes in UBUNTU, Manjaro linux fixed.
-   + Display of monospaced font in Manjaro linux fixed.
-
- -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Fri, 19 Okt 2023 12:33:05 +1000 
-   
-IMSProg (1.0.28-2) stable; urgency=medium
-
-   + Fixing the call of the chip editor function from the chip programmer.
-
- -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Fri, 23 Okt 2023 10:12:35 +1000 
-
-IMSProg (1.0.28-3) stable; urgency=medium
-
-   * Changing application font from Ubuntu to Monospace.
-   + Fix for different combobox sizes in Fedora 38.
-
- -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Fri,MSProg (1.0.28-4) stable; urgency=medium
-
-IMSProg (1.0.28-4) stable; urgency=medium
-
-   + Degreese the mainform size to correct showing in UBUNTU 22.04.
-
- -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Fri, 26 Okt 2023 10:16:00 +1000
-
-IMSProg (1.0.28-5) stable; urgency=medium
-
-   * Changed the default file path to the home directory. 
-   * The last file path is saved and new file operations are processed using the last path.
-
- -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Fri, 27 Okt 2023 10:18:00 +1000
-
-IMSProg (1.0.29-1) stable; urgency=medium
-
-   * Reloading the chip database after the chipEditor is finishes. 
-   
- -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Fri, 02 Now 2023 11:04:00 +1000
-
-IMSProg (1.0.29-3) stable; urgency=medium
-
-   * Adding the chip database update script.
-   * Adding new chips into the database.
-
- -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Fri, 08 Now 2023 09:30:00 +1000
-
-IMSProg (1.1.1-1) stable; urgency=medium
-
-   * Changing application folders according to Debian policy
-
- -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Fri, 09 Now 2023 13:22:00 +1000
-
-IMSProg (1.1.2-1) stable; urgency=medium
-
-   * Added function for writing the Status Registers.
-
- -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Fri, 14 Now 2023 13:22:00 +1000
-
-IMSProg (1.1.2-2) stable; urgency=medium
-
-   + Deleting compiler warning.
-   + Adding standart cmake folder names
-
- -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Fri, 16 Now 2023 11:42:00 +1000
-
