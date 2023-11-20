@@ -287,3 +287,4 @@ IMSProg_programmer/img/IMSProg_database_update.png          /usr/share/pixmaps
 IMSProg_editor/img/chipEdit64.png                           /usr/share/pixmaps
 
 ```
+
