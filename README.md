@@ -52,7 +52,7 @@ These commands are included in the `build_all.sh` file.
 
 `sudo apt-get install pkg-config`
 
-- zenity
+- zenity (Only needed for the chip database update script)
 
 `sudo apt install zenity`
 
