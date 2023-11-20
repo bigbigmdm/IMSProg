@@ -52,6 +52,10 @@ These commands are included in the `build_all.sh` file.
 
 `sudo apt-get install pkg-config`
 
+- zenity
+
+`sudo apt install zenity`
+
 ## How to use:
 
 ### Connecting
