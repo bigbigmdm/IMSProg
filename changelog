@@ -1,3 +1,9 @@
+imsprog (1.1.2-3) stable; urgency=medium
+
+  + patches starting Chip_Editor fixed (written by blackPantherOS) 
+
+ -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Mon, 20 Nov 2023 11:32:00 +1000
+ 
 imsprog (1.1.2-2) stable; urgency=medium
 
   + Deleting compiler warning.
