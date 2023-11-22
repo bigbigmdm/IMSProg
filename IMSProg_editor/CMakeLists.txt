@@ -51,4 +51,4 @@ install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/language/chipEditor_es_ES.qm" DESTINA
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/language/chipEditor_zn_CH.qm" DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/imsprog")
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/language/chipEditor_uk_UA.qm" DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/imsprog")
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/language/chipEditor_hu_HU.qm" DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/imsprog")
-
+install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/language/chipEditor_pt_BR.qm" DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/imsprog")

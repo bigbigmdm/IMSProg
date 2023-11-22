@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="zh_CN" sourcelanguage="en">
+<TS version="2.1" language="es_ES">
 <context>
     <name>MainWindow</name>
     <message>
         <location filename="../ezp_chip_editor.ui" line="14"/>
         <source>IMSProg chip database editor</source>
-        <translation>IMSProg 芯片数据库编辑器</translation>
+        <translation>Editor de banco de dados de chips IMSProg</translation>
     </message>
     <message>
         <location filename="../ezp_chip_editor.ui" line="53"/>
         <source>File</source>
-        <translation>文件</translation>
+        <translation>Arquivo</translation>
     </message>
     <message>
         <location filename="../ezp_chip_editor.ui" line="64"/>
         <source>Edit</source>
-        <translation>编辑</translation>
+        <translation>Editar</translation>
     </message>
     <message>
         <location filename="../ezp_chip_editor.ui" line="108"/>
         <source>Open</source>
-        <translation>打开</translation>
+        <translation>Abrir</translation>
     </message>
     <message>
         <location filename="../ezp_chip_editor.ui" line="111"/>
@@ -31,7 +31,7 @@
     <message>
         <location filename="../ezp_chip_editor.ui" line="120"/>
         <source>Exit</source>
-        <translation>退出</translation>
+        <translation>Sair</translation>
     </message>
     <message>
         <location filename="../ezp_chip_editor.ui" line="123"/>
@@ -42,7 +42,7 @@
     <message>
         <location filename="../ezp_chip_editor.ui" line="132"/>
         <source>Save</source>
-        <translation>保存</translation>
+        <translation>Salvar</translation>
     </message>
     <message>
         <location filename="../ezp_chip_editor.ui" line="135"/>
@@ -52,12 +52,12 @@
     <message>
         <location filename="../ezp_chip_editor.ui" line="144"/>
         <source>Delete lines</source>
-        <translation>删除行</translation>
+        <translation>Deletar linhas</translation>
     </message>
     <message>
         <location filename="../ezp_chip_editor.ui" line="147"/>
         <source>Delete selected lines</source>
-        <translation>删除所选行</translation>
+        <translation>Deletar linhas selecionadas</translation>
     </message>
     <message>
         <location filename="../ezp_chip_editor.ui" line="150"/>
@@ -67,12 +67,12 @@
     <message>
         <location filename="../ezp_chip_editor.ui" line="159"/>
         <source>Add line</source>
-        <translation>添加行</translation>
+        <translation>Adicionar linha</translation>
     </message>
     <message>
         <location filename="../ezp_chip_editor.ui" line="162"/>
         <source>Add selected lines and duplicate data</source>
-        <translation>添加选定行和重复数据</translation>
+        <translation>Adicionar linhas selecionadas e duplicar dados</translation>
     </message>
     <message>
         <location filename="../ezp_chip_editor.ui" line="165"/>
@@ -82,12 +82,12 @@
     <message>
         <location filename="../ezp_chip_editor.ui" line="174"/>
         <source>Move up</source>
-        <translation>向上移动</translation>
+        <translation>Mover acima</translation>
     </message>
     <message>
         <location filename="../ezp_chip_editor.ui" line="177"/>
         <source>Move lines up</source>
-        <translation>向上移动行</translation>
+        <translation>Mover linhas acima</translation>
     </message>
     <message>
         <location filename="../ezp_chip_editor.ui" line="180"/>
@@ -97,12 +97,12 @@
     <message>
         <location filename="../ezp_chip_editor.ui" line="189"/>
         <source>Move down</source>
-        <translation>下移</translation>
+        <translation>Mover abaixo</translation>
     </message>
     <message>
         <location filename="../ezp_chip_editor.ui" line="192"/>
         <source>Move lines down</source>
-        <translation>向下移动行</translation>
+        <translation>Mover linhas abaixo</translation>
     </message>
     <message>
         <location filename="../ezp_chip_editor.ui" line="195"/>
@@ -112,17 +112,17 @@
     <message>
         <location filename="../ezp_chip_editor.ui" line="204"/>
         <source>Export selected lines to CSV file</source>
-        <translation>将选定的行导出到 CSV 文件</translation>
+        <translation>Exportar linhas selecionadas para arquivo CSV</translation>
     </message>
     <message>
         <location filename="../ezp_chip_editor.ui" line="213"/>
         <source>Export to CSV</source>
-        <translation>导出为 CSV</translation>
+        <translation>Exportar para CSV</translation>
     </message>
     <message>
         <location filename="../ezp_chip_editor.ui" line="225"/>
         <source>Import from CSV</source>
-        <translation>从 CSV 导入</translation>
+        <translation>Importar de CSV</translation>
     </message>
     <message>
         <location filename="../ezp_chip_editor.ui" line="228"/>
@@ -135,7 +135,7 @@
         <location filename="../ezp_chip_editor.cpp" line="722"/>
         <location filename="../ezp_chip_editor.cpp" line="743"/>
         <source>Open the file</source>
-        <translation>打开文件</translation>
+        <translation>Abrir o arquivo</translation>
     </message>
     <message>
         <location filename="../ezp_chip_editor.cpp" line="49"/>
@@ -143,22 +143,22 @@
         <location filename="../ezp_chip_editor.cpp" line="725"/>
         <location filename="../ezp_chip_editor.cpp" line="746"/>
         <source>Current file: </source>
-        <translation>当前文件： </translation>
+        <translation>Arquivo atual: </translation>
     </message>
     <message>
         <location filename="../ezp_chip_editor.cpp" line="73"/>
         <source>Type</source>
-        <translation>类型</translation>
+        <translation>Tipo</translation>
     </message>
     <message>
         <location filename="../ezp_chip_editor.cpp" line="74"/>
         <source>Manufacture</source>
-        <translation>制造</translation>
+        <translation>Fabricação</translation>
     </message>
     <message>
         <location filename="../ezp_chip_editor.cpp" line="75"/>
         <source>IC Name</source>
-        <translation>IC 名称</translation>
+        <translation>Nome IC</translation>
     </message>
     <message>
         <location filename="../ezp_chip_editor.cpp" line="76"/>
@@ -168,53 +168,54 @@
     <message>
         <location filename="../ezp_chip_editor.cpp" line="77"/>
         <source>Size</source>
-        <translation>尺寸</translation>
+        <translation>Tamanho</translation>
     </message>
     <message>
         <location filename="../ezp_chip_editor.cpp" line="78"/>
         <source>Sector
 size</source>
-        <translation>扇区
-尺寸</translation>
+        <translation>Tamanho
+setor</translation>
     </message>
     <message>
         <location filename="../ezp_chip_editor.cpp" line="79"/>
         <source>Type
 HEX</source>
-        <translation>类型
+        <translation>Tipo
 HEX</translation>
     </message>
     <message>
         <location filename="../ezp_chip_editor.cpp" line="80"/>
         <source>Algo-
 rithm</source>
-        <translation>算法</translation>
+        <translation>Algo-
+ritmo</translation>
     </message>
     <message>
         <location filename="../ezp_chip_editor.cpp" line="81"/>
         <source>Delay</source>
-        <translation>延迟</translation>
+        <translation>Atraso</translation>
     </message>
     <message>
         <location filename="../ezp_chip_editor.cpp" line="82"/>
         <source>4 bit
 address</source>
-        <translation>4 位 
-地址</translation>
+        <translation>Endereço
+4 bits</translation>
     </message>
     <message>
         <location filename="../ezp_chip_editor.cpp" line="83"/>
         <source>Block
 size K</source>
-        <translation>Bloque
-tamaño K</translation>
+        <translation>Tamanho
+de bloco K</translation>
     </message>
     <message>
         <location filename="../ezp_chip_editor.cpp" line="84"/>
         <source>EEPROM
 pages</source>
         <translation>EEPROM
-页</translation>
+páginas</translation>
     </message>
     <message>
         <location filename="../ezp_chip_editor.cpp" line="85"/>
@@ -230,7 +231,7 @@ pages</source>
         <location filename="../ezp_chip_editor.cpp" line="782"/>
         <location filename="../ezp_chip_editor.cpp" line="814"/>
         <source>Warning</source>
-        <translation>警告</translation>
+        <translation>Advertência</translation>
     </message>
     <message>
         <location filename="../ezp_chip_editor.cpp" line="518"/>
@@ -239,32 +240,32 @@ pages</source>
         <location filename="../ezp_chip_editor.cpp" line="622"/>
         <location filename="../ezp_chip_editor.cpp" line="662"/>
         <source>No string selected.</source>
-        <translation>未选择字符串。</translation>
+        <translation>Nenhuma sequência selecionada.</translation>
     </message>
     <message>
         <location filename="../ezp_chip_editor.cpp" line="682"/>
         <source>Saving file</source>
-        <translation>保存文件</translation>
+        <translation>Salvando arquivo</translation>
     </message>
     <message>
         <location filename="../ezp_chip_editor.cpp" line="684"/>
         <source>Save file</source>
-        <translation>保存文件</translation>
+        <translation>Salvar arquivo</translation>
     </message>
     <message>
         <location filename="../ezp_chip_editor.cpp" line="741"/>
         <source>Opening file</source>
-        <translation>打开文件</translation>
+        <translation>Abrindo arquivo</translation>
     </message>
     <message>
         <location filename="../ezp_chip_editor.cpp" line="782"/>
         <source>Invalid CSV data file format.</source>
-        <translation>CSV 数据文件格式无效。</translation>
+        <translation>Formato de arquivo de dados CSV inválido.</translation>
     </message>
     <message>
         <location filename="../ezp_chip_editor.cpp" line="814"/>
         <source>Invalid CSV header file format.</source>
-        <translation>CSV 头文件格式无效。</translation>
+        <translation>Formato de arquivo de cabeçalho CSV inválido.</translation>
     </message>
 </context>
 </TS>

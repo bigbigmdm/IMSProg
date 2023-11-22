@@ -1,14 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
 <TS version="2.1" language="hu_HU">
-    <extra-po-header-language>Hungarian</extra-po-header-language>
-    <extra-po-header-language_team>blackPanther Project</extra-po-header-language_team>
-    <extra-po-header-last_translator>Charles K Barcza &lt;kbarcza@blackpanther.hu&gt;</extra-po-header-last_translator>
-    <extra-po-header-po_revision_date></extra-po-header-po_revision_date>
-    <extra-po-header-pot_creation_date></extra-po-header-pot_creation_date>
-    <extra-po-header-project_id_version></extra-po-header-project_id_version>
-    <extra-po-header-x_generator>Poedit 3.2.2</extra-po-header-x_generator>
-    <extra-po-headers>Project-Id-Version,POT-Creation-Date,PO-Revision-Date,Last-Translator,Language-Team,Language,MIME-Version,Content-Type,Content-Transfer-Encoding,Plural-Forms,X-Language,X-Qt-Contexts,X-Generator</extra-po-headers>
 <context>
     <name>MainWindow</name>
     <message>
@@ -17,123 +9,123 @@
         <translation>IMSProg chip-adatbázis szerkesztő</translation>
     </message>
     <message>
-        <location filename="../ezp_chip_editor.ui" line="49"/>
+        <location filename="../ezp_chip_editor.ui" line="53"/>
         <source>File</source>
         <translation>fájl</translation>
     </message>
     <message>
-        <location filename="../ezp_chip_editor.ui" line="60"/>
+        <location filename="../ezp_chip_editor.ui" line="64"/>
         <source>Edit</source>
         <translation>Módosítás</translation>
     </message>
     <message>
-        <location filename="../ezp_chip_editor.ui" line="98"/>
+        <location filename="../ezp_chip_editor.ui" line="108"/>
         <source>Open</source>
         <translation>Megnyitás</translation>
     </message>
     <message>
-        <location filename="../ezp_chip_editor.ui" line="101"/>
+        <location filename="../ezp_chip_editor.ui" line="111"/>
         <source>Ctrl+O</source>
         <translation>Ctrl+M</translation>
     </message>
     <message>
-        <location filename="../ezp_chip_editor.ui" line="110"/>
+        <location filename="../ezp_chip_editor.ui" line="120"/>
         <source>Exit</source>
         <translation>Kilépés</translation>
     </message>
     <message>
-        <location filename="../ezp_chip_editor.ui" line="113"/>
-        <location filename="../ezp_chip_editor.ui" line="206"/>
+        <location filename="../ezp_chip_editor.ui" line="123"/>
+        <location filename="../ezp_chip_editor.ui" line="216"/>
         <source>Ctrl+X</source>
         <translation>Ctrl+X</translation>
     </message>
     <message>
-        <location filename="../ezp_chip_editor.ui" line="122"/>
+        <location filename="../ezp_chip_editor.ui" line="132"/>
         <source>Save</source>
         <translation>Mentés</translation>
     </message>
     <message>
-        <location filename="../ezp_chip_editor.ui" line="125"/>
+        <location filename="../ezp_chip_editor.ui" line="135"/>
         <source>Ctrl+S</source>
         <translation>Ctrl+S</translation>
     </message>
     <message>
-        <location filename="../ezp_chip_editor.ui" line="134"/>
+        <location filename="../ezp_chip_editor.ui" line="144"/>
         <source>Delete lines</source>
         <translation>Sorok törlése</translation>
     </message>
     <message>
-        <location filename="../ezp_chip_editor.ui" line="137"/>
+        <location filename="../ezp_chip_editor.ui" line="147"/>
         <source>Delete selected lines</source>
         <translation>Kijelölt sorok törlése</translation>
     </message>
     <message>
-        <location filename="../ezp_chip_editor.ui" line="140"/>
+        <location filename="../ezp_chip_editor.ui" line="150"/>
         <source>Del</source>
         <translation>Del</translation>
     </message>
     <message>
-        <location filename="../ezp_chip_editor.ui" line="149"/>
+        <location filename="../ezp_chip_editor.ui" line="159"/>
         <source>Add line</source>
         <translation>Vonal hozzáadása</translation>
     </message>
     <message>
-        <location filename="../ezp_chip_editor.ui" line="152"/>
+        <location filename="../ezp_chip_editor.ui" line="162"/>
         <source>Add selected lines and duplicate data</source>
         <translation>Kiválasztott sorok hozzáadása és az adat megkettőzése</translation>
     </message>
     <message>
-        <location filename="../ezp_chip_editor.ui" line="155"/>
+        <location filename="../ezp_chip_editor.ui" line="165"/>
         <source>Ins</source>
         <translation>Ins</translation>
     </message>
     <message>
-        <location filename="../ezp_chip_editor.ui" line="164"/>
+        <location filename="../ezp_chip_editor.ui" line="174"/>
         <source>Move up</source>
         <translation>Felfelé mozgat</translation>
     </message>
     <message>
-        <location filename="../ezp_chip_editor.ui" line="167"/>
+        <location filename="../ezp_chip_editor.ui" line="177"/>
         <source>Move lines up</source>
         <translation>Sorok mozgatása felfelé</translation>
     </message>
     <message>
-        <location filename="../ezp_chip_editor.ui" line="170"/>
+        <location filename="../ezp_chip_editor.ui" line="180"/>
         <source>Ctrl+Up</source>
         <translation>Ctrl+Up</translation>
     </message>
     <message>
-        <location filename="../ezp_chip_editor.ui" line="179"/>
+        <location filename="../ezp_chip_editor.ui" line="189"/>
         <source>Move down</source>
         <translation>Lefelé mozgat</translation>
     </message>
     <message>
-        <location filename="../ezp_chip_editor.ui" line="182"/>
+        <location filename="../ezp_chip_editor.ui" line="192"/>
         <source>Move lines down</source>
         <translation>Sorok mozgatása lefelé</translation>
     </message>
     <message>
-        <location filename="../ezp_chip_editor.ui" line="185"/>
+        <location filename="../ezp_chip_editor.ui" line="195"/>
         <source>Ctrl+Down</source>
         <translation>Ctrl+Down</translation>
     </message>
     <message>
-        <location filename="../ezp_chip_editor.ui" line="194"/>
+        <location filename="../ezp_chip_editor.ui" line="204"/>
         <source>Export selected lines to CSV file</source>
         <translation>Kiválasztott sorok exportálása CSV fájlba</translation>
     </message>
     <message>
-        <location filename="../ezp_chip_editor.ui" line="203"/>
+        <location filename="../ezp_chip_editor.ui" line="213"/>
         <source>Export to CSV</source>
         <translation>Exportáls CSV-be</translation>
     </message>
     <message>
-        <location filename="../ezp_chip_editor.ui" line="215"/>
+        <location filename="../ezp_chip_editor.ui" line="225"/>
         <source>Import from CSV</source>
         <translation>Importálás CSV-ből</translation>
     </message>
     <message>
-        <location filename="../ezp_chip_editor.ui" line="218"/>
+        <location filename="../ezp_chip_editor.ui" line="228"/>
         <source>, Ctrl+Shift+X</source>
         <translation>, Ctrl+Shift+X</translation>
     </message>
