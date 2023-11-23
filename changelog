@@ -48,20 +48,20 @@ imsprog (1.0.28-5) stable; urgency=medium
   * Changed the default file path to the home directory. 
   * The last file path is saved and new file operations are processed using the last path.
 
- -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Fri, 27 Okt 2023 10:18:00 +1000
+ -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Fri, 27 Oct 2023 10:18:00 +1000
 
 imsprog (1.0.28-4) stable; urgency=medium
 
   + Degreese the mainform size to correct showing in UBUNTU 22.04.
 
- -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Thu, 26 Okt 2023 10:16:00 +1000
+ -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Thu, 26 Oct 2023 10:16:00 +1000
 
 imsprog (1.0.28-3) stable; urgency=medium
 
   * Changing application font from Ubuntu to Monospace.
   + Fix for different combobox sizes in Fedora 38.
 
- -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Fri, 20 Okt 2023 14:08:00 +1000
+ -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Fri, 20 Oct 2023 14:08:00 +1000
 
 imsprog (1.0.28-1) stable; urgency=medium
 
@@ -69,14 +69,14 @@ imsprog (1.0.28-1) stable; urgency=medium
   + Bad display of qComboBoxes in UBUNTU, Manjaro linux fixed.
   + Display of monospaced font in Manjaro linux fixed.
 
- -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Thu, 19 Okt 2023 12:33:05 +1000 
+ -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Thu, 19 Oct 2023 12:33:05 +1000 
 
 imsprog (1.0.27-1) stable; urgency=medium
 
   * New upstream release.
   * Added the SFDP and status register information form.
  
- -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Mon, 16 Okt 2023 16:28:16 +1000 
+ -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Mon, 16 Oct 2023 16:28:16 +1000 
 
 imsprog (1.0.26-1) stable; urgency=medium
 
@@ -84,7 +84,7 @@ imsprog (1.0.26-1) stable; urgency=medium
   * Added support for M95xxx chips.
   + Removed diagnostic errors.
  
- -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Wed, 04 Okt 2023 13:34:52 +1000 
+ -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Wed, 04 Oct 2023 13:34:52 +1000 
 
 imsprog (1.0.25-1) stable; urgency=medium
 
