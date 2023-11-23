@@ -92,7 +92,8 @@ TRANSLATIONS += language/chipProgrammer_ru_RU.ts \
          language/chipProgrammer_zn_CH.ts \
          language/chipProgrammer_uk_UA.ts \
          language/chipProgrammer_hu_HU.ts \
-         language/chipProgrammer_pt_BR.ts
+         language/chipProgrammer_pt_BR.ts \
+         language/chipProgrammer_it_IT.ts
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
