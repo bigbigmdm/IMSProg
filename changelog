@@ -1,6 +1,8 @@
 imsprog (1.1.2-4) stable; urgency=medium
 
-  * Modifying the chip update script. Added Brazilian Portuguese language translation by Alexandre C. Leite. 
+  * Modifying the chip update script. 
+  * Added Brazilian Portuguese language translation by Alexandre C. Leite.
+  * Added Italian language by Marino Pasquale.
 
  -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Mon, 22 Nov 2023 14:58:00 +1000
 
