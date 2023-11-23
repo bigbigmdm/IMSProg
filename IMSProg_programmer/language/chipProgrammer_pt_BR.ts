@@ -814,7 +814,7 @@
     <message>
         <location filename="../mainwindow.cpp" line="447"/>
         <source>Erasing the </source>
-        <translation>Apagar o </translation>
+        <translation>Apagando o </translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="490"/>
