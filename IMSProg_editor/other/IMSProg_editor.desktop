@@ -1,8 +1,7 @@
 [Desktop Entry]
 Version=1.0
 Type=Application
-Name=IMSProg_editor
-Comment=Chip Database Editor 
+Name=IMSProg_editor 
 Exec=/usr/bin/IMSProg_editor
 Icon=/usr/share/pixmaps/chipEdit64.png
 Path=/usr/bin/
