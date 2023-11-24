@@ -1,10 +1,34 @@
-imsprog (1.1.2-4) stable; urgency=medium
+imsprog (1.1.2-8) jammy; urgency=medium
 
-  * Modifying the chip update script. 
+  * repackaging for Jammy Jellyfish release
+
+ -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Fri, 24 Nov 2023 10:25:00 +1000
+
+imsprog (1.1.2-7) focal; urgency=medium
+
+  + adding build-depends
+
+ -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Fri, 24 Nov 2023 09:02:00 +1000
+ 
+imsprog (1.1.2-6) focal; urgency=medium
+
+  + correcting build-depends
+
+ -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Thu, 23 Nov 2023 16:30:00 +1000
+
+imsprog (1.1.2-5) focal; urgency=medium
+
+  + correcting translation files
+
+ -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Thu, 23 Nov 2023 16:08:00 +1000
+
+imsprog (1.1.2-4) focal; urgency=medium
+
+  * Modifying the chip update script 
   * Added Brazilian Portuguese language translation by Alexandre C. Leite.
   * Added Italian language by Marino Pasquale.
 
- -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Mon, 22 Nov 2023 14:58:00 +1000
+ -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Wed, 22 Nov 2023 14:58:00 +1000
 
 imsprog (1.1.2-3) stable; urgency=medium
 
