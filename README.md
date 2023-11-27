@@ -267,6 +267,8 @@ IMSProg_programmer/database/IMSProg.Dat                     /etc/imsprog
 
 IMSProg_programmer/other/99-CH341.rules                     /lib/udev/rules.d
 
+IMSProg_programmer/other/index.html                         /usr/share//doc/imsprog/html
+
 IMSProg_programmer/language/chipProgrammer_ru_RU.qm         /usr/share/imsprog
 IMSProg_programmer/language/chipProgrammer_es_ES.qm         /usr/share/imsprog
 IMSProg_programmer/language/chipProgrammer_de_DE.qm         /usr/share/imsprog
