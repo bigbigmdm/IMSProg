@@ -261,7 +261,7 @@ IMSProg _files_							                    _folder_
 ===================================================================================
 IMSProg                                                     /usr/bin
 IMSProg_editor                                              /usr/bin
-IMSProg_programmer/other/IMSProg_database_update.sh         /usr/bin
+IMSProg_programmer/other/IMSProg_database_update            /usr/bin
 
 IMSProg_programmer/database/IMSProg.Dat                     /etc/imsprog
 
