@@ -289,6 +289,10 @@ IMSProg_programmer/other/IMSProg.desktop                    /usr/share/applicati
 IMSProg_programmer/other/IMSProg_editor.desktop             /usr/share/applications
 IMSProg_programmer/other/IMSProg_database_update.desktop    /usr/share/applications
 
+IMSProg_editor/other/IMSProg_editor.1.gz                    /usr/share/man/man1
+IMSProg_programmer/other/IMSProg.1.gz                       /usr/share/man/man1
+IMSProg_programmer/other/IMSProg_database_update.1.gz       /usr/share/man/man1
+
 IMSProg_programmer/img/IMSProg64.png                        /usr/share/pixmaps
 IMSProg_programmer/img/IMSProg_database_update.png          /usr/share/pixmaps
 IMSProg_editor/img/chipEdit64.png                           /usr/share/pixmaps
