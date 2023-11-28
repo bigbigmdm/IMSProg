@@ -25,7 +25,7 @@ DialogSP::DialogSP(QWidget *parent) :
 {
     ui->setupUi(this);
     ui->comboBox_end->addItem("End address", 0);
-    ui->comboBox_end->addItem("Lenght", 1);
+    ui->comboBox_end->addItem("Length", 1);
     QRegExp reHex( "[A-Fa-f0-9]{1,8}" );
     QRegExpValidator *validator = new QRegExpValidator(reHex, this);
     ui->lineEditStart->setValidator(validator);
