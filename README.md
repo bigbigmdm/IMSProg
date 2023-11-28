@@ -234,6 +234,11 @@ You can download it and copy it to the /etc/IMSProg folder with sudo:
 
 ## Downloading the build release
 - The `Debian package` can be downloaded [here](https://github.com/bigbigmdm/IMSProg/tree/main/release/debian_package)
+  You can update your system with unsupported packages from this untrusted PPA by adding ppa:bigmdm/imsprog to your system's Software Sources. 
+```
+sudo add-apt-repository ppa:bigmdm/imsprog
+sudo apt update
+```        
 - The `RPM package` can be downloaded [here](https://github.com/bigbigmdm/IMSProg/tree/main/release/redhat_package)
 - The `ARCH AUR repository` by [kjkent](https://github.com/kjkent) is  [here](https://aur.archlinux.org/packages/imsprog)
 - The `appimage` can be downloaded [here](https://github.com/bigbigmdm/IMSProg/tree/main/release/build)
