@@ -959,7 +959,7 @@ void MainWindow::receiveAddr(QString addressData)
         blockEndAddr = hexToInt(addressData.mid(e + 1, t - e - 2));
         if (blockEndAddr < blockStartAddr)
         {
-            QMessageBox::about(this, tr("Error"), tr("The end address must be greater than the starting addres."));
+            QMessageBox::about(this, tr("Error"), tr("The end address must be greater than the starting address."));
             return;
         }
         blockLen = blockEndAddr - blockStartAddr + 1;
