@@ -1,3 +1,10 @@
+imsprog (1.1.2-12) focal; urgency=medium
+
+  * repackaging for Focal Fossa release
+  + fixing lintian warnings
+
+ -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Fri, 01 Dec 2023 09:08:00 +1000
+
 imsprog (1.1.2-11) focal; urgency=medium
 
   * repackaging for Focal Fossa release
