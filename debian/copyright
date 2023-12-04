@@ -51,35 +51,19 @@ Files: IMSProg_editor/README.md
 Copyright: 2023 Mikhail Medvedev <e-ink-reader@yandex.ru>
 License: GPL-3
 
-Files: IMSProg_editor/delegates.cpp
+Files: IMSProg_editor/*.cpp
 Copyright: 2023 Mikhail Medvedev <e-ink-reader@yandex.ru>
 License: GPL-3
 
-Files: IMSProg_editor/delegates.h
+Files: IMSProg_editor/*.h
 Copyright: 2023 Mikhail Medvedev <e-ink-reader@yandex.ru>
 License: GPL-3
 
-Files: IMSProg_editor/ezp_chip_editor.cpp
+Files: IMSProg_editor/*.ui
 Copyright: 2023 Mikhail Medvedev <e-ink-reader@yandex.ru>
 License: GPL-3
 
-Files: IMSProg_editor/ezp_chip_editor.h
-Copyright: 2023 Mikhail Medvedev <e-ink-reader@yandex.ru>
-License: GPL-3
-
-Files: IMSProg_editor/ezp_chip_editor.ui
-Copyright: 2023 Mikhail Medvedev <e-ink-reader@yandex.ru>
-License: GPL-3
-
-Files: IMSProg_editor/resources.qrc
-Copyright: 2023 Mikhail Medvedev <e-ink-reader@yandex.ru>
-License: GPL-3
-
-Files: IMSProg_editor/main.cpp
-Copyright: 2023 Mikhail Medvedev <e-ink-reader@yandex.ru>
-License: GPL-3
-
-Files: IMSProg_programmer/cmake/*
+Files: IMSProg_editor/*.qrc
 Copyright: 2023 Mikhail Medvedev <e-ink-reader@yandex.ru>
 License: GPL-3
 
@@ -147,67 +131,11 @@ Files: IMSProg_editor/language/chipEditor_pt_BR.ts
 Copyright: 2023 Alexandre C. Leite <pu2tki@gmail.com>
 License: GPL-2
 
-Files: IMSProg_programmer/language/chipProgrammer_ru_RU.qm
+Files: IMSProg_programmer/language/*.qm
 Copyright: 2023 Mikhail Medvedev <e-ink-reader@yandex.ru>
 License: GPL-3
 
-Files: IMSProg_programmer/language/chipProgrammer_es_ES.qm
-Copyright: 2023 Mikhail Medvedev <e-ink-reader@yandex.ru>
-License: GPL-3
-
-Files: IMSProg_programmer/language/chipProgrammer_de_DE.qm
-Copyright: 2023 Mikhail Medvedev <e-ink-reader@yandex.ru>
-License: GPL-3
-
-Files: IMSProg_programmer/language/chipProgrammer_zn_CH.qm
-Copyright: 2023 Mikhail Medvedev <e-ink-reader@yandex.ru>
-License: GPL-3
-
-Files: IMSProg_programmer/language/chipProgrammer_uk_UA.qm
-Copyright: 2023 Mikhail Medvedev <e-ink-reader@yandex.ru>
-License: GPL-3
-
-Files: IMSProg_programmer/language/chipProgrammer_hu_HU.qm
-Copyright: 2023 Mikhail Medvedev <e-ink-reader@yandex.ru>
-License: GPL-3
-
-Files: IMSProg_programmer/language/chipProgrammer_it_IT.qm
-Copyright: 2023 Mikhail Medvedev <e-ink-reader@yandex.ru>
-License: GPL-3
-
-Files: IMSProg_programmer/language/chipProgrammer_pt_BR.qm
-Copyright: 2023 Alexandre C. Leite <pu2tki@gmail.com>
-License: GPL-2
-
-Files: IMSProg_editor/language/chipEditor_ru_RU.qm
-Copyright: 2023 Mikhail Medvedev <e-ink-reader@yandex.ru>
-License: GPL-3
-
-Files: IMSProg_editor/language/chipEditor_es_ES.qm
-Copyright: 2023 Mikhail Medvedev <e-ink-reader@yandex.ru>
-License: GPL-3
-
-Files: IMSProg_editor/language/chipEditor_zn_CH.qm
-Copyright: 2023 Mikhail Medvedev <e-ink-reader@yandex.ru>
-License: GPL-3
-
-Files: IMSProg_editor/language/chipEditor_de_DE.qm
-Copyright: 2023 Mikhail Medvedev <e-ink-reader@yandex.ru>
-License: GPL-3
-
-Files: IMSProg_editor/language/chipEditor_uk_UA.qm
-Copyright: 2023 Mikhail Medvedev <e-ink-reader@yandex.ru>
-License: GPL-3
-
-Files: IMSProg_editor/language/chipEditor_hu_HU.qm
-Copyright: 2023 blackPantherOS <https://github.com/blackPantherOS>
-License: GPL-2
-
-Files: IMSProg_editor/language/chipEditor_it_IT.qm
-Copyright: 2023 Mikhail Medvedev <e-ink-reader@yandex.ru>
-License: GPL-3
-
-Files: IMSProg_editor/language/chipEditor_pt_BR.qm
+Files: IMSProg_editor/language/*.qm
 Copyright: 2023 Mikhail Medvedev <e-ink-reader@yandex.ru>
 License: GPL-3
 
@@ -217,6 +145,11 @@ Copyright: 2005-2021 Mokrushin I.V. <mcmcc@mail.ru>
 License: GPL-2
 
 Files: IMSProg_programmer/bitbang_microwire.h
+Copyright: 2005-2021 Mokrushin I.V. <mcmcc@mail.ru>
+           2023 Mikhail Medvedev <e-ink-reader@yandex.ru>
+License: GPL-2
+
+Files: IMSProg_programmer/snander.rc
 Copyright: 2005-2021 Mokrushin I.V. <mcmcc@mail.ru>
            2023 Mikhail Medvedev <e-ink-reader@yandex.ru>
 License: GPL-2
@@ -311,15 +244,15 @@ Files: IMSProg_programmer/IMSProg.pro
 Copyright: 2023 Mikhail Medvedev <e-ink-reader@yandex.ru>
 License: GPL-3
 
-Files: IMSProg_programmer/searchdialog.ui
+Files: IMSProg_programmer/*.ui
+Copyright: 2023 Mikhail Medvedev <e-ink-reader@yandex.ru>
+License: GPL-3
+
+Files: IMSProg_programmer/*.cpp
 Copyright: 2023 Mikhail Medvedev <e-ink-reader@yandex.ru>
 License: GPL-3
 
 Files: IMSProg_programmer/searchdialog.h
-Copyright: 2023 Mikhail Medvedev <e-ink-reader@yandex.ru>
-License: GPL-3
-
-Files: IMSProg_programmer/searchdialog.cpp
 Copyright: 2023 Mikhail Medvedev <e-ink-reader@yandex.ru>
 License: GPL-3
 
@@ -343,19 +276,7 @@ Files: IMSProg_programmer/mw_eeprom.c
 Copyright: 2021 McMCC <mcmcc@mail.ru>
 License: GPL-2
 
-Files: IMSProg_programmer/mainwindow.ui
-Copyright: 2023 Mikhail Medvedev <e-ink-reader@yandex.ru>
-License: GPL-3
-
 Files: IMSProg_programmer/mainwindow.h
-Copyright: 2023 Mikhail Medvedev <e-ink-reader@yandex.ru>
-License: GPL-3
-
-Files: IMSProg_programmer/mainwindow.cpp
-Copyright: 2023 Mikhail Medvedev <e-ink-reader@yandex.ru>
-License: GPL-3
-
-Files: IMSProg_programmer/main.cpp
 Copyright: 2023 Mikhail Medvedev <e-ink-reader@yandex.ru>
 License: GPL-3
 
@@ -379,19 +300,7 @@ Files: IMSProg_programmer/flashcmd_api.c
 Copyright: 2018-2021 McMCC <mcmcc@mail.ru>
 License: GPL-2
 
-Files: IMSProg_programmer/dialogsp.ui
-Copyright: 2023 Mikhail Medvedev <e-ink-reader@yandex.ru>
-License: GPL-3
-
 Files: IMSProg_programmer/dialogsp.h
-Copyright: 2023 Mikhail Medvedev <e-ink-reader@yandex.ru>
-License: GPL-3
-
-Files: IMSProg_programmer/dialogsp.cpp
-Copyright: 2023 Mikhail Medvedev <e-ink-reader@yandex.ru>
-License: GPL-3
-
-Files: IMSProg_programmer/dialogsfdp.ui
 Copyright: 2023 Mikhail Medvedev <e-ink-reader@yandex.ru>
 License: GPL-3
 
@@ -399,23 +308,11 @@ Files: IMSProg_programmer/dialogsfdp.h
 Copyright: 2023 Mikhail Medvedev <e-ink-reader@yandex.ru>
 License: GPL-3
 
-Files: IMSProg_programmer/dialogsfdp.cpp
-Copyright: 2023 Mikhail Medvedev <e-ink-reader@yandex.ru>
-License: GPL-3
-
-Files: IMSProg_programmer/dialogrp.ui
-Copyright: 2023 Mikhail Medvedev <e-ink-reader@yandex.ru>
-License: GPL-3
-
 Files: IMSProg_programmer/dialogrp.h
 Copyright: 2023 Mikhail Medvedev <e-ink-reader@yandex.ru>
 License: GPL-3
 
-Files: IMSProg_programmer/dialogrp.cpp
-Copyright: 2023 Mikhail Medvedev <e-ink-reader@yandex.ru>
-License: GPL-3
-
-Files: IMSProg_programmer/dialoginfo.ui
+Files: IMSProg_programmer/cmake/*
 Copyright: 2023 Mikhail Medvedev <e-ink-reader@yandex.ru>
 License: GPL-3
 
@@ -423,19 +320,7 @@ Files: IMSProg_programmer/dialoginfo.h
 Copyright: 2023 Mikhail Medvedev <e-ink-reader@yandex.ru>
 License: GPL-3
 
-Files: IMSProg_programmer/dialoginfo.cpp
-Copyright: 2023 Mikhail Medvedev <e-ink-reader@yandex.ru>
-License: GPL-3
-
-Files: IMSProg_programmer/dialogabout.ui
-Copyright: 2023 Mikhail Medvedev <e-ink-reader@yandex.ru>
-License: GPL-3
-
 Files: IMSProg_programmer/dialogabout.h
-Copyright: 2023 Mikhail Medvedev <e-ink-reader@yandex.ru>
-License: GPL-3
-
-Files: IMSProg_programmer/dialogabout.cpp
 Copyright: 2023 Mikhail Medvedev <e-ink-reader@yandex.ru>
 License: GPL-3
 
