@@ -1,7 +1,8 @@
 #!/bin/bash
+IMSPROG_DB_URL=https://antenna-dvb-t2.ru/dl_all/IMSProg.Dat
 PASSWORD=$(zenity --password)
 cd /tmp
-wget https://antenna-dvb-t2.ru/dl_all/IMSProg.Dat
+wget ${IMSPROG_DB_URL}
 cd /etc
 mkdir -p imsprog
 file=/etc/imsprog/IMSProg.Dat
