@@ -1,3 +1,27 @@
+imsprog (1.1.2-14) jammy; urgency=medium
+
+  * repackaging for Jammy Jellyfish release
+  + fixing wrong path to rules folder
+  
+ -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Mon, 18 Dec 2023 13:09:00 +1000
+
+imsprog (1.1.2-13) focal; urgency=medium
+
+  * repackaging for Focal Fossa release
+  * adding new chips into the database
+  * changing the desktop files
+  * changing the update script
+  + fixing lintian warnings
+
+ -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Fri, 08 Dec 2023 14:33:00 +1000
+
+imsprog (1.1.2-12) focal; urgency=medium
+
+  * repackaging for Focal Fossa release
+  + fixing lintian warnings
+
+ -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Fri, 01 Dec 2023 09:08:00 +1000
+
 imsprog (1.1.2-11) focal; urgency=medium
 
   * repackaging for Focal Fossa release
@@ -13,7 +37,7 @@ imsprog (1.1.2-10) jammy; urgency=medium
   + changing translations
   + changing the name of database update script
 
- -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Fri, 28 Tue 2023 10:09:00 +1000
+ -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Tue, 28 Nov 2023 10:09:00 +1000
 
 imsprog (1.1.2-9) bionic; urgency=medium
 
