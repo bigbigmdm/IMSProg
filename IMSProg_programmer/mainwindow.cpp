@@ -279,7 +279,7 @@ void MainWindow::on_pushButton_2_clicked()
     for (i = 0; i< max_rec; i++)
     {
         if ((bufid[0] == chips[i].chipJedecIDMan) && (bufid[1] == chips[i].chipJedecIDDev) && (bufid[2] == chips[i].chipJedecIDCap))
-        {            
+        {
             index = ui->comboBox_man->findText(chips[i].chipManuf);
                         if ( index != -1 )
                         { // -1 for not found
@@ -608,7 +608,7 @@ void MainWindow::on_actionWrite_triggered()
         }
         ch341StatusFlashing();
     uint32_t addr = 0;
-    uint32_t curBlock = 0;    
+    uint32_t curBlock = 0;
     uint32_t j, k;
     ui->statusBar->showMessage(tr("Writing data to ") + ui->comboBox_name->currentText());
     //progerssbar settings
@@ -621,10 +621,21 @@ void MainWindow::on_actionWrite_triggered()
     for (k = 0; k < currentNumBlocks; k++)
       {
 
+        if (currentChipType == 1) {
+            if (currentBlockSize > chipData.size() - addr) {
+                res = ch341readEEPROM_param(buf, addr, currentBlockSize, currentChipSize, currentPageSize, currentAlgorithm);
+                k = currentNumBlocks;
+            }
+            for (j = 0; j < MIN(currentBlockSize, chipData.size() - addr); j++)
+            {
+               buf[j] =  static_cast<uint8_t>(chipData[addr + j]);
+            }
+        } else {
          for (j = 0; j < currentBlockSize; j++)
             {
                buf[addr + j - k * currentBlockSize] =  static_cast<uint8_t>(chipData[addr + j]) ;
             }
+        }
          switch (currentChipType)
                        {
                        case 0:
@@ -633,7 +644,8 @@ void MainWindow::on_actionWrite_triggered()
                        break;
                        case 1:
                           //I2C
-                          res = ch341writeEEPROM_param(buf, curBlock * 128, 128, currentPageSize, currentAlgorithm);
+                          if (currentBlockSize <= chipData.size() - addr || res==0)
+                            res = ch341writeEEPROM_param(buf, addr, currentBlockSize, currentPageSize, currentAlgorithm);
                           if (res==0) res = 1;
                        break;
                        case 2:
@@ -643,7 +655,7 @@ void MainWindow::on_actionWrite_triggered()
                        break;
                        case 4:
                           //M95xx
-                          res =  s95_write_param(buf, addr, currentBlockSize, currentBlockSize, currentAlgorithm);                         
+                          res =  s95_write_param(buf, addr, currentBlockSize, currentBlockSize, currentAlgorithm);
                        break;
                        default:
                           //Unsupport
@@ -661,7 +673,7 @@ void MainWindow::on_actionWrite_triggered()
              doNotDisturbCancel();
              ch341a_spi_shutdown();
              break;
-           }         
+           }
          if (res <= 0)
            {
              QMessageBox::about(this, tr("Error"), tr("Error writing sector ") + QString::number(curBlock));
@@ -690,7 +702,7 @@ void MainWindow::on_actionWrite_triggered()
     doNotDisturbCancel();
     ui->progressBar->setValue(0);
     ui->checkBox_2->setStyleSheet("");
-    ui->statusBar->showMessage("");    
+    ui->statusBar->showMessage("");
     }
     else
     {
@@ -832,7 +844,7 @@ void MainWindow::on_actionVerify_triggered()
                ch341StatusFlashing();
                uint32_t addr = 0;
                uint32_t curBlock = 0;
-               uint32_t j, k;               
+               uint32_t j, k;
                //progerssbar settings
                ui->progressBar->setRange(0, static_cast<int>(currentNumBlocks));
                ui->progressBar->setValue(0);
