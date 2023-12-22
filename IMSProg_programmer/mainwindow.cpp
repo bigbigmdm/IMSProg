@@ -898,19 +898,36 @@ void MainWindow::on_actionVerify_triggered()
                         doNotDisturbCancel();
                         break;
                     }
-                    for (j = 0; j < currentBlockSize; j++)
-                    {
-                      if (chipData[addr + j] != char(buf[addr + j - k * currentBlockSize]))
-                          {
-                            //error compare
-                            QMessageBox::about(this, tr("Error"), tr("Error comparing data!\nAddress:   ") + hexiAddr(addr + j) + tr("\nBuffer: ") + bytePrint( static_cast<unsigned char>(chipData[addr + j])) + tr("    Chip: ") + bytePrint(buf[addr + j - k * currentBlockSize]));
-                            ui->statusBar->showMessage("");
-                            ui->checkBox_3->setStyleSheet("");
-                            ch341a_spi_shutdown();
-                            doNotDisturbCancel();
-                            return;
-                           }
-                     }
+                    if (currentChipType == 1 && currentBlockSize > chipData.size() - addr) {
+                        k = currentNumBlocks;
+                        for (j = 0; j < chipData.size() - addr; j++)
+                        {
+                        if (chipData[addr + j] != char(buf[j]))
+                            {
+                                //error compare
+                                QMessageBox::about(this, tr("Error"), tr("Error comparing data!\nAddress:   ") + hexiAddr(addr + j) + tr("\nBuffer: ") + bytePrint( static_cast<unsigned char>(chipData[addr + j])) + tr("    Chip: ") + bytePrint(buf[addr + j - k * currentBlockSize]));
+                                ui->statusBar->showMessage("");
+                                ui->checkBox_3->setStyleSheet("");
+                                ch341a_spi_shutdown();
+                                doNotDisturbCancel();
+                                return;
+                            }
+                        }
+                    } else {
+                        for (j = 0; j < currentBlockSize; j++)
+                        {
+                        if (chipData[addr + j] != char(buf[addr + j - k * currentBlockSize]))
+                            {
+                                //error compare
+                                QMessageBox::about(this, tr("Error"), tr("Error comparing data!\nAddress:   ") + hexiAddr(addr + j) + tr("\nBuffer: ") + bytePrint( static_cast<unsigned char>(chipData[addr + j])) + tr("    Chip: ") + bytePrint(buf[addr + j - k * currentBlockSize]));
+                                ui->statusBar->showMessage("");
+                                ui->checkBox_3->setStyleSheet("");
+                                ch341a_spi_shutdown();
+                                doNotDisturbCancel();
+                                return;
+                            }
+                        }
+                    }
                      addr = addr + currentBlockSize;
                      curBlock++;
                      qApp->processEvents();
