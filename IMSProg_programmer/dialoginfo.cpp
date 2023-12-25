@@ -6,10 +6,22 @@ DialogInfo::DialogInfo(QWidget *parent) :
     ui(new Ui::DialogInfo)
 {
     ui->setupUi(this);
+
+    pix24 = new QPixmap(":/res/img/ch341_24.png");
+    pix93 = new QPixmap(":/res/img/ch341_93.png");
+    pix25 = new QPixmap(":/res/img/ch341_spi.png");
+    pix2518 = new QPixmap(":/res/img/ch341_spi_18.png");
+    pixnone = new QPixmap(":/res/img/ch341_unknown.png");
+
 }
 
 DialogInfo::~DialogInfo()
 {
+    delete pix24;
+    delete pix93;
+    delete pix25;
+    delete pix2518;
+    delete pixnone;
     delete ui;
 }
 void DialogInfo::on_pushButton_clicked()
@@ -18,12 +30,6 @@ void DialogInfo::on_pushButton_clicked()
 }
 void DialogInfo::setChip(const uint chipType)
 {
-   QPixmap *pix24 = new QPixmap(":/res/img/ch341_24.png");
-   QPixmap *pix93 = new QPixmap(":/res/img/ch341_93.png");
-   QPixmap *pix25 = new QPixmap(":/res/img/ch341_spi.png");
-   QPixmap *pix2518 = new QPixmap(":/res/img/ch341_spi_18.png");
-   QPixmap *pixnone = new QPixmap(":/res/img/ch341_unknown.png");
-
    switch (chipType)
    {
      case 1:

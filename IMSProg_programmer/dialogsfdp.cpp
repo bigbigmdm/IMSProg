@@ -25,8 +25,11 @@ void DialogSFDP::on_pushButton_clicked()
     uint32_t sfdpBlockSize = 0;
     bool sfdpSupport = false;
     unsigned char i, imax, twoAreaAddress=0xff, manufAreaAddress=0xff, twoAreaLen = 0xff, manAreaLen = 0xff;
-    uint8_t *sfdpBuf, jedecMan=0xff, idSize;
-    sfdpBuf = (uint8_t *)malloc(256);
+    uint8_t jedecMan=0xff, idSize;
+
+    // memory leak in sfdpBuf = (uint8_t *)malloc(256);
+    std::shared_ptr<unsigned char[]> sfdpBuf(new unsigned char[256]);
+
     QString regData = "", VCCmin = "", VCCmax = "", speeds = "Single", addrTxt="";
     int retval = 0;
     stCH341 = ch341a_spi_init();
@@ -42,7 +45,7 @@ void DialogSFDP::on_pushButton_clicked()
         //Reading JEDEC ID
         SPI_CONTROLLER_Chip_Select_Low();
         SPI_CONTROLLER_Write_One_Byte(0x9f);
-        retval = SPI_CONTROLLER_Read_NByte(sfdpBuf,3,SPI_CONTROLLER_SPEED_SINGLE);
+        retval = SPI_CONTROLLER_Read_NByte(sfdpBuf.get(),3,SPI_CONTROLLER_SPEED_SINGLE);
         SPI_CONTROLLER_Chip_Select_High();
         if (retval)
         {
@@ -62,7 +65,7 @@ void DialogSFDP::on_pushButton_clicked()
         SPI_CONTROLLER_Write_One_Byte(0x00);
         SPI_CONTROLLER_Write_One_Byte(0x00);
         SPI_CONTROLLER_Write_One_Byte(0x00);
-        retval = SPI_CONTROLLER_Read_NByte(sfdpBuf,256,SPI_CONTROLLER_SPEED_SINGLE);
+        retval = SPI_CONTROLLER_Read_NByte(sfdpBuf.get(),256,SPI_CONTROLLER_SPEED_SINGLE);
         SPI_CONTROLLER_Chip_Select_High();
         if (retval)
         {
@@ -165,7 +168,7 @@ void DialogSFDP::on_pushButton_clicked()
         //READING STATUS REGISTER 0
         SPI_CONTROLLER_Chip_Select_Low();
         SPI_CONTROLLER_Write_One_Byte(0x05);
-        retval = SPI_CONTROLLER_Read_NByte(sfdpBuf,2,SPI_CONTROLLER_SPEED_SINGLE);
+        retval = SPI_CONTROLLER_Read_NByte(sfdpBuf.get(),2,SPI_CONTROLLER_SPEED_SINGLE);
         SPI_CONTROLLER_Chip_Select_High();
         usleep(1);
         if (retval)
@@ -184,7 +187,7 @@ void DialogSFDP::on_pushButton_clicked()
         //READING STATUS REGISTER 1
         SPI_CONTROLLER_Chip_Select_Low();
         SPI_CONTROLLER_Write_One_Byte(0x35);
-        retval = SPI_CONTROLLER_Read_NByte(sfdpBuf,2,SPI_CONTROLLER_SPEED_SINGLE);
+        retval = SPI_CONTROLLER_Read_NByte(sfdpBuf.get(),2,SPI_CONTROLLER_SPEED_SINGLE);
         SPI_CONTROLLER_Chip_Select_High();
         usleep(1);
         if (retval)
@@ -218,7 +221,7 @@ void DialogSFDP::on_pushButton_clicked()
         SPI_CONTROLLER_Write_One_Byte(0x00);
         SPI_CONTROLLER_Write_One_Byte(0x00);
         SPI_CONTROLLER_Write_One_Byte(0x00);
-        retval = SPI_CONTROLLER_Read_NByte(sfdpBuf,16,SPI_CONTROLLER_SPEED_SINGLE);
+        retval = SPI_CONTROLLER_Read_NByte(sfdpBuf.get(),16,SPI_CONTROLLER_SPEED_SINGLE);
         SPI_CONTROLLER_Chip_Select_High();
         if (retval)
         {
@@ -261,12 +264,11 @@ void DialogSFDP::on_pushButton_3_clicked()
 {
    if (numOfRegisters < 2)
    {
-    int stCH341 = 0, retval;
+    int stCH341 = 0;
     stCH341 = ch341a_spi_init();
     if (stCH341 == 0)
     {
-       uint8_t *sfdpBuf, r0, r1;
-       sfdpBuf = (uint8_t *)malloc(4);
+       uint8_t r0, r1;
        r0 = 0;
        r1 = 0;
        if (QString::compare(ui->lineEdit_sr07->text(), "0", Qt::CaseInsensitive)) r0 = r0 + 128;

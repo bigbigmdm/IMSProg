@@ -12,6 +12,7 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  */
+#include <memory>
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QLineEdit>
@@ -113,10 +114,7 @@ MainWindow::MainWindow(QWidget *parent) :
  statusCH341 = ch341a_spi_init();
  ch341StatusFlashing();
  chipData.resize(256);
- for (int i=0; i < 256; i++)
- {
-     chipData[i] = char(0xff);
- }
+ chipData.fill(0xff);
  ch341a_spi_shutdown();
  hexEdit = new QHexEdit(ui->frame);
  hexEdit->setGeometry(0,0,ui->frame->width(),ui->frame->height());
@@ -134,11 +132,14 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+/**
+ * @brief MainWindow::on_pushButton_clicked "Read action"
+ */
 void MainWindow::on_pushButton_clicked()
 {
   //Reading data from chip
   int res = 0;
-  statusCH341 = ch341a_init(currentChipType);
+  statusCH341 = ch341a_init(static_cast<uint8_t>(currentChipType));
   if (statusCH341 == 0)
   {
     ui->crcEdit->setText("");
@@ -165,8 +166,12 @@ void MainWindow::on_pushButton_clicked()
        ui->progressBar->setRange(0, static_cast<int>(currentNumBlocks));
        ui->progressBar->setValue(0);
        //uint8_t buf[currentBlockSize];
+       std::shared_ptr<unsigned char[]> buf(new unsigned char[currentBlockSize]);
+
+/* memory leaks !!! buf was never freed
        uint8_t *buf;
        buf = (uint8_t *)malloc(currentBlockSize);
+*/
        ui->pushButton->setStyleSheet(redKeyStyle);
        ui->statusBar->showMessage(tr("Reading data from ") + ui->comboBox_name->currentText());
        for (k = 0; k < currentNumBlocks; k++)
@@ -175,21 +180,27 @@ void MainWindow::on_pushButton_clicked()
               {
               case 0:
                  //SPI
-                 res = snor_read_param(buf,curBlock * currentBlockSize, currentBlockSize, currentBlockSize, currentAddr4bit);
+                 res = snor_read_param(buf.get(), curBlock * currentBlockSize,
+                                       currentBlockSize, currentBlockSize, currentAddr4bit);
               break;
               case 1:
                  //I2C
-               res = ch341readEEPROM_param(buf, curBlock * currentBlockSize, currentBlockSize, currentChipSize, currentPageSize, currentAlgorithm);//currentAlgorithm);
+               res = ch341readEEPROM_param(buf.get(), curBlock * currentBlockSize,
+                                           currentBlockSize, currentChipSize,
+                                           currentPageSize, currentAlgorithm);//currentAlgorithm);
                if (res==0) res = 1;
               break;
               case 2:
                  //MicroWire
-               res = Read_EEPROM_3wire_param(buf, static_cast<int>(curBlock * currentBlockSize), static_cast<int>(currentBlockSize), static_cast<int>(currentChipSize), currentAlgorithm);
+               res = Read_EEPROM_3wire_param(buf.get(), static_cast<int>(curBlock * currentBlockSize),
+                                                static_cast<int>(currentBlockSize),
+                                                static_cast<int>(currentChipSize), currentAlgorithm);
                if (res==0) res = 1;
               break;
               case 4:
                  //95xxx
-                 res = s95_read_param(buf,curBlock * currentBlockSize, currentBlockSize, currentBlockSize, currentAlgorithm);
+                 res = s95_read_param(buf.get(),curBlock * currentBlockSize, currentBlockSize,
+                                      currentBlockSize, currentAlgorithm);
               break;
               default:
                  //Unsupport
@@ -214,7 +225,8 @@ void MainWindow::on_pushButton_clicked()
             }
          for (j = 0; j < currentBlockSize; j++)
             {
-                  chipData[addr + j] = char(buf[addr + j - k * currentBlockSize]);
+//                  chipData[addr + j] = char(buf[addr + j - k * currentBlockSize]);
+             chipData[addr + j] = static_cast<char>(buf[j]);
             }
           addr = addr + currentBlockSize;
           curBlock++;
@@ -251,6 +263,9 @@ void MainWindow::on_pushButton_clicked()
   doNotDisturbCancel();
 }
 
+/**
+ * @brief MainWindow::on_pushButton_2_clicked "Detect" action
+ */
 void MainWindow::on_pushButton_2_clicked()
 {
     //searching the connected chip in database
@@ -329,20 +344,14 @@ void MainWindow::on_pushButton_2_clicked()
     {
     currentNumBlocks = currentChipSize / currentBlockSize;
     chipData.resize(static_cast<int>(currentChipSize));
-    for (uint32_t i=0; i < currentChipSize; i++)
-    {
-        chipData[i] = char(0xff);
-    }
+        chipData.fill(0xff);
     hexEdit->setData(chipData);
     }
     if ((currentChipSize !=0) && (currentPageSize!=0)  && (currentChipType == 1))
     {
     currentNumBlocks = currentChipSize / currentPageSize;
     chipData.resize(static_cast<int>(currentChipSize));
-    for (uint32_t i=0; i < currentChipSize; i++)
-    {
-        chipData[i] = char(0xff);
-    }
+        chipData.fill(0xff);
     hexEdit->setData(chipData);
     }
     ui->pushButton_2->setStyleSheet(grnKeyStyle);
@@ -350,6 +359,10 @@ void MainWindow::on_pushButton_2_clicked()
     ch341a_spi_shutdown();
 }
 
+/**
+ * @brief MainWindow::on_comboBox_size_currentIndexChanged
+ * @param index
+ */
 void MainWindow::on_comboBox_size_currentIndexChanged(int index)
 {
     //qDebug() <<"size="<< ui->comboBox_size->currentData().toInt() << " block_size=" << ui->comboBox_page->currentData().toInt();
@@ -361,25 +374,23 @@ void MainWindow::on_comboBox_size_currentIndexChanged(int index)
     {
         currentNumBlocks = currentChipSize / currentBlockSize;
         chipData.resize(static_cast<int>(currentChipSize));
-        for (uint32_t i=0; i < currentChipSize; i++)
-        {
-            chipData[i] = char(0xff);
-        }
+        chipData.fill(0xff);
         hexEdit->setData(chipData);
     }
     if ((currentChipSize !=0) && (currentPageSize!=0)  && (currentChipType > 0))
     {
     currentNumBlocks = currentChipSize / currentPageSize;
     chipData.resize(static_cast<int>(currentChipSize));
-    for (uint32_t i=0; i < currentChipSize; i++)
-    {
-        chipData[i] = char(0xff);
-    }
+        chipData.fill(0xff);
     hexEdit->setData(chipData);
     }
     index = index + 0;
 }
 
+/**
+ * @brief MainWindow::on_comboBox_page_currentIndexChanged "Page size" changed
+ * @param index
+ */
 void MainWindow::on_comboBox_page_currentIndexChanged(int index)
 {
     currentChipSize = ui->comboBox_size->currentData().toUInt();
@@ -389,20 +400,14 @@ void MainWindow::on_comboBox_page_currentIndexChanged(int index)
     {
         currentNumBlocks = currentChipSize / currentBlockSize;
         chipData.resize(static_cast<int>(currentChipSize));
-        for (uint32_t i=0; i < currentChipSize; i++)
-        {
-            chipData[i] = char(0xff);
-        }
+        chipData.fill(0xff);
         hexEdit->setData(chipData);
     }
     if ((currentChipSize !=0) && (currentPageSize!=0)  && (currentChipType > 0))
     {
     currentNumBlocks = currentChipSize / currentPageSize;
     chipData.resize(static_cast<int>(currentChipSize));
-    for (uint32_t i=0; i < currentChipSize; i++)
-    {
-        chipData[i] = char(0xff);
-    }
+        chipData.fill(0xff);
     hexEdit->setData(chipData);
     }
     index = index + 0;
@@ -435,6 +440,9 @@ void MainWindow::on_actionSave_triggered()
     file.close();
 }
 
+/**
+ * @brief MainWindow::on_actionErase_triggered
+ */
 void MainWindow::on_actionErase_triggered()
 {
     //statusCH341 = ch341a_spi_init();
@@ -464,8 +472,10 @@ void MainWindow::on_actionErase_triggered()
         int res = 0;
         currentBlockSize = currentPageSize;
         currentNumBlocks = currentChipSize / currentBlockSize;
-        uint8_t *buf;
-        buf = (uint8_t *)malloc(currentBlockSize);
+// memory leak in buf allocation
+//        uint8_t *buf;
+//        buf = (uint8_t *)malloc(currentBlockSize);
+        std::shared_ptr<unsigned char[]> buf(new unsigned char[currentBlockSize]);
         config_stream(2);
         if (isHalted)
         {
@@ -482,7 +492,8 @@ void MainWindow::on_actionErase_triggered()
         for (curBlock = 0; curBlock < currentNumBlocks; curBlock++)
         {
             //res = ch341writeEEPROM_param(buf, curBlock * 128, 128, currentPageSize, currentAlgorithm);
-            res =  s95_write_param(buf, curBlock * currentBlockSize, currentBlockSize, currentBlockSize, currentAlgorithm);
+            res =  s95_write_param(buf.get(), curBlock * currentBlockSize,
+                                  currentBlockSize, currentBlockSize, currentAlgorithm);
             qApp->processEvents();
             ui->progressBar->setValue( static_cast<int>(curBlock));
             //qDebug() << "res=" << res;
@@ -511,8 +522,10 @@ void MainWindow::on_actionErase_triggered()
         int res = 0;
         currentBlockSize = 128;
         currentNumBlocks = currentChipSize / currentBlockSize;
-        uint8_t *buf;
-        buf = (uint8_t *)malloc(currentBlockSize);
+// memory leaks in buf
+//        uint8_t *buf;
+//          buf = (uint8_t *)malloc(currentBlockSize);
+        std::shared_ptr<unsigned char[]> buf(new unsigned char[currentBlockSize]);
         config_stream(2);
         if (isHalted)
         {
@@ -528,7 +541,8 @@ void MainWindow::on_actionErase_triggered()
         }
         for (curBlock = 0; curBlock < currentNumBlocks; curBlock++)
         {
-            res = ch341writeEEPROM_param(buf, curBlock * 128, 128, currentPageSize, currentAlgorithm);
+            res = ch341writeEEPROM_param(buf.get(), curBlock * 128, 128,
+                                         currentPageSize, currentAlgorithm);
             if (res==0) res = 1;
             qApp->processEvents();
             ui->progressBar->setValue( static_cast<int>(curBlock));
@@ -616,34 +630,41 @@ void MainWindow::on_actionWrite_triggered()
     ui->checkBox_2->setStyleSheet("QCheckBox{font-weight:800;}");
     chipData = hexEdit->data();
     //uint8_t buf[currentBlockSize];
-    uint8_t *buf;
-    buf = (uint8_t *)malloc(currentBlockSize);
+// memory leaks in buf
+// uint8_t *buf;
+// buf = (uint8_t *)malloc(currentBlockSize);
+        std::shared_ptr<unsigned char[]> buf(new unsigned char[currentBlockSize]);
     for (k = 0; k < currentNumBlocks; k++)
       {
 
          for (j = 0; j < currentBlockSize; j++)
             {
-               buf[addr + j - k * currentBlockSize] =  static_cast<uint8_t>(chipData[addr + j]) ;
+             //               buf[addr + j - k * currentBlockSize] =  static_cast<uint8_t>(chipData[addr + j]) ;
+            buf[j] = static_cast<uint8_t>(chipData[addr + j]);
             }
          switch (currentChipType)
                        {
                        case 0:
                           //SPI
-                          res =  snor_write_param(buf, addr, currentBlockSize, currentBlockSize, currentAddr4bit);
+                          res =  snor_write_param(buf.get(), addr, currentBlockSize,
+                                                 currentBlockSize, currentAddr4bit);
                        break;
                        case 1:
                           //I2C
-                          res = ch341writeEEPROM_param(buf, curBlock * 128, 128, currentPageSize, currentAlgorithm);
+                          res = ch341writeEEPROM_param(buf.get(), curBlock * 128, 128,
+                                                       currentPageSize, currentAlgorithm);
                           if (res==0) res = 1;
                        break;
                        case 2:
                           //MicroWire
-                          res = Write_EEPROM_3wire_param(buf, static_cast<int>(curBlock * currentBlockSize), static_cast<int>(currentBlockSize), static_cast<int>(currentChipSize), currentAlgorithm);
+                          res = Write_EEPROM_3wire_param(buf.get(), static_cast<int>(curBlock * currentBlockSize),
+                                                         static_cast<int>(currentBlockSize),
+                                                         static_cast<int>(currentChipSize), currentAlgorithm);
                           if (res==0) res = 1;
                        break;
                        case 4:
                           //M95xx
-                          res =  s95_write_param(buf, addr, currentBlockSize, currentBlockSize, currentAlgorithm);                         
+                          res =  s95_write_param(buf.get(), addr, currentBlockSize, currentBlockSize, currentAlgorithm);
                        break;
                        default:
                           //Unsupport
@@ -788,20 +809,14 @@ void MainWindow::on_comboBox_name_currentIndexChanged(const QString &arg1)
        {
            currentNumBlocks = currentChipSize / currentBlockSize;
            chipData.resize(static_cast<int>(currentChipSize));
-           for (uint32_t i=0; i < currentChipSize; i++)
-           {
-               chipData[i] = char(0xff);
-           }
+           chipData.fill(0xff);
            hexEdit->setData(chipData);
        }
        if ((currentChipSize !=0) && (currentPageSize!=0)  && (currentChipType > 0))
        {
            currentNumBlocks = currentChipSize / currentPageSize;
            chipData.resize(static_cast<int>(currentChipSize));
-           for (uint32_t i=0; i < currentChipSize; i++)
-           {
-               chipData[i] = char(0xff);
-           }
+           chipData.fill(0xff);
            hexEdit->setData(chipData);
        }
 
@@ -837,8 +852,10 @@ void MainWindow::on_actionVerify_triggered()
                ui->progressBar->setRange(0, static_cast<int>(currentNumBlocks));
                ui->progressBar->setValue(0);
                //uint8_t buf[currentBlockSize];
-               uint8_t *buf;
-               buf = (uint8_t *)malloc(currentBlockSize);
+// memory leaks on buf
+//               uint8_t *buf;
+//               buf = (uint8_t *)malloc(currentBlockSize);
+               std::shared_ptr<unsigned char[]> buf(new unsigned char[currentBlockSize]);
                chipData = hexEdit->data();
                ui->checkBox_3->setStyleSheet("QCheckBox{font-weight:800;}");
                ui->statusBar->showMessage(tr("Veryfing data from ") + ui->comboBox_name->currentText());
@@ -848,21 +865,27 @@ void MainWindow::on_actionVerify_triggered()
                       {
                       case 0:
                          //SPI
-                         res = snor_read_param(buf,curBlock * currentBlockSize, currentBlockSize, currentBlockSize, currentAddr4bit);
+                         res = snor_read_param(buf.get(),curBlock * currentBlockSize,
+                                               currentBlockSize, currentBlockSize, currentAddr4bit);
                       break;
                       case 1:
                          //I2C
-                       res = ch341readEEPROM_param(buf, curBlock * currentBlockSize, currentBlockSize, currentChipSize, currentPageSize, currentAlgorithm);//currentAlgorithm);
+                       res = ch341readEEPROM_param(buf.get(), curBlock * currentBlockSize,
+                                                    currentBlockSize, currentChipSize,
+                                                     currentPageSize, currentAlgorithm);//currentAlgorithm);
                        if (res==0) res = 1;
                       break;
                       case 2:
                          //MicroWire
-                       res = Read_EEPROM_3wire_param(buf, static_cast<int>(curBlock * currentBlockSize), static_cast<int>(currentBlockSize), static_cast<int>(currentChipSize), currentAlgorithm);
+                       res = Read_EEPROM_3wire_param(buf.get(), static_cast<int>(curBlock * currentBlockSize),
+                                                       static_cast<int>(currentBlockSize),
+                                                       static_cast<int>(currentChipSize), currentAlgorithm);
                        if (res==0) res = 1;
                       break;
                       case 4:
                          //95xxx
-                         res = s95_read_param(buf,curBlock * currentBlockSize, currentBlockSize, currentBlockSize, currentAlgorithm);
+                         res = s95_read_param(buf.get(),curBlock * currentBlockSize,
+                                              currentBlockSize, currentBlockSize, currentAlgorithm);
                       break;
                       default:
                          //Unsupport
@@ -888,7 +911,8 @@ void MainWindow::on_actionVerify_triggered()
                     }
                     for (j = 0; j < currentBlockSize; j++)
                     {
-                      if (chipData[addr + j] != char(buf[addr + j - k * currentBlockSize]))
+//                      if (chipData[addr + j] != char(buf[addr + j - k * currentBlockSize]))
+                        if (chipData[addr + j] != static_cast<char>(buf[j]))
                           {
                             //error compare
                             QMessageBox::about(this, tr("Error"), tr("Error comparing data!\nAddress:   ") + hexiAddr(addr + j) + tr("\nBuffer: ") + bytePrint( static_cast<unsigned char>(chipData[addr + j])) + tr("    Chip: ") + bytePrint(buf[addr + j - k * currentBlockSize]));
