@@ -238,6 +238,7 @@ void MainWindow::on_pushButton_clicked()
     else
     {
        //Not correct Number found size of blocks
+
        if (currentChipType == chipType::chipTypeSPI) {
            QMessageBox::about(this,
                               tr("Error"),
