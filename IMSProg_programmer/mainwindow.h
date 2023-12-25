@@ -96,6 +96,12 @@ private slots:
     void on_actionChip_info_triggered();
 
 private:
+    enum class chipType : uint8_t {chipTypeSPI = 0U,
+                                   chipType25EE,
+                                   chipType93EE,
+                                   chipType24EE,
+                                   chipType95EE};
+
     Ui::MainWindow *ui;
     QColor defaultTextColor;
     QString grnKeyStyle, redKeyStyle;
@@ -103,7 +109,8 @@ private:
     int statusCH341;
     QByteArray chipData;
     uint32_t currentChipSize, currentNumBlocks, currentBlockSize, currentPageSize;
-    uint8_t currentAlgorithm, currentChipType;
+    uint8_t currentAlgorithm;
+    chipType currentChipType;
     unsigned int currentAddr4bit;
     bool isHalted;
     QString bytePrint(unsigned char z);

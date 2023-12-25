@@ -12,6 +12,7 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  */
+#include <memory>
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QLineEdit>
@@ -105,7 +106,7 @@ MainWindow::MainWindow(QWidget *parent) :
  currentBlockSize = 0;
  currentPageSize = 0;
  currentAlgorithm = 0;
- currentChipType = 0;
+ currentChipType = chipType::chipTypeSPI;
  blockStartAddr = 0;
  blockLen = 0;
  currentAddr4bit = 0;
@@ -113,10 +114,7 @@ MainWindow::MainWindow(QWidget *parent) :
  statusCH341 = ch341a_spi_init();
  ch341StatusFlashing();
  chipData.resize(256);
- for (int i=0; i < 256; i++)
- {
-     chipData[i] = char(0xff);
- }
+ chipData.fill(0xff);
  ch341a_spi_shutdown();
  hexEdit = new QHexEdit(ui->frame);
  hexEdit->setGeometry(0,0,ui->frame->width(),ui->frame->height());
@@ -134,23 +132,29 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+/**
+ * @brief MainWindow::on_pushButton_clicked "Read action"
+ */
 void MainWindow::on_pushButton_clicked()
 {
   //Reading data from chip
   int res = 0;
-  statusCH341 = ch341a_init(currentChipType);
+  statusCH341 = ch341a_init(static_cast<uint8_t>(currentChipType));
   if (statusCH341 == 0)
   {
     ui->crcEdit->setText("");
-    if (((currentNumBlocks > 0) && (currentBlockSize >0) && (currentChipType == 0)) || ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 1)) || ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 2) || ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 4))))
+    if ( ((currentNumBlocks > 0) && (currentBlockSize > 0) && (currentChipType == chipType::chipTypeSPI)) ||
+         ((currentNumBlocks > 0) && (currentPageSize > 0) && (currentChipType == chipType::chipType25EE)) ||
+         ((currentNumBlocks > 0) && (currentPageSize > 0) && (currentChipType == chipType::chipType93EE)) ||
+         ((currentNumBlocks > 0) && (currentPageSize > 0) && (currentChipType == chipType::chipType95EE)) )
     {
        doNotDisturb();
-       if (currentChipType == 1)
+       if (currentChipType == chipType::chipType25EE)
        {
            currentBlockSize = 128;
            currentNumBlocks = currentChipSize / currentBlockSize;
        }
-       if ((currentChipType == 2) || (currentChipType == 4))
+       if ((currentChipType == chipType::chipType93EE) || (currentChipType == chipType::chipType95EE))
        {
            currentBlockSize = currentPageSize;
            currentNumBlocks = currentChipSize / currentBlockSize;
@@ -165,39 +169,57 @@ void MainWindow::on_pushButton_clicked()
        ui->progressBar->setRange(0, static_cast<int>(currentNumBlocks));
        ui->progressBar->setValue(0);
        //uint8_t buf[currentBlockSize];
-       uint8_t *buf;
-       buf = (uint8_t *)malloc(currentBlockSize);
+
+       std::shared_ptr<unsigned char[]> buf(new unsigned char[currentBlockSize]);
+
+/* memory leaks !!! buf was never freed
+    uint8_t *buf;
+    buf = (uint8_t *)malloc(currentBlockSize);
+*/
+
        ui->pushButton->setStyleSheet(redKeyStyle);
        ui->statusBar->showMessage(tr("Reading data from ") + ui->comboBox_name->currentText());
        for (k = 0; k < currentNumBlocks; k++)
        {
            switch (currentChipType)
               {
-              case 0:
+              case chipType::chipTypeSPI:
                  //SPI
-                 res = snor_read_param(buf,curBlock * currentBlockSize, currentBlockSize, currentBlockSize, currentAddr4bit);
+                 res = snor_read_param(buf.get(), curBlock * currentBlockSize,
+                                       currentBlockSize, currentBlockSize, currentAddr4bit);
               break;
-              case 1:
+
+              case chipType::chipType25EE:
                  //I2C
-               res = ch341readEEPROM_param(buf, curBlock * currentBlockSize, currentBlockSize, currentChipSize, currentPageSize, currentAlgorithm);//currentAlgorithm);
+               res = ch341readEEPROM_param(buf.get(), curBlock * currentBlockSize,
+                                           currentBlockSize, currentChipSize,
+                                           currentPageSize, currentAlgorithm);//currentAlgorithm);
                if (res==0) res = 1;
               break;
-              case 2:
+
+              case chipType::chipType93EE:
                  //MicroWire
-               res = Read_EEPROM_3wire_param(buf, static_cast<int>(curBlock * currentBlockSize), static_cast<int>(currentBlockSize), static_cast<int>(currentChipSize), currentAlgorithm);
+               res = Read_EEPROM_3wire_param(buf.get(), static_cast<int>(curBlock * currentBlockSize),
+                                                static_cast<int>(currentBlockSize),
+                                                static_cast<int>(currentChipSize), currentAlgorithm);
                if (res==0) res = 1;
               break;
-              case 4:
+
+              case chipType::chipType95EE:
                  //95xxx
-                 res = s95_read_param(buf,curBlock * currentBlockSize, currentBlockSize, currentBlockSize, currentAlgorithm);
+                 res = s95_read_param(buf.get(),curBlock * currentBlockSize, currentBlockSize,
+                                      currentBlockSize, currentAlgorithm);
               break;
+
               default:
+              case chipType::chipType24EE:
                  //Unsupport
                  QMessageBox::about(this, tr("Error"), tr("Unsupported chip type!"));
                  doNotDisturbCancel();
                  ch341a_spi_shutdown();
               return;
               }
+
           //qDebug() << "res=" << res;
           // if res=-1 - error, stop
           if (statusCH341 != 0)
@@ -212,9 +234,11 @@ void MainWindow::on_pushButton_clicked()
                doNotDisturbCancel();
                break;
             }
+
          for (j = 0; j < currentBlockSize; j++)
             {
-                  chipData[addr + j] = char(buf[addr + j - k * currentBlockSize]);
+//                  chipData[addr + j] = char(buf[addr + j - k * currentBlockSize]);
+             chipData[addr + j] = static_cast<char>(buf[j]);
             }
           addr = addr + currentBlockSize;
           curBlock++;
@@ -233,8 +257,15 @@ void MainWindow::on_pushButton_clicked()
     else
     {
        //Not correct Number found size of blocks
-       if (currentChipType == 0) QMessageBox::about(this, tr("Error"), tr("Before reading from chip please press 'Detect' button."));
-       if (currentChipType  >0 ) QMessageBox::about(this, tr("Error"), tr("Please select the chip parameters - manufacture and chip name"));
+       if (currentChipType == chipType::chipTypeSPI) {
+           QMessageBox::about(this,
+                              tr("Error"),
+                              tr("Before reading from chip please press 'Detect' button."));
+       } else {
+           QMessageBox::about(this,
+                              tr("Error"),
+                              tr("Please select the chip parameters - manufacture and chip name"));
+       }
     }
     hexEdit->setData(chipData);
     ui->statusBar->showMessage("");
@@ -251,6 +282,9 @@ void MainWindow::on_pushButton_clicked()
   doNotDisturbCancel();
 }
 
+/**
+ * @brief MainWindow::on_pushButton_2_clicked "Detect" action
+ */
 void MainWindow::on_pushButton_2_clicked()
 {
     //searching the connected chip in database
@@ -279,7 +313,7 @@ void MainWindow::on_pushButton_2_clicked()
     for (i = 0; i< max_rec; i++)
     {
         if ((bufid[0] == chips[i].chipJedecIDMan) && (bufid[1] == chips[i].chipJedecIDDev) && (bufid[2] == chips[i].chipJedecIDCap))
-        {            
+        {
             index = ui->comboBox_man->findText(chips[i].chipManuf);
                         if ( index != -1 )
                         { // -1 for not found
@@ -325,31 +359,29 @@ void MainWindow::on_pushButton_2_clicked()
     currentBlockSize = ui->comboBox_block->currentData().toUInt();
     currentPageSize = ui->comboBox_page->currentData().toUInt();
     currentAddr4bit = ui->comboBox_addr4bit->currentData().toUInt();
-    if ((currentChipSize !=0) && (currentBlockSize!=0)  && (currentChipType == 0))
+    if ((currentChipSize != 0) && (currentBlockSize != 0)  && (currentChipType == chipType::chipTypeSPI))
     {
-    currentNumBlocks = currentChipSize / currentBlockSize;
-    chipData.resize(static_cast<int>(currentChipSize));
-    for (uint32_t i=0; i < currentChipSize; i++)
-    {
-        chipData[i] = char(0xff);
+        currentNumBlocks = currentChipSize / currentBlockSize;
+        chipData.resize(static_cast<int>(currentChipSize));
+        chipData.fill(0xff);
+        hexEdit->setData(chipData);
     }
-    hexEdit->setData(chipData);
-    }
-    if ((currentChipSize !=0) && (currentPageSize!=0)  && (currentChipType == 1))
+    if ((currentChipSize != 0 ) && (currentPageSize !=0 )  && (currentChipType == chipType::chipType25EE))
     {
-    currentNumBlocks = currentChipSize / currentPageSize;
-    chipData.resize(static_cast<int>(currentChipSize));
-    for (uint32_t i=0; i < currentChipSize; i++)
-    {
-        chipData[i] = char(0xff);
-    }
-    hexEdit->setData(chipData);
+        currentNumBlocks = currentChipSize / currentPageSize;
+        chipData.resize(static_cast<int>(currentChipSize));
+        chipData.fill(0xff);
+        hexEdit->setData(chipData);
     }
     ui->pushButton_2->setStyleSheet(grnKeyStyle);
     ui->crcEdit->setText(getCRC32());
     ch341a_spi_shutdown();
 }
 
+/**
+ * @brief MainWindow::on_comboBox_size_currentIndexChanged
+ * @param index
+ */
 void MainWindow::on_comboBox_size_currentIndexChanged(int index)
 {
     //qDebug() <<"size="<< ui->comboBox_size->currentData().toInt() << " block_size=" << ui->comboBox_page->currentData().toInt();
@@ -357,57 +389,50 @@ void MainWindow::on_comboBox_size_currentIndexChanged(int index)
     currentBlockSize = ui->comboBox_block->currentData().toUInt();
     currentPageSize = ui->comboBox_page->currentData().toUInt();
     currentAddr4bit = ui->comboBox_addr4bit->currentData().toUInt();
-    if ((currentChipSize !=0) && (currentBlockSize!=0) && (currentChipType == 0))
+    if ((currentChipSize != 0) && (currentBlockSize!= 0) && (currentChipType == chipType::chipTypeSPI))
     {
         currentNumBlocks = currentChipSize / currentBlockSize;
         chipData.resize(static_cast<int>(currentChipSize));
-        for (uint32_t i=0; i < currentChipSize; i++)
-        {
-            chipData[i] = char(0xff);
-        }
+        chipData.fill(0xff);
         hexEdit->setData(chipData);
     }
-    if ((currentChipSize !=0) && (currentPageSize!=0)  && (currentChipType > 0))
+
+    if ((currentChipSize != 0) && (currentPageSize != 0)  && (currentChipType != chipType::chipTypeSPI))
     {
-    currentNumBlocks = currentChipSize / currentPageSize;
-    chipData.resize(static_cast<int>(currentChipSize));
-    for (uint32_t i=0; i < currentChipSize; i++)
-    {
-        chipData[i] = char(0xff);
-    }
-    hexEdit->setData(chipData);
+        currentNumBlocks = currentChipSize / currentPageSize;
+        chipData.resize(static_cast<int>(currentChipSize));
+        chipData.fill(0xff);
+        hexEdit->setData(chipData);
     }
     index = index + 0;
 }
 
+/**
+ * @brief MainWindow::on_comboBox_page_currentIndexChanged "Page size" changed
+ * @param index
+ */
 void MainWindow::on_comboBox_page_currentIndexChanged(int index)
 {
     currentChipSize = ui->comboBox_size->currentData().toUInt();
     currentBlockSize = ui->comboBox_block->currentData().toUInt();
     currentAddr4bit = ui->comboBox_addr4bit->currentData().toUInt();
-    if ((currentChipSize !=0) && (currentBlockSize!=0) && (currentChipType ==0))
+    if ((currentChipSize != 0) && (currentBlockSize!= 0) && (currentChipType == chipType::chipTypeSPI))
     {
         currentNumBlocks = currentChipSize / currentBlockSize;
         chipData.resize(static_cast<int>(currentChipSize));
-        for (uint32_t i=0; i < currentChipSize; i++)
-        {
-            chipData[i] = char(0xff);
-        }
+        chipData.fill(0xff);
         hexEdit->setData(chipData);
     }
-    if ((currentChipSize !=0) && (currentPageSize!=0)  && (currentChipType > 0))
+
+    if ((currentChipSize != 0) && (currentPageSize != 0)  && (currentChipType != chipType::chipTypeSPI))
     {
-    currentNumBlocks = currentChipSize / currentPageSize;
-    chipData.resize(static_cast<int>(currentChipSize));
-    for (uint32_t i=0; i < currentChipSize; i++)
-    {
-        chipData[i] = char(0xff);
-    }
-    hexEdit->setData(chipData);
+        currentNumBlocks = currentChipSize / currentPageSize;
+        chipData.resize(static_cast<int>(currentChipSize));
+        chipData.fill(0xff);
+        hexEdit->setData(chipData);
     }
     index = index + 0;
 }
-
 
 void MainWindow::on_actionDetect_triggered()
 {
@@ -435,10 +460,13 @@ void MainWindow::on_actionSave_triggered()
     file.close();
 }
 
+/**
+ * @brief MainWindow::on_actionErase_triggered
+ */
 void MainWindow::on_actionErase_triggered()
 {
     //statusCH341 = ch341a_spi_init();
-    statusCH341 = ch341a_init(currentChipType);
+    statusCH341 = ch341a_init(static_cast<uint8_t>(currentChipType));
     ch341StatusFlashing();
     if (statusCH341 != 0)
       {
@@ -450,22 +478,24 @@ void MainWindow::on_actionErase_triggered()
     ui->centralWidget->repaint();
     ui->progressBar->setRange(0, 100);
     doNotDisturb();
-    if (currentChipType == 0)
-    {
+
+    if (currentChipType == chipType::chipTypeSPI) {
        ui->progressBar->setValue(50);
        //int snor_erase_param(unsigned long offs, unsigned long len, unsigned int sector_size, unsigned int n_sectors);
        snor_erase_param(0, 65536, 65536, 1);
        sleep(1);
-    }
-    if (currentChipType == 4)
-    {
+
+    } else if (currentChipType == chipType::chipType95EE) {
         uint32_t curBlock = 0;
         uint32_t k;
         int res = 0;
         currentBlockSize = currentPageSize;
         currentNumBlocks = currentChipSize / currentBlockSize;
-        uint8_t *buf;
-        buf = (uint8_t *)malloc(currentBlockSize);
+// memory leak in buf allocation
+//        uint8_t *buf;
+//        buf = (uint8_t *)malloc(currentBlockSize);
+        std::shared_ptr<unsigned char[]> buf(new unsigned char[currentBlockSize]);
+
         config_stream(2);
         if (isHalted)
         {
@@ -475,14 +505,17 @@ void MainWindow::on_actionErase_triggered()
             return;
         }
         ui->progressBar->setRange(0, static_cast<int>(currentNumBlocks));
+
         for (k = 0; k < currentBlockSize; k++)
         {
             buf[k] = 0xff;
         }
+
         for (curBlock = 0; curBlock < currentNumBlocks; curBlock++)
         {
             //res = ch341writeEEPROM_param(buf, curBlock * 128, 128, currentPageSize, currentAlgorithm);
-            res =  s95_write_param(buf, curBlock * currentBlockSize, currentBlockSize, currentBlockSize, currentAlgorithm);
+            res =  s95_write_param(buf.get(), curBlock * currentBlockSize,
+                                  currentBlockSize, currentBlockSize, currentAlgorithm);
             qApp->processEvents();
             ui->progressBar->setValue( static_cast<int>(curBlock));
             //qDebug() << "res=" << res;
@@ -494,25 +527,26 @@ void MainWindow::on_actionErase_triggered()
                 return;
               }
         }
-    }
-    if (currentChipType == 2)
-    {
+
+    } else if (currentChipType == chipType::chipType93EE) {
         config_stream(1);
         mw_gpio_init();
         ui->progressBar->setValue(50);
         //mw_eeprom_erase(0, currentChipSize);
         Erase_EEPROM_3wire_param(currentAlgorithm);
         sleep(1);
-    }
-    if (currentChipType == 1)
-    {
+
+    } else if (currentChipType == chipType::chipType25EE) {
         uint32_t curBlock = 0;
         uint32_t k;
         int res = 0;
         currentBlockSize = 128;
         currentNumBlocks = currentChipSize / currentBlockSize;
-        uint8_t *buf;
-        buf = (uint8_t *)malloc(currentBlockSize);
+// memory leaks in buf
+//        uint8_t *buf;
+//          buf = (uint8_t *)malloc(currentBlockSize);
+        std::shared_ptr<unsigned char[]> buf(new unsigned char[currentBlockSize]);
+
         config_stream(2);
         if (isHalted)
         {
@@ -528,7 +562,8 @@ void MainWindow::on_actionErase_triggered()
         }
         for (curBlock = 0; curBlock < currentNumBlocks; curBlock++)
         {
-            res = ch341writeEEPROM_param(buf, curBlock * 128, 128, currentPageSize, currentAlgorithm);
+            res = ch341writeEEPROM_param(buf.get(), curBlock * 128, 128,
+                                         currentPageSize, currentAlgorithm);
             if (res==0) res = 1;
             qApp->processEvents();
             ui->progressBar->setValue( static_cast<int>(curBlock));
@@ -542,6 +577,8 @@ void MainWindow::on_actionErase_triggered()
               }
         }
 
+    } else {
+        // empty
     }
     doNotDisturbCancel();
     ui->checkBox->setStyleSheet("");
@@ -590,62 +627,75 @@ void MainWindow::on_actionWrite_triggered()
 {
     //Writting data to chip
     int res = 0;
-    statusCH341 = ch341a_init(currentChipType);
+    statusCH341 = ch341a_init(static_cast<uint8_t>(currentChipType));
     if (statusCH341 == 0)
     {
-    if (((currentNumBlocks > 0) && (currentBlockSize >0) && (currentChipType == 0)) || ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 1)) || ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 2)) || ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 4)))
+    if ( ((currentNumBlocks > 0) && (currentBlockSize > 0) && (currentChipType == chipType::chipTypeSPI)) ||
+         ((currentNumBlocks > 0) && (currentPageSize > 0) && (currentChipType == chipType::chipType25EE)) ||
+         ((currentNumBlocks > 0) && (currentPageSize > 0) && (currentChipType == chipType::chipType93EE)) ||
+         ((currentNumBlocks > 0) && (currentPageSize > 0) && (currentChipType == chipType::chipType95EE)) )
         {
         doNotDisturb();
-        if (currentChipType == 1)
+        if (currentChipType == chipType::chipType25EE)
         {
             currentBlockSize = 128;
             currentNumBlocks = currentChipSize / currentBlockSize;
         }
-        if ((currentChipType == 2) || (currentChipType == 4))
+        if ((currentChipType == chipType::chipType93EE) || (currentChipType == chipType::chipType95EE))
         {
             currentBlockSize = currentPageSize;
             currentNumBlocks = currentChipSize / currentBlockSize;
         }
         ch341StatusFlashing();
-    uint32_t addr = 0;
-    uint32_t curBlock = 0;    
-    uint32_t j, k;
-    ui->statusBar->showMessage(tr("Writing data to ") + ui->comboBox_name->currentText());
-    //progerssbar settings
-    ui->progressBar->setRange(0, static_cast<int>(currentNumBlocks));
-    ui->checkBox_2->setStyleSheet("QCheckBox{font-weight:800;}");
-    chipData = hexEdit->data();
+        uint32_t addr = 0;
+        uint32_t curBlock = 0;
+        uint32_t j, k;
+        ui->statusBar->showMessage(tr("Writing data to ") + ui->comboBox_name->currentText());
+        //progerssbar settings
+        ui->progressBar->setRange(0, static_cast<int>(currentNumBlocks));
+        ui->checkBox_2->setStyleSheet("QCheckBox{font-weight:800;}");
+        chipData = hexEdit->data();
     //uint8_t buf[currentBlockSize];
-    uint8_t *buf;
-    buf = (uint8_t *)malloc(currentBlockSize);
+// memory leaks in buf
+// uint8_t *buf;
+// buf = (uint8_t *)malloc(currentBlockSize);
+        std::shared_ptr<unsigned char[]> buf(new unsigned char[currentBlockSize]);
+
     for (k = 0; k < currentNumBlocks; k++)
       {
 
          for (j = 0; j < currentBlockSize; j++)
             {
-               buf[addr + j - k * currentBlockSize] =  static_cast<uint8_t>(chipData[addr + j]) ;
+             //               buf[addr + j - k * currentBlockSize] =  static_cast<uint8_t>(chipData[addr + j]) ;
+            buf[j] = static_cast<uint8_t>(chipData[addr + j]);
             }
          switch (currentChipType)
                        {
-                       case 0:
+                       case chipType::chipTypeSPI:
                           //SPI
-                          res =  snor_write_param(buf, addr, currentBlockSize, currentBlockSize, currentAddr4bit);
+                          res =  snor_write_param(buf.get(), addr, currentBlockSize,
+                                                 currentBlockSize, currentAddr4bit);
                        break;
-                       case 1:
+                       case chipType::chipType25EE:
                           //I2C
-                          res = ch341writeEEPROM_param(buf, curBlock * 128, 128, currentPageSize, currentAlgorithm);
+                          res = ch341writeEEPROM_param(buf.get(), curBlock * 128, 128,
+                                                       currentPageSize, currentAlgorithm);
                           if (res==0) res = 1;
                        break;
-                       case 2:
+                       case chipType::chipType93EE:
                           //MicroWire
-                          res = Write_EEPROM_3wire_param(buf, static_cast<int>(curBlock * currentBlockSize), static_cast<int>(currentBlockSize), static_cast<int>(currentChipSize), currentAlgorithm);
+                          res = Write_EEPROM_3wire_param(buf.get(), static_cast<int>(curBlock * currentBlockSize),
+                                                         static_cast<int>(currentBlockSize),
+                                                         static_cast<int>(currentChipSize), currentAlgorithm);
                           if (res==0) res = 1;
                        break;
-                       case 4:
+                       case chipType::chipType95EE:
                           //M95xx
-                          res =  s95_write_param(buf, addr, currentBlockSize, currentBlockSize, currentAlgorithm);                         
+                          res =  s95_write_param(buf.get(), addr, currentBlockSize, currentBlockSize, currentAlgorithm);
                        break;
+
                        default:
+                       case chipType::chipType24EE:
                           //Unsupport
                           QMessageBox::about(this, tr("Error"), tr("Unsupported chip type!"));
                           doNotDisturbCancel();
@@ -661,7 +711,7 @@ void MainWindow::on_actionWrite_triggered()
              doNotDisturbCancel();
              ch341a_spi_shutdown();
              break;
-           }         
+           }
          if (res <= 0)
            {
              QMessageBox::about(this, tr("Error"), tr("Error writing sector ") + QString::number(curBlock));
@@ -690,7 +740,7 @@ void MainWindow::on_actionWrite_triggered()
     doNotDisturbCancel();
     ui->progressBar->setValue(0);
     ui->checkBox_2->setStyleSheet("");
-    ui->statusBar->showMessage("");    
+    ui->statusBar->showMessage("");
     }
     else
     {
@@ -723,9 +773,10 @@ void MainWindow::on_comboBox_man_currentIndexChanged(int index)
        for (i = 0; i<max_rec; i++)
        {
            //replacing items to combobox chip Name
-           if (txt.compare(chips[i].chipManuf)==0 && (currentChipType == chips[i].chipTypeHex))
+           if ( (txt.compare(chips[i].chipManuf) == 0) &&
+               (static_cast<uint8_t>(currentChipType) == chips[i].chipTypeHex) )
            {
-           index2 = ui->comboBox_name->findText(chips[i].chipName);
+                index2 = ui->comboBox_name->findText(chips[i].chipName);
                     if ( index2 == -1 ) ui->comboBox_name->addItem(chips[i].chipName);
            }
        }
@@ -784,24 +835,18 @@ void MainWindow::on_comboBox_name_currentIndexChanged(const QString &arg1)
        currentPageSize = ui->comboBox_page->currentData().toUInt();
        currentAddr4bit = ui->comboBox_addr4bit->currentData().toUInt();
 
-       if ((currentChipSize !=0) && (currentBlockSize!=0) && (currentChipType == 0))
+       if ((currentChipSize != 0) && (currentBlockSize != 0) && (currentChipType == chipType::chipTypeSPI))
        {
            currentNumBlocks = currentChipSize / currentBlockSize;
            chipData.resize(static_cast<int>(currentChipSize));
-           for (uint32_t i=0; i < currentChipSize; i++)
-           {
-               chipData[i] = char(0xff);
-           }
+           chipData.fill(0xff);
            hexEdit->setData(chipData);
        }
-       if ((currentChipSize !=0) && (currentPageSize!=0)  && (currentChipType > 0))
+       if ((currentChipSize != 0) && (currentPageSize!= 0)  && (currentChipType != chipType::chipTypeSPI))
        {
            currentNumBlocks = currentChipSize / currentPageSize;
            chipData.resize(static_cast<int>(currentChipSize));
-           for (uint32_t i=0; i < currentChipSize; i++)
-           {
-               chipData[i] = char(0xff);
-           }
+           chipData.fill(0xff);
            hexEdit->setData(chipData);
        }
 
@@ -812,19 +857,21 @@ void MainWindow::on_actionVerify_triggered()
 {
     //Reading and veryfying data from chip
     int res =0;
-    statusCH341 = ch341a_init(currentChipType);
+    statusCH341 = ch341a_init(static_cast<uint8_t>(currentChipType));
     if (statusCH341 == 0)
     {
-       if (((currentNumBlocks > 0) && (currentBlockSize >0) && (currentChipType == 0)) || ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 1)) || ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 2)) || ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 4)))
-           {
+       if ( ((currentNumBlocks > 0) && (currentBlockSize > 0) && (currentChipType == chipType::chipTypeSPI)) ||
+            ((currentNumBlocks > 0) && (currentPageSize > 0) && (currentChipType == chipType::chipType25EE)) ||
+            ((currentNumBlocks > 0) && (currentPageSize > 0) && (currentChipType == chipType::chipType93EE)) ||
+            ((currentNumBlocks > 0) && (currentPageSize > 0) && (currentChipType == chipType::chipType95EE)) ) {
                ui->crcEdit->setText("");
                doNotDisturb();
-               if (currentChipType == 1)
+               if (currentChipType == chipType::chipTypeSPI)
                {
                  currentBlockSize = 128;
                  currentNumBlocks = currentChipSize / currentBlockSize;
                }
-               if ((currentChipType == 2) || (currentChipType == 4))
+               if ((currentChipType == chipType::chipType93EE) || (currentChipType == chipType::chipType95EE))
                {
                    currentBlockSize = currentPageSize;
                    currentNumBlocks = currentChipSize / currentBlockSize;
@@ -832,13 +879,16 @@ void MainWindow::on_actionVerify_triggered()
                ch341StatusFlashing();
                uint32_t addr = 0;
                uint32_t curBlock = 0;
-               uint32_t j, k;               
+               uint32_t j, k;
                //progerssbar settings
                ui->progressBar->setRange(0, static_cast<int>(currentNumBlocks));
                ui->progressBar->setValue(0);
                //uint8_t buf[currentBlockSize];
-               uint8_t *buf;
-               buf = (uint8_t *)malloc(currentBlockSize);
+// memory leaks on buf
+//               uint8_t *buf;
+//               buf = (uint8_t *)malloc(currentBlockSize);
+               std::shared_ptr<unsigned char[]> buf(new unsigned char[currentBlockSize]);
+
                chipData = hexEdit->data();
                ui->checkBox_3->setStyleSheet("QCheckBox{font-weight:800;}");
                ui->statusBar->showMessage(tr("Veryfing data from ") + ui->comboBox_name->currentText());
@@ -846,25 +896,36 @@ void MainWindow::on_actionVerify_triggered()
                {
                    switch (currentChipType)
                       {
-                      case 0:
+                      case chipType::chipTypeSPI:
                          //SPI
-                         res = snor_read_param(buf,curBlock * currentBlockSize, currentBlockSize, currentBlockSize, currentAddr4bit);
+                         res = snor_read_param(buf.get(),curBlock * currentBlockSize,
+                                               currentBlockSize, currentBlockSize, currentAddr4bit);
                       break;
-                      case 1:
+
+                      case chipType::chipType25EE:
                          //I2C
-                       res = ch341readEEPROM_param(buf, curBlock * currentBlockSize, currentBlockSize, currentChipSize, currentPageSize, currentAlgorithm);//currentAlgorithm);
-                       if (res==0) res = 1;
+                       res = ch341readEEPROM_param(buf.get(), curBlock * currentBlockSize,
+                                                    currentBlockSize, currentChipSize,
+                                                     currentPageSize, currentAlgorithm);//currentAlgorithm);
+                       if (res == 0) res = 1;
                       break;
-                      case 2:
+
+                      case chipType::chipType93EE:
                          //MicroWire
-                       res = Read_EEPROM_3wire_param(buf, static_cast<int>(curBlock * currentBlockSize), static_cast<int>(currentBlockSize), static_cast<int>(currentChipSize), currentAlgorithm);
-                       if (res==0) res = 1;
+                       res = Read_EEPROM_3wire_param(buf.get(), static_cast<int>(curBlock * currentBlockSize),
+                                                       static_cast<int>(currentBlockSize),
+                                                       static_cast<int>(currentChipSize), currentAlgorithm);
+                       if (res == 0) res = 1;
                       break;
-                      case 4:
+
+                      case chipType::chipType95EE:
                          //95xxx
-                         res = s95_read_param(buf,curBlock * currentBlockSize, currentBlockSize, currentBlockSize, currentAlgorithm);
+                         res = s95_read_param(buf.get(),curBlock * currentBlockSize,
+                                              currentBlockSize, currentBlockSize, currentAlgorithm);
                       break;
+
                       default:
+                      case chipType::chipType24EE:
                          //Unsupport
                          QMessageBox::about(this, tr("Error"), tr("Unsupported chip type!"));
                          doNotDisturbCancel();
@@ -888,7 +949,8 @@ void MainWindow::on_actionVerify_triggered()
                     }
                     for (j = 0; j < currentBlockSize; j++)
                     {
-                      if (chipData[addr + j] != char(buf[addr + j - k * currentBlockSize]))
+//                      if (chipData[addr + j] != char(buf[addr + j - k * currentBlockSize]))
+                        if (chipData[addr + j] != static_cast<char>(buf[j]))
                           {
                             //error compare
                             QMessageBox::about(this, tr("Error"), tr("Error comparing data!\nAddress:   ") + hexiAddr(addr + j) + tr("\nBuffer: ") + bytePrint( static_cast<unsigned char>(chipData[addr + j])) + tr("    Chip: ") + bytePrint(buf[addr + j - k * currentBlockSize]));
@@ -915,8 +977,8 @@ void MainWindow::on_actionVerify_triggered()
              else
              {
                 //Not correct Number fnd size of blocks
-               if (currentChipType == 0) QMessageBox::about(this, tr("Error"), tr("Before reading from chip please press 'Detect' button."));
-               if (currentChipType == 1) QMessageBox::about(this, tr("Error"), tr("Please select the chip parameters - manufacture and chip name."));
+               if (currentChipType == chipType::chipTypeSPI) QMessageBox::about(this, tr("Error"), tr("Before reading from chip please press 'Detect' button."));
+               if (currentChipType != chipType::chipTypeSPI) QMessageBox::about(this, tr("Error"), tr("Please select the chip parameters - manufacture and chip name."));
 
              }
              doNotDisturbCancel();
@@ -1072,12 +1134,14 @@ void MainWindow::on_comboBox_type_currentIndexChanged(int index)
     ui->comboBox_man->addItem("");
     ui->comboBox_name->addItem("");
     ui->jedecEdit->setText("");
-    currentChipType = static_cast<uint8_t>(ui->comboBox_type->itemData(index).toInt());
+    uint8_t ct = static_cast<uint8_t>(ui->comboBox_type->itemData(index).toInt());
+    currentChipType = static_cast<chipType>(ct);
     for (i = 0; i<max_rec; i++)
     {
         //replacing items to combobox Manufacture
         index2 = ui->comboBox_man->findText(chips[i].chipManuf);
-                    if (( index2 == -1 ) && (chips[i].chipTypeHex == currentChipType)) ui->comboBox_man->addItem(chips[i].chipManuf);
+        if (( index2 == -1 ) && (chips[i].chipTypeHex == static_cast<uint8_t>(currentChipType)))
+            ui->comboBox_man->addItem(chips[i].chipManuf);
     }
      ui->comboBox_man->setCurrentIndex(0);
      ui->statusBar->showMessage("");
@@ -1190,7 +1254,7 @@ void MainWindow::doNotDisturb()
 }
 void MainWindow::doNotDisturbCancel()
 {
-      if (currentChipType == 0) ui->actionDetect->setDisabled(false);
+      if (currentChipType == chipType::chipTypeSPI) ui->actionDetect->setDisabled(false);
       ui->actionOpen->setDisabled(false);
       ui->actionSave->setDisabled(false);
       ui->actionLoad_Part->setDisabled(false);
@@ -1204,7 +1268,7 @@ void MainWindow::doNotDisturbCancel()
       ui->actionFind_Replace->setDisabled(false);
       ui->actionUndo->setDisabled(false);
       ui->actionRedo->setDisabled(false);
-      if (currentChipType == 0) ui->actionChip_info->setDisabled(false);
+      if (currentChipType == chipType::chipTypeSPI) ui->actionChip_info->setDisabled(false);
       ui->actionStop->setDisabled(true);
 
       ui->pushButton->blockSignals(false);
@@ -1235,16 +1299,20 @@ void MainWindow::on_actionStop_triggered()
   ui->statusBar->showMessage("");
   return;
 }
+
+/**
+ * @brief MainWindow::on_pushButton_4_clicked "i" button
+ */
 void MainWindow::on_pushButton_4_clicked()
 {
     //info form showing
     DialogInfo* infoDialog = new DialogInfo();
     infoDialog->show();
-    if ((currentChipType == 0) && (ui->comboBox_vcc->currentIndex() == 1)) infoDialog->setChip(2);
-    if ((currentChipType == 0) && (ui->comboBox_vcc->currentIndex() == 2)) infoDialog->setChip(3);
-    if ((currentChipType == 1) && (ui->comboBox_vcc->currentIndex() == 1)) infoDialog->setChip(1);
-    if ((currentChipType == 2) && (ui->comboBox_vcc->currentIndex() == 1)) infoDialog->setChip(4);
-    if ((currentChipType == 4) && (ui->comboBox_vcc->currentIndex() == 1)) infoDialog->setChip(2);
+    if ((currentChipType == chipType::chipTypeSPI) && (ui->comboBox_vcc->currentIndex() == 1)) infoDialog->setChip(2);
+    if ((currentChipType == chipType::chipTypeSPI) && (ui->comboBox_vcc->currentIndex() == 2)) infoDialog->setChip(3);
+    if ((currentChipType == chipType::chipType25EE) && (ui->comboBox_vcc->currentIndex() == 1)) infoDialog->setChip(1);
+    if ((currentChipType == chipType::chipType93EE) && (ui->comboBox_vcc->currentIndex() == 1)) infoDialog->setChip(4);
+    if ((currentChipType == chipType::chipType95EE) && (ui->comboBox_vcc->currentIndex() == 1)) infoDialog->setChip(2);
 }
 
 void MainWindow::on_actionChip_info_triggered()
@@ -1369,7 +1437,7 @@ void MainWindow::progInit()
     }
      ui->comboBox_man->setCurrentIndex(0);
      ui->statusBar->showMessage("");
-     currentChipType = 0;
+     currentChipType = chipType::chipTypeSPI;
      ui->comboBox_type->setCurrentIndex(0);
 }
 
