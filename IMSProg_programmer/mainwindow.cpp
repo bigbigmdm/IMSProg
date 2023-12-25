@@ -142,7 +142,10 @@ void MainWindow::on_pushButton_clicked()
   if (statusCH341 == 0)
   {
     ui->crcEdit->setText("");
-    if (((currentNumBlocks > 0) && (currentBlockSize >0) && (currentChipType == 0)) || ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 1)) || ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 2) || ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 4))))
+      if ( ((currentNumBlocks > 0) && (currentBlockSize > 0) && (currentChipType == 0)) ||
+           ((currentNumBlocks > 0) && (currentPageSize > 0) && (currentChipType == 1))  ||
+           ((currentNumBlocks > 0) && (currentPageSize > 0) && (currentChipType == 2))  ||
+           ((currentNumBlocks > 0) && (currentPageSize > 0) && (currentChipType == 4)) )
     {
        doNotDisturb();
        if (currentChipType == 1)
@@ -279,7 +282,7 @@ void MainWindow::on_pushButton_2_clicked()
     for (i = 0; i< max_rec; i++)
     {
         if ((bufid[0] == chips[i].chipJedecIDMan) && (bufid[1] == chips[i].chipJedecIDDev) && (bufid[2] == chips[i].chipJedecIDCap))
-        {            
+        {
             index = ui->comboBox_man->findText(chips[i].chipManuf);
                         if ( index != -1 )
                         { // -1 for not found
@@ -608,7 +611,7 @@ void MainWindow::on_actionWrite_triggered()
         }
         ch341StatusFlashing();
     uint32_t addr = 0;
-    uint32_t curBlock = 0;    
+    uint32_t curBlock = 0;
     uint32_t j, k;
     ui->statusBar->showMessage(tr("Writing data to ") + ui->comboBox_name->currentText());
     //progerssbar settings
@@ -643,7 +646,7 @@ void MainWindow::on_actionWrite_triggered()
                        break;
                        case 4:
                           //M95xx
-                          res =  s95_write_param(buf, addr, currentBlockSize, currentBlockSize, currentAlgorithm);                         
+                          res =  s95_write_param(buf, addr, currentBlockSize, currentBlockSize, currentAlgorithm);
                        break;
                        default:
                           //Unsupport
@@ -661,7 +664,7 @@ void MainWindow::on_actionWrite_triggered()
              doNotDisturbCancel();
              ch341a_spi_shutdown();
              break;
-           }         
+           }
          if (res <= 0)
            {
              QMessageBox::about(this, tr("Error"), tr("Error writing sector ") + QString::number(curBlock));
@@ -690,7 +693,7 @@ void MainWindow::on_actionWrite_triggered()
     doNotDisturbCancel();
     ui->progressBar->setValue(0);
     ui->checkBox_2->setStyleSheet("");
-    ui->statusBar->showMessage("");    
+    ui->statusBar->showMessage("");
     }
     else
     {
@@ -832,7 +835,7 @@ void MainWindow::on_actionVerify_triggered()
                ch341StatusFlashing();
                uint32_t addr = 0;
                uint32_t curBlock = 0;
-               uint32_t j, k;               
+               uint32_t j, k;
                //progerssbar settings
                ui->progressBar->setRange(0, static_cast<int>(currentNumBlocks));
                ui->progressBar->setValue(0);
