@@ -27,6 +27,8 @@
 #include <stddef.h>
 #include <stdint.h>
 
+#include <QDebug>
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -562,8 +564,8 @@ void MainWindow::on_actionRedo_triggered()
 }
 
 void MainWindow::on_actionOpen_triggered()
-{
-
+{    
+    QByteArray buf;
     ui->statusBar->showMessage(tr("Opening file"));
     fileName = QFileDialog::getOpenFileName(this,
                                 QString(tr("Open file")),
@@ -572,15 +574,33 @@ void MainWindow::on_actionOpen_triggered()
     ui->statusBar->showMessage(tr("Current file: ") + fileName);
     QFileInfo info(fileName);
     lastDirectory = info.filePath();
+    // if ChipSze = 0 IMSProg using at hexeditor only. chipsize -> hexedit.data
+    // if ChipSize < FileSize - showing error message
+    // if Filesize <= ChipSize - filling fileArray to hexedit.Data, the end of the array chipData remains filled 0xff
     QFile file(fileName);
-    qDebug() << QDir::tempPath();
+    if ((info.size() > currentChipSize) && (currentChipSize != 0))
+    {
+      QMessageBox::about(this, tr("Error"), tr("The file size exceeds the chip size. Please select another chip or file or use block operations to split the file."));
+      return;
+    }
     if (!file.open(QIODevice::ReadOnly))
     {
 
         return;
     }
-    chipData = file.readAll();
+    buf.resize(info.size());
+    buf = file.readAll();
+    if (currentChipSize == 0)
+    {
+        chipData.resize(info.size());
+    }
+
+    for (uint32_t i=0; i < info.size(); i++)
+    {
+        chipData[i] = buf[i];
+    }
     hexEdit->setData(chipData);
+
     file.close();
     ui->statusBar->showMessage("");
     ui->crcEdit->setText(getCRC32());
