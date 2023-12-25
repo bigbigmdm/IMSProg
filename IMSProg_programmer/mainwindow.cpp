@@ -179,6 +179,10 @@ void MainWindow::on_pushButton_clicked()
 
        ui->pushButton->setStyleSheet(redKeyStyle);
        ui->statusBar->showMessage(tr("Reading data from ") + ui->comboBox_name->currentText());
+
+       chipData.resize(int(currentChipSize));
+       chipData.fill(0xff);
+
        for (k = 0; k < currentNumBlocks; k++)
        {
            switch (currentChipType)
@@ -240,6 +244,7 @@ void MainWindow::on_pushButton_clicked()
 //                  chipData[addr + j] = char(buf[addr + j - k * currentBlockSize]);
              chipData[addr + j] = static_cast<char>(buf[j]);
             }
+
           addr = addr + currentBlockSize;
           curBlock++;
           if (curBlock * currentBlockSize < 413300) hexEdit->setData(chipData); //show buffer in hehedit while chip data is being loaded
@@ -623,6 +628,9 @@ void MainWindow::on_actionOpen_triggered()
     ui->crcEdit->setText(getCRC32());
 }
 
+/**
+ * @brief MainWindow::on_actionWrite_triggered "Write" action
+ */
 void MainWindow::on_actionWrite_triggered()
 {
     //Writting data to chip
@@ -654,7 +662,16 @@ void MainWindow::on_actionWrite_triggered()
         //progerssbar settings
         ui->progressBar->setRange(0, static_cast<int>(currentNumBlocks));
         ui->checkBox_2->setStyleSheet("QCheckBox{font-weight:800;}");
+
         chipData = hexEdit->data();
+        const auto s = chipData.size();
+        int diff = int(currentChipSize) - hexEdit->data().size();
+        if (diff > 0) {
+            chipData.insert(s, diff, 0xff);
+        }
+        const auto s1 = chipData.size();
+        qDebug() << "chipData.size() before : " << s << " after: " << s1 << "\n";
+
     //uint8_t buf[currentBlockSize];
 // memory leaks in buf
 // uint8_t *buf;
