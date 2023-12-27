@@ -20,8 +20,12 @@
     </message>
     <message>
         <location filename="../dialogabout.ui" line="106"/>
+        <source>Version: 1.1.3</source>
+        <translation>Версія 1.1.3</translation>
+    </message>
+    <message>
         <source>Version: 1.1.2</source>
-        <translation>Версія 1.1.2</translation>
+        <translation type="vanished">Версія 1.1.2</translation>
     </message>
     <message>
         <source>Version: 1.1.1</source>
@@ -652,7 +656,7 @@
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1178"/>
-        <location filename="../mainwindow.cpp" line="1229"/>
+        <location filename="../mainwindow.cpp" line="1249"/>
         <source>Stop</source>
         <translation>Стоп</translation>
     </message>
@@ -682,8 +686,8 @@
         <translation>Ctrl+P</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="572"/>
-        <location filename="../mainwindow.cpp" line="1004"/>
+        <location filename="../mainwindow.cpp" line="574"/>
+        <location filename="../mainwindow.cpp" line="1024"/>
         <source>Current file: </source>
         <translation>Поточний файл: </translation>
     </message>
@@ -703,193 +707,199 @@
         <translation>Об `єм</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1260"/>
+        <location filename="../mainwindow.cpp" line="1280"/>
         <source>Opening DAT file</source>
         <translation>Відкривається файл бази</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="196"/>
-        <location filename="../mainwindow.cpp" line="205"/>
-        <location filename="../mainwindow.cpp" line="211"/>
-        <location filename="../mainwindow.cpp" line="236"/>
-        <location filename="../mainwindow.cpp" line="237"/>
-        <location filename="../mainwindow.cpp" line="248"/>
-        <location filename="../mainwindow.cpp" line="261"/>
-        <location filename="../mainwindow.cpp" line="273"/>
-        <location filename="../mainwindow.cpp" line="431"/>
-        <location filename="../mainwindow.cpp" line="445"/>
-        <location filename="../mainwindow.cpp" line="491"/>
-        <location filename="../mainwindow.cpp" line="538"/>
-        <location filename="../mainwindow.cpp" line="650"/>
-        <location filename="../mainwindow.cpp" line="660"/>
-        <location filename="../mainwindow.cpp" line="667"/>
-        <location filename="../mainwindow.cpp" line="688"/>
-        <location filename="../mainwindow.cpp" line="698"/>
-        <location filename="../mainwindow.cpp" line="869"/>
-        <location filename="../mainwindow.cpp" line="879"/>
-        <location filename="../mainwindow.cpp" line="885"/>
-        <location filename="../mainwindow.cpp" line="894"/>
-        <location filename="../mainwindow.cpp" line="918"/>
-        <location filename="../mainwindow.cpp" line="919"/>
-        <location filename="../mainwindow.cpp" line="933"/>
-        <location filename="../mainwindow.cpp" line="962"/>
-        <location filename="../mainwindow.cpp" line="985"/>
-        <location filename="../mainwindow.cpp" line="1018"/>
-        <location filename="../mainwindow.cpp" line="1153"/>
-        <location filename="../mainwindow.cpp" line="1265"/>
+        <location filename="../mainwindow.cpp" line="198"/>
+        <location filename="../mainwindow.cpp" line="207"/>
+        <location filename="../mainwindow.cpp" line="213"/>
+        <location filename="../mainwindow.cpp" line="238"/>
+        <location filename="../mainwindow.cpp" line="239"/>
+        <location filename="../mainwindow.cpp" line="250"/>
+        <location filename="../mainwindow.cpp" line="263"/>
+        <location filename="../mainwindow.cpp" line="275"/>
+        <location filename="../mainwindow.cpp" line="433"/>
+        <location filename="../mainwindow.cpp" line="447"/>
+        <location filename="../mainwindow.cpp" line="493"/>
+        <location filename="../mainwindow.cpp" line="540"/>
+        <location filename="../mainwindow.cpp" line="583"/>
+        <location filename="../mainwindow.cpp" line="670"/>
+        <location filename="../mainwindow.cpp" line="680"/>
+        <location filename="../mainwindow.cpp" line="687"/>
+        <location filename="../mainwindow.cpp" line="708"/>
+        <location filename="../mainwindow.cpp" line="718"/>
+        <location filename="../mainwindow.cpp" line="889"/>
+        <location filename="../mainwindow.cpp" line="899"/>
+        <location filename="../mainwindow.cpp" line="905"/>
+        <location filename="../mainwindow.cpp" line="914"/>
+        <location filename="../mainwindow.cpp" line="938"/>
+        <location filename="../mainwindow.cpp" line="939"/>
+        <location filename="../mainwindow.cpp" line="953"/>
+        <location filename="../mainwindow.cpp" line="982"/>
+        <location filename="../mainwindow.cpp" line="1005"/>
+        <location filename="../mainwindow.cpp" line="1038"/>
+        <location filename="../mainwindow.cpp" line="1173"/>
+        <location filename="../mainwindow.cpp" line="1285"/>
         <source>Error</source>
         <translation>Помилка</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="962"/>
+        <location filename="../mainwindow.cpp" line="982"/>
         <source>The end address must be greater than the starting address.</source>
         <translation>Кінцева адреса більша за початкову.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1153"/>
+        <location filename="../mainwindow.cpp" line="1173"/>
         <source>File &apos;IMSProg_editor&apos; not found!</source>
         <translation>Не знайдено файл &apos;IMSProg_editor&apos;!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1265"/>
+        <location filename="../mainwindow.cpp" line="1285"/>
         <source>Error loading chip database file!</source>
         <translation>Помилка завантаження файлу бази мікросхем!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1271"/>
+        <location filename="../mainwindow.cpp" line="1291"/>
         <source>Parsing DAT file</source>
         <translation>Обробка файлу даних</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="171"/>
+        <location filename="../mainwindow.cpp" line="173"/>
         <source>Reading data from </source>
         <translation>Зчитується МС </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="196"/>
-        <location filename="../mainwindow.cpp" line="650"/>
-        <location filename="../mainwindow.cpp" line="869"/>
+        <location filename="../mainwindow.cpp" line="198"/>
+        <location filename="../mainwindow.cpp" line="670"/>
+        <location filename="../mainwindow.cpp" line="889"/>
         <source>Unsupported chip type!</source>
         <translation>Невідомий тип мікросхеми!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="205"/>
-        <location filename="../mainwindow.cpp" line="248"/>
-        <location filename="../mainwindow.cpp" line="261"/>
-        <location filename="../mainwindow.cpp" line="445"/>
-        <location filename="../mainwindow.cpp" line="660"/>
-        <location filename="../mainwindow.cpp" line="698"/>
-        <location filename="../mainwindow.cpp" line="879"/>
-        <location filename="../mainwindow.cpp" line="933"/>
+        <location filename="../mainwindow.cpp" line="207"/>
+        <location filename="../mainwindow.cpp" line="250"/>
+        <location filename="../mainwindow.cpp" line="263"/>
+        <location filename="../mainwindow.cpp" line="447"/>
+        <location filename="../mainwindow.cpp" line="680"/>
+        <location filename="../mainwindow.cpp" line="718"/>
+        <location filename="../mainwindow.cpp" line="899"/>
+        <location filename="../mainwindow.cpp" line="953"/>
         <source>Programmer CH341a is not connected!</source>
         <translation>Програматор CH341a не підключений!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="211"/>
-        <location filename="../mainwindow.cpp" line="885"/>
+        <location filename="../mainwindow.cpp" line="213"/>
+        <location filename="../mainwindow.cpp" line="905"/>
         <source>Error reading block </source>
         <translation>Помилка читання блоку </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="236"/>
-        <location filename="../mainwindow.cpp" line="688"/>
-        <location filename="../mainwindow.cpp" line="918"/>
+        <location filename="../mainwindow.cpp" line="238"/>
+        <location filename="../mainwindow.cpp" line="708"/>
+        <location filename="../mainwindow.cpp" line="938"/>
         <source>Before reading from chip please press &apos;Detect&apos; button.</source>
         <translation>Перед зчитуванням натисніть кнопку &apos;Пошук&apos;.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="237"/>
+        <location filename="../mainwindow.cpp" line="239"/>
         <source>Please select the chip parameters - manufacture and chip name</source>
         <translation>Виберіть параметри мікросхеми - &apos;Див.&apos; та &apos;Назва&apos;</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="273"/>
+        <location filename="../mainwindow.cpp" line="275"/>
         <source>The chip is not connect or missing!</source>
         <translation>Мікросхема не встановлена ​​чи пошкоджена!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="420"/>
+        <location filename="../mainwindow.cpp" line="422"/>
         <source>Saving file</source>
         <translation>Зберігається файл</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="422"/>
+        <location filename="../mainwindow.cpp" line="424"/>
         <source>Save file</source>
         <translation>Зберегти файл</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="431"/>
-        <location filename="../mainwindow.cpp" line="985"/>
+        <location filename="../mainwindow.cpp" line="433"/>
+        <location filename="../mainwindow.cpp" line="1005"/>
         <source>Error saving file!</source>
         <translation>Помилка збереження файлу!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="448"/>
+        <location filename="../mainwindow.cpp" line="450"/>
         <source>Erasing the </source>
         <translation>Стирається МС </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="491"/>
-        <location filename="../mainwindow.cpp" line="538"/>
+        <location filename="../mainwindow.cpp" line="493"/>
+        <location filename="../mainwindow.cpp" line="540"/>
         <source>Error erasing sector </source>
         <translation>Помилка стирання сектора </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="567"/>
+        <location filename="../mainwindow.cpp" line="569"/>
         <source>Opening file</source>
         <translation>Відкривається файл</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="569"/>
+        <location filename="../mainwindow.cpp" line="571"/>
         <source>Open file</source>
         <translation>Відкрити файл</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="613"/>
+        <location filename="../mainwindow.cpp" line="583"/>
+        <source>The file size exceeds the chip size. Please select another chip or file or use block operations to split the file.</source>
+        <translation>Розмір файлу перевищує розмір мікросхеми. Будь ласка, виберіть іншу мікросхему або файл, або використовуйте блокові операції для розділення файлу.</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="633"/>
         <source>Writing data to </source>
         <translation>Запис даних у </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="667"/>
+        <location filename="../mainwindow.cpp" line="687"/>
         <source>Error writing sector </source>
         <translation>Помилка запису сектора </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="844"/>
+        <location filename="../mainwindow.cpp" line="864"/>
         <source>Veryfing data from </source>
         <translation>Перевіряються дані МС </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="894"/>
+        <location filename="../mainwindow.cpp" line="914"/>
         <source>Error comparing data!
 Address:   </source>
         <translation>Помилка порівняння даних!
 Адреса:   </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="894"/>
+        <location filename="../mainwindow.cpp" line="914"/>
         <source>
 Buffer: </source>
         <translation>
 Буфер: </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="894"/>
+        <location filename="../mainwindow.cpp" line="914"/>
         <source>    Chip: </source>
         <translation>    Мікросхема: </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="919"/>
+        <location filename="../mainwindow.cpp" line="939"/>
         <source>Please select the chip parameters - manufacture and chip name.</source>
         <translation>Виберіть параметри МС - &apos;Проізв.&apos; та &apos;Назва&apos;.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="928"/>
+        <location filename="../mainwindow.cpp" line="948"/>
         <source>Ok!</source>
         <translation>Ok!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="928"/>
+        <location filename="../mainwindow.cpp" line="948"/>
         <source>The operation was successful!</source>
         <translation>Операцію успішно виконано!</translation>
     </message>
@@ -898,37 +908,37 @@ Buffer: </source>
         <translation type="vanished">Кінцева адреса більша за початкову.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="974"/>
+        <location filename="../mainwindow.cpp" line="994"/>
         <source>Saving block</source>
         <translation>Зберігається блок</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="976"/>
+        <location filename="../mainwindow.cpp" line="996"/>
         <source>Save block</source>
         <translation>Зберегти блок</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="999"/>
+        <location filename="../mainwindow.cpp" line="1019"/>
         <source>Opening block</source>
         <translation>Відкривається блок</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1001"/>
+        <location filename="../mainwindow.cpp" line="1021"/>
         <source>Open block</source>
         <translation>Відкрити блок</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1018"/>
+        <location filename="../mainwindow.cpp" line="1038"/>
         <source>The end address out of image size!</source>
         <translation>Кінцева адреса більша за розмір буфера!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1057"/>
+        <location filename="../mainwindow.cpp" line="1077"/>
         <source>Connected</source>
         <translation>Підключено</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1062"/>
+        <location filename="../mainwindow.cpp" line="1082"/>
         <source>Not connected</source>
         <translation>Не підключений</translation>
     </message>
@@ -937,7 +947,7 @@ Buffer: </source>
         <translation type="vanished">Не знайдено файл &apos;IMSProg_editor&apos;!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1229"/>
+        <location filename="../mainwindow.cpp" line="1249"/>
         <source>Operation aborted!</source>
         <translation>Операцію перервано!</translation>
     </message>
