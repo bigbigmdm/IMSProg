@@ -258,6 +258,7 @@ sudo apt update
 - Ver. 1.0.29 - Added: Reloading the chip database after the `chipEditor` is finishes. Added chips to the database.
 - Ver. 1.1.1  - Changing application folders according to Debian policy. Added new language translation.
 - Ver. 1.1.2  - Added function for writing the Status Registers. Bugfix - Chip_Editor startup error when running IMSProg from command line. Added chips to the database. Added new language translation.
+- Ver. 1.1.3 - Fixed an error when the file size exceeds the chip size. 
 
 ## Project structure
 
