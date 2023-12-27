@@ -21,6 +21,13 @@ private slots:
 
 private:
     Ui::DialogInfo *ui;
+
+    QPixmap *pix24;
+    QPixmap *pix93;
+    QPixmap *pix25;
+    QPixmap *pix2518;
+    QPixmap *pixnone;
+
 };
 
 #endif // DIALOGINFO_H
