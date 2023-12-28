@@ -686,7 +686,7 @@
         <translation>Ctrl+P</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="574"/>
+        <location filename="../mainwindow.cpp" line="575"/>
         <location filename="../mainwindow.cpp" line="1024"/>
         <source>Current file: </source>
         <translation>Поточний файл: </translation>
@@ -744,6 +744,10 @@
         <location filename="../mainwindow.cpp" line="1285"/>
         <source>Error</source>
         <translation>Помилка</translation>
+    </message>
+    <message>
+        <source>The file size exceeds the chip size. Please select another chip or file or use `Save block` to split the file.</source>
+        <translation type="vanished">Розмір файлу перевищує розмір мікросхеми. Будь ласка, виберіть іншу мікросхему або файл, або скористайтеся `Зберегти частину` для розділення файлу.</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="982"/>
@@ -851,8 +855,12 @@
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="583"/>
+        <source>The file size exceeds the chip size. Please select another chip or file or use `Save part` to split the file.</source>
+        <translation type="unfinished">Розмір файлу перевищує розмір мікросхеми. Будь ласка, виберіть іншу мікросхему або файл, або скористайтеся `Зберегти частину` для розділення файлу.</translation>
+    </message>
+    <message>
         <source>The file size exceeds the chip size. Please select another chip or file or use block operations to split the file.</source>
-        <translation>Розмір файлу перевищує розмір мікросхеми. Будь ласка, виберіть іншу мікросхему або файл, або використовуйте блокові операції для розділення файлу.</translation>
+        <translation type="vanished">Розмір файлу перевищує розмір мікросхеми. Будь ласка, виберіть іншу мікросхему або файл, або використовуйте блокові операції для розділення файлу.</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="633"/>

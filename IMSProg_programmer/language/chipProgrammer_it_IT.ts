@@ -694,7 +694,7 @@
         <translation>Ctrl+P</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="574"/>
+        <location filename="../mainwindow.cpp" line="575"/>
         <location filename="../mainwindow.cpp" line="1024"/>
         <source>Current file: </source>
         <translation>File corrente: </translation>
@@ -859,8 +859,12 @@
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="583"/>
+        <source>The file size exceeds the chip size. Please select another chip or file or use `Save part` to split the file.</source>
+        <translation>La dimensione del file supera quella del chip. Selezionare un altro chip o file o utilizzare `Salva parte` per dividere il file.</translation>
+    </message>
+    <message>
         <source>The file size exceeds the chip size. Please select another chip or file or use block operations to split the file.</source>
-        <translation>La dimensione del file supera quella del chip. Selezionare un altro chip o file o utilizzare le operazioni di blocco per dividere il file.</translation>
+        <translation type="vanished">La dimensione del file supera quella del chip. Selezionare un altro chip o file o utilizzare le operazioni di blocco per dividere il file.</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="633"/>

@@ -689,7 +689,7 @@
         <translation>Ctrl+P</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="574"/>
+        <location filename="../mainwindow.cpp" line="575"/>
         <location filename="../mainwindow.cpp" line="1024"/>
         <source>Current file: </source>
         <translation>当前文件： </translation>
@@ -747,6 +747,10 @@
         <location filename="../mainwindow.cpp" line="1285"/>
         <source>Error</source>
         <translation>错误</translation>
+    </message>
+    <message>
+        <source>The file size exceeds the chip size. Please select another chip or file or use `Save block` to split the file.</source>
+        <translation type="vanished">文件大小超出芯片尺寸。请选择其他芯片或文件，或使用 &quot;保存部分&quot; 分割文件。</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1173"/>
@@ -849,9 +853,8 @@
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="583"/>
-        <source>The file size exceeds the chip size. Please select another chip or file or use block operations to split the file.</source>
-        <translatorcomment>文件大小超出芯片尺寸。请选择其他芯片或文件，或使用块操作分割文件。</translatorcomment>
-        <translation></translation>
+        <source>The file size exceeds the chip size. Please select another chip or file or use `Save part` to split the file.</source>
+        <translation>文件大小超出芯片尺寸。请选择其他芯片或文件，或使用 &quot;保存部分&quot; 分割文件。</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="633"/>

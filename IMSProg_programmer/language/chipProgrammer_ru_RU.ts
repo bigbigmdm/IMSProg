@@ -689,7 +689,7 @@
         <translation>Ctrl+P</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="574"/>
+        <location filename="../mainwindow.cpp" line="575"/>
         <location filename="../mainwindow.cpp" line="1024"/>
         <source>Current file: </source>
         <translation>Текущий файл:</translation>
@@ -747,6 +747,10 @@
         <location filename="../mainwindow.cpp" line="1285"/>
         <source>Error</source>
         <translation>Ошибка</translation>
+    </message>
+    <message>
+        <source>The file size exceeds the chip size. Please select another chip or file or use `Save block` to split the file.</source>
+        <translation type="vanished">Размер файла превышает размер микросхемы. Пожалуйста, выберите другой тип микросхемы или файл или используйте `Сохранить блок`, чтобы разделить файл на части.</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1173"/>
@@ -848,9 +852,13 @@
         <translation>Открыть файл</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="583"/>
         <source>The file size exceeds the chip size. Please select another chip or file or use block operations to split the file.</source>
-        <translation>Размер файла больше емкости микросхемы. Пожалуйста, выберите другой файл,  друглй тип микросхемы или исрользуйте операции с частью данных для изменения размера файла.</translation>
+        <translation type="vanished">Размер файла больше емкости микросхемы. Пожалуйста, выберите другой файл,  друглй тип микросхемы или исрользуйте операции с частью данных для изменения размера файла.</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="583"/>
+        <source>The file size exceeds the chip size. Please select another chip or file or use `Save part` to split the file.</source>
+        <translation>Размер файла превышает размер микросхемы. Пожалуйста, выберите другой тип микросхемы или файл или используйте `Сохранить часть`, чтобы разделить файл на части.</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="633"/>
