@@ -571,16 +571,16 @@ void MainWindow::on_actionOpen_triggered()
                                 QString(tr("Open file")),
                                 lastDirectory,
                                 "Data Images (*.bin *.BIN);;All files (*.*)");
-    ui->statusBar->showMessage(tr("Current file: ") + fileName);
     QFileInfo info(fileName);
+    ui->statusBar->showMessage(tr("Current file: ") + info.fileName());
     lastDirectory = info.filePath();
-    // if ChipSze = 0 IMSProg using at hexeditor only. chipsize -> hexedit.data
+    // if ChipSze = 0 (Chip is not selected) IMSProg using at hexeditor only. chipsize -> hexedit.data
     // if ChipSize < FileSize - showing error message
     // if Filesize <= ChipSize - filling fileArray to hexedit.Data, the end of the array chipData remains filled 0xff
     QFile file(fileName);
     if ((info.size() > currentChipSize) && (currentChipSize != 0))
     {
-      QMessageBox::about(this, tr("Error"), tr("The file size exceeds the chip size. Please select another chip or file or use block operations to split the file."));
+      QMessageBox::about(this, tr("Error"), tr("The file size exceeds the chip size. Please select another chip or file or use `Save part` to split the file."));
       return;
     }
     if (!file.open(QIODevice::ReadOnly))
@@ -602,7 +602,7 @@ void MainWindow::on_actionOpen_triggered()
     hexEdit->setData(chipData);
 
     file.close();
-    ui->statusBar->showMessage("");
+    //ui->statusBar->showMessage("");
     ui->crcEdit->setText(getCRC32());
 }
 
