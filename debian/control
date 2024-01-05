@@ -3,8 +3,8 @@ Section: devel
 Priority: optional
 Maintainer: Mikhail Medvedev <e-ink-reader@yandex.ru>
 Build-Depends: debhelper-compat (= 12), pkg-config, cmake, libusb-dev, libusb-1.0-0-dev, qtbase5-dev, libusb-1.0-0
-Standards-Version: 4.5.0
-Homepage: https://github.com/bigbigmdm/IMSProg/
+Standards-Version: 4.6.2
+Homepage: https://github.com/bigbigmdm/IMSProg
 Rules-Requires-Root: no
 
 Package: imsprog

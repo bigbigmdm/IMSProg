@@ -1,3 +1,63 @@
+imsprog (1.1.3-7) unstable; urgency=medium
+
+  + removing unused file
+  + Initial release on Debian (Closes: #1057386)
+
+ -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Wed, 03 Jan 2024 17:39:00 +1000
+
+imsprog (1.1.3-6) upstream; urgency=medium
+
+  + removing unused file
+  + changing quilt to native format
+
+ -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Wed, 03 Jan 2024 16:21:00 +1000
+
+imsprog (1.1.3-5) unstable; urgency=medium
+
+  + fixing errors in changelog file
+
+ -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Fri, 29 Dec 2023 16:03:00 +1000
+
+imsprog (1.1.3-4) unstable; urgency=medium
+
+  * repackaging Debian release
+  + fixing errors in html document file
+
+ -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Fri, 29 Dec 2023 15:42:00 +1000
+
+imsprog (1.1.3-3) jammy; urgency=medium
+
+  * repackaging for Jammy Jellyfish release
+
+ -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Thu, 28 Dec 2023 18:30:00 +1000
+
+
+imsprog (1.1.3-2) unstable; urgency=medium
+
+  * repackaging Debian release
+
+ -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Thu, 28 Dec 2023 16:30:00 +1000
+
+imsprog (1.1.3-1) focal; urgency=medium
+
+  + fixing error reading file size exceeds the chip size
+  * repackaging for Focal Fossa release
+
+ -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Thu, 28 Dec 2023 15:00:00 +1000
+
+imsprog (1.1.2-16) unstable; urgency=medium
+
+  + fixing debian/control inaccuracies
+  + fixing errors in html documentation
+  
+ -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Fri, 22 Dec 2023 15:00:00 +1000
+
+imsprog (1.1.2-15) stable; urgency=medium
+
+  * repackaging stable release
+  
+ -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Fri, 22 Dec 2023 12:52:00 +1000
+
 imsprog (1.1.2-14) jammy; urgency=medium
 
   * repackaging for Jammy Jellyfish release
