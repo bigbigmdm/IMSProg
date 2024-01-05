@@ -2,14 +2,21 @@ Source: imsprog
 Section: devel
 Priority: optional
 Maintainer: Mikhail Medvedev <e-ink-reader@yandex.ru>
-Build-Depends: debhelper-compat (= 12), pkg-config, cmake, libusb-dev, libusb-1.0-0-dev, qtbase5-dev, libusb-1.0-0
+Build-Depends:
+ cmake,
+ debhelper-compat (= 12),
+ libusb-1.0-0,
+ libusb-1.0-0-dev,
+ libusb-dev,
+ pkg-config,
+ qtbase5-dev,
 Standards-Version: 4.6.2
 Homepage: https://github.com/bigbigmdm/IMSProg
 Rules-Requires-Root: no
 
 Package: imsprog
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}
+Depends: ${misc:Depends}, ${shlibs:Depends}
 Description: Linux chip programmer for CH341a devices
  Linux IMSProg - I2C, SPI and MicroWire chip programmer for CH341a devices.
  The IMSProg is a free EEPROM programmer tool for CH341A device based on
