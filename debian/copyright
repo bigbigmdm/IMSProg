@@ -8,36 +8,24 @@ Copyright: 2023 Mikhail Medvedev <e-ink-reader@yandex.ru>
 License: GPL-3+
 
 Files: IMSProg_programmer/language/chipProgrammer_uk_UA.ts
+       IMSProg_editor/language/chipEditor_uk_UA.ts
 Copyright: 2023 Sergey Golovko <cappelikan@gmail.com>
-License: GPL-2
+License: GPL-3+
 
 Files: IMSProg_programmer/language/chipProgrammer_hu_HU.ts
+       IMSProg_editor/language/chipEditor_hu_HU.ts
 Copyright: 2023 blackPantherOS <https://github.com/blackPantherOS>
-License: GPL-2
+License: GPL-3+
 
 Files: IMSProg_programmer/language/chipProgrammer_it_IT.ts
+       IMSProg_editor/language/chipEditor_it_IT.ts
 Copyright: 2023 Marino Pasquale <percoco2000@gmail.com>
-License: GPL-2
+License: GPL-3+
 
 Files: IMSProg_programmer/language/chipProgrammer_pt_BR.ts
+       IMSProg_editor/language/chipEditor_pt_BR.ts
 Copyright: 2023 Alexandre C. Leite <pu2tki@gmail.com>
-License: GPL-2
-
-Files: IMSProg_editor/language/chipEditor_uk_UA.ts
-Copyright: 2023 Sergey Golovko <cappelikan@gmail.com>
-License: GPL-2
-
-Files: IMSProg_editor/language/chipEditor_hu_HU.ts
-Copyright: 2023 blackPantherOS <https://github.com/blackPantherOS>
-License: GPL-2
-
-Files: IMSProg_editor/language/chipEditor_it_IT.ts
-Copyright: 2023 Marino Pasquale <percoco2000@gmail.com>
-License: GPL-2
-
-Files: IMSProg_editor/language/chipEditor_pt_BR.ts
-Copyright: 2023 Alexandre C. Leite <pu2tki@gmail.com>
-License: GPL-2
+License: GPL-3+
 
 Files: IMSProg_programmer/bitbang_microwire.c
        IMSProg_programmer/bitbang_microwire.h

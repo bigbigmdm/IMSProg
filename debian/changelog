@@ -1,8 +1,12 @@
 imsprog (1.1.4) UNRELEASED; urgency=medium
 
+  [ Mikhail Medvedev ]
   + removing unused and generated files from debian folder
   + Initial release on Debian (Closes: #1057386)
   + debian: switch format from quilt to native
+
+  [ Fabio Fantoni ]
+  * d/copyright: some improvements and fixes
 
  -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Wed, 03 Jan 2024 17:39:00 +1000
 
