@@ -1,22 +1,10 @@
-imsprog (1.1.3-7) unstable; urgency=medium
+imsprog (1.1.4) UNRELEASED; urgency=medium
 
-  + removing unused file
+  + removing unused and generated files from debian folder
   + Initial release on Debian (Closes: #1057386)
+  + debian: switch format from quilt to native
 
  -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Wed, 03 Jan 2024 17:39:00 +1000
-
-imsprog (1.1.3-6) upstream; urgency=medium
-
-  + removing unused file
-  + changing quilt to native format
-
- -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Wed, 03 Jan 2024 16:21:00 +1000
-
-imsprog (1.1.3-5) unstable; urgency=medium
-
-  + fixing errors in changelog file
-
- -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Fri, 29 Dec 2023 16:03:00 +1000
 
 imsprog (1.1.3-4) unstable; urgency=medium
 
