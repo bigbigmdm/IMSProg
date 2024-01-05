@@ -12,5 +12,5 @@ Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: Linux chip programmer for CH341a devices
  Linux IMSProg - I2C, SPI and MicroWire chip programmer for CH341a devices.
- The IMSProg is a free EEPROM programmer tool for CH341A device based on 
+ The IMSProg is a free EEPROM programmer tool for CH341A device based on
  QhexEdit2 and modify SNANDer programmer.
