@@ -1,0 +1,3 @@
+# Import new upstream version, for example:
+gbp import-ref -u1.1.4
+# note: replace 1.1.4 with the correct version to import
