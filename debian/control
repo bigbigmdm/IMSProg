@@ -12,7 +12,7 @@ Build-Depends:
  qtbase5-dev,
 Standards-Version: 4.6.2
 Homepage: https://github.com/bigbigmdm/IMSProg
-Vcs-Git: https://github.com/bigbigmdm/IMSProg.git
+Vcs-Git: https://github.com/bigbigmdm/IMSProg.git -b debian/latest
 Vcs-Browser: https://github.com/bigbigmdm/IMSProg/
 Rules-Requires-Root: no
 
