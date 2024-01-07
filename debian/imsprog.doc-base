@@ -1,0 +1,9 @@
+Document: imsprog
+Title: Debian imsprog Manual
+Author: Mikhail Medvedev
+Abstract: This manual describes what imsprog is, and how it can be used.
+Section: Programming
+
+Format: HTML
+Index: /usr/share/doc/imsprog/html/index.html
+Files: /usr/share/doc/imsprog/html/*.html
