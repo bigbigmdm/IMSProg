@@ -1,0 +1,189 @@
+imsprog (1.1.2-14) jammy; urgency=medium
+
+  * repackaging for Jammy Jellyfish release
+  + fixing wrong path to rules folder
+  
+ -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Mon, 18 Dec 2023 13:09:00 +1000
+
+imsprog (1.1.2-13) focal; urgency=medium
+
+  * repackaging for Focal Fossa release
+  * adding new chips into the database
+  * changing the desktop files
+  * changing the update script
+  + fixing lintian warnings
+
+ -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Fri, 08 Dec 2023 14:33:00 +1000
+
+imsprog (1.1.2-12) focal; urgency=medium
+
+  * repackaging for Focal Fossa release
+  + fixing lintian warnings
+
+ -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Fri, 01 Dec 2023 09:08:00 +1000
+
+imsprog (1.1.2-11) focal; urgency=medium
+
+  * repackaging for Focal Fossa release
+
+ -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Tue, 28 Nov 2023 13:38:00 +1000
+
+imsprog (1.1.2-10) jammy; urgency=medium
+
+  * repackaging for Jammy Jellyfish release
+  * adding the manuals
+  * adding new chips into the database.
+  + fixing lintian warnings
+  + changing translations
+  + changing the name of database update script
+
+ -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Tue, 28 Nov 2023 10:09:00 +1000
+
+imsprog (1.1.2-9) bionic; urgency=medium
+
+  * repackaging for Bionic Beaver release
+  + fixing lintian warnings
+
+ -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Fri, 24 Nov 2023 14:36:00 +1000
+
+imsprog (1.1.2-8) jammy; urgency=medium
+
+  * repackaging for Jammy Jellyfish release
+
+ -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Fri, 24 Nov 2023 10:25:00 +1000
+
+imsprog (1.1.2-7) focal; urgency=medium
+
+  + adding build-depends
+
+ -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Fri, 24 Nov 2023 09:02:00 +1000
+ 
+imsprog (1.1.2-6) focal; urgency=medium
+
+  + correcting build-depends
+
+ -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Thu, 23 Nov 2023 16:30:00 +1000
+
+imsprog (1.1.2-5) focal; urgency=medium
+
+  + correcting translation files
+
+ -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Thu, 23 Nov 2023 16:08:00 +1000
+
+imsprog (1.1.2-4) focal; urgency=medium
+
+  * Modifying the chip update script 
+  * Added Brazilian Portuguese language translation by Alexandre C. Leite.
+  * Added Italian language by Marino Pasquale.
+
+ -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Wed, 22 Nov 2023 14:58:00 +1000
+
+imsprog (1.1.2-3) stable; urgency=medium
+
+  + patches starting Chip_Editor fixed (written by blackPantherOS) 
+
+ -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Mon, 20 Nov 2023 11:32:00 +1000
+ 
+imsprog (1.1.2-2) stable; urgency=medium
+
+  + Deleting compiler warning.
+  + Adding standart cmake folder names
+  * Added chips to the database. 
+
+ -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Thu, 16 Nov 2023 11:42:00 +1000
+
+imsprog (1.1.2-1) stable; urgency=medium
+
+  * Added function for writing the Status Registers.
+
+ -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Tue, 14 Nov 2023 13:22:00 +1000
+
+imsprog (1.1.1-1) stable; urgency=medium
+
+  * Changing application folders according to Debian policy
+
+ -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Thu, 09 Nov 2023 13:22:00 +1000
+
+imsprog (1.0.29-3) stable; urgency=medium
+
+  * Adding the chip database update script.
+  * Adding new chips into the database.
+
+ -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Wed, 08 Nov 2023 09:30:00 +1000
+
+imsprog (1.0.29-1) stable; urgency=medium
+
+  * Reloading the chip database after the chipEditor is finishes. 
+   
+ -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Thu, 02 Nov 2023 11:04:00 +1000
+
+imsprog (1.0.28-5) stable; urgency=medium
+
+  * Changed the default file path to the home directory. 
+  * The last file path is saved and new file operations are processed using the last path.
+
+ -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Fri, 27 Oct 2023 10:18:00 +1000
+
+imsprog (1.0.28-4) stable; urgency=medium
+
+  + Degreese the mainform size to correct showing in UBUNTU 22.04.
+
+ -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Thu, 26 Oct 2023 10:16:00 +1000
+
+imsprog (1.0.28-3) stable; urgency=medium
+
+  * Changing application font from Ubuntu to Monospace.
+  + Fix for different combobox sizes in Fedora 38.
+
+ -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Fri, 20 Oct 2023 14:08:00 +1000
+
+imsprog (1.0.28-1) stable; urgency=medium
+
+  * New upstream release.
+  + Bad display of qComboBoxes in UBUNTU, Manjaro linux fixed.
+  + Display of monospaced font in Manjaro linux fixed.
+
+ -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Thu, 19 Oct 2023 12:33:05 +1000 
+
+imsprog (1.0.27-1) stable; urgency=medium
+
+  * New upstream release.
+  * Added the SFDP and status register information form.
+ 
+ -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Mon, 16 Oct 2023 16:28:16 +1000 
+
+imsprog (1.0.26-1) stable; urgency=medium
+
+  * New upstream release.
+  * Added support for M95xxx chips.
+  + Removed diagnostic errors.
+ 
+ -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Wed, 04 Oct 2023 13:34:52 +1000 
+
+imsprog (1.0.25-1) stable; urgency=medium
+
+  * New upstream release.
+  * Added i key to the interface. 
+  * Added connection information form.
+ 
+ -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Wed, 27 Sep 2023 16:08:45 +1000 
+  
+imsprog (1.0.24-1) stable; urgency=medium
+
+  * New upstream release.
+  * Added STOP key to the interface.
+  + Improved interface rendering. 
+  + Fixes to translations.
+ 
+ -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Mon, 25 Sep 2023 09:58:24 +1000 
+  
+imsprog (1.0.23-1) stable; urgency=medium
+
+  * New upstream release.
+  * Added chips to the database. 
+  + Removed unused C-functions and variable tables in code.
+  + Fix translations.
+  + Corrected cleaning of JEDEC ID line edit.
+  + Correction of database entries.
+ 
+ -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Fri, 15 Sep 2023 15:04:41 +1000 

@@ -1,0 +1,42 @@
+<svg width="200" height="233" viewBox="0 0 300 350" xmlns="http://www.w3.org/2000/svg">
+<style>
+.dim{stroke:#333;fill:none;stroke-width:2;stroke-linejoin:round;stroke-linecap:round;}
+</style>
+<defs>
+<radialGradient id="RadialGradient1">
+<stop offset="0%" stop-color="#fff" />
+<stop offset="100%" stop-color="#ddd" />
+</radialGradient>
+<g id="case2">
+<path d="M4 15l81 -43l85 80l-86 48 z" stroke="#333" stroke-width="1" fill="#333" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="m85 99l1 8l89 -47l-5 -8 z" stroke="#444" stroke-width="1" fill="#444" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="m175 60l3 14l-85 46l-5 -13 z" stroke="#333" stroke-width="1" fill="#333" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="m93 120l-5 -13l-1 -8l-83 -83l-1 8l4 14z" stroke="#111" stroke-width="1" fill="#111" stroke-linejoin="round" stroke-linecap="round"/>
+<ellipse cx="28" cy="20" rx="8" ry="6" fill="#888"/>
+</g>
+<g id="pin1">
+<path d="M0 0l8 8l-9 4a14,14 0 0,0 -8,14a6,6 0 0,1 -3,6l-12 8l-8 -10l12 -8a6,6 0 0,0 3,-6a14,14 0 0,1 8,-14z" stroke="#888" stroke-width="1" fill="#888" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="m8 8v7l-3 1a14,13 0 0,0 -8,14a6,6 0 0,1 -3,6l-18 12v-8l12 -8a6,6 0 0,0 3,-6a14,14 0 0,1 8,-14l6 -3z" stroke="#ccc" stroke-width="1" fill="#ccc" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="m-24 48l-8 -9v-8l8 9z" stroke="#555" stroke-width="1" fill="#555" stroke-linejoin="round" stroke-linecap="round"/>
+</g>
+<g id="pin2">
+<path d="M0 0l10 10l9 -4a14,14 0 0,1 14,8a6,6 0 0,0 6,3l14 -8l-8 -8l-12 8a6,6 0 0,1 -6,-3a14,14 0 0,0 -14,-8z" stroke="#888" stroke-width="1" fill="#888" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M0 0m10 18v-8l9 -4a14,14 0 0,1 14,8a6,6 0 0,0 6,3l14 -8v8l-15 8a6,6 0 0,1 -6,-3a14,14 0 0,0 -14,-8z" stroke="#ccc" stroke-width="1" fill="#ccc" stroke-linejoin="round" stroke-linecap="round"/>
+</g>
+</defs>
+<rect x="7" y="7" width="286" height="286" stroke="#888" fill="none" stroke-width="4" rx="50" ry="50"/>
+<rect x="8" y="8" width="284" height="284" stroke="#ccc" fill="url(#RadialGradient1)" stroke-width="4" rx="50" ry="50"/>
+<rect x="10" y="10" width="280" height="280" stroke="#888" fill="none" stroke-width="2" rx="50" ry="50"/>
+<use href="#pin2" x="150" y="110" />
+<use href="#pin2" x="170" y="130" />
+<use href="#pin2" x="190" y="150" />
+<use href="#pin2" x="210" y="170" />
+<use href="#case2" x="59" y="128" />
+<use href="#pin1" x="129" y="215" />
+<use href="#pin1" x="109" y="195" />
+<use href="#pin1" x="89" y="175" />
+<use href="#pin1" x="69" y="155" />
+<path d="M 135 190 Q 150 212 165 190 L 210 130 Q 215 115 200 110 L 180 110 C 170 48 212 22 265 61 C 285 75 295 70 270 50 C 205 0 105 5 120 110 L 100 110 Q 85 115 90 130 L 135 190" stroke="#f22" stroke-width="4" fill="#f33" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M 140 190 L 93 128 Q 88 113 107 113 L 124 113 C 107 18 192 -1 267 51 C 287 65 290 75 260 55 C 180 5 168 85 177 113 L 198 113 Q 212 116 206 130 L 160 190 Q 150 204 140 190 " stroke="#faa" stroke-width="4" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="150" y="332" font-size="44" fill="#f88" font-weight="600" font-family="Avenir, Helvetica, sans-serif" stroke="#f22" stroke-width="2" text-anchor="middle" stroke-linecap="round" stroke-linejoin="round">IMSProg</text>
+</svg>
