@@ -9,6 +9,8 @@ set(CMAKE_AUTOUIC ON)
 
 project(IMSProg_editor LANGUAGES CXX)
 
+include(GNUInstallDirs)
+
 # Set the CMAKE_INSTALL_PREFIX to /usr if not specified
 if (CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
 	set(CMAKE_INSTALL_PREFIX "/usr" CACHE PATH "The default install prefix" FORCE)
