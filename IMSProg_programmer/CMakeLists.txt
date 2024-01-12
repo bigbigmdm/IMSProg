@@ -42,6 +42,28 @@ find_package(Qt5 REQUIRED COMPONENTS Core Widgets)
 find_package(Qt5Widgets REQUIRED)
 find_package(LibUSB REQUIRED)
 
+set(UDEVDIR "/usr/lib/udev")
+if (CMAKE_INSTALL_PREFIX STREQUAL "/usr" OR CMAKE_INSTALL_PREFIX STREQUAL "/" )
+# /usr and / install prefixes at treated by cmake GNUInstallDirs as
+# synonym for "system location". In this case we can look up the correct udevdir
+# using pkg-config.
+# See: https://cmake.org/cmake/help/latest/module/GNUInstallDirs.html#special-cases
+find_package(PkgConfig)
+  if (PKG_CONFIG_FOUND)
+    pkg_check_modules( PKGCONFIG_UDEV udev)
+    if (PKGCONFIG_UDEV_FOUND)
+      execute_process(
+        COMMAND ${PKG_CONFIG_EXECUTABLE} --variable=udevdir udev
+          OUTPUT_VARIABLE PKGCONFIG_UDEVDIR
+          OUTPUT_STRIP_TRAILING_WHITESPACE
+      )
+      if(PKGCONFIG_UDEVDIR)
+        file(TO_CMAKE_PATH "${PKGCONFIG_UDEVDIR}" UDEVDIR)
+      endif()
+    endif()
+  endif()
+endif()
+
 add_executable(${PROJECT_NAME}
 
 main.cpp
@@ -110,7 +132,7 @@ install(TARGETS ${PROJECT_NAME} DESTINATION ${CMAKE_INSTALL_BINDIR})
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/other/IMSProg.desktop" DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/applications")
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/img/IMSProg64.png" DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/pixmaps")
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/database/IMSProg.Dat" DESTINATION "${CMAKE_INSTALL_SYSCONFDIR}/imsprog")
-install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/other/99-CH341.rules" DESTINATION "${CMAKE_INSTALL_LIBDIR}/udev/rules.d")
+install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/other/99-CH341.rules" DESTINATION "${UDEVDIR}/rules.d")
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/language/chipProgrammer_ru_RU.qm" DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/imsprog")
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/language/chipProgrammer_es_ES.qm" DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/imsprog")
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/language/chipProgrammer_de_DE.qm" DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/imsprog")
