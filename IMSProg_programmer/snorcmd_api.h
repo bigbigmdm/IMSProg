@@ -1,5 +1,6 @@
 /*
  * Copyright (C) 2018-2021 McMCC <mcmcc@mail.ru>
+ * 2023-2024 Mikhail Medvedev <e-ink-reader@yandex.ru>
  * snorcmd_api.h
  *
  * This program is free software; you can redistribute it and/or
@@ -19,7 +20,8 @@ int snor_read(unsigned char *buf, unsigned long from, unsigned long len);
 int snor_read_param(unsigned char *buf, unsigned long from, unsigned long len, unsigned int sector_size, unsigned int addr4b);
 int snor_write_param(unsigned char *buf, unsigned long to, unsigned long len, unsigned int sector_size, unsigned int addr4b);
 int snor_erase(unsigned long offs, unsigned long len);
-int snor_erase_param(unsigned long offs, unsigned long len, unsigned int sector_size, unsigned int n_sectors);
+//int snor_erase_param(unsigned long offs, unsigned long len, unsigned int sector_size, unsigned int n_sectors);
+int full_erase_chip(void);
 int snor_write(unsigned char *buf, unsigned long to, unsigned long len);
 long snor_init(void);
 void support_snor_list(void);

@@ -455,8 +455,7 @@ void MainWindow::on_actionErase_triggered()
     if (currentChipType == 0)
     {
        ui->progressBar->setValue(50);
-       //int snor_erase_param(unsigned long offs, unsigned long len, unsigned int sector_size, unsigned int n_sectors);
-       snor_erase_param(0, 65536, 65536, 1);
+       full_erase_chip();
        sleep(1);
     }
     if (currentChipType == 4)
