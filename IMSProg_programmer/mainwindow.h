@@ -94,6 +94,7 @@ private slots:
     void on_actionStop_triggered();
     void on_pushButton_4_clicked();
     void on_actionChip_info_triggered();
+    void on_comboBox_addr4bit_currentIndexChanged(int index);
 
 private:
     Ui::MainWindow *ui;

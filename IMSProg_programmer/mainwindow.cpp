@@ -27,8 +27,6 @@
 #include <stddef.h>
 #include <stdint.h>
 
-#include <QDebug>
-
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -63,7 +61,9 @@ MainWindow::MainWindow(QWidget *parent) :
  ui->comboBox_type->addItem("95_EEPROM", 4);
 
  ui->comboBox_addr4bit->addItem("No", 0);
- ui->comboBox_addr4bit->addItem("Yes", 1);
+ ui->comboBox_addr4bit->addItem("Yes", 0x01);
+ ui->comboBox_addr4bit->addItem("Winbond", 0x11);
+ ui->comboBox_addr4bit->addItem("Spansion", 0x21);
 
  ui->comboBox_page->addItem(" ", 0);
  ui->comboBox_page->addItem("1", 1);
@@ -144,7 +144,7 @@ void MainWindow::on_pushButton_clicked()
   if (statusCH341 == 0)
   {
     ui->crcEdit->setText("");
-    if (((currentNumBlocks > 0) && (currentBlockSize >0) && (currentChipType == 0)) || ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 1)) || ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 2) || ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 4))))
+    if (((currentNumBlocks > 0) && (currentBlockSize >0) && (currentChipType == 0)) || ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 1)) || ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 2)) || ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 4)))
     {
        doNotDisturb();
        if (currentChipType == 1)
@@ -588,11 +588,11 @@ void MainWindow::on_actionOpen_triggered()
 
         return;
     }
-    buf.resize(info.size());
+    buf.resize(static_cast<int>(info.size()));
     buf = file.readAll();
     if (currentChipSize == 0)
     {
-        chipData.resize(info.size());
+        chipData.resize(static_cast<int>(info.size()));
     }
 
     for (uint32_t i=0; i < info.size(); i++)
@@ -1131,6 +1131,12 @@ void MainWindow::on_comboBox_type_currentIndexChanged(int index)
          ui->actionDetect->setEnabled(true);
          ui->actionChip_info->setEnabled(true);
      }
+}
+
+void MainWindow::on_comboBox_addr4bit_currentIndexChanged(int index)
+{
+   currentAddr4bit = ui->comboBox_addr4bit->currentData().toUInt();
+   index++;
 }
 
 void MainWindow::on_actionAbout_triggered()

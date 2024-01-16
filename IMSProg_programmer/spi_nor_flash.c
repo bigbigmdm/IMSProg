@@ -86,6 +86,8 @@ struct chip_info {
 	char		addr4b;
 };
 
+unsigned char algType = 0;
+
 struct chip_info *spi_chip_info;
 
 static int snor_wait_ready(int sleep_ms);
@@ -218,7 +220,8 @@ static int snor_4byte_mode(int enable)
 	if (snor_wait_ready(1))
 		return -1;
 
-	if (spi_chip_info->id == 0x1) /* Spansion */
+    //if (spi_chip_info->id == 0x1) /* Spansion */
+    if (algType == 0x02) /* Spansion */
 	{
 		u8 br_cfn;
 		u8 br = enable ? 0x81 : 0;
@@ -239,7 +242,8 @@ static int snor_4byte_mode(int enable)
 			printf("%s: ret: %x\n", __func__, retval);
 			return -1;
 		}
-		if ((!enable) && (spi_chip_info->id == 0xef)) /* Winbond */
+        //if ((!enable) && (spi_chip_info->id == 0xef)) /* Winbond */
+        if ((!enable) && (algType == 0x01)) /* Winbond */
 		{
 			code = 0;
 			snor_write_enable();
@@ -723,13 +727,16 @@ int snor_read_param(unsigned char *buf, unsigned long from, unsigned long len, u
 {
     u32 read_addr, physical_read_addr, remain_len, data_offset;
 
+    //addr4bit transforming
+    algType = (addr4b & 0xf0) >> 4;
+    addr4b = addr4b & 0x0f;
+
     snor_dbg("%s: from:%x len:%x \n", __func__, from, len);
 
     /* sanity checks */
     if (len == 0)
         return 0;
 
-    timer_start();
     /* Wait till previous write/erase is done. */
     if (snor_wait_ready(1)) {
         /* REVISIT status return?? */
@@ -778,11 +785,7 @@ int snor_read_param(unsigned char *buf, unsigned long from, unsigned long len, u
             }
             remain_len -= sector_size - data_offset;
             read_addr += sector_size - data_offset;
-            if( timer_progress() ) {
-                //printf("\bRead %ld%% [%lu] of [%lu] bytes      ", 100 * (len - remain_len) / len, len - remain_len, len);
-                //printf("\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b");
-                fflush(stdout);
-            }
+
         }
 
         SPI_CONTROLLER_Chip_Select_High();
@@ -790,8 +793,6 @@ int snor_read_param(unsigned char *buf, unsigned long from, unsigned long len, u
         if (addr4b)
             snor_4byte_mode(0);
     }
-    //printf("Read 100%% [%lu] of [%lu] bytes      \n", len - remain_len, len);
-    timer_end();
 
     return len;
 }
@@ -800,7 +801,10 @@ int snor_write_param(unsigned char *buf, unsigned long to, unsigned long len, un
 {
     u32 page_offset, page_size;
     int rc = 0, retlen = 0;
-    unsigned long plen = len;
+
+    //addr4bit transforming
+    algType = (addr4b & 0xf0) >> 4;
+    addr4b = addr4b & 0x0f;
 
     snor_dbg("%s: to:%x len:%x \n", __func__, to, len);
 
@@ -811,7 +815,6 @@ int snor_write_param(unsigned char *buf, unsigned long to, unsigned long len, un
     if (to + len > len * sector_size )
         return -1;
 
-    timer_start();
     /* Wait until finished previous write command. */
     if (snor_wait_ready(2)) {
         return -1;
@@ -853,12 +856,6 @@ int snor_write_param(unsigned char *buf, unsigned long to, unsigned long len, un
 
         snor_dbg("%s: to:%x page_size:%x ret:%x\n", __func__, to, page_size, rc);
 
-        if( timer_progress() ) {
-            //printf("\bWritten %ld%% [%lu] of [%lu] bytes      ", 100 * (plen - len) / plen, plen - len, plen);
-            //printf("\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b");
-            fflush(stdout);
-        }
-
         if (rc > 0) {
             retlen += rc;
             if (rc < page_size) {
@@ -878,9 +875,6 @@ int snor_write_param(unsigned char *buf, unsigned long to, unsigned long len, un
         snor_4byte_mode(0);
 
     snor_write_disable();
-
-    //printf("Written 100%% [%ld] of [%ld] bytes      \n", plen - len, plen);
-    timer_end();
 
     return retlen;
 }

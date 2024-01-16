@@ -20,8 +20,12 @@
     </message>
     <message>
         <location filename="../dialogabout.ui" line="106"/>
+        <source>Version: 1.1.4</source>
+        <translation>版本： 1.1.4</translation>
+    </message>
+    <message>
         <source>Version: 1.1.3</source>
-        <translation>版本： 1.1.3</translation>
+        <translation type="vanished">版本： 1.1.3</translation>
     </message>
     <message>
         <source>Version: 1.1.2</source>
@@ -659,7 +663,7 @@
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1178"/>
-        <location filename="../mainwindow.cpp" line="1249"/>
+        <location filename="../mainwindow.cpp" line="1255"/>
         <source>Stop</source>
         <translation>停止</translation>
     </message>
@@ -710,7 +714,7 @@
         <translation>大小</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1280"/>
+        <location filename="../mainwindow.cpp" line="1286"/>
         <source>Opening DAT file</source>
         <translation>打开 DAT 文件</translation>
     </message>
@@ -743,8 +747,8 @@
         <location filename="../mainwindow.cpp" line="982"/>
         <location filename="../mainwindow.cpp" line="1005"/>
         <location filename="../mainwindow.cpp" line="1038"/>
-        <location filename="../mainwindow.cpp" line="1173"/>
-        <location filename="../mainwindow.cpp" line="1285"/>
+        <location filename="../mainwindow.cpp" line="1179"/>
+        <location filename="../mainwindow.cpp" line="1291"/>
         <source>Error</source>
         <translation>错误</translation>
     </message>
@@ -753,17 +757,17 @@
         <translation type="vanished">文件大小超出芯片尺寸。请选择其他芯片或文件，或使用 &quot;保存部分&quot; 分割文件。</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1173"/>
+        <location filename="../mainwindow.cpp" line="1179"/>
         <source>File &apos;IMSProg_editor&apos; not found!</source>
         <translation>¡未找到文件 `IMSProg_editor`！</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1285"/>
+        <location filename="../mainwindow.cpp" line="1291"/>
         <source>Error loading chip database file!</source>
         <translation>加载芯片数据库文件时出错！</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1291"/>
+        <location filename="../mainwindow.cpp" line="1297"/>
         <source>Parsing DAT file</source>
         <translation>解析 DAT 文件</translation>
     </message>
@@ -950,7 +954,7 @@ Buffer: </source>
         <translation type="vanished">¡未找到文件 `IMSProg_editor`！</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1249"/>
+        <location filename="../mainwindow.cpp" line="1255"/>
         <source>Operation aborted!</source>
         <translation>操作中止！</translation>
     </message>

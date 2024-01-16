@@ -20,8 +20,12 @@
     </message>
     <message>
         <location filename="../dialogabout.ui" line="106"/>
+        <source>Version: 1.1.4</source>
+        <translation>Version: 1.1.4</translation>
+    </message>
+    <message>
         <source>Version: 1.1.3</source>
-        <translation>Version: 1.1.3</translation>
+        <translation type="vanished">Version: 1.1.3</translation>
     </message>
     <message>
         <source>Version: 1.1.2</source>
@@ -661,7 +665,7 @@
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1178"/>
-        <location filename="../mainwindow.cpp" line="1249"/>
+        <location filename="../mainwindow.cpp" line="1255"/>
         <source>Stop</source>
         <translation>Stop</translation>
     </message>
@@ -712,7 +716,7 @@
         <translation>Größe</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1280"/>
+        <location filename="../mainwindow.cpp" line="1286"/>
         <source>Opening DAT file</source>
         <translation>DAT-Datei öffnen</translation>
     </message>
@@ -745,8 +749,8 @@
         <location filename="../mainwindow.cpp" line="982"/>
         <location filename="../mainwindow.cpp" line="1005"/>
         <location filename="../mainwindow.cpp" line="1038"/>
-        <location filename="../mainwindow.cpp" line="1173"/>
-        <location filename="../mainwindow.cpp" line="1285"/>
+        <location filename="../mainwindow.cpp" line="1179"/>
+        <location filename="../mainwindow.cpp" line="1291"/>
         <source>Error</source>
         <translation>Fehler</translation>
     </message>
@@ -756,17 +760,17 @@
         <translation>Die Endadresse muss größer sein als die Anfangsadresse.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1173"/>
+        <location filename="../mainwindow.cpp" line="1179"/>
         <source>File &apos;IMSProg_editor&apos; not found!</source>
         <translation>Datei `IMSProg_editor` nicht gefunden!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1285"/>
+        <location filename="../mainwindow.cpp" line="1291"/>
         <source>Error loading chip database file!</source>
         <translation>Fehler beim Laden der Chipdatenbankdatei!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1291"/>
+        <location filename="../mainwindow.cpp" line="1297"/>
         <source>Parsing DAT file</source>
         <translation>Parsen einer DAT-Datei</translation>
     </message>
@@ -956,7 +960,7 @@ Puffer: </translation>
         <translation type="vanished">Datei `IMSProg_editor` nicht gefunden!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1249"/>
+        <location filename="../mainwindow.cpp" line="1255"/>
         <source>Operation aborted!</source>
         <translation>Operation abgebrochen!</translation>
     </message>

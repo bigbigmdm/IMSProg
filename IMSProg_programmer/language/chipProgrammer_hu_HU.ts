@@ -20,8 +20,12 @@
     </message>
     <message>
         <location filename="../dialogabout.ui" line="106"/>
+        <source>Version: 1.1.4</source>
+        <translation>Version: 1.1.4</translation>
+    </message>
+    <message>
         <source>Version: 1.1.3</source>
-        <translation>Version: 1.1.3</translation>
+        <translation type="vanished">Version: 1.1.3</translation>
     </message>
     <message>
         <source>Version: 1.1.2</source>
@@ -650,7 +654,7 @@
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1178"/>
-        <location filename="../mainwindow.cpp" line="1249"/>
+        <location filename="../mainwindow.cpp" line="1255"/>
         <source>Stop</source>
         <translation>Megállítás</translation>
     </message>
@@ -701,7 +705,7 @@
         <translation>Méret</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1280"/>
+        <location filename="../mainwindow.cpp" line="1286"/>
         <source>Opening DAT file</source>
         <translation>DAT fájl megnyitása</translation>
     </message>
@@ -734,8 +738,8 @@
         <location filename="../mainwindow.cpp" line="982"/>
         <location filename="../mainwindow.cpp" line="1005"/>
         <location filename="../mainwindow.cpp" line="1038"/>
-        <location filename="../mainwindow.cpp" line="1173"/>
-        <location filename="../mainwindow.cpp" line="1285"/>
+        <location filename="../mainwindow.cpp" line="1179"/>
+        <location filename="../mainwindow.cpp" line="1291"/>
         <source>Error</source>
         <translation>Hiba</translation>
     </message>
@@ -745,17 +749,17 @@
         <translation>A zárócímnek nagyobbnak kell lennie, mint a kezdőcím.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1173"/>
+        <location filename="../mainwindow.cpp" line="1179"/>
         <source>File &apos;IMSProg_editor&apos; not found!</source>
         <translation>Nem található `IMSProg_editor` fájl!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1285"/>
+        <location filename="../mainwindow.cpp" line="1291"/>
         <source>Error loading chip database file!</source>
         <translation>Hiba a chip adatbázis fájl betöltésekor!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1291"/>
+        <location filename="../mainwindow.cpp" line="1297"/>
         <source>Parsing DAT file</source>
         <translation>DAT fájl feldolgozása</translation>
     </message>
@@ -945,7 +949,7 @@ Puffer: </translation>
         <translation type="vanished">Nem található `IMSProg_editor` fájl!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1249"/>
+        <location filename="../mainwindow.cpp" line="1255"/>
         <source>Operation aborted!</source>
         <translation>Művelet megszakítva!</translation>
     </message>

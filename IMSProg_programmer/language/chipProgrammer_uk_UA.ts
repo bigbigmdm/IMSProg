@@ -20,8 +20,12 @@
     </message>
     <message>
         <location filename="../dialogabout.ui" line="106"/>
+        <source>Version: 1.1.4</source>
+        <translation>Версія 1.1.4</translation>
+    </message>
+    <message>
         <source>Version: 1.1.3</source>
-        <translation>Версія 1.1.3</translation>
+        <translation type="vanished">Версія 1.1.3</translation>
     </message>
     <message>
         <source>Version: 1.1.2</source>
@@ -656,7 +660,7 @@
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1178"/>
-        <location filename="../mainwindow.cpp" line="1249"/>
+        <location filename="../mainwindow.cpp" line="1255"/>
         <source>Stop</source>
         <translation>Стоп</translation>
     </message>
@@ -707,7 +711,7 @@
         <translation>Об `єм</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1280"/>
+        <location filename="../mainwindow.cpp" line="1286"/>
         <source>Opening DAT file</source>
         <translation>Відкривається файл бази</translation>
     </message>
@@ -740,8 +744,8 @@
         <location filename="../mainwindow.cpp" line="982"/>
         <location filename="../mainwindow.cpp" line="1005"/>
         <location filename="../mainwindow.cpp" line="1038"/>
-        <location filename="../mainwindow.cpp" line="1173"/>
-        <location filename="../mainwindow.cpp" line="1285"/>
+        <location filename="../mainwindow.cpp" line="1179"/>
+        <location filename="../mainwindow.cpp" line="1291"/>
         <source>Error</source>
         <translation>Помилка</translation>
     </message>
@@ -755,17 +759,17 @@
         <translation>Кінцева адреса більша за початкову.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1173"/>
+        <location filename="../mainwindow.cpp" line="1179"/>
         <source>File &apos;IMSProg_editor&apos; not found!</source>
         <translation>Не знайдено файл &apos;IMSProg_editor&apos;!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1285"/>
+        <location filename="../mainwindow.cpp" line="1291"/>
         <source>Error loading chip database file!</source>
         <translation>Помилка завантаження файлу бази мікросхем!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1291"/>
+        <location filename="../mainwindow.cpp" line="1297"/>
         <source>Parsing DAT file</source>
         <translation>Обробка файлу даних</translation>
     </message>
@@ -955,7 +959,7 @@ Buffer: </source>
         <translation type="vanished">Не знайдено файл &apos;IMSProg_editor&apos;!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1249"/>
+        <location filename="../mainwindow.cpp" line="1255"/>
         <source>Operation aborted!</source>
         <translation>Операцію перервано!</translation>
     </message>
