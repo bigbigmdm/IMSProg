@@ -19,9 +19,18 @@
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;该程序使用 &lt;a href=&quot;https://github.com/Simsys/qhexedit2/&quot;&gt;QhexEditor2&lt;/a&gt; widget 和经过修改的程序员 &lt;a href=&quot;https://github.com/McMCCRU/SNANDer&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;SNANDer&lt;/span&gt;&lt;/a&gt; .&lt;/p&gt;&lt;p&gt;GitHub 页面在 &lt;a href=&quot;https://github.com/bigbigmdm/IMSProg&quot;&gt;这里&lt;/a&gt;, 支持页面在 &lt;a href=&quot;https://antenna-dvb-t2.ru/IMSProg.php&quot;&gt;这里&lt;/a&gt;. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogabout.ui" line="106"/>
+        <location filename="../dialogabout.ui" line="120"/>
+        <source>Version: </source>
+        <translation>版本： </translation>
+    </message>
+    <message>
+        <location filename="../dialogabout.ui" line="130"/>
+        <source>1.1.4</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Version: 1.1.4</source>
-        <translation>版本： 1.1.4</translation>
+        <translation type="vanished">版本： 1.1.4</translation>
     </message>
     <message>
         <source>Version: 1.1.3</source>
@@ -58,7 +67,7 @@
         <translation type="vanished">版本： 1.0.28</translation>
     </message>
     <message>
-        <location filename="../dialogabout.ui" line="143"/>
+        <location filename="../dialogabout.ui" line="169"/>
         <source>Close</source>
         <translation>关闭</translation>
     </message>
@@ -663,7 +672,7 @@
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1178"/>
-        <location filename="../mainwindow.cpp" line="1255"/>
+        <location filename="../mainwindow.cpp" line="1254"/>
         <source>Stop</source>
         <translation>停止</translation>
     </message>
@@ -693,8 +702,8 @@
         <translation>Ctrl+P</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="575"/>
-        <location filename="../mainwindow.cpp" line="1024"/>
+        <location filename="../mainwindow.cpp" line="574"/>
+        <location filename="../mainwindow.cpp" line="1023"/>
         <source>Current file: </source>
         <translation>当前文件： </translation>
     </message>
@@ -714,7 +723,7 @@
         <translation>大小</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1286"/>
+        <location filename="../mainwindow.cpp" line="1285"/>
         <source>Opening DAT file</source>
         <translation>打开 DAT 文件</translation>
     </message>
@@ -729,26 +738,26 @@
         <location filename="../mainwindow.cpp" line="275"/>
         <location filename="../mainwindow.cpp" line="433"/>
         <location filename="../mainwindow.cpp" line="447"/>
-        <location filename="../mainwindow.cpp" line="493"/>
-        <location filename="../mainwindow.cpp" line="540"/>
-        <location filename="../mainwindow.cpp" line="583"/>
-        <location filename="../mainwindow.cpp" line="670"/>
-        <location filename="../mainwindow.cpp" line="680"/>
-        <location filename="../mainwindow.cpp" line="687"/>
-        <location filename="../mainwindow.cpp" line="708"/>
-        <location filename="../mainwindow.cpp" line="718"/>
-        <location filename="../mainwindow.cpp" line="889"/>
-        <location filename="../mainwindow.cpp" line="899"/>
-        <location filename="../mainwindow.cpp" line="905"/>
-        <location filename="../mainwindow.cpp" line="914"/>
+        <location filename="../mainwindow.cpp" line="492"/>
+        <location filename="../mainwindow.cpp" line="539"/>
+        <location filename="../mainwindow.cpp" line="582"/>
+        <location filename="../mainwindow.cpp" line="669"/>
+        <location filename="../mainwindow.cpp" line="679"/>
+        <location filename="../mainwindow.cpp" line="686"/>
+        <location filename="../mainwindow.cpp" line="707"/>
+        <location filename="../mainwindow.cpp" line="717"/>
+        <location filename="../mainwindow.cpp" line="888"/>
+        <location filename="../mainwindow.cpp" line="898"/>
+        <location filename="../mainwindow.cpp" line="904"/>
+        <location filename="../mainwindow.cpp" line="913"/>
+        <location filename="../mainwindow.cpp" line="937"/>
         <location filename="../mainwindow.cpp" line="938"/>
-        <location filename="../mainwindow.cpp" line="939"/>
-        <location filename="../mainwindow.cpp" line="953"/>
-        <location filename="../mainwindow.cpp" line="982"/>
-        <location filename="../mainwindow.cpp" line="1005"/>
-        <location filename="../mainwindow.cpp" line="1038"/>
-        <location filename="../mainwindow.cpp" line="1179"/>
-        <location filename="../mainwindow.cpp" line="1291"/>
+        <location filename="../mainwindow.cpp" line="952"/>
+        <location filename="../mainwindow.cpp" line="981"/>
+        <location filename="../mainwindow.cpp" line="1004"/>
+        <location filename="../mainwindow.cpp" line="1037"/>
+        <location filename="../mainwindow.cpp" line="1178"/>
+        <location filename="../mainwindow.cpp" line="1290"/>
         <source>Error</source>
         <translation>错误</translation>
     </message>
@@ -757,17 +766,17 @@
         <translation type="vanished">文件大小超出芯片尺寸。请选择其他芯片或文件，或使用 &quot;保存部分&quot; 分割文件。</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1179"/>
+        <location filename="../mainwindow.cpp" line="1178"/>
         <source>File &apos;IMSProg_editor&apos; not found!</source>
         <translation>¡未找到文件 `IMSProg_editor`！</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1291"/>
+        <location filename="../mainwindow.cpp" line="1290"/>
         <source>Error loading chip database file!</source>
         <translation>加载芯片数据库文件时出错！</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1297"/>
+        <location filename="../mainwindow.cpp" line="1296"/>
         <source>Parsing DAT file</source>
         <translation>解析 DAT 文件</translation>
     </message>
@@ -778,8 +787,8 @@
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="198"/>
-        <location filename="../mainwindow.cpp" line="670"/>
-        <location filename="../mainwindow.cpp" line="889"/>
+        <location filename="../mainwindow.cpp" line="669"/>
+        <location filename="../mainwindow.cpp" line="888"/>
         <source>Unsupported chip type!</source>
         <translation>不支持的芯片类型！</translation>
     </message>
@@ -788,23 +797,23 @@
         <location filename="../mainwindow.cpp" line="250"/>
         <location filename="../mainwindow.cpp" line="263"/>
         <location filename="../mainwindow.cpp" line="447"/>
-        <location filename="../mainwindow.cpp" line="680"/>
-        <location filename="../mainwindow.cpp" line="718"/>
-        <location filename="../mainwindow.cpp" line="899"/>
-        <location filename="../mainwindow.cpp" line="953"/>
+        <location filename="../mainwindow.cpp" line="679"/>
+        <location filename="../mainwindow.cpp" line="717"/>
+        <location filename="../mainwindow.cpp" line="898"/>
+        <location filename="../mainwindow.cpp" line="952"/>
         <source>Programmer CH341a is not connected!</source>
         <translation>编程器 CH341a 未连接！</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="213"/>
-        <location filename="../mainwindow.cpp" line="905"/>
+        <location filename="../mainwindow.cpp" line="904"/>
         <source>Error reading block </source>
         <translation>读取程序块编号出错 </translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="238"/>
-        <location filename="../mainwindow.cpp" line="708"/>
-        <location filename="../mainwindow.cpp" line="938"/>
+        <location filename="../mainwindow.cpp" line="707"/>
+        <location filename="../mainwindow.cpp" line="937"/>
         <source>Before reading from chip please press &apos;Detect&apos; button.</source>
         <translation>读取芯片数据前，请按下 &apos;检测&apos; 按钮。</translation>
     </message>
@@ -830,7 +839,7 @@
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="433"/>
-        <location filename="../mainwindow.cpp" line="1005"/>
+        <location filename="../mainwindow.cpp" line="1004"/>
         <source>Error saving file!</source>
         <translation>¡保存文件出错！</translation>
     </message>
@@ -840,112 +849,112 @@
         <translation>擦除芯片 </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="493"/>
-        <location filename="../mainwindow.cpp" line="540"/>
+        <location filename="../mainwindow.cpp" line="492"/>
+        <location filename="../mainwindow.cpp" line="539"/>
         <source>Error erasing sector </source>
         <translation>擦除扇区号出错 </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="569"/>
+        <location filename="../mainwindow.cpp" line="568"/>
         <source>Opening file</source>
         <translation>打开文件</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="571"/>
+        <location filename="../mainwindow.cpp" line="570"/>
         <source>Open file</source>
         <translation>打开文件</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="583"/>
+        <location filename="../mainwindow.cpp" line="582"/>
         <source>The file size exceeds the chip size. Please select another chip or file or use `Save part` to split the file.</source>
         <translation>文件大小超出芯片尺寸。请选择其他芯片或文件，或使用 &quot;保存部分&quot; 分割文件。</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="633"/>
+        <location filename="../mainwindow.cpp" line="632"/>
         <source>Writing data to </source>
         <translation>将数据写入 </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="687"/>
+        <location filename="../mainwindow.cpp" line="686"/>
         <source>Error writing sector </source>
         <translation>写入扇区号出错 </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="864"/>
+        <location filename="../mainwindow.cpp" line="863"/>
         <source>Veryfing data from </source>
         <translation>从芯片中提取数据 </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="914"/>
+        <location filename="../mainwindow.cpp" line="913"/>
         <source>Error comparing data!
 Address:   </source>
         <translation>数据比较错误！
 地址：   </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="914"/>
+        <location filename="../mainwindow.cpp" line="913"/>
         <source>
 Buffer: </source>
         <translation>
 缓冲区：  </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="914"/>
+        <location filename="../mainwindow.cpp" line="913"/>
         <source>    Chip: </source>
         <translation>    芯片： </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="939"/>
+        <location filename="../mainwindow.cpp" line="938"/>
         <source>Please select the chip parameters - manufacture and chip name.</source>
         <translation>请选择芯片参数 - &apos;制造&apos; 和芯片 &apos;名称&apos;。</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="948"/>
+        <location filename="../mainwindow.cpp" line="947"/>
         <source>Ok!</source>
         <translation>Ok!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="948"/>
+        <location filename="../mainwindow.cpp" line="947"/>
         <source>The operation was successful!</source>
         <translation>手术很成功！</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="982"/>
+        <location filename="../mainwindow.cpp" line="981"/>
         <source>The end address must be greater than the starting address.</source>
         <translation>结束地址必须大于起始地址。</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="994"/>
+        <location filename="../mainwindow.cpp" line="993"/>
         <source>Saving block</source>
         <translation>保存块</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="996"/>
+        <location filename="../mainwindow.cpp" line="995"/>
         <source>Save block</source>
         <translation>保存块</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1019"/>
+        <location filename="../mainwindow.cpp" line="1018"/>
         <source>Opening block</source>
         <translation>打开区块</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1021"/>
+        <location filename="../mainwindow.cpp" line="1020"/>
         <source>Open block</source>
         <translation>打开区块</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1038"/>
+        <location filename="../mainwindow.cpp" line="1037"/>
         <source>The end address out of image size!</source>
         <translation>末端地址超出图像大小范围！</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1077"/>
+        <location filename="../mainwindow.cpp" line="1076"/>
         <source>Connected</source>
         <translation>已连接</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1082"/>
+        <location filename="../mainwindow.cpp" line="1081"/>
         <source>Not connected</source>
         <translation>未连接</translation>
     </message>
@@ -954,7 +963,7 @@ Buffer: </source>
         <translation type="vanished">¡未找到文件 `IMSProg_editor`！</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1255"/>
+        <location filename="../mainwindow.cpp" line="1254"/>
         <source>Operation aborted!</source>
         <translation>操作中止！</translation>
     </message>
