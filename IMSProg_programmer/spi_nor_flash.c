@@ -1,5 +1,6 @@
 /*
  * Copyright (C) 2018-2021 McMCC <mcmcc@mail.ru>
+ * 2023-2024 Mikhail Medvedev <e-ink-reader@yandex.ru>
  * spi_nor_flash.c
  *
  * This program is free software; you can redistribute it and/or
@@ -76,7 +77,7 @@
 /* #define snor_dbg(args...) do { if (1) printf(args); } while(0) */
 
 #define udelay(x)			usleep(x)
-
+/*
 struct chip_info {
 	char		*name;
 	u8		id;
@@ -85,8 +86,10 @@ struct chip_info {
 	unsigned int	n_sectors;
 	char		addr4b;
 };
+*/
+unsigned char algType = 0;
 
-struct chip_info *spi_chip_info;
+//struct chip_info *spi_chip_info;
 
 static int snor_wait_ready(int sleep_ms);
 static int snor_read_sr(u8 *val);
@@ -218,7 +221,8 @@ static int snor_4byte_mode(int enable)
 	if (snor_wait_ready(1))
 		return -1;
 
-	if (spi_chip_info->id == 0x1) /* Spansion */
+    //if (spi_chip_info->id == 0x1) /* Spansion */
+    if (algType == 0x02) /* Spansion */
 	{
 		u8 br_cfn;
 		u8 br = enable ? 0x81 : 0;
@@ -239,7 +243,8 @@ static int snor_4byte_mode(int enable)
 			printf("%s: ret: %x\n", __func__, retval);
 			return -1;
 		}
-		if ((!enable) && (spi_chip_info->id == 0xef)) /* Winbond */
+        //if ((!enable) && (spi_chip_info->id == 0xef)) /* Winbond */
+        if ((!enable) && (algType == 0x01)) /* Winbond */
 		{
 			code = 0;
 			snor_write_enable();
@@ -255,19 +260,20 @@ static int snor_4byte_mode(int enable)
  *
  * Returns 0 if successful, non-zero otherwise.
  */
-static int snor_erase_sector(unsigned long offset)
+/*static int snor_erase_sector(unsigned long offset)
 {
 	snor_dbg("%s: offset:%x\n", __func__, offset);
-
+*/
 	/* Wait until finished previous write command. */
-	if (snor_wait_ready(950))
+/*	if (snor_wait_ready(950))
 		return -1;
 
 	if (spi_chip_info->addr4b) {
 		snor_4byte_mode(1);
 	}
-
+*/
 	/* Send write enable, then erase commands. */
+/*
 	snor_write_enable();
 
 	SPI_CONTROLLER_Chip_Select_Low();
@@ -288,8 +294,8 @@ static int snor_erase_sector(unsigned long offset)
 
 	return 0;
 }
-
-static int full_erase_chip(void)
+*/
+int full_erase_chip(void)
 {
 	timer_start();
 	/* Wait until finished previous write command. */
@@ -600,13 +606,14 @@ static int snor_write_sr(u8 *val)
 	return 0;
 }
 */
-int snor_erase_param(unsigned long offs, unsigned long len, unsigned int sector_size, unsigned int n_sectors)
+/*int snor_erase_param(unsigned long offs, unsigned long len, unsigned int sector_size, unsigned int n_sectors)
 {
     unsigned long plen = len;
     snor_dbg("%s: offs:%x len:%x\n", __func__, offs, len);
-
+*/
     /* sanity checks */
-    if (len == 0)
+/*
+if (len == 0)
         return -1;
 
     if(!offs && len == (sector_size * n_sectors))
@@ -618,9 +625,10 @@ int snor_erase_param(unsigned long offs, unsigned long len, unsigned int sector_
     timer_start();
 
     snor_unprotect();
-
+*/
     /* now erase those sectors */
-    while (len > 0) {
+/*
+while (len > 0) {
         if (snor_erase_sector(offs)) {
             return -1;
         }
@@ -639,7 +647,7 @@ int snor_erase_param(unsigned long offs, unsigned long len, unsigned int sector_
 
     return 0;
 }
-
+*/
 
 /*int snor_read(unsigned char *buf, unsigned long from, unsigned long len)
 {
@@ -723,13 +731,16 @@ int snor_read_param(unsigned char *buf, unsigned long from, unsigned long len, u
 {
     u32 read_addr, physical_read_addr, remain_len, data_offset;
 
+    //addr4bit transforming
+    algType = (addr4b & 0xf0) >> 4;
+    addr4b = addr4b & 0x0f;
+
     snor_dbg("%s: from:%x len:%x \n", __func__, from, len);
 
     /* sanity checks */
     if (len == 0)
         return 0;
 
-    timer_start();
     /* Wait till previous write/erase is done. */
     if (snor_wait_ready(1)) {
         /* REVISIT status return?? */
@@ -778,11 +789,7 @@ int snor_read_param(unsigned char *buf, unsigned long from, unsigned long len, u
             }
             remain_len -= sector_size - data_offset;
             read_addr += sector_size - data_offset;
-            if( timer_progress() ) {
-                //printf("\bRead %ld%% [%lu] of [%lu] bytes      ", 100 * (len - remain_len) / len, len - remain_len, len);
-                //printf("\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b");
-                fflush(stdout);
-            }
+
         }
 
         SPI_CONTROLLER_Chip_Select_High();
@@ -790,8 +797,6 @@ int snor_read_param(unsigned char *buf, unsigned long from, unsigned long len, u
         if (addr4b)
             snor_4byte_mode(0);
     }
-    //printf("Read 100%% [%lu] of [%lu] bytes      \n", len - remain_len, len);
-    timer_end();
 
     return len;
 }
@@ -800,7 +805,10 @@ int snor_write_param(unsigned char *buf, unsigned long to, unsigned long len, un
 {
     u32 page_offset, page_size;
     int rc = 0, retlen = 0;
-    unsigned long plen = len;
+
+    //addr4bit transforming
+    algType = (addr4b & 0xf0) >> 4;
+    addr4b = addr4b & 0x0f;
 
     snor_dbg("%s: to:%x len:%x \n", __func__, to, len);
 
@@ -811,7 +819,6 @@ int snor_write_param(unsigned char *buf, unsigned long to, unsigned long len, un
     if (to + len > len * sector_size )
         return -1;
 
-    timer_start();
     /* Wait until finished previous write command. */
     if (snor_wait_ready(2)) {
         return -1;
@@ -853,12 +860,6 @@ int snor_write_param(unsigned char *buf, unsigned long to, unsigned long len, un
 
         snor_dbg("%s: to:%x page_size:%x ret:%x\n", __func__, to, page_size, rc);
 
-        if( timer_progress() ) {
-            //printf("\bWritten %ld%% [%lu] of [%lu] bytes      ", 100 * (plen - len) / plen, plen - len, plen);
-            //printf("\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b");
-            fflush(stdout);
-        }
-
         if (rc > 0) {
             retlen += rc;
             if (rc < page_size) {
@@ -879,9 +880,6 @@ int snor_write_param(unsigned char *buf, unsigned long to, unsigned long len, un
 
     snor_write_disable();
 
-    //printf("Written 100%% [%ld] of [%ld] bytes      \n", plen - len, plen);
-    timer_end();
-
     return retlen;
 }
 
@@ -897,7 +895,6 @@ int s95_read_param(unsigned char *buf, unsigned long from, unsigned long len, un
     if (len == 0)
         return 0;
 
-    timer_start();
     /* Wait till previous write/erase is done. */
     if (s95_wait_ready(1)) {
         /* REVISIT status return?? */
@@ -939,18 +936,11 @@ int s95_read_param(unsigned char *buf, unsigned long from, unsigned long len, un
             }
             remain_len -= sector_size - data_offset;
             read_addr += sector_size - data_offset;
-            if( timer_progress() ) {
-                //printf("\bRead %ld%% [%lu] of [%lu] bytes      ", 100 * (len - remain_len) / len, len - remain_len, len);
-                //printf("\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b");
-                fflush(stdout);
-            }
         }
 
         SPI_CONTROLLER_Chip_Select_High();
 
     }
-    //printf("Read 100%% [%lu] of [%lu] bytes from [%u]      \n", len - remain_len, len, from);
-    timer_end();
 
     return len;
 }
@@ -967,11 +957,6 @@ int s95_write_param(unsigned char *buf, unsigned long to, unsigned long len, uns
     /* sanity checks */
     if (len == 0) return 0;
 
-//    if (to + len > len * sector_size ){
-//        printf("STRING969");
-//        return -3;
-//    }
-    timer_start();
     /* Wait until finished previous write command. */
     if (s95_wait_ready(2)) return -1;
 
@@ -1006,12 +991,6 @@ int s95_write_param(unsigned char *buf, unsigned long to, unsigned long len, uns
 
         snor_dbg("%s: to:%x page_size:%x ret:%x\n", __func__, to, page_size, rc);
 
-        if( timer_progress() ) {
-            //printf("\bWritten %ld%% [%lu] of [%lu] bytes      ", 100 * (plen - len) / plen, plen - len, plen);
-            //printf("\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b");
-            fflush(stdout);
-        }
-
         if (rc > 0) {
             retlen += rc;
             if (rc < page_size) {
@@ -1031,7 +1010,6 @@ int s95_write_param(unsigned char *buf, unsigned long to, unsigned long len, uns
     s95_write_disable();
 
     //printf("Written 100%% [%ld] of [%ld] bytes      \n", plen - len, plen);
-    timer_end();
 
     return retlen;
 }
