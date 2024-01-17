@@ -260,6 +260,8 @@ sudo apt update
 - Ver. 1.1.2  - Added function for writing the Status Registers. Bugfix - Chip_Editor startup error when running IMSProg from command line. Added chips to the database. Added new language translation.
 - Ver. 1.1.3 - Fixed an error when the file size exceeds the chip size. 
 - Ver. 1.1.4 - SPI erase procedure fixed, deleted unused SPI procedures. Fixed program crash when reading/writing large size chips (25Q256/25Q512). Detect udev path with pkg-config 
+- Ver. 1.1.5 - Clarification of translations.
+- Ver. 1.1.6 - Fixed error diagnostics.
 
 ## Project structure
 
