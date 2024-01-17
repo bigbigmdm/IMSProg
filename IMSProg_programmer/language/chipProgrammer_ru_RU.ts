@@ -26,7 +26,7 @@
     <message>
         <location filename="../dialogabout.ui" line="130"/>
         <source>1.1.4</source>
-        <translation type="unfinished"></translation>
+        <translation>1.1.4</translation>
     </message>
     <message>
         <source>Version: 1.1.4</source>
