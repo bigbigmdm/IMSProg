@@ -211,8 +211,9 @@ void MainWindow::on_pushButton_clicked()
           if (res <= 0)
             {
                QMessageBox::about(this, tr("Error"), tr("Error reading block ") + QString::number(curBlock));
+               ch341a_spi_shutdown();
                doNotDisturbCancel();
-               break;
+               return;
             }
          for (j = 0; j < currentBlockSize; j++)
             {
@@ -686,7 +687,7 @@ void MainWindow::on_actionWrite_triggered()
              QMessageBox::about(this, tr("Error"), tr("Error writing sector ") + QString::number(curBlock));
              doNotDisturbCancel();
              ch341a_spi_shutdown();
-             break;
+             return;
            }
          addr = addr + currentBlockSize;
          curBlock++;
@@ -902,8 +903,9 @@ void MainWindow::on_actionVerify_triggered()
                     if (res <= 0)
                     {
                         QMessageBox::about(this, tr("Error"), tr("Error reading block ") + QString::number(curBlock));
+                        ch341a_spi_shutdown();
                         doNotDisturbCancel();
-                        break;
+                        return;
                     }
                     for (j = 0; j < currentBlockSize; j++)
                     {
