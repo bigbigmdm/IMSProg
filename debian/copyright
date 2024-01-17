@@ -4,7 +4,7 @@ Upstream-Contact: Mikhail Medvedev e-ink-reader@yandex.ru
 Source: https://github.com/bigbigmdm/IMSProg
 
 Files: *
-Copyright: 2023 Mikhail Medvedev <e-ink-reader@yandex.ru>
+Copyright: 2023-2024 Mikhail Medvedev <e-ink-reader@yandex.ru>
 License: GPL-3+
 
 Files: IMSProg_programmer/language/chipProgrammer_uk_UA.ts
@@ -55,7 +55,7 @@ Files: IMSProg_programmer/bitbang_microwire.c
        IMSProg_programmer/timer.c
        IMSProg_programmer/timer.h
        IMSProg_programmer/types.h
-Copyright: 2023, Mikhail Medvedev <e-ink-reader@yandex.ru>
+Copyright: 2023-2024, Mikhail Medvedev <e-ink-reader@yandex.ru>
            2005-2022, McMCC <mcmcc@mail.ru>
            2014, Pluto Yang <yangyj.ee@gmail.com>
            2015-2016, Stefan Tauner
