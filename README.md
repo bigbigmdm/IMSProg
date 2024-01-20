@@ -1,4 +1,12 @@
 # IMSProg
+
+* [System software requirements](#system-software-requirements)
+* [How to use](#how-to-use)
+* [List of supported chips](#list-of-supported-chips)
+* [Packages](#packages)
+* [Changelog](#revision-history)
+* [Project structure](#project-structure)
+
 <img align="right" src="img/mini_logo_IMSProg.svg">
 
 **IMSProg** - Linux IMSProg - I2C, MicroWire and SPI EEPROM/Flash chip programmer for CH341a devices.
@@ -21,7 +29,7 @@ cd IMSProg_programmer
 mkdir build
 cd build
 cmake ..
-make -j4
+make -j`nproc`
 sudo make install
 ```
 ## Building editor
@@ -30,7 +38,7 @@ cd IMSProg_editor
 mkdir build
 cd build
 cmake ..
-make -j4
+make -j`nproc`
 sudo make install
 ```
 These commands are included in the `build_all.sh` file.
@@ -232,16 +240,18 @@ You can download it and copy it to the /etc/IMSProg folder with sudo:
 
 [![Watch the video](img/IMSProg_1_0_24.mp4)](img/IMSProg_1_0_24.mp4)
 
-## Downloading the build release
-- The `Debian package` can be downloaded [here](https://github.com/bigbigmdm/IMSProg/releases/tag/v1.0.2-12)
+## Packages
+- There is a work in progress for add IMSprog to official `Debian` (and derivates repositories)
   
-  You can update your system with unsupported packages from this untrusted PPA by adding `ppa:bigmdm/imsprog` to your system's Software Sources. 
+  For some Ubuntu versions you can use this PPA by adding `ppa:bigmdm/imsprog` to your system's Software Sources. 
 ```
 sudo add-apt-repository ppa:bigmdm/imsprog
 sudo apt update
-```        
-- The `RPM package` can be downloaded [here](https://github.com/bigbigmdm/IMSProg/releases/tag/v1.0.2-12)
-- The `ARCH AUR repository` by [kjkent](https://github.com/kjkent) is  [here](https://aur.archlinux.org/packages/imsprog)
+``` 
+  Is also possible manually build deb package using `debian/latest` branch. 
+
+- The `RPM package` can be downloaded [here](https://github.com/bigbigmdm/IMSProg/releases/tag/v1.0.2-12) (! outdated)
+- The `ARCH AUR repository` by [kjkent](https://github.com/kjkent) is [here](https://aur.archlinux.org/packages/imsprog)
 
 ## Revision history
 - Ver. 1.0.0 - 1.0.18 - Partially working versions.
@@ -259,9 +269,9 @@ sudo apt update
 - Ver. 1.1.1  - Changing application folders according to Debian policy. Added new language translation.
 - Ver. 1.1.2  - Added function for writing the Status Registers. Bugfix - Chip_Editor startup error when running IMSProg from command line. Added chips to the database. Added new language translation.
 - Ver. 1.1.3 - Fixed an error when the file size exceeds the chip size. 
-- Ver. 1.1.4 - SPI erase procedure fixed, deleted unused SPI procedures. Fixed program crash when reading/writing large size chips (25Q256/25Q512). Detect udev path with pkg-config 
-- Ver. 1.1.5 - Clarification of translations.
-- Ver. 1.1.6 - Fixed error diagnostics.
+- Ver. 1.1.4 - Removed debian packaging from upstream (moved to specific branch for official packages work) 
+- Ver. 1.1.5 - Detect udev path with pkg-config 
+- Ver. 1.1.6 - SPI erase procedure fixed, deleted unused SPI procedures. Fixed program crash when reading/writing large size chips (25Q256/25Q512). Fixed error diagnostics. 
 
 ## Project structure
 
