@@ -21,7 +21,7 @@ cd IMSProg_programmer
 mkdir build
 cd build
 cmake ..
-make -j4
+make -j`nproc`
 sudo make install
 ```
 ## Building editor
@@ -30,7 +30,7 @@ cd IMSProg_editor
 mkdir build
 cd build
 cmake ..
-make -j4
+make -j`nproc`
 sudo make install
 ```
 These commands are included in the `build_all.sh` file.
