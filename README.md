@@ -250,7 +250,8 @@ sudo apt update
 ``` 
   Is also possible manually build deb package using `debian/latest` branch. 
 
-- The `RPM package` by [Red Soft](https://redos.red-soft.ru/) can be downloaded [here](https://mirror.yandex.ru/redos/7.3/x86_64/updates/imsprog-1.1.2-1.el7.x86_64.rpm)
+- The `RPM package` by [Red Soft](https://redos.red-soft.ru/) can be downloaded [here](http://repo.red-soft.ru/redos/7.3/x86_64/updates/imsprog-1.1.2-1.el7.x86_64.rpm)
+- The `RPM package` by [alt linux](https://www.altlinux.org/%D0%93%D0%BB%D0%B0%D0%B2%D0%BD%D0%B0%D1%8F_%D1%81%D1%82%D1%80%D0%B0%D0%BD%D0%B8%D1%86%D0%B0) can be downloaded [here](https://git.altlinux.org/tasks/337832/build/100/x86_64/rpms/IMSProg-debuginfo-1.1.4-alt1.x86_64.rpm)
 - The `ARCH AUR repository` by [kjkent](https://github.com/kjkent) is [here](https://aur.archlinux.org/packages/imsprog)
 
 ## Revision history
