@@ -233,15 +233,17 @@ You can download it and copy it to the /etc/IMSProg folder with sudo:
 [![Watch the video](img/IMSProg_1_0_24.mp4)](img/IMSProg_1_0_24.mp4)
 
 ## Downloading the build release
-- The `Debian package` can be downloaded [here](https://github.com/bigbigmdm/IMSProg/releases/tag/v1.0.2-12)
+- There is a work in progress for add IMSprog to official `Debian` (and derivates repositories)
   
-  You can update your system with unsupported packages from this untrusted PPA by adding `ppa:bigmdm/imsprog` to your system's Software Sources. 
+  For some Ubuntu versions you can use this PPA by adding `ppa:bigmdm/imsprog` to your system's Software Sources. 
 ```
 sudo add-apt-repository ppa:bigmdm/imsprog
 sudo apt update
-```        
+``` 
+  Is also possible manually build deb package using `debian/latest` branch. 
+
 - The `RPM package` can be downloaded [here](https://github.com/bigbigmdm/IMSProg/releases/tag/v1.0.2-12)
-- The `ARCH AUR repository` by [kjkent](https://github.com/kjkent) is  [here](https://aur.archlinux.org/packages/imsprog)
+- The `ARCH AUR repository` by [kjkent](https://github.com/kjkent) is [here](https://aur.archlinux.org/packages/imsprog)
 
 ## Revision history
 - Ver. 1.0.0 - 1.0.18 - Partially working versions.
