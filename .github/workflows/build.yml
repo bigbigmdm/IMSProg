@@ -2,15 +2,15 @@ name: Build
 
 on:
   push:
-    branches:
-      - "*"
+    branches-ignore:
+      - "debian/**"
     paths-ignore:
       - "README.md"
       - "**/README.md"
       - "**/index.html"
   pull_request:
-    branches:
-      - "*"
+    branches-ignore:
+      - "debian/**"
     paths-ignore:
       - "README.md"
       - "**/README.md"
