@@ -53,13 +53,18 @@ For build are needed:
 - udev
 
 On Debian and derivates:
+
 `sudo apt-get install cmake libusb-1.0-0-dev qtbase5-dev pkg-config`
+
 On Debian >=13 and Ubuntu >=23.10:
+
 `sudo apt-get install systemd-dev`
+
 On older:
+
 `sudo apt-get install udev`
 
-Optionally if you want use the chip database update script
+Optionally if you want use the chip database update script:
 - zenity
 - wget
 
