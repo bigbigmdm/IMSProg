@@ -1,0 +1,91 @@
+name: Build
+
+on:
+  push:
+    branches:
+      - "*"
+    paths-ignore:
+      - "README.md"
+      - "**/README.md"
+      - "**/index.html"
+  pull_request:
+    branches:
+      - "*"
+    paths-ignore:
+      - "README.md"
+      - "**/README.md"
+      - "**/index.html"
+  workflow_dispatch:
+
+jobs:
+  amd64:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        name: [Ubuntu-20, Ubuntu-22, Debian-11, Debian-12, Debian-Testing, Debian-Experimental]
+        cpp_compiler: [g++]
+        include:
+          - name: Ubuntu-20
+            # Uses gcc 9.3.0, clang 10.0.0, cmake 3.16.3
+            image: "ubuntu:20.04"
+            ubuntu: 20
+          - name: Ubuntu-22
+            # Uses gcc 12.2.0, clang 15.0.7, cmake 3.24.2
+            image: "ubuntu:22.04"
+            ubuntu: 22
+          - name: Debian-11
+            # Uses gcc 10.2.1, clang 11.0.1, cmake 3.18.4
+            image: "debian:bullseye"
+          - name: Debian-11
+            image: "debian:bullseye"
+            c_compiler: clang
+            cpp_compiler: clang++
+          - name: Debian-12
+            # Uses gcc 12.2.0, clang 15.0.6, cmake 3.25.1
+            image: "debian:bookworm"
+          - name: Debian-12
+            image: "debian:bookworm"
+            c_compiler: clang
+            cpp_compiler: clang++
+          - name: Debian-Testing
+            image: "debian:testing"
+          - name: Debian-Testing
+            image: "debian:testing"
+            c_compiler: clang
+            cpp_compiler: clang++
+          - name: Debian-Experimental
+            image: "debian:experimental"
+          - name: Debian-Experimental
+            image: "debian:experimental"
+            c_compiler: clang
+            cpp_compiler: clang++
+    container:
+      image: ${{ matrix.image }}
+      env:
+        LANG: en_US.UTF-8
+        BUILD_TYPE: ${{ matrix.build_type }}
+        CC: ${{ matrix.c_compiler }}
+        CXX: ${{ matrix.cpp_compiler }}
+        WITH_PROJ: ON
+        APT_LISTCHANGES_FRONTEND: none
+        DEBIAN_FRONTEND: noninteractive
+    steps:
+      - name: Install packages required
+        shell: bash
+        run: |
+          apt-get update -qq
+          apt-get install -yq \
+            clang \
+            cmake \
+            g++ \
+            libusb-1.0-0-dev \
+            qtbase5-dev \
+            pkg-config
+      - uses: actions/checkout@v4
+      - name: Build
+        working-directory: .
+        run: |
+          cmake .
+          make
+          make install
