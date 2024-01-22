@@ -44,25 +44,33 @@ sudo make install
 These commands are included in the `build_all.sh` file.
 
 ## System software requirements
-- cmake library
-  
-`sudo apt install cmake`
 
-- libusb library
-
-`sudo apt-get install libusb-1.0-0 libusb-dev libusb-1.0-0-dev`
-
-- Qt5 library
-
-`sudo apt-get install qtbase5-dev`
-
+For build are needed:
+- cmake
+- libusb 1.0
+- Qt5
 - pkg config
+- udev
 
-`sudo apt-get install pkg-config`
+On Debian and derivates:
 
-- zenity (Only needed for the chip database update script)
+`sudo apt-get install cmake libusb-1.0-0-dev qtbase5-dev pkg-config`
 
-`sudo apt install zenity`
+On Debian >=13 and Ubuntu >=23.10:
+
+`sudo apt-get install systemd-dev`
+
+On older:
+
+`sudo apt-get install udev`
+
+Optionally if you want use the chip database update script:
+- zenity
+- wget
+
+`sudo apt-get install zenity wget`
+
+:information_source: Debian < 11 and Ubuntu < 20.04 are not supported, you may unable to have it working on them.
 
 ## How to use:
 
