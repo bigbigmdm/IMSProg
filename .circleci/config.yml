@@ -1,0 +1,93 @@
+# Use the latest 2.1 version of CircleCI pipeline process engine.
+# See: https://circleci.com/docs/2.0/configuration-reference
+version: 2.1
+
+debian_only: &debian_only
+    filters:
+        branches:
+            only: /debian\/.*/
+
+shared: &shared
+    steps:
+      - checkout
+      - run:
+            name: Prepare environment
+            command: |
+                echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
+                apt-get update
+                apt-get dist-upgrade -y
+      - run:
+            name: Install dependencies
+            command: |
+                apt-get install -y devscripts equivs
+                mk-build-deps -B --install --tool='apt-get -o Debug::pkgProblemResolver=yes --yes' debian/control
+      - run:
+            name: Build packages
+            working_directory: .
+            command: dpkg-buildpackage -us -uc -b
+      - run:
+            name: Save generate packages as artifacts
+            working_directory: ..
+            command: |
+                mkdir /tmp/artifacts
+                mv *.deb /tmp/artifacts
+      - store_artifacts:
+          path: /tmp/artifacts
+
+jobs:
+    debian10:
+        <<: *shared
+        docker:
+            - image: library/debian:buster
+    debian11:
+        <<: *shared
+        docker:
+            - image: library/debian:bullseye
+    debian12:
+        <<: *shared
+        docker:
+            - image: library/debian:bookworm
+    debian13:
+        <<: *shared
+        docker:
+            - image: library/debian:trixie
+    ubuntu1404:
+        <<: *shared
+        docker:
+            - image: library/ubuntu:trusty
+    ubuntu1604:
+        <<: *shared
+        docker:
+            - image: library/ubuntu:xenial
+    ubuntu1804:
+        <<: *shared
+        docker:
+            - image: library/ubuntu:bionic
+    ubuntu2004:
+        <<: *shared
+        docker:
+            - image: library/ubuntu:focal
+    ubuntu2204:
+        <<: *shared
+        docker:
+            - image: library/ubuntu:jammy
+    ubuntu2310:
+        <<: *shared
+        docker:
+            - image: library/ubuntu:mantic
+
+workflows:
+  build-deb:
+    jobs:
+      - debian11:
+          <<: *debian_only
+      - debian12:
+          <<: *debian_only
+      - debian13:
+          <<: *debian_only
+      - ubuntu2004:
+          <<: *debian_only
+      - ubuntu2204:
+          <<: *debian_only
+      - ubuntu2310:
+          <<: *debian_only
