@@ -8,7 +8,7 @@ Build-Depends:
  libusb-1.0-0-dev,
  pkg-config,
  qtbase5-dev,
- systemd-dev (>= 253-2~) | udev (< 253-2~),
+ systemd-dev (>= 253-2~) | udev (<< 253-2~),
 Standards-Version: 4.6.2
 Homepage: https://github.com/bigbigmdm/IMSProg
 Vcs-Git: https://github.com/bigbigmdm/IMSProg.git -b debian/latest
