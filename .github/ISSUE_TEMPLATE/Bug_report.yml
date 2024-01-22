@@ -1,0 +1,71 @@
+name: "Report bug"
+description: "Create a bug report to help this project improve"
+labels: ["bug"]
+body:
+- type: markdown
+  attributes:
+      value: |
+        ### Thank you for contributing to this project!
+        Before create a new bug report please search and check there isn't a duplicate already present.
+- type: input
+  id: distribution
+  validations:
+      required: true
+  attributes:
+      label: Distribution
+      description: Provide the distribution and its version
+      value: For example Debian 12, Ubuntu 22.04, Fedora 37 etc...
+- type: input
+  id: architecture
+  validations:
+      required: true
+  attributes:
+      label: Architecture
+      description: Provide the architecture
+      value: For example amd64, armhf, arm64 etc...
+- type: input
+  id: kernel-version
+  validations:
+      required: false
+  attributes:
+      label: Kernel version
+      description: |
+        Provide the kernel version used, if from distribution also the package version.
+        Can be useful "uname -a" output
+      value: For example 5.15 from ubuntu package 5.15.0-56.62~20.04.1
+- type: input
+  id: imsprog-version
+  validations:
+      required: true
+  attributes:
+      label: IMSProg version
+      description: |
+        Provide the IMSProg version used
+        Please specify git commit used for build out of tagged version
+      value: For example version 1.1.6 or commit c763e58
+- type: textarea
+  id: bug-description
+  validations:
+      required: true
+  attributes:
+      label: Bug description
+      description: |
+        Provide a description of the bug you're found.
+        Please don't expect anyone to guess everything but give enough information.
+- type: textarea
+  id: reproduce
+  attributes:
+      label: Steps to reproduce
+      description: Describe the steps to reproduce the bug (when possible).
+- type: textarea
+  id: expected-behavior
+  attributes:
+      label: Expected behavior
+      description: Describe what you expected to happen instead.
+- type: textarea
+  id: additional-info
+  attributes:
+      label: Additional information
+      description: Add any additional information related to the issue here.
+
+
