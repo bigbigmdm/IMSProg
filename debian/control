@@ -5,9 +5,7 @@ Maintainer: Mikhail Medvedev <e-ink-reader@yandex.ru>
 Build-Depends:
  cmake,
  debhelper-compat (= 12),
- libusb-1.0-0,
  libusb-1.0-0-dev,
- libusb-dev,
  pkg-config,
  qtbase5-dev,
 Standards-Version: 4.6.2
