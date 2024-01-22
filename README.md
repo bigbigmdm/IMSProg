@@ -65,6 +65,8 @@ Optionally if you want use the chip database update script
 
 `sudo apt-get install zenity wget`
 
+:information_source: Debian < 11 and Ubuntu < 20.04 are not supported, you may unable to have it working on them.
+
 ## How to use:
 
 ### Connecting
