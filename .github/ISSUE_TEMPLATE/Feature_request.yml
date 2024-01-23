@@ -1,0 +1,29 @@
+name: Feature request
+description: Suggest a new feature or an improvement for this project
+labels: ["enhancement"]
+body:
+- type: markdown
+  attributes:
+      value: |
+        ### Thank you for contributing to this project!
+        Before please search and check there isn't a duplicate already present.
+- type: textarea
+  id: description
+  validations:
+      required: true
+  attributes:
+      label: Description
+      description: |
+        Provide a description of a feature request or an improvement that you want suggest.
+- type: textarea
+  id: usage-tips
+  validations:
+      required: true
+  attributes:
+      label: Usage tips
+      description: |
+        Please keep this notes for other contributors
+      value: |
+        * Please use the 👍 [reaction](https://blog.github.com/2016-03-10-add-reactions-to-pull-requests-issues-and-comments/) to show that you are interested into this.
+        * Please don't comment if you have no relevant information to add. It's just extra noise for everyone subscribed to this.
+        * Subscribe to receive notifications on status change and new comments, you can do also without add comment.

@@ -1,4 +1,12 @@
 # IMSProg
+
+* [System software requirements](#system-software-requirements)
+* [How to use](#how-to-use)
+* [List of supported chips](#list-of-supported-chips)
+* [Packages](#packages)
+* [Changelog](#revision-history)
+* [Project structure](#project-structure)
+
 <img align="right" src="img/mini_logo_IMSProg.svg">
 
 **IMSProg** - Linux IMSProg - I2C, MicroWire and SPI EEPROM/Flash chip programmer for CH341a devices.
@@ -21,7 +29,7 @@ cd IMSProg_programmer
 mkdir build
 cd build
 cmake ..
-make -j4
+make -j`nproc`
 sudo make install
 ```
 ## Building editor
@@ -30,31 +38,39 @@ cd IMSProg_editor
 mkdir build
 cd build
 cmake ..
-make -j4
+make -j`nproc`
 sudo make install
 ```
 These commands are included in the `build_all.sh` file.
 
 ## System software requirements
-- cmake library
-  
-`sudo apt install cmake`
 
-- libusb library
-
-`sudo apt-get install libusb-1.0-0 libusb-dev libusb-1.0-0-dev`
-
-- Qt5 library
-
-`sudo apt-get install qtbase5-dev`
-
+For build are needed:
+- cmake
+- libusb 1.0
+- Qt5
 - pkg config
+- udev
 
-`sudo apt-get install pkg-config`
+On Debian and derivates:
 
-- zenity (Only needed for the chip database update script)
+`sudo apt-get install cmake libusb-1.0-0-dev qtbase5-dev pkg-config`
 
-`sudo apt install zenity`
+On Debian >=13 and Ubuntu >=23.10:
+
+`sudo apt-get install systemd-dev`
+
+On older:
+
+`sudo apt-get install udev`
+
+Optionally if you want use the chip database update script:
+- zenity
+- wget
+
+`sudo apt-get install zenity wget`
+
+:information_source: Debian < 11 and Ubuntu < 20.04 are not supported, you may unable to have it working on them.
 
 ## How to use:
 
@@ -232,16 +248,19 @@ You can download it and copy it to the /etc/IMSProg folder with sudo:
 
 [![Watch the video](img/IMSProg_1_0_24.mp4)](img/IMSProg_1_0_24.mp4)
 
-## Downloading the build release
-- The `Debian package` can be downloaded [here](https://github.com/bigbigmdm/IMSProg/releases/tag/v1.0.2-12)
+## Packages
+- There is a work in progress for add IMSprog to official `Debian` (and derivates repositories)
   
-  You can update your system with unsupported packages from this untrusted PPA by adding `ppa:bigmdm/imsprog` to your system's Software Sources. 
+  For some Ubuntu versions you can use this PPA by adding `ppa:bigmdm/imsprog` to your system's Software Sources. 
 ```
 sudo add-apt-repository ppa:bigmdm/imsprog
 sudo apt update
-```        
-- The `RPM package` can be downloaded [here](https://github.com/bigbigmdm/IMSProg/releases/tag/v1.0.2-12)
-- The `ARCH AUR repository` by [kjkent](https://github.com/kjkent) is  [here](https://aur.archlinux.org/packages/imsprog)
+``` 
+  Is also possible manually build deb package using `debian/latest` branch. 
+
+- The `RPM package` by [Red Soft](https://redos.red-soft.ru/) can be downloaded [here](http://repo.red-soft.ru/redos/7.3/x86_64/updates/imsprog-1.1.2-1.el7.x86_64.rpm)
+- The `RPM package` by [alt linux](https://www.altlinux.org/%D0%93%D0%BB%D0%B0%D0%B2%D0%BD%D0%B0%D1%8F_%D1%81%D1%82%D1%80%D0%B0%D0%BD%D0%B8%D1%86%D0%B0) can be downloaded [here](https://git.altlinux.org/tasks/338587/build/100/x86_64/rpms/IMSProg-1.1.6-alt1.x86_64.rpm)
+- The `ARCH AUR repository` by [kjkent](https://github.com/kjkent) is [here](https://aur.archlinux.org/packages/imsprog)
 
 ## Revision history
 - Ver. 1.0.0 - 1.0.18 - Partially working versions.
@@ -259,9 +278,9 @@ sudo apt update
 - Ver. 1.1.1  - Changing application folders according to Debian policy. Added new language translation.
 - Ver. 1.1.2  - Added function for writing the Status Registers. Bugfix - Chip_Editor startup error when running IMSProg from command line. Added chips to the database. Added new language translation.
 - Ver. 1.1.3 - Fixed an error when the file size exceeds the chip size. 
-- Ver. 1.1.4 - SPI erase procedure fixed, deleted unused SPI procedures. Fixed program crash when reading/writing large size chips (25Q256/25Q512). Detect udev path with pkg-config 
-- Ver. 1.1.5 - Clarification of translations.
-- Ver. 1.1.6 - Fixed error diagnostics.
+- Ver. 1.1.4 - Removed debian packaging from upstream (moved to specific branch for official packages work) 
+- Ver. 1.1.5 - Detect udev path with pkg-config 
+- Ver. 1.1.6 - SPI erase procedure fixed, deleted unused SPI procedures. Fixed program crash when reading/writing large size chips (25Q256/25Q512). Fixed error diagnostics. 
 
 ## Project structure
 
