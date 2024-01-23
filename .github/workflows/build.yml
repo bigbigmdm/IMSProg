@@ -82,6 +82,7 @@ jobs:
             libusb-1.0-0-dev \
             qtbase5-dev \
             pkg-config
+          apt-get satisfy "systemd-dev (>= 253-2~) | udev (<< 253-2~)" --yes
       - uses: actions/checkout@v4
       - name: Build
         working-directory: .
