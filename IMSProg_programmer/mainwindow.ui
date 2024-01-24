@@ -1098,7 +1098,7 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
     <string>Redo</string>
    </property>
    <property name="shortcut">
-    <string/>
+    <string>Ctrl+Y</string>
    </property>
   </action>
   <action name="actionSave_Part">
