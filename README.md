@@ -286,7 +286,7 @@ sudo apt update
 - Ver. 1.1.5 - Detect udev path with pkg-config.
 - Ver. 1.1.6 - SPI erase procedure fixed, deleted unused SPI procedures. Fixed program crash when reading/writing large size chips (25Q256/25Q512). Fixed error diagnostics. 
 - Ver. 1.1.7 - Fixed building errors.
-- Ver. 1.1.8 - Adding support the Intex HEX files format.
+- Ver. 1.1.8 - Adding support the Intel HEX files format.
 
 ## Project structure
 
