@@ -124,6 +124,10 @@ If the SPI NOR FLASH chip is detected normally, but is not read (gives the messa
 
 - The ![Edit](img/chipEdit64.png) or `<Ctrl+Q>` button is used to invoke the chip database editor.
 
+- The menu item `File / Import from Intel HEX` is used to save the Intel HEX file in the computer buffer.
+
+- The menu item `File / Export to Intel HEX` is used to save the computer buffer to a file in Intex HEX format.
+
 ### Buffer (Hex editor) operations
 The hexadecimal chip editor (right side of the screen) is used to display and modify buffer data.
 
@@ -278,9 +282,11 @@ sudo apt update
 - Ver. 1.1.1  - Changing application folders according to Debian policy. Added new language translation.
 - Ver. 1.1.2  - Added function for writing the Status Registers. Bugfix - Chip_Editor startup error when running IMSProg from command line. Added chips to the database. Added new language translation.
 - Ver. 1.1.3 - Fixed an error when the file size exceeds the chip size. 
-- Ver. 1.1.4 - Removed debian packaging from upstream (moved to specific branch for official packages work) 
-- Ver. 1.1.5 - Detect udev path with pkg-config 
+- Ver. 1.1.4 - Removed debian packaging from upstream (moved to specific branch for official packages work).
+- Ver. 1.1.5 - Detect udev path with pkg-config.
 - Ver. 1.1.6 - SPI erase procedure fixed, deleted unused SPI procedures. Fixed program crash when reading/writing large size chips (25Q256/25Q512). Fixed error diagnostics. 
+- Ver. 1.1.7 - Fixed building errors.
+- Ver. 1.1.8 - Adding support the Intel HEX files format.
 
 ## Project structure
 
