@@ -96,6 +96,10 @@ private slots:
     void on_actionChip_info_triggered();
     void on_comboBox_addr4bit_currentIndexChanged(int index);
 
+    void on_actionExport_to_Intel_HEX_triggered();
+
+    void on_actionImport_from_Intel_HEX_triggered();
+
 private:
     Ui::MainWindow *ui;
     QColor defaultTextColor;

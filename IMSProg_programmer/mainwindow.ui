@@ -891,8 +891,8 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>900</width>
-     <height>29</height>
+     <width>950</width>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -904,6 +904,9 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
     <addaction name="separator"/>
     <addaction name="actionLoad_Part"/>
     <addaction name="actionSave_Part"/>
+    <addaction name="separator"/>
+    <addaction name="actionImport_from_Intel_HEX"/>
+    <addaction name="actionExport_to_Intel_HEX"/>
     <addaction name="separator"/>
     <addaction name="actionEdit_chips_Database"/>
     <addaction name="separator"/>
@@ -1197,6 +1200,24 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+P</string>
+   </property>
+  </action>
+  <action name="actionImport_from_Intel_HEX">
+   <property name="icon">
+    <iconset resource="recource.qrc">
+     <normaloff>:/res/img/open64.png</normaloff>:/res/img/open64.png</iconset>
+   </property>
+   <property name="text">
+    <string>Import from Intel HEX</string>
+   </property>
+  </action>
+  <action name="actionExport_to_Intel_HEX">
+   <property name="icon">
+    <iconset resource="recource.qrc">
+     <normaloff>:/res/img/save64.png</normaloff>:/res/img/save64.png</iconset>
+   </property>
+   <property name="text">
+    <string>Export to Intel HEX</string>
    </property>
   </action>
  </widget>

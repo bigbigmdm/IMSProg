@@ -1542,3 +1542,173 @@ QString MainWindow::getCRC32()
             }
         return hexiAddr(crc ^ 0xFFFFFFFF);
 }
+
+void MainWindow::on_actionExport_to_Intel_HEX_triggered()
+{
+    int addr = 0, hi_addr =0;
+         QString result = "";
+         chipData = hexEdit->data();
+         int currSize = chipData.size();
+         uint8_t i, counter = 0;
+         int ostatok = 0;
+         ui->progressBar->setRange(0,chipData.size());
+         lastDirectory.replace(".bin", ".hex");
+         ui->statusBar->showMessage(tr("Saving file"));
+         fileName = QFileDialog::getSaveFileName(this,
+                                     QString(tr("Save file")),
+                                     lastDirectory,
+                                     "Intel HEX Images (*.hex *.HEX);;All files (*.*)");
+         QFileInfo info(fileName);
+         ui->statusBar->showMessage(tr("Current file: ") + info.fileName());
+         lastDirectory = info.filePath();
+         QFile file(fileName);
+         QTextStream stream(&file);
+         if (!file.open(QIODevice::ReadWrite | QIODevice::Truncate | QIODevice::Text))
+         {
+
+             return;
+         }
+         stream.seek(file.size());
+         while ((addr + hi_addr * 0x10000) < (chipData.size()))
+         {
+
+             if (addr < currSize - 0x20) ostatok = 0x20;
+             else  ostatok =currSize - addr;
+
+                result.append(":");
+                result.append(bytePrint(static_cast<unsigned char>(ostatok)));              //number of bytes per string
+                result.append(bytePrint(static_cast<unsigned char>((addr & 0xff00) >> 8))); //one address byte
+                result.append(bytePrint(static_cast<unsigned char>(addr & 0xff)));          //zero address byte
+                result.append("00");                                                        //type 00
+                counter = counter + static_cast<unsigned char>(ostatok) + uint8_t((addr & 0xff00) >> 8) + uint8_t(addr & 0xff) ;
+                for (i = 0; i < ostatok; i++)
+                {
+                    result.append(bytePrint(static_cast<unsigned char>((chipData[hi_addr * 256 * 256 + addr + i]))));
+                    counter = counter + static_cast<uint8_t>((chipData[hi_addr * 256 * 256 + addr + i]));
+                }
+             result.append(bytePrint(0xff - counter + 1));
+             counter = 0;
+             stream << result << "\n";
+             result.clear();
+
+             addr = addr + 0x20;
+             if (addr >= 0x10000)                                                            //command 04 - setting the high address
+             {
+                 hi_addr ++;
+                 addr = addr - 0x10000;
+                 result.append(":02000004");
+                 result.append(bytePrint(uint8_t((hi_addr & 0xff00) >> 8)));
+                 result.append(bytePrint(uint8_t(hi_addr & 0xff)));
+                 counter = 0x06 + uint8_t((hi_addr & 0xff00) >> 8) + uint8_t(hi_addr & 0xff);
+                 result.append(bytePrint(0xff - counter + 1));
+                 counter = 0;
+                 stream << result << "\n";
+                 result.clear();
+                 ui->progressBar->setValue(hi_addr * 256 * 256);
+             }
+         }
+         result = ":00000001FF\n";                                                          //end string
+         stream << result;
+         file.close();
+         fileName.clear();
+         ui->progressBar->setValue(0);
+}
+
+void MainWindow::on_actionImport_from_Intel_HEX_triggered()
+{
+    chipData = hexEdit->data();
+    int chipSize = chipData.size();
+    uint_fast32_t lineLen, lo_addr, hi_addr, command, i;
+    unsigned char currByte;
+    uint8_t counter, checkSUM;
+    QString currStr ="", strVal = "";
+    ui->statusBar->showMessage(tr("Opening file"));
+    fileName = QFileDialog::getOpenFileName(this,
+                                QString(tr("Open file")),
+                                lastDirectory,
+                                "Intel HEX Images (*.hex *.HEX);;All files (*.*)");
+    QFileInfo info(fileName);
+    ui->statusBar->showMessage(tr("Current file: ") + info.fileName());
+    lastDirectory = info.filePath();
+    QFile file(fileName);
+
+    if (!file.open(QIODevice::ReadOnly))
+    {
+
+        return;
+    }
+    hi_addr = 0;
+    ui->progressBar->setRange(0, chipSize);
+    while (!file.atEnd())
+    {
+        currStr = file.readLine();
+        counter = 0;
+        //parsing string
+        if (currStr[0] != ':')
+        {
+            QMessageBox::about(this, tr("Error"), tr("Not valid HEX format!"));
+            return;
+        }
+        strVal = currStr.mid(1,2); //Length of data in current string
+        lineLen = hexToInt(strVal);
+        counter = counter + static_cast<unsigned char>(lineLen);
+
+        strVal.clear();            //low address
+        strVal = currStr.mid(3,4);
+        lo_addr = hexToInt(strVal);
+        counter = counter + static_cast<unsigned char>((lo_addr) >> 8) + static_cast<unsigned char>(lo_addr & 0x00ff);
+
+        if (hi_addr * 256 * 256 + lo_addr  > static_cast<unsigned long>(chipSize))
+        {
+            QMessageBox::about(this, tr("Error"), tr("The address is larger than the size of the chip!"));
+            return;
+        }
+
+        strVal.clear();            //command
+        strVal = currStr.mid(7,2);
+        command = hexToInt(strVal);
+        counter = counter + static_cast<unsigned char>(command);
+
+        if (command == 0) //reading bytes from current string
+        {
+            for (i = 0; i < lineLen; i++)
+            {
+
+                strVal.clear();            //get current byte of string
+                strVal = currStr.mid(int(i) * 2 + 9, 2);
+                currByte = static_cast<unsigned char>(hexToInt(strVal));
+                chipData.data()[hi_addr * 256 * 256 + lo_addr + i] = char(currByte);
+                counter = counter + static_cast<unsigned char>(hexToInt(strVal));
+
+            }
+                counter = 255 - counter + 1;
+                checkSUM = static_cast<unsigned char>(hexToInt( currStr.mid(int(i) * 2 + 9, 2)));
+
+                if (counter != checkSUM)
+                {
+                    QMessageBox::about(this, tr("Error"), tr("Checksum error!"));
+                    return;
+                }
+        }
+        if (command == 4) //Changing the high address
+        {
+            strVal.clear();            //low address
+            strVal = currStr.mid(9,4);
+            hi_addr = hexToInt(strVal);
+            counter = counter + static_cast<unsigned char>((hi_addr) >> 8) + static_cast<unsigned char>(hi_addr & 0x00ff);
+            counter = 255 - counter + 1;
+            checkSUM = static_cast<unsigned char>(hexToInt( currStr.mid(13, 2)));
+            ui->progressBar->setValue(int(hi_addr * 256 * 256));
+            if (counter != checkSUM)
+            {
+                QMessageBox::about(this, tr("Error"), tr("Checksum error!"));
+                return;
+            }
+        }
+
+
+    }
+    file.close();
+    fileName.clear();
+    hexEdit->setData(chipData);
+}
