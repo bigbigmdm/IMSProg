@@ -124,7 +124,7 @@ If the SPI NOR FLASH chip is detected normally, but is not read (gives the messa
 
 - The ![Edit](img/chipEdit64.png) or `<Ctrl+Q>` button is used to invoke the chip database editor.
 
-- The ![Import from Intel HEX](img/open64.png) is used to save the Intex HEX file in the computer buffer.
+- The ![Import from Intel HEX](img/open64.png) is used to save the Intel HEX file in the computer buffer.
 
 - The ![Export to Intel HEX](img/save64.png) is used to save the computer buffer to a file in Intex HEX format.
 
