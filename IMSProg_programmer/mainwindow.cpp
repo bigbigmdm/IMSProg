@@ -1188,6 +1188,8 @@ void MainWindow::doNotDisturb()
    ui->actionSave->setDisabled(true);
    ui->actionLoad_Part->setDisabled(true);
    ui->actionSave_Part->setDisabled(true);
+   ui->actionExport_to_Intel_HEX->setDisabled(true);
+   ui->actionImport_from_Intel_HEX->setDisabled(true);
    ui->actionEdit_chips_Database->setDisabled(true);
    ui->actionExit->setDisabled(true);
    ui->actionRead->setDisabled(true);
@@ -1222,6 +1224,8 @@ void MainWindow::doNotDisturbCancel()
       ui->actionSave->setDisabled(false);
       ui->actionLoad_Part->setDisabled(false);
       ui->actionSave_Part->setDisabled(false);
+      ui->actionExport_to_Intel_HEX->setDisabled(false);
+      ui->actionImport_from_Intel_HEX->setDisabled(false);
       ui->actionEdit_chips_Database->setDisabled(false);
       ui->actionExit->setDisabled(false);
       ui->actionRead->setDisabled(false);
