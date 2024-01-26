@@ -337,6 +337,6 @@ IMSProg_editor/img/chipEdit64.png                           /usr/share/pixmaps
 ## Licensing
 
 Copyright (C) 2023 - 2024 Mikhail Medvedev. 
-This project use [GPL-3+ License](https://www.gnu.org/licenses/gpl-3.0.html), some parts taken from project [SNANDer](https://github.com/McMCCRU/SNANDer/commits?author=McMCCRU)) 
+This project use [GPL-3+ License](https://www.gnu.org/licenses/gpl-3.0.html), some parts taken from project [SNANDer](https://github.com/McMCCRU/SNANDer/commits?author=McMCCRU) 
 are [GPL-2+](https://www.gnu.org/licenses/old-licenses/gpl-2.0.html) and from [QHexEdit2](https://github.com/Simsys/qhexedit2) is [LGPL-2.1](https://www.gnu.org/licenses/old-licenses/lgpl-2.1.html). 
 
