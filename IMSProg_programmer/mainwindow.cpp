@@ -570,7 +570,7 @@ void MainWindow::on_actionOpen_triggered()
     fileName = QFileDialog::getOpenFileName(this,
                                 QString(tr("Open file")),
                                 lastDirectory,
-                                "Data Images (*.bin *.BIN);;All files (*.*)");
+                                "Data Images (*.bin *.BIN *.rom *.ROM);;All files (*.*)");
     QFileInfo info(fileName);
     ui->statusBar->showMessage(tr("Current file: ") + info.fileName());
     lastDirectory = info.filePath();
@@ -1561,10 +1561,11 @@ void MainWindow::on_actionExport_to_Intel_HEX_triggered()
          fileName = QFileDialog::getSaveFileName(this,
                                      QString(tr("Save file")),
                                      lastDirectory,
-                                     "Intel HEX Images (*.hex *.HEX);;All files (*.*)");
+                                     "Intel HEX Images (*.hex *.HEX);;All files (*.*)");         
          QFileInfo info(fileName);
-         ui->statusBar->showMessage(tr("Current file: ") + info.fileName());
          lastDirectory = info.filePath();
+         if (QString::compare(info.suffix(), "hex", Qt::CaseInsensitive)) fileName = fileName + ".hex";
+         ui->statusBar->showMessage(tr("Current file: ") + info.fileName());
          QFile file(fileName);
          QTextStream stream(&file);
          if (!file.open(QIODevice::ReadWrite | QIODevice::Truncate | QIODevice::Text))
@@ -1621,7 +1622,7 @@ void MainWindow::on_actionExport_to_Intel_HEX_triggered()
 void MainWindow::on_actionImport_from_Intel_HEX_triggered()
 {
     chipData = hexEdit->data();
-    int chipSize = chipData.size();
+    int chipSize = int(currentChipSize);
     uint_fast32_t lineLen, lo_addr, hi_addr, command, i;
     unsigned char currByte;
     uint8_t counter, checkSUM;
@@ -1642,6 +1643,7 @@ void MainWindow::on_actionImport_from_Intel_HEX_triggered()
         return;
     }
     hi_addr = 0;
+    lo_addr = 0;
     ui->progressBar->setRange(0, chipSize);
     while (!file.atEnd())
     {
@@ -1715,4 +1717,6 @@ void MainWindow::on_actionImport_from_Intel_HEX_triggered()
     file.close();
     fileName.clear();
     hexEdit->setData(chipData);
+    ui->progressBar->setValue(0);
+    ui->crcEdit->setText(getCRC32());
 }
