@@ -1,5 +1,5 @@
-imsprog (1.1.8-1) UNRELEASED; urgency=medium
+imsprog (1.1.9-1) UNRELEASED; urgency=medium
 
   * Initial release (Closes: #1057386)
 
- -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Tue, 24 Jan 2024 14:23:11 +0100
+ -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Sat, 27 Jan 2024 16:14:35 +0100
