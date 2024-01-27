@@ -1,10 +1,10 @@
 /*
- * Copyright (C) 2023 Mikhail Medvedev <e-ink-reader@yandex.ru>
+ * Copyright (C) 2023 - 2024 Mikhail Medvedev <e-ink-reader@yandex.ru>
  *
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
- * as published by the Free Software Foundation; either version 2
+ * as published by the Free Software Foundation; either version 3
  * of the License, or (at your option) any later version.
  *
  * This program is distributed in the hope that it will be useful,
@@ -570,7 +570,7 @@ void MainWindow::on_actionOpen_triggered()
     fileName = QFileDialog::getOpenFileName(this,
                                 QString(tr("Open file")),
                                 lastDirectory,
-                                "Data Images (*.bin *.BIN);;All files (*.*)");
+                                "Data Images (*.bin *.BIN *.rom *.ROM);;All files (*.*)");
     QFileInfo info(fileName);
     ui->statusBar->showMessage(tr("Current file: ") + info.fileName());
     lastDirectory = info.filePath();
@@ -1188,6 +1188,8 @@ void MainWindow::doNotDisturb()
    ui->actionSave->setDisabled(true);
    ui->actionLoad_Part->setDisabled(true);
    ui->actionSave_Part->setDisabled(true);
+   ui->actionExport_to_Intel_HEX->setDisabled(true);
+   ui->actionImport_from_Intel_HEX->setDisabled(true);
    ui->actionEdit_chips_Database->setDisabled(true);
    ui->actionExit->setDisabled(true);
    ui->actionRead->setDisabled(true);
@@ -1222,6 +1224,8 @@ void MainWindow::doNotDisturbCancel()
       ui->actionSave->setDisabled(false);
       ui->actionLoad_Part->setDisabled(false);
       ui->actionSave_Part->setDisabled(false);
+      ui->actionExport_to_Intel_HEX->setDisabled(false);
+      ui->actionImport_from_Intel_HEX->setDisabled(false);
       ui->actionEdit_chips_Database->setDisabled(false);
       ui->actionExit->setDisabled(false);
       ui->actionRead->setDisabled(false);
@@ -1557,10 +1561,11 @@ void MainWindow::on_actionExport_to_Intel_HEX_triggered()
          fileName = QFileDialog::getSaveFileName(this,
                                      QString(tr("Save file")),
                                      lastDirectory,
-                                     "Intel HEX Images (*.hex *.HEX);;All files (*.*)");
+                                     "Intel HEX Images (*.hex *.HEX);;All files (*.*)");         
          QFileInfo info(fileName);
-         ui->statusBar->showMessage(tr("Current file: ") + info.fileName());
          lastDirectory = info.filePath();
+         if (QString::compare(info.suffix(), "hex", Qt::CaseInsensitive)) fileName = fileName + ".hex";
+         ui->statusBar->showMessage(tr("Current file: ") + info.fileName());
          QFile file(fileName);
          QTextStream stream(&file);
          if (!file.open(QIODevice::ReadWrite | QIODevice::Truncate | QIODevice::Text))
@@ -1617,7 +1622,7 @@ void MainWindow::on_actionExport_to_Intel_HEX_triggered()
 void MainWindow::on_actionImport_from_Intel_HEX_triggered()
 {
     chipData = hexEdit->data();
-    int chipSize = chipData.size();
+    int chipSize = int(currentChipSize);
     uint_fast32_t lineLen, lo_addr, hi_addr, command, i;
     unsigned char currByte;
     uint8_t counter, checkSUM;
@@ -1638,6 +1643,7 @@ void MainWindow::on_actionImport_from_Intel_HEX_triggered()
         return;
     }
     hi_addr = 0;
+    lo_addr = 0;
     ui->progressBar->setRange(0, chipSize);
     while (!file.atEnd())
     {
@@ -1711,4 +1717,6 @@ void MainWindow::on_actionImport_from_Intel_HEX_triggered()
     file.close();
     fileName.clear();
     hexEdit->setData(chipData);
+    ui->progressBar->setValue(0);
+    ui->crcEdit->setText(getCRC32());
 }
