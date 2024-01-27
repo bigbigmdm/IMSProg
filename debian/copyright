@@ -33,7 +33,6 @@ Files: IMSProg_programmer/bitbang_microwire.c
        IMSProg_programmer/ch341a_gpio.h
        IMSProg_programmer/ch341a_spi.c
        IMSProg_programmer/ch341a_spi.h
-       IMSProg_programmer/dialogrp.cpp
        IMSProg_programmer/dialogrp.h
        IMSProg_programmer/dialogsp.cpp
        IMSProg_programmer/dialogsp.h
@@ -42,8 +41,6 @@ Files: IMSProg_programmer/bitbang_microwire.c
        IMSProg_programmer/i2c_eeprom.c
        IMSProg_programmer/i2c_eeprom_api.h
        IMSProg_programmer/main.cpp
-       IMSProg_programmer/mainwindow.cpp
-       IMSProg_programmer/mainwindow.h
        IMSProg_programmer/mw_eeprom.c
        IMSProg_programmer/mw_eeprom_api.h
        IMSProg_programmer/nandcmd_api.h
@@ -84,9 +81,12 @@ Files: IMSProg_programmer/commands.h
        IMSProg_programmer/qhexedit.sip
        IMSProg_programmer/chunks.cpp
        IMSProg_programmer/chunks.h
+       IMSProg_programmer/searchdialog.cpp
+       IMSProg_programmer/searchdialog.h
        IMSProg_programmer/QHexEditPlugin.cpp
        IMSProg_programmer/QHexEditPlugin.h
-Copyright: 2022 Simsys <https://github.com/Simsys/qhexedit2/>
+Copyright: 2015-2016 Winfried Simon
+Comment: from https://github.com/Simsys/qhexedit2/
 License: LGPL-2.1
 
 License: GPL-2+
