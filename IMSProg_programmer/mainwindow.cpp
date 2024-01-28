@@ -1625,6 +1625,11 @@ void MainWindow::on_actionImport_from_Intel_HEX_triggered()
         if (currStr[0] != ':')
         {
             QMessageBox::about(this, tr("Error"), tr("Not valid HEX format!"));
+            file.close();
+            fileName.clear();
+            hexEdit->setData(chipData);
+            ui->progressBar->setValue(0);
+            ui->crcEdit->setText(getCRC32());
             return;
         }
         strVal = currStr.mid(1,2); //Length of data in current string
@@ -1635,14 +1640,6 @@ void MainWindow::on_actionImport_from_Intel_HEX_triggered()
         strVal = currStr.mid(3,4);
         lo_addr = hexToInt(strVal);
         counter = counter + static_cast<unsigned char>((lo_addr) >> 8) + static_cast<unsigned char>(lo_addr & 0x00ff);
-
-        if (hi_addr * 256 * 256 + lo_addr  > static_cast<unsigned long>(chipSize))
-        {
-            QMessageBox::about(this, tr("Error"), tr("The address is larger than the size of the chip!"));
-
-            return;
-        }
-
         strVal.clear();            //command
         strVal = currStr.mid(7,2);
         command = hexToInt(strVal);
@@ -1656,6 +1653,18 @@ void MainWindow::on_actionImport_from_Intel_HEX_triggered()
                 strVal.clear();            //get current byte of string
                 strVal = currStr.mid(int(i) * 2 + 9, 2);
                 currByte = static_cast<unsigned char>(hexToInt(strVal));
+                // Checking valid address
+                if (hi_addr * 256 * 256 + lo_addr + i > static_cast<unsigned long>(chipSize))
+                {
+                    QMessageBox::about(this, tr("Error"), tr("The address is larger than the size of the chip!"));
+                    file.close();
+                    fileName.clear();
+                    hexEdit->setData(chipData);
+                    ui->progressBar->setValue(0);
+                    ui->crcEdit->setText(getCRC32());
+                    return;
+                }
+
                 chipData.data()[hi_addr * 256 * 256 + lo_addr + i] = char(currByte);
                 counter = counter + static_cast<unsigned char>(hexToInt(strVal));
 
