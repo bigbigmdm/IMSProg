@@ -115,10 +115,7 @@ MainWindow::MainWindow(QWidget *parent) :
  statusCH341 = ch341a_spi_init();
  ch341StatusFlashing();
  chipData.resize(256);
- for (int i=0; i < 256; i++)
- {
-     chipData[i] = char(0xff);
- }
+ chipData.fill(char(0xff));
  ch341a_spi_shutdown();
  hexEdit = new QHexEdit(ui->frame);
  hexEdit->setGeometry(0,0,ui->frame->width(),ui->frame->height());
@@ -332,20 +329,14 @@ void MainWindow::on_pushButton_2_clicked()
     {
     currentNumBlocks = currentChipSize / currentBlockSize;
     chipData.resize(static_cast<int>(currentChipSize));
-    for (uint32_t i=0; i < currentChipSize; i++)
-    {
-        chipData[i] = char(0xff);
-    }
+    chipData.fill(char(0xff));
     hexEdit->setData(chipData);
     }
     if ((currentChipSize !=0) && (currentPageSize!=0)  && (currentChipType == 1))
     {
     currentNumBlocks = currentChipSize / currentPageSize;
     chipData.resize(static_cast<int>(currentChipSize));
-    for (uint32_t i=0; i < currentChipSize; i++)
-    {
-        chipData[i] = char(0xff);
-    }
+    chipData.fill(char(0xff));
     hexEdit->setData(chipData);
     }
     ui->pushButton_2->setStyleSheet(grnKeyStyle);
@@ -364,20 +355,14 @@ void MainWindow::on_comboBox_size_currentIndexChanged(int index)
     {
         currentNumBlocks = currentChipSize / currentBlockSize;
         chipData.resize(static_cast<int>(currentChipSize));
-        for (uint32_t i=0; i < currentChipSize; i++)
-        {
-            chipData[i] = char(0xff);
-        }
+        chipData.fill(char(0xff));
         hexEdit->setData(chipData);
     }
     if ((currentChipSize !=0) && (currentPageSize!=0)  && (currentChipType > 0))
     {
     currentNumBlocks = currentChipSize / currentPageSize;
     chipData.resize(static_cast<int>(currentChipSize));
-    for (uint32_t i=0; i < currentChipSize; i++)
-    {
-        chipData[i] = char(0xff);
-    }
+    chipData.fill(char(0xff));
     hexEdit->setData(chipData);
     }
     index = index + 0;
@@ -392,20 +377,14 @@ void MainWindow::on_comboBox_page_currentIndexChanged(int index)
     {
         currentNumBlocks = currentChipSize / currentBlockSize;
         chipData.resize(static_cast<int>(currentChipSize));
-        for (uint32_t i=0; i < currentChipSize; i++)
-        {
-            chipData[i] = char(0xff);
-        }
+        chipData.fill(char(0xff));
         hexEdit->setData(chipData);
     }
     if ((currentChipSize !=0) && (currentPageSize!=0)  && (currentChipType > 0))
     {
     currentNumBlocks = currentChipSize / currentPageSize;
     chipData.resize(static_cast<int>(currentChipSize));
-    for (uint32_t i=0; i < currentChipSize; i++)
-    {
-        chipData[i] = char(0xff);
-    }
+    chipData.fill(char(0xff));
     hexEdit->setData(chipData);
     }
     index = index + 0;
@@ -808,20 +787,14 @@ void MainWindow::on_comboBox_name_currentIndexChanged(const QString &arg1)
        {
            currentNumBlocks = currentChipSize / currentBlockSize;
            chipData.resize(static_cast<int>(currentChipSize));
-           for (uint32_t i=0; i < currentChipSize; i++)
-           {
-               chipData[i] = char(0xff);
-           }
+           chipData.fill(char(0xff));
            hexEdit->setData(chipData);
        }
        if ((currentChipSize !=0) && (currentPageSize!=0)  && (currentChipType > 0))
        {
            currentNumBlocks = currentChipSize / currentPageSize;
            chipData.resize(static_cast<int>(currentChipSize));
-           for (uint32_t i=0; i < currentChipSize; i++)
-           {
-               chipData[i] = char(0xff);
-           }
+            chipData.fill(char(0xff));
            hexEdit->setData(chipData);
        }
 
@@ -893,7 +866,6 @@ void MainWindow::on_actionVerify_triggered()
                       return;
                       }
                     // if res=-1 - error, stop
-                    //qDebug() << "res=" << res;
                     if (statusCH341 != 0)
                     {
                        QMessageBox::about(this, tr("Error"), tr("Programmer CH341a is not connected!"));
@@ -1667,6 +1639,7 @@ void MainWindow::on_actionImport_from_Intel_HEX_triggered()
         if (hi_addr * 256 * 256 + lo_addr  > static_cast<unsigned long>(chipSize))
         {
             QMessageBox::about(this, tr("Error"), tr("The address is larger than the size of the chip!"));
+
             return;
         }
 
@@ -1693,6 +1666,11 @@ void MainWindow::on_actionImport_from_Intel_HEX_triggered()
                 if (counter != checkSUM)
                 {
                     QMessageBox::about(this, tr("Error"), tr("Checksum error!"));
+                    file.close();
+                    fileName.clear();
+                    hexEdit->setData(chipData);
+                    ui->progressBar->setValue(0);
+                    ui->crcEdit->setText(getCRC32());
                     return;
                 }
         }
