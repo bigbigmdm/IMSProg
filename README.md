@@ -288,6 +288,8 @@ sudo apt update
 - Ver. 1.1.6 - SPI erase procedure fixed, deleted unused SPI procedures. Fixed program crash when reading/writing large size chips (25Q256/25Q512). Fixed error diagnostics. 
 - Ver. 1.1.7 - Fixed building errors.
 - Ver. 1.1.8 - Adding support the Intel HEX files format.
+- Ver. 1.1.9 - Increased speed of program operation at the moment of chip type change.
+- Ver. 1.1.10 - Fixed program crash on chip size mismatch with INTEL hex file size. 
 
 ## Project structure
 
