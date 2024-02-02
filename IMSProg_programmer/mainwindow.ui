@@ -907,6 +907,7 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
     <addaction name="separator"/>
     <addaction name="actionImport_from_Intel_HEX"/>
     <addaction name="actionExport_to_Intel_HEX"/>
+    <addaction name="actionExtract_from_ASUS_CAP"/>
     <addaction name="separator"/>
     <addaction name="actionEdit_chips_Database"/>
     <addaction name="separator"/>
@@ -1218,6 +1219,15 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
    </property>
    <property name="text">
     <string>Export to Intel HEX</string>
+   </property>
+  </action>
+  <action name="actionExtract_from_ASUS_CAP">
+   <property name="icon">
+    <iconset resource="recource.qrc">
+     <normaloff>:/res/img/open64.png</normaloff>:/res/img/open64.png</iconset>
+   </property>
+   <property name="text">
+    <string>Extract from ASUS CAP</string>
    </property>
   </action>
  </widget>

@@ -100,6 +100,8 @@ private slots:
 
     void on_actionImport_from_Intel_HEX_triggered();
 
+    void on_actionExtract_from_ASUS_CAP_triggered();
+
 private:
     Ui::MainWindow *ui;
     QColor defaultTextColor;
