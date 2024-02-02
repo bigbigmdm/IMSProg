@@ -290,6 +290,7 @@ sudo apt update
 - Ver. 1.1.8 - Adding support the Intel HEX files format.
 - Ver. 1.1.9 - Increased speed of program operation at the moment of chip type change.
 - Ver. 1.1.10 - Fixed program crash on chip size mismatch with INTEL hex file size. 
+- Ver. 1.1.11 - Added support for ASUS CAP files.
 
 ## Project structure
 
