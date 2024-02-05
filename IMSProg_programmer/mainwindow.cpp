@@ -114,6 +114,7 @@ MainWindow::MainWindow(QWidget *parent) :
  // connect and status check
  statusCH341 = ch341a_spi_init();
  ch341StatusFlashing();
+ chipData.reserve(64 * 1024 *1024 + 2048);
  chipData.resize(256);
  chipData.fill(char(0xff));
  ch341a_spi_shutdown();
