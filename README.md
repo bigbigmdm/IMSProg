@@ -265,6 +265,7 @@ sudo apt update
 
 - The `RPM package` by [Red Soft](https://redos.red-soft.ru/) can be downloaded [here](http://repo.red-soft.ru/redos/7.3/x86_64/updates/imsprog-1.1.7-1.el7.x86_64.rpm)
 - The `RPM package` by [alt linux](https://git.altlinux.org/tasks/339736/build/100/x86_64/rpms/IMSProg-1.1.11-alt1.x86_64.rpm)
+- the `RPM package` by [ROSA Linux](https://mirror.rosalinux.ru/rosa/rosa2021.1/repository/x86_64/contrib/release/IMSProg-1.1.10-1-rosa2021.1.x86_64.rpm)
 - The `ARCH AUR repository` by [kjkent](https://github.com/kjkent) is [here](https://aur.archlinux.org/packages/imsprog)
 
 ## Revision history
