@@ -21,7 +21,7 @@
     <message>
         <location filename="../dialogabout.ui" line="120"/>
         <source>Version: </source>
-        <translation>Versión: </translation>
+        <translation>Versão: </translation>
     </message>
     <message>
         <location filename="../dialogabout.ui" line="130"/>
@@ -626,7 +626,7 @@
     <message>
         <location filename="../mainwindow.ui" line="1230"/>
         <source>Extract from ASUS CAP</source>
-        <translation>Extraído do CAP da ASUS</translation>
+        <translation>Extrair do CAP da ASUS</translation>
     </message>
     <message>
         <source>, Ctrl+Shift+Z</source>
