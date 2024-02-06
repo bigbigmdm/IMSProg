@@ -263,8 +263,9 @@ sudo apt update
 ``` 
   Is also possible manually build deb package using `debian/latest` branch. 
 
-- The `RPM package` by [Red Soft](https://redos.red-soft.ru/) can be downloaded [here](http://repo.red-soft.ru/redos/7.3/x86_64/updates/imsprog-1.1.2-1.el7.x86_64.rpm)
-- The `RPM package` by [alt linux](https://www.altlinux.org/%D0%93%D0%BB%D0%B0%D0%B2%D0%BD%D0%B0%D1%8F_%D1%81%D1%82%D1%80%D0%B0%D0%BD%D0%B8%D1%86%D0%B0) can be downloaded [here](https://git.altlinux.org/tasks/338587/build/100/x86_64/rpms/IMSProg-1.1.6-alt1.x86_64.rpm)
+- The `RPM package` by [Red Soft](https://redos.red-soft.ru/) can be downloaded [here](http://repo.red-soft.ru/redos/7.3/x86_64/updates/imsprog-1.1.7-1.el7.x86_64.rpm)
+- The `RPM package` by [alt linux](https://git.altlinux.org/tasks/339736/build/100/x86_64/rpms/IMSProg-1.1.11-alt1.x86_64.rpm)
+- The `RPM package` by [ROSA Linux](https://mirror.rosalinux.ru/rosa/rosa2021.1/repository/x86_64/contrib/release/IMSProg-1.1.10-1-rosa2021.1.x86_64.rpm)
 - The `ARCH AUR repository` by [kjkent](https://github.com/kjkent) is [here](https://aur.archlinux.org/packages/imsprog)
 
 ## Revision history
@@ -288,6 +289,9 @@ sudo apt update
 - Ver. 1.1.6 - SPI erase procedure fixed, deleted unused SPI procedures. Fixed program crash when reading/writing large size chips (25Q256/25Q512). Fixed error diagnostics. 
 - Ver. 1.1.7 - Fixed building errors.
 - Ver. 1.1.8 - Adding support the Intel HEX files format.
+- Ver. 1.1.9 - Increased speed of program operation at the moment of chip type change.
+- Ver. 1.1.10 - Fixed program crash on chip size mismatch with INTEL hex file size. 
+- Ver. 1.1.11 - Added support for ASUS CAP files.
 
 ## Project structure
 

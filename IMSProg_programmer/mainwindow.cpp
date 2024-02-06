@@ -114,6 +114,7 @@ MainWindow::MainWindow(QWidget *parent) :
  // connect and status check
  statusCH341 = ch341a_spi_init();
  ch341StatusFlashing();
+ chipData.reserve(64 * 1024 *1024 + 2048);
  chipData.resize(256);
  chipData.fill(char(0xff));
  ch341a_spi_shutdown();
@@ -399,6 +400,11 @@ void MainWindow::on_actionDetect_triggered()
 void MainWindow::on_actionSave_triggered()
 {
 
+    lastDirectory.replace(".cap", ".bin");
+    lastDirectory.replace(".CAP", ".bin");
+    lastDirectory.replace(".hex", ".bin");
+    lastDirectory.replace(".HEX", ".bin");
+
     ui->statusBar->showMessage(tr("Saving file"));
     fileName = QFileDialog::getSaveFileName(this,
                                 QString(tr("Save file")),
@@ -406,6 +412,7 @@ void MainWindow::on_actionSave_triggered()
                                 "Data Images (*.bin *.BIN);;All files (*.*)");
     QFileInfo info(fileName);
     lastDirectory = info.filePath();
+
     if (QString::compare(info.suffix(), "bin", Qt::CaseInsensitive)) fileName = fileName + ".bin";
     QFile file(fileName);
     if (!file.open(QIODevice::WriteOnly))
@@ -574,14 +581,48 @@ void MainWindow::on_actionOpen_triggered()
         chipData.resize(static_cast<int>(info.size()));
     }
 
-    for (uint32_t i=0; i < info.size(); i++)
-    {
-        chipData[i] = buf[i];
-    }
+    chipData.replace(0, static_cast<int>(info.size()), buf);
     hexEdit->setData(chipData);
 
     file.close();
     //ui->statusBar->showMessage("");
+    ui->crcEdit->setText(getCRC32());
+}
+
+void MainWindow::on_actionExtract_from_ASUS_CAP_triggered()
+{
+    QByteArray buf;
+    ui->statusBar->showMessage(tr("Opening file"));
+    fileName = QFileDialog::getOpenFileName(this,
+                                QString(tr("Open file")),
+                                lastDirectory,
+                                "ASUS Data Images (*.cap *.CAP);;All files (*.*)");
+    QFileInfo info(fileName);
+    ui->statusBar->showMessage(tr("Current file: ") + info.fileName());
+    lastDirectory = info.filePath();
+    if ((info.size() - 0x800 > currentChipSize) && (currentChipSize != 0))
+    {
+      QMessageBox::about(this, tr("Error"), tr("The file size exceeds the chip size. Please select another chip or file or use `Save part` to split the file."));
+      return;
+    }
+    QFile file(fileName);
+
+    if (!file.open(QIODevice::ReadOnly))
+    {
+
+        return;
+    }
+    buf.resize(int(info.size()));
+    buf = file.readAll();
+    file.close();
+    fileName.clear();
+    buf.remove(0,0x800);
+    if (currentChipSize == 0)
+    {
+        chipData.resize(static_cast<int>(info.size()) - 0x800);
+    }
+    chipData.replace(0, static_cast<int>(info.size()) - 0x800, buf);
+    hexEdit->setData(chipData);
     ui->crcEdit->setText(getCRC32());
 }
 
