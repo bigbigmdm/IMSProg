@@ -3,7 +3,7 @@ IMSPROG_DB_URL=https://antenna-dvb-t2.ru/dl_all/IMSProg.Dat
 cd /tmp
 wget ${IMSPROG_DB_URL}
 cd /etc
-mkdir -p imsprog
+mkdir -p ~/.local/share/imsprog/
 file=~/.local/share/imsprog/IMSProg.Dat
 oldsize=$(wc -c <"$file")
 let oldrec=oldsize/68-1
