@@ -37,11 +37,18 @@ MainWindow::~MainWindow()
 }
 void MainWindow::on_actionOpen_triggered()
 {
-    QString fileName;
+    QString fileName, benchmarkDataFile;
     char txtBuf[0x30];
+    benchmarkDataFile = "/usr/share/imsprog/IMSProg.Dat";
+    QFileInfo check_benchmarkDataFile(benchmarkDataFile);
     int i, j, recNo, dataPoz, dataSize, chipSize, blockSize, delay, rowCount;
     unsigned char chipSizeCode, chipID, manCode, tmpBuf;
     defaultPath = QDir::homePath() + "/.local/share/imsprog/";
+    // if ~//.local/share/imsprog/ is not exists creating this folder
+    if (!QDir(defaultPath).exists()) QDir().mkdir(defaultPath);
+    // If IMSProg.dat does not exist in the /.local/share/imsprog/ folder, it will be copied to that folder
+    if (check_benchmarkDataFile.exists()) QFile::copy(benchmarkDataFile, defaultPath + "/IMSProg.Dat");
+
     ui->statusBar->showMessage(tr("Open the file"));
     fileName = QFileDialog::getOpenFileName(this,
                                 QString(tr("Open the file")),
