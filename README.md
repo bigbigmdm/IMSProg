@@ -292,8 +292,8 @@ sudo apt update
 - Ver. 1.1.9 - Increased speed of program operation at the moment of chip type change.
 - Ver. 1.1.10 - Fixed program crash on chip size mismatch with INTEL hex file size. 
 - Ver. 1.1.11 - Added support for ASUS CAP files.
-- Ver. 1.1.12 - Minor changes to Debian packaging
-- Ver. 1.2.1 - New path to the chip database file. Now there is no need for root permissions to change and update the file.
+- Ver. 1.1.12 - Minor changes to UDEV USB rules.
+- Ver. 1.2.1 - The path to the chip database file was changed from /etc/imsprog to /usr/share/imsprog . Now there is no need for root permissions to change and update the file.
 
 ## Project structure
 
