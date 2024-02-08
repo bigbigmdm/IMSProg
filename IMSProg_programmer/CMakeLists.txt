@@ -9,8 +9,6 @@ set(CMAKE_AUTOUIC ON)
 
 project(IMSProg LANGUAGES C CXX)
 
-set(USER_HOME_DIRECTORY $ENV{HOME})
-
 # Set the CMAKE_INSTALL_PREFIX to /usr if not specified
 if (CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
 	set(CMAKE_INSTALL_PREFIX "/usr" CACHE PATH "The default install prefix" FORCE)
