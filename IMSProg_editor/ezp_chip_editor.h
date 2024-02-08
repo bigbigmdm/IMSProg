@@ -68,6 +68,7 @@ public:
         QString chipVCC;
     };
     chip_data chips[2000];
+    QString defaultPath;
     QString bytePrint(unsigned char z);
     QString sizeConvert(int a);
     unsigned char dualDigitToByte(QString q, int poz);

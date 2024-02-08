@@ -1,7 +1,7 @@
 /*
  * This file is part of the IMSProg_Editor project.
  *
- * Copyright (C) 2023 Mikhail Medvedev (e-ink-reader@yandex.ru)
+ * Copyright (C) 2023-2024 Mikhail Medvedev (e-ink-reader@yandex.ru)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -41,10 +41,11 @@ void MainWindow::on_actionOpen_triggered()
     char txtBuf[0x30];
     int i, j, recNo, dataPoz, dataSize, chipSize, blockSize, delay, rowCount;
     unsigned char chipSizeCode, chipID, manCode, tmpBuf;
+    defaultPath = QDir::homePath() + "/.local/share/imsprog/";
     ui->statusBar->showMessage(tr("Open the file"));
     fileName = QFileDialog::getOpenFileName(this,
                                 QString(tr("Open the file")),
-                                "/etc/imsprog",
+                                defaultPath,
                                 "Data Images (*.Dat);;All files (*.*)");
     ui->statusBar->showMessage(tr("Current file: ") + fileName);
     QFile file(fileName);
@@ -470,8 +471,8 @@ void MainWindow::on_actionSave_triggered()
        //Saving Qbytearray to file
        ui->statusBar->showMessage("Saving file");
        fileName = QFileDialog::getSaveFileName(this,
-                                   QString::fromUtf8("Открыть файл"),
-                                   QDir::currentPath(),
+                                   QString::fromUtf8("Saving file"),
+                                   defaultPath,
                                    "Data Images (*.Dat);;All files (*.*)");
        ui->statusBar->showMessage("Current file: " + fileName);
        QFile file(fileName);
@@ -682,7 +683,7 @@ void MainWindow::on_actionExport_to_CSV_triggered()
     ui->statusBar->showMessage(tr("Saving file"));
     fileName = QFileDialog::getSaveFileName(this,
                                 QString(tr("Save file")),
-                                QDir::currentPath(),
+                                QDir::homePath(),
                                 "Data Images (*.csv);;All files (*.*)");
     ui->statusBar->showMessage(tr("Current file: ") + fileName);
     QFile file(fileName);
@@ -720,8 +721,8 @@ void MainWindow::on_actionExport_to_CSV_2_triggered()
     ui->statusBar->showMessage("Saving file");
     fileName = QFileDialog::getSaveFileName(this,
                                 QString(tr("Open the file")),
-                                QDir::currentPath(),
-                                "Data Images (*.csv);;All files (*.*)");
+                                QDir::homePath(),
+                                "Comma-Separated Values (*.csv);;All files (*.*)");
        ui->statusBar->showMessage(tr("Current file: ") + fileName);
        QFile file(fileName);
        if (!file.open(QIODevice::WriteOnly)) return;
@@ -741,8 +742,8 @@ void MainWindow::on_actionImport_from_CSV_triggered()
         ui->statusBar->showMessage(tr("Opening file"));
         fileName = QFileDialog::getOpenFileName(this,
                                     QString(tr("Open the file")),
-                                    QDir::currentPath(),
-                                    "Data Images (*.csv);;All files (*.*)");
+                                    QDir::homePath(),
+                                    "Comma-Separated Values (*.csv);;All files (*.*)");
         ui->statusBar->showMessage(tr("Current file: ") + fileName);
         QFile file(fileName);
         QByteArray data;
