@@ -37,22 +37,21 @@ MainWindow::~MainWindow()
 }
 void MainWindow::on_actionOpen_triggered()
 {
-    QString fileName, benchmarkDataFile;
+    QString fileName, benchmarkDataFile, currentPath;
     char txtBuf[0x30];
     benchmarkDataFile = "/usr/share/imsprog/IMSProg.Dat";
     QFileInfo check_benchmarkDataFile(benchmarkDataFile);
     int i, j, recNo, dataPoz, dataSize, chipSize, blockSize, delay, rowCount;
     unsigned char chipSizeCode, chipID, manCode, tmpBuf;
     defaultPath = QDir::homePath() + "/.local/share/imsprog/";
-    // if ~//.local/share/imsprog/ is not exists creating this folder
-    if (!QDir(defaultPath).exists()) QDir().mkdir(defaultPath);
-    // If IMSProg.dat does not exist in the /.local/share/imsprog/ folder, it will be copied to that folder
-    if (check_benchmarkDataFile.exists()) QFile::copy(benchmarkDataFile, defaultPath + "/IMSProg.Dat");
+    // if ~//.local/share/imsprog/ is not exists opening file from /usr/share/imsprog/
+    if (!QDir(defaultPath).exists())  currentPath = benchmarkDataFile;
+    else currentPath = defaultPath;
 
     ui->statusBar->showMessage(tr("Open the file"));
     fileName = QFileDialog::getOpenFileName(this,
                                 QString(tr("Open the file")),
-                                defaultPath,
+                                currentPath,
                                 "Data Images (*.Dat);;All files (*.*)");
     ui->statusBar->showMessage(tr("Current file: ") + fileName);
     QFile file(fileName);
@@ -476,10 +475,13 @@ void MainWindow::on_actionSave_triggered()
           }
 
        //Saving Qbytearray to file
+       // If IMSProg.dat does not exist in the /.local/share/imsprog/ folder, create this folder
+       qDebug() << defaultPath <<" ";
+       if (!QDir(defaultPath).exists()) QDir().mkdir(defaultPath);
        ui->statusBar->showMessage("Saving file");
        fileName = QFileDialog::getSaveFileName(this,
                                    QString::fromUtf8("Saving file"),
-                                   defaultPath,
+                                   (defaultPath + "/IMSProg.Dat"),
                                    "Data Images (*.Dat);;All files (*.*)");
        ui->statusBar->showMessage("Current file: " + fileName);
        QFile file(fileName);
