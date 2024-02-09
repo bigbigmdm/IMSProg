@@ -27,6 +27,7 @@ int main(int argc, char *argv[])
         QString translateName = "chipProgrammer_" + QLocale::system().name();
         if(translator.load(translateName, "/usr/share/imsprog/")) a.installTranslator(&translator);
         a.installTranslator(&translator);
+    QStringList cmdline_args = QCoreApplication::arguments();
     MainWindow w;
     w.show();
 

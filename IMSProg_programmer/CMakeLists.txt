@@ -24,11 +24,6 @@ if(NOT DEFINED CMAKE_INSTALL_DATAROOTDIR)
   set(CMAKE_INSTALL_DATAROOTDIR "share" CACHE PATH "read-only architecture-independent data root (share)")
 endif()
 
-# Set the CMAKE_INSTALL_SYSCONFDIR to /etc if not specified
-if(NOT DEFINED CMAKE_INSTALL_SYSCONFDIR)
-  set(CMAKE_INSTALL_SYSCONFDIR "/etc" CACHE PATH "read-only single-machine data (etc)")
-endif()
-
 # Set the CMAKE_INSTALL_LIBDIR to /lib if not specified
 if(NOT DEFINED CMAKE_INSTALL_LIBDIR)
   set(CMAKE_INSTALL_LIBDIR "/lib" CACHE PATH "read-only single-machine data (lib)")
@@ -129,7 +124,7 @@ target_link_libraries(${PROJECT_NAME} Qt5::Widgets ${LibUSB_LIBRARIES})
 install(TARGETS ${PROJECT_NAME} DESTINATION ${CMAKE_INSTALL_BINDIR})
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/other/IMSProg.desktop" DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/applications")
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/img/IMSProg64.png" DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/pixmaps")
-install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/database/IMSProg.Dat" DESTINATION "${CMAKE_INSTALL_SYSCONFDIR}/imsprog")
+install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/database/IMSProg.Dat" DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/imsprog")
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/other/99-CH341.rules" DESTINATION "${UDEVDIR}/rules.d")
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/language/chipProgrammer_ru_RU.qm" DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/imsprog")
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/language/chipProgrammer_es_ES.qm" DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/imsprog")

@@ -292,6 +292,9 @@ sudo apt update
 - Ver. 1.1.9 - Increased speed of program operation at the moment of chip type change.
 - Ver. 1.1.10 - Fixed program crash on chip size mismatch with INTEL hex file size. 
 - Ver. 1.1.11 - Added support for ASUS CAP files.
+- Ver. 1.1.12 - Minor changes to UDEV USB rules.
+- Ver. 1.2.1 - The path to the chip database file was changed from /etc/imsprog to /usr/share/imsprog . When updating and editing the chip database, they now work on a copy in the user's home folder (~/.local/share/imsprog). Now there is no need for root permissions to change and update the file. You can use the name of the .bin file as a command line parameter: IMSProg <File.bin>
+
 
 ## Project structure
 
@@ -302,7 +305,8 @@ IMSProg                                                     /usr/bin
 IMSProg_editor                                              /usr/bin
 IMSProg_programmer/other/IMSProg_database_update            /usr/bin
 
-IMSProg_programmer/database/IMSProg.Dat                     /etc/imsprog
+IMSProg_programmer/database/IMSProg.Dat                     /usr/share/imsprog
+                                                            ~/.local/share/imsprog
 
 IMSProg_programmer/other/99-CH341.rules                     /lib/udev/rules.d
 

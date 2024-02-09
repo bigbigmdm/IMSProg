@@ -1,14 +1,17 @@
 #!/bin/bash
+if [ -f ~/.local/share/imsprog/IMSProg.Dat ] ; then
+zenity --question --text="The IMSProg.Dat file will be replaced with the new version. You may lose the changes made to it. Continue?" --ok-label="Yes" --cancel-label="No"
+fi
+if [ $? = 0 ] ; then
 IMSPROG_DB_URL=https://antenna-dvb-t2.ru/dl_all/IMSProg.Dat
-PASSWORD=$(zenity --password)
 cd /tmp
 wget ${IMSPROG_DB_URL}
-cd /etc
-mkdir -p imsprog
-file=/etc/imsprog/IMSProg.Dat
+mkdir -p ~/.local/share/imsprog/
+file=~/.local/share/imsprog/IMSProg.Dat
 oldsize=$(wc -c <"$file")
 let oldrec=oldsize/68-1
-echo $PASSWORD | sudo -S cp /tmp/IMSProg.Dat /etc/imsprog/
+rm -rf ~/.local/share/imsprog/IMSProg.Dat
+cp /tmp/IMSProg.Dat ~/.local/share/imsprog/
 rm -rf /tmp/IMSProg.Dat
 newsize=$(wc -c <"$file")
 let newrec=newsize/68-1
@@ -18,3 +21,5 @@ zenity --warning \
 --text="The number of chips in the database:\n\n$out_text" \
 --title="Database update" \
 --icon-name='applications-electronics'
+fi
+

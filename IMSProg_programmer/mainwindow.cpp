@@ -27,6 +27,9 @@
 #include <stddef.h>
 #include <stdint.h>
 
+
+#include<QDebug>
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -49,7 +52,7 @@ MainWindow::MainWindow(QWidget *parent) :
  ui->progressBar->setValue(0);
  ui->comboBox_name->addItems({""});
  ui->comboBox_man->addItems({""});
- //ui->comboBox_vcc->addItems({ " ", "3.3 V", "1.8 V", "5.0 V"});
+
  ui->comboBox_vcc->addItem(" ", 0);
  ui->comboBox_vcc->addItem("3.3 V", 1);
  ui->comboBox_vcc->addItem("1.8 V", 2);
@@ -111,6 +114,7 @@ MainWindow::MainWindow(QWidget *parent) :
  blockStartAddr = 0;
  blockLen = 0;
  currentAddr4bit = 0;
+ cmdStarted = false;
  // connect and status check
  statusCH341 = ch341a_spi_init();
  ch341StatusFlashing();
@@ -126,7 +130,21 @@ MainWindow::MainWindow(QWidget *parent) :
  hexEdit->setAsciiFontColor(defaultTextColor);
  hexEdit->setAddressFontColor(defaultTextColor);
  hexEdit->setHexFontColor(defaultTextColor);
+ QStringList commandLineParams = QCoreApplication::arguments();
+ qDebug() << commandLineParams;
+ QString commandLineFileName ="";
+ if (commandLineParams.count() > 1)
+   {
+        commandLineFileName = commandLineParams[1];
+        QFileInfo commandLine(commandLineFileName);
+        if ((commandLine.exists()) && !(QString::compare(commandLine.suffix(), "bin", Qt::CaseInsensitive)))
+        {
+            lastDirectory = commandLineFileName;
+            cmdStarted = true;
+        }
+   }
  progInit();
+ if (cmdStarted) on_actionOpen_triggered();
 }
 
 MainWindow::~MainWindow()
@@ -553,10 +571,16 @@ void MainWindow::on_actionOpen_triggered()
 {    
     QByteArray buf;
     ui->statusBar->showMessage(tr("Opening file"));
-    fileName = QFileDialog::getOpenFileName(this,
-                                QString(tr("Open file")),
-                                lastDirectory,
-                                "Data Images (*.bin *.BIN *.rom *.ROM);;All files (*.*)");
+    if (!cmdStarted)
+    {
+        fileName = QFileDialog::getOpenFileName(this,
+                                    QString(tr("Open file")),
+                                    lastDirectory,
+                                    "Data Images (*.bin *.BIN *.rom *.ROM);;All files (*.*)");
+    }
+   else fileName = lastDirectory;
+   cmdStarted = false;
+
     QFileInfo info(fileName);
     ui->statusBar->showMessage(tr("Current file: ") + info.fileName());
     lastDirectory = info.filePath();
@@ -1300,9 +1324,16 @@ void MainWindow::on_actionChip_info_triggered()
 void MainWindow::progInit()
 {
     int index2;
+    QString datFileNameMain = QDir::homePath() + "/.local/share/imsprog/IMSProg.Dat";
+    QString datFileNameReserve = "/usr/share/imsprog/IMSProg.Dat";
+    QString currentDatFilePath = "";
     //opening chip database file
     ui->statusBar->showMessage(tr("Opening DAT file"));
-    QFile datfile("/etc/imsprog/IMSProg.Dat");
+
+    if (QFileInfo(datFileNameMain).exists()) currentDatFilePath = datFileNameMain;
+    else if (QFileInfo(datFileNameReserve).exists()) currentDatFilePath = datFileNameReserve;
+
+    QFile datfile(currentDatFilePath);
     QByteArray dataChips;
     if (!datfile.open(QIODevice::ReadOnly))
     {
