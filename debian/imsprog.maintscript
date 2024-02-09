@@ -1,0 +1,2 @@
+# Moved to /usr/share in 1.2.1; remove old in /etc if not modified
+rm_conffile /etc/imsprog/IMSProg.Dat 1.2.1~~
