@@ -1,0 +1,8 @@
+imsprog (1.2.1-1) unstable; urgency=medium
+
+  * The path of the chip database file was changed from /etc/imsprog to
+    /usr/share/imsprog. When updating with update script or manual editing
+    the chip database, now an updated or modified database will be saved in
+    the user's home folder (~/.local/share/imsprog).
+
+ -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Fri, 09 Feb 2024 14:36:43 +0300
