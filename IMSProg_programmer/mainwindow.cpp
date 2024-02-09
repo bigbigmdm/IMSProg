@@ -27,6 +27,9 @@
 #include <stddef.h>
 #include <stdint.h>
 
+
+#include<QDebug>
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -111,6 +114,7 @@ MainWindow::MainWindow(QWidget *parent) :
  blockStartAddr = 0;
  blockLen = 0;
  currentAddr4bit = 0;
+ cmdStarted = false;
  // connect and status check
  statusCH341 = ch341a_spi_init();
  ch341StatusFlashing();
@@ -126,7 +130,21 @@ MainWindow::MainWindow(QWidget *parent) :
  hexEdit->setAsciiFontColor(defaultTextColor);
  hexEdit->setAddressFontColor(defaultTextColor);
  hexEdit->setHexFontColor(defaultTextColor);
+ QStringList commandLineParams = QCoreApplication::arguments();
+ qDebug() << commandLineParams;
+ QString commandLineFileName ="";
+ if (commandLineParams.count() > 1)
+   {
+        commandLineFileName = commandLineParams[1];
+        QFileInfo commandLine(commandLineFileName);
+        if ((commandLine.exists()) && !(QString::compare(commandLine.suffix(), "bin", Qt::CaseInsensitive)))
+        {
+            lastDirectory = commandLineFileName;
+            cmdStarted = true;
+        }
+   }
  progInit();
+ if (cmdStarted) on_actionOpen_triggered();
 }
 
 MainWindow::~MainWindow()
@@ -553,10 +571,16 @@ void MainWindow::on_actionOpen_triggered()
 {    
     QByteArray buf;
     ui->statusBar->showMessage(tr("Opening file"));
-    fileName = QFileDialog::getOpenFileName(this,
-                                QString(tr("Open file")),
-                                lastDirectory,
-                                "Data Images (*.bin *.BIN *.rom *.ROM);;All files (*.*)");
+    if (!cmdStarted)
+    {
+        fileName = QFileDialog::getOpenFileName(this,
+                                    QString(tr("Open file")),
+                                    lastDirectory,
+                                    "Data Images (*.bin *.BIN *.rom *.ROM);;All files (*.*)");
+    }
+   else fileName = lastDirectory;
+   cmdStarted = false;
+
     QFileInfo info(fileName);
     ui->statusBar->showMessage(tr("Current file: ") + info.fileName());
     lastDirectory = info.filePath();

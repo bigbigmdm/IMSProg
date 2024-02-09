@@ -95,11 +95,8 @@ private slots:
     void on_pushButton_4_clicked();
     void on_actionChip_info_triggered();
     void on_comboBox_addr4bit_currentIndexChanged(int index);
-
     void on_actionExport_to_Intel_HEX_triggered();
-
     void on_actionImport_from_Intel_HEX_triggered();
-
     void on_actionExtract_from_ASUS_CAP_triggered();
 
 private:
@@ -135,6 +132,7 @@ private:
     chip_data chips[2000];
     int max_rec;
     QString fileName;
+    bool cmdStarted;
     QHexEdit *hexEdit;
     QString sizeConvert(int a);
     QString hexiAddr(uint32_t a);
