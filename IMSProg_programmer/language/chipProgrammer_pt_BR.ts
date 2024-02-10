@@ -621,7 +621,7 @@
     <message>
         <location filename="../mainwindow.ui" line="1221"/>
         <source>Export to Intel HEX</source>
-        <translation>Export to Intel HEX</translation>
+        <translation>Exportar para Intel HEX</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1230"/>
