@@ -1,4 +1,4 @@
-# IMSProg
+## IMSProg
 
 * [System software requirements](#system-software-requirements)
 * [How to use](#how-to-use)
@@ -6,6 +6,7 @@
 * [Packages](#packages)
 * [Changelog](#revision-history)
 * [Project structure](#project-structure)
+* [Chip database format](#chip-database-format)
 * [Licensing](#Licensing)
 
 <img align="right" src="img/mini_logo_IMSProg.svg">
@@ -340,7 +341,65 @@ IMSProg_programmer/img/IMSProg_database_update.png          /usr/share/pixmaps
 IMSProg_editor/img/chipEdit64.png                           /usr/share/pixmaps
 
 ```
+## Chip database format
 
+IMSProg.Dat file structure:
+
+Chip string lenght: 0x44 (68) bytes;
+
+```
+offset	 Size   Value
+00 -     2F     ASCII Chip type, Name and Manufacture, 0x00 filling
+30        1     NOR FLASH Chip Size code   / 0x00 - other chips
+31        1     NOR FLASH Chip ID Code     / 0x00 - other chips
+32        1     NOR FLASH Manufacture code / 0x00 - other chips
+33              0x00
+34        4     Chip Size
+35 	
+36 	  
+37 
+38        2     Sector size
+39 
+3A        1     Binary chip type:
+                - 0x00 - SPI NOR FLASH 
+                - 0x01 - 24xxx I2C
+                - 0x02 - 93xxx MicroWire
+                - 0x03 - 25xxx SPI EEPROM
+                - 0x04 - 95xxx ST SPI EEPROM
+3B        1     Algoritm code number:
+                - SPI NOR Flash always 0x00
+                - i2C (24xxx) 0x?1 - address size 1 byte 
+                - i2C (24xxx) 0x?2 - address size 2 bytes 
+                - i2C (24xxx) 0x1? - address mask 1
+                - i2C (24xxx) 0x3? - address mask 3
+                - i2C (24xxx) 0x7? - address mask 7
+                - MicroWire (93xxx) - 0x1? - organisation 16 bit
+                - MicroWire (93xxx) - 0x0? - organisation 8 bit
+                - MicroWire (93xxx) - 0x?7 - 7 address bit number
+                - MicroWire (93xxx) - 0x?9 - 9 address bit number
+                - MicroWire (93xxx) - 0x?A - 10 address bit number
+                - MicroWire (93xxx) - 0x?B - 11 address bit number
+                - 95xxx ST SPI EEPROM - 0x01 - 8 bit address
+                - 95xxx ST SPI EEPROM - 0x02 - 16 bit address
+                - 25xxx SPI EEPROM  - 0x?1 - 8 bit address
+                - 25xxx SPI EEPROM  - 0x?2 - 16 bit address
+                - 25xxx SPI EEPROM  - 0x0? - fill erasing
+                - 25xxx SPI EEPROM  - 0x1? - erasing with use CHIP  FULL ERASE command
+3C        2     Timing parameter:
+3D              3000/1000/500/300/200/100 - NOR FLASH, 4000/2000 - 24xxx, 100 - 93xxx
+3E        2     SPI NOR Flash 4bit address type:
+                - 0x?0 - Not used (3 bit address data)
+                - 0x?1 - Used (4 bit address data)
+                - 0x01 - Default 4 bit command using
+                - 0x11 - Winbond algorithm
+                - 0x21 - Spansion algorithm
+3F        1     0x00
+40        1     SPI NOR FLASH block size in KB (64K = 0x40)
+41        1     0x00
+42        1     EEPROM pages 0x01 - 0x04
+43        1     VCC 00=>3.3V 01=>1.8V 02=>5.0V
+The end record is 0x44 (68) zero bytes.
+```
 ## Licensing
 
 Copyright (C) 2023 - 2024 Mikhail Medvedev. 
