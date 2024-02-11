@@ -11,8 +11,7 @@
 <img align="right" src="img/mini_logo_IMSProg.svg">
 
 **IMSProg** - Linux IMSProg - I2C, MicroWire and SPI EEPROM/Flash chip programmer for CH341A devices.
-The IMSProg is a free I2C EEPROM programmer tool for CH341A device based on [QhexEdit2](https://github.com/Simsys/qhexedit2) and
-modify [SNANDer programmer](https://github.com/McMCCRU/SNANDer).
+The IMSProg is a free programmer tool based on [QhexEdit2](https://github.com/Simsys/qhexedit2) and modified [SNANDer programmer](https://github.com/McMCCRU/SNANDer).
 
 ![CH341A black](img/ch341_black150.png)  ![CH341A green](img/ch341_green150.png) 
 
@@ -88,7 +87,7 @@ Optionally if you want use the chip database update script:
 - You can plug and unplug the programmer device (CH341A) to the USB port at any time when basic operations (reading, checking, and programming) are not in progress.
 
 ### Chip type selecting
-Select the type of chip used from the `Type` pop-up menu: `SPI FLASH` when using SPI NOR FLASH chips of the `25xxx` series, `24_EEPROM` when using i2c EEPROM of the `24xxx` series, `93_EEPROM` when using MicroWire EEPROM of the `93xxx` series.
+Select the type of chip used from the `Type` pop-up menu: `SPI FLASH` when using SPI NOR FLASH chips of the `25xxx` series, `24_EEPROM` when using I2C EEPROM of the `24xxx` series, `93_EEPROM` when using MicroWire EEPROM of the `93xxx` series.
 When using `25xxx` series SPI NOR FLASH chips, the `Detect` button will be available. When the `Detect` button or ![Detect](img/test64.png) or `<Ctrl+D>` is pressed, the JEDEC information is read from the chip and all parameters of that chip are loaded from the chip database. Any parameter (`size`, `page size`, `block size`, `VCC voltage`, `and 4-bit address length`) can be changed manually.  You can manually enter the `Manufacture` and `Name` pop-up menu data - all other parameters will be automatically loaded from the chip database.  
 When using `24xxx` or `93xxx` series chips, it is necessary to manually enter the `Manufacture` and `Name` pop-up menu data - all other parameters will be automatically loaded from the chip database.  
 
@@ -270,7 +269,7 @@ sudo apt update
 
 ## Revision history
 - Ver. 1.0.0 - 1.0.18 - Partially working versions.
-- Ver. 1.0.19 - Fixed wrong level on SDA pin in i2c EEPROM. Removed old function "ch341a_spi_init" in file "ch341spi.c", replaced by "ch341a_init" (this is SNANDer bug).
+- Ver. 1.0.19 - Fixed wrong level on SDA pin in I2C EEPROM. Removed old function "ch341a_spi_init" in file "ch341spi.c", replaced by "ch341a_init" (this is SNANDer bug).
 - Ver. 1.0.20 - Fixed incorrect byte sequence when reading/writing Microwire EEPROM in 16 bitmode (The SNANder program file "bitbang_microwire.c" bad functions - Write_EEPROM_3wire, Read_EEPROM_3wine replaced to Write_EEPROM_3wire_param, Write_READ_3wire_param).
 - Ver. 1.0.21 - Working, unstable version
 - Ver. 1.0.22 - Working, stable version. Added languages. Added font colour compatibility in light and dark interface theme.
