@@ -11,7 +11,7 @@
 <img align="right" src="img/mini_logo_IMSProg.svg">
 
 **IMSProg** - Linux IMSProg - I2C, MicroWire and SPI EEPROM/Flash chip programmer for CH341A devices.
-The IMSProm is a free I2C EEPROM programmer tool for CH341A device based on [QhexEdit2](https://github.com/Simsys/qhexedit2) and
+The IMSProg is a free I2C EEPROM programmer tool for CH341A device based on [QhexEdit2](https://github.com/Simsys/qhexedit2) and
 modify [SNANDer programmer](https://github.com/McMCCRU/SNANDer).
 
 ![CH341A black](img/ch341_black150.png)  ![CH341A green](img/ch341_green150.png) 
@@ -127,7 +127,7 @@ If the SPI NOR FLASH chip is detected normally, but is not read (gives the messa
 
 - The menu item `File / Import from Intel HEX` is used to save the Intel HEX file in the computer buffer.
 
-- The menu item `File / Export to Intel HEX` is used to save the computer buffer to a file in Intex HEX format.
+- The menu item `File / Export to Intel HEX` is used to save the computer buffer to a file in Intel HEX format.
 
 ### Buffer (Hex editor) operations
 The hexadecimal chip editor (right side of the screen) is used to display and modify buffer data.
@@ -136,7 +136,7 @@ It contains the following controls: ![Undo](img/undo.png) undo, ![Redo](img/redo
 
 ## List of supported chips
 
-### i2C EEPROM
+### I2C EEPROM
 24C01, 24C02, 24C04, 24C08, 24C16, 24C32, 24C64, 24C128, 24C256, 24C512, 24C1024
 
 ### MicroWire EEPROM
@@ -254,7 +254,7 @@ You can download it and copy it to the /etc/IMSProg folder with sudo:
 [![Watch the video](img/IMSProg_1_0_24.mp4)](img/IMSProg_1_0_24.mp4)
 
 ## Packages
-- There is a work in progress for add IMSprog to official `Debian` (and derivates repositories)
+- There is a work in progress for add IMSProg to official `Debian` (and derivates repositories)
   
   For some Ubuntu versions you can use this PPA by adding `ppa:bigmdm/imsprog` to your system's Software Sources. 
 ```
