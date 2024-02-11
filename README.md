@@ -14,7 +14,7 @@
 The IMSProm is a free I2C EEPROM programmer tool for CH341A device based on [QhexEdit2](https://github.com/Simsys/qhexedit2) and
 modify [SNANDer programmer](https://github.com/McMCCRU/SNANDer).
 
-![CH341A black](img/ch341_black150.png)  ![CH341A green](/img/ch341_green150.png) 
+![CH341A black](img/ch341_black150.png)  ![CH341A green](img/ch341_green150.png) 
 
 This is a GUI program used widget QhexEditor. For setting the SPI chip parameters you can use the `Detect` button for reading chip parameters (JEDEC information reading) or manually setting it. The I2C and MicroWire EEPROM only manually selected.
 
