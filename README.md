@@ -10,7 +10,7 @@
 
 <img align="right" src="img/mini_logo_IMSProg.svg">
 
-**IMSProg** - Linux IMSProg - I2C, MicroWire and SPI EEPROM/Flash chip programmer for CH341a devices.
+**IMSProg** - Linux IMSProg - I2C, MicroWire and SPI EEPROM/Flash chip programmer for CH341A devices.
 The IMSProm is a free I2C EEPROM programmer tool for CH341A device based on [QhexEdit2](https://github.com/Simsys/qhexedit2) and
 modify [SNANDer programmer](https://github.com/McMCCRU/SNANDer).
 
@@ -76,7 +76,7 @@ Optionally if you want use the chip database update script:
 ## How to use:
 
 ### Connecting
-- Insert the chip into the appropriate slot of the CH341a programmer. The `24xxx` and `25xxx` series chips must be inserted directly, according to the markings on the PCB of the CH341a programmer. The `93xxx` series chips must be inserted into the `93xxx adapter` and the adapter into the marking `25xxx` programmer slot.
+- Insert the chip into the appropriate slot of the CH341A programmer. The `24xxx` and `25xxx` series chips must be inserted directly, according to the markings on the PCB of the CH341A programmer. The `93xxx` series chips must be inserted into the `93xxx adapter` and the adapter into the marking `25xxx` programmer slot.
 
 ![Adapter](img/93xxx_adapter.png)
  
@@ -84,8 +84,8 @@ Optionally if you want use the chip database update script:
 
 ![Adapter](img/1_8_adapter.png)
 
-- Plug the CH341a programmer into the USB socket your computer and running the `IMSProg`.
-- You can plug and unplug the programmer device (CH341a) to the USB port at any time when basic operations (reading, checking, and programming) are not in progress.
+- Plug the CH341A programmer into the USB socket your computer and running the `IMSProg`.
+- You can plug and unplug the programmer device (CH341A) to the USB port at any time when basic operations (reading, checking, and programming) are not in progress.
 
 ### Chip type selecting
 Select the type of chip used from the `Type` pop-up menu: `SPI FLASH` when using SPI NOR FLASH chips of the `25xxx` series, `24_EEPROM` when using i2c EEPROM of the `24xxx` series, `93_EEPROM` when using MicroWire EEPROM of the `93xxx` series.
@@ -107,7 +107,7 @@ The progress bar shows the progress of the read, erase, and verify operations.
 
 - The ![Stop](img/stop64.png) or `<Ctrl+I>` key is used to force interruption of chip read/write/erase/verify operations.
 
-- The `i` key show the connection chip to CH341a device image form.
+- The `i` key show the connection chip to CH341A device image form.
 - The `Main menu -> Programmer -> Chip info` or `<Ctrl+P>` item shows the Serial Flash Discoverable Parameter (SFDP) register and the status registers of the SPI NOR flash memory chips.
 
 ![SFDP](img/sfdp_unblock_en.png)
