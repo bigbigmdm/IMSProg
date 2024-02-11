@@ -11,8 +11,7 @@
 <img align="right" src="img/mini_logo_IMSProg.svg">
 
 **IMSProg** - Linux IMSProg - I2C, MicroWire and SPI EEPROM/Flash chip programmer for CH341A devices.
-The IMSProg is a free I2C EEPROM programmer tool for CH341A device based on [QhexEdit2](https://github.com/Simsys/qhexedit2) and
-modify [SNANDer programmer](https://github.com/McMCCRU/SNANDer).
+The IMSProg is a free programmer tool based on [QhexEdit2](https://github.com/Simsys/qhexedit2) and modified [SNANDer programmer](https://github.com/McMCCRU/SNANDer).
 
 ![CH341A black](img/ch341_black150.png)  ![CH341A green](img/ch341_green150.png) 
 
