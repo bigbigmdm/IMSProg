@@ -254,7 +254,7 @@ You can download it and copy it to the /etc/IMSProg folder with sudo:
 [![Watch the video](img/IMSProg_1_0_24.mp4)](img/IMSProg_1_0_24.mp4)
 
 ## Packages
-- There is a work in progress for add IMSProg to official `Debian` (and derivates repositories)
+- There is a work in progress for add IMSProg to official `Debian` (and derivatives repositories)
   
   For some Ubuntu versions you can use this PPA by adding `ppa:bigmdm/imsprog` to your system's Software Sources. 
 ```
