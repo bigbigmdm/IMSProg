@@ -10,11 +10,11 @@
 
 <img align="right" src="img/mini_logo_IMSProg.svg">
 
-**IMSProg** - Linux IMSProg - I2C, MicroWire and SPI EEPROM/Flash chip programmer for CH341a devices.
-The IMSProm is a free I2C EEPROM programmer tool for CH341A device based on [QhexEdit2](https://github.com/Simsys/qhexedit2) and
+**IMSProg** - Linux IMSProg - I2C, MicroWire and SPI EEPROM/Flash chip programmer for CH341A devices.
+The IMSProg is a free I2C EEPROM programmer tool for CH341A device based on [QhexEdit2](https://github.com/Simsys/qhexedit2) and
 modify [SNANDer programmer](https://github.com/McMCCRU/SNANDer).
 
-![CH341A black](img/ch341_black150.png)  ![CH341A green](/img/ch341_green150.png) 
+![CH341A black](img/ch341_black150.png)  ![CH341A green](img/ch341_green150.png) 
 
 This is a GUI program used widget QhexEditor. For setting the SPI chip parameters you can use the `Detect` button for reading chip parameters (JEDEC information reading) or manually setting it. The I2C and MicroWire EEPROM only manually selected.
 
@@ -24,7 +24,7 @@ The chip database format is clone with EZP2019, EZP2020, EZP2023, Minpro I, XP86
 
 ![CH341A EEPROM programmer](img/IMSProg.png) 
 
-## Building programmer
+## Compiling programmer
 ```
 cd IMSProg_programmer
 mkdir build
@@ -33,7 +33,7 @@ cmake ..
 make -j`nproc`
 sudo make install
 ```
-## Building editor
+## Compiling editor
 ```
 cd IMSProg_editor
 mkdir build
@@ -53,7 +53,7 @@ For build are needed:
 - pkg config
 - udev
 
-On Debian and derivates:
+On Debian and derivatives:
 
 `sudo apt-get install cmake libusb-1.0-0-dev qtbase5-dev pkg-config`
 
@@ -76,7 +76,7 @@ Optionally if you want use the chip database update script:
 ## How to use:
 
 ### Connecting
-- Insert the chip into the appropriate slot of the CH341a programmer. The `24xxx` and `25xxx` series chips must be inserted directly, according to the markings on the PCB of the CH341a programmer. The `93xxx` series chips must be inserted into the `93xxx adapter` and the adapter into the marking `25xxx` programmer slot.
+- Insert the chip into the appropriate slot of the CH341A programmer. The `24xxx` and `25xxx` series chips must be inserted directly, according to the markings on the PCB of the CH341A programmer. The `93xxx` series chips must be inserted into the `93xxx adapter` and the adapter into the marking `25xxx` programmer slot.
 
 ![Adapter](img/93xxx_adapter.png)
  
@@ -84,8 +84,8 @@ Optionally if you want use the chip database update script:
 
 ![Adapter](img/1_8_adapter.png)
 
-- Plug the CH341a programmer into the USB socket your computer and running the `IMSProg`.
-- You can plug and unplug the programmer device (CH341a) to the USB port at any time when basic operations (reading, checking, and programming) are not in progress.
+- Plug the CH341A programmer into the USB socket your computer and running the `IMSProg`.
+- You can plug and unplug the programmer device (CH341A) to the USB port at any time when basic operations (reading, checking, and programming) are not in progress.
 
 ### Chip type selecting
 Select the type of chip used from the `Type` pop-up menu: `SPI FLASH` when using SPI NOR FLASH chips of the `25xxx` series, `24_EEPROM` when using i2c EEPROM of the `24xxx` series, `93_EEPROM` when using MicroWire EEPROM of the `93xxx` series.
@@ -107,7 +107,7 @@ The progress bar shows the progress of the read, erase, and verify operations.
 
 - The ![Stop](img/stop64.png) or `<Ctrl+I>` key is used to force interruption of chip read/write/erase/verify operations.
 
-- The `i` key show the connection chip to CH341a device image form.
+- The `i` key show the connection chip to CH341A device image form.
 - The `Main menu -> Programmer -> Chip info` or `<Ctrl+P>` item shows the Serial Flash Discoverable Parameter (SFDP) register and the status registers of the SPI NOR flash memory chips.
 
 ![SFDP](img/sfdp_unblock_en.png)
@@ -127,7 +127,7 @@ If the SPI NOR FLASH chip is detected normally, but is not read (gives the messa
 
 - The menu item `File / Import from Intel HEX` is used to save the Intel HEX file in the computer buffer.
 
-- The menu item `File / Export to Intel HEX` is used to save the computer buffer to a file in Intex HEX format.
+- The menu item `File / Export to Intel HEX` is used to save the computer buffer to a file in Intel HEX format.
 
 ### Buffer (Hex editor) operations
 The hexadecimal chip editor (right side of the screen) is used to display and modify buffer data.
@@ -136,7 +136,7 @@ It contains the following controls: ![Undo](img/undo.png) undo, ![Redo](img/redo
 
 ## List of supported chips
 
-### i2C EEPROM
+### I2C EEPROM
 24C01, 24C02, 24C04, 24C08, 24C16, 24C32, 24C64, 24C128, 24C256, 24C512, 24C1024
 
 ### MicroWire EEPROM
@@ -254,7 +254,7 @@ You can download it and copy it to the /etc/IMSProg folder with sudo:
 [![Watch the video](img/IMSProg_1_0_24.mp4)](img/IMSProg_1_0_24.mp4)
 
 ## Packages
-- There is a work in progress for add IMSprog to official `Debian` (and derivates repositories)
+- There is a work in progress for add IMSProg to official `Debian` (and derivatives repositories)
   
   For some Ubuntu versions you can use this PPA by adding `ppa:bigmdm/imsprog` to your system's Software Sources. 
 ```
