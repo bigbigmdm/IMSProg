@@ -1,4 +1,4 @@
-# IMSProg
+## IMSProg
 
 * [System software requirements](#system-software-requirements)
 * [How to use](#how-to-use)
