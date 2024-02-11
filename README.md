@@ -24,7 +24,7 @@ The chip database format is clone with EZP2019, EZP2020, EZP2023, Minpro I, XP86
 
 ![CH341A EEPROM programmer](img/IMSProg.png) 
 
-## Building programmer
+## Compiling programmer
 ```
 cd IMSProg_programmer
 mkdir build
@@ -33,7 +33,7 @@ cmake ..
 make -j`nproc`
 sudo make install
 ```
-## Building editor
+## Compiling editor
 ```
 cd IMSProg_editor
 mkdir build
@@ -53,7 +53,7 @@ For build are needed:
 - pkg config
 - udev
 
-On Debian and derivates:
+On Debian and derivatives:
 
 `sudo apt-get install cmake libusb-1.0-0-dev qtbase5-dev pkg-config`
 
