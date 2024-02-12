@@ -20,7 +20,7 @@ This is a GUI program used widget QhexEditor. For setting the SPI chip parameter
 
 The chip database format is clone with EZP2019, EZP2020, EZP2023, Minpro I, XP866+ programmers. You can edit the database use the [EZP Chip data Editor](https://github.com/bigbigmdm/EZP2019-EZP2025_chip_data_editor)
 
-IMSProg consists of three executable modules:
+IMSProg IMSProg is a collection of tools:
 
        1. IMSProg - the chip programmer (it's the main part).
 
@@ -141,6 +141,36 @@ If the SPI NOR FLASH chip is detected normally, but is not read (gives the messa
 The hexadecimal chip editor (right side of the screen) is used to display and modify buffer data.
 
 It contains the following controls: ![Undo](img/undo.png) undo, ![Redo](img/redo64.png) redo, and the ![Search](img/hexsearch64.png) search/replace. The `[Ctrl+A]` key used to update the CRC24 checksum.
+
+## Chip database editor
+
+![Chip editor](img/chip_editor_eng.png)
+
+Chip base editor - IMSProg_editor is a stand-alone program that can be launched from the `Development` menu or from the IMSProg program by clicking on ![Edit](img/chipEdit64.png).
+
+All operations in the editor become available only after loading a chip base file with .Dat extension.
+
+Menu `File`.
+
+- `Open` or `[Ctrl+O]` or ![open](IMSProg_editor/img/open.png) allows you to load the data file.
+- `Save` or `[Ctrl+S]` or ![save](IMSProg_editor/img/save.png) saves the chip parameter table to a database file.
+- `Exit` or `[Ctrl+X]` or ![exit](IMSProg_editor/img/exit.png) - exits the editor.
+- `Export to CSV format` or `[Ctrl+X]` or ![export](IMSProg_editor/img/tocsv.png) allows to unload data about chips in CSV format for further processing by spreadsheet programme - Libre Office Calc, Open Office Calc, Google Tables, etc.
+- `Import from CSV file` or `[Ctrl+Shift+X]` or ![import](IMSProg_editor/img/import.png) - loads a table in CSV format and adds data from it to the existing data in the table.
+
+Menu `Edit`.
+
+- `Delete Rows` or `Del` or ![delete](IMSProg_editor/img/del.png) - deletes one or more rows.
+- `Add Row` or `Ins` or ![add](IMSProg_editor/img/plus.png) - adds a row below the selected row and copies all data from the selected row to the new row.
+- `Move Up` or '[Ctrl+Up]` or ![up](IMSProg_editor/img/undo.png) - moves the selected line up.
+- `Move Down' or `[Ctrl+Down]` or ![down](IMSProg_editor/img/redo.png) - moves the selected row down.
+- `Import selected rows to CSV format` or ![import](IMSProg_editor/img/import.png) - saves selected rows to CSV file.
+
+The most recent version of the chip database file can be downloaded from this page in both .Dat and .csv formats.
+
+## Chip updater
+
+ IMSProg_database_update uses the zenity graphical Gnome utility.  Once started, it copies the downloaded database to the ~/.local/imsprog folder. The script then displays the number of of chips in the database before and after the upgrade.
 
 ## List of supported chips
 
