@@ -152,19 +152,19 @@ All operations in the editor become available only after loading a chip base fil
 
 Menu `File`.
 
-    `Open` or `[Ctrl+O]` or allows you to load the data file.
-    `Save` or `[Ctrl+S]` or saves the chip parameter table to a database file.
-    `Exit` or `[Ctrl+X]` or - exits the editor.
-    `Export to CSV format` or `[Ctrl+X]` or allows to unload data about chips in CSV format for further processing by spreadsheet programme - Libre Office Calc, Open Office Calc, Google Tables, etc.
-    `Import from CSV file` or `[Ctrl+Shift+X]` or - loads a table in CSV format and adds data from it to the existing data in the table.
+- `Open` or `[Ctrl+O]` or allows you to load the data file.
+- `Save` or `[Ctrl+S]` or saves the chip parameter table to a database file.
+- `Exit` or `[Ctrl+X]` or - exits the editor.
+- `Export to CSV format` or `[Ctrl+X]` or allows to unload data about chips in CSV format for further processing by spreadsheet programme - Libre Office Calc, Open Office Calc, Google Tables, etc.
+- `Import from CSV file` or `[Ctrl+Shift+X]` or - loads a table in CSV format and adds data from it to the existing data in the table.
 
 Menu `Edit`.
 
-    `Delete Rows` or `Del` or - deletes one or more rows.
-    `Add Row` or `Ins` or - adds a row below the selected row and copies all data from the selected row to the new row.
-    `Move Up` or '[Ctrl+Up]` or - moves the selected line up.
-    `Move Down' or `[Ctrl+Down]` or - moves the selected row down.
-    `Import selected rows to CSV format` or - saves selected rows to CSV file.
+- `Delete Rows` or `Del` or - deletes one or more rows.
+- `Add Row` or `Ins` or - adds a row below the selected row and copies all data from the selected row to the new row.
+- `Move Up` or '[Ctrl+Up]` or - moves the selected line up.
+- `Move Down' or `[Ctrl+Down]` or - moves the selected row down.
+- `Import selected rows to CSV format` or - saves selected rows to CSV file.
 
 The most recent version of the chip database file can be downloaded from this page in both .Dat and .csv formats.
 
