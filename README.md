@@ -144,6 +144,7 @@ It contains the following controls: ![Undo](img/undo.png) undo, ![Redo](img/redo
 
 ## Chip database editor
 
+![Chip editor](img/chip_editor_eng.png)
 
 Chip base editor - IMSProg_editor is a stand-alone program that can be launched from the `Development` menu or from the IMSProg program by clicking on ![Edit](img/chipEdit64.png).
 
