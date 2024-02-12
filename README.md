@@ -152,7 +152,7 @@ All operations in the editor become available only after loading a chip base fil
 
 Menu `File`.
 
-- `Open` or `[Ctrl+O]` or allows you to load the data file.
+- `Open` or `[Ctrl+O]` or [open](IMSProg_editor/img/open.png) allows you to load the data file.
 - `Save` or `[Ctrl+S]` or saves the chip parameter table to a database file.
 - `Exit` or `[Ctrl+X]` or - exits the editor.
 - `Export to CSV format` or `[Ctrl+X]` or allows to unload data about chips in CSV format for further processing by spreadsheet programme - Libre Office Calc, Open Office Calc, Google Tables, etc.
