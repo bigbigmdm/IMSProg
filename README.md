@@ -83,6 +83,8 @@ Optionally if you want use the chip database update script:
 
 ## How to use:
 
+## Chip programmer
+
 ### Connecting
 - Insert the chip into the appropriate slot of the CH341A programmer. The `24xxx` and `25xxx` series chips must be inserted directly, according to the markings on the PCB of the CH341A programmer. The `93xxx` series chips must be inserted into the `93xxx adapter` and the adapter into the marking `25xxx` programmer slot.
 
