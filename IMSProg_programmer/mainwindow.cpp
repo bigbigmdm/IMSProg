@@ -27,9 +27,6 @@
 #include <stddef.h>
 #include <stdint.h>
 
-
-#include<QDebug>
-
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -61,6 +58,7 @@ MainWindow::MainWindow(QWidget *parent) :
  ui->comboBox_type->addItem("SPI_FLASH", 0);
  ui->comboBox_type->addItem("24_EEPROM", 1);
  ui->comboBox_type->addItem("93_EEPROM", 2);
+ ui->comboBox_type->addItem("25_EEPROM", 3);
  ui->comboBox_type->addItem("95_EEPROM", 4);
 
  ui->comboBox_addr4bit->addItem("No", 0);
@@ -160,7 +158,11 @@ void MainWindow::on_pushButton_clicked()
   if (statusCH341 == 0)
   {
     ui->crcEdit->setText("");
-    if (((currentNumBlocks > 0) && (currentBlockSize >0) && (currentChipType == 0)) || ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 1)) || ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 2)) || ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 4)))
+    if (((currentNumBlocks > 0) && (currentBlockSize >0) && (currentChipType == 0)) ||
+         ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 1)) ||
+         ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 2)) ||
+         ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 3)) ||
+         ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 4)))
     {
        doNotDisturb();
        if (currentChipType == 1)
@@ -168,7 +170,7 @@ void MainWindow::on_pushButton_clicked()
            currentBlockSize = 128;
            currentNumBlocks = currentChipSize / currentBlockSize;
        }
-       if ((currentChipType == 2) || (currentChipType == 4))
+       if ((currentChipType == 2) ||(currentChipType == 3) || (currentChipType == 4))
        {
            currentBlockSize = currentPageSize;
            currentNumBlocks = currentChipSize / currentBlockSize;
@@ -205,6 +207,8 @@ void MainWindow::on_pushButton_clicked()
                res = Read_EEPROM_3wire_param(buf, static_cast<int>(curBlock * currentBlockSize), static_cast<int>(currentBlockSize), static_cast<int>(currentChipSize), currentAlgorithm);
                if (res==0) res = 1;
               break;
+              case 3:
+                 //25xxx
               case 4:
                  //95xxx
                  res = s95_read_param(buf,curBlock * currentBlockSize, currentBlockSize, currentBlockSize, currentAlgorithm);
@@ -463,7 +467,7 @@ void MainWindow::on_actionErase_triggered()
        full_erase_chip();
        sleep(1);
     }
-    if (currentChipType == 4)
+    if ((currentChipType == 4) || ((currentChipType == 3) && ((currentAlgorithm & 0x20) == 0)))
     {
         uint32_t curBlock = 0;
         uint32_t k;
@@ -501,12 +505,17 @@ void MainWindow::on_actionErase_triggered()
               }
         }
     }
+    if ((currentChipType == 3) && ((currentAlgorithm & 0x20) > 0))
+    {
+        ui->progressBar->setValue(50);
+        s95_full_erase();
+        sleep(1);
+    }
     if (currentChipType == 2)
     {
         config_stream(1);
         mw_gpio_init();
         ui->progressBar->setValue(50);
-        //mw_eeprom_erase(0, currentChipSize);
         Erase_EEPROM_3wire_param(currentAlgorithm);
         sleep(1);
     }
@@ -657,7 +666,11 @@ void MainWindow::on_actionWrite_triggered()
     statusCH341 = ch341a_init(currentChipType);
     if (statusCH341 == 0)
     {
-    if (((currentNumBlocks > 0) && (currentBlockSize >0) && (currentChipType == 0)) || ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 1)) || ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 2)) || ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 4)))
+    if (((currentNumBlocks > 0) && (currentBlockSize >0) && (currentChipType == 0)) ||
+         ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 1)) ||
+         ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 2)) ||
+         ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 3)) ||
+         ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 4)))
         {
         doNotDisturb();
         if (currentChipType == 1)
@@ -665,7 +678,7 @@ void MainWindow::on_actionWrite_triggered()
             currentBlockSize = 128;
             currentNumBlocks = currentChipSize / currentBlockSize;
         }
-        if ((currentChipType == 2) || (currentChipType == 4))
+        if ((currentChipType == 2) || (currentChipType == 3) || (currentChipType == 4))
         {
             currentBlockSize = currentPageSize;
             currentNumBlocks = currentChipSize / currentBlockSize;
@@ -705,6 +718,8 @@ void MainWindow::on_actionWrite_triggered()
                           res = Write_EEPROM_3wire_param(buf, static_cast<int>(curBlock * currentBlockSize), static_cast<int>(currentBlockSize), static_cast<int>(currentChipSize), currentAlgorithm);
                           if (res==0) res = 1;
                        break;
+                       case 3:
+                          //25xxx
                        case 4:
                           //M95xx
                           res =  s95_write_param(buf, addr, currentBlockSize, currentBlockSize, currentAlgorithm);                         
@@ -873,7 +888,11 @@ void MainWindow::on_actionVerify_triggered()
     statusCH341 = ch341a_init(currentChipType);
     if (statusCH341 == 0)
     {
-       if (((currentNumBlocks > 0) && (currentBlockSize >0) && (currentChipType == 0)) || ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 1)) || ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 2)) || ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 4)))
+       if (((currentNumBlocks > 0) && (currentBlockSize >0) && (currentChipType == 0)) ||
+            ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 1)) ||
+            ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 2)) ||
+            ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 3)) ||
+            ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 4)))
            {
                ui->crcEdit->setText("");
                doNotDisturb();
@@ -882,7 +901,7 @@ void MainWindow::on_actionVerify_triggered()
                  currentBlockSize = 128;
                  currentNumBlocks = currentChipSize / currentBlockSize;
                }
-               if ((currentChipType == 2) || (currentChipType == 4))
+               if ((currentChipType == 2) || (currentChipType == 3) || (currentChipType == 4))
                {
                    currentBlockSize = currentPageSize;
                    currentNumBlocks = currentChipSize / currentBlockSize;
@@ -918,6 +937,8 @@ void MainWindow::on_actionVerify_triggered()
                        res = Read_EEPROM_3wire_param(buf, static_cast<int>(curBlock * currentBlockSize), static_cast<int>(currentBlockSize), static_cast<int>(currentChipSize), currentAlgorithm);
                        if (res==0) res = 1;
                       break;
+                      case 3:
+                         //25xxx
                       case 4:
                          //95xxx
                          res = s95_read_param(buf,curBlock * currentBlockSize, currentBlockSize, currentBlockSize, currentAlgorithm);
@@ -1312,6 +1333,7 @@ void MainWindow::on_pushButton_4_clicked()
     if ((currentChipType == 0) && (ui->comboBox_vcc->currentIndex() == 2)) infoDialog->setChip(3);
     if ((currentChipType == 1) && (ui->comboBox_vcc->currentIndex() == 1)) infoDialog->setChip(1);
     if ((currentChipType == 2) && (ui->comboBox_vcc->currentIndex() == 1)) infoDialog->setChip(4);
+    if ((currentChipType == 3) && (ui->comboBox_vcc->currentIndex() == 1)) infoDialog->setChip(2);
     if ((currentChipType == 4) && (ui->comboBox_vcc->currentIndex() == 1)) infoDialog->setChip(2);
 }
 

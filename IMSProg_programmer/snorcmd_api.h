@@ -28,5 +28,7 @@ void support_snor_list(void);
 int snor_read_devid(u8 *rxbuf, int n_rx);
 int s95_read_param(unsigned char *buf, unsigned long from, unsigned long len, unsigned int sector_size, unsigned char currentAlgorithm);
 int s95_write_param(unsigned char *buf, unsigned long to, unsigned long len, unsigned int sector_size, unsigned char currentAlgorithm);
+int s95_unprotect(void);
+int s95_full_erase(void);
 #endif /* __SNORCMD_API_H__ */
 /* End of [snorcmd_api.h] package */
