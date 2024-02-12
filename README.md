@@ -20,6 +20,14 @@ This is a GUI program used widget QhexEditor. For setting the SPI chip parameter
 
 The chip database format is clone with EZP2019, EZP2020, EZP2023, Minpro I, XP866+ programmers. You can edit the database use the [EZP Chip data Editor](https://github.com/bigbigmdm/EZP2019-EZP2025_chip_data_editor)
 
+IMSProg consists of three executable modules:
+
+       1. IMSProg - the chip programmer (it's the main part).
+
+       2. IMSProg_editor - chip database editor.
+
+       3. IMSProg_database_update - online chip database update from the  external web-server.
+       
 ![CH341A EEPROM programmer](img/IMSProg_1.png)
 
 ![CH341A EEPROM programmer](img/IMSProg.png) 
@@ -89,8 +97,8 @@ Optionally if you want use the chip database update script:
 
 ### Chip type selecting
 Select the type of chip used from the `Type` pop-up menu: `SPI FLASH` when using SPI NOR FLASH chips of the `25xxx` series, `24_EEPROM` when using I2C EEPROM of the `24xxx` series, `93_EEPROM` when using MicroWire EEPROM of the `93xxx` series.
-When using `25xxx` series SPI NOR FLASH chips, the `Detect` button will be available. When the `Detect` button or ![Detect](img/test64.png) or `<Ctrl+D>` is pressed, the JEDEC information is read from the chip and all parameters of that chip are loaded from the chip database. Any parameter (`size`, `page size`, `block size`, `VCC voltage`, `and 4-bit address length`) can be changed manually.  You can manually enter the `Manufacture` and `Name` pop-up menu data - all other parameters will be automatically loaded from the chip database.  
-When using `24xxx` or `93xxx` series chips, it is necessary to manually enter the `Manufacture` and `Name` pop-up menu data - all other parameters will be automatically loaded from the chip database.  
+When using `25xxx` series SPI NOR FLASH chips (Menu item `type` -> `SPI_FLASH`), the `Detect` button will be available. When the `Detect` button or ![Detect](img/test64.png) or `<Ctrl+D>` is pressed, the JEDEC information is read from the chip and all parameters of that chip are loaded from the chip database. Any parameter (`size`, `page size`, `block size`, `VCC voltage`, `and 4-bit address length`) can be changed manually.  You can manually enter the `Manufacture` and `Name` pop-up menu data - all other parameters will be automatically loaded from the chip database.  
+When using `24xxx` or `93xxx` or `95xxx` or `25xxx` SPI EEPROM (non NOR FLASH) series chips, it is necessary to manually enter the `Manufacture` and `Name` pop-up menu data - all other parameters will be automatically loaded from the chip database.  
 
 ### Basic programmer operations
 - Pressing `Read` or ![Read](img/read64.png) or `<Ctrl+R>` to read data from the chip into the computer buffer.
@@ -147,6 +155,17 @@ It contains the following controls: ![Undo](img/undo.png) undo, ![Redo](img/redo
   
 M95010, M95020, M95040, M95080, M95160, M95320, M95640, M95128, M95256, M95512, M95M01, M95M02
 
+- ATMEL
+
+AT25010, AT25020, AT25040, AT25080, AT25160, AT25320, AT25640, AT25128, AT25256, AT25F512, AT25F1024
+
+- MICROCHIP 
+
+25AA010, 25AA020, 25AA040, 25AA080, 25AA160, 25AA320, 25AA640, 25AA128, 25AA256, 25AAF512, 25AAF1024, 25LC010, 25LC020, 25LC040, 25LC080, 25LC160, 25LC320, 25LC640, 25LC128, 25LC256, 25LC512, 25LC1024
+
+- ONSEMI
+
+CAT25C01, CAT25C02, CAT25C04, CAT25C08, CAT25C16, CAT25C32, CAT25C64, CAT25C128, CAT25C256, CAT25C512
 ### SPI NOR Flash
 - SPANSION
 
@@ -294,7 +313,7 @@ sudo apt update
 - Ver. 1.1.11 - Added support for ASUS CAP files.
 - Ver. 1.1.12 - Minor changes to UDEV USB rules.
 - Ver. 1.2.1 - The path to the chip database file was changed from /etc/imsprog to /usr/share/imsprog . When updating and editing the chip database, they now work on a copy in the user's home folder (~/.local/share/imsprog). Now there is no need for root permissions to change and update the file. You can use the name of the .bin file as a command line parameter: IMSProg <File.bin>
-
+- Ver. 1.3.1 - Added support 25xx SPI EEPROM chips.
 
 ## Project structure
 
