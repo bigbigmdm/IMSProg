@@ -22,11 +22,11 @@ The chip database format is clone with EZP2019, EZP2020, EZP2023, Minpro I, XP86
 
 IMSProg IMSProg is a collection of tools:
 
-       1. IMSProg - the chip programmer (it's the main part).
+1. IMSProg - the chip programmer (it's the main part).
 
-       2. IMSProg_editor - chip database editor.
+2. IMSProg_editor - chip database editor.
 
-       3. IMSProg_database_update - script to update chip database using external web-server.
+3. IMSProg_database_update - script to update chip database using external web-server.
        
 ![CH341A EEPROM programmer](img/IMSProg_1.png)
 
