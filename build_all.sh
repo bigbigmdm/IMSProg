@@ -4,22 +4,17 @@ if [ "$EUID" -ne 0 ]
   exit
 fi
 cd IMSProg_programmer
-rm -rf build
-mkdir build
-cd build
-cmake ..
-make -j4
-sudo make install
-cd ..
-rm -rf build
-cd ..
+rm -rf build/
+mkdir build/
+cmake -S . -B build/
+cmake --build build/ --parallel 
+sudo cmake --install build/
+rm -rf build/
+cd .. #IMSProg
 cd IMSProg_editor
-rm -rf build
-mkdir build
-cd build
-cmake ..
-make -j4
-sudo make install
-cd ..
-rm -rf build
-cd ..
+rm -rf build/
+mkdir build/
+cmake -S . -B build/
+cmake --build build/ --parallel 
+sudo cmake --install build/
+rm -rf build/

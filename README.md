@@ -26,7 +26,7 @@ IMSProg IMSProg is a collection of tools:
 
        2. IMSProg_editor - chip database editor.
 
-       3. IMSProg_database_update - online chip database update from the  external web-server.
+       3. IMSProg_database_update - script to update chip database using external web-server.
        
 ![CH341A EEPROM programmer](img/IMSProg_1.png)
 
