@@ -168,6 +168,9 @@ Menu `Edit`.
 
 The most recent version of the chip database file can be downloaded from this page in both .Dat and .csv formats.
 
+## Chip updater
+
+ IMSProg_database_update uses the zenity graphical Gnome utility.  Once started, it copies the downloaded database to the ~/.local/imsprog folder. The script then displays the number of of chips in the database before and after the upgrade.
 
 ## List of supported chips
 
