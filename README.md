@@ -64,7 +64,7 @@ For build are needed:
 
 On Debian and derivatives:
 
-`sudo apt-get install cmake clang libusb-1.0-0-dev qtbase5-dev pkg-config`
+`sudo apt-get install cmake libusb-1.0-0-dev qtbase5-dev pkg-config`
 
 On Debian >=13 and Ubuntu >=23.10:
 
