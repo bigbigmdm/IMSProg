@@ -12,13 +12,13 @@
 <img align="right" src="img/mini_logo_IMSProg.svg">
 
 **IMSProg** - **I**2C, **M**icroWire and **S**PI EEPROM/Flash chip **Prog**rammer - is a program to read, write EEPROM chips.
-The IMSProg makes respect to [QhexEdit2](https://github.com/Simsys/qhexedit2) hex editor and [SNANDer programmer](https://github.com/McMCCRU/SNANDer).
+The IMSProg makes respect to [QHexEdit2](https://github.com/Simsys/qhexedit2) hex editor and [SNANDer programmer](https://github.com/McMCCRU/SNANDer).
 
 ![CH341A black](img/ch341_black150.png)  ![CH341A green](img/ch341_green150.png) 
 
 The chip database format is clone with EZP2019, EZP2020, EZP2023, Minpro I, XP866+ programmers. You can edit the database use the [EZP Chip data Editor](https://github.com/bigbigmdm/EZP2019-EZP2025_chip_data_editor)
 
-IMSProg IMSProg is a collection of tools:
+IMSProg is a collection of tools:
 
 1. IMSProg - the chip programmer (it's the main part).
 
@@ -88,11 +88,11 @@ Optionally if you want to use IMSProg_database_update script:
 
 ![Adapter](img/93xxx_adapter.png)
  
-- If the chip supply voltage is 1.8 volt he must be insreted in `1.8 volt adapter` and the adapter into needed   programmer slot.
+- If the chip supply voltage is 1.8 volt he must be inserted in `1.8 volt adapter` and the adapter into needed programmer slot.
 
 ![Adapter](img/1_8_adapter.png)
 
-- Plug the CH341A programmer into the USB socket your computer and running the `IMSProg`.
+- Plug the CH341A programmer into the USB socket of your computer and running the `IMSProg`.
 - You can plug and unplug the programmer device (CH341A) to the USB port at any time when basic operations (reading, checking, and programming) are not in progress.
 
 ### Chip type selecting
