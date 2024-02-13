@@ -11,11 +11,11 @@
 
 <img align="right" src="img/mini_logo_IMSProg.svg">
 
-**IMSProg** - **I**2C, **M**icroWire and **S**PI EEPROM/Flash chip **Prog**rammer - is a program to read, write EEPROM chips.
-The IMSProg makes respect to [QHexEdit2](https://github.com/Simsys/qhexedit2) hex editor and [SNANDer programmer](https://github.com/McMCCRU/SNANDer).
+**IMSProg** - **I**2C, **M**icroWire and **S**PI EEPROM/Flash chip **Prog**rammer - is a program to read, write EEPROM chips use the CH341a device.
 
 ![CH341A black](img/ch341_black150.png)  ![CH341A green](img/ch341_green150.png) 
 
+The IMSProg makes respect to [QHexEdit2](https://github.com/Simsys/qhexedit2) hex editor and [SNANDer programmer](https://github.com/McMCCRU/SNANDer).
 The chip database format is clone with EZP2019, EZP2020, EZP2023, Minpro I, XP866+ programmers. You can edit the database use the [EZP Chip data Editor](https://github.com/bigbigmdm/EZP2019-EZP2025_chip_data_editor)
 
 IMSProg is a collection of tools:
