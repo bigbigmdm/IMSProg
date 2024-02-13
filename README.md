@@ -34,6 +34,7 @@ IMSProg is a collection of tools:
 
 ## Compiling programmer
 ```
+git clone https://github.com/bigbigmdm/IMSProg.git && cd IMSProg
 cd IMSProg_programmer
 mkdir build
 cd build
