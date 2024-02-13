@@ -1,4 +1,6 @@
-# IMSProg
+## IMSProg
+
+<img align="right" src="img/mini_logo_IMSProg.svg">
 
 * [System software requirements](#system-software-requirements)
 * [How to use](#how-to-use)
@@ -6,26 +8,33 @@
 * [Packages](#packages)
 * [Changelog](#revision-history)
 * [Project structure](#project-structure)
+* [Chip database format](#chip-database-format)
 * [Licensing](#Licensing)
 
-<img align="right" src="img/mini_logo_IMSProg.svg">
 
-**IMSProg** - Linux IMSProg - I2C, MicroWire and SPI EEPROM/Flash chip programmer for CH341a devices.
-The IMSProm is a free I2C EEPROM programmer tool for CH341A device based on [QhexEdit2](https://github.com/Simsys/qhexedit2) and
-modify [SNANDer programmer](https://github.com/McMCCRU/SNANDer).
 
-![CH341A black](img/ch341_black150.png)  ![CH341A green](/img/ch341_green150.png) 
+**IMSProg** - **I**2C, **M**icroWire and **S**PI EEPROM/Flash chip **Prog**rammer - is a program to read, write EEPROM chips use the `CH341A programmer` device.
 
-This is a GUI program used widget QhexEditor. For setting the SPI chip parameters you can use the `Detect` button for reading chip parameters (JEDEC information reading) or manually setting it. The I2C and MicroWire EEPROM only manually selected.
+![CH341A black](img/ch341_black150.png)  ![CH341A green](img/ch341_green150.png) 
 
+The IMSProg makes respect to [QHexEdit2](https://github.com/Simsys/qhexedit2) hex editor and [SNANDer programmer](https://github.com/McMCCRU/SNANDer).
 The chip database format is clone with EZP2019, EZP2020, EZP2023, Minpro I, XP866+ programmers. You can edit the database use the [EZP Chip data Editor](https://github.com/bigbigmdm/EZP2019-EZP2025_chip_data_editor)
 
+IMSProg is a collection of tools:
+
+1. IMSProg - the chip programmer (it's the main part).
+
+2. IMSProg_editor - chip database editor.
+
+3. IMSProg_database_update - script to update chip database using external web-server.
+       
 ![CH341A EEPROM programmer](img/IMSProg_1.png)
 
 ![CH341A EEPROM programmer](img/IMSProg.png) 
 
-## Building programmer
+## Compiling programmer
 ```
+git clone https://github.com/bigbigmdm/IMSProg.git && cd IMSProg
 cd IMSProg_programmer
 mkdir build
 cd build
@@ -33,7 +42,7 @@ cmake ..
 make -j`nproc`
 sudo make install
 ```
-## Building editor
+## Compiling editor
 ```
 cd IMSProg_editor
 mkdir build
@@ -53,7 +62,7 @@ For build are needed:
 - pkg config
 - udev
 
-On Debian and derivates:
+On Debian and derivatives:
 
 `sudo apt-get install cmake libusb-1.0-0-dev qtbase5-dev pkg-config`
 
@@ -65,7 +74,7 @@ On older:
 
 `sudo apt-get install udev`
 
-Optionally if you want use the chip database update script:
+Optionally if you want to use IMSProg_database_update script:
 - zenity
 - wget
 
@@ -75,22 +84,24 @@ Optionally if you want use the chip database update script:
 
 ## How to use:
 
+## Chip programmer
+
 ### Connecting
-- Insert the chip into the appropriate slot of the CH341a programmer. The `24xxx` and `25xxx` series chips must be inserted directly, according to the markings on the PCB of the CH341a programmer. The `93xxx` series chips must be inserted into the `93xxx adapter` and the adapter into the marking `25xxx` programmer slot.
+- Insert the chip into the appropriate slot of the CH341A programmer. The `24xxx` and `25xxx` series chips must be inserted directly, according to the markings on the PCB of the CH341A programmer. The `93xxx` series chips must be inserted into the `93xxx adapter` and the adapter into the marking `25xxx` programmer slot.
 
 ![Adapter](img/93xxx_adapter.png)
  
-- If the chip supply voltage is 1.8 volt he must be insreted in `1.8 volt adapter` and the adapter into needed   programmer slot.
+- If the chip supply voltage is 1.8 volt he must be inserted in `1.8 volt adapter` and the adapter into needed programmer slot.
 
 ![Adapter](img/1_8_adapter.png)
 
-- Plug the CH341a programmer into the USB socket your computer and running the `IMSProg`.
-- You can plug and unplug the programmer device (CH341a) to the USB port at any time when basic operations (reading, checking, and programming) are not in progress.
+- Plug the CH341A programmer into the USB socket of your computer and running the `IMSProg`.
+- You can plug and unplug the programmer device (CH341A) to the USB port at any time when basic operations (reading, checking, and programming) are not in progress.
 
 ### Chip type selecting
-Select the type of chip used from the `Type` pop-up menu: `SPI FLASH` when using SPI NOR FLASH chips of the `25xxx` series, `24_EEPROM` when using i2c EEPROM of the `24xxx` series, `93_EEPROM` when using MicroWire EEPROM of the `93xxx` series.
-When using `25xxx` series SPI NOR FLASH chips, the `Detect` button will be available. When the `Detect` button or ![Detect](img/test64.png) or `<Ctrl+D>` is pressed, the JEDEC information is read from the chip and all parameters of that chip are loaded from the chip database. Any parameter (`size`, `page size`, `block size`, `VCC voltage`, `and 4-bit address length`) can be changed manually.  You can manually enter the `Manufacture` and `Name` pop-up menu data - all other parameters will be automatically loaded from the chip database.  
-When using `24xxx` or `93xxx` series chips, it is necessary to manually enter the `Manufacture` and `Name` pop-up menu data - all other parameters will be automatically loaded from the chip database.  
+Select the type of chip used from the `Type` pop-up menu: `SPI FLASH` when using SPI NOR FLASH chips of the `25xxx` series, `24_EEPROM` when using I2C EEPROM of the `24xxx` series, `93_EEPROM` when using MicroWire EEPROM of the `93xxx` series.
+When using `25xxx` series SPI NOR FLASH chips (Menu item `type` -> `SPI_FLASH`), the `Detect` button will be available. When the `Detect` button or ![Detect](img/test64.png) or `<Ctrl+D>` is pressed, the JEDEC information is read from the chip and all parameters of that chip are loaded from the chip database. Any parameter (`size`, `page size`, `block size`, `VCC voltage`, `and 4-bit address length`) can be changed manually.  You can manually enter the `Manufacture` and `Name` pop-up menu data - all other parameters will be automatically loaded from the chip database.  
+When using `24xxx` or `93xxx` or `95xxx` or `25xxx` SPI EEPROM (non NOR FLASH) series chips, it is necessary to manually enter the `Manufacture` and `Name` pop-up menu data - all other parameters will be automatically loaded from the chip database.  
 
 ### Basic programmer operations
 - Pressing `Read` or ![Read](img/read64.png) or `<Ctrl+R>` to read data from the chip into the computer buffer.
@@ -107,7 +118,7 @@ The progress bar shows the progress of the read, erase, and verify operations.
 
 - The ![Stop](img/stop64.png) or `<Ctrl+I>` key is used to force interruption of chip read/write/erase/verify operations.
 
-- The `i` key show the connection chip to CH341a device image form.
+- The `i` key show the connection chip to CH341A device image form.
 - The `Main menu -> Programmer -> Chip info` or `<Ctrl+P>` item shows the Serial Flash Discoverable Parameter (SFDP) register and the status registers of the SPI NOR flash memory chips.
 
 ![SFDP](img/sfdp_unblock_en.png)
@@ -127,16 +138,46 @@ If the SPI NOR FLASH chip is detected normally, but is not read (gives the messa
 
 - The menu item `File / Import from Intel HEX` is used to save the Intel HEX file in the computer buffer.
 
-- The menu item `File / Export to Intel HEX` is used to save the computer buffer to a file in Intex HEX format.
+- The menu item `File / Export to Intel HEX` is used to save the computer buffer to a file in Intel HEX format.
 
 ### Buffer (Hex editor) operations
 The hexadecimal chip editor (right side of the screen) is used to display and modify buffer data.
 
 It contains the following controls: ![Undo](img/undo.png) undo, ![Redo](img/redo64.png) redo, and the ![Search](img/hexsearch64.png) search/replace. The `[Ctrl+A]` key used to update the CRC24 checksum.
 
+## Chip database editor
+
+![Chip editor](img/chip_editor_eng.png)
+
+Chip base editor - IMSProg_editor is a stand-alone program that can be launched from the `Development` menu or from the IMSProg program by clicking on ![Edit](img/chipEdit64.png).
+
+All operations in the editor become available only after loading a chip base file with .Dat extension.
+
+Menu `File`.
+
+- `Open` or `[Ctrl+O]` or ![open](IMSProg_editor/img/open.png) allows you to load the data file.
+- `Save` or `[Ctrl+S]` or ![save](IMSProg_editor/img/save.png) saves the chip parameter table to a database file.
+- `Exit` or `[Ctrl+X]` or ![exit](IMSProg_editor/img/exit.png) - exits the editor.
+- `Export to CSV format` or `[Ctrl+X]` or ![export](IMSProg_editor/img/tocsv.png) allows to unload data about chips in CSV format for further processing by spreadsheet programme - Libre Office Calc, Open Office Calc, Google Tables, etc.
+- `Import from CSV file` or `[Ctrl+Shift+X]` or ![import](IMSProg_editor/img/import.png) - loads a table in CSV format and adds data from it to the existing data in the table.
+
+Menu `Edit`.
+
+- `Delete Rows` or `Del` or ![delete](IMSProg_editor/img/del.png) - deletes one or more rows.
+- `Add Row` or `Ins` or ![add](IMSProg_editor/img/plus.png) - adds a row below the selected row and copies all data from the selected row to the new row.
+- `Move Up` or '[Ctrl+Up]` or ![up](IMSProg_editor/img/undo.png) - moves the selected line up.
+- `Move Down' or `[Ctrl+Down]` or ![down](IMSProg_editor/img/redo.png) - moves the selected row down.
+- `Import selected rows to CSV format` or ![import](IMSProg_editor/img/import.png) - saves selected rows to CSV file.
+
+The most recent version of the chip database file can be downloaded from this page in both .Dat and .csv formats.
+
+## Chip updater
+
+ IMSProg_database_update uses the zenity graphical Gnome utility.  Once started, it copies the downloaded database to the ~/.local/imsprog folder. The script then displays the number of of chips in the database before and after the upgrade.
+
 ## List of supported chips
 
-### i2C EEPROM
+### I2C EEPROM
 24C01, 24C02, 24C04, 24C08, 24C16, 24C32, 24C64, 24C128, 24C256, 24C512, 24C1024
 
 ### MicroWire EEPROM
@@ -147,6 +188,17 @@ It contains the following controls: ![Undo](img/undo.png) undo, ![Redo](img/redo
   
 M95010, M95020, M95040, M95080, M95160, M95320, M95640, M95128, M95256, M95512, M95M01, M95M02
 
+- ATMEL
+
+AT25010, AT25020, AT25040, AT25080, AT25160, AT25320, AT25640, AT25128, AT25256, AT25F512, AT25F1024
+
+- MICROCHIP 
+
+25AA010, 25AA020, 25AA040, 25AA080, 25AA160, 25AA320, 25AA640, 25AA128, 25AA256, 25AAF512, 25AAF1024, 25LC010, 25LC020, 25LC040, 25LC080, 25LC160, 25LC320, 25LC640, 25LC128, 25LC256, 25LC512, 25LC1024
+
+- ONSEMI
+
+CAT25C01, CAT25C02, CAT25C04, CAT25C08, CAT25C16, CAT25C32, CAT25C64, CAT25C128, CAT25C256, CAT25C512
 ### SPI NOR Flash
 - SPANSION
 
@@ -247,14 +299,14 @@ FM25Q04A, FM25Q08A, FM25Q16A, FM25Q32A, FM25Q64A, FM25Q128A, FM25M04A(1.8V), FM2
 FM25M16A(1.8V), FM25M32B(1.8V), FM25M64A(1.8V)
 
 The latest version of the chip database can be found [here](https://antenna-dvb-t2.ru/dl_all/IMSProg.Dat).
-You can download it and copy it to the /etc/IMSProg folder with sudo:
+You can download it and copy it to the ~/.local/imsprog folder:
 
-`sudo cp IMSProg.Dat /etc/IMSProg`
+`cp IMSProg.Dat ~/.local/imsprog`
 
 [![Watch the video](img/IMSProg_1_0_24.mp4)](img/IMSProg_1_0_24.mp4)
 
 ## Packages
-- There is a work in progress for add IMSprog to official `Debian` (and derivates repositories)
+- There is a work in progress for add IMSProg to official `Debian` (and derivatives repositories)
   
   For some Ubuntu versions you can use this PPA by adding `ppa:bigmdm/imsprog` to your system's Software Sources. 
 ```
@@ -270,7 +322,7 @@ sudo apt update
 
 ## Revision history
 - Ver. 1.0.0 - 1.0.18 - Partially working versions.
-- Ver. 1.0.19 - Fixed wrong level on SDA pin in i2c EEPROM. Removed old function "ch341a_spi_init" in file "ch341spi.c", replaced by "ch341a_init" (this is SNANDer bug).
+- Ver. 1.0.19 - Fixed wrong level on SDA pin in I2C EEPROM. Removed old function "ch341a_spi_init" in file "ch341spi.c", replaced by "ch341a_init" (this is SNANDer bug).
 - Ver. 1.0.20 - Fixed incorrect byte sequence when reading/writing Microwire EEPROM in 16 bitmode (The SNANder program file "bitbang_microwire.c" bad functions - Write_EEPROM_3wire, Read_EEPROM_3wine replaced to Write_EEPROM_3wire_param, Write_READ_3wire_param).
 - Ver. 1.0.21 - Working, unstable version
 - Ver. 1.0.22 - Working, stable version. Added languages. Added font colour compatibility in light and dark interface theme.
@@ -294,7 +346,7 @@ sudo apt update
 - Ver. 1.1.11 - Added support for ASUS CAP files.
 - Ver. 1.1.12 - Minor changes to UDEV USB rules.
 - Ver. 1.2.1 - The path to the chip database file was changed from /etc/imsprog to /usr/share/imsprog . When updating and editing the chip database, they now work on a copy in the user's home folder (~/.local/share/imsprog). Now there is no need for root permissions to change and update the file. You can use the name of the .bin file as a command line parameter: IMSProg <File.bin>
-
+- Ver. 1.3.1 - Added support 25xx SPI EEPROM chips.
 
 ## Project structure
 
@@ -341,7 +393,65 @@ IMSProg_programmer/img/IMSProg_database_update.png          /usr/share/pixmaps
 IMSProg_editor/img/chipEdit64.png                           /usr/share/pixmaps
 
 ```
+## Chip database format
 
+IMSProg.Dat file structure:
+
+Chip string lenght: 0x44 (68) bytes;
+
+```
+offset	 Size   Value
+00 -     2F     ASCII Chip type, Name and Manufacture, 0x00 filling
+30        1     NOR FLASH Chip Size code   / 0x00 - other chips
+31        1     NOR FLASH Chip ID Code     / 0x00 - other chips
+32        1     NOR FLASH Manufacture code / 0x00 - other chips
+33              0x00
+34        4     Chip Size
+35 	
+36 	  
+37 
+38        2     Sector size
+39 
+3A        1     Binary chip type:
+                - 0x00 - SPI NOR FLASH 
+                - 0x01 - 24xxx I2C
+                - 0x02 - 93xxx MicroWire
+                - 0x03 - 25xxx SPI EEPROM
+                - 0x04 - 95xxx ST SPI EEPROM
+3B        1     Algoritm code number:
+                - SPI NOR Flash always 0x00
+                - I2C (24xxx) 0x?1 - address size 1 byte 
+                - I2C (24xxx) 0x?2 - address size 2 bytes 
+                - I2C (24xxx) 0x1? - address mask 1
+                - I2C (24xxx) 0x3? - address mask 3
+                - I2C (24xxx) 0x7? - address mask 7
+                - MicroWire (93xxx) - 0x1? - organisation 16 bit
+                - MicroWire (93xxx) - 0x0? - organisation 8 bit
+                - MicroWire (93xxx) - 0x?7 - 7 address bit number
+                - MicroWire (93xxx) - 0x?9 - 9 address bit number
+                - MicroWire (93xxx) - 0x?A - 10 address bit number
+                - MicroWire (93xxx) - 0x?B - 11 address bit number
+                - 95xxx ST SPI EEPROM - 0x01 - 8 bit address
+                - 95xxx ST SPI EEPROM - 0x02 - 16 bit address
+                - 25xxx SPI EEPROM  - 0x?1 - 8 bit address
+                - 25xxx SPI EEPROM  - 0x?2 - 16 bit address
+                - 25xxx SPI EEPROM  - 0x0? - fill erasing
+                - 25xxx SPI EEPROM  - 0x1? - erasing with use CHIP  FULL ERASE command
+3C        2     Timing parameter:
+3D              3000/1000/500/300/200/100 - NOR FLASH, 4000/2000 - 24xxx, 100 - 93xxx
+3E        2     SPI NOR Flash 4bit address type:
+                - 0x?0 - Not used (3 bit address data)
+                - 0x?1 - Used (4 bit address data)
+                - 0x01 - Default 4 bit command using
+                - 0x11 - Winbond algorithm
+                - 0x21 - Spansion algorithm
+3F        1     0x00
+40        1     SPI NOR FLASH block size in KB (64K = 0x40)
+41        1     0x00
+42        1     EEPROM pages 0x01 - 0x04
+43        1     VCC 00=>3.3V 01=>1.8V 02=>5.0V
+The end record is 0x44 (68) zero bytes.
+```
 ## Licensing
 
 Copyright (C) 2023 - 2024 Mikhail Medvedev. 
