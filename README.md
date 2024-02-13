@@ -158,7 +158,7 @@ Menu `File`.
 - `Open` or `[Ctrl+O]` or ![open](IMSProg_editor/img/open.png) allows you to load the data file.
 - `Save` or `[Ctrl+S]` or ![save](IMSProg_editor/img/save.png) saves the chip parameter table to a database file.
 - `Exit` or `[Ctrl+X]` or ![exit](IMSProg_editor/img/exit.png) - exits the editor.
-- `Export to CSV format` or `[Ctrl+X]` or ![export](IMSProg_editor/img/tocsv.png) allows to unload data about chips in CSV format for further processing by spreadsheet programme - Libre Office Calc, Open Office Calc, Google Tables, etc.
+- `Export to CSV format` or `[Ctrl+X]` or ![export](IMSProg_editor/img/tocsv.png) allows to unload data about chips in CSV format for further processing by spreadsheet software - LibreOffice Calc, OpenOffice Calc, Google Tables, etc.
 - `Import from CSV file` or `[Ctrl+Shift+X]` or ![import](IMSProg_editor/img/import.png) - loads a table in CSV format and adds data from it to the existing data in the table.
 
 Menu `Edit`.
