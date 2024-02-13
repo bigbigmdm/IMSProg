@@ -18,7 +18,7 @@ The IMSProg makes respect to [QhexEdit2](https://github.com/Simsys/qhexedit2) he
 
 The chip database format is clone with EZP2019, EZP2020, EZP2023, Minpro I, XP866+ programmers. You can edit the database use the [EZP Chip data Editor](https://github.com/bigbigmdm/EZP2019-EZP2025_chip_data_editor)
 
-IMSProg IMSProg is a collection of tools:
+IMSProg is a collection of tools:
 
 1. IMSProg - the chip programmer (it's the main part).
 
