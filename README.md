@@ -56,6 +56,7 @@ These commands are included in the `build_all.sh` file.
 ## System software requirements
 
 For build are needed:
+- Clang
 - CMake
 - libusb 1.0
 - Qt5
@@ -64,7 +65,7 @@ For build are needed:
 
 On Debian and derivatives:
 
-`sudo apt-get install cmake libusb-1.0-0-dev qtbase5-dev pkg-config`
+`sudo apt-get install cmake clang libusb-1.0-0-dev qtbase5-dev pkg-config`
 
 On Debian >=13 and Ubuntu >=23.10:
 
