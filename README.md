@@ -88,11 +88,11 @@ Optionally if you want to use IMSProg_database_update script:
 
 ![Adapter](img/93xxx_adapter.png)
  
-- If the chip supply voltage is 1.8 volt he must be insreted in `1.8 volt adapter` and the adapter into needed   programmer slot.
+- If the chip supply voltage is 1.8 volt he must be inserted in `1.8 volt adapter` and the adapter into needed   programmer slot.
 
 ![Adapter](img/1_8_adapter.png)
 
-- Plug the CH341A programmer into the USB socket your computer and running the `IMSProg`.
+- Plug the CH341A programmer into the USB socket of your computer and running the `IMSProg`.
 - You can plug and unplug the programmer device (CH341A) to the USB port at any time when basic operations (reading, checking, and programming) are not in progress.
 
 ### Chip type selecting
