@@ -420,11 +420,11 @@ offset	 Size   Value
                 - 0x04 - 95xxx ST SPI EEPROM
 3B        1     Algoritm code number:
                 - SPI NOR Flash always 0x00
-                - i2C (24xxx) 0x?1 - address size 1 byte 
-                - i2C (24xxx) 0x?2 - address size 2 bytes 
-                - i2C (24xxx) 0x1? - address mask 1
-                - i2C (24xxx) 0x3? - address mask 3
-                - i2C (24xxx) 0x7? - address mask 7
+                - I2C (24xxx) 0x?1 - address size 1 byte 
+                - I2C (24xxx) 0x?2 - address size 2 bytes 
+                - I2C (24xxx) 0x1? - address mask 1
+                - I2C (24xxx) 0x3? - address mask 3
+                - I2C (24xxx) 0x7? - address mask 7
                 - MicroWire (93xxx) - 0x1? - organisation 16 bit
                 - MicroWire (93xxx) - 0x0? - organisation 8 bit
                 - MicroWire (93xxx) - 0x?7 - 7 address bit number
