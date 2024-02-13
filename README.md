@@ -88,7 +88,7 @@ Optionally if you want to use IMSProg_database_update script:
 
 ![Adapter](img/93xxx_adapter.png)
  
-- If the chip supply voltage is 1.8 volt he must be inserted in `1.8 volt adapter` and the adapter into needed   programmer slot.
+- If the chip supply voltage is 1.8 volt he must be inserted in `1.8 volt adapter` and the adapter into needed programmer slot.
 
 ![Adapter](img/1_8_adapter.png)
 
