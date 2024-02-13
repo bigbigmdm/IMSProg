@@ -56,7 +56,7 @@ These commands are included in the `build_all.sh` file.
 ## System software requirements
 
 For build are needed:
-- cmake
+- CMake
 - libusb 1.0
 - Qt5
 - pkg config
