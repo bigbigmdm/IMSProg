@@ -1,5 +1,7 @@
 ## IMSProg
 
+<img align="right" src="img/mini_logo_IMSProg.svg">
+
 * [System software requirements](#system-software-requirements)
 * [How to use](#how-to-use)
 * [List of supported chips](#list-of-supported-chips)
@@ -9,7 +11,7 @@
 * [Chip database format](#chip-database-format)
 * [Licensing](#Licensing)
 
-<img align="right" src="img/mini_logo_IMSProg.svg">
+
 
 **IMSProg** - **I**2C, **M**icroWire and **S**PI EEPROM/Flash chip **Prog**rammer - is a program to read, write EEPROM chips use the `CH341A programmer` device.
 
