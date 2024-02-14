@@ -56,6 +56,7 @@ These commands are included in the `build_all.sh` file.
 ## System software requirements
 
 For build are needed:
+- build-essential
 - CMake
 - libusb 1.0
 - Qt5
@@ -64,7 +65,7 @@ For build are needed:
 
 On Debian and derivatives:
 
-`sudo apt-get install cmake libusb-1.0-0-dev qtbase5-dev pkg-config`
+`sudo apt-get install cmake build-essential libusb-1.0-0-dev qtbase5-dev pkg-config`
 
 On Debian >=13 and Ubuntu >=23.10:
 
@@ -114,7 +115,7 @@ When using `24xxx` or `93xxx` or `95xxx` or `25xxx` SPI EEPROM (non NOR FLASH) s
 
 The progress bar shows the progress of the read, erase, and verify operations.
 
-- The `Auto' button is used to perform erase, write and verify operations in sequence. If one of these operations is not needed, you can uncheck the checkbox for that operation.
+- The `Auto` button is used to perform erase, write and verify operations in sequence. If one of these operations is not needed, you can uncheck the checkbox for that operation.
 
 - The ![Stop](img/stop64.png) or `<Ctrl+I>` key is used to force interruption of chip read/write/erase/verify operations.
 
