@@ -32,6 +32,7 @@ class DialogSFDP : public QDialog
 public:
     explicit DialogSFDP(QWidget *parent = nullptr);
     ~DialogSFDP();
+    void closeEvent(QCloseEvent* event);
 
 private slots:
     void on_pushButton_clicked();
@@ -39,6 +40,9 @@ private slots:
     void on_pushButton_3_clicked();
     void r1Disable();
     void r1Enable();
+
+signals:
+    void closeRequestHasArrived();
 
 private:
     Ui::DialogSFDP *ui;

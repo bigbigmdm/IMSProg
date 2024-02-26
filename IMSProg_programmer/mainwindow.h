@@ -19,6 +19,8 @@
 #include <QMessageBox>
 #include <QFile>
 #include <QFileDialog>
+#include <QTime>
+#include <QTimer>
 #include <unistd.h>
 #include "qhexedit.h"
 #include "dialogsp.h"
@@ -62,6 +64,7 @@ public slots:
 
     void receiveAddr(QString);
     void receiveAddr2(QString);
+    void closeSFDP();
 
 private slots:
     void progInit();
@@ -98,7 +101,8 @@ private slots:
     void on_actionExport_to_Intel_HEX_triggered();
     void on_actionImport_from_Intel_HEX_triggered();
     void on_actionExtract_from_ASUS_CAP_triggered();
-
+    void resizeEvent(QResizeEvent* event);
+    void slotTimerAlarm();
 private:
     Ui::MainWindow *ui;
     QColor defaultTextColor;
@@ -110,6 +114,7 @@ private:
     uint8_t currentAlgorithm, currentChipType;
     unsigned int currentAddr4bit;
     bool isHalted;
+    QTimer *timer;
     QString bytePrint(unsigned char z);
     QVector <QString> chType = {"SPI_FLASH","25_EEPROM","93_EEPROM","24_EEPROM","95_EEPROM"};
     struct chip_data {

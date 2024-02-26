@@ -692,6 +692,12 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
             <height>11</height>
            </size>
           </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>20</height>
+           </size>
+          </property>
           <property name="font">
            <font>
             <weight>75</weight>
@@ -714,7 +720,7 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
           <property name="maximumSize">
            <size>
             <width>16777215</width>
-            <height>700</height>
+            <height>16777215</height>
            </size>
           </property>
           <property name="frameShape">
@@ -849,19 +855,6 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
          </widget>
         </item>
        </layout>
-      </item>
-      <item>
-       <spacer name="verticalSpacer_4">
-        <property name="orientation">
-         <enum>Qt::Vertical</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>127</width>
-          <height>6</height>
-         </size>
-        </property>
-       </spacer>
       </item>
       <item>
        <widget class="QProgressBar" name="progressBar">

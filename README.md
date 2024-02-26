@@ -56,7 +56,8 @@ These commands are included in the `build_all.sh` file.
 ## System software requirements
 
 For build are needed:
-- cmake
+- build-essential
+- CMake
 - libusb 1.0
 - Qt5
 - pkg config
@@ -64,7 +65,7 @@ For build are needed:
 
 On Debian and derivatives:
 
-`sudo apt-get install cmake libusb-1.0-0-dev qtbase5-dev pkg-config`
+`sudo apt-get install cmake build-essential libusb-1.0-0-dev qtbase5-dev pkg-config`
 
 On Debian >=13 and Ubuntu >=23.10:
 
@@ -114,7 +115,7 @@ When using `24xxx` or `93xxx` or `95xxx` or `25xxx` SPI EEPROM (non NOR FLASH) s
 
 The progress bar shows the progress of the read, erase, and verify operations.
 
-- The `Auto' button is used to perform erase, write and verify operations in sequence. If one of these operations is not needed, you can uncheck the checkbox for that operation.
+- The `Auto` button is used to perform erase, write and verify operations in sequence. If one of these operations is not needed, you can uncheck the checkbox for that operation.
 
 - The ![Stop](img/stop64.png) or `<Ctrl+I>` key is used to force interruption of chip read/write/erase/verify operations.
 
@@ -158,7 +159,7 @@ Menu `File`.
 - `Open` or `[Ctrl+O]` or ![open](IMSProg_editor/img/open.png) allows you to load the data file.
 - `Save` or `[Ctrl+S]` or ![save](IMSProg_editor/img/save.png) saves the chip parameter table to a database file.
 - `Exit` or `[Ctrl+X]` or ![exit](IMSProg_editor/img/exit.png) - exits the editor.
-- `Export to CSV format` or `[Ctrl+X]` or ![export](IMSProg_editor/img/tocsv.png) allows to unload data about chips in CSV format for further processing by spreadsheet programme - Libre Office Calc, Open Office Calc, Google Tables, etc.
+- `Export to CSV format` or `[Ctrl+X]` or ![export](IMSProg_editor/img/tocsv.png) allows to unload data about chips in CSV format for further processing by spreadsheet software - LibreOffice Calc, OpenOffice Calc, Google Tables, etc.
 - `Import from CSV file` or `[Ctrl+Shift+X]` or ![import](IMSProg_editor/img/import.png) - loads a table in CSV format and adds data from it to the existing data in the table.
 
 Menu `Edit`.
@@ -315,9 +316,13 @@ sudo apt update
 ``` 
   Is also possible manually build deb package using `debian/latest` branch. 
 
+<a href="https://repology.org/project/imsprog/versions">
+    <img src="https://repology.org/badge/vertical-allrepos/imsprog.svg" alt="Packaging status" align="right">
+</a>
+
 - The `RPM package` by [Red Soft](https://redos.red-soft.ru/) can be downloaded [here](http://repo.red-soft.ru/redos/7.3/x86_64/updates/imsprog-1.1.7-1.el7.x86_64.rpm)
-- The `RPM package` by [alt linux](https://git.altlinux.org/tasks/339736/build/100/x86_64/rpms/IMSProg-1.1.11-alt1.x86_64.rpm)
-- The `RPM package` by [ROSA Linux](https://mirror.rosalinux.ru/rosa/rosa2021.1/repository/x86_64/contrib/release/IMSProg-1.1.10-1-rosa2021.1.x86_64.rpm)
+- The `RPM package` by [alt linux](https://git.altlinux.org/tasks/340743/build/100/x86_64/rpms/IMSProg-1.3.1-alt1.x86_64.rpm)
+- The `RPM package` by [ROSA Linux](https://mirror.rosalinux.ru/rosa/rosa2021.1/repository/x86_64/contrib/release/IMSProg-1.3.1-1-rosa2021.1.x86_64.rpm)
 - The `ARCH AUR repository` by [kjkent](https://github.com/kjkent) is [here](https://aur.archlinux.org/packages/imsprog)
 
 ## Revision history
@@ -347,6 +352,7 @@ sudo apt update
 - Ver. 1.1.12 - Minor changes to UDEV USB rules.
 - Ver. 1.2.1 - The path to the chip database file was changed from /etc/imsprog to /usr/share/imsprog . When updating and editing the chip database, they now work on a copy in the user's home folder (~/.local/share/imsprog). Now there is no need for root permissions to change and update the file. You can use the name of the .bin file as a command line parameter: IMSProg <File.bin>
 - Ver. 1.3.1 - Added support 25xx SPI EEPROM chips.
+- Ver. 1.3.2 - Bugfix: the hex editor plugin is not resized when the form is resized.  Added dynamic polling of the programmer status (connected / not connected).
 
 ## Project structure
 

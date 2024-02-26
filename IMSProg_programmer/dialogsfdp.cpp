@@ -387,3 +387,9 @@ void DialogSFDP::r1Enable()
     ui->lineEdit_sr17->setDisabled(false);
     ui->label_11->setDisabled(false);
 }
+
+void DialogSFDP::closeEvent(QCloseEvent* event)
+{
+    emit closeRequestHasArrived();
+    QWidget::closeEvent(event);
+}
