@@ -352,6 +352,7 @@ sudo apt update
 - Ver. 1.1.12 - Minor changes to UDEV USB rules.
 - Ver. 1.2.1 - The path to the chip database file was changed from /etc/imsprog to /usr/share/imsprog . When updating and editing the chip database, they now work on a copy in the user's home folder (~/.local/share/imsprog). Now there is no need for root permissions to change and update the file. You can use the name of the .bin file as a command line parameter: IMSProg <File.bin>
 - Ver. 1.3.1 - Added support 25xx SPI EEPROM chips.
+- Ver. 1.3.2 - Bugfix: the hex editor plugin is not resized when the form is resized.  Added dynamic polling of the programmer status (connected / not connected).
 
 ## Project structure
 
