@@ -98,7 +98,7 @@ private slots:
     void on_actionExport_to_Intel_HEX_triggered();
     void on_actionImport_from_Intel_HEX_triggered();
     void on_actionExtract_from_ASUS_CAP_triggered();
-
+    void resizeEvent(QResizeEvent* event);
 private:
     Ui::MainWindow *ui;
     QColor defaultTextColor;

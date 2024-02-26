@@ -1470,6 +1470,12 @@ void MainWindow::progInit()
      ui->comboBox_type->setCurrentIndex(0);
 }
 
+void MainWindow::resizeEvent(QResizeEvent* event)
+{
+   QMainWindow::resizeEvent(event);
+   // Your code here.
+   hexEdit->setGeometry(0,0,ui->frame->width(),ui->frame->height());
+}
 //*****************************************************
 //       HEX ULTLITY by Mikhail Medvedev
 //*****************************************************
