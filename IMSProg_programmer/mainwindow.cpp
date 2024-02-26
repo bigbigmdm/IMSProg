@@ -1473,7 +1473,6 @@ void MainWindow::progInit()
 void MainWindow::resizeEvent(QResizeEvent* event)
 {
    QMainWindow::resizeEvent(event);
-   // Your code here.
    hexEdit->setGeometry(0,0,ui->frame->width(),ui->frame->height());
 }
 //*****************************************************
