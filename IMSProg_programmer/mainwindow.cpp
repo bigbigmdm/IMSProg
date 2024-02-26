@@ -1247,6 +1247,7 @@ void MainWindow::doNotDisturb()
    ui->actionSave_Part->setDisabled(true);
    ui->actionExport_to_Intel_HEX->setDisabled(true);
    ui->actionImport_from_Intel_HEX->setDisabled(true);
+   ui->actionExtract_from_ASUS_CAP->setDisabled(true);
    ui->actionEdit_chips_Database->setDisabled(true);
    ui->actionExit->setDisabled(true);
    ui->actionRead->setDisabled(true);
@@ -1284,6 +1285,7 @@ void MainWindow::doNotDisturbCancel()
       ui->actionSave_Part->setDisabled(false);
       ui->actionExport_to_Intel_HEX->setDisabled(false);
       ui->actionImport_from_Intel_HEX->setDisabled(false);
+      ui->actionExtract_from_ASUS_CAP->setDisabled(false);
       ui->actionEdit_chips_Database->setDisabled(false);
       ui->actionExit->setDisabled(false);
       ui->actionRead->setDisabled(false);
@@ -1340,8 +1342,12 @@ void MainWindow::on_pushButton_4_clicked()
 
 void MainWindow::on_actionChip_info_triggered()
 {
+     timer->stop();
      DialogSFDP* sfdpDialog = new DialogSFDP();
+     connect(sfdpDialog, SIGNAL(closeRequestHasArrived()), this, SLOT(closeSFDP()));
      sfdpDialog->show();
+
+
 }
 
 void MainWindow::progInit()
@@ -1482,6 +1488,11 @@ void MainWindow::resizeEvent(QResizeEvent* event)
 {
    QMainWindow::resizeEvent(event);
    hexEdit->setGeometry(0,0,ui->frame->width(),ui->frame->height());
+}
+
+void MainWindow::closeSFDP()
+{
+   timer->start();
 }
 //*****************************************************
 //       HEX ULTLITY by Mikhail Medvedev

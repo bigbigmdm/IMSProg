@@ -64,6 +64,7 @@ public slots:
 
     void receiveAddr(QString);
     void receiveAddr2(QString);
+    void closeSFDP();
 
 private slots:
     void progInit();
