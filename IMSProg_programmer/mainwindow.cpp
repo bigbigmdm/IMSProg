@@ -38,6 +38,9 @@ MainWindow::MainWindow(QWidget *parent) :
  lastDirectory = QDir::homePath(); //"/home/";
  grnKeyStyle = "QPushButton{color:#fff;background-color: rgb(120, 183, 140);border-radius: 20px;border: 2px solid #094065;border-radius:8px;font-weight:600;}QPushButton::pressed{background-color: rgb(115, 210, 22);}";
  redKeyStyle = "QPushButton{color:#fff;background-color:#f66;border-radius: 20px;border: 2px solid #094065;border-radius:8px;font-weight:600;}";
+ timer = new QTimer();
+ connect(timer, SIGNAL(timeout()), this, SLOT(slotTimerAlarm()));
+ timer->start(2000);
 
  ui->actionStop->setDisabled(true);
  ui->statusBar->addPermanentWidget(ui->lStatus,0);
@@ -129,7 +132,6 @@ MainWindow::MainWindow(QWidget *parent) :
  hexEdit->setAddressFontColor(defaultTextColor);
  hexEdit->setHexFontColor(defaultTextColor);
  QStringList commandLineParams = QCoreApplication::arguments();
- qDebug() << commandLineParams;
  QString commandLineFileName ="";
  if (commandLineParams.count() > 1)
    {
@@ -220,7 +222,6 @@ void MainWindow::on_pushButton_clicked()
                  ch341a_spi_shutdown();
               return;
               }
-          //qDebug() << "res=" << res;
           // if res=-1 - error, stop
           if (statusCH341 != 0)
             {
@@ -276,12 +277,14 @@ void MainWindow::on_pushButton_clicked()
 
 void MainWindow::on_pushButton_2_clicked()
 {
+    timer->stop();
     //searching the connected chip in database
     statusCH341 = ch341a_spi_init();
     ch341StatusFlashing();
     if (statusCH341 != 0)
       {
         QMessageBox::about(this, tr("Error"), tr("Programmer CH341a is not connected!"));
+        timer->start();
         return;
       }
 
@@ -365,11 +368,11 @@ void MainWindow::on_pushButton_2_clicked()
     ui->pushButton_2->setStyleSheet(grnKeyStyle);
     ui->crcEdit->setText(getCRC32());
     ch341a_spi_shutdown();
+    timer->start();
 }
 
 void MainWindow::on_comboBox_size_currentIndexChanged(int index)
 {
-    //qDebug() <<"size="<< ui->comboBox_size->currentData().toInt() << " block_size=" << ui->comboBox_page->currentData().toInt();
     currentChipSize = ui->comboBox_size->currentData().toUInt();
     currentBlockSize = ui->comboBox_block->currentData().toUInt();
     currentPageSize = ui->comboBox_page->currentData().toUInt();
@@ -495,7 +498,6 @@ void MainWindow::on_actionErase_triggered()
             res =  s95_write_param(buf, curBlock * currentBlockSize, currentBlockSize, currentBlockSize, currentAlgorithm);
             qApp->processEvents();
             ui->progressBar->setValue( static_cast<int>(curBlock));
-            //qDebug() << "res=" << res;
             if (res <= 0)
               {
                 QMessageBox::about(this, tr("Error"), tr("Error erasing sector ") + QString::number(curBlock));
@@ -547,7 +549,6 @@ void MainWindow::on_actionErase_triggered()
             if (res==0) res = 1;
             qApp->processEvents();
             ui->progressBar->setValue( static_cast<int>(curBlock));
-            //qDebug() << "res=" << res;
             if (res <= 0)
               {
                 QMessageBox::about(this, tr("Error"), tr("Error erasing sector ") + QString::number(curBlock));
@@ -733,7 +734,6 @@ void MainWindow::on_actionWrite_triggered()
                        return;
                        }
          // if res=-1 - error, stop
-         //qDebug() << "res=" << res;
          if (statusCH341 != 0)
            {
              QMessageBox::about(this, tr("Error"), tr("Programmer CH341a is not connected!"));
@@ -1230,7 +1230,6 @@ void MainWindow::on_actionEdit_chips_Database_triggered()
     if (programExists)
     {
         QProcess::execute(programPath, QStringList());
-        qDebug() << programPath;
         progInit();
     }
     else
@@ -1274,6 +1273,7 @@ void MainWindow::doNotDisturb()
    ui->comboBox_addr4bit->setDisabled(true);
 
    hexEdit->blockSignals(true);
+   timer->stop();
 }
 void MainWindow::doNotDisturbCancel()
 {
@@ -1310,6 +1310,7 @@ void MainWindow::doNotDisturbCancel()
       ui->comboBox_addr4bit->setDisabled(false);
 
       hexEdit->blockSignals(false);
+      timer->start();
 }
 void MainWindow::on_actionStop_triggered()
 {
@@ -1468,6 +1469,13 @@ void MainWindow::progInit()
      ui->statusBar->showMessage("");
      currentChipType = 0;
      ui->comboBox_type->setCurrentIndex(0);
+}
+
+void MainWindow::slotTimerAlarm()
+{
+        statusCH341 = ch341a_spi_init();
+        ch341StatusFlashing();
+        ch341a_spi_shutdown();
 }
 
 void MainWindow::resizeEvent(QResizeEvent* event)
