@@ -324,6 +324,7 @@ sudo apt update
 - The `RPM package` by [ALT Linux](https://packages.altlinux.org/en/sisyphus/srpms/IMSProg/)
 - The `RPM package` by [ROSA Linux](https://mirror.rosalinux.ru/rosa/rosa2021.1/repository/x86_64/contrib/release/IMSProg-1.3.1-1-rosa2021.1.x86_64.rpm)
 - The `ARCH AUR repository` by [kjkent](https://github.com/kjkent) is [here](https://aur.archlinux.org/packages/imsprog)
+- The `openSUSE` package is [here](https://software.opensuse.org/package/IMSProg?search_term=imsprog)
 
 ## Revision history
 - Ver. 1.0.0 - 1.0.18 - Partially working versions.
