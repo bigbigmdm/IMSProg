@@ -444,7 +444,8 @@ offset	 Size   Value
                 - 25xxx SPI EEPROM  - 0x?1 - 16 bit address
                 - 25xxx SPI EEPROM  - 0x?2 - 24 bit address
                 - 25xxx SPI EEPROM  - 0x0? - fill erasing
-                - 25xxx SPI EEPROM  - 0x1? - erasing with use CHIP  FULL ERASE command
+                - 25xxx SPI EEPROM  - 0x1? - The third bit of the command is used for the high bit of the address
+                - 25xxx SPI EEPROM  - 0x2? - erasing with use CHIP  FULL ERASE command
 3C        2     Timing parameter:
 3D              3000/1000/500/300/200/100 - NOR FLASH, 4000/2000 - 24xxx, 100 - 93xxx
 3E        2     SPI NOR Flash 4bit address type:
