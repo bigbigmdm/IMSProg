@@ -440,8 +440,9 @@ offset	 Size   Value
                 - MicroWire (93xxx) - 0x?B - 11 address bit number
                 - 95xxx ST SPI EEPROM - 0x01 - 8 bit address
                 - 95xxx ST SPI EEPROM - 0x02 - 16 bit address
-                - 25xxx SPI EEPROM  - 0x?1 - 8 bit address
-                - 25xxx SPI EEPROM  - 0x?2 - 16 bit address
+                - 25xxx SPI EEPROM  - 0x?0 - 8 bit address
+                - 25xxx SPI EEPROM  - 0x?1 - 16 bit address
+                - 25xxx SPI EEPROM  - 0x?2 - 24 bit address
                 - 25xxx SPI EEPROM  - 0x0? - fill erasing
                 - 25xxx SPI EEPROM  - 0x1? - erasing with use CHIP  FULL ERASE command
 3C        2     Timing parameter:
