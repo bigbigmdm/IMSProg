@@ -56,16 +56,16 @@ These commands are included in the `build_all.sh` file.
 ## System software requirements
 
 For build are needed:
-- build-essential
+- g++ or clang
 - CMake
 - libusb 1.0
 - Qt5
-- pkg config
+- pkgconf or pkg-config
 - udev
 
 On Debian and derivatives:
 
-`sudo apt-get install cmake build-essential libusb-1.0-0-dev qtbase5-dev pkg-config`
+`sudo apt-get install cmake g++ libusb-1.0-0-dev qtbase5-dev pkgconf`
 
 On Debian >=13 and Ubuntu >=23.10:
 
