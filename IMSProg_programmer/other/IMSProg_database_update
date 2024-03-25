@@ -1,6 +1,8 @@
 #!/bin/bash
 if [ -f ~/.local/share/imsprog/IMSProg.Dat ] ; then
-zenity --question --text="The IMSProg.Dat file will be replaced with the new version. You may lose the changes made to it. Continue?" --ok-label="Yes" --cancel-label="No"
+zenity --question --text="The IMSProg.Dat file will be replaced with the new version. You may lose the changes made to it. Continue?" \
+--ok-label="Yes" --cancel-label="No" \
+--height=160 --width=320
 fi
 if [ $? = 0 ] ; then
 IMSPROG_DB_URL=https://antenna-dvb-t2.ru/dl_all/IMSProg.Dat
@@ -20,6 +22,7 @@ echo $oldrec "->" $newrec
 zenity --warning \
 --text="The number of chips in the database:\n\n$out_text" \
 --title="Database update" \
---icon-name='applications-electronics'
+--icon-name='applications-electronics' \
+--height=160 --width=320
 fi
 

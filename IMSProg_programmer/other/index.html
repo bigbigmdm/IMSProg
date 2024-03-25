@@ -162,9 +162,11 @@ When using <code>24xxx</code> or <code>93xxx</code> or <code>95xxx</code> or <co
 <ul>
 <li>ONSEMI</li>
 </ul>
-<p>CAT25C01, CAT25C02, CAT25C04, CAT25C08, CAT25C16, CAT25C32, CAT25C64, CAT25C128, CAT25C256, CAT25C512 ### SPI NOR Flash - SPANSION</p>
-<p>FL016AIF, S25FL016P, S25FL032P, FL064AIF, S25FL064P, S25FL256S, S25FL128P, S25FL129P, S25FL116K, S25FL132K, S25FL164K</p>
+<p>CAT25C01, CAT25C02, CAT25C04, CAT25C08, CAT25C16, CAT25C32, CAT25C64, CAT25C128, CAT25C256, CAT25C512
+<h3 id=spi-nor-flash>SPI NOR Flash</h3>
 <ul>
+<li> SPANSION</li>
+<p>FL016AIF, S25FL016P, S25FL032P, FL064AIF, S25FL064P, S25FL256S, S25FL128P, S25FL129P, S25FL116K, S25FL132K, S25FL164K</p>
 <li>XTX</li>
 </ul>
 <p>XT25F02E, XT25F04D, XT25F08B, XT25F16B, XT25F32F, XT25F64F, XT25F128F, XT25W02E, XT25W04D, XT25Q08D(1.8V), XT25Q16D(1.8V), XT25Q64D(1.8V), XT25F128D(1.8V)</p>
@@ -298,6 +300,8 @@ sudo apt update</code></pre>
 <li>Ver. 1.1.12 - Minor changes to UDEV USB rules.</li>
 <li>Ver. 1.2.1 - The path to the chip database file was changed from /etc/imsprog to /usr/share/imsprog . When updating and editing the chip database, they now work on a copy in the user’s home folder (~/.local/share/imsprog). Now there is no need for root permissions to change and update the file. You can use the name of the .bin file as a command line parameter: IMSProg &lt;File.bin&gt;</li>
 <li>Ver. 1.3.1 - Added support 25xx SPI EEPROM chips.</li>
+<li>Ver. 1.3.2 - Bugfix: the hex editor plugin is not resized when the form is resized.  Added dynamic polling of the programmer status (connected / not connected).</li>
+<li>Ver. 1.3.3 - Small refinements to the interface. Added chips to the database. Added status register form for 95xxx, 25xxx chips.</li>
 </ul>
 <h2 id=project-structure>Project structure</h2>
 <pre><code>IMSProg _files_                                             _folder_

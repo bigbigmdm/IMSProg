@@ -56,16 +56,16 @@ These commands are included in the `build_all.sh` file.
 ## System software requirements
 
 For build are needed:
-- build-essential
+- g++ or clang
 - CMake
 - libusb 1.0
 - Qt5
-- pkg config
+- pkgconf or pkg-config
 - udev
 
 On Debian and derivatives:
 
-`sudo apt-get install cmake build-essential libusb-1.0-0-dev qtbase5-dev pkg-config`
+`sudo apt-get install cmake g++ libusb-1.0-0-dev qtbase5-dev pkgconf`
 
 On Debian >=13 and Ubuntu >=23.10:
 
@@ -320,10 +320,11 @@ sudo apt update
     <img src="https://repology.org/badge/vertical-allrepos/imsprog.svg" alt="Packaging status" align="right">
 </a>
 
-- The `RPM package` by [Red Soft](https://redos.red-soft.ru/) can be downloaded [here](http://repo.red-soft.ru/redos/7.3/x86_64/updates/imsprog-1.1.7-1.el7.x86_64.rpm)
-- The `RPM package` by [alt linux](https://git.altlinux.org/tasks/340743/build/100/x86_64/rpms/IMSProg-1.3.1-alt1.x86_64.rpm)
+- The `RPM package` by [Red Soft](https://redos.red-soft.ru/) can be downloaded [here](http://repo.red-soft.ru/redos/7.3/x86_64/updates/imsprog-1.3.1-1.el7.x86_64.rpm)
+- The `RPM package` by [ALT Linux](https://packages.altlinux.org/en/sisyphus/srpms/IMSProg/)
 - The `RPM package` by [ROSA Linux](https://mirror.rosalinux.ru/rosa/rosa2021.1/repository/x86_64/contrib/release/IMSProg-1.3.1-1-rosa2021.1.x86_64.rpm)
 - The `ARCH AUR repository` by [kjkent](https://github.com/kjkent) is [here](https://aur.archlinux.org/packages/imsprog)
+- The `openSUSE` package is [here](https://software.opensuse.org/package/IMSProg?search_term=imsprog)
 
 ## Revision history
 - Ver. 1.0.0 - 1.0.18 - Partially working versions.
@@ -353,6 +354,7 @@ sudo apt update
 - Ver. 1.2.1 - The path to the chip database file was changed from /etc/imsprog to /usr/share/imsprog . When updating and editing the chip database, they now work on a copy in the user's home folder (~/.local/share/imsprog). Now there is no need for root permissions to change and update the file. You can use the name of the .bin file as a command line parameter: IMSProg <File.bin>
 - Ver. 1.3.1 - Added support 25xx SPI EEPROM chips.
 - Ver. 1.3.2 - Bugfix: the hex editor plugin is not resized when the form is resized.  Added dynamic polling of the programmer status (connected / not connected).
+- Ver. 1.3.3 - Small refinements to the interface. Added chips to the database. Added status register form for 95xxx, 25xxx chips.
 
 ## Project structure
 
@@ -439,10 +441,12 @@ offset	 Size   Value
                 - MicroWire (93xxx) - 0x?B - 11 address bit number
                 - 95xxx ST SPI EEPROM - 0x01 - 8 bit address
                 - 95xxx ST SPI EEPROM - 0x02 - 16 bit address
-                - 25xxx SPI EEPROM  - 0x?1 - 8 bit address
-                - 25xxx SPI EEPROM  - 0x?2 - 16 bit address
+                - 25xxx SPI EEPROM  - 0x?0 - 8 bit address
+                - 25xxx SPI EEPROM  - 0x?1 - 16 bit address
+                - 25xxx SPI EEPROM  - 0x?2 - 24 bit address
                 - 25xxx SPI EEPROM  - 0x0? - fill erasing
-                - 25xxx SPI EEPROM  - 0x1? - erasing with use CHIP  FULL ERASE command
+                - 25xxx SPI EEPROM  - 0x1? - The third bit of the command is used for the high bit of the address
+                - 25xxx SPI EEPROM  - 0x2? - erasing with use CHIP  FULL ERASE command
 3C        2     Timing parameter:
 3D              3000/1000/500/300/200/100 - NOR FLASH, 4000/2000 - 24xxx, 100 - 93xxx
 3E        2     SPI NOR Flash 4bit address type:

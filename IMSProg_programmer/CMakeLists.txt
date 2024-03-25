@@ -67,6 +67,7 @@ commands.cpp
 dialogsp.cpp
 dialogrp.cpp
 dialogsfdp.cpp
+dialogsr.cpp
 searchdialog.cpp
 dialoginfo.cpp
 bitbang_microwire.c
@@ -89,6 +90,7 @@ commands.h
 dialogsp.h
 dialogrp.h
 dialogsfdp.h
+dialogsr.h
 dialoginfo.h
 searchdialog.h
 bitbang_microwire.h
@@ -112,6 +114,7 @@ mainwindow.ui
 dialogsp.ui
 dialogrp.ui
 dialogsfdp.ui
+dialogsr.ui
 dialoginfo.ui
 searchdialog.ui
 dialogabout.ui

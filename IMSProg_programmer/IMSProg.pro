@@ -47,7 +47,8 @@ SOURCES += \
        timer.c \
        dialogabout.cpp \
        dialoginfo.cpp \
-       dialogsfdp.cpp
+       dialogsfdp.cpp \
+       dialogsr.cpp
 
 HEADERS += \
        mainwindow.h \
@@ -75,7 +76,8 @@ HEADERS += \
        types.h \
        dialogabout.h \
        dialoginfo.h \
-       dialogsfdp.h
+       dialogsfdp.h \
+       dialogsr.h
 
 FORMS += \
         mainwindow.ui \
@@ -84,7 +86,8 @@ FORMS += \
         searchdialog.ui \
         dialogabout.ui \
         dialoginfo.ui \
-        dialogsfdp.ui
+        dialogsfdp.ui \
+        dialogsr.ui
 
 TRANSLATIONS += language/chipProgrammer_ru_RU.ts \
          language/chipProgrammer_es_ES.ts \
