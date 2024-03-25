@@ -1168,15 +1168,13 @@ void MainWindow::on_comboBox_type_currentIndexChanged(int index)
      ui->comboBox_block->setCurrentIndex(0);
      ui->comboBox_size->setCurrentIndex(0);
      ui->comboBox_addr4bit->setCurrentIndex(0);
-     if (index > 0)
+     if ((index > 0) && (index < 3))
      {
          ui->pushButton_2->hide();
          ui->comboBox_block->hide();
          ui->comboBox_addr4bit->hide();
          ui->label_8->hide();
          ui->label_9->hide();
-         //QMenu::actionAt(on_actionDetect_triggered()).setDisabled;
-         //ui->menuBar->actionAt(QPoint(0,0))->setDisabled(true);
          ui->actionDetect->setDisabled(true);
          ui->actionChip_info->setDisabled(true);
 
@@ -1184,11 +1182,21 @@ void MainWindow::on_comboBox_type_currentIndexChanged(int index)
      if (index == 0)
      {
          ui->pushButton_2->show();
-         ui->comboBox_block->show();
          ui->comboBox_addr4bit->show();
          ui->label_8->show();
          ui->label_9->show();
+         ui->comboBox_block->show();
          ui->actionDetect->setEnabled(true);
+         ui->actionChip_info->setEnabled(true);
+     }
+     if (index > 2)
+     {
+         ui->pushButton_2->hide();
+         ui->comboBox_block->hide();
+         ui->comboBox_addr4bit->hide();
+         ui->label_8->hide();
+         ui->label_9->hide();
+         ui->actionDetect->setDisabled(true);
          ui->actionChip_info->setEnabled(true);
      }
 }
@@ -1296,7 +1304,7 @@ void MainWindow::doNotDisturbCancel()
       ui->actionFind_Replace->setDisabled(false);
       ui->actionUndo->setDisabled(false);
       ui->actionRedo->setDisabled(false);
-      if (currentChipType == 0) ui->actionChip_info->setDisabled(false);
+      if ((currentChipType == 0) || (currentChipType > 2)) ui->actionChip_info->setDisabled(false);
       ui->actionStop->setDisabled(true);
 
       ui->pushButton->blockSignals(false);
@@ -1344,10 +1352,19 @@ void MainWindow::on_pushButton_4_clicked()
 void MainWindow::on_actionChip_info_triggered()
 {
      timer->stop();
-     DialogSFDP* sfdpDialog = new DialogSFDP();
-     connect(sfdpDialog, SIGNAL(closeRequestHasArrived()), this, SLOT(closeSFDP()));
-     sfdpDialog->show();
-
+     if (currentChipType == 0)
+     {
+        DialogSFDP* sfdpDialog = new DialogSFDP();
+        connect(sfdpDialog, SIGNAL(closeRequestHasArrived()), this, SLOT(closeSFDP()));
+        sfdpDialog->show();
+     }
+     if (currentChipType > 2)
+     {
+         DialogSR* srDialog = new DialogSR();
+         connect(srDialog, SIGNAL(closeRequestHasArrived()), this, SLOT(closeSR()));
+         srDialog->show();
+         srDialog->setChipType(currentChipType);
+     }
 
 }
 
@@ -1492,6 +1509,11 @@ void MainWindow::resizeEvent(QResizeEvent* event)
 }
 
 void MainWindow::closeSFDP()
+{
+   timer->start();
+}
+
+void MainWindow::closeSR()
 {
    timer->start();
 }

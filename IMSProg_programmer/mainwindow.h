@@ -27,6 +27,7 @@
 #include "dialogabout.h"
 #include "dialoginfo.h"
 #include "dialogsfdp.h"
+#include "dialogsr.h"
 #include "searchdialog.h"
 extern "C" {
 #include "bitbang_microwire.h"
@@ -65,6 +66,7 @@ public slots:
     void receiveAddr(QString);
     void receiveAddr2(QString);
     void closeSFDP();
+    void closeSR();
 
 private slots:
     void progInit();
