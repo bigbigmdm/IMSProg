@@ -523,7 +523,7 @@ int s95_read_param(unsigned char *buf, unsigned long from, unsigned long len, un
         SPI_CONTROLLER_Chip_Select_Low();
 
         /* Set up the write data buffer. */
-        if ((from > 255) && (a8 > 0)) SPI_CONTROLLER_Write_One_Byte(0x11); //read command + a8 bit
+        if ((from > 255) && (a8 > 0)) SPI_CONTROLLER_Write_One_Byte(0x0b); //read command + a8 bit
         else SPI_CONTROLLER_Write_One_Byte(0x03); //read command
 
         if (algorythm == 2) SPI_CONTROLLER_Write_One_Byte((physical_read_addr >> 16) & 0xff);
@@ -585,7 +585,7 @@ int s95_write_param(unsigned char *buf, unsigned long to, unsigned long len, uns
 
         SPI_CONTROLLER_Chip_Select_Low();
         /* Set up the opcode in the write buffer. */
-        if ((to > 255) && (a8 > 0)) SPI_CONTROLLER_Write_One_Byte(0x10); //read command + a8 bit
+        if ((to > 255) && (a8 > 0)) SPI_CONTROLLER_Write_One_Byte(0x0a); //read command + a8 bit
         else SPI_CONTROLLER_Write_One_Byte(0x02); //read command
 
         if (algorythm == 2) SPI_CONTROLLER_Write_One_Byte((to >> 16) & 0xff);
