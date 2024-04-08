@@ -2,3 +2,6 @@
 
 %:
 	dh $@ --buildsystem=cmake
+
+override_dh_installchangelogs:
+	dh_installchangelogs ChangeLog
