@@ -6,7 +6,7 @@
 * [How to use](#how-to-use)
 * [List of supported chips](#list-of-supported-chips)
 * [Packages](#packages)
-* [Changelog](#revision-history)
+* [Changelog](ChangeLog)
 * [Project structure](#project-structure)
 * [Chip database format](#chip-database-format)
 * [Licensing](#Licensing)
@@ -325,36 +325,6 @@ sudo apt update
 - The `RPM package` by [ROSA Linux](https://mirror.rosalinux.ru/rosa/rosa2021.1/repository/x86_64/contrib/release/IMSProg-1.3.1-1-rosa2021.1.x86_64.rpm)
 - The `ARCH AUR repository` by [kjkent](https://github.com/kjkent) is [here](https://aur.archlinux.org/packages/imsprog)
 - The `openSUSE` package is [here](https://software.opensuse.org/package/IMSProg?search_term=imsprog)
-
-## Revision history
-- Ver. 1.0.0 - 1.0.18 - Partially working versions.
-- Ver. 1.0.19 - Fixed wrong level on SDA pin in I2C EEPROM. Removed old function "ch341a_spi_init" in file "ch341spi.c", replaced by "ch341a_init" (this is SNANDer bug).
-- Ver. 1.0.20 - Fixed incorrect byte sequence when reading/writing Microwire EEPROM in 16 bitmode (The SNANder program file "bitbang_microwire.c" bad functions - Write_EEPROM_3wire, Read_EEPROM_3wine replaced to Write_EEPROM_3wire_param, Write_READ_3wire_param).
-- Ver. 1.0.21 - Working, unstable version
-- Ver. 1.0.22 - Working, stable version. Added languages. Added font colour compatibility in light and dark interface theme.
-- Ver. 1.0.23 - Working, stable version. Removed unused C-functions and variable tables in code. Fix translations. Corrected cleaning of JEDEC ID line edit. Added chips to the database. Correction of database entries.
-- Ver. 1.0.24 - Added `STOP` key to the interface. Improved interface rendering. Fixes to translations.
-- Ver. 1.0.25 - Added `i` key to the interface. Added connection information form.
-- Ver. 1.0.26 - Added support for M95xxx chips. Removed diagnostic errors and changed "About" screen.
-- Ver. 1.0.27 - Added the SFDP and status register information form.
-- Ver. 1.0.28 - Bad display of qComboBoxes in UBUNTU, Manjaro linux fixed, display of monospaced font in Manjaro linux fixed. Changed the default file path to the home directory. The last file path is saved and new file operations are processed using the last path. Added new language translation.
-- Ver. 1.0.29 - Added: Reloading the chip database after the `chipEditor` is finishes. Added chips to the database.
-- Ver. 1.1.1  - Changing application folders according to Debian policy. Added new language translation.
-- Ver. 1.1.2  - Added function for writing the Status Registers. Bugfix - Chip_Editor startup error when running IMSProg from command line. Added chips to the database. Added new language translation.
-- Ver. 1.1.3 - Fixed an error when the file size exceeds the chip size. 
-- Ver. 1.1.4 - Removed debian packaging from upstream (moved to specific branch for official packages work).
-- Ver. 1.1.5 - Detect udev path with pkg-config.
-- Ver. 1.1.6 - SPI erase procedure fixed, deleted unused SPI procedures. Fixed program crash when reading/writing large size chips (25Q256/25Q512). Fixed error diagnostics. 
-- Ver. 1.1.7 - Fixed building errors.
-- Ver. 1.1.8 - Adding support the Intel HEX files format.
-- Ver. 1.1.9 - Increased speed of program operation at the moment of chip type change.
-- Ver. 1.1.10 - Fixed program crash on chip size mismatch with INTEL hex file size. 
-- Ver. 1.1.11 - Added support for ASUS CAP files.
-- Ver. 1.1.12 - Minor changes to UDEV USB rules.
-- Ver. 1.2.1 - The path to the chip database file was changed from /etc/imsprog to /usr/share/imsprog . When updating and editing the chip database, they now work on a copy in the user's home folder (~/.local/share/imsprog). Now there is no need for root permissions to change and update the file. You can use the name of the .bin file as a command line parameter: IMSProg <File.bin>
-- Ver. 1.3.1 - Added support 25xx SPI EEPROM chips.
-- Ver. 1.3.2 - Bugfix: the hex editor plugin is not resized when the form is resized.  Added dynamic polling of the programmer status (connected / not connected).
-- Ver. 1.3.3 - Small refinements to the interface. Added chips to the database. Added status register form for 95xxx, 25xxx chips.
 
 ## Project structure
 
