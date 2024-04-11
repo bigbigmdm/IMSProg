@@ -68,6 +68,7 @@ dialogsp.cpp
 dialogrp.cpp
 dialogsfdp.cpp
 dialogsr.cpp
+dialogsetaddr.cpp
 searchdialog.cpp
 dialoginfo.cpp
 bitbang_microwire.c
@@ -92,6 +93,7 @@ dialogrp.h
 dialogsfdp.h
 dialogsr.h
 dialoginfo.h
+dialogsetaddr.h
 searchdialog.h
 bitbang_microwire.h
 ch341a_gpio.h
@@ -115,6 +117,7 @@ dialogsp.ui
 dialogrp.ui
 dialogsfdp.ui
 dialogsr.ui
+dialogsetaddr.ui
 dialoginfo.ui
 searchdialog.ui
 dialogabout.ui

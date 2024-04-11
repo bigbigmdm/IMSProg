@@ -65,6 +65,7 @@ public slots:
 
     void receiveAddr(QString);
     void receiveAddr2(QString);
+    void receiveAddr3(qint64);
     void closeSFDP();
     void closeSR();
 
@@ -105,6 +106,8 @@ private slots:
     void on_actionExtract_from_ASUS_CAP_triggered();
     void resizeEvent(QResizeEvent* event);
     void slotTimerAlarm();
+    void on_actionGoto_address_triggered();
+
 private:
     Ui::MainWindow *ui;
     QColor defaultTextColor;
