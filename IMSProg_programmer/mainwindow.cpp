@@ -24,6 +24,7 @@
 #include "qhexedit.h"
 #include "dialogsp.h"
 #include "dialogrp.h"
+#include "dialogsetaddr.h"
 #include <stddef.h>
 #include <stdint.h>
 
@@ -1266,6 +1267,8 @@ void MainWindow::doNotDisturb()
    ui->actionFind_Replace->setDisabled(true);
    ui->actionUndo->setDisabled(true);
    ui->actionRedo->setDisabled(true);
+   ui->actionChecksum_calculate->setDisabled(true);
+   ui->actionGoto_address->setDisabled(true);
    ui->actionChip_info->setDisabled(true);
    ui->actionStop->setDisabled(false);
 
@@ -1304,6 +1307,8 @@ void MainWindow::doNotDisturbCancel()
       ui->actionFind_Replace->setDisabled(false);
       ui->actionUndo->setDisabled(false);
       ui->actionRedo->setDisabled(false);
+      ui->actionChecksum_calculate->setDisabled(true);
+      ui->actionGoto_address->setDisabled(true);
       if ((currentChipType == 0) || (currentChipType > 2)) ui->actionChip_info->setDisabled(false);
       ui->actionStop->setDisabled(true);
 
@@ -1517,6 +1522,23 @@ void MainWindow::closeSR()
 {
    timer->start();
 }
+
+//HExEditor --> goto address
+void MainWindow::on_actionGoto_address_triggered()
+{
+
+    DialogSetAddr* gotoAddrDialog = new DialogSetAddr();
+    gotoAddrDialog->show();
+    connect(gotoAddrDialog, SIGNAL(sendAddr3(qint64)), this, SLOT(receiveAddr3(qint64)));
+
+}
+
+void MainWindow::receiveAddr3(qint64 gotoAddr)
+{
+    hexEdit->setCursorPosition(gotoAddr * 2);
+    hexEdit->ensureVisible();
+}
+
 //*****************************************************
 //       HEX ULTLITY by Mikhail Medvedev
 //*****************************************************

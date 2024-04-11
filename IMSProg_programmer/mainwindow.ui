@@ -926,6 +926,7 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
     <addaction name="actionRedo"/>
     <addaction name="actionFind_Replace"/>
     <addaction name="actionChecksum_calculate"/>
+    <addaction name="actionGoto_address"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
@@ -1221,6 +1222,21 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
    </property>
    <property name="text">
     <string>Extract from ASUS CAP</string>
+   </property>
+  </action>
+  <action name="actionGoto_address">
+   <property name="icon">
+    <iconset resource="recource.qrc">
+     <normaloff>:/res/img/goto64.png</normaloff>:/res/img/goto64.png</iconset>
+   </property>
+   <property name="text">
+    <string>Goto address</string>
+   </property>
+   <property name="toolTip">
+    <string>Move the cursor to the entered address</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+G</string>
    </property>
   </action>
  </widget>

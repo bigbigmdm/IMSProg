@@ -17,8 +17,7 @@
 
 ![CH341A black](img/ch341_black150.png)  ![CH341A green](img/ch341_green150.png) 
 
-The IMSProg makes respect to [QHexEdit2](https://github.com/Simsys/qhexedit2) hex editor and [SNANDer programmer](https://github.com/McMCCRU/SNANDer).
-The chip database format is clone with EZP2019, EZP2020, EZP2023, Minpro I, XP866+ programmers. You can edit the database use the [EZP Chip data Editor](https://github.com/bigbigmdm/EZP2019-EZP2025_chip_data_editor)
+The IMSProg makes respect to [QHexEdit2](https://github.com/Simsys/qhexedit2) hex editor and [SNANDer programmer](https://github.com/McMCCRU/SNANDer). The format of the chip database is based on the format used in EZP2019, EZP2020, EZP2023, Minpro I, XP866+ programmers. Warning, format is not the same!
 
 IMSProg is a collection of tools:
 
@@ -144,7 +143,7 @@ If the SPI NOR FLASH chip is detected normally, but is not read (gives the messa
 ### Buffer (Hex editor) operations
 The hexadecimal chip editor (right side of the screen) is used to display and modify buffer data.
 
-It contains the following controls: ![Undo](img/undo.png) undo, ![Redo](img/redo64.png) redo, and the ![Search](img/hexsearch64.png) search/replace. The `[Ctrl+A]` key used to update the CRC24 checksum.
+It contains the following controls: ![Undo](img/undo.png) undo, ![Redo](img/redo64.png) redo, and the ![Search](img/hexsearch64.png) search/replace. The `[Ctrl+A]` key used to update the CRC24 checksum. The `[Ctrl+G]` key used to to move the cursor to the entered address.
 
 ## Chip database editor
 
