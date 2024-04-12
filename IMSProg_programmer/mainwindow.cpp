@@ -1307,8 +1307,8 @@ void MainWindow::doNotDisturbCancel()
       ui->actionFind_Replace->setDisabled(false);
       ui->actionUndo->setDisabled(false);
       ui->actionRedo->setDisabled(false);
-      ui->actionChecksum_calculate->setDisabled(true);
-      ui->actionGoto_address->setDisabled(true);
+      ui->actionChecksum_calculate->setDisabled(false);
+      ui->actionGoto_address->setDisabled(false);
       if ((currentChipType == 0) || (currentChipType > 2)) ui->actionChip_info->setDisabled(false);
       ui->actionStop->setDisabled(true);
 
