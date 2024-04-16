@@ -40,6 +40,8 @@ private slots:
     void on_pushButton_3_clicked();
     void r1Disable();
     void r1Enable();
+    void r2Disable();
+    void r2Enable();
 
 signals:
     void closeRequestHasArrived();
