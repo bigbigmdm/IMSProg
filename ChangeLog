@@ -1,3 +1,4 @@
+- Ver. 1.3.6 - Added a third status register to the SFDP form. Fix: after reading, the menu item go to address becomes inactive.
 - Ver. 1.3.5 - Added function to HEX-editor to move the cursor to the entered address.
 - Ver. 1.3.4 - Bugfix: wrong read/write data in last addresses of M95040, AT25040, 25AA040, CAT25C04 chips.
 - Ver. 1.3.3 - Small refinements to the interface. Added chips to the database. Added status register form for 95xxx, 25xxx chips.
