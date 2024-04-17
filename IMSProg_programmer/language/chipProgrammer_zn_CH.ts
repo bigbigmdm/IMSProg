@@ -137,37 +137,37 @@
         <translation>SFDP 支持：</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.ui" line="80"/>
+        <location filename="../dialogsfdp.ui" line="67"/>
         <source>Minimum VCC:</source>
         <translation>最低 VCC：</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.ui" line="100"/>
+        <location filename="../dialogsfdp.ui" line="87"/>
         <source>Maximum VCC:</source>
         <translation>最大 VCC：</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.ui" line="120"/>
+        <location filename="../dialogsfdp.ui" line="107"/>
         <source>Chip size:</source>
         <translation>芯片尺寸：</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.ui" line="143"/>
+        <location filename="../dialogsfdp.ui" line="127"/>
         <source>Block size:</source>
         <translation>区块大小：</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.ui" line="163"/>
+        <location filename="../dialogsfdp.ui" line="150"/>
         <source>Speeds:</source>
         <translation>速度：</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.ui" line="189"/>
+        <location filename="../dialogsfdp.ui" line="170"/>
         <source>OTP support:</source>
         <translation>支持 OTP：</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.ui" line="439"/>
+        <location filename="../dialogsfdp.ui" line="196"/>
         <source>Status Register 0</source>
         <translation>状态寄存器 0</translation>
     </message>
@@ -212,163 +212,202 @@
         <translation>WIP</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.ui" line="967"/>
+        <location filename="../dialogsfdp.ui" line="974"/>
         <source>SUS1</source>
         <translation>SUS1</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.ui" line="998"/>
+        <location filename="../dialogsfdp.ui" line="1005"/>
         <source>CMP</source>
         <translation>CMP</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.ui" line="1029"/>
+        <location filename="../dialogsfdp.ui" line="1036"/>
         <source>LB3</source>
         <translation>LB3</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.ui" line="1060"/>
+        <location filename="../dialogsfdp.ui" line="1067"/>
         <source>LB2</source>
         <translation>LB2</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.ui" line="1091"/>
+        <location filename="../dialogsfdp.ui" line="1098"/>
         <source>LB1</source>
         <translation>LB1</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.ui" line="1122"/>
+        <location filename="../dialogsfdp.ui" line="1129"/>
         <source>SUS2</source>
         <translation>SUS2</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.ui" line="1153"/>
+        <location filename="../dialogsfdp.ui" line="1160"/>
         <source>QE</source>
         <translation>QE</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.ui" line="1184"/>
+        <location filename="../dialogsfdp.ui" line="1191"/>
         <source>SPR1</source>
         <translation>SPR1</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.ui" line="1196"/>
+        <location filename="../dialogsfdp.ui" line="704"/>
         <source>Status Register 1</source>
         <translation>状态寄存器 1</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.ui" line="1279"/>
+        <location filename="../dialogsfdp.ui" line="1203"/>
+        <source>Status register 2</source>
+        <translation>状态寄存器 2</translation>
+    </message>
+    <message>
+        <location filename="../dialogsfdp.ui" line="1432"/>
         <source>JEDEC info:</source>
         <translation>JEDEC 信息：</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.ui" line="1303"/>
+        <location filename="../dialogsfdp.ui" line="1532"/>
         <source>Man. ID</source>
         <translation>制造标识：</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.ui" line="1325"/>
+        <location filename="../dialogsfdp.ui" line="1554"/>
         <source>Man. type</source>
         <translation>制造类型：</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.ui" line="1347"/>
+        <location filename="../dialogsfdp.ui" line="1576"/>
         <source>Capacity</source>
         <translation>尺寸：</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.ui" line="1379"/>
+        <location filename="../dialogsfdp.ui" line="1588"/>
         <source>Unique ID:</source>
         <translation>唯一 ID：</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.ui" line="1401"/>
+        <location filename="../dialogsfdp.ui" line="1630"/>
         <source>Read</source>
         <translation>读取</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.ui" line="1429"/>
+        <location filename="../dialogsfdp.ui" line="1658"/>
         <source>Write registers</source>
         <translation>写寄存器</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.ui" line="1507"/>
+        <location filename="../dialogsfdp.ui" line="1699"/>
+        <location filename="../dialogsfdp.ui" line="1780"/>
+        <location filename="../dialogsfdp.ui" line="1807"/>
+        <source>(R)</source>
+        <translation>(R)</translation>
+    </message>
+    <message>
+        <location filename="../dialogsfdp.ui" line="1726"/>
+        <source>DRV1</source>
+        <translation>DRV1</translation>
+    </message>
+    <message>
+        <location filename="../dialogsfdp.ui" line="1753"/>
+        <source>DRV0</source>
+        <translation>DRV0</translation>
+    </message>
+    <message>
+        <location filename="../dialogsfdp.ui" line="1834"/>
+        <source>WPS</source>
+        <translation>WPS</translation>
+    </message>
+    <message>
+        <location filename="../dialogsfdp.ui" line="1861"/>
+        <source>ADP</source>
+        <translation>ADP</translation>
+    </message>
+    <message>
+        <location filename="../dialogsfdp.ui" line="1888"/>
+        <source>ADS</source>
+        <translation>ADS</translation>
+    </message>
+    <message>
+        <location filename="../dialogsfdp.ui" line="1971"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p/&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p/&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.ui" line="1545"/>
+        <location filename="../dialogsfdp.ui" line="2009"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Legend:&lt;/p&gt;&lt;p&gt;** - Basic area&lt;br&gt;** - Extended area&lt;br&gt;** - Manufacture area &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;图例:&lt;/p&gt;&lt;p&gt;** - 基本区域&lt;br&gt;** - 扩展区&lt;br&gt;** - 制造区&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.ui" line="1590"/>
+        <location filename="../dialogsfdp.ui" line="2054"/>
         <source>Close</source>
         <translation>关闭</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.cpp" line="63"/>
-        <location filename="../dialogsfdp.cpp" line="83"/>
-        <location filename="../dialogsfdp.cpp" line="187"/>
-        <location filename="../dialogsfdp.cpp" line="206"/>
-        <location filename="../dialogsfdp.cpp" line="239"/>
-        <location filename="../dialogsfdp.cpp" line="254"/>
-        <location filename="../dialogsfdp.cpp" line="329"/>
-        <location filename="../dialogsfdp.cpp" line="331"/>
+        <location filename="../dialogsfdp.cpp" line="64"/>
+        <location filename="../dialogsfdp.cpp" line="84"/>
+        <location filename="../dialogsfdp.cpp" line="188"/>
+        <location filename="../dialogsfdp.cpp" line="208"/>
+        <location filename="../dialogsfdp.cpp" line="238"/>
+        <location filename="../dialogsfdp.cpp" line="271"/>
+        <location filename="../dialogsfdp.cpp" line="286"/>
+        <location filename="../dialogsfdp.cpp" line="381"/>
+        <location filename="../dialogsfdp.cpp" line="383"/>
         <source>Error</source>
         <translation>错误</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.cpp" line="83"/>
-        <location filename="../dialogsfdp.cpp" line="187"/>
-        <location filename="../dialogsfdp.cpp" line="206"/>
+        <location filename="../dialogsfdp.cpp" line="84"/>
+        <location filename="../dialogsfdp.cpp" line="188"/>
+        <location filename="../dialogsfdp.cpp" line="208"/>
+        <location filename="../dialogsfdp.cpp" line="238"/>
         <source>Error reading register!</source>
         <translation>错误读取寄存器！</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.cpp" line="151"/>
+        <location filename="../dialogsfdp.cpp" line="152"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Legend:&lt;/p&gt;&lt;p&gt;00 - Basic area&lt;br&gt;&lt;span style=&quot; background:#f77;&quot;&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;图例:&lt;/p&gt;&lt;p&gt;00 - 基本区域&lt;br&gt;&lt;span style=&quot; background:#f77;&quot;&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.cpp" line="151"/>
+        <location filename="../dialogsfdp.cpp" line="152"/>
         <source>&lt;/span&gt; - Extended area&lt;br&gt;&lt;span style=&quot; background:#7f7;&quot;&gt;</source>
         <translation>&lt;/span&gt; - 扩展区&lt;br&gt;&lt;span style=&quot; background:#7f7;&quot;&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.cpp" line="151"/>
+        <location filename="../dialogsfdp.cpp" line="152"/>
         <source>&lt;/span&gt; - Manufacture area &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;/span&gt; - 制造区 &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.cpp" line="153"/>
+        <location filename="../dialogsfdp.cpp" line="154"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt; Hex SFDP register data:
 </source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt; 十六进制 SFDP 寄存器数据:</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.cpp" line="154"/>
+        <location filename="../dialogsfdp.cpp" line="155"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Addr:&lt;br&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;地址：&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.cpp" line="331"/>
+        <location filename="../dialogsfdp.cpp" line="383"/>
         <source>Before writing the registers, please press the `Read` button!</source>
         <translation>在写入寄存器之前，请按`读取`按钮！</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.cpp" line="63"/>
+        <location filename="../dialogsfdp.cpp" line="64"/>
         <source>Error reading JEDEC ID!</source>
         <translation>读取 JEDEC ID 时出错！</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.cpp" line="239"/>
+        <location filename="../dialogsfdp.cpp" line="271"/>
         <source>Error reading unique ID!</source>
         <translation>读取唯一 ID 时出错！</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.cpp" line="254"/>
-        <location filename="../dialogsfdp.cpp" line="329"/>
+        <location filename="../dialogsfdp.cpp" line="286"/>
+        <location filename="../dialogsfdp.cpp" line="381"/>
         <source>Programmer CH341a is not connected!</source>
         <translation>编程器 CH341a 未连接！</translation>
     </message>
