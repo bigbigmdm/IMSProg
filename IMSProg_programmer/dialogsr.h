@@ -45,6 +45,7 @@ signals:
 private:
     Ui::DialogSR *ui;
     void setLineEditFilter();
+    bool regReaded;
 };
 
 #endif // DIALOGSR_H

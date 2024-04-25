@@ -25,6 +25,7 @@ DialogSR::DialogSR(QWidget *parent) :
 {
     ui->setupUi(this);
     setLineEditFilter();
+    regReaded = false;
 }
 
 DialogSR::~DialogSR()
@@ -62,6 +63,7 @@ void DialogSR::on_pushButton_read_clicked()
             ui->lineEdit_sr01->setText(QString::number(((buf[0] & 2) >> 1)));
             ui->lineEdit_sr00->setText(QString::number((buf[0] & 1)));
             ch341a_spi_shutdown();
+            regReaded = true;
        }
     else QMessageBox::about(this, tr("Error"), tr("Programmer CH341a is not connected!"));
 }
@@ -74,34 +76,39 @@ void DialogSR::on_pushButton_write_clicked()
     stCH341 = ch341a_spi_init();
     if (stCH341 == 0)
         {
-           if (QString::compare(ui->lineEdit_sr07->text(), "0", Qt::CaseInsensitive)) r0 = r0 + 128;
-           if (QString::compare(ui->lineEdit_sr06->text(), "0", Qt::CaseInsensitive)) r0 = r0 +  64;
-           if (QString::compare(ui->lineEdit_sr05->text(), "0", Qt::CaseInsensitive)) r0 = r0 +  32;
-           if (QString::compare(ui->lineEdit_sr04->text(), "0", Qt::CaseInsensitive)) r0 = r0 +  16;
-           if (QString::compare(ui->lineEdit_sr03->text(), "0", Qt::CaseInsensitive)) r0 = r0 +   8;
-           if (QString::compare(ui->lineEdit_sr02->text(), "0", Qt::CaseInsensitive)) r0 = r0 +   4;
-           if (QString::compare(ui->lineEdit_sr01->text(), "0", Qt::CaseInsensitive)) r0 = r0 +   2;
-           if (QString::compare(ui->lineEdit_sr00->text(), "0", Qt::CaseInsensitive)) r0 = r0 +   1;
-           //Writing status registers
-           SPI_CONTROLLER_Chip_Select_Low();
-           SPI_CONTROLLER_Write_One_Byte(0x06);
-           SPI_CONTROLLER_Chip_Select_High();
-           usleep(1);
+           if (regReaded)
+           {
+               if (QString::compare(ui->lineEdit_sr07->text(), "0", Qt::CaseInsensitive)) r0 = r0 + 128;
+               if (QString::compare(ui->lineEdit_sr06->text(), "0", Qt::CaseInsensitive)) r0 = r0 +  64;
+               if (QString::compare(ui->lineEdit_sr05->text(), "0", Qt::CaseInsensitive)) r0 = r0 +  32;
+               if (QString::compare(ui->lineEdit_sr04->text(), "0", Qt::CaseInsensitive)) r0 = r0 +  16;
+               if (QString::compare(ui->lineEdit_sr03->text(), "0", Qt::CaseInsensitive)) r0 = r0 +   8;
+               if (QString::compare(ui->lineEdit_sr02->text(), "0", Qt::CaseInsensitive)) r0 = r0 +   4;
+               if (QString::compare(ui->lineEdit_sr01->text(), "0", Qt::CaseInsensitive)) r0 = r0 +   2;
+               if (QString::compare(ui->lineEdit_sr00->text(), "0", Qt::CaseInsensitive)) r0 = r0 +   1;
+               //Writing status registers
+               SPI_CONTROLLER_Chip_Select_Low();
+               SPI_CONTROLLER_Write_One_Byte(0x06);
+               SPI_CONTROLLER_Chip_Select_High();
+               usleep(1);
 
-           SPI_CONTROLLER_Chip_Select_Low();
-           SPI_CONTROLLER_Write_One_Byte(0x01);
-           SPI_CONTROLLER_Write_One_Byte(r0);
-           SPI_CONTROLLER_Chip_Select_High();
-           usleep(1);
+               SPI_CONTROLLER_Chip_Select_Low();
+               SPI_CONTROLLER_Write_One_Byte(0x01);
+               SPI_CONTROLLER_Write_One_Byte(r0);
+               SPI_CONTROLLER_Chip_Select_High();
+               usleep(1);
 
-           SPI_CONTROLLER_Chip_Select_Low();
-           SPI_CONTROLLER_Write_One_Byte(0x04);
-           SPI_CONTROLLER_Chip_Select_High();
-           usleep(1);
+               SPI_CONTROLLER_Chip_Select_Low();
+               SPI_CONTROLLER_Write_One_Byte(0x04);
+               SPI_CONTROLLER_Chip_Select_High();
+               usleep(1);
 
-           ch341a_spi_shutdown();
-        }
+           }
+           else QMessageBox::about(this, tr("Error"), tr("Before writing the register, please press the `Read` button!"));
+         }
+
     else QMessageBox::about(this, tr("Error"), tr("Programmer CH341a is not connected!"));
+    ch341a_spi_shutdown();
 }
 
 void DialogSR::setLineEditFilter()

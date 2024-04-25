@@ -344,11 +344,11 @@
         <location filename="../dialogsfdp.cpp" line="84"/>
         <location filename="../dialogsfdp.cpp" line="188"/>
         <location filename="../dialogsfdp.cpp" line="208"/>
-        <location filename="../dialogsfdp.cpp" line="238"/>
-        <location filename="../dialogsfdp.cpp" line="271"/>
-        <location filename="../dialogsfdp.cpp" line="286"/>
-        <location filename="../dialogsfdp.cpp" line="381"/>
-        <location filename="../dialogsfdp.cpp" line="383"/>
+        <location filename="../dialogsfdp.cpp" line="234"/>
+        <location filename="../dialogsfdp.cpp" line="263"/>
+        <location filename="../dialogsfdp.cpp" line="278"/>
+        <location filename="../dialogsfdp.cpp" line="395"/>
+        <location filename="../dialogsfdp.cpp" line="397"/>
         <source>Error</source>
         <translation>Помилка</translation>
     </message>
@@ -356,7 +356,7 @@
         <location filename="../dialogsfdp.cpp" line="84"/>
         <location filename="../dialogsfdp.cpp" line="188"/>
         <location filename="../dialogsfdp.cpp" line="208"/>
-        <location filename="../dialogsfdp.cpp" line="238"/>
+        <location filename="../dialogsfdp.cpp" line="234"/>
         <source>Error reading register!</source>
         <translation>Помилка читання регістру!</translation>
     </message>
@@ -388,7 +388,7 @@
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Адр.&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.cpp" line="383"/>
+        <location filename="../dialogsfdp.cpp" line="397"/>
         <source>Before writing the registers, please press the `Read` button!</source>
         <translation>Перш ніж записувати реєстри, натисніть кнопку `Прочитати`!</translation>
     </message>
@@ -398,13 +398,13 @@
         <translation>Помилка читання JEDEC ID!</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.cpp" line="271"/>
+        <location filename="../dialogsfdp.cpp" line="263"/>
         <source>Error reading unique ID!</source>
         <translation>Помилка читання ID мікросхеми!</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.cpp" line="286"/>
-        <location filename="../dialogsfdp.cpp" line="381"/>
+        <location filename="../dialogsfdp.cpp" line="278"/>
+        <location filename="../dialogsfdp.cpp" line="395"/>
         <source>Programmer CH341a is not connected!</source>
         <translation>Програматор CH341a не підключено!</translation>
     </message>
@@ -492,22 +492,28 @@
         <translation>Записати</translation>
     </message>
     <message>
-        <location filename="../dialogsr.cpp" line="53"/>
-        <location filename="../dialogsr.cpp" line="66"/>
-        <location filename="../dialogsr.cpp" line="104"/>
+        <location filename="../dialogsr.cpp" line="54"/>
+        <location filename="../dialogsr.cpp" line="68"/>
+        <location filename="../dialogsr.cpp" line="107"/>
+        <location filename="../dialogsr.cpp" line="110"/>
         <source>Error</source>
         <translation>Помилка</translation>
     </message>
     <message>
-        <location filename="../dialogsr.cpp" line="53"/>
+        <location filename="../dialogsr.cpp" line="54"/>
         <source>Error reading register!</source>
         <translation>Помилка читання регістру!</translation>
     </message>
     <message>
-        <location filename="../dialogsr.cpp" line="66"/>
-        <location filename="../dialogsr.cpp" line="104"/>
+        <location filename="../dialogsr.cpp" line="68"/>
+        <location filename="../dialogsr.cpp" line="110"/>
         <source>Programmer CH341a is not connected!</source>
         <translation>Програматор CH341a не підключено!</translation>
+    </message>
+    <message>
+        <location filename="../dialogsr.cpp" line="107"/>
+        <source>Before writing the register, please press the `Read` button!</source>
+        <translation>Перш ніж записувати реєстр, натисніть кнопку `Прочитати`!</translation>
     </message>
 </context>
 <context>
