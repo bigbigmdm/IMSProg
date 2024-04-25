@@ -55,7 +55,7 @@
     <message>
         <location filename="../dialogabout.ui" line="48"/>
         <source>OR</source>
-        <translation>O</translation>
+        <translation>OPPURE</translation>
     </message>
     <message>
         <location filename="../dialogabout.ui" line="99"/>
@@ -154,7 +154,7 @@
     <message>
         <location filename="../dialogsfdp.ui" line="127"/>
         <source>Block size:</source>
-        <translation>Dimensione del blocco:</translation>
+        <translation>Dim. blocco:</translation>
     </message>
     <message>
         <location filename="../dialogsfdp.ui" line="150"/>
@@ -264,7 +264,7 @@
     <message>
         <location filename="../dialogsfdp.ui" line="1432"/>
         <source>JEDEC info:</source>
-        <translation>Informazioni JEDEC:</translation>
+        <translation>Info JEDEC:</translation>
     </message>
     <message>
         <location filename="../dialogsfdp.ui" line="1532"/>
@@ -598,12 +598,12 @@
     <message>
         <location filename="../mainwindow.ui" line="247"/>
         <source>Page size</source>
-        <translation>Dimensione della pagina</translation>
+        <translation>Dim. pagina</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="285"/>
         <source>Block size</source>
-        <translation>Dimensione del blocco</translation>
+        <translation>Dim. blocco</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="323"/>
@@ -743,7 +743,7 @@
     <message>
         <location filename="../mainwindow.ui" line="1093"/>
         <source>Redo</source>
-        <translation>Rifai</translation>
+        <translation>Ripristina</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1096"/>
