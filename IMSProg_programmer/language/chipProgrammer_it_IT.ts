@@ -144,7 +144,7 @@
     <message>
         <location filename="../dialogsfdp.ui" line="87"/>
         <source>Maximum VCC:</source>
-        <translation>VCC mssima:</translation>
+        <translation>VCC massima:</translation>
     </message>
     <message>
         <location filename="../dialogsfdp.ui" line="107"/>
@@ -269,12 +269,12 @@
     <message>
         <location filename="../dialogsfdp.ui" line="1532"/>
         <source>Man. ID</source>
-        <translation>ID del fabbricante</translation>
+        <translation>ID fabbr.</translation>
     </message>
     <message>
         <location filename="../dialogsfdp.ui" line="1554"/>
         <source>Man. type</source>
-        <translation>Tipo di fabbricante</translation>
+        <translation>Tipo fabbr.</translation>
     </message>
     <message>
         <location filename="../dialogsfdp.ui" line="1576"/>
@@ -294,7 +294,7 @@
     <message>
         <location filename="../dialogsfdp.ui" line="1658"/>
         <source>Write registers</source>
-        <translation>Scrivi i registri</translation>
+        <translation>Scrivi registri</translation>
     </message>
     <message>
         <location filename="../dialogsfdp.ui" line="1699"/>
@@ -988,7 +988,7 @@
         <location filename="../mainwindow.cpp" line="959"/>
         <location filename="../mainwindow.cpp" line="1014"/>
         <source>Programmer CH341a is not connected!</source>
-        <translation>Il programatore CH341a non è collegato!</translation>
+        <translation>Il programatore CH341a non è connesso!</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="235"/>
