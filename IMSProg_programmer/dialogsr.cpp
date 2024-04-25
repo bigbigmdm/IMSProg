@@ -70,7 +70,7 @@ void DialogSR::on_pushButton_read_clicked()
 
 void DialogSR::on_pushButton_write_clicked()
 {
-    //READING STATUS REGISTER
+    //WRITING STATUS REGISTER
     uint8_t r0 = 0;
     int stCH341 = 0;
     stCH341 = ch341a_spi_init();
