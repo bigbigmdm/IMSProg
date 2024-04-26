@@ -445,6 +445,9 @@
        <property name="spacing">
         <number>2</number>
        </property>
+       <property name="sizeConstraint">
+        <enum>QLayout::SetMaximumSize</enum>
+       </property>
        <property name="topMargin">
         <number>0</number>
        </property>
@@ -943,6 +946,9 @@
       <layout class="QHBoxLayout" name="horizontalLayout_6">
        <property name="spacing">
         <number>2</number>
+       </property>
+       <property name="sizeConstraint">
+        <enum>QLayout::SetMaximumSize</enum>
        </property>
        <property name="topMargin">
         <number>0</number>
@@ -1664,6 +1670,9 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
        <property name="spacing">
         <number>2</number>
        </property>
+       <property name="sizeConstraint">
+        <enum>QLayout::SetMaximumSize</enum>
+       </property>
        <property name="leftMargin">
         <number>0</number>
        </property>
@@ -1693,6 +1702,9 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
          <property name="font">
           <font>
            <family>Ubuntu Mono</family>
+           <pointsize>10</pointsize>
+           <weight>50</weight>
+           <bold>false</bold>
           </font>
          </property>
          <property name="text">
@@ -1720,6 +1732,7 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
          <property name="font">
           <font>
            <family>Ubuntu Mono</family>
+           <pointsize>10</pointsize>
           </font>
          </property>
          <property name="text">
@@ -1747,6 +1760,7 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
          <property name="font">
           <font>
            <family>Ubuntu Mono</family>
+           <pointsize>10</pointsize>
           </font>
          </property>
          <property name="text">
@@ -1774,6 +1788,7 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
          <property name="font">
           <font>
            <family>Ubuntu Mono</family>
+           <pointsize>10</pointsize>
           </font>
          </property>
          <property name="text">
@@ -1801,6 +1816,7 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
          <property name="font">
           <font>
            <family>Ubuntu Mono</family>
+           <pointsize>10</pointsize>
           </font>
          </property>
          <property name="text">
@@ -1828,6 +1844,7 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
          <property name="font">
           <font>
            <family>Ubuntu Mono</family>
+           <pointsize>10</pointsize>
           </font>
          </property>
          <property name="text">
@@ -1855,6 +1872,7 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
          <property name="font">
           <font>
            <family>Ubuntu Mono</family>
+           <pointsize>10</pointsize>
           </font>
          </property>
          <property name="text">
@@ -1882,6 +1900,7 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
          <property name="font">
           <font>
            <family>Ubuntu Mono</family>
+           <pointsize>10</pointsize>
           </font>
          </property>
          <property name="text">
