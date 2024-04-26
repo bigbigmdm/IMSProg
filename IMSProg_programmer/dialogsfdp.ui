@@ -225,12 +225,6 @@
            <height>0</height>
           </size>
          </property>
-         <property name="maximumSize">
-          <size>
-           <width>16777215</width>
-           <height>16777215</height>
-          </size>
-         </property>
          <property name="font">
           <font>
            <weight>75</weight>
@@ -251,12 +245,6 @@
           <size>
            <width>28</width>
            <height>0</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>16777215</width>
-           <height>16777215</height>
           </size>
          </property>
          <property name="font">
@@ -281,12 +269,6 @@
            <height>0</height>
           </size>
          </property>
-         <property name="maximumSize">
-          <size>
-           <width>16777215</width>
-           <height>16777215</height>
-          </size>
-         </property>
          <property name="font">
           <font>
            <weight>75</weight>
@@ -307,12 +289,6 @@
           <size>
            <width>28</width>
            <height>0</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>16777215</width>
-           <height>16777215</height>
           </size>
          </property>
          <property name="font">
@@ -337,12 +313,6 @@
            <height>0</height>
           </size>
          </property>
-         <property name="maximumSize">
-          <size>
-           <width>16777215</width>
-           <height>16777215</height>
-          </size>
-         </property>
          <property name="font">
           <font>
            <weight>75</weight>
@@ -363,12 +333,6 @@
           <size>
            <width>28</width>
            <height>0</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>16777215</width>
-           <height>16777215</height>
           </size>
          </property>
          <property name="font">
@@ -393,12 +357,6 @@
            <height>0</height>
           </size>
          </property>
-         <property name="maximumSize">
-          <size>
-           <width>16777215</width>
-           <height>16777215</height>
-          </size>
-         </property>
          <property name="font">
           <font>
            <weight>75</weight>
@@ -419,12 +377,6 @@
           <size>
            <width>28</width>
            <height>0</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>16777215</width>
-           <height>16777215</height>
           </size>
          </property>
          <property name="font">
@@ -462,12 +414,6 @@
            <height>0</height>
           </size>
          </property>
-         <property name="maximumSize">
-          <size>
-           <width>16777215</width>
-           <height>16777215</height>
-          </size>
-         </property>
          <property name="font">
           <font>
            <family>Ubuntu Mono</family>
@@ -491,12 +437,6 @@
           <size>
            <width>20</width>
            <height>0</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>16777215</width>
-           <height>16777215</height>
           </size>
          </property>
          <property name="font">
@@ -524,12 +464,6 @@
            <height>0</height>
           </size>
          </property>
-         <property name="maximumSize">
-          <size>
-           <width>16777215</width>
-           <height>16777215</height>
-          </size>
-         </property>
          <property name="font">
           <font>
            <family>Ubuntu Mono</family>
@@ -553,12 +487,6 @@
           <size>
            <width>20</width>
            <height>0</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>16777215</width>
-           <height>16777215</height>
           </size>
          </property>
          <property name="font">
@@ -586,12 +514,6 @@
            <height>0</height>
           </size>
          </property>
-         <property name="maximumSize">
-          <size>
-           <width>16777215</width>
-           <height>16777215</height>
-          </size>
-         </property>
          <property name="font">
           <font>
            <family>Ubuntu Mono</family>
@@ -615,12 +537,6 @@
           <size>
            <width>20</width>
            <height>0</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>16777215</width>
-           <height>16777215</height>
           </size>
          </property>
          <property name="font">
@@ -648,12 +564,6 @@
            <height>0</height>
           </size>
          </property>
-         <property name="maximumSize">
-          <size>
-           <width>16777215</width>
-           <height>16777215</height>
-          </size>
-         </property>
          <property name="font">
           <font>
            <family>Ubuntu Mono</family>
@@ -677,12 +587,6 @@
           <size>
            <width>20</width>
            <height>0</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>16777215</width>
-           <height>16777215</height>
           </size>
          </property>
          <property name="font">
@@ -730,12 +634,6 @@
            <height>0</height>
           </size>
          </property>
-         <property name="maximumSize">
-          <size>
-           <width>16777215</width>
-           <height>16777215</height>
-          </size>
-         </property>
          <property name="font">
           <font>
            <weight>75</weight>
@@ -756,12 +654,6 @@
           <size>
            <width>28</width>
            <height>0</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>16777215</width>
-           <height>16777215</height>
           </size>
          </property>
          <property name="font">
@@ -786,12 +678,6 @@
            <height>0</height>
           </size>
          </property>
-         <property name="maximumSize">
-          <size>
-           <width>16777215</width>
-           <height>16777215</height>
-          </size>
-         </property>
          <property name="font">
           <font>
            <weight>75</weight>
@@ -812,12 +698,6 @@
           <size>
            <width>28</width>
            <height>0</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>16777215</width>
-           <height>16777215</height>
           </size>
          </property>
          <property name="font">
@@ -842,12 +722,6 @@
            <height>0</height>
           </size>
          </property>
-         <property name="maximumSize">
-          <size>
-           <width>16777215</width>
-           <height>16777215</height>
-          </size>
-         </property>
          <property name="font">
           <font>
            <weight>75</weight>
@@ -868,12 +742,6 @@
           <size>
            <width>28</width>
            <height>0</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>16777215</width>
-           <height>16777215</height>
           </size>
          </property>
          <property name="font">
@@ -898,12 +766,6 @@
            <height>0</height>
           </size>
          </property>
-         <property name="maximumSize">
-          <size>
-           <width>16777215</width>
-           <height>16777215</height>
-          </size>
-         </property>
          <property name="font">
           <font>
            <weight>75</weight>
@@ -924,12 +786,6 @@
           <size>
            <width>28</width>
            <height>0</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>16777215</width>
-           <height>16777215</height>
           </size>
          </property>
          <property name="font">
@@ -967,12 +823,6 @@
            <height>0</height>
           </size>
          </property>
-         <property name="maximumSize">
-          <size>
-           <width>16777215</width>
-           <height>16777215</height>
-          </size>
-         </property>
          <property name="font">
           <font>
            <family>Ubuntu Mono</family>
@@ -996,12 +846,6 @@
           <size>
            <width>20</width>
            <height>0</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>16777215</width>
-           <height>16777215</height>
           </size>
          </property>
          <property name="font">
@@ -1029,12 +873,6 @@
            <height>0</height>
           </size>
          </property>
-         <property name="maximumSize">
-          <size>
-           <width>16777215</width>
-           <height>16777215</height>
-          </size>
-         </property>
          <property name="font">
           <font>
            <family>Ubuntu Mono</family>
@@ -1058,12 +896,6 @@
           <size>
            <width>20</width>
            <height>0</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>16777215</width>
-           <height>16777215</height>
           </size>
          </property>
          <property name="font">
@@ -1091,12 +923,6 @@
            <height>0</height>
           </size>
          </property>
-         <property name="maximumSize">
-          <size>
-           <width>16777215</width>
-           <height>16777215</height>
-          </size>
-         </property>
          <property name="font">
           <font>
            <family>Ubuntu Mono</family>
@@ -1120,12 +946,6 @@
           <size>
            <width>20</width>
            <height>0</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>16777215</width>
-           <height>16777215</height>
           </size>
          </property>
          <property name="font">
@@ -1153,12 +973,6 @@
            <height>0</height>
           </size>
          </property>
-         <property name="maximumSize">
-          <size>
-           <width>16777215</width>
-           <height>16777215</height>
-          </size>
-         </property>
          <property name="font">
           <font>
            <family>Ubuntu Mono</family>
@@ -1182,12 +996,6 @@
           <size>
            <width>20</width>
            <height>0</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>16777215</width>
-           <height>16777215</height>
           </size>
          </property>
          <property name="font">
@@ -1235,12 +1043,6 @@
            <height>0</height>
           </size>
          </property>
-         <property name="maximumSize">
-          <size>
-           <width>16777215</width>
-           <height>16777215</height>
-          </size>
-         </property>
          <property name="font">
           <font>
            <weight>75</weight>
@@ -1258,12 +1060,6 @@
           <size>
            <width>28</width>
            <height>0</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>16777215</width>
-           <height>16777215</height>
           </size>
          </property>
          <property name="sizeIncrement">
@@ -1291,12 +1087,6 @@
            <height>0</height>
           </size>
          </property>
-         <property name="maximumSize">
-          <size>
-           <width>16777215</width>
-           <height>16777215</height>
-          </size>
-         </property>
          <property name="font">
           <font>
            <weight>75</weight>
@@ -1314,12 +1104,6 @@
           <size>
            <width>28</width>
            <height>0</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>16777215</width>
-           <height>16777215</height>
           </size>
          </property>
          <property name="font">
@@ -1341,12 +1125,6 @@
            <height>0</height>
           </size>
          </property>
-         <property name="maximumSize">
-          <size>
-           <width>16777215</width>
-           <height>16777215</height>
-          </size>
-         </property>
          <property name="font">
           <font>
            <weight>75</weight>
@@ -1364,12 +1142,6 @@
           <size>
            <width>28</width>
            <height>0</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>16777215</width>
-           <height>16777215</height>
           </size>
          </property>
          <property name="font">
@@ -1391,12 +1163,6 @@
            <height>0</height>
           </size>
          </property>
-         <property name="maximumSize">
-          <size>
-           <width>16777215</width>
-           <height>16777215</height>
-          </size>
-         </property>
          <property name="font">
           <font>
            <weight>75</weight>
@@ -1414,12 +1180,6 @@
           <size>
            <width>28</width>
            <height>0</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>16777215</width>
-           <height>16777215</height>
           </size>
          </property>
          <property name="font">
@@ -1609,12 +1369,11 @@
        <property name="minimumSize">
         <size>
          <width>130</width>
-         <height>24</height>
+         <height>0</height>
         </size>
        </property>
        <property name="font">
         <font>
-         <pointsize>10</pointsize>
          <weight>75</weight>
          <bold>true</bold>
         </font>
@@ -1702,18 +1461,10 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
            <height>0</height>
           </size>
          </property>
-         <property name="maximumSize">
-          <size>
-           <width>16777215</width>
-           <height>16777215</height>
-          </size>
-         </property>
          <property name="font">
           <font>
            <family>Ubuntu Mono</family>
            <pointsize>10</pointsize>
-           <weight>50</weight>
-           <bold>false</bold>
           </font>
          </property>
          <property name="text">
@@ -1730,12 +1481,6 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
           <size>
            <width>20</width>
            <height>0</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>16777215</width>
-           <height>16777215</height>
           </size>
          </property>
          <property name="font">
@@ -1760,12 +1505,6 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
            <height>0</height>
           </size>
          </property>
-         <property name="maximumSize">
-          <size>
-           <width>16777215</width>
-           <height>16777215</height>
-          </size>
-         </property>
          <property name="font">
           <font>
            <family>Ubuntu Mono</family>
@@ -1786,12 +1525,6 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
           <size>
            <width>20</width>
            <height>0</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>16777215</width>
-           <height>16777215</height>
           </size>
          </property>
          <property name="font">
@@ -1816,12 +1549,6 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
            <height>0</height>
           </size>
          </property>
-         <property name="maximumSize">
-          <size>
-           <width>16777215</width>
-           <height>16777215</height>
-          </size>
-         </property>
          <property name="font">
           <font>
            <family>Ubuntu Mono</family>
@@ -1842,12 +1569,6 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
           <size>
            <width>20</width>
            <height>0</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>16777215</width>
-           <height>16777215</height>
           </size>
          </property>
          <property name="font">
@@ -1872,12 +1593,6 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
            <height>0</height>
           </size>
          </property>
-         <property name="maximumSize">
-          <size>
-           <width>16777215</width>
-           <height>16777215</height>
-          </size>
-         </property>
          <property name="font">
           <font>
            <family>Ubuntu Mono</family>
@@ -1898,12 +1613,6 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
           <size>
            <width>20</width>
            <height>0</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>16777215</width>
-           <height>16777215</height>
           </size>
          </property>
          <property name="font">
