@@ -400,10 +400,7 @@
        <property name="spacing">
         <number>2</number>
        </property>
-       <property name="sizeConstraint">
-        <enum>QLayout::SetMaximumSize</enum>
-       </property>
-       <property name="topMargin">
+       <property name="bottomMargin">
         <number>0</number>
        </property>
        <item>
@@ -808,9 +805,6 @@
       <layout class="QHBoxLayout" name="horizontalLayout_6">
        <property name="spacing">
         <number>2</number>
-       </property>
-       <property name="sizeConstraint">
-        <enum>QLayout::SetMaximumSize</enum>
        </property>
        <property name="topMargin">
         <number>0</number>
@@ -1283,8 +1277,8 @@
      </item>
      <item row="15" column="1">
       <layout class="QHBoxLayout" name="horizontalLayout_8">
-       <property name="sizeConstraint">
-        <enum>QLayout::SetMaximumSize</enum>
+       <property name="spacing">
+        <number>2</number>
        </property>
        <property name="bottomMargin">
         <number>0</number>
@@ -1437,18 +1431,6 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
       <layout class="QHBoxLayout" name="horizontalLayout_12">
        <property name="spacing">
         <number>2</number>
-       </property>
-       <property name="sizeConstraint">
-        <enum>QLayout::SetMaximumSize</enum>
-       </property>
-       <property name="leftMargin">
-        <number>0</number>
-       </property>
-       <property name="topMargin">
-        <number>0</number>
-       </property>
-       <property name="rightMargin">
-        <number>0</number>
        </property>
        <property name="bottomMargin">
         <number>0</number>
