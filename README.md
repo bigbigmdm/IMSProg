@@ -10,7 +10,7 @@
 * [Project structure](#project-structure)
 * [Chip database format](#chip-database-format)
 * [Licensing](#Licensing)
-
+* [Translations](#Translations)
 
 
 **IMSProg** - **I**2C, **M**icroWire and **S**PI EEPROM/Flash chip **Prog**rammer - is a program to read, write EEPROM chips use the `CH341A programmer` device.
@@ -445,3 +445,12 @@ Copyright (C) 2023 - 2024 Mikhail Medvedev.
 This project use [GPL-3+ License](https://www.gnu.org/licenses/gpl-3.0.html), some parts taken from project [SNANDer](https://github.com/McMCCRU/SNANDer/commits?author=McMCCRU) 
 are [GPL-2+](https://www.gnu.org/licenses/old-licenses/gpl-2.0.html) and from [QHexEdit2](https://github.com/Simsys/qhexedit2) is [LGPL-2.1](https://www.gnu.org/licenses/old-licenses/lgpl-2.1.html). 
 
+## Translations
+
+- Hungarian translation by [blackPantherOS](https://github.com/blackPantherOS)
+- Italian translation by Marino Pasquale and [Giovanni Scafora](https://github.com/giovanni69)
+- Brasil translation by [Alexandre C. Leite](https://github.com/alexandrecleite)
+- Ukrainian translation by [Sergey Golovko](https://github.com/cappelikan)
+
+Anyone can add or improve a translation by making a pull request.
+Translations files are located in: [IMSProg_programmer/language/](https://github.com/bigbigmdm/IMSProg/tree/main/IMSProg_programmer/language) and [IMSProg_editor/language/](https://github.com/bigbigmdm/IMSProg/tree/main/IMSProg_editor/language)
