@@ -20,6 +20,7 @@ License: GPL-3+
 Files: IMSProg_programmer/language/chipProgrammer_it_IT.ts
        IMSProg_editor/language/chipEditor_it_IT.ts
 Copyright: 2023 Marino Pasquale <percoco2000@gmail.com>
+           2024 Giovanni Scafora <https://github.com/giovanni69>
 License: GPL-3+
 
 Files: IMSProg_programmer/language/chipProgrammer_pt_BR.ts
