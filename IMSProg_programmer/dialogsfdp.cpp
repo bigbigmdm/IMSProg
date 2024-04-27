@@ -33,6 +33,21 @@ DialogSFDP::~DialogSFDP()
     delete ui;
 }
 
+void DialogSFDP::legendPrint(QString basic, QString extended, QString manufacture)
+{
+QString l0 ="", l1="", l2="", l3="", h0="", h1="", h2="", h3="", h4="";
+l0.append(QString(tr("Legend:")));
+l1.append(QString(tr(" - Basic area")));
+l2.append(QString(tr(" - Extended area")));
+l3.append(QString(tr(" - Manufacture area")));
+h0.append(QString("</span>"));
+h1.append(QString("<html><head/><body><p>" + l0 + "</p><p>"));
+h2.append(QString("<br><span style=\" background:#f77;\">"));
+h3.append(QString("<br><span style=\" background:#7f7;\">"));
+h4.append(QString("</p></body></html>"));
+ui->label_9->setText(h1 + basic + h0 + l1 + h2 + extended + h0 + l2 + h3 + manufacture + h0 + l3 + h4);
+}
+
 void DialogSFDP::on_pushButton_clicked()
 {
     int stCH341 = 0;
@@ -51,7 +66,7 @@ void DialogSFDP::on_pushButton_clicked()
     ui->lineEdit_size->setText("");
     ui->lineEdit_speeds->setText("");
     ui->lineEdit_otp->setText("");
-    ui->label_9->setText("<html><head/><body><p>Legend:<br>** - Basic area</p><p>** - Extended area<br>** - Manufacture area </p></body></html>");
+    legendPrint("**", "**", "**");
     if (stCH341 == 0)
     {
         //Reading JEDEC ID
@@ -95,6 +110,8 @@ void DialogSFDP::on_pushButton_clicked()
         {
            ui->lineEdit_sfdp->setText("No");
            sfdpSupport = false;
+           ui->label->setText("");
+           ui->label_10->setText("");
         }
         if (sfdpSupport)
         {
@@ -149,7 +166,7 @@ void DialogSFDP::on_pushButton_clicked()
            if (sfdpBuf[twoAreaAddress + 0x0f] == 0xbb) speeds = speeds + "/Dual";
            if (sfdpBuf[twoAreaAddress + 0x09] == 0xeb) speeds = speeds + "/Quad";
            ui->lineEdit_speeds->setText(speeds);
-           ui->label_9->setText(tr("<html><head/><body><p>Legend:</p><p>00 - Basic area<br><span style=\" background:#f77;\">") + bP(twoAreaAddress) + tr("</span> - Extended area<br><span style=\" background:#7f7;\">") + bP(manufAreaAddress) + tr("</span> - Manufacture area </p></body></html>"));
+           legendPrint("00", bP(twoAreaAddress), bP(manufAreaAddress));
            //HEXDUMP
            regData = tr("<html><head/><body><p> Hex SFDP register data:\n");
            addrTxt = tr("<html><head/><body><p>Addr:<br>");
@@ -164,8 +181,12 @@ void DialogSFDP::on_pushButton_clicked()
               if (i % 16 == 0) regData = regData +  "<br> ";
               if (i == 0x0c) regData = regData + "<span style=\" background:#f77;\">";
               if (i == 0x0d) regData = regData + "</span>";
-              if (i == 0x1c) regData = regData + "<span style=\" background:#7f7;\">";
-              if (i == 0x1d) regData = regData + "</span>";
+
+              if ((i == 0x14) && (jedecMan == sfdpBuf[0x10])) regData = regData + "<span style=\" background:#7f7;\">";
+              if ((i == 0x15) && (jedecMan == sfdpBuf[0x10])) regData = regData + "</span>";
+              if ((i == 0x1c) && (jedecMan != sfdpBuf[0x10])) regData = regData + "<span style=\" background:#7f7;\">";
+              if ((i == 0x1d) && (jedecMan != sfdpBuf[0x10])) regData = regData + "</span>";
+
               if (i == twoAreaAddress) regData = regData + "<span style=\" background:#f77;\">";
               if (i == twoAreaAddress + twoAreaLen) regData = regData + "</span>";
               if (i == manufAreaAddress) regData = regData + "<span style=\" background:#7f7;\">";
@@ -176,7 +197,6 @@ void DialogSFDP::on_pushButton_clicked()
            ui->label->setText(regData);
 
         }
-
         //READING STATUS REGISTER 0
         SPI_CONTROLLER_Chip_Select_Low();
         SPI_CONTROLLER_Write_One_Byte(0x05);
