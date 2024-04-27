@@ -202,6 +202,9 @@
        <property name="spacing">
         <number>2</number>
        </property>
+       <property name="sizeConstraint">
+        <enum>QLayout::SetMaximumSize</enum>
+       </property>
        <property name="leftMargin">
         <number>0</number>
        </property>
@@ -220,12 +223,6 @@
           <size>
            <width>28</width>
            <height>0</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>35</width>
-           <height>16777215</height>
           </size>
          </property>
          <property name="font">
@@ -250,12 +247,6 @@
            <height>0</height>
           </size>
          </property>
-         <property name="maximumSize">
-          <size>
-           <width>35</width>
-           <height>16777215</height>
-          </size>
-         </property>
          <property name="font">
           <font>
            <weight>75</weight>
@@ -276,12 +267,6 @@
           <size>
            <width>28</width>
            <height>0</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>35</width>
-           <height>16777215</height>
           </size>
          </property>
          <property name="font">
@@ -306,12 +291,6 @@
            <height>0</height>
           </size>
          </property>
-         <property name="maximumSize">
-          <size>
-           <width>35</width>
-           <height>16777215</height>
-          </size>
-         </property>
          <property name="font">
           <font>
            <weight>75</weight>
@@ -332,12 +311,6 @@
           <size>
            <width>28</width>
            <height>0</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>35</width>
-           <height>16777215</height>
           </size>
          </property>
          <property name="font">
@@ -362,12 +335,6 @@
            <height>0</height>
           </size>
          </property>
-         <property name="maximumSize">
-          <size>
-           <width>35</width>
-           <height>16777215</height>
-          </size>
-         </property>
          <property name="font">
           <font>
            <weight>75</weight>
@@ -388,12 +355,6 @@
           <size>
            <width>28</width>
            <height>0</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>35</width>
-           <height>16777215</height>
           </size>
          </property>
          <property name="font">
@@ -418,12 +379,6 @@
            <height>0</height>
           </size>
          </property>
-         <property name="maximumSize">
-          <size>
-           <width>35</width>
-           <height>16777215</height>
-          </size>
-         </property>
          <property name="font">
           <font>
            <weight>75</weight>
@@ -445,7 +400,7 @@
        <property name="spacing">
         <number>2</number>
        </property>
-       <property name="topMargin">
+       <property name="bottomMargin">
         <number>0</number>
        </property>
        <item>
@@ -454,12 +409,6 @@
           <size>
            <width>20</width>
            <height>0</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>40</width>
-           <height>16777215</height>
           </size>
          </property>
          <property name="font">
@@ -487,12 +436,6 @@
            <height>0</height>
           </size>
          </property>
-         <property name="maximumSize">
-          <size>
-           <width>40</width>
-           <height>16777215</height>
-          </size>
-         </property>
          <property name="font">
           <font>
            <family>Ubuntu Mono</family>
@@ -516,12 +459,6 @@
           <size>
            <width>20</width>
            <height>0</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>40</width>
-           <height>16777215</height>
           </size>
          </property>
          <property name="font">
@@ -549,12 +486,6 @@
            <height>0</height>
           </size>
          </property>
-         <property name="maximumSize">
-          <size>
-           <width>40</width>
-           <height>16777215</height>
-          </size>
-         </property>
          <property name="font">
           <font>
            <family>Ubuntu Mono</family>
@@ -578,12 +509,6 @@
           <size>
            <width>20</width>
            <height>0</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>40</width>
-           <height>16777215</height>
           </size>
          </property>
          <property name="font">
@@ -611,12 +536,6 @@
            <height>0</height>
           </size>
          </property>
-         <property name="maximumSize">
-          <size>
-           <width>40</width>
-           <height>16777215</height>
-          </size>
-         </property>
          <property name="font">
           <font>
            <family>Ubuntu Mono</family>
@@ -642,12 +561,6 @@
            <height>0</height>
           </size>
          </property>
-         <property name="maximumSize">
-          <size>
-           <width>40</width>
-           <height>16777215</height>
-          </size>
-         </property>
          <property name="font">
           <font>
            <family>Ubuntu Mono</family>
@@ -671,12 +584,6 @@
           <size>
            <width>20</width>
            <height>0</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>40</width>
-           <height>16777215</height>
           </size>
          </property>
          <property name="font">
@@ -710,6 +617,9 @@
        <property name="spacing">
         <number>2</number>
        </property>
+       <property name="sizeConstraint">
+        <enum>QLayout::SetMaximumSize</enum>
+       </property>
        <property name="topMargin">
         <number>0</number>
        </property>
@@ -719,12 +629,6 @@
           <size>
            <width>28</width>
            <height>0</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>35</width>
-           <height>16777215</height>
           </size>
          </property>
          <property name="font">
@@ -749,12 +653,6 @@
            <height>0</height>
           </size>
          </property>
-         <property name="maximumSize">
-          <size>
-           <width>35</width>
-           <height>16777215</height>
-          </size>
-         </property>
          <property name="font">
           <font>
            <weight>75</weight>
@@ -775,12 +673,6 @@
           <size>
            <width>28</width>
            <height>0</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>35</width>
-           <height>16777215</height>
           </size>
          </property>
          <property name="font">
@@ -805,12 +697,6 @@
            <height>0</height>
           </size>
          </property>
-         <property name="maximumSize">
-          <size>
-           <width>35</width>
-           <height>16777215</height>
-          </size>
-         </property>
          <property name="font">
           <font>
            <weight>75</weight>
@@ -831,12 +717,6 @@
           <size>
            <width>28</width>
            <height>0</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>35</width>
-           <height>16777215</height>
           </size>
          </property>
          <property name="font">
@@ -861,12 +741,6 @@
            <height>0</height>
           </size>
          </property>
-         <property name="maximumSize">
-          <size>
-           <width>35</width>
-           <height>16777215</height>
-          </size>
-         </property>
          <property name="font">
           <font>
            <weight>75</weight>
@@ -889,12 +763,6 @@
            <height>0</height>
           </size>
          </property>
-         <property name="maximumSize">
-          <size>
-           <width>35</width>
-           <height>16777215</height>
-          </size>
-         </property>
          <property name="font">
           <font>
            <weight>75</weight>
@@ -915,12 +783,6 @@
           <size>
            <width>28</width>
            <height>0</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>35</width>
-           <height>16777215</height>
           </size>
          </property>
          <property name="font">
@@ -955,12 +817,6 @@
            <height>0</height>
           </size>
          </property>
-         <property name="maximumSize">
-          <size>
-           <width>40</width>
-           <height>16777215</height>
-          </size>
-         </property>
          <property name="font">
           <font>
            <family>Ubuntu Mono</family>
@@ -984,12 +840,6 @@
           <size>
            <width>20</width>
            <height>0</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>40</width>
-           <height>16777215</height>
           </size>
          </property>
          <property name="font">
@@ -1017,12 +867,6 @@
            <height>0</height>
           </size>
          </property>
-         <property name="maximumSize">
-          <size>
-           <width>40</width>
-           <height>16777215</height>
-          </size>
-         </property>
          <property name="font">
           <font>
            <family>Ubuntu Mono</family>
@@ -1046,12 +890,6 @@
           <size>
            <width>20</width>
            <height>0</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>40</width>
-           <height>16777215</height>
           </size>
          </property>
          <property name="font">
@@ -1079,12 +917,6 @@
            <height>0</height>
           </size>
          </property>
-         <property name="maximumSize">
-          <size>
-           <width>40</width>
-           <height>16777215</height>
-          </size>
-         </property>
          <property name="font">
           <font>
            <family>Ubuntu Mono</family>
@@ -1108,12 +940,6 @@
           <size>
            <width>20</width>
            <height>0</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>40</width>
-           <height>16777215</height>
           </size>
          </property>
          <property name="font">
@@ -1141,12 +967,6 @@
            <height>0</height>
           </size>
          </property>
-         <property name="maximumSize">
-          <size>
-           <width>40</width>
-           <height>16777215</height>
-          </size>
-         </property>
          <property name="font">
           <font>
            <family>Ubuntu Mono</family>
@@ -1170,12 +990,6 @@
           <size>
            <width>20</width>
            <height>0</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>40</width>
-           <height>16777215</height>
           </size>
          </property>
          <property name="font">
@@ -1209,13 +1023,10 @@
        <property name="spacing">
         <number>2</number>
        </property>
-       <property name="leftMargin">
-        <number>0</number>
+       <property name="sizeConstraint">
+        <enum>QLayout::SetMaximumSize</enum>
        </property>
-       <property name="topMargin">
-        <number>0</number>
-       </property>
-       <property name="rightMargin">
+       <property name="bottomMargin">
         <number>0</number>
        </property>
        <item>
@@ -1224,12 +1035,6 @@
           <size>
            <width>28</width>
            <height>0</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>35</width>
-           <height>16777215</height>
           </size>
          </property>
          <property name="font">
@@ -1249,12 +1054,6 @@
           <size>
            <width>28</width>
            <height>0</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>35</width>
-           <height>16777215</height>
           </size>
          </property>
          <property name="sizeIncrement">
@@ -1282,12 +1081,6 @@
            <height>0</height>
           </size>
          </property>
-         <property name="maximumSize">
-          <size>
-           <width>35</width>
-           <height>16777215</height>
-          </size>
-         </property>
          <property name="font">
           <font>
            <weight>75</weight>
@@ -1305,12 +1098,6 @@
           <size>
            <width>28</width>
            <height>0</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>35</width>
-           <height>16777215</height>
           </size>
          </property>
          <property name="font">
@@ -1332,12 +1119,6 @@
            <height>0</height>
           </size>
          </property>
-         <property name="maximumSize">
-          <size>
-           <width>35</width>
-           <height>16777215</height>
-          </size>
-         </property>
          <property name="font">
           <font>
            <weight>75</weight>
@@ -1355,12 +1136,6 @@
           <size>
            <width>28</width>
            <height>0</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>35</width>
-           <height>16777215</height>
           </size>
          </property>
          <property name="font">
@@ -1382,12 +1157,6 @@
            <height>0</height>
           </size>
          </property>
-         <property name="maximumSize">
-          <size>
-           <width>35</width>
-           <height>16777215</height>
-          </size>
-         </property>
          <property name="font">
           <font>
            <weight>75</weight>
@@ -1405,12 +1174,6 @@
           <size>
            <width>28</width>
            <height>0</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>35</width>
-           <height>16777215</height>
           </size>
          </property>
          <property name="font">
@@ -1437,6 +1200,9 @@
       <layout class="QHBoxLayout" name="horizontalLayout_7">
        <property name="spacing">
         <number>2</number>
+       </property>
+       <property name="sizeConstraint">
+        <enum>QLayout::SetMaximumSize</enum>
        </property>
        <property name="bottomMargin">
         <number>0</number>
@@ -1511,6 +1277,9 @@
      </item>
      <item row="15" column="1">
       <layout class="QHBoxLayout" name="horizontalLayout_8">
+       <property name="spacing">
+        <number>2</number>
+       </property>
        <property name="bottomMargin">
         <number>0</number>
        </property>
@@ -1594,12 +1363,11 @@
        <property name="minimumSize">
         <size>
          <width>130</width>
-         <height>24</height>
+         <height>0</height>
         </size>
        </property>
        <property name="font">
         <font>
-         <pointsize>10</pointsize>
          <weight>75</weight>
          <bold>true</bold>
         </font>
@@ -1664,15 +1432,6 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
        <property name="spacing">
         <number>2</number>
        </property>
-       <property name="leftMargin">
-        <number>0</number>
-       </property>
-       <property name="topMargin">
-        <number>0</number>
-       </property>
-       <property name="rightMargin">
-        <number>0</number>
-       </property>
        <property name="bottomMargin">
         <number>0</number>
        </property>
@@ -1684,15 +1443,10 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
            <height>0</height>
           </size>
          </property>
-         <property name="maximumSize">
-          <size>
-           <width>40</width>
-           <height>16777215</height>
-          </size>
-         </property>
          <property name="font">
           <font>
            <family>Ubuntu Mono</family>
+           <pointsize>10</pointsize>
           </font>
          </property>
          <property name="text">
@@ -1711,15 +1465,10 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
            <height>0</height>
           </size>
          </property>
-         <property name="maximumSize">
-          <size>
-           <width>40</width>
-           <height>16777215</height>
-          </size>
-         </property>
          <property name="font">
           <font>
            <family>Ubuntu Mono</family>
+           <pointsize>10</pointsize>
           </font>
          </property>
          <property name="text">
@@ -1738,15 +1487,10 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
            <height>0</height>
           </size>
          </property>
-         <property name="maximumSize">
-          <size>
-           <width>40</width>
-           <height>16777215</height>
-          </size>
-         </property>
          <property name="font">
           <font>
            <family>Ubuntu Mono</family>
+           <pointsize>10</pointsize>
           </font>
          </property>
          <property name="text">
@@ -1765,15 +1509,10 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
            <height>0</height>
           </size>
          </property>
-         <property name="maximumSize">
-          <size>
-           <width>40</width>
-           <height>16777215</height>
-          </size>
-         </property>
          <property name="font">
           <font>
            <family>Ubuntu Mono</family>
+           <pointsize>10</pointsize>
           </font>
          </property>
          <property name="text">
@@ -1792,15 +1531,10 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
            <height>0</height>
           </size>
          </property>
-         <property name="maximumSize">
-          <size>
-           <width>40</width>
-           <height>16777215</height>
-          </size>
-         </property>
          <property name="font">
           <font>
            <family>Ubuntu Mono</family>
+           <pointsize>10</pointsize>
           </font>
          </property>
          <property name="text">
@@ -1819,15 +1553,10 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
            <height>0</height>
           </size>
          </property>
-         <property name="maximumSize">
-          <size>
-           <width>40</width>
-           <height>16777215</height>
-          </size>
-         </property>
          <property name="font">
           <font>
            <family>Ubuntu Mono</family>
+           <pointsize>10</pointsize>
           </font>
          </property>
          <property name="text">
@@ -1846,15 +1575,10 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
            <height>0</height>
           </size>
          </property>
-         <property name="maximumSize">
-          <size>
-           <width>40</width>
-           <height>16777215</height>
-          </size>
-         </property>
          <property name="font">
           <font>
            <family>Ubuntu Mono</family>
+           <pointsize>10</pointsize>
           </font>
          </property>
          <property name="text">
@@ -1873,15 +1597,10 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
            <height>0</height>
           </size>
          </property>
-         <property name="maximumSize">
-          <size>
-           <width>40</width>
-           <height>16777215</height>
-          </size>
-         </property>
          <property name="font">
           <font>
            <family>Ubuntu Mono</family>
+           <pointsize>10</pointsize>
           </font>
          </property>
          <property name="text">
@@ -1915,6 +1634,9 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
      </property>
      <item>
       <layout class="QHBoxLayout" name="horizontalLayout_2">
+       <property name="sizeConstraint">
+        <enum>QLayout::SetMaximumSize</enum>
+       </property>
        <item>
         <widget class="QLabel" name="label_10">
          <property name="minimumSize">

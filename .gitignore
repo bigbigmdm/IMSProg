@@ -187,6 +187,9 @@ CMakeLists.txt.user*
 .history
 .ionide
 
+### Ghostwriter Markdown editor
+.backup
+
 # End of https://www.toptal.com/developers/gitignore/api/visualstudiocode,qt,qtcreator,c++,c,cmake
 
 # Prevent build versioning

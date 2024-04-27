@@ -6,17 +6,17 @@
     <message>
         <location filename="../dialogabout.ui" line="14"/>
         <source>About IMSProg</source>
-        <translation>About IMSProg</translation>
+        <translation>Informazioni su IMSProg</translation>
     </message>
     <message>
         <location filename="../dialogabout.ui" line="26"/>
         <source>IMSProg - free software I2C, SPI and MicroWire EEPROM/Flash chip programmer for CH341a devices. IMSProg supports 24Cxx, 25xx, 93Cxx, and M95xx series chips.</source>
-        <translation>IMSProg - Software libero per EEPROM/Flash chip I2C, SPI e MicroWire per programmatore CH341a. IMSProg supporta chips della serie 24Cxx, 25xx, 93Cxx e M95xx.</translation>
+        <translation>IMSProg è un software libero per EEPROM/Flash chip I2C, SPI e MicroWire per il programmatore CH341a. IMSProg supporta i chip della serie 24Cxx, 25xx, 93Cxx e M95xx.</translation>
     </message>
     <message>
         <location filename="../dialogabout.ui" line="70"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;In this program &lt;a href=&quot;https://github.com/Simsys/qhexedit2/&quot;&gt;QhexEditor2&lt;/a&gt; widget and modified programmer &lt;a href=&quot;https://github.com/McMCCRU/SNANDer&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;SNANDer&lt;/span&gt;&lt;/a&gt; were used.&lt;/p&gt;&lt;p&gt;The page on GitHub is &lt;a href=&quot;https://github.com/bigbigmdm/IMSProg&quot;&gt;here&lt;/a&gt;, the support page is &lt;a href=&quot;https://antenna-dvb-t2.ru/IMSProg.php&quot;&gt;here&lt;/a&gt;. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;In questo programma si usa il widget &lt;a href=&quot;https://github.com/Simsys/qhexedit2/&quot;&gt;QhexEditor2&lt;/a&gt; ed il software &lt;a href=&quot;https://github.com/McMCCRU/SNANDer&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;SNANDer&lt;/span&gt;&lt;/a&gt; modificato.&lt;/p&gt;&lt;p&gt;La pagina GitHub e&apos; &lt;a href=&quot;https://github.com/bigbigmdm/IMSProg&quot;&gt;aquí&lt;/a&gt;, la pagina di supporto e&apos; &lt;a href=&quot;https://antenna-dvb-t2.ru/IMSProg.php&quot;&gt;aquí&lt;/a&gt;. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;In questo programma si usa il widget &lt;a href=&quot;https://github.com/Simsys/qhexedit2/&quot;&gt;QhexEditor2&lt;/a&gt; ed il software &lt;a href=&quot;https://github.com/McMCCRU/SNANDer&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;SNANDer&lt;/span&gt;&lt;/a&gt; modificato.&lt;/p&gt;&lt;p&gt;La pagina GitHub è &lt;a href=&quot;https://github.com/bigbigmdm/IMSProg&quot;&gt;qui&lt;/a&gt;, la pagina di supporto è &lt;a href=&quot;https://antenna-dvb-t2.ru/IMSProg.php&quot;&gt;qui&lt;/a&gt;. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../dialogabout.ui" line="120"/>
@@ -55,12 +55,12 @@
     <message>
         <location filename="../dialogabout.ui" line="48"/>
         <source>OR</source>
-        <translation>o</translation>
+        <translation>OPPURE</translation>
     </message>
     <message>
         <location filename="../dialogabout.ui" line="99"/>
         <source>Written by 2023 Mikhail Medvedev</source>
-        <translation>Scritto nel 2023 da Mikhail Medvedev</translation>
+        <translation>Scritto da Mikhail Medvedev nel 2023</translation>
     </message>
     <message>
         <source>Version: 1.0.28</source>
@@ -111,17 +111,17 @@
     <message>
         <location filename="../dialogrp.ui" line="33"/>
         <source>All values in HEX format!</source>
-        <translation>Tutti i valori in formato HEX!</translation>
+        <translation>Tutti i valori devono essere in formato HEX!</translation>
     </message>
     <message>
         <location filename="../dialogrp.ui" line="48"/>
         <source>Start address:</source>
-        <translation>Indirizzo di start:</translation>
+        <translation>Indirizzo di partenza:</translation>
     </message>
     <message>
         <location filename="../dialogrp.ui" line="112"/>
         <source>Load</source>
-        <translation>Load</translation>
+        <translation>Carica</translation>
     </message>
 </context>
 <context>
@@ -129,7 +129,7 @@
     <message>
         <location filename="../dialogsfdp.ui" line="14"/>
         <source>Information about SFDP and status registers</source>
-        <translation>Info SFDP e registro di stato</translation>
+        <translation>Informazioni sul SFDP e sui registri di stato</translation>
     </message>
     <message>
         <location filename="../dialogsfdp.ui" line="47"/>
@@ -144,22 +144,22 @@
     <message>
         <location filename="../dialogsfdp.ui" line="87"/>
         <source>Maximum VCC:</source>
-        <translation>VCC mssima:</translation>
+        <translation>VCC massima:</translation>
     </message>
     <message>
         <location filename="../dialogsfdp.ui" line="107"/>
         <source>Chip size:</source>
-        <translation>Capacita&apos; del chip:</translation>
+        <translation>Capacità del chip:</translation>
     </message>
     <message>
         <location filename="../dialogsfdp.ui" line="127"/>
         <source>Block size:</source>
-        <translation>Dimensione blocco:</translation>
+        <translation>Dim. blocco:</translation>
     </message>
     <message>
         <location filename="../dialogsfdp.ui" line="150"/>
         <source>Speeds:</source>
-        <translation>Velocita&apos;:</translation>
+        <translation>Velocità:</translation>
     </message>
     <message>
         <location filename="../dialogsfdp.ui" line="170"/>
@@ -172,245 +172,262 @@
         <translation>Registro di stato 0</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.ui" line="475"/>
+        <location filename="../dialogsfdp.ui" line="424"/>
         <source>SPR0</source>
         <translation>SPR0</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.ui" line="506"/>
+        <location filename="../dialogsfdp.ui" line="449"/>
         <source>BP4</source>
         <translation>BP4</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.ui" line="537"/>
+        <location filename="../dialogsfdp.ui" line="474"/>
         <source>BP3</source>
         <translation>BP3</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.ui" line="568"/>
+        <location filename="../dialogsfdp.ui" line="499"/>
         <source>BP2</source>
         <translation>BP2</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.ui" line="599"/>
+        <location filename="../dialogsfdp.ui" line="524"/>
         <source>BP1</source>
         <translation>BP1</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.ui" line="630"/>
+        <location filename="../dialogsfdp.ui" line="549"/>
         <source>BP0</source>
         <translation>BP0</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.ui" line="661"/>
+        <location filename="../dialogsfdp.ui" line="574"/>
         <source>WEL</source>
         <translation>WEL</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.ui" line="692"/>
+        <location filename="../dialogsfdp.ui" line="599"/>
         <source>WIP</source>
         <translation>WIP</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.ui" line="974"/>
+        <location filename="../dialogsfdp.ui" line="830"/>
         <source>SUS1</source>
         <translation>SUS1</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.ui" line="1005"/>
+        <location filename="../dialogsfdp.ui" line="855"/>
         <source>CMP</source>
         <translation>CMP</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.ui" line="1036"/>
+        <location filename="../dialogsfdp.ui" line="880"/>
         <source>LB3</source>
         <translation>LB3</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.ui" line="1067"/>
+        <location filename="../dialogsfdp.ui" line="905"/>
         <source>LB2</source>
         <translation>LB2</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.ui" line="1098"/>
+        <location filename="../dialogsfdp.ui" line="930"/>
         <source>LB1</source>
         <translation>LB1</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.ui" line="1129"/>
+        <location filename="../dialogsfdp.ui" line="955"/>
         <source>SUS2</source>
         <translation>SUS2</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.ui" line="1160"/>
+        <location filename="../dialogsfdp.ui" line="980"/>
         <source>QE</source>
         <translation>QE</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.ui" line="1191"/>
+        <location filename="../dialogsfdp.ui" line="1005"/>
         <source>SPR1</source>
         <translation>SPR1</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.ui" line="704"/>
+        <location filename="../dialogsfdp.ui" line="611"/>
         <source>Status Register 1</source>
         <translation>Registro di stato 1</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.ui" line="1203"/>
+        <location filename="../dialogsfdp.ui" line="1017"/>
         <source>Status register 2</source>
         <translation>Registro di stato 2</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.ui" line="1432"/>
+        <location filename="../dialogsfdp.ui" line="1195"/>
         <source>JEDEC info:</source>
-        <translation>Info. JEDEC:</translation>
+        <translation>Info JEDEC:</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.ui" line="1532"/>
+        <location filename="../dialogsfdp.ui" line="1301"/>
         <source>Man. ID</source>
-        <translation>Fabr. ID</translation>
+        <translation>ID fabbr.</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.ui" line="1554"/>
+        <location filename="../dialogsfdp.ui" line="1323"/>
         <source>Man. type</source>
-        <translation>Fabr. type</translation>
+        <translation>Tipo fabbr.</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.ui" line="1576"/>
+        <location filename="../dialogsfdp.ui" line="1345"/>
         <source>Capacity</source>
-        <translation>Capacita&apos;</translation>
+        <translation>Capacità</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.ui" line="1588"/>
+        <location filename="../dialogsfdp.ui" line="1357"/>
         <source>Unique ID:</source>
         <translation>ID unico:</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.ui" line="1630"/>
+        <location filename="../dialogsfdp.ui" line="1398"/>
         <source>Read</source>
         <translation>Leggi</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.ui" line="1658"/>
+        <location filename="../dialogsfdp.ui" line="1426"/>
         <source>Write registers</source>
-        <translation>Scrivi registro</translation>
+        <translation>Scrivi registri</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.ui" line="1699"/>
-        <location filename="../dialogsfdp.ui" line="1780"/>
-        <location filename="../dialogsfdp.ui" line="1807"/>
+        <location filename="../dialogsfdp.ui" line="1453"/>
+        <location filename="../dialogsfdp.ui" line="1519"/>
+        <location filename="../dialogsfdp.ui" line="1541"/>
         <source>(R)</source>
         <translation>(R)</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.ui" line="1726"/>
+        <location filename="../dialogsfdp.ui" line="1475"/>
         <source>DRV1</source>
         <translation>DRV1</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.ui" line="1753"/>
+        <location filename="../dialogsfdp.ui" line="1497"/>
         <source>DRV0</source>
         <translation>DRV0</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.ui" line="1834"/>
+        <location filename="../dialogsfdp.ui" line="1563"/>
         <source>WPS</source>
         <translation>WPS</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.ui" line="1861"/>
+        <location filename="../dialogsfdp.ui" line="1585"/>
         <source>ADP</source>
         <translation>ADP</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.ui" line="1888"/>
+        <location filename="../dialogsfdp.ui" line="1607"/>
         <source>ADS</source>
         <translation>ADS</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.ui" line="1971"/>
+        <location filename="../dialogsfdp.ui" line="1693"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p/&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p/&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.ui" line="2009"/>
+        <location filename="../dialogsfdp.ui" line="1731"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Legend:&lt;/p&gt;&lt;p&gt;** - Basic area&lt;br&gt;** - Extended area&lt;br&gt;** - Manufacture area &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;body&gt;&lt;p&gt;Legend:&lt;/p&gt;&lt;p&gt;** - Area base&lt;br&gt;** - Area estesa&lt;br&gt;** - Area Fabbricante&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;body&gt;&lt;p&gt;Legenda:&lt;/p&gt;&lt;p&gt;** - Area base&lt;br&gt;** - Area estesa&lt;br&gt;** - Area fabbricante&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.ui" line="2054"/>
+        <location filename="../dialogsfdp.ui" line="1776"/>
         <source>Close</source>
         <translation>Chiudi</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.cpp" line="64"/>
-        <location filename="../dialogsfdp.cpp" line="84"/>
-        <location filename="../dialogsfdp.cpp" line="188"/>
+        <location filename="../dialogsfdp.cpp" line="79"/>
+        <location filename="../dialogsfdp.cpp" line="99"/>
         <location filename="../dialogsfdp.cpp" line="208"/>
-        <location filename="../dialogsfdp.cpp" line="238"/>
-        <location filename="../dialogsfdp.cpp" line="271"/>
-        <location filename="../dialogsfdp.cpp" line="286"/>
-        <location filename="../dialogsfdp.cpp" line="381"/>
-        <location filename="../dialogsfdp.cpp" line="383"/>
+        <location filename="../dialogsfdp.cpp" line="228"/>
+        <location filename="../dialogsfdp.cpp" line="254"/>
+        <location filename="../dialogsfdp.cpp" line="283"/>
+        <location filename="../dialogsfdp.cpp" line="298"/>
+        <location filename="../dialogsfdp.cpp" line="415"/>
+        <location filename="../dialogsfdp.cpp" line="417"/>
         <source>Error</source>
         <translation>Errore</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.cpp" line="84"/>
-        <location filename="../dialogsfdp.cpp" line="188"/>
+        <location filename="../dialogsfdp.cpp" line="99"/>
         <location filename="../dialogsfdp.cpp" line="208"/>
-        <location filename="../dialogsfdp.cpp" line="238"/>
+        <location filename="../dialogsfdp.cpp" line="228"/>
+        <location filename="../dialogsfdp.cpp" line="254"/>
         <source>Error reading register!</source>
-        <translation>Errore lettura registro!</translation>
+        <translation>Si è verificato un errore durante la lettura del registro!</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.cpp" line="152"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Legend:&lt;/p&gt;&lt;p&gt;00 - Basic area&lt;br&gt;&lt;span style=&quot; background:#f77;&quot;&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Legenda:&lt;/p&gt;&lt;p&gt;00 - Area base&lt;br&gt;&lt;span style=&quot; background:#f77;&quot;&gt;</translation>
+        <translation type="vanished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Legenda:&lt;/p&gt;&lt;p&gt;00 - Area base&lt;br&gt;&lt;span style=&quot; background:#f77;&quot;&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.cpp" line="152"/>
         <source>&lt;/span&gt; - Extended area&lt;br&gt;&lt;span style=&quot; background:#7f7;&quot;&gt;</source>
-        <translation>&lt;/span&gt; - Área estesa&lt;br&gt;&lt;span style=&quot; background:#7f7;&quot;&gt;</translation>
+        <translation type="vanished">&lt;/span&gt; - Area estesa&lt;br&gt;&lt;span style=&quot; background:#7f7;&quot;&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.cpp" line="152"/>
         <source>&lt;/span&gt; - Manufacture area &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;/span&gt; - Area fabbricante &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation type="vanished">&lt;/span&gt; - Area fabbricante &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.cpp" line="154"/>
+        <location filename="../dialogsfdp.cpp" line="171"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt; Hex SFDP register data:
 </source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt; Dat HEX del registro SFDP:
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt; Dati HEX del registro SFDP:
 </translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.cpp" line="155"/>
+        <location filename="../dialogsfdp.cpp" line="172"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Addr:&lt;br&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Addr:&lt;br&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Indirizzo:&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.cpp" line="383"/>
+        <location filename="../dialogsfdp.cpp" line="417"/>
         <source>Before writing the registers, please press the `Read` button!</source>
-        <translation>Prima di scrivere il registro premi il pulsante READ &quot;Leer&quot;!</translation>
+        <translation>Prima di scrivere i registri, premi il pulsante `Leggi`!</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.cpp" line="64"/>
+        <location filename="../dialogsfdp.cpp" line="79"/>
         <source>Error reading JEDEC ID!</source>
-        <translation>Errore lettura ID JEDEC!</translation>
+        <translation>Si è verificato un errore durante la lettura dell&apos;ID JEDEC!</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.cpp" line="271"/>
+        <location filename="../dialogsfdp.cpp" line="39"/>
+        <source>Legend:</source>
+        <translation>Legenda:</translation>
+    </message>
+    <message>
+        <location filename="../dialogsfdp.cpp" line="40"/>
+        <source> - Basic area</source>
+        <translation> - Area base</translation>
+    </message>
+    <message>
+        <location filename="../dialogsfdp.cpp" line="41"/>
+        <source> - Extended area</source>
+        <translation> - Area estesa</translation>
+    </message>
+    <message>
+        <location filename="../dialogsfdp.cpp" line="42"/>
+        <source> - Manufacture area</source>
+        <translation> - Area fabbricante</translation>
+    </message>
+    <message>
+        <location filename="../dialogsfdp.cpp" line="283"/>
         <source>Error reading unique ID!</source>
-        <translation>Errore lettura ID unico</translation>
+        <translation>Si è verificato un errore durante la lettura dell&apos;ID unico!</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.cpp" line="286"/>
-        <location filename="../dialogsfdp.cpp" line="381"/>
+        <location filename="../dialogsfdp.cpp" line="298"/>
+        <location filename="../dialogsfdp.cpp" line="415"/>
         <source>Programmer CH341a is not connected!</source>
-        <translation>Il programmatore CH341a non e&apos; connesso!</translation>
+        <translation>Il programmatore CH341a non è connesso!</translation>
     </message>
 </context>
 <context>
@@ -423,12 +440,12 @@
     <message>
         <location filename="../dialogsp.ui" line="27"/>
         <source>All values in HEX format!</source>
-        <translation>Tutti i valori in formato HEX!</translation>
+        <translation>Tutti i valori devono essere in formato HEX!</translation>
     </message>
     <message>
         <location filename="../dialogsp.ui" line="42"/>
         <source>Start address:</source>
-        <translation>Indirizzo di start:</translation>
+        <translation>Indirizzo di partenza:</translation>
     </message>
     <message>
         <location filename="../dialogsp.ui" line="120"/>
@@ -494,25 +511,31 @@
     <message>
         <location filename="../dialogsr.ui" line="567"/>
         <source>Write</source>
-        <translation>Scrive</translation>
+        <translation>Scrivi</translation>
     </message>
     <message>
-        <location filename="../dialogsr.cpp" line="53"/>
-        <location filename="../dialogsr.cpp" line="66"/>
-        <location filename="../dialogsr.cpp" line="104"/>
+        <location filename="../dialogsr.cpp" line="54"/>
+        <location filename="../dialogsr.cpp" line="68"/>
+        <location filename="../dialogsr.cpp" line="107"/>
+        <location filename="../dialogsr.cpp" line="110"/>
         <source>Error</source>
         <translation>Errore</translation>
     </message>
     <message>
-        <location filename="../dialogsr.cpp" line="53"/>
+        <location filename="../dialogsr.cpp" line="54"/>
         <source>Error reading register!</source>
-        <translation>Errore lettura registro!</translation>
+        <translation>Si è verificato un errore durante la lettura del registro!</translation>
     </message>
     <message>
-        <location filename="../dialogsr.cpp" line="66"/>
-        <location filename="../dialogsr.cpp" line="104"/>
+        <location filename="../dialogsr.cpp" line="68"/>
+        <location filename="../dialogsr.cpp" line="110"/>
         <source>Programmer CH341a is not connected!</source>
-        <translation>Il programmatore CH341a non e&apos; connesso!</translation>
+        <translation>Il programmatore CH341a non è connesso!</translation>
+    </message>
+    <message>
+        <location filename="../dialogsr.cpp" line="107"/>
+        <source>Before writing the register, please press the `Read` button!</source>
+        <translation>Prima di scrivere il registro, premi il pulsante `Leggi`!</translation>
     </message>
 </context>
 <context>
@@ -525,7 +548,7 @@
     <message>
         <location filename="../dialogsetaddr.ui" line="24"/>
         <source>All values in HEX format!</source>
-        <translation>Tutti i valori in formato HEX!</translation>
+        <translation>Tutti i valori devono essere in formato HEX!</translation>
     </message>
     <message>
         <location filename="../dialogsetaddr.ui" line="39"/>
@@ -535,7 +558,7 @@
     <message>
         <location filename="../dialogsetaddr.ui" line="90"/>
         <source>Go to</source>
-        <translation>Vai a</translation>
+        <translation>Vai</translation>
     </message>
 </context>
 <context>
@@ -562,7 +585,7 @@
     <message>
         <location filename="../mainwindow.ui" line="1009"/>
         <source>Exit</source>
-        <translation>Uscita</translation>
+        <translation>Esci</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1012"/>
@@ -577,7 +600,7 @@
     <message>
         <location filename="../mainwindow.ui" line="29"/>
         <source>IMSProg - I2C/MicroWire/SPI CH341a Programmer</source>
-        <translation>IMSProg - Programatore I2C/MicroWire/SPI CH341a</translation>
+        <translation>IMSProg - programatore I2C/MicroWire/SPI CH341a</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="77"/>
@@ -592,12 +615,12 @@
     <message>
         <location filename="../mainwindow.ui" line="247"/>
         <source>Page size</source>
-        <translation>Dimensione pagina</translation>
+        <translation>Dim. pagina</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="285"/>
         <source>Block size</source>
-        <translation>Dimensione blocco</translation>
+        <translation>Dim. blocco</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="323"/>
@@ -662,7 +685,7 @@
     <message>
         <location filename="../mainwindow.ui" line="770"/>
         <source>  JEDEC ID:</source>
-        <translation>JEDEC ID</translation>
+        <translation>  JEDEC ID:</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="786"/>
@@ -712,7 +735,7 @@
     <message>
         <location filename="../mainwindow.ui" line="1057"/>
         <source>Write</source>
-        <translation>Scrive</translation>
+        <translation>Scrivi</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1060"/>
@@ -737,7 +760,7 @@
     <message>
         <location filename="../mainwindow.ui" line="1093"/>
         <source>Redo</source>
-        <translation>Rifai</translation>
+        <translation>Ripristina</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1096"/>
@@ -747,17 +770,17 @@
     <message>
         <location filename="../mainwindow.ui" line="1206"/>
         <source>Import from Intel HEX</source>
-        <translation>Importazione da Intel HEX</translation>
+        <translation>Importa da Intel HEX</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1215"/>
         <source>Export to Intel HEX</source>
-        <translation>Esportazione in Intel HEX</translation>
+        <translation>Esporta in Intel HEX</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1224"/>
         <source>Extract from ASUS CAP</source>
-        <translation>Estratto dal CAP di ASUS</translation>
+        <translation>Estrai dal CAP di ASUS</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1233"/>
@@ -767,7 +790,7 @@
     <message>
         <location filename="../mainwindow.ui" line="1236"/>
         <source>Move the cursor to the entered address</source>
-        <translation>Spostare il cursore sull&apos;indirizzo inserito</translation>
+        <translation>Sposta il cursore all&apos;indirizzo inserito</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1239"/>
@@ -790,7 +813,7 @@
     <message>
         <location filename="../mainwindow.ui" line="1117"/>
         <source>Load Part</source>
-        <translation>Load parte</translation>
+        <translation>Carica parte</translation>
     </message>
     <message>
         <source>, Ctrl+Shift+O</source>
@@ -799,7 +822,7 @@
     <message>
         <location filename="../mainwindow.ui" line="1129"/>
         <source>Find / Replace</source>
-        <translation>Trova / Rimpiazza</translation>
+        <translation>Trova / Sostituisci</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1132"/>
@@ -809,12 +832,12 @@
     <message>
         <location filename="../mainwindow.ui" line="1137"/>
         <source>About</source>
-        <translation>About</translation>
+        <translation>Informazioni</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1140"/>
         <source>About IMSProgrammer</source>
-        <translation>Informazioni IMSProgrammer</translation>
+        <translation>Informazioni su IMSProgrammer</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1143"/>
@@ -824,7 +847,7 @@
     <message>
         <location filename="../mainwindow.ui" line="1152"/>
         <source>Checksum calculate</source>
-        <translation>Calcolo CRC32</translation>
+        <translation>Calcola checksum</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1155"/>
@@ -834,7 +857,7 @@
     <message>
         <location filename="../mainwindow.ui" line="1164"/>
         <source>Edit chips Database</source>
-        <translation>Edita database chips</translation>
+        <translation>Modifica il database dei chip</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1167"/>
@@ -845,12 +868,12 @@
         <location filename="../mainwindow.ui" line="1176"/>
         <location filename="../mainwindow.cpp" line="1335"/>
         <source>Stop</source>
-        <translation>Stop</translation>
+        <translation>Ferma</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1179"/>
         <source>Forced stop of read, write, erase and verification operations</source>
-        <translation>Arresto forzata delle operazioni di lettura, scrittura, cancellazione e verifica</translation>
+        <translation>Arresto forzato delle operazioni di lettura, scrittura, cancellazione e verifica</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1182"/>
@@ -860,12 +883,12 @@
     <message>
         <location filename="../mainwindow.ui" line="1191"/>
         <source>Chip info</source>
-        <translation>Inform. del chip</translation>
+        <translation>Informazioni sul chip</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1194"/>
         <source>Information about SFDP and status registers</source>
-        <translation>Informazione su SFDP e registro di stato</translation>
+        <translation>Informazioni su SFDP e registri di stato</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1197"/>
@@ -879,7 +902,7 @@
         <location filename="../mainwindow.cpp" line="1703"/>
         <location filename="../mainwindow.cpp" line="1771"/>
         <source>Current file: </source>
-        <translation>File corrente: </translation>
+        <translation>File attuale: </translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="83"/>
@@ -899,7 +922,7 @@
     <message>
         <location filename="../mainwindow.cpp" line="1383"/>
         <source>Opening DAT file</source>
-        <translation>Aprire un file DAT</translation>
+        <translation>Apri file DAT</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="221"/>
@@ -943,22 +966,22 @@
     <message>
         <location filename="../mainwindow.cpp" line="1043"/>
         <source>The end address must be greater than the starting address.</source>
-        <translation>L&apos;indirizzo finale deve essere maggiore dell&apos;inizio.</translation>
+        <translation>L&apos;indirizzo finale deve essere maggiore di quello di partenza.</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1247"/>
         <source>File &apos;IMSProg_editor&apos; not found!</source>
-        <translation>`IMSProg_editor` non trovato!</translation>
+        <translation>&apos;IMSProg_editor&apos; non è stato trovato!</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1392"/>
         <source>Error loading chip database file!</source>
-        <translation>Errore apertura database chips!</translation>
+        <translation>Si è verificato un errore durante l&apos;apertura del database dei chip!</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1398"/>
         <source>Parsing DAT file</source>
-        <translation>Analisi archivio DAT</translation>
+        <translation>Analisi archivio DAT in corso</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="194"/>
@@ -970,7 +993,7 @@
         <location filename="../mainwindow.cpp" line="732"/>
         <location filename="../mainwindow.cpp" line="950"/>
         <source>Unsupported chip type!</source>
-        <translation>Chip non supportato.</translation>
+        <translation>Chip non supportato!</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="229"/>
@@ -982,36 +1005,36 @@
         <location filename="../mainwindow.cpp" line="959"/>
         <location filename="../mainwindow.cpp" line="1014"/>
         <source>Programmer CH341a is not connected!</source>
-        <translation>Programatore CH341a non collegato</translation>
+        <translation>Il programatore CH341a non è connesso!</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="235"/>
         <location filename="../mainwindow.cpp" line="965"/>
         <source>Error reading block </source>
-        <translation>Errore lettura blocco </translation>
+        <translation>Si è verificato un errore durante la lettura del blocco </translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="261"/>
         <location filename="../mainwindow.cpp" line="769"/>
         <location filename="../mainwindow.cpp" line="999"/>
         <source>Before reading from chip please press &apos;Detect&apos; button.</source>
-        <translation>Prima di leggere il chip, premere il pulsante &apos;Detect&apos;.</translation>
+        <translation>Prima di leggere il chip, premere il pulsante &apos;Identifica&apos;.</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="262"/>
         <source>Please select the chip parameters - manufacture and chip name</source>
-        <translation>Seleziona i parametri del chip: &apos;Fabbricante&apos; y &apos;Nome&apos; del chip</translation>
+        <translation>Seleziona i parametri del chip: fabbricante e nome del chip</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="300"/>
         <source>The chip is not connect or missing!</source>
-        <translation>Chip non connesso o errore!</translation>
+        <translation>Il chip non è collegato oppure è mancante!</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="435"/>
         <location filename="../mainwindow.cpp" line="1695"/>
         <source>Saving file</source>
-        <translation>Salvando</translation>
+        <translation>Salvataggio file in corso</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="437"/>
@@ -1023,25 +1046,25 @@
         <location filename="../mainwindow.cpp" line="447"/>
         <location filename="../mainwindow.cpp" line="1066"/>
         <source>Error saving file!</source>
-        <translation>Errore salvando il file</translation>
+        <translation>Si è verificato un errore durante il salvataggio del file!</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="464"/>
         <source>Erasing the </source>
-        <translation>Cancella il </translation>
+        <translation>Cancellazione in corso di </translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="505"/>
         <location filename="../mainwindow.cpp" line="556"/>
         <source>Error erasing sector </source>
-        <translation>Errore cancellando il settore </translation>
+        <translation>Si è verificato un errore durante la cancellazione del settore </translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="585"/>
         <location filename="../mainwindow.cpp" line="631"/>
         <location filename="../mainwindow.cpp" line="1765"/>
         <source>Opening file</source>
-        <translation>Aprendo il file</translation>
+        <translation>Apertura del file in corso</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="589"/>
@@ -1054,7 +1077,7 @@
         <location filename="../mainwindow.cpp" line="605"/>
         <location filename="../mainwindow.cpp" line="641"/>
         <source>The file size exceeds the chip size. Please select another chip or file or use `Save part` to split the file.</source>
-        <translation>La dimensione del file supera quella del chip. Selezionare un altro chip o file o utilizzare `Salva parte` per dividere il file.</translation>
+        <translation>La dimensione del file supera quella del chip. Selezionare un altro chip o un altro file oppure utilizzare `Salva parte` per dividere il file.</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1790"/>
@@ -1070,7 +1093,7 @@
         <location filename="../mainwindow.cpp" line="1840"/>
         <location filename="../mainwindow.cpp" line="1860"/>
         <source>Checksum error!</source>
-        <translation>Errore di checksum!</translation>
+        <translation>Si è verificato un errore di checksum!</translation>
     </message>
     <message>
         <source>The file size exceeds the chip size. Please select another chip or file or use block operations to split the file.</source>
@@ -1079,24 +1102,24 @@
     <message>
         <location filename="../mainwindow.cpp" line="693"/>
         <source>Writing data to </source>
-        <translation>Scrittura dati su </translation>
+        <translation>Scrittura dati in corso su </translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="748"/>
         <source>Error writing sector </source>
-        <translation>Error scrittura settore </translation>
+        <translation>Si è verificato un errore durante la scrittura del settore </translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="923"/>
         <source>Veryfing data from </source>
-        <translation>Verifica dati da </translation>
+        <translation>Verifica dati in corso da </translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="975"/>
         <source>Error comparing data!
 Address:   </source>
-        <translation>Errore verifica dati!
-Address:   </translation>
+        <translation>Si è verificato un errore durante la verifica dei dati!
+Indirizzo:   </translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="975"/>
@@ -1113,7 +1136,7 @@ Buffer: </translation>
     <message>
         <location filename="../mainwindow.cpp" line="1000"/>
         <source>Please select the chip parameters - manufacture and chip name.</source>
-        <translation>Seleziona parametri del chip: &apos;Fabbricante&apos; y &apos;Nome&apos; del chip</translation>
+        <translation>Seleziona i parametri del chip: fabbricante e nome del chip.</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1009"/>
@@ -1123,7 +1146,7 @@ Buffer: </translation>
     <message>
         <location filename="../mainwindow.cpp" line="1009"/>
         <source>The operation was successful!</source>
-        <translation>Operazione riuscita!</translation>
+        <translation>Operazione riuscita con successo!</translation>
     </message>
     <message>
         <source>The end address must be greater than the starting addres.</source>
@@ -1132,7 +1155,7 @@ Buffer: </translation>
     <message>
         <location filename="../mainwindow.cpp" line="1055"/>
         <source>Saving block</source>
-        <translation>Salvo blocco</translation>
+        <translation>Salvataggio del blocco in corso</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1057"/>
@@ -1142,7 +1165,7 @@ Buffer: </translation>
     <message>
         <location filename="../mainwindow.cpp" line="1080"/>
         <source>Opening block</source>
-        <translation>Apertura blocco</translation>
+        <translation>Apertura del blocco in corso</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1082"/>
@@ -1152,7 +1175,7 @@ Buffer: </translation>
     <message>
         <location filename="../mainwindow.cpp" line="1099"/>
         <source>The end address out of image size!</source>
-        <translation>Indirizzo finale superiore alla dimensione!</translation>
+        <translation>L&apos;indirizzo finale è superiore alla dimensione dell&apos;immagine!</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1138"/>
@@ -1171,7 +1194,7 @@ Buffer: </translation>
     <message>
         <location filename="../mainwindow.cpp" line="1335"/>
         <source>Operation aborted!</source>
-        <translation>Operazione annullata!</translation>
+        <translation>L&apos;operazione è stata annullata!</translation>
     </message>
 </context>
 <context>
@@ -1206,22 +1229,22 @@ Buffer: </translation>
     <message>
         <location filename="../searchdialog.ui" line="116"/>
         <source>Options</source>
-        <translation>Opzioni:</translation>
+        <translation>Opzioni</translation>
     </message>
     <message>
         <location filename="../searchdialog.ui" line="122"/>
         <source>&amp;Backwards</source>
-        <translation>Indietro</translation>
+        <translation>&amp;Indietro</translation>
     </message>
     <message>
         <location filename="../searchdialog.ui" line="129"/>
         <source>&amp;Prompt on replace</source>
-        <translation>Prompt per sostituire</translation>
+        <translation>&amp;Richiesta di sostituzione</translation>
     </message>
     <message>
         <location filename="../searchdialog.ui" line="150"/>
         <source>Standard headers:</source>
-        <translation>Headers standard:</translation>
+        <translation>Header standard:</translation>
     </message>
     <message>
         <location filename="../searchdialog.ui" line="191"/>
@@ -1266,7 +1289,7 @@ Buffer: </translation>
     <message>
         <location filename="../searchdialog.ui" line="385"/>
         <source>&amp;Find</source>
-        <translation>Trova</translation>
+        <translation>&amp;Trova</translation>
     </message>
     <message>
         <location filename="../searchdialog.ui" line="388"/>
@@ -1276,33 +1299,33 @@ Buffer: </translation>
     <message>
         <location filename="../searchdialog.ui" line="413"/>
         <source>&amp;Replace</source>
-        <translation>Sustituire</translation>
+        <translation>&amp;Sostituisci</translation>
     </message>
     <message>
         <location filename="../searchdialog.ui" line="435"/>
         <source>Replace &amp;All</source>
-        <translation>Sustituire tutto</translation>
+        <translation>S&amp;ostituisci tutto</translation>
     </message>
     <message>
         <location filename="../searchdialog.ui" line="457"/>
         <source>&amp;Close</source>
-        <translation>Chiudi</translation>
+        <translation>&amp;Chiudi</translation>
     </message>
     <message>
         <location filename="../searchdialog.cpp" line="88"/>
         <location filename="../searchdialog.cpp" line="114"/>
         <source>QHexEdit</source>
-        <translation></translation>
+        <translation>QHexEdit</translation>
     </message>
     <message>
         <location filename="../searchdialog.cpp" line="88"/>
         <source>%1 occurrences replaced.</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 occorrenze sostituite.</translation>
     </message>
     <message>
         <location filename="../searchdialog.cpp" line="115"/>
         <source>Replace occurrence?</source>
-        <translation>Sostituire?</translation>
+        <translation>Sostituire occorrenza?</translation>
     </message>
 </context>
 <context>
@@ -1310,17 +1333,17 @@ Buffer: </translation>
     <message>
         <location filename="../commands.cpp" line="130"/>
         <source>Inserting %1 bytes</source>
-        <translation type="unfinished"></translation>
+        <translation>Inserimento in corso di %1 byte</translation>
     </message>
     <message>
         <location filename="../commands.cpp" line="152"/>
         <source>Delete %1 chars</source>
-        <translation type="unfinished"></translation>
+        <translation>Eliminati %1 caratteri</translation>
     </message>
     <message>
         <location filename="../commands.cpp" line="177"/>
         <source>Overwrite %1 chars</source>
-        <translation type="unfinished"></translation>
+        <translation>Sovrascritti %1 caratteri</translation>
     </message>
 </context>
 </TS>

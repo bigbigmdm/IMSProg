@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="es_ES">
+<TS version="2.1" language="it_IT">
 <context>
     <name>MainWindow</name>
     <message>
         <location filename="../ezp_chip_editor.ui" line="14"/>
         <source>IMSProg chip database editor</source>
-        <translation>Editor Database Chips di IMSProg</translation>
+        <translation>Editor del database dei chip di IMSProg</translation>
     </message>
     <message>
         <location filename="../ezp_chip_editor.ui" line="53"/>
@@ -16,7 +16,7 @@
     <message>
         <location filename="../ezp_chip_editor.ui" line="64"/>
         <source>Edit</source>
-        <translation>Edita</translation>
+        <translation>Modifica</translation>
     </message>
     <message>
         <location filename="../ezp_chip_editor.ui" line="108"/>
@@ -31,7 +31,7 @@
     <message>
         <location filename="../ezp_chip_editor.ui" line="120"/>
         <source>Exit</source>
-        <translation>Uscita</translation>
+        <translation>Esci</translation>
     </message>
     <message>
         <location filename="../ezp_chip_editor.ui" line="123"/>
@@ -62,7 +62,7 @@
     <message>
         <location filename="../ezp_chip_editor.ui" line="150"/>
         <source>Del</source>
-        <translation>Canc</translation>
+        <translation>Cancella</translation>
     </message>
     <message>
         <location filename="../ezp_chip_editor.ui" line="159"/>
@@ -77,17 +77,17 @@
     <message>
         <location filename="../ezp_chip_editor.ui" line="165"/>
         <source>Ins</source>
-        <translation>Ins</translation>
+        <translation>Inserisci</translation>
     </message>
     <message>
         <location filename="../ezp_chip_editor.ui" line="174"/>
         <source>Move up</source>
-        <translation>Muovi su</translation>
+        <translation>Sposta su</translation>
     </message>
     <message>
         <location filename="../ezp_chip_editor.ui" line="177"/>
         <source>Move lines up</source>
-        <translation>Muovi linee su</translation>
+        <translation>Sposta su le linee</translation>
     </message>
     <message>
         <location filename="../ezp_chip_editor.ui" line="180"/>
@@ -97,12 +97,12 @@
     <message>
         <location filename="../ezp_chip_editor.ui" line="189"/>
         <source>Move down</source>
-        <translation>Muovi giu</translation>
+        <translation>Sposta giù</translation>
     </message>
     <message>
         <location filename="../ezp_chip_editor.ui" line="192"/>
         <source>Move lines down</source>
-        <translation>Muovi linee giu</translation>
+        <translation>Sposta giù le linee</translation>
     </message>
     <message>
         <location filename="../ezp_chip_editor.ui" line="195"/>
@@ -135,7 +135,7 @@
         <location filename="../ezp_chip_editor.cpp" line="722"/>
         <location filename="../ezp_chip_editor.cpp" line="743"/>
         <source>Open the file</source>
-        <translation>Apri il File</translation>
+        <translation>Apri il file</translation>
     </message>
     <message>
         <location filename="../ezp_chip_editor.cpp" line="49"/>
@@ -143,7 +143,7 @@
         <location filename="../ezp_chip_editor.cpp" line="725"/>
         <location filename="../ezp_chip_editor.cpp" line="746"/>
         <source>Current file: </source>
-        <translation>File corrente</translation>
+        <translation>File attuale: </translation>
     </message>
     <message>
         <location filename="../ezp_chip_editor.cpp" line="73"/>
@@ -163,7 +163,7 @@
     <message>
         <location filename="../ezp_chip_editor.cpp" line="76"/>
         <source>JEDEC ID</source>
-        <translation>JEDEC ID</translation>
+        <translation>ID JEDEC</translation>
     </message>
     <message>
         <location filename="../ezp_chip_editor.cpp" line="77"/>
@@ -201,7 +201,7 @@ ritmo</translation>
         <source>4 bits
 address</source>
         <translation>Indirizzo 
-4 bits</translation>
+4 bit</translation>
     </message>
     <message>
         <location filename="../ezp_chip_editor.cpp" line="83"/>
@@ -231,7 +231,7 @@ EEPROM</translation>
         <location filename="../ezp_chip_editor.cpp" line="782"/>
         <location filename="../ezp_chip_editor.cpp" line="814"/>
         <source>Warning</source>
-        <translation>Avvertenza</translation>
+        <translation>Avviso</translation>
     </message>
     <message>
         <location filename="../ezp_chip_editor.cpp" line="518"/>
@@ -245,7 +245,7 @@ EEPROM</translation>
     <message>
         <location filename="../ezp_chip_editor.cpp" line="682"/>
         <source>Saving file</source>
-        <translation>Salvando</translation>
+        <translation>Salvataggio in corso del file</translation>
     </message>
     <message>
         <location filename="../ezp_chip_editor.cpp" line="684"/>
@@ -255,7 +255,7 @@ EEPROM</translation>
     <message>
         <location filename="../ezp_chip_editor.cpp" line="741"/>
         <source>Opening file</source>
-        <translation>Aprendo</translation>
+        <translation>Apertura in corso del file</translation>
     </message>
     <message>
         <location filename="../ezp_chip_editor.cpp" line="782"/>
@@ -265,7 +265,7 @@ EEPROM</translation>
     <message>
         <location filename="../ezp_chip_editor.cpp" line="814"/>
         <source>Invalid CSV header file format.</source>
-        <translation>Formato dell 'header del file CSV non valido.</translation>
+        <translation>Formato dell&apos;header del file CSV non valido.</translation>
     </message>
 </context>
 </TS>

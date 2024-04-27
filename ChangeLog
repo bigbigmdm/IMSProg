@@ -1,3 +1,4 @@
+- Ver. 1.3.7 - Small refinements (bugfix) to the interface. Updating the Italian translation. For 25xxx, 95xxx chips, writing to a status register is now only available after reading it. 
 - Ver. 1.3.6 - Added a third status register to the SFDP form. Fix: after reading, the menu item go to address becomes inactive. Large size chip data in the database corrected.
 - Ver. 1.3.5 - Added function to HEX-editor to move the cursor to the entered address.
 - Ver. 1.3.4 - Bugfix: wrong read/write data in last addresses of M95040, AT25040, 25AA040, CAT25C04 chips.

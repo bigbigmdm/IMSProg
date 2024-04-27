@@ -50,6 +50,7 @@ private:
     Ui::DialogSFDP *ui;
     QString bP(unsigned char z);
     void setLineEditFilter();
+    void legendPrint(QString basic, QString extended, QString manufacture);
     int numOfRegisters;
 };
 
