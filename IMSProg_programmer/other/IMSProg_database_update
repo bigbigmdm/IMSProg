@@ -41,10 +41,10 @@ if [ -f ~/.local/share/imsprog/IMSProg.Dat ] ; then
       fi
       if [[ "$LANG" == "it_IT.UTF-8" ]]
          then
-         qsttxt="Il file <b>'IMSProg.Dat'</b> verrà sostituito con la nuova versione. Le modifiche apportate potrebbero andare perse. Continuare?"
-         tittxt="Aggiornamento del database"
+         qsttxt="Il file <b>'IMSProg.Dat'</b> verrà sostituito con la nuova versione. Le modifiche apportate potrebbero andare perse. Vuoi continuare?"
+         tittxt="Aggiornamento del database in corso"
          outtxt="Il numero di chip nel database:"
-         chgtxt="(era) -> (è stato fatto)"
+         chgtxt="(era) -> (è diventato)"
       fi
       if [[ "$LANG" == "pt_BR.UTF-8" ]]
          then
