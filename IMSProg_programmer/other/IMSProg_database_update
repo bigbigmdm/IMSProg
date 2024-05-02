@@ -61,7 +61,6 @@ if [ -f ~/.local/share/imsprog/IMSProg.Dat ] ; then
          chgtxt="(volt) -> (lett)"
       fi
    zenity --question --text="$qsttxt" \
-   --ok-label="Yes" --cancel-label="No" \
    --height=160 --width=320
 fi
 if [ $? = 0 ] ; then
