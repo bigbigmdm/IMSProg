@@ -18,7 +18,7 @@ if [ -f ~/.local/share/imsprog/IMSProg.Dat ] ; then
          outtxt="Die Anzahl der Chips in der Datenbank:"
          chgtxt="\n\n(war) -> (wurde)\n\n"
       fi
-      if [[ "$LANG" == "zn_CH.UTF-8" ]]
+      if [[ "$LANG" == "zh_CN.UTF-8" ]]
          then
          qsttxt="<b>'IMSProg.Dat'</b>文件将被新版本替换。您可能会丢失对其所做的更改。继续吗？"
          tittxt="数据库更新"

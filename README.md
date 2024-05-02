@@ -354,7 +354,7 @@ IMSProg_programmer/other/index.html                         /usr/share//doc/imsp
 IMSProg_programmer/language/chipProgrammer_ru_RU.qm         /usr/share/imsprog
 IMSProg_programmer/language/chipProgrammer_es_ES.qm         /usr/share/imsprog
 IMSProg_programmer/language/chipProgrammer_de_DE.qm         /usr/share/imsprog
-IMSProg_programmer/language/chipProgrammer_zn_CH.qm         /usr/share/imsprog
+IMSProg_programmer/language/chipProgrammer_zH_CN.qm         /usr/share/imsprog
 IMSProg_programmer/language/chipProgrammer_uk_UA.qm         /usr/share/imsprog
 IMSProg_programmer/language/chipProgrammer_hu_HU.qm         /usr/share/imsprog
 IMSProg_programmer/language/chipProgrammer_pt_BR.qm         /usr/share/imsprog
@@ -362,7 +362,7 @@ IMSProg_programmer/language/chipProgrammer_pt_BR.qm         /usr/share/imsprog
 IMSProg_editor/language/chipEditor_ru_RU.qm                 /usr/share/imsprog
 IMSProg_editor/language/chipEditor_de_DE.qm                 /usr/share/imsprog
 IMSProg_editor/language/chipEditor_es_ES.qm                 /usr/share/imsprog
-IMSProg_editor/language/chipEditor_zn_CH.qm                 /usr/share/imsprog
+IMSProg_editor/language/chipEditor_zh_CN.qm                 /usr/share/imsprog
 IMSProg_editor/language/chipEditor_uk_UA.qm                 /usr/share/imsprog
 IMSProg_editor/language/chipEditor_hu_HU.qm                 /usr/share/imsprog
 IMSProg_editor/language/chipEditor_pt_BR.qm                 /usr/share/imsprog
