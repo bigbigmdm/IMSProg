@@ -204,21 +204,21 @@ address</source>
         <location filename="../ezp_chip_editor.cpp" line="85"/>
         <source>Sector
 size</source>
-        <translation>Dimensione 
-        settore</translation>
+        <translation>Dimensione
+settore</translation>
     </message>
     <message>
         <location filename="../ezp_chip_editor.cpp" line="86"/>
         <source>Type
 HEX</source>
-        <translation>Tipo 
-        HEX</translation>
+        <translation>Tipo
+HEX</translation>
     </message>
     <message>
         <location filename="../ezp_chip_editor.cpp" line="89"/>
         <source>4 bit
 address</source>
-        <translation>Indirizzo 
+        <translation>Indirizzo
 4 bit</translation>
     </message>
     <message>
@@ -263,7 +263,7 @@ EEPROM</translation>
     <message>
         <location filename="../ezp_chip_editor.cpp" line="692"/>
         <source>Saving file</source>
-        <translation>Salvataggio in corso del file</translation>
+        <translation>Salvataggio del file in corso</translation>
     </message>
     <message>
         <location filename="../ezp_chip_editor.cpp" line="694"/>
@@ -273,17 +273,17 @@ EEPROM</translation>
     <message>
         <location filename="../ezp_chip_editor.cpp" line="751"/>
         <source>Opening file</source>
-        <translation>Apertura in corso del file</translation>
+        <translation>Apertura del file in corso</translation>
     </message>
     <message>
         <location filename="../ezp_chip_editor.cpp" line="792"/>
         <source>Invalid CSV data file format.</source>
-        <translation>Formato dati del file CSV non valido.</translation>
+        <translation>Formato del file dati CSV non valido.</translation>
     </message>
     <message>
         <location filename="../ezp_chip_editor.cpp" line="824"/>
         <source>Invalid CSV header file format.</source>
-        <translation>Formato dell&apos;header del file CSV non valido.</translation>
+        <translation>Formato del file header CSV non valido.</translation>
     </message>
 </context>
 </TS>
