@@ -62,7 +62,7 @@
     <message>
         <location filename="../ezp_chip_editor.ui" line="150"/>
         <source>Del</source>
-        <translation>Del</translation>
+        <translation>删除</translation>
     </message>
     <message>
         <location filename="../ezp_chip_editor.ui" line="159"/>
@@ -97,7 +97,7 @@
     <message>
         <location filename="../ezp_chip_editor.ui" line="189"/>
         <source>Move down</source>
-        <translation>下移</translation>
+        <translation>向下移动</translation>
     </message>
     <message>
         <location filename="../ezp_chip_editor.ui" line="192"/>
@@ -153,7 +153,7 @@
     <message>
         <location filename="../ezp_chip_editor.cpp" line="81"/>
         <source>Manufacture</source>
-        <translation>制造</translation>
+        <translation>制造商</translation>
     </message>
     <message>
         <location filename="../ezp_chip_editor.cpp" line="82"/>
@@ -206,8 +206,8 @@ address</source>
         <location filename="../ezp_chip_editor.cpp" line="90"/>
         <source>Block
 size K</source>
-        <translation>Bloque
-tamaño K</translation>
+        <translation>块
++大小 K</translation>
     </message>
     <message>
         <location filename="../ezp_chip_editor.cpp" line="91"/>
