@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2024 Mikhail Medvedev < e-ink-reader@yandex.ru > --> 
+<component type="desktop-application">
+  <id>com.github.bigbigmdm.imsprog.editor</id>
+  <metadata_license>GFDL-1.3</metadata_license>
+  <project_license>GPL-3.0+</project_license>
+  <name>IMSProg_editor</name>
+  <summary>Chip database editor for IMSProg programmer</summary>  
+  <summary xml:lang="de">Chipdatenbank-Editor für IMSProg-Programmierer</summary>
+  <summary xml:lang="es">Editor de bases de datos de chips para el programador IMSProg</summary>
+  <summary xml:lang="hu">Chip adatbázis szerkesztő az IMSProg programozó számára</summary>
+  <summary xml:lang="it">Editor di database di chip per programmatori IMSProg</summary>
+  <summary xml:lang="pt_BR">Editor de banco de dados de chip para programador IMSProg</summary>
+  <summary xml:lang="ru">Редактор баз данных микросхем для программатора IMSProg</summary>
+  <summary xml:lang="uk">Редактор бази даних мікросхем для програматорі IMSProg</summary>
+  <summary xml:lang="zh_CN">用于 IMSProg 程序员的芯片数据库编辑器。</summary>
+  <icon type="stock">IMSProg_editor</icon>
+  <icon type="remote" width="64" height="64">https://github.com/bigbigmdm/IMSProg/tree/main/IMSProg_editor/img/chipEdit64.png</icon>
+  <description>
+    <p>IMSProg_editor is used to modify and supplement or export/import in csv format the chip database for the IMSProg programmer.</p>
+    <p xml:lang="de">IMSProg_editor dient zur Modifikation und Ergänzung bzw. zum Export/Import im csv-Format der Chipdatenbank für den IMSProg-Programmierer.</p>
+    <p xml:lang="es">IMSProg_editor se utiliza para modificar y complementar o exportar/importar en formato csv la base de datos de chips para el programador IMSProg.</p>
+    <p xml:lang="hu">Az IMSProg_editor az IMSProg programozó számára a chip adatbázis módosítására és kiegészítésére vagy csv formátumú exportálására/importálására szolgál.</p>
+    <p xml:lang="it">IMSProg_editor è utilizzato per modificare e integrare o esportare/importare in formato csv il database dei chip per il programmatore IMSProg.</p>
+    <p xml:lang="pt_BR">O IMSProg_editor é usado para modificar e complementar ou exportar/importar em formato csv o banco de dados de chips para o programador do IMSProg.</p>
+    <p xml:lang="ru">IMSProg_editor используется для изменения и дополнения или экспорта/импорта в формате csv базы данных микросхем для программиста IMSProg.</p>
+    <p xml:lang="uk">IMSProg_editor використовується для зміни та доповнення або експорту/імпорту у форматі csv бази даних мікросхем для програматорі IMSProg.</p>
+    <p xml:lang="zh_CN">IMSProg_editor 用于修改、补充或以 csv 格式导出/导入芯片数据库，供 IMSProg 程序员使用。</p>
+  </description>
+  <categories>
+     <category>Development</category>
+     <category>Electronics</category>
+  </categories>
+  <keywords>
+     <keyword translate="no">Programmer</keyword>
+     <keyword translate="no">BIOS</keyword>
+     <keyword translate="no">EEPROM</keyword>
+     <keyword translate="no">MicroWire</keyword>
+     <keyword translate="no">IC</keyword>
+     <keyword translate="no">chip</keyword>
+     <keyword>Microcircuit</keyword>
+     <keyword>Microchip</keyword>
+     <keyword>IC</keyword>
+     <keyword>Integrated circuit</keyword>
+     <keyword xml:lang="de">Mikroschaltkreis</keyword>
+     <keyword xml:lang="de">Mikrochip</keyword>
+     <keyword xml:lang="de">Integrierte Schaltung</keyword>
+     <keyword xml:lang="es">Microcircuito</keyword>
+     <keyword xml:lang="es">Microchip</keyword>
+     <keyword xml:lang="es">Circuito integrado</keyword>
+     <keyword xml:lang="hu">Mikroáramkör</keyword>
+     <keyword xml:lang="hu">Mikrochip</keyword>
+     <keyword xml:lang="hu">Integrált áramkör</keyword>
+     <keyword xml:lang="it">Microcircuito</keyword>
+     <keyword xml:lang="it">Microchip</keyword>
+     <keyword xml:lang="it">Circuito integrato</keyword>
+     <keyword xml:lang="pt_BR">Microcircuito</keyword>
+     <keyword xml:lang="pt_BR">Microchip</keyword>
+     <keyword xml:lang="pt_BR">Circuito integrado</keyword>
+     <keyword xml:lang="ru">Микросхема</keyword>
+     <keyword xml:lang="ru">Микрочип</keyword>
+     <keyword xml:lang="ru">Интегральная схема</keyword>
+     <keyword xml:lang="uk">Мікросхема</keyword>
+     <keyword xml:lang="uk">Інтегральна схема</keyword>
+     <keyword xml:lang="zh_CN">微电路</keyword>
+     <keyword xml:lang="zh_CN">微芯片</keyword>
+     <keyword xml:lang="zh_CN">集成电路</keyword>
+  </keywords>
+  <url type="homepage">https://github.com/bigbigmdm/IMSProg/tree/main</url>
+  <url type="contact">https://github.com/bigbigmdm</url>
+  <launchable type="desktop-id">IMSProg_editor.desktop</launchable>
+  <provides>
+     <mediatype>application/octet-stream</mediatype>
+  </provides>  
+  <url type="homepage">https://github.com/bigbigmdm/IMSProg</url>
+  <url type="bugtracker">https://github.com/bigbigmdm/IMSProg/issues</url>  
+  <developer_name>Mikhail Medvedev</developer_name>
+  <screenshots>
+    <screenshot type="default">
+	  <caption>Main screen.</caption>
+      <caption xml:lang="de">Hauptbildschirm.</caption>
+      <caption xml:lang="es">Pantalla principal.</caption>
+      <caption xml:lang="hu">Főképernyő.</caption>
+      <caption xml:lang="it">Schermata principale.</caption>
+      <caption xml:lang="pt_BR">Tela principal.</caption>
+      <caption xml:lang="ru">Главный экран.</caption>
+      <caption xml:lang="uk">Головний екран.</caption>
+      <caption xml:lang="zn_CH">主屏幕。</caption>	
+      <image type="source" width="889" height="436">https://github.com/bigbigmdm/IMSProg/blob/main/IMSProg_editor/img/ezp_editor.png</image>
+    </screenshot>
+  </screenshots>
+  <releases>
+  <release version="1.3.7" date="2024-04-27" urgency="low">
+    <description>
+      <p>This stable release, updated translations.</p>
+    </description>
+  </release>
+  </releases>
+  <content_rating type="oars-1.1" />
+  <update_contact>e-ink-reader@yandex.ru</update_contact>
+</component>

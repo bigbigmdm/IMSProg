@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2024 Mikhail Medvedev < e-ink-reader@yandex.ru > --> 
+<component type="desktop-application">
+  <id>io.github.bigbigmdm.imsprog</id>
+  <metadata_license>GFDL-1.3</metadata_license>
+  <project_license>GPL-3.0+</project_license>
+  <name>IMSProg</name>
+  <summary>Reading, writing and erasing EEPROM chips</summary>  
+  <summary xml:lang="de">Lesen, Schreiben und Löschen von EEPROM-Chips</summary>
+  <summary xml:lang="es">Lectura, escritura y borrado de chips EEPROM</summary>
+  <summary xml:lang="hu">EEPROM chipek olvasása, írása és törlése</summary>
+  <summary xml:lang="it">Lettura, scrittura e cancellazione di chip EEPROM</summary>
+  <summary xml:lang="pt_BR">Leitura, gravação e apagamento de chips EEPROM</summary>
+  <summary xml:lang="ru">Чтение, запись и стирание микросхем EEPROM</summary>
+  <summary xml:lang="uk">Читання, запис і стирання мікросхем EEPROM</summary>
+  <summary xml:lang="zh_CN">创读取、写入和擦除 EEPROM 芯片</summary>
+  <icon type="remote" width="64" height="64">https://github.com/bigbigmdm/IMSProg/tree/main/IMSProg_programmer/img/IMSProg64.png</icon>
+  <description>
+    <p>IMSProg is a free software for CH341A based chip programmers with graphical interface. With IMSProg you can read, verify, program, erase i2C, SPI, SPI NOR, MicroWire EEPROM chips using the CH341A programmer device.</p>
+    <p xml:lang="de">IMSProg ist eine kostenlose Software für CH341A-basierte Chip-Programmiergeräte mit grafischer Oberfläche. Mit IMSProg können Sie i2C, SPI, SPI NOR, MicroWire EEPROM Chips mit dem CH341A Programmiergerät lesen, verifizieren, programmieren, löschen.</p>
+    <p xml:lang="es">IMSProg es un software gratuito para programadores de chips basados en CH341A con interfaz gráfica. Con IMSProg puede leer, verificar, programar, borrar chips i2C, SPI, SPI NOR, MicroWire EEPROM utilizando el dispositivo programador CH341A.</p>
+    <p xml:lang="hu">Az IMSProg egy ingyenes szoftver CH341A alapú chipprogramozók számára grafikus felülettel. Az IMSProg segítségével a CH341A programozó eszközzel i2C, SPI, SPI NOR, MicroWire EEPROM chipeket olvashat, ellenőrizhet, programozhat, törölhet.</p>
+    <p xml:lang="it">IMSProg è un software gratuito per programmatori di chip basati su CH341A con interfaccia grafica. Con IMSProg è possibile leggere, verificare, programmare, cancellare chip i2C, SPI, SPI NOR, MicroWire EEPROM utilizzando il dispositivo programmatore CH341A.</p>
+    <p xml:lang="pt_BR">O IMSProg é um software gratuito para programadores de chips baseados no CH341A com interface gráfica. Com o IMSProg, você pode ler, verificar, programar e apagar chips i2C, SPI, SPI NOR e MicroWire EEPROM usando o dispositivo programador CH341A.</p>
+    <p xml:lang="ru">IMSProg - это бесплатное программное обеспечение для программаторов микросхем на базе CH341A с графическим интерфейсом. С помощью IMSProg вы можете читать, проверять, программировать, стирать микросхемы i2C, SPI, SPI NOR, MicroWire EEPROM, используя устройство-программатор CH341A.</p>
+    <p xml:lang="uk">IMSProg - вільне програмне забезпечення для програматорів мікросхем на базі CH341A з графічним інтерфейсом. За допомогою IMSProg ви можете читати, перевіряти, програмувати, стирати мікросхеми i2C, SPI, SPI NOR, MicroWire EEPROM за допомогою програматора CH341A.</p>
+    <p xml:lang="zh_CN">IMSProg 是一款用于基于 CH341A 的芯片编程器的免费软件，具有图形界面。利用 IMSProg，您可以使用 CH341A 编程器设备读取、验证、编程、擦除 i2C、SPI、SPI NOR 和 MicroWire EEPROM 芯片。</p>
+    <p>IMSProg is a collection of tools:</p>
+    <p xml:lang="de">IMSProg ist eine Sammlung von Werkzeugen:</p>
+    <p xml:lang="es">IMSProg es una colección de herramientas:</p>
+    <p xml:lang="hu">Az IMSProg egy eszközgyűjtemény:</p>
+    <p xml:lang="it">IMSProg è una raccolta di strumenti:</p>
+    <p xml:lang="pt_BR">O IMSProg é uma coleção de ferramentas:</p>
+    <p xml:lang="ru">IMSProg - это набор инструментов:</p>
+    <p xml:lang="uk">IMSProg - це набір інструментів:</p>
+    <p xml:lang="zh_CN">IMSProg 是一个工具集合</p>
+      <ul>
+        <li>IMSProg - the chip programmer (it's the main part).</li>
+        <li xml:lang="de">IMSProg - der Chip-Programmierer (das ist der Hauptteil).</li>
+        <li xml:lang="es">IMSProg - el programador de chips (es la parte principal).</li>
+        <li xml:lang="hu">IMSProg - a chip programozó (ez a fő rész).</li>
+        <li xml:lang="it">IMSProg - il programmatore di chip (è la parte principale).</li>
+        <li xml:lang="pt_BR">IMSProg - o programador de chip (é a parte principal).</li>
+        <li xml:lang="ru">IMSProg - программатор микросхем (это основная часть).</li>
+        <li xml:lang="uk">IMSProg - програматор мікросхеми (це основна частина).</li>
+        <li xml:lang="zh_CN">IMSProg - 芯片编程器（主要部分）</li>
+        <li>IMSProg_editor - chip database editor.</li>
+        <li xml:lang="de">IMSProg_editor - Chipdatenbank-Editor.</li>
+        <li xml:lang="es">IMSProg_editor - editor de bases de datos de chips.</li>
+        <li xml:lang="hu">IMSProg_editor - chip adatbázis szerkesztő.</li>
+        <li xml:lang="it">IMSProg_editor - editor del database dei chip.</li>
+        <li xml:lang="pt_BR">IMSProg_editor - editor de banco de dados de chip.</li>
+        <li xml:lang="ru">IMSProg_editor - редактор базы данных микросхем.</li>
+        <li xml:lang="uk">IMSProg_editor - редактор бази даних мікросхем.</li>
+        <li xml:lang="zh_CN">IMSProg_editor - 芯片数据库编辑器。</li>
+        <li>IMSProg_database_update - script to update chip database using external web-server.</li>
+        <li xml:lang="de">IMSProg_database_update - Skript zur Aktualisierung der Chipdatenbank mit Hilfe eines externen Web-Servers.</li>
+        <li xml:lang="es">IMSProg_database_update - script para actualizar la base de datos de chips utilizando un servidor web externo.</li>
+        <li xml:lang="hu">IMSProg_database_update - szkript a chip adatbázis frissítéséhez külső webszerver használatával.</li>
+        <li xml:lang="it">IMSProg_database_update - script per aggiornare il database dei chip utilizzando un server web esterno.</li>
+        <li xml:lang="pt_BR">IMSProg_database_update - script para atualizar o banco de dados de chip usando um servidor da Web externo.</li>
+        <li xml:lang="ru">IMSProg_database_update - скрипт для обновления базы данных микросхем с помощью внешнего веб-сервера.</li>
+        <li xml:lang="uk">IMSProg_database_update - скрипт для оновлення бази даних чіпів за допомогою зовнішнього веб-сервера.</li>
+        <li xml:lang="zh_CN">IMSProg_database_update - 使用外部网络服务器更新芯片数据库的脚本。</li>
+      </ul>
+  </description>
+  <categories>
+     <category>Development</category>
+  </categories>
+  <keywords>
+     <keyword translate="no">Programmer</keyword>
+     <keyword translate="no">BIOS</keyword>
+     <keyword translate="no">EEPROM</keyword>
+     <keyword translate="no">MicroWire</keyword>
+     <keyword translate="no">IC</keyword>
+     <keyword translate="no">chip</keyword>
+     <keyword>Microcircuit</keyword>
+     <keyword>Microchip</keyword>
+     <keyword>IC</keyword>
+     <keyword>Integrated circuit</keyword>
+     <keyword xml:lang="de">Mikroschaltkreis</keyword>
+     <keyword xml:lang="de">Mikrochip</keyword>
+     <keyword xml:lang="de">Integrierte Schaltung</keyword>
+     <keyword xml:lang="es">Microcircuito</keyword>
+     <keyword xml:lang="es">Microchip</keyword>
+     <keyword xml:lang="es">Circuito integrado</keyword>
+     <keyword xml:lang="hu">Mikroáramkör</keyword>
+     <keyword xml:lang="hu">Mikrochip</keyword>
+     <keyword xml:lang="hu">Integrált áramkör</keyword>
+     <keyword xml:lang="it">Microcircuito</keyword>
+     <keyword xml:lang="it">Microchip</keyword>
+     <keyword xml:lang="it">Circuito integrato</keyword>
+     <keyword xml:lang="pt_BR">Microcircuito</keyword>
+     <keyword xml:lang="pt_BR">Microchip</keyword>
+     <keyword xml:lang="pt_BR">Circuito integrado</keyword>
+     <keyword xml:lang="ru">Микросхема</keyword>
+     <keyword xml:lang="ru">Микрочип</keyword>
+     <keyword xml:lang="ru">Интегральная схема</keyword>
+     <keyword xml:lang="uk">Мікросхема</keyword>
+     <keyword xml:lang="uk">Інтегральна схема</keyword>
+     <keyword xml:lang="zh_CN">微电路</keyword>
+     <keyword xml:lang="zh_CN">微芯片</keyword>
+     <keyword xml:lang="zh_CN">集成电路</keyword>
+  </keywords>
+  <url type="homepage">https://github.com/bigbigmdm/IMSProg/tree/main</url>
+  <url type="contact">https://github.com/bigbigmdm</url>
+  <launchable type="desktop-id">IMSProg.desktop</launchable>
+  <provides>
+     <mediatype>application/octet-stream</mediatype>
+  </provides>  
+  <url type="homepage">https://github.com/bigbigmdm/IMSProg</url>
+  <url type="bugtracker">https://github.com/bigbigmdm/IMSProg/issues</url>  
+  <developer_name>Mikhail Medvedev</developer_name>
+  <screenshots>
+    <screenshot type="default">
+	  <caption>Main screen with chip connection form.</caption>
+      <caption xml:lang="de">Hauptbildschirm mit Chipverbindungsformular.</caption>
+      <caption xml:lang="es">Pantalla principal con formulario de conexión de chips.</caption>
+      <caption xml:lang="hu">Főképernyő a chipcsatlakozási űrlappal.</caption>
+      <caption xml:lang="it">Schermata principale con modulo di connessione al chip.</caption>
+      <caption xml:lang="pt_BR">Tela principal com formulário de conexão de chip.</caption>
+      <caption xml:lang="ru">Главный экран с формой подключения микросхемы.</caption>
+      <caption xml:lang="uk">Головний екран з формою підключення чіпа.</caption>
+      <caption xml:lang="zn_CH">主屏幕显示芯片连接表。</caption>	
+      <image type="source" width="905" height="650">https://github.com/bigbigmdm/IMSProg/raw/main/img/IMSProg.png</image>
+    </screenshot>
+    <screenshot>
+	  <caption>Main screen.</caption>
+      <caption xml:lang="de">Hauptbildschirm.</caption>
+      <caption xml:lang="es">Pantalla principal.</caption>
+      <caption xml:lang="hu">Főképernyő.</caption>
+      <caption xml:lang="it">Schermata principale.</caption>
+      <caption xml:lang="pt_BR">Tela principal.</caption>
+      <caption xml:lang="ru">Главный экран.</caption>
+      <caption xml:lang="uk">Головний екран.</caption>
+      <caption xml:lang="zn_CH">主屏幕。</caption>	
+      <image type="source" width="905" height="650">https://github.com/bigbigmdm/IMSProg/raw/main/img/IMSProg_1.png</image>
+    </screenshot>
+    <screenshot>
+	  <caption>Form of chip information (SFDP and status registers).</caption>
+      <caption xml:lang="de">Form der Chipinformationen (SFDP und Statusregister).</caption>
+      <caption xml:lang="es">Forma de la información del chip (SFDP y registros de estado).</caption>
+      <caption xml:lang="hu">A chipinformáció formája (SFDP és állapotregiszterek).</caption>
+      <caption xml:lang="it">Forma delle informazioni del chip (SFDP e registri di stato).</caption>
+      <caption xml:lang="pt_BR">Forma das informações do chip (SFDP e registros de status).</caption>
+      <caption xml:lang="ru">Форма информации о микросхеме (SFDP и регистры статуса).</caption>
+      <caption xml:lang="uk">Форма інформації про чіп (SFDP та регістри стану).</caption>
+      <caption xml:lang="zn_CH">芯片信息的形式（SFDP 和状态寄存器）。</caption>	
+      <image type="source" width="954" height="660">https://github.com/bigbigmdm/IMSProg/raw/main/img/sfdp_unblock_en.png</image>
+    </screenshot>
+  </screenshots>
+  <releases>
+  <release version="1.3.7" date="2024-04-27" urgency="low">
+    <description>
+      <p>This stable release fixes bugs, updated translations.</p>
+    </description>
+  </release>
+  </releases>  
+  <content_rating type="oars-1.1" />
+  <update_contact>e-ink-reader@yandex.ru</update_contact>
+</component>
