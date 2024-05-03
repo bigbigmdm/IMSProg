@@ -9,7 +9,7 @@
   <summary xml:lang="de">Chipdatenbank-Editor für IMSProg-Programmierer</summary>
   <summary xml:lang="es">Editor de bases de datos de chips para el programador IMSProg</summary>
   <summary xml:lang="hu">Chip adatbázis szerkesztő az IMSProg programozó számára</summary>
-  <summary xml:lang="it">Editor di database di chip per programmatori IMSProg</summary>
+  <summary xml:lang="it">Editor del database dei chip per il programmatore IMSProg</summary>
   <summary xml:lang="pt_BR">Editor de banco de dados de chip para programador IMSProg</summary>
   <summary xml:lang="ru">Редактор баз данных микросхем для программатора IMSProg</summary>
   <summary xml:lang="uk">Редактор бази даних мікросхем для програматорі IMSProg</summary>
@@ -21,7 +21,7 @@
     <p xml:lang="de">IMSProg_editor dient zur Modifikation und Ergänzung bzw. zum Export/Import im csv-Format der Chipdatenbank für den IMSProg-Programmierer.</p>
     <p xml:lang="es">IMSProg_editor se utiliza para modificar y complementar o exportar/importar en formato csv la base de datos de chips para el programador IMSProg.</p>
     <p xml:lang="hu">Az IMSProg_editor az IMSProg programozó számára a chip adatbázis módosítására és kiegészítésére vagy csv formátumú exportálására/importálására szolgál.</p>
-    <p xml:lang="it">IMSProg_editor è utilizzato per modificare e integrare o esportare/importare in formato csv il database dei chip per il programmatore IMSProg.</p>
+    <p xml:lang="it">IMSProg_editor è utilizzato per modificare, integrare o esportare/importare in formato csv il database dei chip per il programmatore IMSProg.</p>
     <p xml:lang="pt_BR">O IMSProg_editor é usado para modificar e complementar ou exportar/importar em formato csv o banco de dados de chips para o programador do IMSProg.</p>
     <p xml:lang="ru">IMSProg_editor используется для изменения и дополнения или экспорта/импорта в формате csv базы данных микросхем для программиста IMSProg.</p>
     <p xml:lang="uk">IMSProg_editor використовується для зміни та доповнення або експорту/імпорту у форматі csv бази даних мікросхем для програматорі IMSProg.</p>
