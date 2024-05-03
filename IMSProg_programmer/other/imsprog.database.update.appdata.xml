@@ -68,7 +68,7 @@
   </keywords>
   <url type="homepage">https://github.com/bigbigmdm/IMSProg/tree/main</url>
   <url type="contact">https://github.com/bigbigmdm</url>
-  <launchable type="desktop-id">IMSProg_editor.desktop</launchable>
+  <launchable type="desktop-id">IMSProg_database_update.desktop</launchable>
   <provides>
      <mediatype>application/octet-stream</mediatype>
   </provides>  
