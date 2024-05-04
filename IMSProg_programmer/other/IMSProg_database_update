@@ -23,7 +23,7 @@ if [ -f ~/.local/share/imsprog/IMSProg.Dat ] ; then
          qsttxt="<b>'IMSProg.Dat'</b>文件将被新版本替换。您可能会丢失对其所做的更改。继续吗？"
          tittxt="数据库更新"
          outtxt="数据库中的芯片数："
-         chgtxt="（曾经）->（成为）"
+         chgtxt="（原先）->（变为）"
       fi
       if [[ "$LANG" == "es_ES.UTF-8" ]]
          then
