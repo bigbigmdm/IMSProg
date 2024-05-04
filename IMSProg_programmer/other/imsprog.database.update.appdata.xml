@@ -13,7 +13,7 @@
   <summary xml:lang="pt_BR">Script de atualização do banco de dados de chips para o programador IMSProg</summary>
   <summary xml:lang="ru">Скрипт обновления базы данных чипов для программатора IMSProg</summary>
   <summary xml:lang="uk">Скрипт оновлення бази даних мікросхем для програматорі IMSProg</summary>
-  <summary xml:lang="zh_CN">用于 IMSProg 程序员的芯片数据库更新脚本</summary>
+  <summary xml:lang="zh_CN"> IMSProg 编程器的芯片数据库更新脚本</summary>
   <icon type="stock">IMSProg_editor</icon>
   <icon type="remote" width="64" height="64">https://github.com/bigbigmdm/IMSProg/tree/main/IMSProg_editor/img/chipEdit64.png</icon>
   <description>
@@ -25,7 +25,7 @@
     <p xml:lang="pt_BR">IMSProg_database_update - atualização on-line do banco de dados de chips a partir do servidor da Web externo. O IMSProg_database_update usa o utilitário gráfico zenity do Gnome.   Uma vez iniciado, ele copia o banco de dados baixado para a pasta ~/.local/imsprog. Em seguida, o script exibe o número de chips no banco de dados antes e depois da atualização.</p>
     <p xml:lang="ru">IMSProg_database_update - онлайн обновление базы данных микросхем с внешнего веб-сервера. IMSProg_database_update использует графическую Gnome-утилиту zenity.   После запуска он копирует загруженную базу данных в папку ~/.local/imsprog. Затем скрипт отображает количество чипов в базе данных до и после обновления.</p>
     <p xml:lang="uk">IMSProg_database_update - онлайн оновлення бази даних мікросхем із зовнішнього веб-сервера. IMSProg_database_update використовує графічну утиліту Gnome zenity.   Після запуску вон копіює завантажену базу даних до теки ~/.local/imsprog. Потім скрипт показує кількість мікросхем у базі даних до і після оновлення.</p>
-    <p xml:lang="zh_CN">IMSProg_database_update - 从外部网络服务器在线更新芯片数据库。IMSProg_database_update 使用 zenity 图形 Gnome 工具。  启动后，它会将下载的数据库复制到 ~/.local/imsprog 文件夹。然后，脚本会显示升级前后数据库中芯片的数量。</p>
+    <p xml:lang="zh_CN">IMSProg_database_update - 从外部Web服务器在线更新芯片数据库。IMSProg_database_update 使用 Gnome 图形工具 zenity。  启动后，它会将下载的数据库复制到 ~/.local/imsprog 文件夹。然后，脚本会显示升级前后数据库中芯片的数量。</p>
   </description>
   <categories>
      <category>Development</category>
