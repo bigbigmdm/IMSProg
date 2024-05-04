@@ -168,14 +168,14 @@
     <message>
         <location filename="../ezp_chip_editor.cpp" line="84"/>
         <source>Size</source>
-        <translation>尺寸</translation>
+        <translation>大小</translation>
     </message>
     <message>
         <location filename="../ezp_chip_editor.cpp" line="85"/>
         <source>Sector
 size</source>
         <translation>扇区
-尺寸</translation>
+大小</translation>
     </message>
     <message>
         <location filename="../ezp_chip_editor.cpp" line="86"/>
