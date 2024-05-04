@@ -13,7 +13,7 @@
   <summary xml:lang="pt_BR">Leitura, gravação e apagamento de chips EEPROM</summary>
   <summary xml:lang="ru">Чтение, запись и стирание микросхем EEPROM</summary>
   <summary xml:lang="uk">Читання, запис і стирання мікросхем EEPROM</summary>
-  <summary xml:lang="zh_CN">创读取、写入和擦除 EEPROM 芯片</summary>
+  <summary xml:lang="zh_CN">读取、写入和擦除 EEPROM 芯片</summary>
   <icon type="remote" width="64" height="64">https://github.com/bigbigmdm/IMSProg/tree/main/IMSProg_programmer/img/IMSProg64.png</icon>
   <description>
     <p>IMSProg is a free software for CH341A based chip programmers with graphical interface. With IMSProg you can read, verify, program, erase i2C, SPI, SPI NOR, MicroWire EEPROM chips using the CH341A programmer device.</p>
@@ -24,7 +24,7 @@
     <p xml:lang="pt_BR">O IMSProg é um software gratuito para programadores de chips baseados no CH341A com interface gráfica. Com o IMSProg, você pode ler, verificar, programar e apagar chips i2C, SPI, SPI NOR e MicroWire EEPROM usando o dispositivo programador CH341A.</p>
     <p xml:lang="ru">IMSProg - это бесплатное программное обеспечение для программаторов микросхем на базе CH341A с графическим интерфейсом. С помощью IMSProg вы можете читать, проверять, программировать, стирать микросхемы i2C, SPI, SPI NOR, MicroWire EEPROM, используя устройство-программатор CH341A.</p>
     <p xml:lang="uk">IMSProg - вільне програмне забезпечення для програматорів мікросхем на базі CH341A з графічним інтерфейсом. За допомогою IMSProg ви можете читати, перевіряти, програмувати, стирати мікросхеми i2C, SPI, SPI NOR, MicroWire EEPROM за допомогою програматора CH341A.</p>
-    <p xml:lang="zh_CN">IMSProg 是一款用于基于 CH341A 的芯片编程器的免费软件，具有图形界面。利用 IMSProg，您可以使用 CH341A 编程器设备读取、验证、编程、擦除 i2C、SPI、SPI NOR 和 MicroWire EEPROM 芯片。</p>
+    <p xml:lang="zh_CN">IMSProg 是一套基于 CH341A 具有图形界面的芯片编程器免费软件。利用 IMSProg，您可以使用 CH341A 编程器读取、校验、编程、擦除 I2C、SPI、SPI NOR 和 MicroWire EEPROM 芯片。</p>
     <p>IMSProg is a collection of tools:</p>
     <p xml:lang="de">IMSProg ist eine Sammlung von Werkzeugen:</p>
     <p xml:lang="es">IMSProg es una colección de herramientas:</p>
@@ -33,7 +33,7 @@
     <p xml:lang="pt_BR">O IMSProg é uma coleção de ferramentas:</p>
     <p xml:lang="ru">IMSProg - это набор инструментов:</p>
     <p xml:lang="uk">IMSProg - це набір інструментів:</p>
-    <p xml:lang="zh_CN">IMSProg 是一个工具集合</p>
+    <p xml:lang="zh_CN">IMSProg 是一套工具集合</p>
       <ul>
         <li>IMSProg - the chip programmer (it's the main part).</li>
         <li xml:lang="de">IMSProg - der Chip-Programmierer (das ist der Hauptteil).</li>
@@ -61,7 +61,7 @@
         <li xml:lang="pt_BR">IMSProg_database_update - script para atualizar o banco de dados de chip usando um servidor da Web externo.</li>
         <li xml:lang="ru">IMSProg_database_update - скрипт для обновления базы данных микросхем с помощью внешнего веб-сервера.</li>
         <li xml:lang="uk">IMSProg_database_update - скрипт для оновлення бази даних чіпів за допомогою зовнішнього веб-сервера.</li>
-        <li xml:lang="zh_CN">IMSProg_database_update - 使用外部网络服务器更新芯片数据库的脚本。</li>
+        <li xml:lang="zh_CN">IMSProg_database_update - 使用外部Web服务器更新芯片数据库的脚本。</li>
       </ul>
   </description>
   <categories>
@@ -145,7 +145,7 @@
       <caption xml:lang="pt_BR">Forma das informações do chip (SFDP e registros de status).</caption>
       <caption xml:lang="ru">Форма информации о микросхеме (SFDP и регистры статуса).</caption>
       <caption xml:lang="uk">Форма інформації про чіп (SFDP та регістри стану).</caption>
-      <caption xml:lang="zn_CH">芯片信息的形式（SFDP 和状态寄存器）。</caption>	
+      <caption xml:lang="zn_CH">芯片信息表（SFDP 和状态寄存器）。</caption>	
       <image type="source" width="954" height="660">https://github.com/bigbigmdm/IMSProg/raw/main/img/sfdp_unblock_en.png</image>
     </screenshot>
   </screenshots>
