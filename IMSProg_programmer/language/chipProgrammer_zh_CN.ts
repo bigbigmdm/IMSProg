@@ -11,7 +11,7 @@
     <message>
         <location filename="../dialogabout.ui" line="26"/>
         <source>IMSProg - free software I2C, SPI and MicroWire EEPROM/Flash chip programmer for CH341a devices. IMSProg supports 24Cxx, 25xx, 93Cxx, and M95xx series chips.</source>
-        <translation>IMSProg –基于CH341A的免费I2C、SPI、MicroWire EEPROM/Flash芯片编程器。IMSProg 支持 24Cxx、25xx、93Cxx 和 M95xx 系列芯片。</translation>
+        <translation>IMSProg - I2C、SPI、MicroWire EEPROM/Flash 芯片 CH341A 编程器免费软件。IMSProg 支持 24Cxx、25xx、93Cxx 和 M95xx 系列芯片。</translation>
     </message>
     <message>
         <location filename="../dialogabout.ui" line="70"/>
@@ -149,12 +149,12 @@
     <message>
         <location filename="../dialogsfdp.ui" line="107"/>
         <source>Chip size:</source>
-        <translation>芯片尺寸：</translation>
+        <translation>芯片大小：</translation>
     </message>
     <message>
         <location filename="../dialogsfdp.ui" line="127"/>
         <source>Block size:</source>
-        <translation>区块大小：</translation>
+        <translation>块大小：</translation>
     </message>
     <message>
         <location filename="../dialogsfdp.ui" line="150"/>
@@ -279,7 +279,7 @@
     <message>
         <location filename="../dialogsfdp.ui" line="1345"/>
         <source>Capacity</source>
-        <translation>尺寸：</translation>
+        <translation>容量：</translation>
     </message>
     <message>
         <location filename="../dialogsfdp.ui" line="1357"/>
@@ -426,7 +426,7 @@
         <location filename="../dialogsfdp.cpp" line="298"/>
         <location filename="../dialogsfdp.cpp" line="415"/>
         <source>Programmer CH341a is not connected!</source>
-        <translation>编程器 CH341a 未连接！</translation>
+        <translation>CH341A 编程器未连接！</translation>
     </message>
 </context>
 <context>
@@ -528,7 +528,7 @@
         <location filename="../dialogsr.cpp" line="68"/>
         <location filename="../dialogsr.cpp" line="110"/>
         <source>Programmer CH341a is not connected!</source>
-        <translation>编程器 CH341a 未连接！</translation>
+        <translation>CH341A 编程器未连接！</translation>
     </message>
     <message>
         <location filename="../dialogsr.cpp" line="107"/>
@@ -594,7 +594,7 @@
     <message>
         <location filename="../mainwindow.ui" line="29"/>
         <source>IMSProg - I2C/MicroWire/SPI CH341a Programmer</source>
-        <translation>IMSProg - I2C/MicroWire/SPI CH341a 编程器</translation>
+        <translation>IMSProg - I2C、SPI、MicroWire EEPROM/Flash 芯片 CH341A 编程器</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="77"/>
@@ -614,12 +614,12 @@
     <message>
         <location filename="../mainwindow.ui" line="285"/>
         <source>Block size</source>
-        <translation>区块大小</translation>
+        <translation>块大小</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="323"/>
         <source>VCC, Volt</source>
-        <translation>VCC，伏特</translation>
+        <translation>VCC(伏)</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="333"/>
@@ -684,7 +684,7 @@
     <message>
         <location filename="../mainwindow.ui" line="786"/>
         <source>CH341a:</source>
-        <translation>CH341a:</translation>
+        <translation>CH341A:</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="811"/>
@@ -959,7 +959,7 @@
     </message>
     <message>
         <source>The file size exceeds the chip size. Please select another chip or file or use `Save block` to split the file.</source>
-        <translation type="vanished">文件大小超出芯片尺寸。请选择其他芯片或文件，或使用 &quot;部分保存&quot; 分割文件。</translation>
+        <translation type="vanished">文件大小超出芯片大小。请选择其他芯片或文件，或使用 &quot;部分保存&quot; 分割文件。</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1247"/>
@@ -998,7 +998,7 @@
         <location filename="../mainwindow.cpp" line="959"/>
         <location filename="../mainwindow.cpp" line="1014"/>
         <source>Programmer CH341a is not connected!</source>
-        <translation>编程器 CH341a 未连接！</translation>
+        <translation>CH341A 编程器未连接！</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="235"/>
@@ -1070,7 +1070,7 @@
         <location filename="../mainwindow.cpp" line="605"/>
         <location filename="../mainwindow.cpp" line="641"/>
         <source>The file size exceeds the chip size. Please select another chip or file or use `Save part` to split the file.</source>
-        <translation>文件大小超出芯片尺寸。请选择其他芯片或文件，或使用 &quot;部分保存&quot; 分割文件。</translation>
+        <translation>文件大小超出芯片大小。请选择其他芯片或文件，或使用 &quot;部分保存&quot; 分割文件。</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="693"/>
@@ -1139,12 +1139,12 @@ Buffer: </source>
     <message>
         <location filename="../mainwindow.cpp" line="1080"/>
         <source>Opening block</source>
-        <translation>打开区块</translation>
+        <translation>打开块</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1082"/>
         <source>Open block</source>
-        <translation>打开区块</translation>
+        <translation>打开块</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1099"/>
@@ -1169,7 +1169,7 @@ Buffer: </source>
     <message>
         <location filename="../mainwindow.cpp" line="1822"/>
         <source>The address is larger than the size of the chip!</source>
-        <translation>地址大于芯片尺寸！</translation>
+        <translation>地址大于芯片大小！</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1840"/>
