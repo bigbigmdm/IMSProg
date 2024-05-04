@@ -13,7 +13,7 @@
   <summary xml:lang="pt_BR">Editor de banco de dados de chip para programador IMSProg</summary>
   <summary xml:lang="ru">Редактор баз данных микросхем для программатора IMSProg</summary>
   <summary xml:lang="uk">Редактор бази даних мікросхем для програматорі IMSProg</summary>
-  <summary xml:lang="zh_CN">用于 IMSProg 程序员的芯片数据库编辑器。</summary>
+  <summary xml:lang="zh_CN">IMSProg 编程器的芯片数据库编辑器。</summary>
   <icon type="stock">IMSProg_editor</icon>
   <icon type="remote" width="64" height="64">https://github.com/bigbigmdm/IMSProg/tree/main/IMSProg_editor/img/chipEdit64.png</icon>
   <description>
@@ -25,7 +25,7 @@
     <p xml:lang="pt_BR">O IMSProg_editor é usado para modificar e complementar ou exportar/importar em formato csv o banco de dados de chips para o programador do IMSProg.</p>
     <p xml:lang="ru">IMSProg_editor используется для изменения и дополнения или экспорта/импорта в формате csv базы данных микросхем для программиста IMSProg.</p>
     <p xml:lang="uk">IMSProg_editor використовується для зміни та доповнення або експорту/імпорту у форматі csv бази даних мікросхем для програматорі IMSProg.</p>
-    <p xml:lang="zh_CN">IMSProg_editor 用于修改、补充或以 csv 格式导出/导入芯片数据库，供 IMSProg 程序员使用。</p>
+    <p xml:lang="zh_CN">IMSProg_editor 用于修改、补充或以 CSV 格式导出/导入芯片数据库，供 IMSProg 编程器使用。</p>
   </description>
   <categories>
      <category>Development</category>
