@@ -150,3 +150,9 @@ install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/other/IMSProg_database_update.1.gz" D
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/other/index.html" DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/doc/imsprog/html")
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/other/imsprog.appdata.xml" DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/metainfo")
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/other/imsprog.database.update.appdata.xml" DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/metainfo")
+
+#Reloading USB UDEV rules
+execute_process(
+    COMMAND bash "-c" "sudo udevadm control --reload-rules" 
+    OUTPUT_VARIABLE FOO
+)
