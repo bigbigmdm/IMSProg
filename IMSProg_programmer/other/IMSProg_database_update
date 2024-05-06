@@ -1,8 +1,67 @@
 #!/bin/bash
 if [ -f ~/.local/share/imsprog/IMSProg.Dat ] ; then
-zenity --question --text="The IMSProg.Dat file will be replaced with the new version. You may lose the changes made to it. Continue?" \
---ok-label="Yes" --cancel-label="No" \
---height=160 --width=320
+   qsttxt="The <b>'IMSProg.Dat'</b> file will be replaced with the new version. You may lose the changes made to it. Continue?"
+   tittxt="Database update"
+   outtxt="The number of chips in the database:"
+   chgtxt="(was) -> (became)"
+      if [[ "$LANG" == "ru_RU.UTF-8" ]]
+         then
+         qsttxt="Файл <b>'IMSProg.Dat'</b> будет заменен новой версией. Вы можете потерять внесенные в него изменения. Продолжить?"
+         tittxt="Обновление базы данных"
+         outtxt="Количество микросхем в базе данных:"
+         chgtxt="(было) -> (стало)"
+      fi
+      if [[ "$LANG" == "de_DE.UTF-8" ]]
+         then
+         qsttxt="Die <b>'IMSProg.Dat'</b> Datei wird durch die neue Version ersetzt. Die daran vorgenommenen Änderungen können verloren gehen. Continue?"
+         tittxt="Aktualisierung der Datenbank"
+         outtxt="Die Anzahl der Chips in der Datenbank:"
+         chgtxt="\n\n(war) -> (wurde)\n\n"
+      fi
+      if [[ "$LANG" == "zh_CN.UTF-8" ]]
+         then
+         qsttxt="<b>'IMSProg.Dat'</b>文件将被新版本替换。您可能会丢失对其所做的更改。继续吗？"
+         tittxt="数据库更新"
+         outtxt="数据库中的芯片数："
+         chgtxt="（原先）->（变为）"
+      fi
+      if [[ "$LANG" == "es_ES.UTF-8" ]]
+         then
+         qsttxt="El archivo <b>'IMSProg.Dat'</b> será sustituido por la nueva versión. Es posible que pierdas los cambios realizados en él. ¿Continuar?"
+         tittxt="Actualización de la base de datos"
+         outtxt="El número de fichas en la base de datos:"
+         chgtxt="(fue) -> (se hizo)"
+      fi
+      if [[ "$LANG" == "uk_UA.UTF-8" ]]
+         then
+         qsttxt="Файл <b>'IMSProg.Dat'</b> буде замінено новою версією. Ви можете втратити внесені до нього зміни. Продовжити?"
+         tittxt="Оновлення бази даних"
+         outtxt="Кількість фішок у базі даних:"
+         chgtxt="(було) -> (було зроблено)"
+      fi
+      if [[ "$LANG" == "it_IT.UTF-8" ]]
+         then
+         qsttxt="Il file <b>'IMSProg.Dat'</b> verrà sostituito con la nuova versione. Le modifiche apportate potrebbero andare perse. Vuoi continuare?"
+         tittxt="Aggiornamento del database in corso"
+         outtxt="Il numero di chip nel database:"
+         chgtxt="(era) -> (è diventato)"
+      fi
+      if [[ "$LANG" == "pt_BR.UTF-8" ]]
+         then
+         qsttxt="O arquivo <b>'IMSProg.Dat'</b> será substituído pela nova versão. Você pode perder as alterações feitas nele. Continuar?"
+         tittxt="Atualização do banco de dados"
+         outtxt="O número de fichas no banco de dados:"
+         chgtxt="(foi) -> (foi feito)"
+      fi
+      if [[ "$LANG" == "hu_HU.UTF-8" ]]
+         then
+         qsttxt="Az <b>'IMSProg.Dat'</b> fájl helyébe az új verzió lép. Elveszítheti a rajta végrehajtott módosításokat. Continue?"
+         tittxt="Adatbázis frissítés"
+         outtxt="Az adatbázisban szereplő chipek száma:"
+         chgtxt="(volt) -> (lett)"
+      fi
+   zenity --question --text="$qsttxt" \
+   --height=160 --width=320
 fi
 if [ $? = 0 ] ; then
 IMSPROG_DB_URL=https://antenna-dvb-t2.ru/dl_all/IMSProg.Dat
@@ -20,8 +79,8 @@ let newrec=newsize/68-1
 out_text=$(echo $oldrec "->" $newrec)
 echo $oldrec "->" $newrec
 zenity --warning \
---text="The number of chips in the database:\n\n$out_text" \
---title="Database update" \
+--text="$outtxt\n\n$chgtxt\n\n$out_text" \
+--title="$tittxt" \
 --icon-name='applications-electronics' \
 --height=160 --width=320
 fi

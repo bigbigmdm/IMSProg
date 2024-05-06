@@ -135,7 +135,7 @@ install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/other/99-CH341.rules" DESTINATION "${
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/language/chipProgrammer_ru_RU.qm" DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/imsprog")
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/language/chipProgrammer_es_ES.qm" DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/imsprog")
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/language/chipProgrammer_de_DE.qm" DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/imsprog")
-install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/language/chipProgrammer_zn_CH.qm" DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/imsprog")
+install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/language/chipProgrammer_zh_CN.qm" DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/imsprog")
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/language/chipProgrammer_uk_UA.qm" DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/imsprog")
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/language/chipProgrammer_hu_HU.qm" DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/imsprog")
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/language/chipProgrammer_pt_BR.qm" DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/imsprog")
@@ -148,3 +148,11 @@ install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/img/IMSProg_database_update.png" DEST
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/other/IMSProg.1.gz" DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/man/man1")
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/other/IMSProg_database_update.1.gz" DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/man/man1")
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/other/index.html" DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/doc/imsprog/html")
+install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/other/imsprog.appdata.xml" DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/metainfo")
+install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/other/imsprog.database.update.appdata.xml" DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/metainfo")
+
+#Reloading USB UDEV rules
+execute_process(
+    COMMAND bash "-c" "sudo udevadm control --reload-rules" 
+    OUTPUT_VARIABLE FOO
+)

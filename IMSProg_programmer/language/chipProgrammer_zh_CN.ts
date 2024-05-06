@@ -11,12 +11,12 @@
     <message>
         <location filename="../dialogabout.ui" line="26"/>
         <source>IMSProg - free software I2C, SPI and MicroWire EEPROM/Flash chip programmer for CH341a devices. IMSProg supports 24Cxx, 25xx, 93Cxx, and M95xx series chips.</source>
-        <translation>IMSProg –基于CH341A的免费I2C、SPI、MicroWire EEPROM/Flash芯片编程器。IMSProg 支持 24Cxx、25xx、93Cxx 和 M95xx 系列芯片。</translation>
+        <translation>IMSProg - I2C、SPI、MicroWire EEPROM/Flash 芯片 CH341A 编程器免费软件。IMSProg 支持 24Cxx、25xx、93Cxx 和 M95xx 系列芯片。</translation>
     </message>
     <message>
         <location filename="../dialogabout.ui" line="70"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;In this program &lt;a href=&quot;https://github.com/Simsys/qhexedit2/&quot;&gt;QhexEditor2&lt;/a&gt; widget and modified programmer &lt;a href=&quot;https://github.com/McMCCRU/SNANDer&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;SNANDer&lt;/span&gt;&lt;/a&gt; were used.&lt;/p&gt;&lt;p&gt;The page on GitHub is &lt;a href=&quot;https://github.com/bigbigmdm/IMSProg&quot;&gt;here&lt;/a&gt;, the support page is &lt;a href=&quot;https://antenna-dvb-t2.ru/IMSProg.php&quot;&gt;here&lt;/a&gt;. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;该程序使用 &lt;a href=&quot;https://github.com/Simsys/qhexedit2/&quot;&gt;QhexEditor2&lt;/a&gt; widget 和经过修改的程序员 &lt;a href=&quot;https://github.com/McMCCRU/SNANDer&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;SNANDer&lt;/span&gt;&lt;/a&gt; .&lt;/p&gt;&lt;p&gt;GitHub 页面在 &lt;a href=&quot;https://github.com/bigbigmdm/IMSProg&quot;&gt;这里&lt;/a&gt;, 支持页面在 &lt;a href=&quot;https://antenna-dvb-t2.ru/IMSProg.php&quot;&gt;这里&lt;/a&gt;. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;该程序使用 &lt;a href=&quot;https://github.com/Simsys/qhexedit2/&quot;&gt;QhexEditor2&lt;/a&gt; widget 和经过修改的编程器 &lt;a href=&quot;https://github.com/McMCCRU/SNANDer&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;SNANDer&lt;/span&gt;&lt;/a&gt; .&lt;/p&gt;&lt;p&gt;GitHub 页面在 &lt;a href=&quot;https://github.com/bigbigmdm/IMSProg&quot;&gt;这里&lt;/a&gt;, 支持页面在 &lt;a href=&quot;https://antenna-dvb-t2.ru/IMSProg.php&quot;&gt;这里&lt;/a&gt;. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../dialogabout.ui" line="120"/>
@@ -149,12 +149,12 @@
     <message>
         <location filename="../dialogsfdp.ui" line="107"/>
         <source>Chip size:</source>
-        <translation>芯片尺寸：</translation>
+        <translation>芯片大小：</translation>
     </message>
     <message>
         <location filename="../dialogsfdp.ui" line="127"/>
         <source>Block size:</source>
-        <translation>区块大小：</translation>
+        <translation>块大小：</translation>
     </message>
     <message>
         <location filename="../dialogsfdp.ui" line="150"/>
@@ -269,7 +269,7 @@
     <message>
         <location filename="../dialogsfdp.ui" line="1301"/>
         <source>Man. ID</source>
-        <translation>制造标识：</translation>
+        <translation>制造商标识：</translation>
     </message>
     <message>
         <location filename="../dialogsfdp.ui" line="1323"/>
@@ -279,7 +279,7 @@
     <message>
         <location filename="../dialogsfdp.ui" line="1345"/>
         <source>Capacity</source>
-        <translation>尺寸：</translation>
+        <translation>容量：</translation>
     </message>
     <message>
         <location filename="../dialogsfdp.ui" line="1357"/>
@@ -336,7 +336,7 @@
     <message>
         <location filename="../dialogsfdp.ui" line="1731"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Legend:&lt;/p&gt;&lt;p&gt;** - Basic area&lt;br&gt;** - Extended area&lt;br&gt;** - Manufacture area &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;图例:&lt;/p&gt;&lt;p&gt;** - 基本区域&lt;br&gt;** - 扩展区&lt;br&gt;** - 制造区&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;图例:&lt;/p&gt;&lt;p&gt;** - 基本区域&lt;br&gt;** - 扩展区&lt;br&gt;** - 制造商区&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../dialogsfdp.ui" line="1776"/>
@@ -374,7 +374,7 @@
     </message>
     <message>
         <source>&lt;/span&gt; - Manufacture area &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="vanished">&lt;/span&gt; - 制造区 &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation type="vanished">&lt;/span&gt; - 制造商区 &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../dialogsfdp.cpp" line="171"/>
@@ -415,7 +415,7 @@
     <message>
         <location filename="../dialogsfdp.cpp" line="42"/>
         <source> - Manufacture area</source>
-        <translation> - 制造区</translation>
+        <translation> - 制造商区</translation>
     </message>
     <message>
         <location filename="../dialogsfdp.cpp" line="283"/>
@@ -426,7 +426,7 @@
         <location filename="../dialogsfdp.cpp" line="298"/>
         <location filename="../dialogsfdp.cpp" line="415"/>
         <source>Programmer CH341a is not connected!</source>
-        <translation>编程器 CH341a 未连接！</translation>
+        <translation>CH341A 编程器未连接！</translation>
     </message>
 </context>
 <context>
@@ -434,7 +434,7 @@
     <message>
         <location filename="../dialogsp.ui" line="14"/>
         <source>Save part of image</source>
-        <translation>保存部分图像</translation>
+        <translation>保存部分映像</translation>
     </message>
     <message>
         <location filename="../dialogsp.ui" line="27"/>
@@ -449,7 +449,7 @@
     <message>
         <location filename="../dialogsp.ui" line="120"/>
         <source>Save</source>
-        <translation>节省</translation>
+        <translation>保存</translation>
     </message>
     <message>
         <location filename="../dialogsp.cpp" line="27"/>
@@ -509,7 +509,7 @@
     <message>
         <location filename="../dialogsr.ui" line="567"/>
         <source>Write</source>
-        <translation>写</translation>
+        <translation>写入</translation>
     </message>
     <message>
         <location filename="../dialogsr.cpp" line="54"/>
@@ -528,7 +528,7 @@
         <location filename="../dialogsr.cpp" line="68"/>
         <location filename="../dialogsr.cpp" line="110"/>
         <source>Programmer CH341a is not connected!</source>
-        <translation>编程器 CH341a 未连接！</translation>
+        <translation>CH341A 编程器未连接！</translation>
     </message>
     <message>
         <location filename="../dialogsr.cpp" line="107"/>
@@ -589,12 +589,12 @@
     <message>
         <location filename="../mainwindow.ui" line="997"/>
         <source>Save</source>
-        <translation>节省</translation>
+        <translation>保存</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="29"/>
         <source>IMSProg - I2C/MicroWire/SPI CH341a Programmer</source>
-        <translation>IMSProg - I2C/MicroWire/SPI CH341a 编程器</translation>
+        <translation>IMSProg - I2C、SPI、MicroWire EEPROM/Flash 芯片 CH341A 编程器</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="77"/>
@@ -614,12 +614,12 @@
     <message>
         <location filename="../mainwindow.ui" line="285"/>
         <source>Block size</source>
-        <translation>区块大小</translation>
+        <translation>块大小</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="323"/>
         <source>VCC, Volt</source>
-        <translation>VCC，伏特</translation>
+        <translation>VCC(伏)</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="333"/>
@@ -663,7 +663,7 @@
         <location filename="../mainwindow.ui" line="614"/>
         <location filename="../mainwindow.ui" line="1069"/>
         <source>Verify</source>
-        <translation>验证</translation>
+        <translation>校验</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="669"/>
@@ -684,7 +684,7 @@
     <message>
         <location filename="../mainwindow.ui" line="786"/>
         <source>CH341a:</source>
-        <translation>CH341a:</translation>
+        <translation>CH341A:</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="811"/>
@@ -699,7 +699,7 @@
     <message>
         <location filename="../mainwindow.ui" line="911"/>
         <source>Programmer</source>
-        <translation>程序员</translation>
+        <translation>编程器</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="933"/>
@@ -729,7 +729,7 @@
     <message>
         <location filename="../mainwindow.ui" line="1057"/>
         <source>Write</source>
-        <translation>写</translation>
+        <translation>写入</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1060"/>
@@ -764,7 +764,7 @@
     <message>
         <location filename="../mainwindow.ui" line="1206"/>
         <source>Import from Intel HEX</source>
-        <translation>从英特尔 HEX 输入</translation>
+        <translation>从英特尔 HEX 导入</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1215"/>
@@ -798,7 +798,7 @@
     <message>
         <location filename="../mainwindow.ui" line="1105"/>
         <source>Save Part</source>
-        <translation>保存部分</translation>
+        <translation>部分保存</translation>
     </message>
     <message>
         <source>, Ctrl+Shift+S</source>
@@ -807,7 +807,7 @@
     <message>
         <location filename="../mainwindow.ui" line="1117"/>
         <source>Load Part</source>
-        <translation>加载部分</translation>
+        <translation>部分加载</translation>
     </message>
     <message>
         <source>, Ctrl+Shift+O</source>
@@ -841,7 +841,7 @@
     <message>
         <location filename="../mainwindow.ui" line="1152"/>
         <source>Checksum calculate</source>
-        <translation>校验和计算</translation>
+        <translation>计算校验和</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1155"/>
@@ -867,7 +867,7 @@
     <message>
         <location filename="../mainwindow.ui" line="1179"/>
         <source>Forced stop of read, write, erase and verification operations</source>
-        <translation>强制停止读、写、擦除和验证操作</translation>
+        <translation>强制停止读、写、擦除和校验操作</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1182"/>
@@ -906,7 +906,7 @@
     <message>
         <location filename="../mainwindow.ui" line="127"/>
         <source>Manufacture</source>
-        <translation>制造</translation>
+        <translation>制造商</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="209"/>
@@ -959,7 +959,7 @@
     </message>
     <message>
         <source>The file size exceeds the chip size. Please select another chip or file or use `Save block` to split the file.</source>
-        <translation type="vanished">文件大小超出芯片尺寸。请选择其他芯片或文件，或使用 &quot;保存部分&quot; 分割文件。</translation>
+        <translation type="vanished">文件大小超出芯片大小。请选择其他芯片或文件，或使用 &quot;部分保存&quot; 分割文件。</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1247"/>
@@ -998,7 +998,7 @@
         <location filename="../mainwindow.cpp" line="959"/>
         <location filename="../mainwindow.cpp" line="1014"/>
         <source>Programmer CH341a is not connected!</source>
-        <translation>编程器 CH341a 未连接！</translation>
+        <translation>CH341A 编程器未连接！</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="235"/>
@@ -1016,7 +1016,7 @@
     <message>
         <location filename="../mainwindow.cpp" line="262"/>
         <source>Please select the chip parameters - manufacture and chip name</source>
-        <translation>请选择芯片参数 - &apos;制造&apos; 和芯片 &apos;名称&apos;。</translation>
+        <translation>请选择芯片参数 - &apos;制造商&apos; 和芯片 &apos;名称&apos;。</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="300"/>
@@ -1039,7 +1039,7 @@
         <location filename="../mainwindow.cpp" line="447"/>
         <location filename="../mainwindow.cpp" line="1066"/>
         <source>Error saving file!</source>
-        <translation>¡保存文件出错！</translation>
+        <translation>保存文件出错！</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="464"/>
@@ -1070,7 +1070,7 @@
         <location filename="../mainwindow.cpp" line="605"/>
         <location filename="../mainwindow.cpp" line="641"/>
         <source>The file size exceeds the chip size. Please select another chip or file or use `Save part` to split the file.</source>
-        <translation>文件大小超出芯片尺寸。请选择其他芯片或文件，或使用 &quot;保存部分&quot; 分割文件。</translation>
+        <translation>文件大小超出芯片大小。请选择其他芯片或文件，或使用 &quot;部分保存&quot; 分割文件。</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="693"/>
@@ -1109,7 +1109,7 @@ Buffer: </source>
     <message>
         <location filename="../mainwindow.cpp" line="1000"/>
         <source>Please select the chip parameters - manufacture and chip name.</source>
-        <translation>请选择芯片参数 - &apos;制造&apos; 和芯片 &apos;名称&apos;。</translation>
+        <translation>请选择芯片参数 - &apos;制造商&apos; 和芯片 &apos;名称&apos;。</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1009"/>
@@ -1119,7 +1119,7 @@ Buffer: </source>
     <message>
         <location filename="../mainwindow.cpp" line="1009"/>
         <source>The operation was successful!</source>
-        <translation>手术很成功！</translation>
+        <translation>操作成功！</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1043"/>
@@ -1139,17 +1139,17 @@ Buffer: </source>
     <message>
         <location filename="../mainwindow.cpp" line="1080"/>
         <source>Opening block</source>
-        <translation>打开区块</translation>
+        <translation>打开块</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1082"/>
         <source>Open block</source>
-        <translation>打开区块</translation>
+        <translation>打开块</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1099"/>
         <source>The end address out of image size!</source>
-        <translation>末端地址超出图像大小范围！</translation>
+        <translation>末端地址超出映像大小范围！</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1138"/>
@@ -1169,7 +1169,7 @@ Buffer: </source>
     <message>
         <location filename="../mainwindow.cpp" line="1822"/>
         <source>The address is larger than the size of the chip!</source>
-        <translation>地址大于芯片尺寸！</translation>
+        <translation>地址大于芯片大小！</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1840"/>

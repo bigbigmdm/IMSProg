@@ -130,140 +130,140 @@
         <translation>, Ctrl+Shift+X</translation>
     </message>
     <message>
-        <location filename="../ezp_chip_editor.cpp" line="44"/>
-        <location filename="../ezp_chip_editor.cpp" line="46"/>
-        <location filename="../ezp_chip_editor.cpp" line="722"/>
-        <location filename="../ezp_chip_editor.cpp" line="743"/>
+        <location filename="../ezp_chip_editor.cpp" line="51"/>
+        <location filename="../ezp_chip_editor.cpp" line="53"/>
+        <location filename="../ezp_chip_editor.cpp" line="732"/>
+        <location filename="../ezp_chip_editor.cpp" line="753"/>
         <source>Open the file</source>
         <translation>Відкрити файл</translation>
     </message>
     <message>
-        <location filename="../ezp_chip_editor.cpp" line="49"/>
-        <location filename="../ezp_chip_editor.cpp" line="687"/>
-        <location filename="../ezp_chip_editor.cpp" line="725"/>
-        <location filename="../ezp_chip_editor.cpp" line="746"/>
+        <location filename="../ezp_chip_editor.cpp" line="56"/>
+        <location filename="../ezp_chip_editor.cpp" line="697"/>
+        <location filename="../ezp_chip_editor.cpp" line="735"/>
+        <location filename="../ezp_chip_editor.cpp" line="756"/>
         <source>Current file: </source>
         <translation>Поточний файл: </translation>
     </message>
     <message>
-        <location filename="../ezp_chip_editor.cpp" line="73"/>
+        <location filename="../ezp_chip_editor.cpp" line="80"/>
         <source>Type</source>
         <translation>Тип</translation>
     </message>
     <message>
-        <location filename="../ezp_chip_editor.cpp" line="74"/>
+        <location filename="../ezp_chip_editor.cpp" line="81"/>
         <source>Manufacture</source>
         <translation>Вироблено</translation>
     </message>
     <message>
-        <location filename="../ezp_chip_editor.cpp" line="75"/>
+        <location filename="../ezp_chip_editor.cpp" line="82"/>
         <source>IC Name</source>
         <translation>Найменування МС</translation>
     </message>
     <message>
-        <location filename="../ezp_chip_editor.cpp" line="76"/>
+        <location filename="../ezp_chip_editor.cpp" line="83"/>
         <source>JEDEC ID</source>
         <translation>JEDEC ID</translation>
     </message>
     <message>
-        <location filename="../ezp_chip_editor.cpp" line="77"/>
+        <location filename="../ezp_chip_editor.cpp" line="84"/>
         <source>Size</source>
         <translation>Об `єм</translation>
     </message>
     <message>
-        <location filename="../ezp_chip_editor.cpp" line="78"/>
+        <location filename="../ezp_chip_editor.cpp" line="85"/>
         <source>Sector
 size</source>
         <translation>Розмір
 сектора</translation>
     </message>
     <message>
-        <location filename="../ezp_chip_editor.cpp" line="79"/>
+        <location filename="../ezp_chip_editor.cpp" line="86"/>
         <source>Type
 HEX</source>
         <translation>Тип
 (HEX)</translation>
     </message>
     <message>
-        <location filename="../ezp_chip_editor.cpp" line="80"/>
+        <location filename="../ezp_chip_editor.cpp" line="87"/>
         <source>Algo-
 rithm</source>
         <translation>Алго-
 ритм</translation>
     </message>
     <message>
-        <location filename="../ezp_chip_editor.cpp" line="81"/>
+        <location filename="../ezp_chip_editor.cpp" line="88"/>
         <source>Delay</source>
         <translation>Затримка</translation>
     </message>
     <message>
-        <location filename="../ezp_chip_editor.cpp" line="82"/>
+        <location filename="../ezp_chip_editor.cpp" line="89"/>
         <source>4 bit
 address</source>
         <translation>4 bit
 адреса</translation>
     </message>
     <message>
-        <location filename="../ezp_chip_editor.cpp" line="83"/>
+        <location filename="../ezp_chip_editor.cpp" line="90"/>
         <source>Block
 size K</source>
         <translation>Розмір
 блоку К</translation>
     </message>
     <message>
-        <location filename="../ezp_chip_editor.cpp" line="84"/>
+        <location filename="../ezp_chip_editor.cpp" line="91"/>
         <source>EEPROM
 pages</source>
         <translation>EEPROM
 листів</translation>
     </message>
     <message>
-        <location filename="../ezp_chip_editor.cpp" line="85"/>
+        <location filename="../ezp_chip_editor.cpp" line="92"/>
         <source>VCC</source>
         <translation>Живлення</translation>
     </message>
     <message>
-        <location filename="../ezp_chip_editor.cpp" line="518"/>
-        <location filename="../ezp_chip_editor.cpp" line="555"/>
-        <location filename="../ezp_chip_editor.cpp" line="583"/>
-        <location filename="../ezp_chip_editor.cpp" line="622"/>
-        <location filename="../ezp_chip_editor.cpp" line="662"/>
-        <location filename="../ezp_chip_editor.cpp" line="782"/>
-        <location filename="../ezp_chip_editor.cpp" line="814"/>
+        <location filename="../ezp_chip_editor.cpp" line="528"/>
+        <location filename="../ezp_chip_editor.cpp" line="565"/>
+        <location filename="../ezp_chip_editor.cpp" line="593"/>
+        <location filename="../ezp_chip_editor.cpp" line="632"/>
+        <location filename="../ezp_chip_editor.cpp" line="672"/>
+        <location filename="../ezp_chip_editor.cpp" line="792"/>
+        <location filename="../ezp_chip_editor.cpp" line="824"/>
         <source>Warning</source>
         <translation>Попередження</translation>
     </message>
     <message>
-        <location filename="../ezp_chip_editor.cpp" line="518"/>
-        <location filename="../ezp_chip_editor.cpp" line="555"/>
-        <location filename="../ezp_chip_editor.cpp" line="583"/>
-        <location filename="../ezp_chip_editor.cpp" line="622"/>
-        <location filename="../ezp_chip_editor.cpp" line="662"/>
+        <location filename="../ezp_chip_editor.cpp" line="528"/>
+        <location filename="../ezp_chip_editor.cpp" line="565"/>
+        <location filename="../ezp_chip_editor.cpp" line="593"/>
+        <location filename="../ezp_chip_editor.cpp" line="632"/>
+        <location filename="../ezp_chip_editor.cpp" line="672"/>
         <source>No string selected.</source>
         <translation>Не виділено жодного рядка.</translation>
     </message>
     <message>
-        <location filename="../ezp_chip_editor.cpp" line="682"/>
+        <location filename="../ezp_chip_editor.cpp" line="692"/>
         <source>Saving file</source>
         <translation>Зберігається файл</translation>
     </message>
     <message>
-        <location filename="../ezp_chip_editor.cpp" line="684"/>
+        <location filename="../ezp_chip_editor.cpp" line="694"/>
         <source>Save file</source>
         <translation>Зберегти файл</translation>
     </message>
     <message>
-        <location filename="../ezp_chip_editor.cpp" line="741"/>
+        <location filename="../ezp_chip_editor.cpp" line="751"/>
         <source>Opening file</source>
         <translation>Відкривається файл</translation>
     </message>
     <message>
-        <location filename="../ezp_chip_editor.cpp" line="782"/>
+        <location filename="../ezp_chip_editor.cpp" line="792"/>
         <source>Invalid CSV data file format.</source>
         <translation>Невірний формат CSV файлу.</translation>
     </message>
     <message>
-        <location filename="../ezp_chip_editor.cpp" line="814"/>
+        <location filename="../ezp_chip_editor.cpp" line="824"/>
         <source>Invalid CSV header file format.</source>
         <translation>Невірний формат заголовка CSV файлу.</translation>
     </message>

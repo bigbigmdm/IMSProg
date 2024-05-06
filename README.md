@@ -97,6 +97,8 @@ Optionally if you want to use IMSProg_database_update script:
 
 - Plug the CH341A programmer into the USB socket of your computer and running the `IMSProg`.
 - You can plug and unplug the programmer device (CH341A) to the USB port at any time when basic operations (reading, checking, and programming) are not in progress.
+- Read more about adapters [here](https://github.com/bigbigmdm/Tools_for_CH341A_programmer?tab=readme-ov-file#Homemade-Chip-adapters).
+
 
 ### Chip type selecting
 Select the type of chip used from the `Type` pop-up menu: `SPI FLASH` when using SPI NOR FLASH chips of the `25xxx` series, `24_EEPROM` when using I2C EEPROM of the `24xxx` series, `93_EEPROM` when using MicroWire EEPROM of the `93xxx` series.
@@ -352,7 +354,7 @@ IMSProg_programmer/other/index.html                         /usr/share//doc/imsp
 IMSProg_programmer/language/chipProgrammer_ru_RU.qm         /usr/share/imsprog
 IMSProg_programmer/language/chipProgrammer_es_ES.qm         /usr/share/imsprog
 IMSProg_programmer/language/chipProgrammer_de_DE.qm         /usr/share/imsprog
-IMSProg_programmer/language/chipProgrammer_zn_CH.qm         /usr/share/imsprog
+IMSProg_programmer/language/chipProgrammer_zH_CN.qm         /usr/share/imsprog
 IMSProg_programmer/language/chipProgrammer_uk_UA.qm         /usr/share/imsprog
 IMSProg_programmer/language/chipProgrammer_hu_HU.qm         /usr/share/imsprog
 IMSProg_programmer/language/chipProgrammer_pt_BR.qm         /usr/share/imsprog
@@ -360,7 +362,7 @@ IMSProg_programmer/language/chipProgrammer_pt_BR.qm         /usr/share/imsprog
 IMSProg_editor/language/chipEditor_ru_RU.qm                 /usr/share/imsprog
 IMSProg_editor/language/chipEditor_de_DE.qm                 /usr/share/imsprog
 IMSProg_editor/language/chipEditor_es_ES.qm                 /usr/share/imsprog
-IMSProg_editor/language/chipEditor_zn_CH.qm                 /usr/share/imsprog
+IMSProg_editor/language/chipEditor_zh_CN.qm                 /usr/share/imsprog
 IMSProg_editor/language/chipEditor_uk_UA.qm                 /usr/share/imsprog
 IMSProg_editor/language/chipEditor_hu_HU.qm                 /usr/share/imsprog
 IMSProg_editor/language/chipEditor_pt_BR.qm                 /usr/share/imsprog
@@ -451,6 +453,7 @@ are [GPL-2+](https://www.gnu.org/licenses/old-licenses/gpl-2.0.html) and from [Q
 - Italian translation by Marino Pasquale and [Giovanni Scafora](https://github.com/giovanni69)
 - Brasil translation by [Alexandre C. Leite](https://github.com/alexandrecleite)
 - Ukrainian translation by [Sergey Golovko](https://github.com/cappelikan)
+- Chinese translation by [Tian-HP](https://github.com/Tian-HP)
 
 Anyone can add or improve a translation by making a pull request.
 Translations files are located in: [IMSProg_programmer/language/](https://github.com/bigbigmdm/IMSProg/tree/main/IMSProg_programmer/language) and [IMSProg_editor/language/](https://github.com/bigbigmdm/IMSProg/tree/main/IMSProg_editor/language)
