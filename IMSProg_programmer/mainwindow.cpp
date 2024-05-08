@@ -82,28 +82,6 @@ MainWindow::MainWindow(QWidget *parent) :
  ui->comboBox_page->addItem("256", 256);
  ui->comboBox_page->addItem("512", 512);
 
- ui->comboBox_size->addItem(" ", 0);
- ui->comboBox_size->addItem("128 B", 128);
- ui->comboBox_size->addItem("256 B", 256);
- ui->comboBox_size->addItem("512 B", 512);
- ui->comboBox_size->addItem("1 K", 1 * 1024);
- ui->comboBox_size->addItem("2 K", 2 * 1024);
- ui->comboBox_size->addItem("4 K", 4 * 1024);
- ui->comboBox_size->addItem("8 K", 8 * 1024);
- ui->comboBox_size->addItem("16 K", 16 * 1024);
- ui->comboBox_size->addItem("32 K", 32 * 1024);
- ui->comboBox_size->addItem("64 K", 64 * 1024);
- ui->comboBox_size->addItem("128 K", 128 * 1024);
- ui->comboBox_size->addItem("256 K", 256 * 1024);
- ui->comboBox_size->addItem("512 K", 512 * 1024);
- ui->comboBox_size->addItem("1 M", 1024 * 1024);
- ui->comboBox_size->addItem("2 M", 2048 * 1024);
- ui->comboBox_size->addItem("4 M", 4096 * 1024);
- ui->comboBox_size->addItem("8 M", 8192 * 1024);
- ui->comboBox_size->addItem("16 M", 16384 * 1024);
- ui->comboBox_size->addItem("32 M", 32768 * 1024);
- ui->comboBox_size->addItem("64 M", 65536 * 1024);
-
  ui->comboBox_block->addItem(" ", 0);
  ui->comboBox_block->addItem("64 K", 64 * 1024);
 
@@ -1151,9 +1129,74 @@ void MainWindow::on_comboBox_type_currentIndexChanged(int index)
     ui->comboBox_man->clear();
     ui->comboBox_name->clear();
     ui->comboBox_man->addItem("");
-    ui->comboBox_name->addItem("");
+    ui->comboBox_name->addItem("");    
     ui->jedecEdit->setText("");
     currentChipType = static_cast<uint8_t>(ui->comboBox_type->itemData(index).toInt());
+
+    ui->comboBox_size->clear();
+    ui->comboBox_size->addItem(" ", 0);
+
+    switch (currentChipType)
+       {
+       case 0:
+          //SPI
+          ui->comboBox_size->addItem("64 K", 64 * 1024);
+          ui->comboBox_size->addItem("128 K", 128 * 1024);
+          ui->comboBox_size->addItem("256 K", 256 * 1024);
+          ui->comboBox_size->addItem("512 K", 512 * 1024);
+          ui->comboBox_size->addItem("1 M", 1024 * 1024);
+          ui->comboBox_size->addItem("2 M", 2048 * 1024);
+          ui->comboBox_size->addItem("4 M", 4096 * 1024);
+          ui->comboBox_size->addItem("8 M", 8192 * 1024);
+          ui->comboBox_size->addItem("16 M", 16384 * 1024);
+          ui->comboBox_size->addItem("32 M", 32768 * 1024);
+          ui->comboBox_size->addItem("64 M", 65536 * 1024);
+       break;
+       case 1:
+          //I2C
+          ui->comboBox_size->addItem("128 B", 128);
+          ui->comboBox_size->addItem("256 B", 256);
+          ui->comboBox_size->addItem("512 B", 512);
+          ui->comboBox_size->addItem("1 K", 1 * 1024);
+          ui->comboBox_size->addItem("2 K", 2 * 1024);
+          ui->comboBox_size->addItem("4 K", 4 * 1024);
+          ui->comboBox_size->addItem("8 K", 8 * 1024);
+          ui->comboBox_size->addItem("16 K", 16 * 1024);
+          ui->comboBox_size->addItem("32 K", 32 * 1024);
+          ui->comboBox_size->addItem("64 K", 64 * 1024);
+          ui->comboBox_size->addItem("128 K", 128 * 1024);
+       break;
+       case 2:
+          //MicroWire
+          ui->comboBox_size->addItem("128 B", 128);
+          ui->comboBox_size->addItem("256 B", 256);
+          ui->comboBox_size->addItem("512 B", 512);
+          ui->comboBox_size->addItem("1 K", 1 * 1024);
+          ui->comboBox_size->addItem("2 K", 2 * 1024);
+       break;
+       case 3:
+          //25xxx
+       case 4:
+          //95xxx
+          ui->comboBox_size->addItem("128 B", 128);
+          ui->comboBox_size->addItem("256 B", 256);
+          ui->comboBox_size->addItem("512 B", 512);
+          ui->comboBox_size->addItem("1 K", 1 * 1024);
+          ui->comboBox_size->addItem("2 K", 2 * 1024);
+          ui->comboBox_size->addItem("4 K", 4 * 1024);
+          ui->comboBox_size->addItem("8 K", 8 * 1024);
+          ui->comboBox_size->addItem("16 K", 16 * 1024);
+          ui->comboBox_size->addItem("32 K", 32 * 1024);
+          ui->comboBox_size->addItem("64 K", 64 * 1024);
+          ui->comboBox_size->addItem("128 K", 128 * 1024);
+          ui->comboBox_size->addItem("256 K", 256 * 1024);
+          ui->comboBox_size->addItem("512 K", 512 * 1024);
+       break;
+       default:
+          //Unsupport
+       return;
+       }
+
     for (i = 0; i<max_rec; i++)
     {
         //replacing items to combobox Manufacture
