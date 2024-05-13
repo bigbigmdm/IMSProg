@@ -29,6 +29,24 @@ list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 find_package(Qt5 REQUIRED COMPONENTS Core Widgets)
 find_package(Qt5Widgets REQUIRED)
 
+# Qt5LinguistTools
+find_package(Qt5 REQUIRED COMPONENTS LinguistTools)
+
+# Translation files
+set(TS_FILES
+    language/chipEditor_ru_RU.ts
+    language/chipEditor_de_DE.ts
+    language/chipEditor_es_ES.ts
+    language/chipEditor_zh_CN.ts
+    language/chipEditor_uk_UA.ts
+    language/chipEditor_hu_HU.ts
+    language/chipEditor_pt_BR.ts
+    language/chipEditor_it_IT.ts
+)
+
+qt5_add_translation(QM_FILES ${TS_FILES})
+add_custom_target(translations1 DEPENDS ${QM_FILES})
+
 add_executable(${PROJECT_NAME}
 	ezp_chip_editor.h
 	ezp_chip_editor.cpp
@@ -37,7 +55,10 @@ add_executable(${PROJECT_NAME}
 	delegates.h
 	delegates.cpp
 	resources.qrc
+	${QM_FILES}
 	)
+
+
 target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 target_link_libraries(${PROJECT_NAME} Qt5::Core)
 target_link_libraries(${PROJECT_NAME} Qt5::Widgets)
@@ -45,13 +66,8 @@ target_link_libraries(${PROJECT_NAME} Qt5::Widgets)
 install(TARGETS ${PROJECT_NAME} DESTINATION ${CMAKE_INSTALL_BINDIR})
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/other/IMSProg_editor.desktop" DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/applications")
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/img/chipEdit64.png" DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/pixmaps")
-install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/language/chipEditor_ru_RU.qm" DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/imsprog")
-install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/language/chipEditor_de_DE.qm" DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/imsprog")
-install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/language/chipEditor_es_ES.qm" DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/imsprog")
-install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/language/chipEditor_zh_CN.qm" DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/imsprog")
-install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/language/chipEditor_uk_UA.qm" DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/imsprog")
-install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/language/chipEditor_hu_HU.qm" DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/imsprog")
-install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/language/chipEditor_pt_BR.qm" DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/imsprog")
-install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/language/chipEditor_it_IT.qm" DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/imsprog")
+
+install(FILES ${QM_FILES} DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/imsprog")
+
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/other/IMSProg_editor.1.gz" DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/man/man1")
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/other/imsprog.editor.appdata.xml" DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/metainfo")

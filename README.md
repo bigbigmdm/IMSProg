@@ -65,12 +65,13 @@ For build are needed:
 - CMake
 - libusb 1.0
 - Qt5
+- Qt5 Qt5LinguistTools
 - pkgconf or pkg-config
 - udev
 
 On Debian and derivatives:
 
-`sudo apt-get install cmake g++ libusb-1.0-0-dev qtbase5-dev pkgconf`
+`sudo apt-get install cmake g++ libusb-1.0-0-dev qtbase5-dev qttools5-dev pkgconf`
 
 On Debian >=13 and Ubuntu >=23.10:
 
