@@ -171,18 +171,6 @@
         <translation>Dimensione</translation>
     </message>
     <message>
-        <source>Sector 
-        size</source>
-        <translation type="vanished">Dimensione 
-        settore</translation>
-    </message>
-    <message>
-        <source>Type 
-        HEX</source>
-        <translation type="vanished">Tipo 
-        HEX</translation>
-    </message>
-    <message>
         <location filename="../ezp_chip_editor.cpp" line="87"/>
         <source>Algo-
 rithm</source>
@@ -193,12 +181,6 @@ ritmo</translation>
         <location filename="../ezp_chip_editor.cpp" line="88"/>
         <source>Delay</source>
         <translation>Ritardo</translation>
-    </message>
-    <message>
-        <source>4 bits
-address</source>
-        <translation type="vanished">Indirizzo 
-4 bit</translation>
     </message>
     <message>
         <location filename="../ezp_chip_editor.cpp" line="85"/>

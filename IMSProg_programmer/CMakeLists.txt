@@ -56,6 +56,24 @@ find_package(PkgConfig)
     endif()
   endif()
 endif()
+	
+# Qt5LinguistTools
+find_package(Qt5 REQUIRED COMPONENTS LinguistTools)
+
+# Translation files
+set(TS_FILES
+    language/chipProgrammer_ru_RU.ts
+    language/chipProgrammer_de_DE.ts
+    language/chipProgrammer_es_ES.ts
+    language/chipProgrammer_zh_CN.ts
+    language/chipProgrammer_uk_UA.ts
+    language/chipProgrammer_hu_HU.ts
+    language/chipProgrammer_pt_BR.ts
+    language/chipProgrammer_it_IT.ts
+)
+
+qt5_add_translation(QM_FILES ${TS_FILES})
+add_custom_target(translations DEPENDS ${QM_FILES})
 
 add_executable(${PROJECT_NAME}
 
@@ -122,7 +140,9 @@ dialoginfo.ui
 searchdialog.ui
 dialogabout.ui
 recource.qrc
-	)
+${QM_FILES}
+)
+	
 target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 target_link_libraries(${PROJECT_NAME} Qt5::Core)
 target_link_libraries(${PROJECT_NAME} Qt5::Widgets ${LibUSB_LIBRARIES})
@@ -132,14 +152,9 @@ install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/other/IMSProg.desktop" DESTINATION "$
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/img/IMSProg64.png" DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/pixmaps")
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/database/IMSProg.Dat" DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/imsprog")
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/other/99-CH341.rules" DESTINATION "${UDEVDIR}/rules.d")
-install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/language/chipProgrammer_ru_RU.qm" DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/imsprog")
-install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/language/chipProgrammer_es_ES.qm" DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/imsprog")
-install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/language/chipProgrammer_de_DE.qm" DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/imsprog")
-install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/language/chipProgrammer_zh_CN.qm" DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/imsprog")
-install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/language/chipProgrammer_uk_UA.qm" DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/imsprog")
-install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/language/chipProgrammer_hu_HU.qm" DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/imsprog")
-install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/language/chipProgrammer_pt_BR.qm" DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/imsprog")
-install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/language/chipProgrammer_it_IT.qm" DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/imsprog")
+
+install(FILES ${QM_FILES} DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/imsprog")
+
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/other/IMSProg_database_update" 
 PERMISSIONS OWNER_EXECUTE OWNER_WRITE OWNER_READ GROUP_EXECUTE GROUP_READ WORLD_EXECUTE WORLD_READ
 DESTINATION ${CMAKE_INSTALL_BINDIR})

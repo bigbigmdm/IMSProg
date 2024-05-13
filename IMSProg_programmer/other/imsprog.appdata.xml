@@ -40,7 +40,7 @@
         <li xml:lang="es">IMSProg - el programador de chips (es la parte principal).</li>
         <li xml:lang="hu">IMSProg - a chip programozó (ez a fő rész).</li>
         <li xml:lang="it">IMSProg - il programmatore di chip (è la parte principale).</li>
-        <li xml:lang="pt_BR">IMSProg - o programador de chip (é a parte principal).</li>
+        <li xml:lang="pt_BR">IMSProg - o programador de chips (é a parte principal).</li>
         <li xml:lang="ru">IMSProg - программатор микросхем (это основная часть).</li>
         <li xml:lang="uk">IMSProg - програматор мікросхеми (це основна частина).</li>
         <li xml:lang="zh_CN">IMSProg - 芯片编程器（主要部分）</li>
@@ -49,7 +49,7 @@
         <li xml:lang="es">IMSProg_editor - editor de bases de datos de chips.</li>
         <li xml:lang="hu">IMSProg_editor - chip adatbázis szerkesztő.</li>
         <li xml:lang="it">IMSProg_editor - editor del database dei chip.</li>
-        <li xml:lang="pt_BR">IMSProg_editor - editor de banco de dados de chip.</li>
+        <li xml:lang="pt_BR">IMSProg_editor - editor de banco de dados de chips.</li>
         <li xml:lang="ru">IMSProg_editor - редактор базы данных микросхем.</li>
         <li xml:lang="uk">IMSProg_editor - редактор бази даних мікросхем.</li>
         <li xml:lang="zh_CN">IMSProg_editor - 芯片数据库编辑器。</li>
@@ -58,7 +58,7 @@
         <li xml:lang="es">IMSProg_database_update - script para actualizar la base de datos de chips utilizando un servidor web externo.</li>
         <li xml:lang="hu">IMSProg_database_update - szkript a chip adatbázis frissítéséhez külső webszerver használatával.</li>
         <li xml:lang="it">IMSProg_database_update - script per aggiornare il database dei chip utilizzando un server web esterno.</li>
-        <li xml:lang="pt_BR">IMSProg_database_update - script para atualizar o banco de dados de chip usando um servidor da Web externo.</li>
+        <li xml:lang="pt_BR">IMSProg_database_update - script para atualizar o banco de dados de chips usando um servidor da Web externo.</li>
         <li xml:lang="ru">IMSProg_database_update - скрипт для обновления базы данных микросхем с помощью внешнего веб-сервера.</li>
         <li xml:lang="uk">IMSProg_database_update - скрипт для оновлення бази даних чіпів за допомогою зовнішнього веб-сервера.</li>
         <li xml:lang="zh_CN">IMSProg_database_update - 使用外部Web服务器更新芯片数据库的脚本。</li>
@@ -107,6 +107,7 @@
   <launchable type="desktop-id">IMSProg.desktop</launchable>
   <provides>
      <mediatype>application/octet-stream</mediatype>
+     <modalias>usb:v1a86p5512d*</modalias>
   </provides>  
   <url type="homepage">https://github.com/bigbigmdm/IMSProg</url>
   <url type="bugtracker">https://github.com/bigbigmdm/IMSProg/issues</url>  
@@ -118,7 +119,7 @@
       <caption xml:lang="es">Pantalla principal con formulario de conexión de chips.</caption>
       <caption xml:lang="hu">Főképernyő a chipcsatlakozási űrlappal.</caption>
       <caption xml:lang="it">Schermata principale con modulo di connessione al chip.</caption>
-      <caption xml:lang="pt_BR">Tela principal com formulário de conexão de chip.</caption>
+      <caption xml:lang="pt_BR">Tela principal com formulário de conexão de chips.</caption>
       <caption xml:lang="ru">Главный экран с формой подключения микросхемы.</caption>
       <caption xml:lang="uk">Головний екран з формою підключення чіпа.</caption>
       <caption xml:lang="zn_CH">主屏幕显示芯片连接表。</caption>	
@@ -142,7 +143,7 @@
       <caption xml:lang="es">Forma de la información del chip (SFDP y registros de estado).</caption>
       <caption xml:lang="hu">A chipinformáció formája (SFDP és állapotregiszterek).</caption>
       <caption xml:lang="it">Modulo delle informazioni del chip (SFDP e registri di stato).</caption>
-      <caption xml:lang="pt_BR">Forma das informações do chip (SFDP e registros de status).</caption>
+      <caption xml:lang="pt_BR">Formulário de informações do chip (SFDP e registros de status).</caption>
       <caption xml:lang="ru">Форма информации о микросхеме (SFDP и регистры статуса).</caption>
       <caption xml:lang="uk">Форма інформації про чіп (SFDP та регістри стану).</caption>
       <caption xml:lang="zn_CH">芯片信息表（SFDP 和状态寄存器）。</caption>	
