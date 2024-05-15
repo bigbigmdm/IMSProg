@@ -102,6 +102,8 @@ MainWindow::MainWindow(QWidget *parent) :
  chipData.resize(256);
  chipData.fill(char(0xff));
  ch341a_spi_shutdown();
+ QFont heFont;
+ heFont = QFont("Monospace", 10);
  hexEdit = new QHexEdit(ui->frame);
  hexEdit->setGeometry(0,0,ui->frame->width(),ui->frame->height());
  hexEdit->setData(chipData);
@@ -110,6 +112,7 @@ MainWindow::MainWindow(QWidget *parent) :
  hexEdit->setAsciiFontColor(defaultTextColor);
  hexEdit->setAddressFontColor(defaultTextColor);
  hexEdit->setHexFontColor(defaultTextColor);
+ hexEdit->setFont(heFont);
  QStringList commandLineParams = QCoreApplication::arguments();
  QString commandLineFileName ="";
  if (commandLineParams.count() > 1)
