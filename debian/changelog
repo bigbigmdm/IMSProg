@@ -4,6 +4,8 @@ imsprog (1.3.9-1) unstable; urgency=medium
   * Update debian/copyright
   * d/control: add qttools5-dev to build-deps
   * d/rules: add all hardening
+  * Bump debhelper compat to 13
+  * Bump Standards-Version to 4.7.0, no needed changes
 
  -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Mon, 13 May 2024 15:09:18 +0300
 
