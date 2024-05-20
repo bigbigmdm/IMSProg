@@ -4,13 +4,13 @@ Priority: optional
 Maintainer: Mikhail Medvedev <e-ink-reader@yandex.ru>
 Build-Depends:
  cmake,
- debhelper-compat (= 12),
+ debhelper-compat (= 13),
  libusb-1.0-0-dev,
  pkgconf,
  qtbase5-dev,
  qttools5-dev,
  systemd-dev (>= 253-2~) | udev (<< 253-2~),
-Standards-Version: 4.6.2
+Standards-Version: 4.7.0
 Homepage: https://github.com/bigbigmdm/IMSProg
 Vcs-Git: https://github.com/bigbigmdm/IMSProg.git -b debian/latest
 Vcs-Browser: https://github.com/bigbigmdm/IMSProg/
