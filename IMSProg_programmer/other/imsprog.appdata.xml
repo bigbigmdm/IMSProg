@@ -107,7 +107,7 @@
   <launchable type="desktop-id">IMSProg.desktop</launchable>
   <provides>
      <mediatype>application/octet-stream</mediatype>
-     <modalias>usb:v1a86p5512d*</modalias>
+     <modalias>usb:v1A86p5512d*</modalias>
   </provides>  
   <url type="homepage">https://github.com/bigbigmdm/IMSProg</url>
   <url type="bugtracker">https://github.com/bigbigmdm/IMSProg/issues</url>  
