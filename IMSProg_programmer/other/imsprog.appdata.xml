@@ -104,12 +104,12 @@
   </keywords>
   <url type="homepage">https://github.com/bigbigmdm/IMSProg/tree/main</url>
   <url type="contact">https://github.com/bigbigmdm</url>
+  <url type="bugtracker">https://github.com/bigbigmdm/IMSProg/issues</url> 
   <launchable type="desktop-id">IMSProg.desktop</launchable>
   <provides>
      <mediatype>application/octet-stream</mediatype>
      <modalias>usb:v1A86p5512d*</modalias>
-  </provides>
-  <url type="bugtracker">https://github.com/bigbigmdm/IMSProg/issues</url>  
+  </provides>  
   <developer_name>Mikhail Medvedev</developer_name>
   <screenshots>
     <screenshot type="default">
