@@ -108,8 +108,7 @@
   <provides>
      <mediatype>application/octet-stream</mediatype>
      <modalias>usb:v1A86p5512d*</modalias>
-  </provides>  
-  <url type="homepage">https://github.com/bigbigmdm/IMSProg</url>
+  </provides>
   <url type="bugtracker">https://github.com/bigbigmdm/IMSProg/issues</url>  
   <developer_name>Mikhail Medvedev</developer_name>
   <screenshots>
