@@ -109,8 +109,11 @@
   <provides>
      <mediatype>application/octet-stream</mediatype>
      <modalias>usb:v1A86p5512d*</modalias>
-  </provides>  
-  <developer_name>Mikhail Medvedev</developer_name>
+  </provides>
+  <developer>
+     <id>io.github.bigbigmdm</id>
+     <name>Mikhail Medvedev</name>
+  </developer>  
   <screenshots>
     <screenshot type="default">
 	  <caption>Main screen with chip connection form.</caption>
