@@ -72,7 +72,10 @@
   <provides>
      <mediatype>application/octet-stream</mediatype>
   </provides>  
-  <developer_name>Mikhail Medvedev</developer_name>
+  <developer>
+     <id>io.github.bigbigmdm</id>
+     <name>Mikhail Medvedev</name>
+  </developer>    
   <screenshots>
     <screenshot type="default">
 	  <caption>Main screen.</caption>
