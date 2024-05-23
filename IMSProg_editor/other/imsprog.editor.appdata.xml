@@ -67,12 +67,11 @@
   </keywords>
   <url type="homepage">https://github.com/bigbigmdm/IMSProg/tree/main</url>
   <url type="contact">https://github.com/bigbigmdm</url>
+  <url type="bugtracker">https://github.com/bigbigmdm/IMSProg/issues</url>  
   <launchable type="desktop-id">IMSProg_editor.desktop</launchable>
   <provides>
      <mediatype>application/octet-stream</mediatype>
   </provides>  
-  <url type="homepage">https://github.com/bigbigmdm/IMSProg</url>
-  <url type="bugtracker">https://github.com/bigbigmdm/IMSProg/issues</url>  
   <developer_name>Mikhail Medvedev</developer_name>
   <screenshots>
     <screenshot type="default">
