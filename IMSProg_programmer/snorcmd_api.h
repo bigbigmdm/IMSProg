@@ -30,5 +30,10 @@ int s95_read_param(unsigned char *buf, unsigned long from, unsigned long len, un
 int s95_write_param(unsigned char *buf, unsigned long to, unsigned long len, unsigned int sector_size, unsigned char currentAlgorithm);
 int s95_unprotect(void);
 int s95_full_erase(void);
+int at45_read_param(unsigned char *buf, unsigned long from, unsigned long len, unsigned int sector_size, unsigned char currentAlgorithm);
+int at45_write_param(unsigned char *buf, unsigned long from, unsigned long len, unsigned int sector_size, unsigned char currentAlgorithm);
+int at45_full_erase(void);
+int at45_sector_erase(unsigned int sectorNumber, unsigned int pageSize);
+int at45_read_sr(u8 *val);
 #endif /* __SNORCMD_API_H__ */
 /* End of [snorcmd_api.h] package */

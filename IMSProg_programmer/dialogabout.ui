@@ -23,7 +23,7 @@
      <item>
       <widget class="QLabel" name="label_4">
        <property name="text">
-        <string>IMSProg - free software I2C, SPI and MicroWire EEPROM/Flash chip programmer for CH341a devices. IMSProg supports 24Cxx, 25xx, 93Cxx, and M95xx series chips.</string>
+        <string>IMSProg - free software I2C, SPI and MicroWire EEPROM/Flash chip programmer for CH341a devices. IMSProg supports 24Cxx, 25xx, 93Cxx, AT45DBxx and M95xx series chips.</string>
        </property>
        <property name="wordWrap">
         <bool>true</bool>

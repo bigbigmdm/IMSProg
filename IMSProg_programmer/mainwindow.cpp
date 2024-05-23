@@ -64,6 +64,7 @@ MainWindow::MainWindow(QWidget *parent) :
  ui->comboBox_type->addItem("93_EEPROM", 2);
  ui->comboBox_type->addItem("25_EEPROM", 3);
  ui->comboBox_type->addItem("95_EEPROM", 4);
+ ui->comboBox_type->addItem("45_EEPROM", 5);
 
  ui->comboBox_addr4bit->addItem("No", 0);
  ui->comboBox_addr4bit->addItem("Yes", 0x01);
@@ -80,7 +81,9 @@ MainWindow::MainWindow(QWidget *parent) :
  ui->comboBox_page->addItem("64", 64);
  ui->comboBox_page->addItem("128", 128);
  ui->comboBox_page->addItem("256", 256);
+ ui->comboBox_page->addItem("264", 264);
  ui->comboBox_page->addItem("512", 512);
+ ui->comboBox_page->addItem("528", 528);
 
  ui->comboBox_block->addItem(" ", 0);
  ui->comboBox_block->addItem("64 K", 64 * 1024);
@@ -146,7 +149,8 @@ void MainWindow::on_pushButton_clicked()
          ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 1)) ||
          ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 2)) ||
          ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 3)) ||
-         ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 4)))
+         ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 4)) ||
+         ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 5)))
     {
        doNotDisturb();
        if (currentChipType == 1)
@@ -154,7 +158,7 @@ void MainWindow::on_pushButton_clicked()
            currentBlockSize = 128;
            currentNumBlocks = currentChipSize / currentBlockSize;
        }
-       if ((currentChipType == 2) ||(currentChipType == 3) || (currentChipType == 4))
+       if ((currentChipType == 2) ||(currentChipType == 3) || (currentChipType == 4) || (currentChipType == 5))
        {
            currentBlockSize = currentPageSize;
            currentNumBlocks = currentChipSize / currentBlockSize;
@@ -196,6 +200,9 @@ void MainWindow::on_pushButton_clicked()
               case 4:
                  //95xxx
                  res = s95_read_param(buf,curBlock * currentBlockSize, currentBlockSize, currentBlockSize, currentAlgorithm);
+              break;
+              case 5:
+                 res = at45_read_param(buf,curBlock * currentBlockSize, currentBlockSize, currentBlockSize, currentAlgorithm);
               break;
               default:
                  //Unsupport
@@ -261,6 +268,7 @@ void MainWindow::on_pushButton_2_clicked()
 {
     timer->stop();
     //searching the connected chip in database
+    u8 sr;
     statusCH341 = ch341a_spi_init();
     ch341StatusFlashing();
     if (statusCH341 != 0)
@@ -276,7 +284,7 @@ void MainWindow::on_pushButton_2_clicked()
     // print JEDEC info
     unsigned char bufid[5]={0xff,0xff,0xff,0xff,0xff};
     snor_read_devid(bufid, 5);
-    if ((bufid[0] == 0xff) && (bufid[1] == 0xff) && (bufid[2] == 0xff))
+    if ((bufid[0] == 0xff) && (bufid[1] == 0xff) && (bufid[2] == 0xff) && (currentChipType != 5))
     {
         QMessageBox::about(this, tr("Error"), tr("The chip is not connect or missing!"));
         ui->pushButton_2->setStyleSheet(grnKeyStyle);
@@ -289,17 +297,21 @@ void MainWindow::on_pushButton_2_clicked()
     {
         if ((bufid[0] == chips[i].chipJedecIDMan) && (bufid[1] == chips[i].chipJedecIDDev) && (bufid[2] == chips[i].chipJedecIDCap))
         {            
+            index = ui->comboBox_type->findText(chips[i].chipTypeTxt);
+            if ( index != -1 )
+            { // -1 for not found
+               ui->comboBox_type->setCurrentIndex(index);
+            }
             index = ui->comboBox_man->findText(chips[i].chipManuf);
-                        if ( index != -1 )
-                        { // -1 for not found
-                           ui->comboBox_man->setCurrentIndex(index);
-                        }
-                        index = ui->comboBox_name->findText(chips[i].chipName);
-                                    if ( index != -1 )
-                                    { // -1 for not found
-                                       ui->comboBox_name->setCurrentIndex(index);
-                                    }
-
+            if ( index != -1 )
+            { // -1 for not found
+                ui->comboBox_man->setCurrentIndex(index);
+            }
+            index = ui->comboBox_name->findText(chips[i].chipName);
+            if ( index != -1 )
+            { // -1 for not found
+                ui->comboBox_name->setCurrentIndex(index);
+            }
             index = ui->comboBox_size->findData(chips[i].chipSize);
             if ( index != -1 )
             { // -1 for not found
@@ -328,6 +340,128 @@ void MainWindow::on_pushButton_2_clicked()
 
             ui->pushButton_2->setStyleSheet(grnKeyStyle);
             break;
+        }
+    }
+
+    // 45xxx without JEDEC info
+    if ((currentChipType == 5) && (bufid[0] == 0xff) && (bufid[1] == 0xff) && (bufid[2] == 0xff) )
+    {
+        //calculating capacity
+        int capacityIndex = 0;
+        if (!at45_read_sr(&sr))
+        {
+            if ((sr & 0xC0) == 0x80) //45xx chip found
+            {
+                sr = sr & 0x38;
+                switch (sr)
+                   {
+                   case 0x08:
+                      //132K
+                      capacityIndex = 1;
+                   break;
+                   case 0x10:
+                      //264K
+                      capacityIndex = 2;
+                   break;
+                   case 0x18:
+                      //528K
+                      capacityIndex = 3;
+                   break;
+                   case 0x20:
+                      //1056K
+                      capacityIndex = 4;
+                   break;
+                   case 0x28:
+                      //2112K
+                      capacityIndex = 5;
+                   break;
+                   case 30:
+                      //4224K
+                      capacityIndex = 6;
+                   break;
+                   }
+                ui->comboBox_size->setCurrentIndex(capacityIndex);
+                for (i = 0; i< max_rec; i++)
+                {
+                    if ((chips[i].chipTypeHex == 0x05) && (chips[i].chipSize == ui->comboBox_size->currentData().toUInt()))
+                    {
+                       if (!QString::compare(chips[i].chipManuf, "ATMEL", Qt::CaseInsensitive))
+                       {
+                           index = ui->comboBox_type->findText(chips[i].chipTypeTxt);
+                           if ( index != -1 )
+                           { // -1 for not found
+                              ui->comboBox_type->setCurrentIndex(index);
+                           }
+                           index = ui->comboBox_man->findText(chips[i].chipManuf);
+                           if ( index != -1 )
+                           { // -1 for not found
+                               ui->comboBox_man->setCurrentIndex(index);
+                           }
+                           index = ui->comboBox_name->findText(chips[i].chipName);
+                           if ( index != -1 )
+                           { // -1 for not found
+                               ui->comboBox_name->setCurrentIndex(index);
+                           }
+                           index = ui->comboBox_size->findData(chips[i].chipSize);
+                           if ( index != -1 )
+                           { // -1 for not found
+                              ui->comboBox_size->setCurrentIndex(index);
+                           }
+                           index = ui->comboBox_page->findData(chips[i].sectorSize);
+                           if ( index != -1 )
+                           { // -1 for not found
+                              ui->comboBox_page->setCurrentIndex(index);
+                           }
+                           index = ui->comboBox_block->findData(chips[i].blockSize);
+                           if ( index != -1 )
+                           { // -1 for not found
+                              ui->comboBox_block->setCurrentIndex(index);
+                           }
+                           index = ui->comboBox_addr4bit->findData(chips[i].addr4bit);
+                           if ( index != -1 )
+                           { // -1 for not found
+                              ui->comboBox_addr4bit->setCurrentIndex(index);
+                           }
+                           index = ui->comboBox_vcc->findText(chips[i].chipVCC);
+                           if ( index != -1 )
+                           { // -1 for not found
+                              ui->comboBox_vcc->setCurrentIndex(index);
+                           }
+
+                           ui->pushButton_2->setStyleSheet(grnKeyStyle);
+                           break;
+                       }
+                    }
+                }
+            }
+        }
+
+    }
+
+    if ((currentChipType == 5) && (ui->comboBox_size->currentIndex() > 0))
+    {
+        //calculate buffer size
+        if (!at45_read_sr(&sr))
+        {
+            if ((sr & 0x01) == 1)
+            {
+                if ( ui->comboBox_page->currentData() == 264)
+                {
+                    index = ui->comboBox_page->findData(256);
+                    if ( index != -1 )
+                    { // -1 for not found
+                       ui->comboBox_page->setCurrentIndex(index);
+                    }
+                }
+                if ( ui->comboBox_page->currentData() == 528)
+                {
+                    index = ui->comboBox_page->findData(512);
+                    if ( index != -1 )
+                    { // -1 for not found
+                       ui->comboBox_page->setCurrentIndex(index);
+                    }
+                }
+            }
         }
     }
     currentChipSize = ui->comboBox_size->currentData().toUInt();
@@ -542,6 +676,23 @@ void MainWindow::on_actionErase_triggered()
         }
 
     }
+    if ((currentChipType == 5) && ((currentAlgorithm & 0x10) > 0))
+    {
+        ui->progressBar->setValue(50);
+        at45_full_erase();
+        sleep(1);
+    }
+    if ((currentChipType == 5) && ((currentAlgorithm & 0x10) == 0))
+    {
+        uint32_t blocks = currentChipSize / currentPageSize / 8;
+        ui->progressBar->setRange(0, static_cast<int>(blocks));
+        uint32_t curBlock = 0;
+        for (curBlock = 0; curBlock < blocks; curBlock++)
+        {
+            at45_sector_erase(curBlock,  currentPageSize);
+             ui->progressBar->setValue(static_cast<int>(curBlock));
+        }
+    }
     doNotDisturbCancel();
     ui->checkBox->setStyleSheet("");
     ui->statusBar->showMessage("");
@@ -654,7 +805,8 @@ void MainWindow::on_actionWrite_triggered()
          ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 1)) ||
          ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 2)) ||
          ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 3)) ||
-         ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 4)))
+         ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 4)) ||
+         ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 5)))
         {
         doNotDisturb();
         if (currentChipType == 1)
@@ -662,7 +814,7 @@ void MainWindow::on_actionWrite_triggered()
             currentBlockSize = 128;
             currentNumBlocks = currentChipSize / currentBlockSize;
         }
-        if ((currentChipType == 2) || (currentChipType == 3) || (currentChipType == 4))
+        if ((currentChipType == 2) || (currentChipType == 3) || (currentChipType == 4)|| (currentChipType == 5))
         {
             currentBlockSize = currentPageSize;
             currentNumBlocks = currentChipSize / currentBlockSize;
@@ -707,6 +859,10 @@ void MainWindow::on_actionWrite_triggered()
                        case 4:
                           //M95xx
                           res =  s95_write_param(buf, addr, currentBlockSize, currentBlockSize, currentAlgorithm);                         
+                       break;
+                       case 5:
+                          //AT45DBxx
+                          res =  at45_write_param(buf, addr, currentBlockSize, currentBlockSize, currentAlgorithm);
                        break;
                        default:
                           //Unsupport
@@ -875,7 +1031,8 @@ void MainWindow::on_actionVerify_triggered()
             ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 1)) ||
             ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 2)) ||
             ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 3)) ||
-            ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 4)))
+            ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 4)) ||
+            ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 5)))
            {
                ui->crcEdit->setText("");
                doNotDisturb();
@@ -884,7 +1041,7 @@ void MainWindow::on_actionVerify_triggered()
                  currentBlockSize = 128;
                  currentNumBlocks = currentChipSize / currentBlockSize;
                }
-               if ((currentChipType == 2) || (currentChipType == 3) || (currentChipType == 4))
+               if ((currentChipType == 2) || (currentChipType == 3) || (currentChipType == 4) || (currentChipType == 5))
                {
                    currentBlockSize = currentPageSize;
                    currentNumBlocks = currentChipSize / currentBlockSize;
@@ -925,6 +1082,9 @@ void MainWindow::on_actionVerify_triggered()
                       case 4:
                          //95xxx
                          res = s95_read_param(buf,curBlock * currentBlockSize, currentBlockSize, currentBlockSize, currentAlgorithm);
+                      break;
+                      case 5:
+                         res = at45_read_param(buf,curBlock * currentBlockSize, currentBlockSize, currentBlockSize, currentAlgorithm);
                       break;
                       default:
                          //Unsupport
@@ -1195,6 +1355,16 @@ void MainWindow::on_comboBox_type_currentIndexChanged(int index)
           ui->comboBox_size->addItem("256 K", 256 * 1024);
           ui->comboBox_size->addItem("512 K", 512 * 1024);
        break;
+       case 5:
+          //95xxx
+          ui->comboBox_size->addItem("132 K",   132 * 1024);
+          ui->comboBox_size->addItem("264 K",   264 * 1024);
+          ui->comboBox_size->addItem("528 K",   528 * 1024);
+          ui->comboBox_size->addItem("1056 K", 1056 * 1024);
+          ui->comboBox_size->addItem("2112 K", 2112 * 1024);
+          ui->comboBox_size->addItem("4224 K", 4224 * 1024);
+          ui->comboBox_size->addItem("8448 K", 8448 * 1024);
+       break;
        default:
           //Unsupport
        return;
@@ -1245,6 +1415,10 @@ void MainWindow::on_comboBox_type_currentIndexChanged(int index)
          ui->label_9->hide();
          ui->actionDetect->setDisabled(true);
          ui->actionChip_info->setEnabled(true);
+     }
+     if (index == 5)
+     {
+          ui->pushButton_2->show();
      }
 }
 
@@ -1392,12 +1566,13 @@ void MainWindow::on_pushButton_4_clicked()
     //info form showing
     DialogInfo* infoDialog = new DialogInfo();
     infoDialog->show();
-    if ((currentChipType == 0) && (ui->comboBox_vcc->currentIndex() == 1)) infoDialog->setChip(2);
-    if ((currentChipType == 0) && (ui->comboBox_vcc->currentIndex() == 2)) infoDialog->setChip(3);
-    if ((currentChipType == 1) && (ui->comboBox_vcc->currentIndex() == 1)) infoDialog->setChip(1);
-    if ((currentChipType == 2) && (ui->comboBox_vcc->currentIndex() == 1)) infoDialog->setChip(4);
-    if ((currentChipType == 3) && (ui->comboBox_vcc->currentIndex() == 1)) infoDialog->setChip(2);
-    if ((currentChipType == 4) && (ui->comboBox_vcc->currentIndex() == 1)) infoDialog->setChip(2);
+    if ((currentChipType == 0) && (ui->comboBox_vcc->currentIndex() == 1)) infoDialog->setChip(2); //NOR_FLASH 1.8
+    if ((currentChipType == 0) && (ui->comboBox_vcc->currentIndex() == 2)) infoDialog->setChip(3); //NOR FLASH 3.3
+    if ((currentChipType == 1) && (ui->comboBox_vcc->currentIndex() == 1)) infoDialog->setChip(1); //24xxx 3.3
+    if ((currentChipType == 2) && (ui->comboBox_vcc->currentIndex() == 1)) infoDialog->setChip(4); //93xxx 3.3
+    if ((currentChipType == 3) && (ui->comboBox_vcc->currentIndex() == 1)) infoDialog->setChip(2); //25xxx 3.3
+    if ((currentChipType == 4) && (ui->comboBox_vcc->currentIndex() == 1)) infoDialog->setChip(2); //95xxx 3.3
+    if ((currentChipType == 5) && (ui->comboBox_vcc->currentIndex() == 1)) infoDialog->setChip(5); //45xxx 3.3
 }
 
 void MainWindow::on_actionChip_info_triggered()
