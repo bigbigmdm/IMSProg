@@ -14,7 +14,6 @@
   <summary xml:lang="ru">Редактор баз данных микросхем для программатора IMSProg</summary>
   <summary xml:lang="uk">Редактор бази даних мікросхем для програматорі IMSProg</summary>
   <summary xml:lang="zh_CN">IMSProg 编程器的芯片数据库编辑器。</summary>
-  <icon type="stock">IMSProg_editor</icon>
   <icon type="remote" width="64" height="64">https://github.com/bigbigmdm/IMSProg/tree/main/IMSProg_editor/img/chipEdit64.png</icon>
   <description>
     <p>IMSProg_editor is used to modify and supplement or export/import in csv format the chip database for the IMSProg programmer.</p>
