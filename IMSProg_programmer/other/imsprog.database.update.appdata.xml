@@ -14,7 +14,6 @@
   <summary xml:lang="ru">Скрипт обновления базы данных чипов для программатора IMSProg</summary>
   <summary xml:lang="uk">Скрипт оновлення бази даних мікросхем для програматорі IMSProg</summary>
   <summary xml:lang="zh_CN"> IMSProg 编程器的芯片数据库更新脚本</summary>
-  <icon type="stock">IMSProg_editor</icon>
   <icon type="remote" width="64" height="64">https://github.com/bigbigmdm/IMSProg/tree/main/IMSProg_programmer/img/IMSProg_database_update.png</icon>
   <description>
     <p>IMSProg_database_update  - online chip database update from the external web-server. IMSProg_database_update uses the zenity graphical Gnome utility.   Once started,  it  copies  the  downloaded  database to the ~/.local/imsprog folder. The script then displays the number of of chips in the database before and after the upgrade.</p>
