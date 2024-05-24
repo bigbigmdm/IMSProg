@@ -99,8 +99,8 @@ unable to have it working on them.
 `24xxx` and `25xxx` series chips must be inserted directly, according to the 
 markings on the PCB of the CH341A programmer. The `93xxx` series chips must be 
 inserted into the `93xxx adapter` and the adapter into the marking `25xxx` 
-programmer slot. The `AT45DBxxx` series chips must be mounted in a `SOP-8 
-DIP-8` and this adapter shall be inserted into the `45xxx` adapter. 
+programmer slot. The DataFlash `AT45DBxxx` series chips must be mounted in a 
+`SOP-8 DIP-8` and this adapter shall be inserted into the `45xxx` adapter. 
 The `45xxx` adapter must be installed in the programmer slot marked `25xxx`.
 
 ![Adapter](img/93xxx_adapter.png)
@@ -123,7 +123,7 @@ progress.
 Select the type of chip used from the `Type` pop-up menu: `SPI FLASH` when 
 using SPI NOR FLASH chips of the `25xxx` series, `24_EEPROM` when using I2C 
 EEPROM of the `24xxx` series, `93_EEPROM` when using MicroWire EEPROM of the 
-`93xxx` series, `45_EEPROM` when using chips `AT45DBxxx` series.
+`93xxx` series, `45_EEPROM` when using DataFlash chips `AT45DBxxx` series.
 When using `25xxx` series SPI NOR FLASH chips (Menu item `type` -> `SPI_FLASH`), 
 or `AT45DBxx` series  SPI FLASH (Menu item `type` -> `45_EEPROM`) the `Detect` 
 button will be available. When the `Detect` button or ![Detect](img/test64.png) 
@@ -299,7 +299,7 @@ AT25F512, AT25F1024, AT25F2048, AT25F4096
 CAT25C01, CAT25C02, CAT25C04, CAT25C08, CAT25C16, CAT25C32, CAT25C64, CAT25C128, 
 CAT25C256, CAT25C512
 
-### SPI Bus EEPROM 45xx
+### DataFlash 45xx
 - ATMEL
 
 AT45DB011, AT45DB021, AT45DB041, AT45DB081, AT45DB161, AT45DB321
