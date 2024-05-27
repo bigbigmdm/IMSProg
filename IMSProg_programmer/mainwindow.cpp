@@ -1419,6 +1419,7 @@ void MainWindow::on_comboBox_type_currentIndexChanged(int index)
      if (index == 5)
      {
           ui->pushButton_2->show();
+          ui->actionDetect->setEnabled(true);
      }
 }
 
