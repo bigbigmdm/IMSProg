@@ -173,7 +173,7 @@ static int snor_wait_ready(int sleep_ms)
 		/* REVISIT sometimes sleeping would be best */
 	}
 	printf("%s: read_sr fail: %x\n", __func__, sr);
-	return -1;
+    return -1;
 }
 
 /*
@@ -585,8 +585,8 @@ int s95_write_param(unsigned char *buf, unsigned long to, unsigned long len, uns
 
         SPI_CONTROLLER_Chip_Select_Low();
         /* Set up the opcode in the write buffer. */
-        if ((to > 255) && (a8 > 0)) SPI_CONTROLLER_Write_One_Byte(0x0a); //read command + a8 bit
-        else SPI_CONTROLLER_Write_One_Byte(0x02); //read command
+        if ((to > 255) && (a8 > 0)) SPI_CONTROLLER_Write_One_Byte(0x0a); //write command + a8 bit
+        else SPI_CONTROLLER_Write_One_Byte(0x02); //write command
 
         if (algorythm == 2) SPI_CONTROLLER_Write_One_Byte((to >> 16) & 0xff);
         if (algorythm > 0) SPI_CONTROLLER_Write_One_Byte((to >> 8) & 0xff);
@@ -654,7 +654,6 @@ static int s95_read_sr(u8 *val)
 
     SPI_CONTROLLER_Chip_Select_Low();
     SPI_CONTROLLER_Write_One_Byte(0x05);
-
     retval = SPI_CONTROLLER_Read_NByte(val, 1, SPI_CONTROLLER_SPEED_SINGLE);
     SPI_CONTROLLER_Chip_Select_High();
     if (retval) {
@@ -715,4 +714,184 @@ int s95_wait_ready(int sleep_ms)
     }
     printf("%s: read_sr fail: %x\n", __func__, sr);
     return -1;
+}
+
+int at45_read_sr(u8 *val)
+{
+    int retval = 0;
+
+    SPI_CONTROLLER_Chip_Select_Low();
+    SPI_CONTROLLER_Write_One_Byte(0xd7);
+    retval = SPI_CONTROLLER_Read_NByte(val, 1, SPI_CONTROLLER_SPEED_SINGLE);
+    SPI_CONTROLLER_Chip_Select_High();
+    if (retval) {
+        //printf("%s: ret: %x\n", __func__, retval);
+        return retval;
+    }
+
+    return 0;
+}
+
+int at45_wait_ready(int sleep_ms)
+{
+    int count;
+    int sr = 0;
+
+    /* one chip guarantees max 5 msec wait here after page writes,
+     * but potentially three seconds (!) after page erase.
+     */
+    for (count = 0; count < ((sleep_ms + 1) * 1000); count++) {
+        //printf("sr= %x\n",snor_read_sr((u8 *)&sr));
+        if ((at45_read_sr((u8 *)&sr)) < 0)
+            break;
+        else if ((sr & 0x80)) {
+            return 0;
+        }
+        udelay(500);
+        /* REVISIT sometimes sleeping would be best */
+    }
+    printf("%s: read_sr fail: %x\n", __func__, sr);
+    return -1;
+}
+
+int at45_read_param(unsigned char *buf, unsigned long from, unsigned long len, unsigned int sector_size, unsigned char currentAlgorithm)
+{
+    u32 physical_read_addr, remain_len, data_offset;
+    u32 read_addr;
+    unsigned char algorythm = (currentAlgorithm & 0xf0) >> 8;
+    unsigned char addrLen = 9;
+    unsigned int sector_addr = 0;
+    int retval;
+    if (sector_size > 511) addrLen++;
+
+    /* sanity checks */
+    if (len == 0)
+        return 0;
+
+    /* Wait till previous write/erase is done. */
+    if (at45_wait_ready(1)) {
+        /* REVISIT status return?? */
+        return -1;
+    }
+
+    read_addr = (u32)from;
+    sector_addr = read_addr / sector_size;
+    read_addr = read_addr % len;
+    read_addr = read_addr + (sector_addr << addrLen);
+    remain_len = (u32)len;
+
+        physical_read_addr = read_addr;
+        data_offset = (physical_read_addr % (sector_size));
+
+
+        SPI_CONTROLLER_Chip_Select_Low();
+
+        //SPI_CONTROLLER_Write_One_Byte(0x52); //read command
+        SPI_CONTROLLER_Write_One_Byte(0xE8); //read command
+        SPI_CONTROLLER_Write_One_Byte((physical_read_addr >> 16) & 0xff);
+        SPI_CONTROLLER_Write_One_Byte((physical_read_addr >> 8) & 0xff);
+        SPI_CONTROLLER_Write_One_Byte(physical_read_addr & 0xff);
+
+        SPI_CONTROLLER_Write_One_Byte(0xff);
+        SPI_CONTROLLER_Write_One_Byte(0xff);
+        SPI_CONTROLLER_Write_One_Byte(0xff);
+        SPI_CONTROLLER_Write_One_Byte(0xff);
+
+        retval = SPI_CONTROLLER_Read_NByte(&buf[0],sector_size,SPI_CONTROLLER_SPEED_SINGLE);
+
+        if (retval)
+        {
+           return 0;//error
+        }
+         SPI_CONTROLLER_Chip_Select_High();
+     return 1;
+}
+
+
+int at45_write_param(unsigned char *buf, unsigned long from, unsigned long len, unsigned int sector_size, unsigned char currentAlgorithm)
+{    u32 physical_read_addr, remain_len, data_offset;
+     u32 read_addr;
+     unsigned char algorythm = (currentAlgorithm & 0xf0) >> 8;
+     unsigned char addrLen = 9;
+     unsigned int sector_addr = 0;
+     int retval;
+     if (sector_size > 511) addrLen++;
+
+     /* sanity checks */
+     if (len == 0) return 0;
+     /* Wait till previous write/erase is done. */
+     if (at45_wait_ready(1)) {
+         /* REVISIT status return?? */
+         return -1;
+     }
+
+     read_addr = (u32)from;
+     sector_addr = read_addr / sector_size;
+     read_addr = read_addr % len;
+     read_addr = read_addr + (sector_addr << addrLen);
+     remain_len = (u32)len;
+
+         physical_read_addr = read_addr;
+         data_offset = (physical_read_addr % (sector_size));
+
+
+         SPI_CONTROLLER_Chip_Select_Low();
+
+         SPI_CONTROLLER_Write_One_Byte(0x82); //write command
+         SPI_CONTROLLER_Write_One_Byte((physical_read_addr >> 16) & 0xff);
+         SPI_CONTROLLER_Write_One_Byte((physical_read_addr >> 8) & 0xff);
+         SPI_CONTROLLER_Write_One_Byte(physical_read_addr & 0xff);
+
+         //SPI_CONTROLLER_Write_One_Byte(0xff);
+
+         retval = SPI_CONTROLLER_Write_NByte(buf, sector_size, SPI_CONTROLLER_SPEED_SINGLE);
+
+         if (retval)
+         {
+            return 0;//error
+         }
+          SPI_CONTROLLER_Chip_Select_High();
+
+      return 1;
+ }
+
+int at45_full_erase(void)
+{
+    /* Wait until finished previous write command. */
+    if (s95_wait_ready(3))
+        return -1;
+
+    SPI_CONTROLLER_Chip_Select_Low();
+    SPI_CONTROLLER_Write_One_Byte(0xC7);
+    SPI_CONTROLLER_Write_One_Byte(0x94);
+    SPI_CONTROLLER_Write_One_Byte(0x80);
+    SPI_CONTROLLER_Write_One_Byte(0x9A);
+    SPI_CONTROLLER_Chip_Select_High();
+
+    at45_wait_ready(950);
+    return 0;
+
+}
+
+
+int at45_sector_erase(unsigned int sectorNumber,  unsigned int pageSize)
+{
+    u32 send_addr = 0;
+    unsigned char fullLen = 0x0c;
+    if (pageSize > 511) fullLen++;
+    send_addr = sectorNumber << fullLen;
+    /* Wait until finished previous write command. */
+    if (at45_wait_ready(1))
+        return -1;
+
+    SPI_CONTROLLER_Chip_Select_Low();
+    SPI_CONTROLLER_Write_One_Byte(0x50); //block erase command
+    SPI_CONTROLLER_Write_One_Byte((send_addr >> 16) & 0xff);
+    SPI_CONTROLLER_Write_One_Byte((send_addr >> 8) & 0xff);
+    SPI_CONTROLLER_Write_One_Byte(send_addr & 0xff);
+    SPI_CONTROLLER_Chip_Select_High();
+
+    at45_wait_ready(1);
+    return 0;
+
 }

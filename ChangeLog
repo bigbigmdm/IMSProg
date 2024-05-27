@@ -1,3 +1,4 @@
+- Ver. 1.4.1 - Added support new chip type - AT45DBxx SPI Flash. Fixed metadata errors and warnings.
 - Ver. 1.3.9 - Translation files are now compiled at build time. Metadata files and build dependencies have been changed.
 - Ver. 1.3.8 - Added translation of update script. Appstream metadata files added. Fix: after installing the software it does not find the CH341A device, detecting it only after rebooting the computer. Fix: incorrect translation file names in Chinese locale. Updated the translations.
 - Ver. 1.3.7 - Small refinements (bugfix) to the interface. Updating the Italian translation. For 25xxx, 95xxx chips, writing to a status register is now only available after reading it. 

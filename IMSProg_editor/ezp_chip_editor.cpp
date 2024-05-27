@@ -181,6 +181,7 @@ void MainWindow::on_actionOpen_triggered()
              else if(chips[recNo].chipTypeTxt.compare("93_EEPROM")==0) model->item(recNo, 0)->setBackground(QBrush(QColor(0xff, 0xcc, 0xcc)));
              else if(chips[recNo].chipTypeTxt.compare("95_EEPROM")==0) model->item(recNo, 0)->setBackground(QBrush(QColor(0xcc, 0xff, 0xcc)));
              else if(chips[recNo].chipTypeTxt.compare("25_EEPROM")==0) model->item(recNo, 0)->setBackground(QBrush(QColor(0xff, 0xcc, 0xff)));
+             else if(chips[recNo].chipTypeTxt.compare("45_EEPROM")==0) model->item(recNo, 0)->setBackground(QBrush(QColor(0xcc, 0xcc, 0xff)));
              item = new QStandardItem(chips[recNo].chipManuf);
              model->setItem(recNo, 1, item);
              item = new QStandardItem(chips[recNo].chipName);
@@ -253,7 +254,7 @@ QString MainWindow::bytePrint(unsigned char z)
      QString rez;
      rez = "0";
      if (a < 1024) rez = QString::number(a) + " B";
-     else if ((a < 1024 * 1024)) rez = QString::number(a/1024) + " K";
+     else if ((a < 1024 * 1024) || (a % (1024 * 1024) > 0)) rez = QString::number(a/1024) + " K";
      else rez = QString::number(a/1024/1024) + " M";
      return rez;
  }
@@ -275,6 +276,7 @@ QString MainWindow::bytePrint(unsigned char z)
         else if(tmpStr.compare("93_EEPROM")==0) model->item(row, 0)->setBackground(QBrush(QColor(0xff, 0xcc, 0xcc)));
         else if(tmpStr.compare("95_EEPROM")==0) model->item(row, 0)->setBackground(QBrush(QColor(0xcc, 0xff, 0xcc)));
         else if(tmpStr.compare("25_EEPROM")==0) model->item(row, 0)->setBackground(QBrush(QColor(0xff, 0xcc, 0xff)));
+        else if(tmpStr.compare("45_EEPROM")==0) model->item(row, 0)->setBackground(QBrush(QColor(0xcc, 0xcc, 0xff)));
         else  model->item(row, 0)->setBackground(QBrush(QColor(0xff, 0xff, 0xff)));
        }
      }
@@ -802,6 +804,7 @@ void MainWindow::on_actionImport_from_CSV_triggered()
              else if(chType.compare("93_EEPROM")==0) model->item(recNo, 0)->setBackground(QBrush(QColor(0xff, 0xcc, 0xcc)));
              else if(chType.compare("95_EEPROM")==0) model->item(recNo, 0)->setBackground(QBrush(QColor(0xcc, 0xff, 0xcc)));
              else if(chType.compare("25_EEPROM")==0) model->item(recNo, 0)->setBackground(QBrush(QColor(0xff, 0xcc, 0xff)));
+             else if(chType.compare("45_EEPROM")==0) model->item(recNo, 0)->setBackground(QBrush(QColor(0xcc, 0xcc, 0xff)));
              else  model->item(recNo, 0)->setBackground(QBrush(QColor(0xff, 0xff, 0xff)));
 
            }

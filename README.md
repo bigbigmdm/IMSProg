@@ -99,7 +99,9 @@ unable to have it working on them.
 `24xxx` and `25xxx` series chips must be inserted directly, according to the 
 markings on the PCB of the CH341A programmer. The `93xxx` series chips must be 
 inserted into the `93xxx adapter` and the adapter into the marking `25xxx` 
-programmer slot.
+programmer slot. The DataFlash `AT45DBxxx` series chips must be mounted in a 
+`SOP-8 DIP-8` and this adapter shall be inserted into the `45xxx` adapter. 
+The `45xxx` adapter must be installed in the programmer slot marked `25xxx`.
 
 ![Adapter](img/93xxx_adapter.png)
  
@@ -121,15 +123,16 @@ progress.
 Select the type of chip used from the `Type` pop-up menu: `SPI FLASH` when 
 using SPI NOR FLASH chips of the `25xxx` series, `24_EEPROM` when using I2C 
 EEPROM of the `24xxx` series, `93_EEPROM` when using MicroWire EEPROM of the 
-`93xxx` series.
+`93xxx` series, `45_EEPROM` when using DataFlash chips `AT45DBxxx` series.
 When using `25xxx` series SPI NOR FLASH chips (Menu item `type` -> `SPI_FLASH`), 
-the `Detect` button will be available. When the `Detect` button or 
-![Detect](img/test64.png) or `<Ctrl+D>` is pressed, the JEDEC information is 
-read from the chip and all parameters of that chip are loaded from the chip 
-database. Any parameter (`size`, `page size`, `block size`, `VCC voltage`, 
-`and 4-bit address length`) can be changed manually.  You can manually enter 
-the `Manufacture` and `Name` pop-up menu data - all other parameters will be 
-automatically loaded from the chip database. 
+or `AT45DBxx` series  SPI FLASH (Menu item `type` -> `45_EEPROM`) the `Detect` 
+button will be available. When the `Detect` button or ![Detect](img/test64.png) 
+or `<Ctrl+D>` is pressed, the JEDEC information is read from the chip and all 
+parameters of that chip are loaded from the chip database. Any parameter 
+(`size`, `page size`, `block size`, `VCC voltage`, `and 4-bit address length`) 
+can be changed manually. You can manually enter the `Manufacture` and `Name` 
+pop-up menu data - all other parameters will be automatically loaded from the 
+chip database. 
 When using `24xxx` or `93xxx` or `95xxx` or `25xxx` SPI EEPROM (non NOR FLASH) 
 series chips, it is necessary to manually enter the `Manufacture` and `Name` 
 pop-up menu data - all other parameters will be automatically loaded from the 
@@ -295,6 +298,15 @@ AT25F512, AT25F1024, AT25F2048, AT25F4096
 
 CAT25C01, CAT25C02, CAT25C04, CAT25C08, CAT25C16, CAT25C32, CAT25C64, CAT25C128, 
 CAT25C256, CAT25C512
+
+### DataFlash 45xx
+- ATMEL
+
+AT45DB011, AT45DB021, AT45DB041, AT45DB081, AT45DB161, AT45DB321
+
+- ADESTO
+
+AT45DB011, AT45DB021, AT45DB041, AT45DB081, AT45DB161, AT45DB321, AT45DB641
 
 ### SPI NOR Flash
 - SPANSION
@@ -500,7 +512,7 @@ IMSProg_programmer/other/IMSProg_database_update          /usr/bin
 IMSProg_programmer/database/IMSProg.Dat                   /usr/share/imsprog
                                                           ~/.local/share/imsprog
 
-IMSProg_programmer/other/99-CH341.rules                   /lib/udev/rules.d
+IMSProg_programmer/other/71-CH341.rules                   /lib/udev/rules.d
 
 IMSProg_programmer/other/index.html                       /usr/share//doc/imsprog/html
 
@@ -558,6 +570,7 @@ offset	 Size   Value
                 - 0x02 - 93xxx MicroWire
                 - 0x03 - 25xxx SPI EEPROM
                 - 0x04 - 95xxx ST SPI EEPROM
+                - 0x05 - AT45DBxxx SPI EEPROM
 3B        1     Algoritm code number:
                 - SPI NOR Flash always 0x00
                 - I2C (24xxx) 0x?1 - address size 1 byte 
@@ -567,10 +580,10 @@ offset	 Size   Value
                 - I2C (24xxx) 0x7? - address mask 7
                 - MicroWire (93xxx) - 0x1? - organisation 16 bit
                 - MicroWire (93xxx) - 0x0? - organisation 8 bit
-                - MicroWire (93xxx) - 0x?7 - 7 address bit number
-                - MicroWire (93xxx) - 0x?9 - 9 address bit number
-                - MicroWire (93xxx) - 0x?A - 10 address bit number
-                - MicroWire (93xxx) - 0x?B - 11 address bit number
+                - MicroWire (93xxx) - 0x?7 -  7 bit address number
+                - MicroWire (93xxx) - 0x?9 -  9 bit address number
+                - MicroWire (93xxx) - 0x?A - 10 bit address number
+                - MicroWire (93xxx) - 0x?B - 11 bit address number
                 - 95xxx ST SPI EEPROM - 0x01 - 8 bit address
                 - 95xxx ST SPI EEPROM - 0x02 - 16 bit address
                 - 25xxx SPI EEPROM  - 0x?0 - 8 bit address
@@ -579,6 +592,14 @@ offset	 Size   Value
                 - 25xxx SPI EEPROM  - 0x0? - fill erasing
                 - 25xxx SPI EEPROM  - 0x1? - The third bit of the command is used for the high bit of the address
                 - 25xxx SPI EEPROM  - 0x2? - erasing with use CHIP  FULL ERASE command
+                - 45xxx SPI EEPROM  - 0x0? - ATMEL command pattern
+                - 45xxx SPI EEPROM  - 0x1? - ADESTO commant pattern
+                - 45xxx SPI EEPROM  - 0x?9 -  9 bit sector address number
+                - 45xxx SPI EEPROM  - 0x?A - 10 bit sector address number
+                - 45xxx SPI EEPROM  - 0x?B - 11 bit sector address number
+                - 45xxx SPI EEPROM  - 0x?C - 12 bit sector address number
+                - 45xxx SPI EEPROM  - 0x?D - 13 bit sector address number
+                - 45xxx SPI EEPROM  - 0x?F - 15 bit sector address number
 3C        2     Timing parameter:
 3D              3000/1000/500/300/200/100 - NOR FLASH, 4000/2000 - 24xxx, 100 - 93xxx
 3E        2     SPI NOR Flash 4bit address type:
