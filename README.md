@@ -512,7 +512,7 @@ IMSProg_programmer/other/IMSProg_database_update          /usr/bin
 IMSProg_programmer/database/IMSProg.Dat                   /usr/share/imsprog
                                                           ~/.local/share/imsprog
 
-IMSProg_programmer/other/99-CH341.rules                   /lib/udev/rules.d
+IMSProg_programmer/other/71-CH341.rules                   /lib/udev/rules.d
 
 IMSProg_programmer/other/index.html                       /usr/share//doc/imsprog/html
 
