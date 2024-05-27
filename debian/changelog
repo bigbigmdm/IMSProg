@@ -1,3 +1,12 @@
+imsprog (1.4.1-1) unstable; urgency=medium
+
+  * New upstream version
+    - Renamed udev rule from 99-CH341.rules to 71-CH341.rules (for uaccess)
+      and removed MODE=660 and GROUP+=plugdev
+  * Fix debian/watch
+
+ -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Mon, 27 May 2024 13:03:27 +0300
+
 imsprog (1.3.9-1) unstable; urgency=medium
 
   * New upstream version (Closes: #1070883)
