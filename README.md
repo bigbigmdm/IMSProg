@@ -500,6 +500,10 @@ sudo apt update
 - The `ARCH AUR repository` by [kjkent](https://github.com/kjkent) is [here](https://aur.archlinux.org/packages/imsprog)
 - The `openSUSE` package is [here](https://software.opensuse.org/package/IMSProg?search_term=imsprog)
 
+
+
+
+
 ## Project structure
 
 ```
