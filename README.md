@@ -486,6 +486,7 @@ derivatives repositories)
 ```
 sudo add-apt-repository ppa:bigmdm/imsprog
 sudo apt update
+sudo apt install imsprog
 ``` 
   Is also possible manually build deb package using `debian/latest` branch.
 
@@ -494,15 +495,12 @@ sudo apt update
 </a>
 
 - The `RPM package` by [Red Soft](https://redos.red-soft.ru/) can be downloaded  
-[here](http://repo.red-soft.ru/redos/7.3/x86_64/updates/imsprog-1.3.1-1.el7.x86_64.rpm)
+[here](http://repo.red-soft.ru/redos/7.3/x86_64/updates/)
 - The `RPM package` by [ALT Linux](https://packages.altlinux.org/en/sisyphus/srpms/IMSProg/)
-- The `RPM package` by [ROSA Linux](https://mirror.rosalinux.ru/rosa/rosa2021.1/repository/x86_64/contrib/release/IMSProg-1.3.1-1-rosa2021.1.x86_64.rpm)
+- The `RPM package` by [ROSA Linux](https://mirror.rosalinux.ru/rosa/rosa2021.1/repository/x86_64/contrib/release/)
 - The `ARCH AUR repository` by [kjkent](https://github.com/kjkent) is [here](https://aur.archlinux.org/packages/imsprog)
 - The `openSUSE` package is [here](https://software.opensuse.org/package/IMSProg?search_term=imsprog)
-
-
-
-
+- The `Debian` package is [here](https://packages.debian.org/unstable/imsprog)
 
 ## Project structure
 
