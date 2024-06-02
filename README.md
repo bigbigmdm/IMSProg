@@ -500,12 +500,12 @@ sudo apt install imsprog
 - The `RPM package` by [ROSA Linux](https://mirror.rosalinux.ru/rosa/rosa2021.1/repository/x86_64/contrib/release/)
 - The `ARCH AUR repository` by [kjkent](https://github.com/kjkent) is [here](https://aur.archlinux.org/packages/imsprog)
 - The `openSUSE` package is [here](https://software.opensuse.org/package/IMSProg?search_term=imsprog)
-- The `Debian` package is [here](https://packages.debian.org/unstable/imsprog)
+- The `Debian` package is [here](https://tracker.debian.org/pkg/imsprog)
 
 ## Project structure
 
 ```
-IMSProg _files_							                    _folder_
+IMSProg _files_							                  _folder_
 ================================================================================
 IMSProg                                                   /usr/bin
 IMSProg_editor                                            /usr/bin
