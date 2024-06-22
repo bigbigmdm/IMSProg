@@ -10,7 +10,7 @@
     </message>
     <message>
         <source>IMSProg - free software I2C, SPI and MicroWire EEPROM/Flash chip programmer for CH341a devices. IMSProg supports 24Cxx, 25xx, 93Cxx, and M95xx series chips.</source>
-        <translation type="vanished">IMSProg - freie Software I2C, SPI und MicroWire EEPROM/Flash Chip Programmierer für CH341a Geräte. IMSProg unterstützt 24Cxx, 25xx, 93Cxx, und M95xx Serie Chips.</translation>
+        <translation type="vanished">IMSProg - freie Software I2C, SPI und MicroWire EEPROM/Flash Chip Programmierer für CH341a Geräte. IMSProg unterstützt Chips der Serien 24Cxx, 25xx, 93Cxx und M95xx.</translation>
     </message>
     <message>
         <location filename="../dialogabout.ui" line="70"/>
@@ -35,7 +35,7 @@
     <message>
         <location filename="../dialogabout.ui" line="26"/>
         <source>IMSProg - free software I2C, SPI and MicroWire EEPROM/Flash chip programmer for CH341a devices. IMSProg supports 24Cxx, 25xx, 93Cxx, AT45DBxx and M95xx series chips.</source>
-        <translation>IMSProg - freie Software I2C, SPI und MicroWire EEPROM/Flash Chip Programmierer für CH341a Geräte. IMSProg unterstützt 24Cxx, 25xx, 93Cxx, AT45DBxx und M95xx Serie Chips.</translation>
+        <translation>IMSProg - freie Software I2C, SPI und MicroWire EEPROM/Flash Chip Programmierer für CH341a Geräte. IMSProg unterstützt Chips der Serien 24Cxx, 25xx, 93Cxx und M95xx.</translation>
     </message>
     <message>
         <location filename="../dialogabout.ui" line="99"/>
@@ -110,7 +110,7 @@
     <message>
         <location filename="../dialogsfdp.ui" line="47"/>
         <source>SFDP support:</source>
-        <translation>SFDP:</translation>
+        <translation>SFDP Unterstützung:</translation>
     </message>
     <message>
         <location filename="../dialogsfdp.ui" line="67"/>
@@ -125,12 +125,12 @@
     <message>
         <location filename="../dialogsfdp.ui" line="107"/>
         <source>Chip size:</source>
-        <translation>Chip-Größe:</translation>
+        <translation>Chip Größe:</translation>
     </message>
     <message>
         <location filename="../dialogsfdp.ui" line="127"/>
         <source>Block size:</source>
-        <translation>Blockgröße:</translation>
+        <translation>Block Größe:</translation>
     </message>
     <message>
         <location filename="../dialogsfdp.ui" line="150"/>
@@ -140,7 +140,7 @@
     <message>
         <location filename="../dialogsfdp.ui" line="170"/>
         <source>OTP support:</source>
-        <translation>OTP:</translation>
+        <translation>OTP Unterstützung:</translation>
     </message>
     <message>
         <location filename="../dialogsfdp.ui" line="196"/>
@@ -240,23 +240,23 @@
     <message>
         <location filename="../dialogsfdp.ui" line="1195"/>
         <source>JEDEC info:</source>
-        <translation>JEDEC-Infos:</translation>
+        <translation>JEDEC-Info:</translation>
     </message>
     <message>
         <location filename="../dialogsfdp.ui" line="1301"/>
         <source>Man. ID</source>
-        <translatorcomment>Hers. Art</translatorcomment>
-        <translation>Herstellen ID</translation>
+        <translatorcomment>Herst. ID</translatorcomment>
+        <translation>Hersteller ID</translation>
     </message>
     <message>
         <location filename="../dialogsfdp.ui" line="1323"/>
         <source>Man. type</source>
-        <translation></translation>
+        <translation>Herst. typ</translation>
     </message>
     <message>
         <location filename="../dialogsfdp.ui" line="1345"/>
         <source>Capacity</source>
-        <translation>Größe:</translation>
+        <translation>Größe</translation>
     </message>
     <message>
         <location filename="../dialogsfdp.ui" line="1357"/>
@@ -313,7 +313,7 @@
     <message>
         <location filename="../dialogsfdp.ui" line="1731"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Legend:&lt;/p&gt;&lt;p&gt;** - Basic area&lt;br&gt;** - Extended area&lt;br&gt;** - Manufacture area &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Legende:&lt;/p&gt;&lt;p&gt;** - Basisbereich&lt;br&gt;** - Erweiterter Bereich&lt;br&gt;** - Manufakturbereich &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Legende:&lt;/p&gt;&lt;p&gt;** - Basisbereich&lt;br&gt;** - Erweiterter Bereich&lt;br&gt;** - Herstellerbereich &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../dialogsfdp.ui" line="1776"/>
@@ -356,7 +356,7 @@
     <message>
         <location filename="../dialogsfdp.cpp" line="417"/>
         <source>Before writing the registers, please press the `Read` button!</source>
-        <translation>Bevor Sie die Register schreiben, drücken Sie bitte die Taste `Lesen`!</translation>
+        <translation>Vor dem Register schreiben bitte die Taste `Lesen` drücken!</translation>
     </message>
     <message>
         <location filename="../dialogsfdp.cpp" line="79"/>
@@ -381,7 +381,7 @@
     <message>
         <location filename="../dialogsfdp.cpp" line="42"/>
         <source> - Manufacture area</source>
-        <translation> - Manufakturbereich</translation>
+        <translation> - Herstellerbereich</translation>
     </message>
     <message>
         <location filename="../dialogsfdp.cpp" line="283"/>
@@ -400,7 +400,7 @@
     <message>
         <location filename="../dialogsp.ui" line="14"/>
         <source>Save part of image</source>
-        <translation>Teil des Bildes speichern</translation>
+        <translation>Teil des Abbildes speichern</translation>
     </message>
     <message>
         <location filename="../dialogsp.ui" line="27"/>
@@ -433,7 +433,7 @@
     <message>
         <location filename="../dialogsr.ui" line="14"/>
         <source>Status register</source>
-        <translation>Status Register</translation>
+        <translation>Statusregister</translation>
     </message>
     <message>
         <location filename="../dialogsr.ui" line="296"/>
@@ -499,7 +499,7 @@
     <message>
         <location filename="../dialogsr.cpp" line="108"/>
         <source>Before writing the register, please press the `Read` button!</source>
-        <translation>Bevor Sie die Register schreiben, drücken Sie bitte die Taste `Lesen`!</translation>
+        <translation>Vor dem Register schreiben bitte die Taste `Lesen` drücken!</translation>
     </message>
 </context>
 <context>
@@ -545,7 +545,7 @@
     <message>
         <location filename="../mainwindow.ui" line="1009"/>
         <source>Exit</source>
-        <translation>Ausfahrt</translation>
+        <translation>Beenden</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1012"/>
@@ -575,7 +575,7 @@
     <message>
         <location filename="../mainwindow.ui" line="247"/>
         <source>Page size</source>
-        <translation>Größe der Seite</translation>
+        <translation>Page Größe</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="285"/>
@@ -590,7 +590,7 @@
     <message>
         <location filename="../mainwindow.ui" line="333"/>
         <source>4bit Addr.</source>
-        <translation>4bit Adresse</translation>
+        <translation>4 Bit Adresse</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="412"/>
@@ -645,7 +645,7 @@
     <message>
         <location filename="../mainwindow.ui" line="770"/>
         <source>  JEDEC ID:</source>
-        <translation>JEDEC ID</translation>
+        <translation>JEDEC ID:</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="786"/>
@@ -710,7 +710,7 @@
     <message>
         <location filename="../mainwindow.ui" line="1081"/>
         <source>Undo</source>
-        <translation>Rückgängig</translation>
+        <translation>Rückgängig machen</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1084"/>
@@ -750,7 +750,7 @@
     <message>
         <location filename="../mainwindow.ui" line="1236"/>
         <source>Move the cursor to the entered address</source>
-        <translation>Bewegen Sie den Cursor auf die eingegebene Adresse</translation>
+        <translation>Verschiebe Cursor zu eingegebener Adresse</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1239"/>
@@ -805,7 +805,7 @@
     <message>
         <location filename="../mainwindow.ui" line="1164"/>
         <source>Edit chips Database</source>
-        <translation>Chips-Datenbank bearbeiten</translation>
+        <translation>Chip-Datenbank bearbeiten</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1167"/>
@@ -914,7 +914,7 @@
     <message>
         <location filename="../mainwindow.cpp" line="1184"/>
         <source>The end address must be greater than the starting address.</source>
-        <translation>Die Endadresse muss größer sein als die Anfangsadresse.</translation>
+        <translation>Die Endadresse muss größer als die Anfangsadresse sein.</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1467"/>
@@ -966,12 +966,12 @@
         <location filename="../mainwindow.cpp" line="906"/>
         <location filename="../mainwindow.cpp" line="1140"/>
         <source>Before reading from chip please press &apos;Detect&apos; button.</source>
-        <translation>Bevor Sie den Chip auslesen, drücken Sie bitte die Taste &apos;Detect&apos;.</translation>
+        <translation>Vor dem Auslesen des Chips bitte die Taste &apos;Erkennen&apos; drücken.</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="250"/>
         <source>Please select the chip parameters - manufacture and chip name</source>
-        <translation>Bitte wählen Sie die Chip-Parameter - Hersteller und Chip-Name</translation>
+        <translation>Bitte Chip-Parameter - Hersteller und Chip-Name auswählen</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="289"/>
@@ -1025,12 +1025,12 @@
         <location filename="../mainwindow.cpp" line="737"/>
         <location filename="../mainwindow.cpp" line="773"/>
         <source>The file size exceeds the chip size. Please select another chip or file or use `Save part` to split the file.</source>
-        <translation>Die Dateigröße übersteigt die Chipgröße. Bitte wählen Sie einen anderen Chip oder eine andere Datei oder verwenden Sie &quot;Teil speichern&quot;, um die Datei zu teilen.</translation>
+        <translation>Die Dateigröße übersteigt die Chipgröße. Bitte einen anderen Chip oder eine andere Datei wählen, oder &quot;Teil speichern&quot; verwenden, um die Datei zu teilen.</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="2011"/>
         <source>Not valid HEX format!</source>
-        <translation>Nicht gültiges HEX-Format!</translation>
+        <translation>Ungültiges HEX-Format!</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="2043"/>
@@ -1056,7 +1056,7 @@
     <message>
         <location filename="../mainwindow.cpp" line="1061"/>
         <source>Veryfing data from </source>
-        <translation>Sehr gute Daten aus </translation>
+        <translation>Überprüfe Daten aus </translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1116"/>
@@ -1080,7 +1080,7 @@ Puffer: </translation>
     <message>
         <location filename="../mainwindow.cpp" line="1141"/>
         <source>Please select the chip parameters - manufacture and chip name.</source>
-        <translation>Bitte wählen Sie die Chip-Parameter - Hersteller und Chip-Name.</translation>
+        <translation>Bitte Chip-Parameter - Hersteller und Chip-Name auswählen.</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1150"/>
@@ -1090,12 +1090,12 @@ Puffer: </translation>
     <message>
         <location filename="../mainwindow.cpp" line="1150"/>
         <source>The operation was successful!</source>
-        <translation>Die Operation war ein Erfolg!</translation>
+        <translation>Die Operation war Erfolgreich!</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1196"/>
         <source>Saving block</source>
-        <translation>Speichern des Blocks</translation>
+        <translation>Speichere Block</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1198"/>
@@ -1115,7 +1115,7 @@ Puffer: </translation>
     <message>
         <location filename="../mainwindow.cpp" line="1240"/>
         <source>The end address out of image size!</source>
-        <translation>Die Endadresse aus der Bildgröße!</translation>
+        <translation>Die Endadresse aus der Abbildgröße!</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1279"/>
@@ -1160,7 +1160,7 @@ Puffer: </translation>
     <message>
         <location filename="../searchdialog.ui" line="71"/>
         <source>Replace</source>
-        <translation>Ersetzen Sie</translation>
+        <translation>Ersetze</translation>
     </message>
     <message>
         <location filename="../searchdialog.ui" line="116"/>

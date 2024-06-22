@@ -78,7 +78,7 @@ void MainWindow::on_actionOpen_triggered()
     QStringList horizontalHeader;
     //horizontalHeader.append("No");
     horizontalHeader.append(tr("Type"));
-    horizontalHeader.append(tr("Manufacture"));
+    horizontalHeader.append(tr("Manufacturer"));
     horizontalHeader.append(tr("IC Name"));
     horizontalHeader.append(tr("JEDEC ID"));
     horizontalHeader.append(tr("Size"));
