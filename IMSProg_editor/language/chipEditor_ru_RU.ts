@@ -152,7 +152,7 @@
     </message>
     <message>
         <location filename="../ezp_chip_editor.cpp" line="81"/>
-        <source>Manufacture</source>
+        <source>Manufacturer</source>
         <translation>Произв.</translation>
     </message>
     <message>
