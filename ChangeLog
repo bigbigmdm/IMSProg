@@ -1,3 +1,5 @@
+- Ver. 1.4.2 - Corrected German translation. German translator added to copyright
+Fixed metadata files. Corrected chip database.
 - Ver. 1.4.1 - Added support new chip type - AT45DBxx SPI Flash. Fixed appstream
  metadata errors and warnings. Renamed udev rule from 99-CH341.rules to 
  71-CH341.rules and removed deprecated MODE=660 and GROUP+=plugdev.

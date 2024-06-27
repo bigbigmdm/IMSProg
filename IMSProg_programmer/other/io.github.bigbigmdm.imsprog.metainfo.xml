@@ -110,8 +110,7 @@
      <mediatype>application/octet-stream</mediatype>
      <modalias>usb:v1A86p5512d*</modalias>
   </provides>
-  <developer>
-     <id>io.github.bigbigmdm</id>
+  <developer id="io.github.bigbigmdm">
      <name>Mikhail Medvedev</name>
   </developer>  
   <screenshots>
@@ -153,6 +152,11 @@
     </screenshot>
   </screenshots>
   <releases>
+  <release version="1.4.2" date="2024-06-27" urgency="medium">	  
+	  <p>Corrected German translation</p>
+	  <p>German translator added to copyright</p>
+	  <p>Corrected chip database</p>
+  </release>	  
   <release version="1.4.1" date="2024-05-23" urgency="medium">	  
 	  <p>Added AT45DBxx series  SPI FLASH (Menu item type -> 45_EEPROM)</p>
 	  <p>The inline images of the chip adapters have been changed.</p>

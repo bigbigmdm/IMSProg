@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Copyright 2024 Mikhail Medvedev < e-ink-reader@yandex.ru > --> 
 <component type="desktop-application">
-  <id>com.github.bigbigmdm.imsprog.database_update</id>
+  <id>io.github.bigbigmdm.imsprog_database_update</id>
   <metadata_license>GFDL-1.3</metadata_license>
   <project_license>GPL-3.0+</project_license>
   <name>IMSProg_database_update.desktop</name>
@@ -72,11 +72,15 @@
   <provides>
      <mediatype>application/octet-stream</mediatype>
   </provides>   
-  <developer>
-     <id>io.github.bigbigmdm</id>
+  <developer id="io.github.bigbigmdm">
      <name>Mikhail Medvedev</name>
   </developer>
   <releases>
+  <release version="1.4.2" date="2024-06-27" urgency="medium">	  
+	  <p>Corrected German translation</p>
+	  <p>German translator added to copyright</p>
+	  <p>Corrected chip database</p>
+  </release>	  
   <release version="1.4.1" date="2024-05-23" urgency="medium">	  
 	  <p>Added AT45DBxx series  SPI FLASH (Menu item type -> 45_EEPROM)</p>
 	  <p>The inline images of the chip adapters have been changed.</p>
