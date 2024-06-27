@@ -505,46 +505,50 @@ sudo apt install imsprog
 ## Project structure
 
 ```
-IMSProg _files_							                  _folder_
+IMSProg _files_							          _folder_
 ================================================================================
-IMSProg                                                   /usr/bin
-IMSProg_editor                                            /usr/bin
-IMSProg_programmer/other/IMSProg_database_update          /usr/bin
+IMSProg                                                  /usr/bin
+IMSProg_editor                                           /usr/bin
+IMSProg_programmer/other/IMSProg_database_update         /usr/bin
 
-IMSProg_programmer/database/IMSProg.Dat                   /usr/share/imsprog
-                                                          ~/.local/share/imsprog
+IMSProg_programmer/database/IMSProg.Dat                  /usr/share/imsprog
+                                                         ~/.local/share/imsprog
 
-IMSProg_programmer/other/71-CH341.rules                   /lib/udev/rules.d
+IMSProg_programmer/other/71-CH341.rules                  /lib/udev/rules.d
 
-IMSProg_programmer/other/index.html                       /usr/share//doc/imsprog/html
+IMSProg_programmer/other/index.html                      /usr/share//doc/imsprog/html
 
-IMSProg_programmer/language/chipProgrammer_ru_RU.qm       /usr/share/imsprog
-IMSProg_programmer/language/chipProgrammer_es_ES.qm       /usr/share/imsprog
-IMSProg_programmer/language/chipProgrammer_de_DE.qm       /usr/share/imsprog
-IMSProg_programmer/language/chipProgrammer_zH_CN.qm       /usr/share/imsprog
-IMSProg_programmer/language/chipProgrammer_uk_UA.qm       /usr/share/imsprog
-IMSProg_programmer/language/chipProgrammer_hu_HU.qm       /usr/share/imsprog
-IMSProg_programmer/language/chipProgrammer_pt_BR.qm       /usr/share/imsprog
+IMSProg_programmer/language/chipProgrammer_ru_RU.qm      /usr/share/imsprog
+IMSProg_programmer/language/chipProgrammer_es_ES.qm      /usr/share/imsprog
+IMSProg_programmer/language/chipProgrammer_de_DE.qm      /usr/share/imsprog
+IMSProg_programmer/language/chipProgrammer_zH_CN.qm      /usr/share/imsprog
+IMSProg_programmer/language/chipProgrammer_uk_UA.qm      /usr/share/imsprog
+IMSProg_programmer/language/chipProgrammer_hu_HU.qm      /usr/share/imsprog
+IMSProg_programmer/language/chipProgrammer_pt_BR.qm      /usr/share/imsprog
 
-IMSProg_editor/language/chipEditor_ru_RU.qm               /usr/share/imsprog
-IMSProg_editor/language/chipEditor_de_DE.qm               /usr/share/imsprog
-IMSProg_editor/language/chipEditor_es_ES.qm               /usr/share/imsprog
-IMSProg_editor/language/chipEditor_zh_CN.qm               /usr/share/imsprog
-IMSProg_editor/language/chipEditor_uk_UA.qm               /usr/share/imsprog
-IMSProg_editor/language/chipEditor_hu_HU.qm               /usr/share/imsprog
-IMSProg_editor/language/chipEditor_pt_BR.qm               /usr/share/imsprog
+IMSProg_editor/language/chipEditor_ru_RU.qm              /usr/share/imsprog
+IMSProg_editor/language/chipEditor_de_DE.qm              /usr/share/imsprog
+IMSProg_editor/language/chipEditor_es_ES.qm              /usr/share/imsprog
+IMSProg_editor/language/chipEditor_zh_CN.qm              /usr/share/imsprog
+IMSProg_editor/language/chipEditor_uk_UA.qm              /usr/share/imsprog
+IMSProg_editor/language/chipEditor_hu_HU.qm              /usr/share/imsprog
+IMSProg_editor/language/chipEditor_pt_BR.qm              /usr/share/imsprog
 
-IMSProg_programmer/other/IMSProg.desktop                  /usr/share/applications
-IMSProg_programmer/other/IMSProg_editor.desktop           /usr/share/applications
-IMSProg_programmer/other/IMSProg_database_update.desktop  /usr/share/applications
+IMSProg_programmer/other/IMSProg.desktop                 /usr/share/applications
+IMSProg_programmer/other/IMSProg_editor.desktop          /usr/share/applications
+IMSProg_programmer/other/IMSProg_database_update.desktop /usr/share/applications
 
-IMSProg_editor/other/IMSProg_editor.1.gz                    /usr/share/man/man1
-IMSProg_programmer/other/IMSProg.1.gz                       /usr/share/man/man1
-IMSProg_programmer/other/IMSProg_database_update.1.gz       /usr/share/man/man1
+IMSProg_editor/other/IMSProg_editor.1.gz                 /usr/share/man/man1
+IMSProg_programmer/other/IMSProg.1.gz                    /usr/share/man/man1
+IMSProg_programmer/other/IMSProg_database_update.1.gz    /usr/share/man/man1
 
-IMSProg_programmer/img/IMSProg64.png                        /usr/share/pixmaps
-IMSProg_programmer/img/IMSProg_database_update.png          /usr/share/pixmaps
-IMSProg_editor/img/chipEdit64.png                           /usr/share/pixmaps
+IMSProg_programmer/img/IMSProg64.png                     /usr/share/pixmaps
+IMSProg_programmer/img/IMSProg_database_update.png       /usr/share/pixmaps
+IMSProg_editor/img/chipEdit64.png                        /usr/share/pixmaps
+
+IMSProg_programmer/other/other/io.github.bigbigmdm.imsprog.metainfo.xml /usr/share/metainfo
+IMSProg_editor/other/other/io.github.bigbigmdm.imsprog_editor.metainfo.xml /usr/share/metainfo
+IMSProg_programmer/other/other/io.github.bigbigmdm.imsprog_database_update.metainfo.xml /usr/share/metainfo
 
 ```
 ## Chip database format
