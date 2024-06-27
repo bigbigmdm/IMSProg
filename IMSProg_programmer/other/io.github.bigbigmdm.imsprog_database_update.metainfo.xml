@@ -76,15 +76,19 @@
      <name>Mikhail Medvedev</name>
   </developer>
   <releases>
-  <release version="1.4.2" date="2024-06-27" urgency="medium">	  
-	  <p>Corrected German translation</p>
-	  <p>German translator added to copyright</p>
-	  <p>Corrected chip database</p>
+  <release version="1.4.2" date="2024-06-27" urgency="medium">	 
+    <description>
+	    <p>Corrected German translation</p>
+	    <p>German translator added to copyright</p>
+	    <p>Corrected chip database</p>
+    </description> 
   </release>	  
   <release version="1.4.1" date="2024-05-23" urgency="medium">	  
-	  <p>Added AT45DBxx series  SPI FLASH (Menu item type -> 45_EEPROM)</p>
-	  <p>The inline images of the chip adapters have been changed.</p>
-	  <p>Fixed metadata errors and warnings.</p>
+    <description>
+	    <p>Added AT45DBxx series  SPI FLASH (Menu item type -> 45_EEPROM)</p>
+	    <p>The inline images of the chip adapters have been changed.</p>
+	    <p>Fixed metadata errors and warnings.</p>
+    </description> 
   </release>	  
   <release version="1.3.9" date="2024-05-06" urgency="medium">
     <description>
