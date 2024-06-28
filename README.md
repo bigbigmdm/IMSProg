@@ -180,8 +180,8 @@ time) and `Status Register 2` is available in the chip, you can change bits
 increase the power of the output stage of the `DO` pin of the chip. Then 
 repeat the chip read operation.
 
-For `25xxx`, `95xxx` series chips that have only one status register, the 
-`Chip info` form is as follows:
+For `25xxx`, `95xxx` and `45xxx` series chips that have only one status 
+register, the `Chip info` form is as follows:
 
 ![SFDP](img/sr0_en.png)
 
