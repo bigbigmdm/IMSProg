@@ -21,7 +21,7 @@
     <message>
         <location filename="../ezp_chip_editor.ui" line="108"/>
         <source>Open</source>
-        <translation>Öffnen Sie</translation>
+        <translation>Öffnen</translation>
     </message>
     <message>
         <location filename="../ezp_chip_editor.ui" line="111"/>
@@ -31,7 +31,7 @@
     <message>
         <location filename="../ezp_chip_editor.ui" line="120"/>
         <source>Exit</source>
-        <translation>Ausfahrt</translation>
+        <translation>Beenden</translation>
     </message>
     <message>
         <location filename="../ezp_chip_editor.ui" line="123"/>
@@ -42,7 +42,7 @@
     <message>
         <location filename="../ezp_chip_editor.ui" line="132"/>
         <source>Save</source>
-        <translation>Speichern Sie</translation>
+        <translation>Speichern</translation>
     </message>
     <message>
         <location filename="../ezp_chip_editor.ui" line="135"/>
@@ -72,7 +72,7 @@
     <message>
         <location filename="../ezp_chip_editor.ui" line="162"/>
         <source>Add selected lines and duplicate data</source>
-        <translation>Hinzufügen ausgewählter Zeilen und Duplizieren von Daten</translation>
+        <translation>Füge ausgewählte Zeilen hinzu und dupliziere Daten</translation>
     </message>
     <message>
         <location filename="../ezp_chip_editor.ui" line="165"/>
@@ -82,7 +82,7 @@
     <message>
         <location filename="../ezp_chip_editor.ui" line="174"/>
         <source>Move up</source>
-        <translation>Nachrücken</translation>
+        <translation>Verschiebe nach oben</translation>
     </message>
     <message>
         <location filename="../ezp_chip_editor.ui" line="177"/>
@@ -97,7 +97,7 @@
     <message>
         <location filename="../ezp_chip_editor.ui" line="189"/>
         <source>Move down</source>
-        <translation>Nach unten gehen</translation>
+        <translation>Nach unten verschieben</translation>
     </message>
     <message>
         <location filename="../ezp_chip_editor.ui" line="192"/>
@@ -135,7 +135,7 @@
         <location filename="../ezp_chip_editor.cpp" line="734"/>
         <location filename="../ezp_chip_editor.cpp" line="755"/>
         <source>Open the file</source>
-        <translation>Öffnen Sie die Datei</translation>
+        <translation>Öffne die Datei</translation>
     </message>
     <message>
         <location filename="../ezp_chip_editor.cpp" line="56"/>
@@ -152,8 +152,8 @@
     </message>
     <message>
         <location filename="../ezp_chip_editor.cpp" line="81"/>
-        <source>Manufacture</source>
-        <translation>Herstellung</translation>
+        <source>Manufacturer</source>
+        <translation>Hersteller</translation>
     </message>
     <message>
         <location filename="../ezp_chip_editor.cpp" line="82"/>
@@ -215,7 +215,7 @@ Größe K</translation>
         <source>EEPROM
 pages</source>
         <translation>EEPROM
-Seiten</translation>
+Pages</translation>
     </message>
     <message>
         <location filename="../ezp_chip_editor.cpp" line="92"/>
@@ -245,7 +245,7 @@ Seiten</translation>
     <message>
         <location filename="../ezp_chip_editor.cpp" line="694"/>
         <source>Saving file</source>
-        <translation>Speichern der Datei</translation>
+        <translation>Speichere Datei</translation>
     </message>
     <message>
         <location filename="../ezp_chip_editor.cpp" line="696"/>
@@ -260,12 +260,12 @@ Seiten</translation>
     <message>
         <location filename="../ezp_chip_editor.cpp" line="794"/>
         <source>Invalid CSV data file format.</source>
-        <translation>Ungültiges CSV-Dateiformat.</translation>
+        <translation>Ungültiges CSV-Datenformat.</translation>
     </message>
     <message>
         <location filename="../ezp_chip_editor.cpp" line="827"/>
         <source>Invalid CSV header file format.</source>
-        <translation>Ungültiges CSV-Header-Dateiformat.</translation>
+        <translation>Ungültiges CSV-Header-Datenformat.</translation>
     </message>
 </context>
 </TS>

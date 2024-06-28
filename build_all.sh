@@ -18,3 +18,5 @@ cmake -S . -B build/
 cmake --build build/ --parallel 
 sudo cmake --install build/
 rm -rf build/
+# Reloading the USB rules
+sudo udevadm control --reload-rules

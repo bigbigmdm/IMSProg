@@ -70,4 +70,4 @@ install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/img/chipEdit64.png" DESTINATION "${CM
 install(FILES ${QM_FILES} DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/imsprog")
 
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/other/IMSProg_editor.1.gz" DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/man/man1")
-install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/other/imsprog.editor.appdata.xml" DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/metainfo")
+install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/other/io.github.bigbigmdm.imsprog_editor.metainfo.xml" DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/metainfo")
