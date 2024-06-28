@@ -1,3 +1,11 @@
+imsprog (1.4.2-1) unstable; urgency=medium
+
+  * New upstream version
+  * Update debian/copyright
+  * Fix metadata files
+
+ -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Fri, 28 Jun 2024 09:55:04 +0300
+
 imsprog (1.4.1-1) unstable; urgency=medium
 
   * New upstream version
