@@ -640,3 +640,11 @@ are [GPL-2+](https://www.gnu.org/licenses/old-licenses/gpl-2.0.html) and from
 
 Anyone can add or improve a translation by making a pull request.
 Translations files are located in: [IMSProg_programmer/language/](https://github.com/bigbigmdm/IMSProg/tree/main/IMSProg_programmer/language) and [IMSProg_editor/language/](https://github.com/bigbigmdm/IMSProg/tree/main/IMSProg_editor/language)
+
+You can also add translation to the desktop files ([IMSProg.desktop](https://github.com/bigbigmdm/IMSProg/blob/main/IMSProg_programmer/other/IMSProg.desktop),
+ [IMSProg_database_update.desktop](https://github.com/bigbigmdm/IMSProg/blob/main/IMSProg_programmer/other/IMSProg_database_update.desktop), 
+  [IMSProg_editor.desktop](https://github.com/bigbigmdm/IMSProg/blob/main/IMSProg_editor/other/IMSProg_editor.desktop)),
+ to the update script ([IMSProg_database_update](https://github.com/bigbigmdm/IMSProg/blob/main/IMSProg_programmer/other/IMSProg_database_update)) 
+ and to the appstream metadata files ([io.github.bigbigmdm.imsprog_editor.metainfo.xml](https://github.com/bigbigmdm/IMSProg/blob/main/IMSProg_editor/other/io.github.bigbigmdm.imsprog_editor.metainfo.xml), 
+[io.github.bigbigmdm.imsprog_database_update.metainfo.xml](https://github.com/bigbigmdm/IMSProg/blob/main/IMSProg_programmer/other/io.github.bigbigmdm.imsprog_database_update.metainfo.xml), 
+[io.github.bigbigmdm.imsprog.metainfo.xml](https://github.com/bigbigmdm/IMSProg/blob/main/IMSProg_programmer/other/io.github.bigbigmdm.imsprog.metainfo.xml)).
