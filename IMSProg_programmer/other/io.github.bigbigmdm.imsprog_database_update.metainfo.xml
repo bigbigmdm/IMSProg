@@ -76,6 +76,13 @@
      <name>Mikhail Medvedev</name>
   </developer>
   <releases>
+  <release version="1.4.3" date="2024-07-26" urgency="medium">	  
+    <description>
+	    <p>Fixed: On the GNOME desktop, programm does not respond when erasing SPI NOR FLASH.</p>
+	    <p>Fixed: The progress bar did not display correctly when SPI NOR FLASH was erased.</p>
+	    <p>Fixed: When erasing SPI NOR Flash, the STOP button does not work.</p>
+    </description>
+  </release>
   <release version="1.4.2" date="2024-06-27" urgency="medium">	 
     <description>
 	    <p>Corrected German translation</p>
