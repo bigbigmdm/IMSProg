@@ -202,6 +202,7 @@ void MainWindow::on_pushButton_clicked()
                  res = s95_read_param(buf,curBlock * currentBlockSize, currentBlockSize, currentBlockSize, currentAlgorithm);
               break;
               case 5:
+                 //45xx
                  res = at45_read_param(buf,curBlock * currentBlockSize, currentBlockSize, currentBlockSize, currentAlgorithm);
               break;
               default:
@@ -569,6 +570,7 @@ void MainWindow::on_actionSave_triggered()
 void MainWindow::on_actionErase_triggered()
 {
     //statusCH341 = ch341a_spi_init();
+    int ret;
     statusCH341 = ch341a_init(currentChipType);
     ch341StatusFlashing();
     if (statusCH341 != 0)
@@ -583,9 +585,32 @@ void MainWindow::on_actionErase_triggered()
     doNotDisturb();
     if (currentChipType == 0)
     {
-       ui->progressBar->setValue(50);
-       full_erase_chip();
-       sleep(1);
+       if (currentNumBlocks > 0)
+       {
+           ui->progressBar->setRange(0, static_cast<int>(currentNumBlocks));
+           for (uint32_t curBlock = 0; curBlock < currentNumBlocks; curBlock++)
+           {
+               //config_stream(2);
+               ret = snor_block_erase( curBlock,  currentBlockSize, static_cast<u8>(currentAddr4bit));
+               if (ret != 0)
+                 {
+                   QMessageBox::about(this, tr("Error"), tr("Error erasing sector ") + QString::number(curBlock));
+                   ch341a_spi_shutdown();
+                   doNotDisturbCancel();
+                   return;
+                 }
+               qApp->processEvents();
+               ui->progressBar->setValue( static_cast<int>(curBlock));
+               if (isHalted)
+               {
+                   isHalted = false;
+                   ch341a_spi_shutdown();
+                   doNotDisturbCancel();
+                   return;
+               }
+           }
+       }
+
     }
     if ((currentChipType == 4) || ((currentChipType == 3) && ((currentAlgorithm & 0x20) == 0)))
     {
