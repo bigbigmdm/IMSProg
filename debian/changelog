@@ -1,7 +1,8 @@
 imsprog (1.4.3-1) unstable; urgency=medium
 
-  * New upstream version
-  * Fix: On the GNOME desktop, programm does not respond when erasing SPI NOR FLASH
+  * New upstream version:
+    - Fix: On the GNOME desktop, program does not respond
+      when erasing SPI NOR FLASH
 
  -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Fri, 26 Jul 2024 11:51:43 +0300
 
