@@ -588,8 +588,8 @@
     </message>
     <message>
         <location filename="../mainwindow.ui" line="333"/>
-        <source>4bit Addr.</source>
-        <translation>4bit адреса.</translation>
+        <source>4byte Addr.</source>
+        <translation>4byte адреса.</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="412"/>

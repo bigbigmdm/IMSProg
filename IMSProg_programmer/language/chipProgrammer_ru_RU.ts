@@ -587,8 +587,8 @@
     </message>
     <message>
         <location filename="../mainwindow.ui" line="333"/>
-        <source>4bit Addr.</source>
-        <translation>4bit адрес</translation>
+        <source>4byte Addr.</source>
+        <translation>4byte адрес</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="412"/>

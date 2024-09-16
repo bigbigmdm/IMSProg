@@ -330,7 +330,7 @@ QGroupBox::title {
             <string notr="true"/>
            </property>
            <property name="text">
-            <string>4bit Addr.</string>
+            <string>4byte Addr.</string>
            </property>
           </widget>
          </item>
