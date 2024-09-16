@@ -54,6 +54,7 @@ create_launch_script() {
     cat << ENDOFSCRIPT > "$CONTENTSDIR/MacOS/$EXECUTABLE_NAME"
 #!/usr/bin/env bash
 
+export PATH=$PATH:/usr/local/bin/IMSProg_editor
 bash -c "$COMMAND > /dev/null 2>&1 &"
 ENDOFSCRIPT
 
