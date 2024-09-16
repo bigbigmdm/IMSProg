@@ -33,6 +33,7 @@ public:
     explicit DialogSR(QWidget *parent = nullptr);
     void setChipType(const uint chipType);
     void closeEvent(QCloseEvent* event);
+    uint currentChipType;
     ~DialogSR();
 
 private slots:

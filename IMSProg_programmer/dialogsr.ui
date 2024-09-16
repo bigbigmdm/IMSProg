@@ -561,7 +561,11 @@ background-color: rgb(120, 183, 140);
 border-radius: 20px;
 border: 2px solid #094065;border-radius:8px;font-weight:600;
 }
-QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
+QPushButton::pressed{background-color: rgb(115, 210, 22);}
+QPushButton:!enabled
+{
+     background-color:#ccc;
+}</string>
        </property>
        <property name="text">
         <string>Write</string>
