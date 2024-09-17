@@ -20,6 +20,8 @@ files+=(
     "${CMAKE_INSTALL_PREFIX}/share/imsprog"
     "${CMAKE_INSTALL_PREFIX}/share/doc/imsprog"
     "${CMAKE_INSTALL_PREFIX}/bin/IMSProg_database_update"
+    "${CMAKE_INSTALL_PREFIX}/share/applications/IMSProg_editor.desktop"
+    "${CMAKE_INSTALL_PREFIX}/share/applications/IMSProg.desktop"
     "${CMAKE_INSTALL_PREFIX}/share/applications/IMSProg_database_update.desktop"
     "${CMAKE_INSTALL_PREFIX}/share/man/man1/IMSProg.1.gz"
     "${CMAKE_INSTALL_PREFIX}/share/man/man1/IMSProg_database_update.1.gz"
