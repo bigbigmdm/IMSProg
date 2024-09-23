@@ -86,10 +86,20 @@
       <caption xml:lang="ru">Главный экран.</caption>
       <caption xml:lang="uk">Головний екран.</caption>
       <caption xml:lang="zn_CH">主屏幕。</caption>	
-      <image type="source" width="889" height="436">https://github.com/bigbigmdm/IMSProg/blob/main/IMSProg_editor/img/ezp_editor.png</image>
+      <image type="source" width="889" height="436">https://github.com/bigbigmdm/IMSProg/raw/main/IMSProg_editor/img/ezp_editor.png</image>
     </screenshot>
   </screenshots>
   <releases>
+  <release version="1.4.4" date="2024-09-23" urgency="medium">	  
+    <description>
+	    <p>Fixed: In the Save menu, the cancel button causes an error message.</p>
+	    <p>Fixed: Incorrect names of DataFlash chips.</p>
+	    <p>Fixed: incorrect reading of the DataFlash chips status register.</p>
+	    <p>Fedora repository added</p>
+	    <p>MacOS build support added</p>
+	    <p>Uninstall script added</p>
+    </description>
+  </release>
   <release version="1.4.3" date="2024-07-26" urgency="medium">	  
     <description>
 	    <p>Fixed: On the GNOME desktop, programm does not respond when erasing SPI NOR FLASH.</p>

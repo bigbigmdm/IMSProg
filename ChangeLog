@@ -1,3 +1,7 @@
+- Ver. 1.4.4 - Fixed: When writing firmware to disc, the `Cancel` key causes an 
+error message, wrong DataFlash chip names, wrong DataFlash chip status register 
+reading. Added: Uninstall script, instructions for building under macOS, 
+installation in Fedora.
 - Ver. 1.4.3 - Fix: On the GNOME desktop, programm does not respond when erasing
  SPI NOR FLASH. Fix: When erasing SPI NOR Flash, the progress bar is now 
  displayed correctly. Fix: When erasing SPI NOR Flash, the STOP button now works

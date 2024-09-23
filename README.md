@@ -60,6 +60,8 @@ These commands are included in the `build_all.sh` file.
 
 ## System software requirements
 
+### Linux
+
 For build are needed:
 - g++ or clang
 - CMake
@@ -90,9 +92,43 @@ Optionally if you want to use IMSProg_database_update script:
 :information_source: Debian < 11 and Ubuntu < 20.04 are not supported, you may 
 unable to have it working on them.
 
+### macOS
+if using Homebrew then Xcode Command Line Tools will install by default, if not then install manually from terminal:   
+
+```
+xcode-select --install
+```
+
+install the required packages  
+
+using brew:  
+
+```
+brew install qt@5 libusb cmake pkgconf
+```
+
+if not using the [build_all.sh](build_all.sh) script then make sure `libusb` is in your `C_INCLUDE_PATH`
+
+```
+export C_INCLUDE_PATH=/usr/local/opt/libusb/include
+```
+Optionally if you want to use IMSProg_database_update script:
+```
+brew install wget zenity
+```
+
+
 ## How to use:
 
+Note: for macOS use CMD `⌘` instead of CTRL for keyboard shortcuts.
+
 ## Chip programmer
+
+### Launching
+Can be launched from Terminal by running the command 
+```
+$ IMSProg
+```
 
 ### Connecting
 - Insert the chip into the appropriate slot of the CH341A programmer. The 
@@ -489,6 +525,11 @@ sudo apt update
 sudo apt install imsprog
 ``` 
   Is also possible manually build deb package using `debian/latest` branch.
+
+- For some versions of Fedora, you can use the official repositories.
+```
+sudo dnf install imsprog
+```
 
 <a href="https://repology.org/project/imsprog/versions">
     <img src="https://repology.org/badge/vertical-allrepos/imsprog.svg" alt="Packaging status" align="right">

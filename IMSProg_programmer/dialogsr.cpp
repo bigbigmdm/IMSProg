@@ -44,7 +44,8 @@ void DialogSR::on_pushButton_read_clicked()
     if (stCH341 == 0)
         {
            SPI_CONTROLLER_Chip_Select_Low();
-           SPI_CONTROLLER_Write_One_Byte(0x05);
+           if (currentChipType != 5) SPI_CONTROLLER_Write_One_Byte(0x05);
+           else SPI_CONTROLLER_Write_One_Byte(0xd7);
            retval = SPI_CONTROLLER_Read_NByte(buf,1,SPI_CONTROLLER_SPEED_SINGLE);
            qDebug() << "retval=" << retval;
            SPI_CONTROLLER_Chip_Select_High();
@@ -133,18 +134,37 @@ void DialogSR::setChipType(const uint chipType)
      case 3:
        ui->label_20->setText("/RDY");
        ui->label_19->setText("WEN");
+       ui->label_18->setText("BP0");
+       ui->label_17->setText("BP1");
        ui->label_13->setText("WPEN");
+       ui->label_14->setText("X");
+       ui->pushButton_write->setEnabled(true);
      break;
 
      case 4:
        ui->label_20->setText("WIP");
        ui->label_19->setText("WEL");
+       ui->label_18->setText("BP0");
+       ui->label_17->setText("BP1");
        ui->label_13->setText("SRWD");
+       ui->label_14->setText("X");
+       ui->pushButton_write->setEnabled(true);
+     break;
+
+     case 5:
+       ui->label_20->setText("PAGE");
+       ui->label_19->setText("WP");
+       ui->label_18->setText("X");
+       ui->label_17->setText("X");
+       ui->label_13->setText("RDY");
+       ui->label_14->setText("COMP");
+       ui->pushButton_write->setEnabled(false);
      break;
 
      default:
      break;
    }
+   currentChipType = chipType;
 }
 
 void DialogSR::closeEvent(QCloseEvent* event)

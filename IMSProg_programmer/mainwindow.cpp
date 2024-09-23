@@ -553,6 +553,7 @@ void MainWindow::on_actionSave_triggered()
                                 QString(tr("Save file")),
                                 lastDirectory,
                                 "Data Images (*.bin *.BIN);;All files (*.*)");
+    if (fileName.isEmpty()) return;
     QFileInfo info(fileName);
     lastDirectory = info.filePath();
 
@@ -1226,6 +1227,7 @@ void MainWindow::receiveAddr(QString addressData)
     QFileInfo info(fileName);
     lastDirectory = info.filePath();
     if (QString::compare(info.suffix(), "bin", Qt::CaseInsensitive)) fileName = fileName + ".bin";
+    if (fileName.isEmpty()) return;
     QFile file(fileName);
     if (!file.open(QIODevice::WriteOnly))
     {

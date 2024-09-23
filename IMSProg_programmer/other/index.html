@@ -57,6 +57,7 @@ make -j`nproc`
 sudo make install</code></pre>
 <p>These commands are included in the <code>build_all.sh</code> file.</p>
 <h2 id=system-software-requirements>System software requirements</h2>
+<h3>Linux</h3>
 <p>For build are needed: - g++ or clang - CMake - libusb 1.0 - Qt5 - pkgconf or pkg-config - udev</p>
 <p>On Debian and derivatives:</p>
 <p><code>sudo apt-get install cmake g++ libusb-1.0-0-dev qtbase5-dev pkgconf</code></p>
@@ -67,8 +68,23 @@ sudo make install</code></pre>
 <p>Optionally if you want to use IMSProg_database_update script: - zenity - wget</p>
 <p><code>sudo apt-get install zenity wget</code></p>
 <p>:information_source: Debian &lt; 11 and Ubuntu &lt; 20.04 are not supported, you may unable to have it working on them.</p>
-<h2 id=how-to-use>How to use:</h2>
+<h3>macOS</h3>
+<p>if using Homebrew then Xcode Command Line Tools will install by default, if not then install manually from terminal:</p>
+<p><code>xcode-select --install</code></p>
+<p>install the required packages</p>
+<p>using brew:</p>
+<p><code>brew install qt@5 libusb cmake pkgconf</code></p>
+<p>if not using the build_all.sh script then make sure libusb is in your C_INCLUDE_PATH</p>
+<p><code>export C_INCLUDE_PATH=/usr/local/opt/libusb/include</code></p>
+<p>Optionally if you want to use IMSProg_database_update script:</p>
+<p><code>brew install wget zenity</code></p>
+<h2>How to use:</h2>
+<p>Note: for macOS use CMD ⌘ instead of CTRL for keyboard shortcuts.</p>
 <h2 id=chip-programmer>Chip programmer</h2>
+<h3>Launching</h3>
+<p>Can be launched from Terminal by running the command</p>
+<p><code>$ IMSProg</code></p>
+
 <h3 id=connecting>Connecting</h3>
 <ul>
 <li>Insert the chip into the appropriate slot of the CH341A programmer. The <code>24xxx</code> and <code>25xxx</code> series chips must be inserted directly, according to the markings on the PCB of the CH341A programmer. The <code>93xxx</code> series chips must be inserted into the <code>93xxx adapter</code> and the adapter into the marking <code>25xxx</code> programmer slot. The DataFlash <code>AT45DBxxx</code> series chips must be mounted in a <code>SOP-8&nbsp;DIP-8</code> and this adapter shall be inserted into the <code>45xxx</code> adapter. The <code>45xxx</code> adapter must be installed in the programmer slot marked <code>25xxx</code>.</li>
@@ -292,9 +308,11 @@ When using <code>24xxx</code> or <code>93xxx</code> or <code>95xxx</code> or <co
 
 sudo apt update</code></pre>
 <p>Is also possible manually build deb package using <code>debian/latest</code> branch.</p></li>
-<li>The <code>RPM package</code> by <a href=https://redos.red-soft.ru/>Red Soft</a> can be downloaded <a href=http://repo.red-soft.ru/redos/7.3/x86_64/updates/imsprog-1.3.1-1.el7.x86_64.rpm>here</a></li>
+<p>For some versions of Fedora, you can use the official repositories.</p>
+<pre><code>sudo dnf install imsprog</code></pre>
+<li>The <code>RPM package</code> by <a href=https://redos.red-soft.ru/>Red Soft</a> can be downloaded <a href=http://repo.red-soft.ru/redos/7.3/x86_64/updates/>here</a></li>
 <li>The <code>RPM package</code> by <a href=https://packages.altlinux.org/en/sisyphus/srpms/IMSProg/>ALT Linux</a></li>
-<li>The <code>RPM package</code> by <a href=https://mirror.rosalinux.ru/rosa/rosa2021.1/repository/x86_64/contrib/release/IMSProg-1.3.1-1-rosa2021.1.x86_64.rpm>ROSA Linux</a></li>
+<li>The <code>RPM package</code> by <a href=https://mirror.rosalinux.ru/rosa/rosa2021.1/repository/x86_64/contrib/release/>ROSA Linux</a></li>
 <li>The <code>ARCH AUR repository</code> by <a href=https://github.com/kjkent>kjkent</a> is <a href=https://aur.archlinux.org/packages/imsprog>here</a></li>
 <li>The <code>openSUSE</code> package is <a href="https://software.opensuse.org/package/IMSProg?search_term=imsprog">here</a></li>
 </ul>
