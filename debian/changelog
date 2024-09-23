@@ -1,3 +1,9 @@
+imsprog (1.4.4-1) unstable; urgency=medium
+
+  * New upstream version:
+    - Fix: incorrect reading of the DataFlash chips status register
+ -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Mon, 23 Sep 2024 13:31:07 +0300
+
 imsprog (1.4.3-1) unstable; urgency=medium
 
   * New upstream version:
