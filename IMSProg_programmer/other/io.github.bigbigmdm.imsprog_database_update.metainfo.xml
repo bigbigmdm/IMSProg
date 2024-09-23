@@ -76,6 +76,16 @@
      <name>Mikhail Medvedev</name>
   </developer>
   <releases>
+  <release version="1.4.4" date="2024-09-23" urgency="medium">	  
+    <description>
+	    <p>Fixed: In the Save menu, the cancel button causes an error message.</p>
+	    <p>Fixed: Incorrect names of DataFlash chips.</p>
+	    <p>Fixed: incorrect reading of the DataFlash chips status register.</p>
+	    <p>Fedora repository added</p>
+	    <p>MacOS build support added</p>
+	    <p>Uninstall script added</p>
+    </description>
+  </release>
   <release version="1.4.3" date="2024-07-26" urgency="medium">	  
     <description>
 	    <p>Fixed: On the GNOME desktop, programm does not respond when erasing SPI NOR FLASH.</p>
