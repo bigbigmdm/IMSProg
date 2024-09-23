@@ -526,11 +526,9 @@ sudo apt install imsprog
 ``` 
   Is also possible manually build deb package using `debian/latest` branch.
 
-- For some Fedora versions you can use this PPA by adding copr `bigmdm/IMSProg` 
-  to your system's Software Sources.
+- For some versions of Fedora, you can use the official repositories.
 ```
-sudo dnf copr enable bigmdm/IMSProg
-sudo dnf install IMSProg
+sudo dnf install imsprog
 ```
 
 <a href="https://repology.org/project/imsprog/versions">
