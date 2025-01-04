@@ -41,28 +41,30 @@ find_package(Qt5 REQUIRED COMPONENTS Core Widgets)
 find_package(Qt5Widgets REQUIRED)
 find_package(LibUSB REQUIRED)
 
-if(NOT ${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
-set(UDEVDIR "/usr/lib/udev")
-if (CMAKE_INSTALL_PREFIX STREQUAL "/usr" OR CMAKE_INSTALL_PREFIX STREQUAL "/" )
-# /usr and / install prefixes at treated by cmake GNUInstallDirs as
-# synonym for "system location". In this case we can look up the correct udevdir
-# using pkg-config.
-# See: https://cmake.org/cmake/help/latest/module/GNUInstallDirs.html#special-cases
-find_package(PkgConfig)
-  if (PKG_CONFIG_FOUND)
-    pkg_check_modules( PKGCONFIG_UDEV udev)
-    if (PKGCONFIG_UDEV_FOUND)
-      execute_process(
-        COMMAND ${PKG_CONFIG_EXECUTABLE} --variable=udevdir udev
-          OUTPUT_VARIABLE PKGCONFIG_UDEVDIR
-          OUTPUT_STRIP_TRAILING_WHITESPACE
-      )
-      if(PKGCONFIG_UDEVDIR)
-        file(TO_CMAKE_PATH "${PKGCONFIG_UDEVDIR}" UDEVDIR)
+if(NOT DEFINED UDEVDIR)
+  if(NOT ${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+    set(UDEVDIR "/usr/lib/udev")
+    if (CMAKE_INSTALL_PREFIX STREQUAL "/usr" OR CMAKE_INSTALL_PREFIX STREQUAL "/" )
+      # /usr and / install prefixes at treated by cmake GNUInstallDirs as
+      # synonym for "system location". In this case we can look up the correct udevdir
+      # using pkg-config.
+      # See: https://cmake.org/cmake/help/latest/module/GNUInstallDirs.html#special-cases
+      find_package(PkgConfig)
+      if (PKG_CONFIG_FOUND)
+        pkg_check_modules( PKGCONFIG_UDEV udev)
+        if (PKGCONFIG_UDEV_FOUND)
+          execute_process(
+            COMMAND ${PKG_CONFIG_EXECUTABLE} --variable=udevdir udev
+              OUTPUT_VARIABLE PKGCONFIG_UDEVDIR
+              OUTPUT_STRIP_TRAILING_WHITESPACE
+          )
+          if(PKGCONFIG_UDEVDIR)
+            file(TO_CMAKE_PATH "${PKGCONFIG_UDEVDIR}" UDEVDIR)
+          endif()
+        endif()
       endif()
     endif()
   endif()
-endif()
 endif()
 # Qt5LinguistTools
 find_package(Qt5 REQUIRED COMPONENTS LinguistTools)
