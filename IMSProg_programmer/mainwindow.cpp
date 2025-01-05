@@ -523,6 +523,7 @@ void MainWindow::on_comboBox_page_currentIndexChanged(int index)
 {
     currentChipSize = ui->comboBox_size->currentData().toUInt();
     currentBlockSize = ui->comboBox_block->currentData().toUInt();
+    currentPageSize = ui->comboBox_page->currentData().toUInt();
     currentAddr4bit = ui->comboBox_addr4bit->currentData().toUInt();
     if ((currentChipSize !=0) && (currentBlockSize!=0) && (currentChipType ==0))
     {
