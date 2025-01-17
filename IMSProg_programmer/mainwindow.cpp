@@ -88,6 +88,13 @@ MainWindow::MainWindow(QWidget *parent) :
  ui->comboBox_block->addItem(" ", 0);
  ui->comboBox_block->addItem("64 K", 64 * 1024);
 
+ ui->comboBox_i2cSpeed->addItem("20 kHz",  0);
+ ui->comboBox_i2cSpeed->addItem("100 kHz", 1);
+ ui->comboBox_i2cSpeed->addItem("400 kHz", 2);
+ ui->comboBox_i2cSpeed->addItem("750 kHz", 3);
+ ui->comboBox_i2cSpeed->setCurrentIndex(2);
+ currentI2CBusSpeed = 2;
+
  currentChipSize = 0;
  currentNumBlocks = 0;
  currentBlockSize = 0;
@@ -142,7 +149,7 @@ void MainWindow::on_pushButton_clicked()
   //Reading data from chip
   int res = 0;
   uint32_t numBlocks, step;
-  statusCH341 = ch341a_init(currentChipType);
+  statusCH341 = ch341a_init(currentChipType, currentI2CBusSpeed);
   if (statusCH341 == 0)
   {
     ui->crcEdit->setText("");
@@ -581,7 +588,7 @@ void MainWindow::on_actionErase_triggered()
     //statusCH341 = ch341a_spi_init();
     int ret;
     uint32_t curBlock, numBlocks, step;
-    statusCH341 = ch341a_init(currentChipType);
+    statusCH341 = ch341a_init(currentChipType, currentI2CBusSpeed);
     ch341StatusFlashing();
     if (statusCH341 != 0)
       {
@@ -833,7 +840,7 @@ void MainWindow::on_actionWrite_triggered()
     //Writting data to chip
     int res = 0;
     uint32_t numBlocks, step;
-    statusCH341 = ch341a_init(currentChipType);
+    statusCH341 = ch341a_init(currentChipType, currentI2CBusSpeed);
     if (statusCH341 == 0)
     {
     if (((currentNumBlocks > 0) && (currentBlockSize >0) && (currentChipType == 0)) ||
@@ -1065,7 +1072,7 @@ void MainWindow::on_actionVerify_triggered()
     //Reading and veryfying data from chip
     int res = 0;
     uint32_t step, numBlocks;
-    statusCH341 = ch341a_init(currentChipType);
+    statusCH341 = ch341a_init(currentChipType, currentI2CBusSpeed);
     if (statusCH341 == 0)
     {
        if (((currentNumBlocks > 0) && (currentBlockSize >0) && (currentChipType == 0)) ||
@@ -1458,6 +1465,16 @@ void MainWindow::on_comboBox_type_currentIndexChanged(int index)
          ui->actionDetect->setEnabled(true);
          ui->actionChip_info->setEnabled(true);
      }
+     if (index != 1)
+     {
+         ui->comboBox_i2cSpeed->hide();
+         ui->label_10->hide();
+     }
+     else
+     {
+         ui->comboBox_i2cSpeed->show();
+         ui->label_10->show();
+     }
      if (index > 2)
      {
          ui->pushButton_2->hide();
@@ -1478,6 +1495,12 @@ void MainWindow::on_comboBox_type_currentIndexChanged(int index)
 void MainWindow::on_comboBox_addr4bit_currentIndexChanged(int index)
 {
    currentAddr4bit = ui->comboBox_addr4bit->currentData().toUInt();
+   index++;
+}
+
+void MainWindow::on_comboBox_i2cSpeed_currentIndexChanged(int index)
+{
+   currentI2CBusSpeed = static_cast<uint8_t>(ui->comboBox_i2cSpeed->currentData().toUInt());
    index++;
 }
 
@@ -1557,6 +1580,7 @@ void MainWindow::doNotDisturb()
    ui->comboBox_block->setDisabled(true);
    ui->comboBox_vcc->setDisabled(true);
    ui->comboBox_addr4bit->setDisabled(true);
+   ui->comboBox_i2cSpeed->setDisabled(true);
 
    hexEdit->blockSignals(true);
    timer->stop();
@@ -1597,6 +1621,7 @@ void MainWindow::doNotDisturbCancel()
       ui->comboBox_block->setDisabled(false);
       ui->comboBox_vcc->setDisabled(false);
       ui->comboBox_addr4bit->setDisabled(false);
+      ui->comboBox_i2cSpeed->setDisabled(false);
 
       hexEdit->blockSignals(false);
       timer->start();
@@ -2144,3 +2169,4 @@ void MainWindow::on_actionImport_from_Intel_HEX_triggered()
     ui->progressBar->setValue(0);
     ui->crcEdit->setText(getCRC32());
 }
+
