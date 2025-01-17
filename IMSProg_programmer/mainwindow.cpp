@@ -88,6 +88,13 @@ MainWindow::MainWindow(QWidget *parent) :
  ui->comboBox_block->addItem(" ", 0);
  ui->comboBox_block->addItem("64 K", 64 * 1024);
 
+ ui->comboBox_i2cSpeed->addItem("20 kHz",  0);
+ ui->comboBox_i2cSpeed->addItem("100 kHz", 1);
+ ui->comboBox_i2cSpeed->addItem("400 kHz", 2);
+ ui->comboBox_i2cSpeed->addItem("750 kHz", 3);
+ ui->comboBox_i2cSpeed->setCurrentIndex(2);
+ currentI2CBusSpeed = 2;
+
  currentChipSize = 0;
  currentNumBlocks = 0;
  currentBlockSize = 0;
@@ -141,7 +148,8 @@ void MainWindow::on_pushButton_clicked()
 {
   //Reading data from chip
   int res = 0;
-  statusCH341 = ch341a_init(currentChipType);
+  uint32_t numBlocks, step;
+  statusCH341 = ch341a_init(currentChipType, currentI2CBusSpeed);
   if (statusCH341 == 0)
   {
     ui->crcEdit->setText("");
@@ -153,57 +161,63 @@ void MainWindow::on_pushButton_clicked()
          ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 5)))
     {
        doNotDisturb();
-       if (currentChipType == 1)
-       {
-           currentBlockSize = 128;
-           currentNumBlocks = currentChipSize / currentBlockSize;
-       }
-       if ((currentChipType == 2) ||(currentChipType == 3) || (currentChipType == 4) || (currentChipType == 5))
-       {
-           currentBlockSize = currentPageSize;
-           currentNumBlocks = currentChipSize / currentBlockSize;
-       }
-
        ch341StatusFlashing();
        uint32_t addr = 0;
        uint32_t curBlock = 0;
        uint32_t j, k;
-
+       switch (currentChipType)
+          {
+          case 0:             //SPI
+             step = currentBlockSize;
+             numBlocks = currentNumBlocks;
+          break;
+          case 1:             //I2C
+             step = 128;
+             numBlocks = currentChipSize / step;
+          break;
+          case 2:             //MicroWire
+          case 3:             //25xxx
+          case 4:             //95xxx
+          case 5:             //45xx
+             step = currentPageSize;
+             numBlocks = currentChipSize / step;
+          break;
+          default:
+          return;
+          }
        //progerssbar settings
-       ui->progressBar->setRange(0, static_cast<int>(currentNumBlocks));
+       ui->progressBar->setRange(0, static_cast<int>(numBlocks));
        ui->progressBar->setValue(0);
        //uint8_t buf[currentBlockSize];
        uint8_t *buf;
-       buf = (uint8_t *)malloc(currentBlockSize);
+       buf = (uint8_t *)malloc(step);
        ui->pushButton->setStyleSheet(redKeyStyle);
        ui->statusBar->showMessage(tr("Reading data from ") + ui->comboBox_name->currentText());
-       for (k = 0; k < currentNumBlocks; k++)
+       for (k = 0; k < numBlocks; k++)
        {
            switch (currentChipType)
               {
-              case 0:
-                 //SPI
-                 res = snor_read_param(buf,curBlock * currentBlockSize, currentBlockSize, currentBlockSize, currentAddr4bit);
+              case 0:            //SPI
+                 res = snor_read_param(buf, curBlock * step, step, step, currentAddr4bit);
               break;
-              case 1:
-                 //I2C
-               res = ch341readEEPROM_param(buf, curBlock * currentBlockSize, currentBlockSize, currentChipSize, currentPageSize, currentAlgorithm);//currentAlgorithm);
+              case 1:            //I2C
+               res = ch341readEEPROM_param(buf, curBlock * step, step, currentChipSize, currentPageSize, currentAlgorithm);//currentAlgorithm);
                if (res==0) res = 1;
               break;
               case 2:
                  //MicroWire
-               res = Read_EEPROM_3wire_param(buf, static_cast<int>(curBlock * currentBlockSize), static_cast<int>(currentBlockSize), static_cast<int>(currentChipSize), currentAlgorithm);
+               res = Read_EEPROM_3wire_param(buf, static_cast<int>(curBlock * step), static_cast<int>(step), static_cast<int>(currentChipSize), currentAlgorithm);
                if (res==0) res = 1;
               break;
               case 3:
                  //25xxx
               case 4:
                  //95xxx
-                 res = s95_read_param(buf,curBlock * currentBlockSize, currentBlockSize, currentBlockSize, currentAlgorithm);
+                 res = s95_read_param(buf,curBlock * step, step, step, currentAlgorithm);
               break;
               case 5:
                  //45xx
-                 res = at45_read_param(buf,curBlock * currentBlockSize, currentBlockSize, currentBlockSize, currentAlgorithm);
+                 res = at45_read_param(buf,curBlock * step, step, step, currentAlgorithm);
               break;
               default:
                  //Unsupport
@@ -226,13 +240,13 @@ void MainWindow::on_pushButton_clicked()
                doNotDisturbCancel();
                return;
             }
-         for (j = 0; j < currentBlockSize; j++)
+         for (j = 0; j < step; j++)
             {
-                  chipData[addr + j] = char(buf[addr + j - k * currentBlockSize]);
+                  chipData[addr + j] = char(buf[addr + j - k * step]);
             }
-          addr = addr + currentBlockSize;
+          addr = addr + step;
+          if (curBlock * step < 0x500) hexEdit->setData(chipData); //show buffer in hehedit while chip data is visible
           curBlock++;
-          if (curBlock * currentBlockSize < 413300) hexEdit->setData(chipData); //show buffer in hehedit while chip data is being loaded
           qApp->processEvents();
           ui->progressBar->setValue(static_cast<int>(curBlock));
           if (isHalted)
@@ -516,6 +530,7 @@ void MainWindow::on_comboBox_page_currentIndexChanged(int index)
 {
     currentChipSize = ui->comboBox_size->currentData().toUInt();
     currentBlockSize = ui->comboBox_block->currentData().toUInt();
+    currentPageSize = ui->comboBox_page->currentData().toUInt();
     currentAddr4bit = ui->comboBox_addr4bit->currentData().toUInt();
     if ((currentChipSize !=0) && (currentBlockSize!=0) && (currentChipType ==0))
     {
@@ -572,7 +587,8 @@ void MainWindow::on_actionErase_triggered()
 {
     //statusCH341 = ch341a_spi_init();
     int ret;
-    statusCH341 = ch341a_init(currentChipType);
+    uint32_t curBlock, numBlocks, step;
+    statusCH341 = ch341a_init(currentChipType, currentI2CBusSpeed);
     ch341StatusFlashing();
     if (statusCH341 != 0)
       {
@@ -615,13 +631,12 @@ void MainWindow::on_actionErase_triggered()
     }
     if ((currentChipType == 4) || ((currentChipType == 3) && ((currentAlgorithm & 0x20) == 0)))
     {
-        uint32_t curBlock = 0;
         uint32_t k;
         int res = 0;
-        currentBlockSize = currentPageSize;
-        currentNumBlocks = currentChipSize / currentBlockSize;
+        step = currentPageSize;
+        numBlocks = currentChipSize / step;
         uint8_t *buf;
-        buf = (uint8_t *)malloc(currentBlockSize);
+        buf = (uint8_t *)malloc(step);
         config_stream(2);
         if (isHalted)
         {
@@ -630,15 +645,15 @@ void MainWindow::on_actionErase_triggered()
             doNotDisturbCancel();
             return;
         }
-        ui->progressBar->setRange(0, static_cast<int>(currentNumBlocks));
-        for (k = 0; k < currentBlockSize; k++)
+        ui->progressBar->setRange(0, static_cast<int>(numBlocks));
+        for (k = 0; k < step; k++)
         {
             buf[k] = 0xff;
         }
         for (curBlock = 0; curBlock < currentNumBlocks; curBlock++)
         {
             //res = ch341writeEEPROM_param(buf, curBlock * 128, 128, currentPageSize, currentAlgorithm);
-            res =  s95_write_param(buf, curBlock * currentBlockSize, currentBlockSize, currentBlockSize, currentAlgorithm);
+            res =  s95_write_param(buf, curBlock * step, step, step, currentAlgorithm);
             qApp->processEvents();
             ui->progressBar->setValue( static_cast<int>(curBlock));
             if (res <= 0)
@@ -669,10 +684,10 @@ void MainWindow::on_actionErase_triggered()
         uint32_t curBlock = 0;
         uint32_t k;
         int res = 0;
-        currentBlockSize = 128;
-        currentNumBlocks = currentChipSize / currentBlockSize;
+        step = 128;
+        numBlocks = currentChipSize / step;
         uint8_t *buf;
-        buf = (uint8_t *)malloc(currentBlockSize);
+        buf = (uint8_t *)malloc(step);
         config_stream(2);
         if (isHalted)
         {
@@ -681,12 +696,12 @@ void MainWindow::on_actionErase_triggered()
             doNotDisturbCancel();
             return;
         }
-        ui->progressBar->setRange(0, static_cast<int>(currentNumBlocks));
-        for (k = 0; k < currentBlockSize; k++)
+        ui->progressBar->setRange(0, static_cast<int>(numBlocks));
+        for (k = 0; k < step; k++)
         {
             buf[k] = 0xff;
         }
-        for (curBlock = 0; curBlock < currentNumBlocks; curBlock++)
+        for (curBlock = 0; curBlock < numBlocks; curBlock++)
         {
             res = ch341writeEEPROM_param(buf, curBlock * 128, 128, currentPageSize, currentAlgorithm);
             if (res==0) res = 1;
@@ -710,10 +725,10 @@ void MainWindow::on_actionErase_triggered()
     }
     if ((currentChipType == 5) && ((currentAlgorithm & 0x10) == 0))
     {
-        uint32_t blocks = currentChipSize / currentPageSize / 8;
-        ui->progressBar->setRange(0, static_cast<int>(blocks));
+        numBlocks = currentChipSize / currentPageSize / 8;
+        ui->progressBar->setRange(0, static_cast<int>(numBlocks));
         uint32_t curBlock = 0;
-        for (curBlock = 0; curBlock < blocks; curBlock++)
+        for (curBlock = 0; curBlock < numBlocks; curBlock++)
         {
             at45_sector_erase(curBlock,  currentPageSize);
              ui->progressBar->setValue(static_cast<int>(curBlock));
@@ -824,7 +839,8 @@ void MainWindow::on_actionWrite_triggered()
 {
     //Writting data to chip
     int res = 0;
-    statusCH341 = ch341a_init(currentChipType);
+    uint32_t numBlocks, step;
+    statusCH341 = ch341a_init(currentChipType, currentI2CBusSpeed);
     if (statusCH341 == 0)
     {
     if (((currentNumBlocks > 0) && (currentBlockSize >0) && (currentChipType == 0)) ||
@@ -835,60 +851,65 @@ void MainWindow::on_actionWrite_triggered()
          ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 5)))
         {
         doNotDisturb();
-        if (currentChipType == 1)
-        {
-            currentBlockSize = 128;
-            currentNumBlocks = currentChipSize / currentBlockSize;
-        }
-        if ((currentChipType == 2) || (currentChipType == 3) || (currentChipType == 4)|| (currentChipType == 5))
-        {
-            currentBlockSize = currentPageSize;
-            currentNumBlocks = currentChipSize / currentBlockSize;
-        }
-        ch341StatusFlashing();
+        switch (currentChipType)
+                      {
+                      case 0:                 //SPI
+                         step = currentBlockSize;
+                         numBlocks = currentNumBlocks;
+                      break;
+                      case 1:                 //I2C
+                         step = 128;
+                         numBlocks = currentChipSize / step;
+                      break;
+                      case 2:                 //MicroWire
+                      case 3:                 //25xxx
+                      case 4:                 //95xxx
+                      case 5:                 //45xx
+                         step = currentPageSize;
+                         numBlocks = currentChipSize / step;
+                      break;
+                      default:
+                      return;
+                      }
+    ch341StatusFlashing();
     uint32_t addr = 0;
     uint32_t curBlock = 0;    
     uint32_t j, k;
     ui->statusBar->showMessage(tr("Writing data to ") + ui->comboBox_name->currentText());
     //progerssbar settings
-    ui->progressBar->setRange(0, static_cast<int>(currentNumBlocks));
+    ui->progressBar->setRange(0, static_cast<int>(numBlocks));
     ui->checkBox_2->setStyleSheet("QCheckBox{font-weight:800;}");
     chipData = hexEdit->data();
     //uint8_t buf[currentBlockSize];
     uint8_t *buf;
-    buf = (uint8_t *)malloc(currentBlockSize);
-    for (k = 0; k < currentNumBlocks; k++)
+    buf = (uint8_t *)malloc(step);
+    for (k = 0; k < numBlocks; k++)
       {
 
-         for (j = 0; j < currentBlockSize; j++)
+         for (j = 0; j < step; j++)
             {
-               buf[addr + j - k * currentBlockSize] =  static_cast<uint8_t>(chipData[addr + j]) ;
+               buf[addr + j - k * step] =  static_cast<uint8_t>(chipData[addr + j]) ;
             }
          switch (currentChipType)
                        {
-                       case 0:
-                          //SPI
-                          res =  snor_write_param(buf, addr, currentBlockSize, currentBlockSize, currentAddr4bit);
+                       case 0:                           //SPI
+                          res =  snor_write_param(buf, addr, step, step, currentAddr4bit);
                        break;
-                       case 1:
-                          //I2C
+                       case 1:                           //I2C
                           res = ch341writeEEPROM_param(buf, curBlock * 128, 128, currentPageSize, currentAlgorithm);
                           if (res==0) res = 1;
                        break;
-                       case 2:
-                          //MicroWire
-                          res = Write_EEPROM_3wire_param(buf, static_cast<int>(curBlock * currentBlockSize), static_cast<int>(currentBlockSize), static_cast<int>(currentChipSize), currentAlgorithm);
+                       case 2:                           //MicroWire
+                          res = Write_EEPROM_3wire_param(buf, static_cast<int>(curBlock * step), static_cast<int>(step), static_cast<int>(currentChipSize), currentAlgorithm);
                           if (res==0) res = 1;
                        break;
-                       case 3:
-                          //25xxx
-                       case 4:
-                          //M95xx
-                          res =  s95_write_param(buf, addr, currentBlockSize, currentBlockSize, currentAlgorithm);                         
+                       case 3:                           //25xxx
+                       case 4:                           //M95xx
+                          res =  s95_write_param(buf, addr, step, step, currentAlgorithm);
                        break;
                        case 5:
                           //AT45DBxx
-                          res =  at45_write_param(buf, addr, currentBlockSize, currentBlockSize, currentAlgorithm);
+                          res =  at45_write_param(buf, addr, step, step, currentAlgorithm);
                        break;
                        default:
                           //Unsupport
@@ -913,7 +934,7 @@ void MainWindow::on_actionWrite_triggered()
              ch341a_spi_shutdown();
              return;
            }
-         addr = addr + currentBlockSize;
+         addr = addr + step;
          curBlock++;
          qApp->processEvents();
          if (isHalted)
@@ -1039,7 +1060,7 @@ void MainWindow::on_comboBox_name_currentIndexChanged(const QString &arg1)
        {
            currentNumBlocks = currentChipSize / currentPageSize;
            chipData.resize(static_cast<int>(currentChipSize));
-            chipData.fill(char(0xff));
+           chipData.fill(char(0xff));
            hexEdit->setData(chipData);
        }
 
@@ -1049,8 +1070,9 @@ void MainWindow::on_comboBox_name_currentIndexChanged(const QString &arg1)
 void MainWindow::on_actionVerify_triggered()
 {
     //Reading and veryfying data from chip
-    int res =0;
-    statusCH341 = ch341a_init(currentChipType);
+    int res = 0;
+    uint32_t step, numBlocks;
+    statusCH341 = ch341a_init(currentChipType, currentI2CBusSpeed);
     if (statusCH341 == 0)
     {
        if (((currentNumBlocks > 0) && (currentBlockSize >0) && (currentChipType == 0)) ||
@@ -1062,55 +1084,65 @@ void MainWindow::on_actionVerify_triggered()
            {
                ui->crcEdit->setText("");
                doNotDisturb();
-               if (currentChipType == 1)
-               {
-                 currentBlockSize = 128;
-                 currentNumBlocks = currentChipSize / currentBlockSize;
-               }
-               if ((currentChipType == 2) || (currentChipType == 3) || (currentChipType == 4) || (currentChipType == 5))
-               {
-                   currentBlockSize = currentPageSize;
-                   currentNumBlocks = currentChipSize / currentBlockSize;
-               }
+               switch (currentChipType)
+                             {
+                             case 0:                 //SPI
+                                step = currentBlockSize;
+                                numBlocks = currentNumBlocks;
+                             break;
+                             case 1:                 //I2C
+                                step = 128;
+                                numBlocks = currentChipSize / step;
+                             break;
+                             case 2:                 //MicroWire
+                             case 3:                 //25xxx
+                             case 4:                 //95xxx
+                             case 5:                 //45xx
+                                step = currentPageSize;
+                                numBlocks = currentChipSize / step;
+                             break;
+                             default:
+                             return;
+                             }
                ch341StatusFlashing();
                uint32_t addr = 0;
                uint32_t curBlock = 0;
                uint32_t j, k;               
                //progerssbar settings
-               ui->progressBar->setRange(0, static_cast<int>(currentNumBlocks));
+               ui->progressBar->setRange(0, static_cast<int>(numBlocks));
                ui->progressBar->setValue(0);
                //uint8_t buf[currentBlockSize];
                uint8_t *buf;
-               buf = (uint8_t *)malloc(currentBlockSize);
+               buf = (uint8_t *)malloc(step);
                chipData = hexEdit->data();
                ui->checkBox_3->setStyleSheet("QCheckBox{font-weight:800;}");
                ui->statusBar->showMessage(tr("Veryfing data from ") + ui->comboBox_name->currentText());
-               for (k = 0; k < currentNumBlocks; k++)
+               for (k = 0; k < numBlocks; k++)
                {
                    switch (currentChipType)
                       {
                       case 0:
                          //SPI
-                         res = snor_read_param(buf,curBlock * currentBlockSize, currentBlockSize, currentBlockSize, currentAddr4bit);
+                         res = snor_read_param(buf,curBlock * step, step, step, currentAddr4bit);
                       break;
                       case 1:
                          //I2C
-                       res = ch341readEEPROM_param(buf, curBlock * currentBlockSize, currentBlockSize, currentChipSize, currentPageSize, currentAlgorithm);//currentAlgorithm);
+                       res = ch341readEEPROM_param(buf, curBlock * step, step, currentChipSize, currentPageSize, currentAlgorithm);//currentAlgorithm);
                        if (res==0) res = 1;
                       break;
                       case 2:
                          //MicroWire
-                       res = Read_EEPROM_3wire_param(buf, static_cast<int>(curBlock * currentBlockSize), static_cast<int>(currentBlockSize), static_cast<int>(currentChipSize), currentAlgorithm);
+                       res = Read_EEPROM_3wire_param(buf, static_cast<int>(curBlock * step), static_cast<int>(step), static_cast<int>(currentChipSize), currentAlgorithm);
                        if (res==0) res = 1;
                       break;
                       case 3:
                          //25xxx
                       case 4:
                          //95xxx
-                         res = s95_read_param(buf,curBlock * currentBlockSize, currentBlockSize, currentBlockSize, currentAlgorithm);
+                         res = s95_read_param(buf,curBlock * step, step, step, currentAlgorithm);
                       break;
                       case 5:
-                         res = at45_read_param(buf,curBlock * currentBlockSize, currentBlockSize, currentBlockSize, currentAlgorithm);
+                         res = at45_read_param(buf,curBlock * step, step, step, currentAlgorithm);
                       break;
                       default:
                          //Unsupport
@@ -1134,9 +1166,9 @@ void MainWindow::on_actionVerify_triggered()
                         doNotDisturbCancel();
                         return;
                     }
-                    for (j = 0; j < currentBlockSize; j++)
+                    for (j = 0; j < step; j++)
                     {
-                      if (chipData[addr + j] != char(buf[addr + j - k * currentBlockSize]))
+                      if (chipData[addr + j] != char(buf[addr + j - k * step]))
                           {
                             //error compare
                             QMessageBox::about(this, tr("Error"), tr("Error comparing data!\nAddress:   ") + hexiAddr(addr + j) + tr("\nBuffer: ") + bytePrint( static_cast<unsigned char>(chipData[addr + j])) + tr("    Chip: ") + bytePrint(buf[addr + j - k * currentBlockSize]));
@@ -1147,7 +1179,7 @@ void MainWindow::on_actionVerify_triggered()
                             return;
                            }
                      }
-                     addr = addr + currentBlockSize;
+                     addr = addr + step;
                      curBlock++;
                      qApp->processEvents();
                      if (isHalted)
@@ -1433,6 +1465,16 @@ void MainWindow::on_comboBox_type_currentIndexChanged(int index)
          ui->actionDetect->setEnabled(true);
          ui->actionChip_info->setEnabled(true);
      }
+     if (index != 1)
+     {
+         ui->comboBox_i2cSpeed->hide();
+         ui->label_10->hide();
+     }
+     else
+     {
+         ui->comboBox_i2cSpeed->show();
+         ui->label_10->show();
+     }
      if (index > 2)
      {
          ui->pushButton_2->hide();
@@ -1453,6 +1495,12 @@ void MainWindow::on_comboBox_type_currentIndexChanged(int index)
 void MainWindow::on_comboBox_addr4bit_currentIndexChanged(int index)
 {
    currentAddr4bit = ui->comboBox_addr4bit->currentData().toUInt();
+   index++;
+}
+
+void MainWindow::on_comboBox_i2cSpeed_currentIndexChanged(int index)
+{
+   currentI2CBusSpeed = static_cast<uint8_t>(ui->comboBox_i2cSpeed->currentData().toUInt());
    index++;
 }
 
@@ -1532,6 +1580,7 @@ void MainWindow::doNotDisturb()
    ui->comboBox_block->setDisabled(true);
    ui->comboBox_vcc->setDisabled(true);
    ui->comboBox_addr4bit->setDisabled(true);
+   ui->comboBox_i2cSpeed->setDisabled(true);
 
    hexEdit->blockSignals(true);
    timer->stop();
@@ -1572,6 +1621,7 @@ void MainWindow::doNotDisturbCancel()
       ui->comboBox_block->setDisabled(false);
       ui->comboBox_vcc->setDisabled(false);
       ui->comboBox_addr4bit->setDisabled(false);
+      ui->comboBox_i2cSpeed->setDisabled(false);
 
       hexEdit->blockSignals(false);
       timer->start();
@@ -2119,3 +2169,4 @@ void MainWindow::on_actionImport_from_Intel_HEX_triggered()
     ui->progressBar->setValue(0);
     ui->crcEdit->setText(getCRC32());
 }
+

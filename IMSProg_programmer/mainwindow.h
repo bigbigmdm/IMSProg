@@ -107,6 +107,7 @@ private slots:
     void resizeEvent(QResizeEvent* event);
     void slotTimerAlarm();
     void on_actionGoto_address_triggered();
+    void on_comboBox_i2cSpeed_currentIndexChanged(int index);
 
 private:
     Ui::MainWindow *ui;
@@ -116,7 +117,7 @@ private:
     int statusCH341;
     QByteArray chipData;
     uint32_t currentChipSize, currentNumBlocks, currentBlockSize, currentPageSize;
-    uint8_t currentAlgorithm, currentChipType;
+    uint8_t currentAlgorithm, currentChipType, currentI2CBusSpeed;
     unsigned int currentAddr4bit;
     bool isHalted;
     QTimer *timer;
