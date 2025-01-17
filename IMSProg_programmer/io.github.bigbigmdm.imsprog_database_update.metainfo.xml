@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2024 Mikhail Medvedev < e-ink-reader@yandex.ru > --> 
+<component type="desktop-application">
+  <id>io.github.bigbigmdm.imsprog_database_update</id>
+  <metadata_license>GFDL-1.3</metadata_license>
+  <project_license>GPL-3.0+</project_license>
+  <name>IMSProg_database_update.desktop</name>
+  <summary>Chip database update script for IMSProg programmer</summary>  
+  <summary xml:lang="de">Skript zur Aktualisierung der Chipdatenbank für IMSProg-Programmierer</summary>
+  <summary xml:lang="es">Script de actualización de la base de datos de chips para el programador IMSProg</summary>
+  <summary xml:lang="hu">Chip adatbázis frissítő szkript IMSProg programozó számára</summary>
+  <summary xml:lang="it">Script di aggiornamento del database dei chip per il programmatore IMSProg</summary>
+  <summary xml:lang="pt_BR">Script de atualização do banco de dados de chips para o programador IMSProg</summary>
+  <summary xml:lang="ru">Скрипт обновления базы данных чипов для программатора IMSProg</summary>
+  <summary xml:lang="uk">Скрипт оновлення бази даних мікросхем для програматорі IMSProg</summary>
+  <summary xml:lang="zh_CN"> IMSProg 编程器的芯片数据库更新脚本</summary>
+  <icon type="remote" width="64" height="64">https://github.com/bigbigmdm/IMSProg/tree/main/IMSProg_programmer/img/IMSProg_database_update.png</icon>
+  <description>
+    <p>IMSProg_database_update  - online chip database update from the external web-server. IMSProg_database_update uses the zenity graphical Gnome utility.   Once started,  it  copies  the  downloaded  database to the ~/.local/imsprog folder. The script then displays the number of of chips in the database before and after the upgrade.</p>
+    <p xml:lang="de">IMSProg_database_update - Online-Aktualisierung der Chipdatenbank von einem externen Webserver. IMSProg_database_update verwendet das grafische Gnome-Dienstprogramm zenity.   Einmal gestartet, kopiert es die heruntergeladene Datenbank in den Ordner ~/.local/imsprog. Das Skript zeigt dann die Anzahl der Chips in der Datenbank vor und nach der Aktualisierung an.</p>
+    <p xml:lang="es">IMSProg_database_update - actualización en línea de la base de datos de chips desde el servidor web externo. IMSProg_database_update utiliza la utilidad gráfica Gnome de zenity.   Una vez iniciada, copia la base de datos descargada a la carpeta ~/.local/imsprog. A continuación, el script muestra el número de chips de la base de datos antes y después de la actualización.</p>
+    <p xml:lang="hu">IMSProg_database_update - online chipadatbázis frissítés a külső webszerverről. Az IMSProg_database_update a zenity grafikus Gnome segédprogramot használja.   Elindítása után a letöltött adatbázist a ~/.local/imsprog mappába másolja. A szkript ezután megjeleníti az adatbázisban lévő chipek számát a frissítés előtt és után.</p>
+    <p xml:lang="it">IMSProg_database_update - aggiornamento online del database dei chip dal server web esterno. IMSProg_database_update utilizza l'utilità grafica Gnome di zenity.   Una volta avviato, copia il database scaricato nella cartella ~/.local/imsprog. Lo script visualizza quindi il numero di chip presenti nel database prima e dopo l'aggiornamento.</p>
+    <p xml:lang="pt_BR">IMSProg_database_update - atualização on-line do banco de dados de chips a partir do servidor da Web externo. O IMSProg_database_update usa o utilitário gráfico zenity do Gnome.   Uma vez iniciado, ele copia o banco de dados baixado para a pasta ~/.local/imsprog. Em seguida, o script exibe o número de chips no banco de dados antes e depois da atualização.</p>
+    <p xml:lang="ru">IMSProg_database_update - онлайн обновление базы данных микросхем с внешнего веб-сервера. IMSProg_database_update использует графическую Gnome-утилиту zenity.   После запуска он копирует загруженную базу данных в папку ~/.local/imsprog. Затем скрипт отображает количество чипов в базе данных до и после обновления.</p>
+    <p xml:lang="uk">IMSProg_database_update - онлайн оновлення бази даних мікросхем із зовнішнього веб-сервера. IMSProg_database_update використовує графічну утиліту Gnome zenity.   Після запуску вон копіює завантажену базу даних до теки ~/.local/imsprog. Потім скрипт показує кількість мікросхем у базі даних до і після оновлення.</p>
+    <p xml:lang="zh_CN">IMSProg_database_update - 从外部Web服务器在线更新芯片数据库。IMSProg_database_update 使用 Gnome 图形工具 zenity。  启动后，它会将下载的数据库复制到 ~/.local/imsprog 文件夹。然后，脚本会显示升级前后数据库中芯片的数量。</p>
+  </description>
+  <categories>
+     <category>Development</category>
+     <category>Electronics</category>
+  </categories>
+  <keywords>
+     <keyword translate="no">Programmer</keyword>
+     <keyword translate="no">BIOS</keyword>
+     <keyword translate="no">EEPROM</keyword>
+     <keyword translate="no">MicroWire</keyword>
+     <keyword translate="no">IC</keyword>
+     <keyword translate="no">chip</keyword>
+     <keyword>Microcircuit</keyword>
+     <keyword>Microchip</keyword>
+     <keyword>IC</keyword>
+     <keyword>Integrated circuit</keyword>
+     <keyword xml:lang="de">Mikroschaltkreis</keyword>
+     <keyword xml:lang="de">Mikrochip</keyword>
+     <keyword xml:lang="de">Integrierte Schaltung</keyword>
+     <keyword xml:lang="es">Microcircuito</keyword>
+     <keyword xml:lang="es">Microchip</keyword>
+     <keyword xml:lang="es">Circuito integrado</keyword>
+     <keyword xml:lang="hu">Mikroáramkör</keyword>
+     <keyword xml:lang="hu">Mikrochip</keyword>
+     <keyword xml:lang="hu">Integrált áramkör</keyword>
+     <keyword xml:lang="it">Microcircuito</keyword>
+     <keyword xml:lang="it">Microchip</keyword>
+     <keyword xml:lang="it">Circuito integrato</keyword>
+     <keyword xml:lang="pt_BR">Microcircuito</keyword>
+     <keyword xml:lang="pt_BR">Microchip</keyword>
+     <keyword xml:lang="pt_BR">Circuito integrado</keyword>
+     <keyword xml:lang="ru">Микросхема</keyword>
+     <keyword xml:lang="ru">Микрочип</keyword>
+     <keyword xml:lang="ru">Интегральная схема</keyword>
+     <keyword xml:lang="uk">Мікросхема</keyword>
+     <keyword xml:lang="uk">Інтегральна схема</keyword>
+     <keyword xml:lang="zh_CN">微电路</keyword>
+     <keyword xml:lang="zh_CN">微芯片</keyword>
+     <keyword xml:lang="zh_CN">集成电路</keyword>
+  </keywords>
+  <url type="homepage">https://github.com/bigbigmdm/IMSProg/tree/main</url>
+  <url type="contact">https://github.com/bigbigmdm</url>
+  <url type="bugtracker">https://github.com/bigbigmdm/IMSProg/issues</url> 
+  <launchable type="desktop-id">IMSProg_database_update.desktop</launchable>
+  <provides>
+     <mediatype>application/octet-stream</mediatype>
+  </provides>   
+  <developer id="io.github.bigbigmdm">
+     <name>Mikhail Medvedev</name>
+  </developer>
+  <releases>
+  <release version="1.4.5" date="2025-01-17" urgency="medium">	  
+    <description>
+	    <p>Fixed: Incorrect block/page size after first read procedure.</p>
+	    <p>Fixed: Incorrect reading/writing I2C low speed chips.</p>
+	    <p>Added support for MXIC MX25V8035F</p>
+	    <p>Added I2C bus speed combobox to the main form</p>
+    </description>
+  <release version="1.4.4" date="2024-09-23" urgency="medium">	  
+    <description>
+	    <p>Fixed: In the Save menu, the cancel button causes an error message.</p>
+	    <p>Fixed: Incorrect names of DataFlash chips.</p>
+	    <p>Fixed: incorrect reading of the DataFlash chips status register.</p>
+	    <p>Fedora repository added</p>
+	    <p>MacOS build support added</p>
+	    <p>Uninstall script added</p>
+    </description>
+  </release>
+  <release version="1.4.3" date="2024-07-26" urgency="medium">	  
+    <description>
+	    <p>Fixed: On the GNOME desktop, programm does not respond when erasing SPI NOR FLASH.</p>
+	    <p>Fixed: The progress bar did not display correctly when SPI NOR FLASH was erased.</p>
+	    <p>Fixed: When erasing SPI NOR Flash, the STOP button does not work.</p>
+    </description>
+  </release>
+  <release version="1.4.2" date="2024-06-27" urgency="medium">	 
+    <description>
+	    <p>Corrected German translation</p>
+	    <p>German translator added to copyright</p>
+	    <p>Corrected chip database</p>
+    </description> 
+  </release>	  
+  <release version="1.4.1" date="2024-05-23" urgency="medium">	  
+    <description>
+	    <p>Added AT45DBxx series  SPI FLASH (Menu item type -> 45_EEPROM)</p>
+	    <p>The inline images of the chip adapters have been changed.</p>
+	    <p>Fixed metadata errors and warnings.</p>
+    </description> 
+  </release>	  
+  <release version="1.3.9" date="2024-05-06" urgency="medium">
+    <description>
+      <p>Fixed: There is a spelling error in in 99-CH341.rules.</p>
+      <p>Fixed: (metadata changed): appstream-metadata-missing-modalias-provide usr/lib/udev/rules.d/99-CH341.rules</p>
+      <p>Splitting long lines in README.md</p>
+      <p>Removed language .qm files - it is generated when the package is built.</p>
+      <p>Removed unused tags from language files.</p>
+    </description>
+  </release>
+  <release version="1.3.8" date="2024-05-06" urgency="medium">
+    <description>
+      <p>This stable release fixes bugs, updated translations, translate chip database update script.</p>
+    </description>
+  </release>	  
+  <release version="1.3.7" date="2024-04-27" urgency="low">
+    <description>
+      <p>This stable release, updated translations.</p>
+    </description>
+  </release>
+  </releases>
+  <content_rating type="oars-1.1" />
+  <update_contact>e-ink-reader@yandex.ru</update_contact>
+</component>
