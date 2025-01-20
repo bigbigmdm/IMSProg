@@ -3,7 +3,7 @@ imsprog (1.4.5-1) unstable; urgency=medium
   * New upstream version:
     - Fix: Incorrect block/page size after first read procedure
     - Fix: Incorrect reading/writing I2C low speed chips
- -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Fri, 17 Jan 2025 13:28:44 +0300
+ -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Mon, 20 Jan 2025 08:54:31 +0300
 
 imsprog (1.4.4-1) unstable; urgency=medium
 
