@@ -83,6 +83,7 @@
 	    <p>Added support for MXIC MX25V8035F</p>
 	    <p>Added I2C bus speed combobox to the main form</p>
     </description>
+  </release>
   <release version="1.4.4" date="2024-09-23" urgency="medium">	  
     <description>
 	    <p>Fixed: In the Save menu, the cancel button causes an error message.</p>
