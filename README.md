@@ -505,6 +505,11 @@ W25M512JW(1.8V), W25Q512JV, W25M512JV, W25Q32JW(1.8V)
 FM25Q04A, FM25Q08A, FM25Q16A, FM25Q32A, FM25Q64A, FM25Q128A, FM25M04A(1.8V), 
 FM25M08A(1.8V), FM25M16A(1.8V), FM25M32A(1.8V), FM25M64A(1.8V), FM25M4AA(1.8V)
 
+- UCUNDATA (UCUN Technology)
+
+UC25HQ05, UC25HQ10, UC25HQ20, UC25HQ40, UC25HQ80, UC25HQ16, UC25HQ32, UC25HQ64,
+UC25IQ128
+
 The latest version of the chip database can be found 
 [here](https://antenna-dvb-t2.ru/dl_all/IMSProg.Dat).
 You can download it and copy it to the ~/.local/imsprog folder:
