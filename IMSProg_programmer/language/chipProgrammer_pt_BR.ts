@@ -35,7 +35,7 @@
     <message>
         <location filename="../dialogabout.ui" line="26"/>
         <source>IMSProg - free software I2C, SPI and MicroWire EEPROM/Flash chip programmer for CH341a devices. IMSProg supports 24Cxx, 25xx, 93Cxx, AT45DBxx and M95xx series chips.</source>
-        <translation>IMSProg - software livre I2C, SPI e MicroWire EEPROM/Flash chip programador para dispositivos CH341a. IMSProg admite chips das séries 24Cxx, 25xx, 93Cxx, AT45DBxx e M95xx.</translation>
+        <translation>IMSProg - software livre I2C, SPI e MicroWire EEPROM/Flash chip programador para dispositivos CH341a. IMSProg suporta chips das séries 24Cxx, 25xx, 93Cxx, AT45DBxx e M95xx.</translation>
     </message>
     <message>
         <location filename="../dialogabout.ui" line="99"/>
@@ -506,22 +506,22 @@
     <message>
         <location filename="../dialogsecurity.ui" line="14"/>
         <source>Security registers</source>
-        <translation type="unfinished"></translation>
+        <translation>Registros de segurança</translation>
     </message>
     <message>
         <location filename="../dialogsecurity.ui" line="24"/>
         <source>Hex Editor</source>
-        <translation type="unfinished">Editor hexadecimal</translation>
+        <translation>Editor hexadecimal</translation>
     </message>
     <message>
         <location filename="../dialogsecurity.ui" line="64"/>
         <source>Operations:</source>
-        <translation type="unfinished"></translation>
+        <translation>Operações</translation>
     </message>
     <message>
         <location filename="../dialogsecurity.ui" line="93"/>
         <source>Reading security register data from the chip</source>
-        <translation type="unfinished"></translation>
+        <translation>Lendo dados do registro de segurança do chip</translation>
     </message>
     <message>
         <location filename="../dialogsecurity.ui" line="96"/>
@@ -530,32 +530,33 @@
         <location filename="../dialogsecurity.ui" line="199"/>
         <location filename="../dialogsecurity.ui" line="231"/>
         <source>...</source>
-        <translation type="unfinished"></translation>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="../dialogsecurity.ui" line="125"/>
         <source>Erasing security register data</source>
-        <translation type="unfinished"></translation>
+        <translation>Apagando dados de registros de segurança</translation>
     </message>
     <message>
         <location filename="../dialogsecurity.ui" line="157"/>
         <source>Writing data to the security register</source>
-        <translation type="unfinished"></translation>
+        <translation>Gravando dados no registro de segurança</translation>
     </message>
     <message>
         <location filename="../dialogsecurity.ui" line="196"/>
         <source>Open a binary file from a computer</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Abra um arquivo binário do computador</translatorcomment>
+        <translation></translation>
     </message>
     <message>
         <location filename="../dialogsecurity.ui" line="228"/>
         <source>Save the binary file on the computer</source>
-        <translation type="unfinished"></translation>
+        <translation>Salvar arquivo binário no computador</translation>
     </message>
     <message>
         <location filename="../dialogsecurity.ui" line="257"/>
         <source>Security register number:</source>
-        <translation type="unfinished"></translation>
+        <translation>Número do registro de segurança:</translation>
     </message>
     <message>
         <location filename="../dialogsecurity.cpp" line="161"/>
@@ -566,44 +567,44 @@
         <location filename="../dialogsecurity.cpp" line="375"/>
         <location filename="../dialogsecurity.cpp" line="408"/>
         <source>Error</source>
-        <translation type="unfinished">Erro</translation>
+        <translation>Erro</translation>
     </message>
     <message>
         <location filename="../dialogsecurity.cpp" line="161"/>
         <source>Error reading register!</source>
-        <translation type="unfinished">Erro ao ler o registro!</translation>
+        <translation>Erro ao ler o registro!</translation>
     </message>
     <message>
         <location filename="../dialogsecurity.cpp" line="171"/>
         <location filename="../dialogsecurity.cpp" line="279"/>
         <location filename="../dialogsecurity.cpp" line="350"/>
         <source>Programmer CH341a is not connected!</source>
-        <translation type="unfinished">O programador CH341a não está conectado!</translation>
+        <translation>O programador CH341a não está conectado!</translation>
     </message>
     <message>
         <location filename="../dialogsecurity.cpp" line="245"/>
         <source>Error writing register!</source>
-        <translation type="unfinished"></translation>
+        <translation>Erro escrevendo o registro!</translation>
     </message>
     <message>
         <location filename="../dialogsecurity.cpp" line="366"/>
         <source>Open file</source>
-        <translation type="unfinished">Abrir arquivo</translation>
+        <translation>Abrir arquivo</translation>
     </message>
     <message>
         <location filename="../dialogsecurity.cpp" line="375"/>
         <source>The file size exceeds the security register size.</source>
-        <translation type="unfinished"></translation>
+        <translation>O tamanho do arquivo excede o tamanho do registro de segurança.</translation>
     </message>
     <message>
         <location filename="../dialogsecurity.cpp" line="397"/>
         <source>Save file</source>
-        <translation type="unfinished">Salvar arquivo</translation>
+        <translation>Salvar arquivo</translation>
     </message>
     <message>
         <location filename="../dialogsecurity.cpp" line="408"/>
         <source>Error saving file!</source>
-        <translation type="unfinished">Erro salvando arquivo!</translation>
+        <translation>Erro salvando arquivo!</translation>
     </message>
 </context>
 <context>
@@ -869,12 +870,12 @@
     <message>
         <location filename="../mainwindow.ui" line="1284"/>
         <source>Security registers</source>
-        <translation type="unfinished"></translation>
+        <translation>Registros de segurança</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1287"/>
         <source>Ctrl+U</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+U</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1141"/>
@@ -1153,12 +1154,12 @@
     <message>
         <location filename="../mainwindow.cpp" line="1851"/>
         <source>Before working with the security registers, click the &apos;Detect&apos; button</source>
-        <translation type="unfinished"></translation>
+        <translation>Antes de trabalhar com os registros de segurança, clique no botão &apos;Detectar&apos;</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1863"/>
         <source>There are no security registers in this chip or the current version of IMSProg does not support this algorithm.</source>
-        <translation type="unfinished"></translation>
+        <translation>Não há registros de segurança neste chip ou a versão atual do IMSProg não suporta este algoritmo.</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="2115"/>
