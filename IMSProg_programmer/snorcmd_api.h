@@ -17,6 +17,7 @@
 #define __SNORCMD_API_H__
 #include "types.h"
 
+int snor_wait_ready(int sleep_ms);
 int snor_read(unsigned char *buf, unsigned long from, unsigned long len);
 int snor_read_param(unsigned char *buf, unsigned long from, unsigned long len, unsigned int sector_size, unsigned int addr4b);
 int snor_write_param(unsigned char *buf, unsigned long to, unsigned long len, unsigned int sector_size, unsigned int addr4b);

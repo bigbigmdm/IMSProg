@@ -92,6 +92,7 @@ commands.cpp
 dialogsp.cpp
 dialogrp.cpp
 dialogsfdp.cpp
+dialogsecurity.cpp
 dialogsr.cpp
 dialogsetaddr.cpp
 searchdialog.cpp
@@ -116,6 +117,7 @@ commands.h
 dialogsp.h
 dialogrp.h
 dialogsfdp.h
+dialogsecurity.h
 dialogsr.h
 dialoginfo.h
 dialogsetaddr.h
@@ -141,6 +143,7 @@ mainwindow.ui
 dialogsp.ui
 dialogrp.ui
 dialogsfdp.ui
+dialogsecurity.ui
 dialogsr.ui
 dialogsetaddr.ui
 dialoginfo.ui
