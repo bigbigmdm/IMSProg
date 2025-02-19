@@ -174,6 +174,31 @@ series chips, it is necessary to manually enter the `Manufacture` and `Name`
 pop-up menu data - all other parameters will be automatically loaded from the 
 chip database. 
 
+### File operations
+- The ![Save](img/save64.png) or `<Ctrl+S>` button is used to save the 
+computer buffer to a file.
+
+- The ![Open](img/open64.png) or `<Ctrl+O>` button is used to save the file in 
+the computer buffer.
+
+- The ![SavePart](img/saveBlock64.png) or `<Ctrl+Shift-S>` button is used to 
+save a part of the computer buffer to a file (the start address and length of 
+the part must be entered). This operation can be used when splitting a binary 
+data image into parts.
+
+- The ![LoadPart](img/loadBlock64.png) or `<Ctrl+Shift-S>` button is used to 
+load a small file to a certain address in the buffer. The data fragment in the 
+buffer will be replaced with new data from the file.
+
+- The ![Edit](img/chipEdit64.png) or `<Ctrl+Q>` button is used to invoke the 
+chip database editor.
+
+- The menu item `File / Import from Intel HEX` is used to save the Intel HEX 
+file in the computer buffer.
+
+- The menu item `File / Export to Intel HEX` is used to save the computer buffer 
+to a file in Intel HEX format.
+
 ### Basic programmer operations
 - Pressing `Read` or ![Read](img/read64.png) or `<Ctrl+R>` to read data from 
 the chip into the computer buffer.
@@ -221,30 +246,19 @@ register, the `Chip info` form is as follows:
 
 ![SFDP](img/sr0_en.png)
 
-### File operations
-- The ![Save](img/save64.png) or `<Ctrl+S>` button is used to save the 
-computer buffer to a file.
+`Main menu -> Programmer -> Safety Registers` or `<Ctrl+U>` item is used to 
+work with SPI NOR Flash security registers data. This form allows reading, 
+write, erase, save and load security register data from the computer.
 
-- The ![Open](img/open64.png) or `<Ctrl+O>` button is used to save the file in 
-the computer buffer.
+![Security registers](img/Security_registers_form.png)
 
-- The ![SavePart](img/saveBlock64.png) or `<Ctrl+Shift-S>` button is used to 
-save a part of the computer buffer to a file (the start address and length of 
-the part must be entered). This operation can be used when splitting a binary 
-data image into parts.
-
-- The ![LoadPart](img/loadBlock64.png) or `<Ctrl+Shift-S>` button is used to 
-load a small file to a certain address in the buffer. The data fragment in the 
-buffer will be replaced with new data from the file.
-
-- The ![Edit](img/chipEdit64.png) or `<Ctrl+Q>` button is used to invoke the 
-chip database editor.
-
-- The menu item `File / Import from Intel HEX` is used to save the Intel HEX 
-file in the computer buffer.
-
-- The menu item `File / Export to Intel HEX` is used to save the computer buffer 
-to a file in Intel HEX format.
+The buttons at the bottom of the form (![Read](img/read64.png),
+![Erase](img/erase64.png), ![Write](img/write64.png), ![Open](img/open64.png),
+![Save](img/save64.png)) perform a similar function to the top buttons on the 
+main form. The security registers can be locked for writing. If you want to know
+about this, please see `Main Menu -> Programmer -> Chip Information` item or
+<Ctrl+P>, data fields in `LB3`, `LB2` and `LB1` in `Status register 1`. 
+Please refer to the datasheet of your chip for detailed information.
 
 ### Buffer (Hex editor) operations
 The hexadecimal chip editor (right side of the screen) is used to display and 
