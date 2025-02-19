@@ -255,9 +255,11 @@ write, erase, save and load security register data from the computer.
 The buttons at the bottom of the form (![Read](img/read64.png),
 ![Erase](img/erase64.png), ![Write](img/write64.png), ![Open](img/open64.png),
 ![Save](img/save64.png)) perform a similar function to the top buttons on the 
-main form. The security registers can be locked for writing forever. If you want
-to know about this, please see `Main Menu -> Programmer -> Chip Information` 
-item or <Ctrl+P>, data fields in `LB3`, `LB2` and `LB1` in `Status register 1`. 
+main form. The `Security register number:` drop-down menu allows you to select 
+one of the valid registers for the current chip for operation. The security 
+registers can be locked for writing forever. If you want to know about this, 
+please see `Main Menu -> Programmer -> Chip Information` item or <Ctrl+P>, data 
+fields in `LB3`, `LB2` and `LB1` in `Status register 1`. 
 Please refer to the datasheet of your chip for detailed information.
 
 ### Buffer (Hex editor) operations
