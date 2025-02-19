@@ -246,18 +246,18 @@ register, the `Chip info` form is as follows:
 
 ![SFDP](img/sr0_en.png)
 
-`Main menu -> Programmer -> Safety Registers` or `<Ctrl+U>` item is used to 
+The `Main menu -> Programmer -> Safety Registers` or `<Ctrl+U>` item is used to 
 work with SPI NOR Flash security registers data. This form allows reading, 
 write, erase, save and load security register data from the computer.
 
 ![Security registers](img/Security_registers_form.png)
 
-The buttons at the bottom of the form (![Read](img/read64.png),
+- The buttons at the bottom of the form (![Read](img/read64.png),
 ![Erase](img/erase64.png), ![Write](img/write64.png), ![Open](img/open64.png),
 ![Save](img/save64.png)) perform a similar function to the top buttons on the 
-main form. The security registers can be locked for writing. If you want to know
-about this, please see `Main Menu -> Programmer -> Chip Information` item or
-<Ctrl+P>, data fields in `LB3`, `LB2` and `LB1` in `Status register 1`. 
+main form. The security registers can be locked for writing forever. If you want
+to know about this, please see `Main Menu -> Programmer -> Chip Information` 
+item or <Ctrl+P>, data fields in `LB3`, `LB2` and `LB1` in `Status register 1`. 
 Please refer to the datasheet of your chip for detailed information.
 
 ### Buffer (Hex editor) operations
