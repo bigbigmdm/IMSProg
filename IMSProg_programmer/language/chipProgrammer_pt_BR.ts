@@ -545,8 +545,7 @@
     <message>
         <location filename="../dialogsecurity.ui" line="196"/>
         <source>Open a binary file from a computer</source>
-        <translatorcomment>Abra um arquivo binário do computador</translatorcomment>
-        <translation></translation>
+        <translation>Abra um arquivo binário do computador</translation>
     </message>
     <message>
         <location filename="../dialogsecurity.ui" line="228"/>
