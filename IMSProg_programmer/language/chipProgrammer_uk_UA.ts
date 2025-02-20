@@ -506,22 +506,23 @@
     <message>
         <location filename="../dialogsecurity.ui" line="14"/>
         <source>Security registers</source>
-        <translation type="unfinished"></translation>
+        <translation>Реєстри безпеки</translation>
     </message>
     <message>
         <location filename="../dialogsecurity.ui" line="24"/>
         <source>Hex Editor</source>
-        <translation type="unfinished">HEX-редактор</translation>
+        <translatorcomment>Шістнадцятковий редактор</translatorcomment>
+        <translation>HEX-редактор</translation>
     </message>
     <message>
         <location filename="../dialogsecurity.ui" line="64"/>
         <source>Operations:</source>
-        <translation type="unfinished"></translation>
+        <translation>Операції:</translation>
     </message>
     <message>
         <location filename="../dialogsecurity.ui" line="93"/>
         <source>Reading security register data from the chip</source>
-        <translation type="unfinished"></translation>
+        <translation>Зчитування даних регістру безпеки з чіпа</translation>
     </message>
     <message>
         <location filename="../dialogsecurity.ui" line="96"/>
@@ -530,32 +531,32 @@
         <location filename="../dialogsecurity.ui" line="199"/>
         <location filename="../dialogsecurity.ui" line="231"/>
         <source>...</source>
-        <translation type="unfinished"></translation>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="../dialogsecurity.ui" line="125"/>
         <source>Erasing security register data</source>
-        <translation type="unfinished"></translation>
+        <translation>Стирання даних реєстру безпеки</translation>
     </message>
     <message>
         <location filename="../dialogsecurity.ui" line="157"/>
         <source>Writing data to the security register</source>
-        <translation type="unfinished"></translation>
+        <translation>Запис даних до реєстру безпеки</translation>
     </message>
     <message>
         <location filename="../dialogsecurity.ui" line="196"/>
         <source>Open a binary file from a computer</source>
-        <translation type="unfinished"></translation>
+        <translation>Відкрийте двійковий файл з комп&apos;ютера</translation>
     </message>
     <message>
         <location filename="../dialogsecurity.ui" line="228"/>
         <source>Save the binary file on the computer</source>
-        <translation type="unfinished"></translation>
+        <translation>Збережіть двійковий файл на комп&apos;ютері</translation>
     </message>
     <message>
         <location filename="../dialogsecurity.ui" line="257"/>
         <source>Security register number:</source>
-        <translation type="unfinished"></translation>
+        <translation>Номер реєстру безпеки:</translation>
     </message>
     <message>
         <location filename="../dialogsecurity.cpp" line="161"/>
@@ -566,44 +567,44 @@
         <location filename="../dialogsecurity.cpp" line="375"/>
         <location filename="../dialogsecurity.cpp" line="408"/>
         <source>Error</source>
-        <translation type="unfinished">Помилка</translation>
+        <translation>Помилка</translation>
     </message>
     <message>
         <location filename="../dialogsecurity.cpp" line="161"/>
         <source>Error reading register!</source>
-        <translation type="unfinished">Помилка читання регістру!</translation>
+        <translation>Помилка читання регістру!</translation>
     </message>
     <message>
         <location filename="../dialogsecurity.cpp" line="171"/>
         <location filename="../dialogsecurity.cpp" line="279"/>
         <location filename="../dialogsecurity.cpp" line="350"/>
         <source>Programmer CH341a is not connected!</source>
-        <translation type="unfinished"></translation>
+        <translation>Програматор CH341a не підключено!</translation>
     </message>
     <message>
         <location filename="../dialogsecurity.cpp" line="245"/>
         <source>Error writing register!</source>
-        <translation type="unfinished"></translation>
+        <translation>Реєстр запису помилок!</translation>
     </message>
     <message>
         <location filename="../dialogsecurity.cpp" line="366"/>
         <source>Open file</source>
-        <translation type="unfinished">Відкрити файл</translation>
+        <translation>Відкрити файл</translation>
     </message>
     <message>
         <location filename="../dialogsecurity.cpp" line="375"/>
         <source>The file size exceeds the security register size.</source>
-        <translation type="unfinished"></translation>
+        <translation>Розмір файлу перевищує розмір регістру безпеки.</translation>
     </message>
     <message>
         <location filename="../dialogsecurity.cpp" line="397"/>
         <source>Save file</source>
-        <translation type="unfinished">Зберегти файл</translation>
+        <translation>Зберегти файл</translation>
     </message>
     <message>
         <location filename="../dialogsecurity.cpp" line="408"/>
         <source>Error saving file!</source>
-        <translation type="unfinished">Помилка збереження файлу!</translation>
+        <translation>Помилка збереження файлу!</translation>
     </message>
 </context>
 <context>
@@ -869,12 +870,12 @@
     <message>
         <location filename="../mainwindow.ui" line="1284"/>
         <source>Security registers</source>
-        <translation type="unfinished"></translation>
+        <translation>Реєстри безпеки</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1287"/>
         <source>Ctrl+U</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+U</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1141"/>
@@ -1153,12 +1154,12 @@
     <message>
         <location filename="../mainwindow.cpp" line="1851"/>
         <source>Before working with the security registers, click the &apos;Detect&apos; button</source>
-        <translation type="unfinished"></translation>
+        <translation>Перед початком роботи з реєстрами безпеки натисніть кнопку &apos;Пошук&apos;.</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1863"/>
         <source>There are no security registers in this chip or the current version of IMSProg does not support this algorithm.</source>
-        <translation type="unfinished"></translation>
+        <translation>У цій мікросхемі немає регістрів безпеки або поточна версія IMSProg не підтримує цей алгоритм.</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="2115"/>
