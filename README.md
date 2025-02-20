@@ -246,7 +246,7 @@ register, the `Chip info` form is as follows:
 
 ![SFDP](img/sr0_en.png)
 
-- The `Main menu -> Programmer -> Safety Registers` or `<Ctrl+U>` item is used 
+- The `Main menu -> Programmer -> Security Registers` or `<Ctrl+U>` item is used 
 to work with SPI NOR Flash security registers data. This form allows reading, 
 write, erase, save and load security register data from the computer.
 
@@ -668,6 +668,7 @@ offset	 Size   Value
                 - 45xxx SPI EEPROM  - 0x?C - 12 bit sector address number
                 - 45xxx SPI EEPROM  - 0x?D - 13 bit sector address number
                 - 45xxx SPI EEPROM  - 0x?F - 15 bit sector address number
+                - SPI NOR Flash - algorithm number for working with  security registers
 3C        2     Timing parameter:
 3D              3000/1000/500/300/200/100 - NOR FLASH, 4000/2000 - 24xxx, 100 - 93xxx
 3E        2     SPI NOR Flash 4bit address type:
