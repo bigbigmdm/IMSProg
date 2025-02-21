@@ -90,6 +90,12 @@
     </screenshot>
   </screenshots>
   <releases>
+  <release version="1.5.1" date="2025-02-19" urgency="medium">	  
+    <description>
+	    <p>Fixed: Incorrect install dir for udev while cross compiling.</p>
+	    <p>Added: Form for working with security registers for SPI NOR flash memory chips.</p>
+    </description>
+  </release>
   <release version="1.4.5" date="2025-01-17" urgency="medium">	  
     <description>
 	    <p>Fixed: Incorrect block/page size after first read procedure.</p>

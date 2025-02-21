@@ -952,6 +952,7 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
     <addaction name="actionDetect"/>
     <addaction name="actionStop"/>
     <addaction name="actionChip_info"/>
+    <addaction name="actionSecurity_registers"/>
    </widget>
    <widget class="QMenu" name="menuHex_Editor">
     <property name="title">
@@ -1272,6 +1273,18 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+G</string>
+   </property>
+  </action>
+  <action name="actionSecurity_registers">
+   <property name="icon">
+    <iconset resource="recource.qrc">
+     <normaloff>:/res/img/unprotect64.png</normaloff>:/res/img/unprotect64.png</iconset>
+   </property>
+   <property name="text">
+    <string>Security registers</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+U</string>
    </property>
   </action>
  </widget>

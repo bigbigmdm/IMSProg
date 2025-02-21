@@ -43,7 +43,7 @@ find_package(LibUSB REQUIRED)
 
 if(NOT ${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 set(UDEVDIR "/usr/lib/udev")
-if (CMAKE_INSTALL_PREFIX STREQUAL "/usr" OR CMAKE_INSTALL_PREFIX STREQUAL "/" )
+if (CMAKE_INSTALL_PREFIX STREQUAL "/usr" OR CMAKE_INSTALL_PREFIX STREQUAL "/" AND NOT CMAKE_CROSSCOMPILING)
 # /usr and / install prefixes at treated by cmake GNUInstallDirs as
 # synonym for "system location". In this case we can look up the correct udevdir
 # using pkg-config.
@@ -92,6 +92,7 @@ commands.cpp
 dialogsp.cpp
 dialogrp.cpp
 dialogsfdp.cpp
+dialogsecurity.cpp
 dialogsr.cpp
 dialogsetaddr.cpp
 searchdialog.cpp
@@ -116,6 +117,7 @@ commands.h
 dialogsp.h
 dialogrp.h
 dialogsfdp.h
+dialogsecurity.h
 dialogsr.h
 dialoginfo.h
 dialogsetaddr.h
@@ -141,6 +143,7 @@ mainwindow.ui
 dialogsp.ui
 dialogrp.ui
 dialogsfdp.ui
+dialogsecurity.ui
 dialogsr.ui
 dialogsetaddr.ui
 dialoginfo.ui

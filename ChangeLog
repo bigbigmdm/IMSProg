@@ -1,3 +1,5 @@
+- Ver. 1.5.1 - Fix: Incorrect install dir for udev while cross compiling. Added:
+Form for working with security registers for SPI NOR flash memory chips.
 - Ver. 1.4.5 - Fixed: Incorrect block/page size after first read procedure.
 Fixed: Incorrect reading/writing I2C low speed chips. Added support for MXIC 
 MX25V8035F. Added I2C bus speed combobox to the main form.

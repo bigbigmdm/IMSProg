@@ -91,7 +91,6 @@ unsigned char algType = 0;
 
 //struct chip_info *spi_chip_info;
 
-static int snor_wait_ready(int sleep_ms);
 static int snor_read_sr(u8 *val);
 static int snor_write_sr(u8 *val);
 static int s95_read_sr(u8 *val);
@@ -155,7 +154,7 @@ static inline int snor_unprotect(void)
  * Service routine to read status register until ready, or timeout occurs.
  * Returns non-zero if error.
  */
-static int snor_wait_ready(int sleep_ms)
+int snor_wait_ready(int sleep_ms)
 {
 	int count;
 	int sr = 0;

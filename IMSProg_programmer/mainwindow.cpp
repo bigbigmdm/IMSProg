@@ -25,6 +25,7 @@
 #include "dialogsp.h"
 #include "dialogrp.h"
 #include "dialogsetaddr.h"
+#include "dialogsecurity.h"
 #include <stddef.h>
 #include <stdint.h>
 
@@ -1455,6 +1456,8 @@ void MainWindow::on_comboBox_type_currentIndexChanged(int index)
          ui->actionChip_info->setDisabled(true);
 
      }
+     if (index !=0) ui->actionSecurity_registers->setEnabled(false);
+
      if (index == 0)
      {
          ui->pushButton_2->show();
@@ -1464,6 +1467,7 @@ void MainWindow::on_comboBox_type_currentIndexChanged(int index)
          ui->comboBox_block->show();
          ui->actionDetect->setEnabled(true);
          ui->actionChip_info->setEnabled(true);
+         ui->actionSecurity_registers->setEnabled(true);
      }
      if (index != 1)
      {
@@ -1566,6 +1570,7 @@ void MainWindow::doNotDisturb()
    ui->actionChecksum_calculate->setDisabled(true);
    ui->actionGoto_address->setDisabled(true);
    ui->actionChip_info->setDisabled(true);
+   ui->actionSecurity_registers->setDisabled(true);
    ui->actionStop->setDisabled(false);
 
    ui->pushButton->blockSignals(true);
@@ -1607,6 +1612,7 @@ void MainWindow::doNotDisturbCancel()
       ui->actionChecksum_calculate->setDisabled(false);
       ui->actionGoto_address->setDisabled(false);
       if ((currentChipType == 0) || (currentChipType > 2)) ui->actionChip_info->setDisabled(false);
+      if (currentChipType == 0) ui->actionSecurity_registers->setDisabled(false);
       ui->actionStop->setDisabled(true);
 
       ui->pushButton->blockSignals(false);
@@ -1836,6 +1842,26 @@ void MainWindow::receiveAddr3(qint64 gotoAddr)
 {
     hexEdit->setCursorPosition(gotoAddr * 2);
     hexEdit->ensureVisible();
+}
+
+void MainWindow::on_actionSecurity_registers_triggered()
+{
+    if (currentChipSize == 0)
+    {
+        QMessageBox::about(this, tr("Error"), tr("Before working with the security registers, click the 'Detect' button"));
+        return;
+    }
+    if (currentAlgorithm > 0)
+    {
+        timer->stop();
+        DialogSecurity* securityDialog = new DialogSecurity();
+        connect(securityDialog, SIGNAL(closeRequestHasArrived()), this, SLOT(closeSR()));
+        securityDialog->setAlgorithm(currentAlgorithm);
+        securityDialog->setPath(lastDirectory);
+        securityDialog->show();
+    }
+    else QMessageBox::about(this, tr("Error"), tr("There are no security registers in this chip or the current version of IMSProg does not support this algorithm."));
+
 }
 
 //*****************************************************
@@ -2169,4 +2195,6 @@ void MainWindow::on_actionImport_from_Intel_HEX_triggered()
     ui->progressBar->setValue(0);
     ui->crcEdit->setText(getCRC32());
 }
+
+
 

@@ -174,6 +174,31 @@ series chips, it is necessary to manually enter the `Manufacture` and `Name`
 pop-up menu data - all other parameters will be automatically loaded from the 
 chip database. 
 
+### File operations
+- The ![Save](img/save64.png) or `<Ctrl+S>` button is used to save the 
+computer buffer to a file.
+
+- The ![Open](img/open64.png) or `<Ctrl+O>` button is used to save the file in 
+the computer buffer.
+
+- The ![SavePart](img/saveBlock64.png) or `<Ctrl+Shift-S>` button is used to 
+save a part of the computer buffer to a file (the start address and length of 
+the part must be entered). This operation can be used when splitting a binary 
+data image into parts.
+
+- The ![LoadPart](img/loadBlock64.png) or `<Ctrl+Shift-S>` button is used to 
+load a small file to a certain address in the buffer. The data fragment in the 
+buffer will be replaced with new data from the file.
+
+- The ![Edit](img/chipEdit64.png) or `<Ctrl+Q>` button is used to invoke the 
+chip database editor.
+
+- The menu item `File / Import from Intel HEX` is used to save the Intel HEX 
+file in the computer buffer.
+
+- The menu item `File / Export to Intel HEX` is used to save the computer buffer 
+to a file in Intel HEX format.
+
 ### Basic programmer operations
 - Pressing `Read` or ![Read](img/read64.png) or `<Ctrl+R>` to read data from 
 the chip into the computer buffer.
@@ -221,30 +246,21 @@ register, the `Chip info` form is as follows:
 
 ![SFDP](img/sr0_en.png)
 
-### File operations
-- The ![Save](img/save64.png) or `<Ctrl+S>` button is used to save the 
-computer buffer to a file.
+- The `Main menu -> Programmer -> Security Registers` or `<Ctrl+U>` item is used 
+to work with SPI NOR Flash security registers data. This form allows reading, 
+write, erase, save and load security register data from the computer.
 
-- The ![Open](img/open64.png) or `<Ctrl+O>` button is used to save the file in 
-the computer buffer.
+![Security registers](img/Security_registers_form.png)
 
-- The ![SavePart](img/saveBlock64.png) or `<Ctrl+Shift-S>` button is used to 
-save a part of the computer buffer to a file (the start address and length of 
-the part must be entered). This operation can be used when splitting a binary 
-data image into parts.
-
-- The ![LoadPart](img/loadBlock64.png) or `<Ctrl+Shift-S>` button is used to 
-load a small file to a certain address in the buffer. The data fragment in the 
-buffer will be replaced with new data from the file.
-
-- The ![Edit](img/chipEdit64.png) or `<Ctrl+Q>` button is used to invoke the 
-chip database editor.
-
-- The menu item `File / Import from Intel HEX` is used to save the Intel HEX 
-file in the computer buffer.
-
-- The menu item `File / Export to Intel HEX` is used to save the computer buffer 
-to a file in Intel HEX format.
+The buttons at the bottom of the form (![Read](img/read64.png),
+![Erase](img/erase64.png), ![Write](img/write64.png), ![Open](img/open64.png),
+![Save](img/save64.png)) perform a similar function to the top buttons on the 
+main form. The `Security register number:` drop-down menu allows you to select 
+one of the valid registers for the current chip for operation. The security 
+registers can be locked for writing forever. If you want to know about this, 
+please see `Main Menu -> Programmer -> Chip Information` item or <Ctrl+P>, data 
+fields in `LB3`, `LB2` and `LB1` in `Status register 1`. 
+Please refer to the datasheet of your chip for detailed information.
 
 ### Buffer (Hex editor) operations
 The hexadecimal chip editor (right side of the screen) is used to display and 
@@ -505,6 +521,11 @@ W25M512JW(1.8V), W25Q512JV, W25M512JV, W25Q32JW(1.8V)
 FM25Q04A, FM25Q08A, FM25Q16A, FM25Q32A, FM25Q64A, FM25Q128A, FM25M04A(1.8V), 
 FM25M08A(1.8V), FM25M16A(1.8V), FM25M32A(1.8V), FM25M64A(1.8V), FM25M4AA(1.8V)
 
+- UCUNDATA (UCUN Technology)
+
+UC25HQ05, UC25HQ10, UC25HQ20, UC25HQ40, UC25HQ80, UC25HQ16, UC25HQ32, UC25HQ64,
+UC25IQ128
+
 The latest version of the chip database can be found 
 [here](https://antenna-dvb-t2.ru/dl_all/IMSProg.Dat).
 You can download it and copy it to the ~/.local/imsprog folder:
@@ -647,6 +668,7 @@ offset	 Size   Value
                 - 45xxx SPI EEPROM  - 0x?C - 12 bit sector address number
                 - 45xxx SPI EEPROM  - 0x?D - 13 bit sector address number
                 - 45xxx SPI EEPROM  - 0x?F - 15 bit sector address number
+                - SPI NOR Flash - algorithm number for working with  security registers
 3C        2     Timing parameter:
 3D              3000/1000/500/300/200/100 - NOR FLASH, 4000/2000 - 24xxx, 100 - 93xxx
 3E        2     SPI NOR Flash 4bit address type:
@@ -664,7 +686,7 @@ The end record is 0x44 (68) zero bytes.
 ```
 ## Licensing
 
-Copyright (C) 2023 - 2024 Mikhail Medvedev. 
+Copyright (C) 2023 - 2025 Mikhail Medvedev. 
 This project use [GPL-3+ License](https://www.gnu.org/licenses/gpl-3.0.html), 
 some parts taken from project [SNANDer](https://github.com/McMCCRU/SNANDer/commits?author=McMCCRU) 
 are [GPL-2+](https://www.gnu.org/licenses/old-licenses/gpl-2.0.html) and from 
