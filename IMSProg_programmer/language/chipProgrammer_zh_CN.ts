@@ -505,22 +505,22 @@
     <message>
         <location filename="../dialogsecurity.ui" line="14"/>
         <source>Security registers</source>
-        <translation type="unfinished"></translation>
+        <translation>安全登记册</translation>
     </message>
     <message>
         <location filename="../dialogsecurity.ui" line="24"/>
         <source>Hex Editor</source>
-        <translation type="unfinished">十六进制编辑器</translation>
+        <translation>十六进制编辑器</translation>
     </message>
     <message>
         <location filename="../dialogsecurity.ui" line="64"/>
         <source>Operations:</source>
-        <translation type="unfinished"></translation>
+        <translation>业务：</translation>
     </message>
     <message>
         <location filename="../dialogsecurity.ui" line="93"/>
         <source>Reading security register data from the chip</source>
-        <translation type="unfinished"></translation>
+        <translation>从芯片读取安全寄存器数据</translation>
     </message>
     <message>
         <location filename="../dialogsecurity.ui" line="96"/>
@@ -529,32 +529,32 @@
         <location filename="../dialogsecurity.ui" line="199"/>
         <location filename="../dialogsecurity.ui" line="231"/>
         <source>...</source>
-        <translation type="unfinished"></translation>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="../dialogsecurity.ui" line="125"/>
         <source>Erasing security register data</source>
-        <translation type="unfinished"></translation>
+        <translation>清除安全寄存器数据</translation>
     </message>
     <message>
         <location filename="../dialogsecurity.ui" line="157"/>
         <source>Writing data to the security register</source>
-        <translation type="unfinished"></translation>
+        <translation>向安全寄存器写入数据</translation>
     </message>
     <message>
         <location filename="../dialogsecurity.ui" line="196"/>
         <source>Open a binary file from a computer</source>
-        <translation type="unfinished"></translation>
+        <translation>从计算机打开二进制文件</translation>
     </message>
     <message>
         <location filename="../dialogsecurity.ui" line="228"/>
         <source>Save the binary file on the computer</source>
-        <translation type="unfinished"></translation>
+        <translation>在电脑上保存二进制文件</translation>
     </message>
     <message>
         <location filename="../dialogsecurity.ui" line="257"/>
         <source>Security register number:</source>
-        <translation type="unfinished"></translation>
+        <translation>安全登记编号：</translation>
     </message>
     <message>
         <location filename="../dialogsecurity.cpp" line="161"/>
@@ -565,44 +565,44 @@
         <location filename="../dialogsecurity.cpp" line="375"/>
         <location filename="../dialogsecurity.cpp" line="408"/>
         <source>Error</source>
-        <translation type="unfinished">错误</translation>
+        <translation>错误</translation>
     </message>
     <message>
         <location filename="../dialogsecurity.cpp" line="161"/>
         <source>Error reading register!</source>
-        <translation type="unfinished">错误读取寄存器！</translation>
+        <translation>错误读取寄存器！</translation>
     </message>
     <message>
         <location filename="../dialogsecurity.cpp" line="171"/>
         <location filename="../dialogsecurity.cpp" line="279"/>
         <location filename="../dialogsecurity.cpp" line="350"/>
         <source>Programmer CH341a is not connected!</source>
-        <translation type="unfinished">CH341A 编程器未连接！</translation>
+        <translation>CH341A 编程器未连接！</translation>
     </message>
     <message>
         <location filename="../dialogsecurity.cpp" line="245"/>
         <source>Error writing register!</source>
-        <translation type="unfinished"></translation>
+        <translation>错误写入寄存器！</translation>
     </message>
     <message>
         <location filename="../dialogsecurity.cpp" line="366"/>
         <source>Open file</source>
-        <translation type="unfinished">打开文件</translation>
+        <translation>打开文件</translation>
     </message>
     <message>
         <location filename="../dialogsecurity.cpp" line="375"/>
         <source>The file size exceeds the security register size.</source>
-        <translation type="unfinished"></translation>
+        <translation>文件大小超过安全寄存器大小。</translation>
     </message>
     <message>
         <location filename="../dialogsecurity.cpp" line="397"/>
         <source>Save file</source>
-        <translation type="unfinished">保存文件</translation>
+        <translation>保存文件</translation>
     </message>
     <message>
         <location filename="../dialogsecurity.cpp" line="408"/>
         <source>Error saving file!</source>
-        <translation type="unfinished">保存文件出错！</translation>
+        <translation>保存文件出错！</translation>
     </message>
 </context>
 <context>
@@ -868,12 +868,12 @@
     <message>
         <location filename="../mainwindow.ui" line="1284"/>
         <source>Security registers</source>
-        <translation type="unfinished"></translation>
+        <translation>安全登记册</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1287"/>
         <source>Ctrl+U</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+U</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1141"/>
@@ -1236,12 +1236,12 @@ Buffer: </source>
     <message>
         <location filename="../mainwindow.cpp" line="1851"/>
         <source>Before working with the security registers, click the &apos;Detect&apos; button</source>
-        <translation type="unfinished"></translation>
+        <translation>在使用安全注册表之前，请点击 &apos;检测&apos;按钮</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1863"/>
         <source>There are no security registers in this chip or the current version of IMSProg does not support this algorithm.</source>
-        <translation type="unfinished"></translation>
+        <translation>该芯片中没有安全寄存器，或者当前版本的 IMSProg 不支持这种算法。</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="2115"/>
