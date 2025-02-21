@@ -1,3 +1,10 @@
+imsprog (1.5.1-1) unstable; urgency=medium
+
+  * New upstream version:
+    - Fix: Incorrect install dir for udev while cross compiling
+    - Add: Form for working with security registers for SPI NOR flash chips
+ -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Fri, 21 Feb 2025 09:44:22 +0300
+ 
 imsprog (1.4.5-1) unstable; urgency=medium
 
   * New upstream version:
