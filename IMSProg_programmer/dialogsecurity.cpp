@@ -70,7 +70,7 @@ void DialogSecurity::setAlgorithm(uint8_t currentAlg)
       { 0x16,      1,     1,   8,  0x0000,       0,       0,       0,       0,     0,         4}, //MXIC
       { 0x17,      1,     1,   1,  0x0000,       0,       0,       0,       0,     0,         4}, //MXIC
       { 0x18,      1,     2,   8,  0x0000,  0x0020,       0,       0,       0,     0,         4}, //MXIC
-      { 0x19,      0,     3,  16,  0x0010,  0x0020,  0x0030,       0,       0,     1,         1}, //Boya
+      { 0x19,      0,     3,  16,  0x0010,  0x0020,  0x0030,       0,       0,     0,         1}, //Boya
     };
     curAlg = currentAlg;
     curSettings = algSet[curAlg];
