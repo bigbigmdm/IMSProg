@@ -109,7 +109,7 @@ MainWindow::MainWindow(QWidget *parent) :
  // connect and status check
  statusCH341 = ch341a_spi_init();
  ch341StatusFlashing();
- chipData.reserve(64 * 1024 *1024 + 2048);
+ chipData.reserve(256 * 1024 *1024 + 2048);
  chipData.resize(256);
  chipData.fill(char(0xff));
  ch341a_spi_shutdown();
@@ -1374,6 +1374,8 @@ void MainWindow::on_comboBox_type_currentIndexChanged(int index)
           ui->comboBox_size->addItem("16 M", 16384 * 1024);
           ui->comboBox_size->addItem("32 M", 32768 * 1024);
           ui->comboBox_size->addItem("64 M", 65536 * 1024);
+          ui->comboBox_size->addItem("128 M", 65536 * 2048);
+          ui->comboBox_size->addItem("256 M", 65536 * 4096);
        break;
        case 1:
           //I2C
