@@ -49,7 +49,8 @@ SOURCES += \
        dialoginfo.cpp \
        dialogsfdp.cpp \
        dialogsr.cpp \
-       dialogsetaddr.cpp
+       dialogsetaddr.cpp \
+       dialogsecurity.cpp
 
 HEADERS += \
        mainwindow.h \
@@ -79,7 +80,8 @@ HEADERS += \
        dialoginfo.h \
        dialogsfdp.h \
        dialogsr.h \
-       dialogsetaddr.h
+       dialogsetaddr.h \
+       dialogsecurity.h
 
 FORMS += \
         mainwindow.ui \
@@ -90,7 +92,8 @@ FORMS += \
         dialoginfo.ui \
         dialogsfdp.ui \
         dialogsr.ui \
-        dialogsetaddr.ui
+        dialogsetaddr.ui \
+       dialogsecurity.ui
 
 TRANSLATIONS += language/chipProgrammer_ru_RU.ts \
          language/chipProgrammer_es_ES.ts \
