@@ -41,7 +41,7 @@ void DialogSecurity::setAlgorithm(uint8_t currentAlg)
       { 1,  0x48,  0x42, 0x44,    0,     0,    1},  //Winbond, Gigadevice, Boya, UCUNDATA, Fudan, Zetta, Zbit, XMC
       { 2,  0x03,  0x02, 0x20, 0x3a,  0x04,    0},  //EON
       { 3,  0x68,  0x62, 0x64,    0,     0,    1},  //ISSI
-      { 4,  0x03,  0x02, 0x20, 0xb1,  0xc1,    0},  //MXIC, Fidelix, Zetta
+      { 4,  0x03,  0x02, 0x00, 0xb1,  0xc1,    0},  //MXIC, Fidelix, Zetta
     };
     algSettings algSet[] = {
     //    id algType RegNum Size   rg0add   rg1add   rg2add   rg3add allErase a4byte curCommand
@@ -67,10 +67,16 @@ void DialogSecurity::setAlgorithm(uint8_t currentAlg)
       { 0x13,      0,     3,   4,  0x0040,  0x0080,  0x00c0,       0,       0,     0,         1}, //CXF
       { 0x14,      0,     2,  16,  0x0010,  0x0020,       0,       0,       0,     0,         1}, //XTX
       { 0x15,      0,     2,   4,  0x0000,  0x0001,       0,       0,       0,     0,         1}, //XTX
+      { 0x16,      1,     1,   8,  0x0000,       0,       0,       0,       0,     0,         4}, //MXIC
+      { 0x17,      1,     1,   1,  0x0000,       0,       0,       0,       0,     0,         4}, //MXIC
+      { 0x18,      1,     2,   8,  0x0000,  0x0020,       0,       0,       0,     0,         4}, //MXIC
+      { 0x19,      0,     3,  16,  0x0010,  0x0020,  0x0030,       0,       0,     1,         1}, //Boya
     };
     curAlg = currentAlg;
     curSettings = algSet[curAlg];
     curCommands = comPattern[curSettings.curCommand];
+    if (curCommands.ERSCUR == 0) ui->toolButton_erase->setDisabled(true);
+    else ui->toolButton_erase->setDisabled(false);
 
     if (curAlg > 0)
     {
@@ -102,8 +108,7 @@ void DialogSecurity::on_toolButton_read_clicked()
     int retval, i;
     if (curSettings.id > 0)
     {
-        uint8_t *buf;
-        buf = (uint8_t *)malloc(curSettings.size * 64);
+        std::shared_ptr<uint8_t[]> buf(new uint8_t[curSettings.size * 64]);
         uint8_t a23a16 = 0, a15a08 = 0;
         uint16_t curRgAddr = 0;
         int stCH341 = 0;
@@ -143,7 +148,7 @@ void DialogSecurity::on_toolButton_read_clicked()
            SPI_CONTROLLER_Write_One_Byte(a15a08); //A15...A08
            SPI_CONTROLLER_Write_One_Byte(0x00); //A07...A00
            if (curCommands.DUMRD == 1) SPI_CONTROLLER_Write_One_Byte(0x00);  //Dummy byte
-           retval = SPI_CONTROLLER_Read_NByte(buf, curSettings.size * 64, SPI_CONTROLLER_SPEED_SINGLE);
+           retval = SPI_CONTROLLER_Read_NByte(buf.get(), curSettings.size * 64, SPI_CONTROLLER_SPEED_SINGLE);
            SPI_CONTROLLER_Chip_Select_High();
            usleep(1);
 
@@ -181,10 +186,9 @@ void DialogSecurity::on_toolButton_write_clicked()
         uint8_t a23a16 = 0, a15a08 = 0;
         uint16_t curRgAddr = 0;
         uint8_t  sr = 0;
-        uint8_t *buf;
-        buf = (uint8_t *)malloc(curSettings.size * 64);
+        std::shared_ptr<uint8_t[]> buf(new uint8_t[curSettings.size * 64]);
         int stCH341 = 0;
-        uint8_t curRegister = ui->comboBox_regnum->currentData().toUInt();
+        uint8_t curRegister = static_cast<uint8_t>(ui->comboBox_regnum->currentData().toUInt());
         curRegister--;
         stCH341 = ch341a_spi_init();
         if (stCH341 == 0)
@@ -236,7 +240,7 @@ void DialogSecurity::on_toolButton_write_clicked()
                SPI_CONTROLLER_Write_One_Byte(a23a16); //A23...A16
                SPI_CONTROLLER_Write_One_Byte(a15a08); //A15...A08
                SPI_CONTROLLER_Write_One_Byte(0x00);   //A07...A00
-               retval = SPI_CONTROLLER_Write_NByte(buf, 256, SPI_CONTROLLER_SPEED_SINGLE);
+               retval = SPI_CONTROLLER_Write_NByte(buf.get(), 256, SPI_CONTROLLER_SPEED_SINGLE);
                SPI_CONTROLLER_Chip_Select_High();
                usleep(1);
 
@@ -298,8 +302,6 @@ void DialogSecurity::on_toolButton_erase_clicked()
        a23a16 = static_cast<uint8_t>(curRgAddr >> 8);
        a15a08 = static_cast<uint8_t>(curRgAddr & 0x00ff);
 
-       if (curSettings.algType == 0)
-       {
            if (curSettings.algType == 1)
            {
            //Enter OTP mode
@@ -346,10 +348,10 @@ void DialogSecurity::on_toolButton_erase_clicked()
            SPI_CONTROLLER_Write_One_Byte(0x04);  // Write Disable
            SPI_CONTROLLER_Chip_Select_High();
            usleep(1);
-       }
+    }
        else QMessageBox::about(this, tr("Error"), tr("Programmer CH341a is not connected!"));
        ch341a_spi_shutdown();
-   }
+
 }
 
 void DialogSecurity::setPath(QString lastPath)

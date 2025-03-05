@@ -1,3 +1,6 @@
+- Ver. 1.5.2 - Fix: Gigadevice status registers write error. Fix: memory leaks.
+New SPI chip sizes added. New Boya, Winbond chips added to database. Added 
+Fidelix, Zetta OTP algorithm.
 - Ver. 1.5.1 - Fix: Incorrect install dir for udev while cross compiling. Added:
 Form for working with security registers for SPI NOR flash memory chips.
 - Ver. 1.4.5 - Fixed: Incorrect block/page size after first read procedure.
