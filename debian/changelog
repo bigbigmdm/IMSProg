@@ -1,3 +1,12 @@
+imsprog (1.5.2-1) unstable; urgency=medium
+
+  * New upstream version:
+    - Fix: Memory leaks
+    - Fix: Gigadevice status registers write error
+    - Add: New SPI chip sizes
+    - Add: Fidelix, Zetta, MXIC OTP algorithm
+ -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Wed, 05 Mar 2025 13:29:41 +0300
+
 imsprog (1.5.1-1) unstable; urgency=medium
 
   * New upstream version:
