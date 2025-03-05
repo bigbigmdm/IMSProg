@@ -93,7 +93,7 @@ FORMS += \
         dialogsfdp.ui \
         dialogsr.ui \
         dialogsetaddr.ui \
-       dialogsecurity.ui
+        dialogsecurity.ui
 
 TRANSLATIONS += language/chipProgrammer_ru_RU.ts \
          language/chipProgrammer_es_ES.ts \

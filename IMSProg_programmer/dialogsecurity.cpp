@@ -108,8 +108,7 @@ void DialogSecurity::on_toolButton_read_clicked()
     int retval, i;
     if (curSettings.id > 0)
     {
-        uint8_t *buf;
-        buf = (uint8_t *)malloc(curSettings.size * 64);
+        std::shared_ptr<uint8_t[]> buf(new uint8_t[curSettings.size * 64]);
         uint8_t a23a16 = 0, a15a08 = 0;
         uint16_t curRgAddr = 0;
         int stCH341 = 0;
@@ -149,7 +148,7 @@ void DialogSecurity::on_toolButton_read_clicked()
            SPI_CONTROLLER_Write_One_Byte(a15a08); //A15...A08
            SPI_CONTROLLER_Write_One_Byte(0x00); //A07...A00
            if (curCommands.DUMRD == 1) SPI_CONTROLLER_Write_One_Byte(0x00);  //Dummy byte
-           retval = SPI_CONTROLLER_Read_NByte(buf, curSettings.size * 64, SPI_CONTROLLER_SPEED_SINGLE);
+           retval = SPI_CONTROLLER_Read_NByte(buf.get(), curSettings.size * 64, SPI_CONTROLLER_SPEED_SINGLE);
            SPI_CONTROLLER_Chip_Select_High();
            usleep(1);
 
@@ -187,10 +186,9 @@ void DialogSecurity::on_toolButton_write_clicked()
         uint8_t a23a16 = 0, a15a08 = 0;
         uint16_t curRgAddr = 0;
         uint8_t  sr = 0;
-        uint8_t *buf;
-        buf = (uint8_t *)malloc(curSettings.size * 64);
+        std::shared_ptr<uint8_t[]> buf(new uint8_t[curSettings.size * 64]);
         int stCH341 = 0;
-        uint8_t curRegister = ui->comboBox_regnum->currentData().toUInt();
+        uint8_t curRegister = static_cast<uint8_t>(ui->comboBox_regnum->currentData().toUInt());
         curRegister--;
         stCH341 = ch341a_spi_init();
         if (stCH341 == 0)
@@ -242,7 +240,7 @@ void DialogSecurity::on_toolButton_write_clicked()
                SPI_CONTROLLER_Write_One_Byte(a23a16); //A23...A16
                SPI_CONTROLLER_Write_One_Byte(a15a08); //A15...A08
                SPI_CONTROLLER_Write_One_Byte(0x00);   //A07...A00
-               retval = SPI_CONTROLLER_Write_NByte(buf, 256, SPI_CONTROLLER_SPEED_SINGLE);
+               retval = SPI_CONTROLLER_Write_NByte(buf.get(), 256, SPI_CONTROLLER_SPEED_SINGLE);
                SPI_CONTROLLER_Chip_Select_High();
                usleep(1);
 
