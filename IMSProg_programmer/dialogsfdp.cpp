@@ -356,7 +356,7 @@ void DialogSFDP::on_pushButton_3_clicked()
        if (QString::compare(ui->lineEdit_sr21->text(), "0", Qt::CaseInsensitive)) r2 = r2 +   2;
        if (QString::compare(ui->lineEdit_sr20->text(), "0", Qt::CaseInsensitive)) r2 = r2 +   1;
 
-       //Writing status registers 0,1
+       //Writing status registers 0,1 for Winbond
 
        SPI_CONTROLLER_Chip_Select_Low();
        SPI_CONTROLLER_Write_One_Byte(0x06);
@@ -382,6 +382,62 @@ void DialogSFDP::on_pushButton_3_clicked()
 
        //Close the CH341a device
        ch341a_spi_shutdown();
+
+       //Writing status registers 0,1 for not Winbond
+       if (numOfRegisters > 0)
+       {
+           stCH341 = ch341a_spi_init();
+
+           SPI_CONTROLLER_Chip_Select_Low();
+           SPI_CONTROLLER_Write_One_Byte(0x06);
+           SPI_CONTROLLER_Chip_Select_High();
+           usleep(1);
+
+           SPI_CONTROLLER_Chip_Select_Low();
+           SPI_CONTROLLER_Write_One_Byte(0x50);
+           SPI_CONTROLLER_Chip_Select_High();
+           usleep(1);
+
+           SPI_CONTROLLER_Chip_Select_Low();
+           SPI_CONTROLLER_Write_One_Byte(0x01);
+           SPI_CONTROLLER_Write_One_Byte(r0);
+           SPI_CONTROLLER_Chip_Select_High();
+           usleep(1);
+
+           SPI_CONTROLLER_Chip_Select_Low();
+           SPI_CONTROLLER_Write_One_Byte(0x04);
+           SPI_CONTROLLER_Chip_Select_High();
+           usleep(1);
+
+           //Close the CH341a device
+           ch341a_spi_shutdown();
+           usleep(1);
+
+           stCH341 = ch341a_spi_init();
+           SPI_CONTROLLER_Chip_Select_Low();
+           SPI_CONTROLLER_Write_One_Byte(0x06);
+           SPI_CONTROLLER_Chip_Select_High();
+           usleep(1);
+
+           SPI_CONTROLLER_Chip_Select_Low();
+           SPI_CONTROLLER_Write_One_Byte(0x50);
+           SPI_CONTROLLER_Chip_Select_High();
+           usleep(1);
+
+           SPI_CONTROLLER_Chip_Select_Low();
+           SPI_CONTROLLER_Write_One_Byte(0x31);
+           SPI_CONTROLLER_Write_One_Byte(r1);
+           SPI_CONTROLLER_Chip_Select_High();
+           usleep(1);
+
+           SPI_CONTROLLER_Chip_Select_Low();
+           SPI_CONTROLLER_Write_One_Byte(0x04);
+           SPI_CONTROLLER_Chip_Select_High();
+           usleep(1);
+
+           //Close the CH341a device
+           ch341a_spi_shutdown();
+       }
 
        //Writing status register 2
        if (numOfRegisters > 1)
