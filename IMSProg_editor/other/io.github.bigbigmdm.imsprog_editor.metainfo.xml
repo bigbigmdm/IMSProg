@@ -90,6 +90,15 @@
     </screenshot>
   </screenshots>
   <releases>
+  <release version="1.5.2" date="2025-03-05" urgency="medium">	  
+    <description>
+	    <p>Fixed: Gigadevice status registers write error.</p>
+	    <p>Fixed: Memory leaks.</p>
+	    <p>Added: New SPI chip sizes added.</p>
+	    <p>Added: New Boya, Winbond chips added to database.</p>
+	    <p>Added: Fidelix, Zetta, MXIC OTP algorithm.</p>
+    </description>
+  </release>
   <release version="1.5.1" date="2025-02-19" urgency="medium">	  
     <description>
 	    <p>Fixed: Incorrect install dir for udev while cross compiling.</p>
