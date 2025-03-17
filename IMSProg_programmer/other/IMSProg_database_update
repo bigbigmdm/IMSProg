@@ -79,16 +79,17 @@ if [ $? = 0 ]
    wget ${IMSPROG_DB_URL}
    if [ -f /tmp/IMSProg.Dat ] ; then
       mkdir -p ~/.local/share/imsprog/
-      file=~/.local/share/imsprog/IMSProg.Dat
-      oldsize=68
-      if [ -f $file ] ; then 
-         oldsize=$(wc -c <"$file")
+      path1=/usr/share/imsprog/IMSProg.Dat
+      path2=~/.local/share/imsprog/IMSProg.Dat
+      oldsize=$(wc -c <"$path1")
+      if [ -f $path2 ] ; then 
+         oldsize=$(wc -c <"$path2")
       fi
       let oldrec=oldsize/68-1
       rm -rf ~/.local/share/imsprog/IMSProg.Dat
       cp /tmp/IMSProg.Dat ~/.local/share/imsprog/
       rm -rf /tmp/IMSProg.Dat
-      newsize=$(wc -c <"$file")
+      newsize=$(wc -c <"$path2")
       let newrec=newsize/68-1
       out_text=$(echo $oldrec "->" $newrec)
       echo $oldrec "->" $newrec
