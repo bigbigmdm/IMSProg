@@ -80,7 +80,7 @@ if [ $? = 0 ]
    if [ -f /tmp/IMSProg.Dat ] ; then
       mkdir -p ~/.local/share/imsprog/
       file=~/.local/share/imsprog/IMSProg.Dat
-      oldsize=0
+      oldsize=68
       if [ -f $file ] ; then 
          oldsize=$(wc -c <"$file")
       fi
