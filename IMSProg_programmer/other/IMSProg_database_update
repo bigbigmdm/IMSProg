@@ -80,7 +80,10 @@ if [ $? = 0 ]
    if [ -f /tmp/IMSProg.Dat ] ; then
       mkdir -p ~/.local/share/imsprog/
       file=~/.local/share/imsprog/IMSProg.Dat
-      oldsize=$(wc -c <"$file")
+      oldsize=0
+      if [ -f $file ] ; then 
+         oldsize=$(wc -c <"$file")
+      fi
       let oldrec=oldsize/68-1
       rm -rf ~/.local/share/imsprog/IMSProg.Dat
       cp /tmp/IMSProg.Dat ~/.local/share/imsprog/
