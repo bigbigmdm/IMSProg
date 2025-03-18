@@ -1382,7 +1382,7 @@ void MainWindow::on_comboBox_type_currentIndexChanged(int index)
           ui->comboBox_size->addItem("32 K", 32 * 1024);
           ui->comboBox_size->addItem("64 K", 64 * 1024);
           ui->comboBox_size->addItem("128 K", 128 * 1024);
-          ui->comboBox_size->addItem("128 K", 256 * 1024);
+          ui->comboBox_size->addItem("256 K", 256 * 1024);
        break;
        case 2:
           //MicroWire
