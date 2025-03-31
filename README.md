@@ -563,6 +563,8 @@ sudo dnf install imsprog
 - The `ARCH AUR repository` by [kjkent](https://github.com/kjkent) is [here](https://aur.archlinux.org/packages/imsprog)
 - The `openSUSE` package is [here](https://software.opensuse.org/package/IMSProg?search_term=imsprog)
 - The `Debian` package is [here](https://tracker.debian.org/pkg/imsprog)
+- The Windows release by [Anime4000](https://github.com/Anime4000) is [here](https://github.com/Anime4000/IMSProg/releases/tag/v1.5.2-win64)
+
 
 ## Project structure
 
