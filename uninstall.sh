@@ -51,7 +51,7 @@ fi
 for file in "${files[@]}"; do
     if [ ! -e "$file" ]; then
         continue
-    elif [ -f "$file" ]; then
+    else
         sudo rm -rf "$file"
     fi
 done && echo Uninstall Complete
