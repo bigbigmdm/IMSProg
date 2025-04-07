@@ -183,10 +183,10 @@ void DialogSFDP::on_pushButton_clicked()
               if (i == 0x0c) regData = regData + "<span style=\" background:#f77;\">";
               if (i == 0x0d) regData = regData + "</span>";
 
-              if ((i == 0x14) && (jedecMan == sfdpBuf[0x10])) regData = regData + "<span style=\" background:#7f7;\">";
-              if ((i == 0x15) && (jedecMan == sfdpBuf[0x10])) regData = regData + "</span>";
-              if ((i == 0x1c) && (jedecMan != sfdpBuf[0x10])) regData = regData + "<span style=\" background:#7f7;\">";
-              if ((i == 0x1d) && (jedecMan != sfdpBuf[0x10])) regData = regData + "</span>";
+              if ((i == 0x14) && (jedecMan == sfdpBuf[0x10]) && (sfdpBuf[0x06] !=0)) regData = regData + "<span style=\" background:#7f7;\">";
+              if ((i == 0x15) && (jedecMan == sfdpBuf[0x10]) && (sfdpBuf[0x06] !=0)) regData = regData + "</span>";
+              if ((i == 0x1c) && (jedecMan != sfdpBuf[0x10]) && (sfdpBuf[0x06] !=0)) regData = regData + "<span style=\" background:#7f7;\">";
+              if ((i == 0x1d) && (jedecMan != sfdpBuf[0x10]) && (sfdpBuf[0x06] !=0)) regData = regData + "</span>";
 
               if (i == twoAreaAddress) regData = regData + "<span style=\" background:#f77;\">";
               if (i == twoAreaAddress + twoAreaLen) regData = regData + "</span>";
