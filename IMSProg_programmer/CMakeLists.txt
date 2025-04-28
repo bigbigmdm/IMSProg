@@ -95,6 +95,7 @@ dialogsfdp.cpp
 dialogsecurity.cpp
 dialogsr.cpp
 dialogsetaddr.cpp
+hexutility.cpp
 searchdialog.cpp
 dialoginfo.cpp
 bitbang_microwire.c
@@ -121,6 +122,7 @@ dialogsecurity.h
 dialogsr.h
 dialoginfo.h
 dialogsetaddr.h
+hexutility.h
 searchdialog.h
 bitbang_microwire.h
 ch341a_gpio.h

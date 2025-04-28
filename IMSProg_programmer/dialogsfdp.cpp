@@ -81,9 +81,9 @@ void DialogSFDP::on_pushButton_clicked()
            return;
         }
         jedecMan = sfdpBuf[0];
-        ui->lineEdit_jedec0->setText(bP(sfdpBuf[0]));
-        ui->lineEdit_jedec1->setText(bP(sfdpBuf[1]));
-        ui->lineEdit_jedec2->setText(bP(sfdpBuf[2]));
+        ui->lineEdit_jedec0->setText(bytePrint(sfdpBuf[0]));
+        ui->lineEdit_jedec1->setText(bytePrint(sfdpBuf[1]));
+        ui->lineEdit_jedec2->setText(bytePrint(sfdpBuf[2]));
 
 
         // Reading SFDP. Transfer to ch341 0x5a
@@ -134,8 +134,8 @@ void DialogSFDP::on_pushButton_clicked()
            {
               if ((sfdpBuf[manufAreaAddress] != 0xff) && (sfdpBuf[manufAreaAddress + 1] != 0xff))
               {
-                  VCCmax = bP(sfdpBuf[manufAreaAddress + 1]) + bP(sfdpBuf[manufAreaAddress]);
-                  VCCmin = bP(sfdpBuf[manufAreaAddress + 3]) + bP(sfdpBuf[manufAreaAddress + 2]);
+                  VCCmax = bytePrint(sfdpBuf[manufAreaAddress + 1]) + bytePrint(sfdpBuf[manufAreaAddress]);
+                  VCCmin = bytePrint(sfdpBuf[manufAreaAddress + 3]) + bytePrint(sfdpBuf[manufAreaAddress + 2]);
                   VCCmax.insert(1, ".");
                   VCCmin.insert(1, ".");
                   ui->lineEdit_vcc_max->setText(VCCmax);
@@ -167,13 +167,13 @@ void DialogSFDP::on_pushButton_clicked()
            if (sfdpBuf[twoAreaAddress + 0x0f] == 0xbb) speeds = speeds + "/Dual";
            if (sfdpBuf[twoAreaAddress + 0x09] == 0xeb) speeds = speeds + "/Quad";
            ui->lineEdit_speeds->setText(speeds);
-           legendPrint("00", bP(twoAreaAddress), bP(manufAreaAddress));
+           legendPrint("00", bytePrint(twoAreaAddress), bytePrint(manufAreaAddress));
            //HEXDUMP
            regData = tr("<html><head/><body><p> Hex SFDP register data:\n");
            addrTxt = tr("<html><head/><body><p>Addr:<br>");
            for (i=0; i<232;i=i+16)
            {
-               addrTxt = addrTxt + "0" + bP(i) + "><br>";
+               addrTxt = addrTxt + "0" + bytePrint(i) + "><br>";
            }
            addrTxt = addrTxt + "0F0></p></body></html>";
            ui->label_10->setText(addrTxt);
@@ -192,7 +192,7 @@ void DialogSFDP::on_pushButton_clicked()
               if (i == twoAreaAddress + twoAreaLen) regData = regData + "</span>";
               if (i == manufAreaAddress) regData = regData + "<span style=\" background:#7f7;\">";
               if (i == manufAreaAddress + manAreaLen) regData = regData + "</span>";
-              regData = regData + bP(sfdpBuf[i]) + " ";
+              regData = regData + bytePrint(sfdpBuf[i]) + " ";
            }
            regData = regData + "</p></body></html>";
            ui->label->setText(regData);
@@ -289,7 +289,7 @@ void DialogSFDP::on_pushButton_clicked()
         regData = "";
         for (i=0; i<idSize; i++)
         {
-            regData = regData + bP(sfdpBuf[i]);
+            regData = regData + bytePrint(sfdpBuf[i]);
         }
         ui->lineEdit_chipid->setText(regData);
 
@@ -298,17 +298,6 @@ void DialogSFDP::on_pushButton_clicked()
     }
     else QMessageBox::about(this, tr("Error"), tr("Programmer CH341a is not connected!"));
 
-}
-QString DialogSFDP::bP(unsigned char z)
-{
-    unsigned char s;
-    s = z / 16;
-    if (s > 0x9) s = s + 0x37;
-    else s = s + 0x30;
-    z = z % 16;
-    if (z > 0x9) z = z + 0x37;
-    else z = z + 0x30;
-    return QString(s) + QString(z);
 }
 
 void DialogSFDP::on_pushButton_2_clicked()

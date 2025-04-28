@@ -50,7 +50,8 @@ SOURCES += \
        dialogsfdp.cpp \
        dialogsr.cpp \
        dialogsetaddr.cpp \
-       dialogsecurity.cpp
+       dialogsecurity.cpp \
+    hexutility.cpp
 
 HEADERS += \
        mainwindow.h \
@@ -81,7 +82,8 @@ HEADERS += \
        dialogsfdp.h \
        dialogsr.h \
        dialogsetaddr.h \
-       dialogsecurity.h
+       dialogsecurity.h \
+    hexutility.h
 
 FORMS += \
         mainwindow.ui \

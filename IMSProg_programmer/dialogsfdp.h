@@ -17,6 +17,7 @@
 
 #include <QDialog>
 #include <QMessageBox>
+#include "hexutility.h"
 extern "C" {
 #include "ch341a_spi.h"
 #include "spi_controller.h"
@@ -48,7 +49,6 @@ signals:
 
 private:
     Ui::DialogSFDP *ui;
-    QString bP(unsigned char z);
     void setLineEditFilter();
     void legendPrint(QString basic, QString extended, QString manufacture);
     int numOfRegisters;
