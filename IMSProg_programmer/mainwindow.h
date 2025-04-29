@@ -109,12 +109,10 @@ private slots:
     void slotTimerAlarm();
     void on_actionGoto_address_triggered();
     void on_comboBox_i2cSpeed_currentIndexChanged(int index);
-
     void on_actionSecurity_registers_triggered();
 
 private:
     Ui::MainWindow *ui;
-    QColor defaultTextColor;
     QString grnKeyStyle, redKeyStyle;
     QString lastDirectory;
     int statusCH341;

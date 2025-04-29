@@ -51,7 +51,8 @@ SOURCES += \
        dialogsr.cpp \
        dialogsetaddr.cpp \
        dialogsecurity.cpp \
-    hexutility.cpp
+    hexutility.cpp \
+    color_manager.cpp
 
 HEADERS += \
        mainwindow.h \
@@ -83,7 +84,8 @@ HEADERS += \
        dialogsr.h \
        dialogsetaddr.h \
        dialogsecurity.h \
-    hexutility.h
+    hexutility.h \
+    color_manager.h
 
 FORMS += \
         mainwindow.ui \
