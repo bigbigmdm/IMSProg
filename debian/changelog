@@ -1,3 +1,16 @@
+imsprog (1.5.3-1) unstable; urgency=medium
+
+  * New upstream version:
+  
+    - Copyright information updated
+    - Last version of QHexEdit used
+    - Hex-functions optimised
+    - Added support GIANTEC, DOSILICON NOR FLASH chips
+    - Fix: incorrect uninstall script
+    - Fix: i2C 128K size is repeated twice
+    - Fix: incorrect calculating file size
+ -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Tue, 29 Apr 2025 14:05:18 +0300
+
 imsprog (1.5.2-1) unstable; urgency=medium
 
   * New upstream version:

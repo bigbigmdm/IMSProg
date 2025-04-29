@@ -4,7 +4,7 @@ Upstream-Contact: Mikhail Medvedev e-ink-reader@yandex.ru
 Source: https://github.com/bigbigmdm/IMSProg
 
 Files: *
-Copyright: 2023-2024 Mikhail Medvedev <e-ink-reader@yandex.ru>
+Copyright: 2023-2025 Mikhail Medvedev <e-ink-reader@yandex.ru>
 License: GPL-3+
 
 Files:  */*metainfo.xml
@@ -18,7 +18,7 @@ License: GPL-3+
 
 Files: IMSProg_programmer/language/chipProgrammer_hu_HU.ts
        IMSProg_editor/language/chipEditor_hu_HU.ts
-Copyright: 2023 blackPantherOS <https://github.com/blackPantherOS>
+Copyright: 2023 Charles K Barcza <https://github.com/blackPantherOS>
 License: GPL-3+
 
 Files: IMSProg_programmer/language/chipProgrammer_it_IT.ts
@@ -67,7 +67,7 @@ Files: IMSProg_programmer/bitbang_microwire.c
        IMSProg_programmer/timer.c
        IMSProg_programmer/timer.h
        IMSProg_programmer/types.h
-Copyright: 2023-2024, Mikhail Medvedev <e-ink-reader@yandex.ru>
+Copyright: 2023-2025, Mikhail Medvedev <e-ink-reader@yandex.ru>
            2005-2022, McMCC <mcmcc@mail.ru>
            2014, Pluto Yang <yangyj.ee@gmail.com>
            2015-2016, Stefan Tauner
@@ -100,7 +100,9 @@ Files: IMSProg_programmer/commands.h
        IMSProg_programmer/searchdialog.h
        IMSProg_programmer/QHexEditPlugin.cpp
        IMSProg_programmer/QHexEditPlugin.h
-Copyright: 2015-2016 Winfried Simon
+       IMSProg_programmer/color_manager.h
+       IMSProg_programmer/color_manager.cpp
+Copyright: 2010-2025 Winfried Simon
 Comment: from https://github.com/Simsys/qhexedit2/
 License: LGPL-2.1
 
