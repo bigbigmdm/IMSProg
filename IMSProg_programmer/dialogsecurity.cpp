@@ -71,6 +71,11 @@ void DialogSecurity::setAlgorithm(uint8_t currentAlg)
       { 0x17,      1,     1,   1,  0x0000,       0,       0,       0,       0,     0,         4}, //MXIC
       { 0x18,      1,     2,   8,  0x0000,  0x0020,       0,       0,       0,     0,         4}, //MXIC
       { 0x19,      0,     3,  16,  0x0010,  0x0020,  0x0030,       0,       0,     1,         1}, //Boya
+      { 0x1a,      0,     1,  64,  0x0000,       0,       0,       0,       0,     1,         1}, //Gigadevice
+      { 0x1b,      0,     3,  64,  0x0010,  0x0020,  0x0030,       0,       0,     1,         1}, //Gigadevice
+      { 0x1c,      0,     3,  16,  0x0000,  0x0004,  0x0008,       0,       0,     0,         1}, //Giantec GT25Q32A
+      { 0x1d,      0,     3,  16,  0x0000,  0x0008,  0x0010,       0,       0,     0,         1}, //Giantec GT25Q64A
+      
     };
     curAlg = currentAlg;
     curSettings = algSet[curAlg];
@@ -94,10 +99,6 @@ void DialogSecurity::setAlgorithm(uint8_t currentAlg)
         hexEdit->setGeometry(0, 0, ui->frame->width(), ui->frame->height());
         hexEdit->setData(regData);
         hexEdit->setHexCaps(true);
-        defaultTextColor = ui->label->palette().color(QPalette::Text);
-        hexEdit->setAsciiFontColor(defaultTextColor);
-        hexEdit->setAddressFontColor(defaultTextColor);
-        hexEdit->setHexFontColor(defaultTextColor);
         hexEdit->setFont(heFont);
         hexEdit->setData(regData);
     }

@@ -1,87 +1,107 @@
 #!/bin/bash
-if [ -f ~/.local/share/imsprog/IMSProg.Dat ] ; then
-   qsttxt="The <b>'IMSProg.Dat'</b> file will be replaced with the new version. You may lose the changes made to it. Continue?"
-   tittxt="Database update"
-   outtxt="The number of chips in the database:"
-   chgtxt="(was) -> (became)"
-      if [[ "$LANG" == "ru_RU.UTF-8" ]]
-         then
-         qsttxt="Файл <b>'IMSProg.Dat'</b> будет заменен новой версией. Вы можете потерять внесенные в него изменения. Продолжить?"
-         tittxt="Обновление базы данных"
-         outtxt="Количество микросхем в базе данных:"
-         chgtxt="(было) -> (стало)"
-      fi
-      if [[ "$LANG" == "de_DE.UTF-8" ]]
-         then
-         qsttxt="Die <b>'IMSProg.Dat'</b> Datei wird durch die neue Version ersetzt. Die daran vorgenommenen Änderungen können verloren gehen. Continue?"
-         tittxt="Aktualisierung der Datenbank"
-         outtxt="Die Anzahl der Chips in der Datenbank:"
-         chgtxt="\n\n(war) -> (wurde)\n\n"
-      fi
-      if [[ "$LANG" == "zh_CN.UTF-8" ]]
-         then
-         qsttxt="<b>'IMSProg.Dat'</b>文件将被新版本替换。您可能会丢失对其所做的更改。继续吗？"
-         tittxt="数据库更新"
-         outtxt="数据库中的芯片数："
-         chgtxt="（原先）->（变为）"
-      fi
-      if [[ "$LANG" == "es_ES.UTF-8" ]]
-         then
-         qsttxt="El archivo <b>'IMSProg.Dat'</b> será sustituido por la nueva versión. Es posible que pierdas los cambios realizados en él. ¿Continuar?"
-         tittxt="Actualización de la base de datos"
-         outtxt="El número de fichas en la base de datos:"
-         chgtxt="(fue) -> (se hizo)"
-      fi
-      if [[ "$LANG" == "uk_UA.UTF-8" ]]
-         then
-         qsttxt="Файл <b>'IMSProg.Dat'</b> буде замінено новою версією. Ви можете втратити внесені до нього зміни. Продовжити?"
-         tittxt="Оновлення бази даних"
-         outtxt="Кількість фішок у базі даних:"
-         chgtxt="(було) -> (було зроблено)"
-      fi
-      if [[ "$LANG" == "it_IT.UTF-8" ]]
-         then
-         qsttxt="Il file <b>'IMSProg.Dat'</b> verrà sostituito con la nuova versione. Le modifiche apportate potrebbero andare perse. Vuoi continuare?"
-         tittxt="Aggiornamento del database in corso"
-         outtxt="Il numero di chip nel database:"
-         chgtxt="(era) -> (è diventato)"
-      fi
-      if [[ "$LANG" == "pt_BR.UTF-8" ]]
-         then
-         qsttxt="O arquivo <b>'IMSProg.Dat'</b> será substituído pela nova versão. Você pode perder as alterações feitas nele. Continuar?"
-         tittxt="Atualização do banco de dados"
-         outtxt="O número de fichas no banco de dados:"
-         chgtxt="(foi) -> (foi feito)"
-      fi
-      if [[ "$LANG" == "hu_HU.UTF-8" ]]
-         then
-         qsttxt="Az <b>'IMSProg.Dat'</b> fájl helyébe az új verzió lép. Elveszítheti a rajta végrehajtott módosításokat. Continue?"
-         tittxt="Adatbázis frissítés"
-         outtxt="Az adatbázisban szereplő chipek száma:"
-         chgtxt="(volt) -> (lett)"
-      fi
+qsttxt="The <b>'IMSProg.Dat'</b> file will be replaced with the new version. You may lose the changes made to it. Continue?"
+tittxt="Database update"
+outtxt="The number of chips in the database:"
+chgtxt="(was) -> (became)"
+errtxt="File <b>'IMSProg.Dat'</b> could not be loaded!"
+if [[ "$LANG" == "ru_RU.UTF-8" ]]
+   then
+   qsttxt="Файл <b>'IMSProg.Dat'</b> будет заменен новой версией. Вы можете потерять внесенные в него изменения. Продолжить?"
+   tittxt="Обновление базы данных"
+   outtxt="Количество микросхем в базе данных:"
+   chgtxt="(было) -> (стало)"
+   errtxt="Не удалось загрузить файл <b>'IMSProg.Dat'</b>!"
+fi
+if [[ "$LANG" == "de_DE.UTF-8" ]]
+   then
+   qsttxt="Die <b>'IMSProg.Dat'</b> Datei wird durch die neue Version ersetzt. Die daran vorgenommenen Änderungen können verloren gehen. Continue?"
+   tittxt="Aktualisierung der Datenbank"
+   outtxt="Die Anzahl der Chips in der Datenbank:"
+   chgtxt="\n\n(war) -> (wurde)\n\n"
+   errtxt="Die Datei <b>'IMSProg.Dat'</b> konnte nicht geladen werden!"
+fi
+if [[ "$LANG" == "zh_CN.UTF-8" ]]
+   then
+   qsttxt="<b>'IMSProg.Dat'</b>文件将被新版本替换。您可能会丢失对其所做的更改。继续吗？"
+   tittxt="数据库更新"
+   outtxt="数据库中的芯片数："
+   chgtxt="（原先）->（变为）"
+   errtxt="文件 <b>'IMSProg.Dat'</b> 无法加载！"
+fi
+if [[ "$LANG" == "es_ES.UTF-8" ]]
+   then
+   qsttxt="El archivo <b>'IMSProg.Dat'</b> será sustituido por la nueva versión. Es posible que pierdas los cambios realizados en él. ¿Continuar?"
+   tittxt="Actualización de la base de datos"
+   outtxt="El número de fichas en la base de datos:"
+   chgtxt="(fue) -> (se hizo)"
+   errtxt="¡No se ha podido cargar el archivo <b>'IMSProg.Dat'</b>!"
+fi
+if [[ "$LANG" == "uk_UA.UTF-8" ]]
+   then
+   qsttxt="Файл <b>'IMSProg.Dat'</b> буде замінено новою версією. Ви можете втратити внесені до нього зміни. Продовжити?"
+   tittxt="Оновлення бази даних"
+   outtxt="Кількість фішок у базі даних:"
+   chgtxt="(було) -> (було зроблено)"
+   errtxt="Не вдалося завантажити файл <b>'IMSProg.Dat'</b>!"
+fi
+if [[ "$LANG" == "it_IT.UTF-8" ]]
+   then
+   qsttxt="Il file <b>'IMSProg.Dat'</b> verrà sostituito con la nuova versione. Le modifiche apportate potrebbero andare perse. Vuoi continuare?"
+   tittxt="Aggiornamento del database in corso"
+   outtxt="Il numero di chip nel database:"
+   chgtxt="(era) -> (è diventato)"
+   errtxt="Il file <b>'IMSProg.Dat'</b> non può essere caricato!"
+fi
+if [[ "$LANG" == "pt_BR.UTF-8" ]]
+   then
+   qsttxt="O arquivo <b>'IMSProg.Dat'</b> será substituído pela nova versão. Você pode perder as alterações feitas nele. Continuar?"
+   tittxt="Atualização do banco de dados"
+   outtxt="O número de fichas no banco de dados:"
+   chgtxt="(foi) -> (foi feito)"
+   errtxt="O arquivo <b>'IMSProg.Dat'</b> não pôde ser carregado!"
+fi
+if [[ "$LANG" == "hu_HU.UTF-8" ]]
+   then
+   qsttxt="Az <b>'IMSProg.Dat'</b> fájl helyébe az új verzió lép. Elveszítheti a rajta végrehajtott módosításokat. Continue?"
+   tittxt="Adatbázis frissítés"
+   outtxt="Az adatbázisban szereplő chipek száma:"
+   chgtxt="(volt) -> (lett)"
+   errtxt="A <b>'IMSProg.Dat'</b> fájlt nem sikerült betölteni!"
+fi
+if [ -f ~/.local/share/imsprog/IMSProg.Dat ] ; then      
    zenity --question --text="$qsttxt" \
    --height=160 --width=320
 fi
-if [ $? = 0 ] ; then
-IMSPROG_DB_URL=https://antenna-dvb-t2.ru/dl_all/IMSProg.Dat
-cd /tmp
-wget ${IMSPROG_DB_URL}
-mkdir -p ~/.local/share/imsprog/
-file=~/.local/share/imsprog/IMSProg.Dat
-oldsize=$(wc -c <"$file")
-let oldrec=oldsize/68-1
-rm -rf ~/.local/share/imsprog/IMSProg.Dat
-cp /tmp/IMSProg.Dat ~/.local/share/imsprog/
-rm -rf /tmp/IMSProg.Dat
-newsize=$(wc -c <"$file")
-let newrec=newsize/68-1
-out_text=$(echo $oldrec "->" $newrec)
-echo $oldrec "->" $newrec
-zenity --warning \
---text="$outtxt\n\n$chgtxt\n\n$out_text" \
---title="$tittxt" \
---icon-name='applications-electronics' \
---height=160 --width=320
+if [ $? = 0 ]
+   then
+   IMSPROG_DB_URL=https://antenna-dvb-t2.ru/dl_all/IMSProg.Dat
+   cd /tmp
+   wget ${IMSPROG_DB_URL}
+   if [ -f /tmp/IMSProg.Dat ] ; then
+      mkdir -p ~/.local/share/imsprog/
+      path1=/usr/share/imsprog/IMSProg.Dat
+      path2=~/.local/share/imsprog/IMSProg.Dat
+      oldsize=$(wc -c <"$path1")
+      if [ -f $path2 ] ; then 
+         oldsize=$(wc -c <"$path2")
+      fi
+      let oldrec=oldsize/68-1
+      rm -rf ~/.local/share/imsprog/IMSProg.Dat
+      cp /tmp/IMSProg.Dat ~/.local/share/imsprog/
+      rm -rf /tmp/IMSProg.Dat
+      newsize=$(wc -c <"$path2")
+      let newrec=newsize/68-1
+      out_text=$(echo $oldrec "->" $newrec)
+      echo $oldrec "->" $newrec
+      zenity --warning \
+      --text="$outtxt\n\n$chgtxt\n\n$out_text" \
+      --title="$tittxt" \
+      --icon-name='applications-electronics' \
+      --height=160 --width=320
+      else
+      zenity --error \
+      --text="$errtxt" \
+      --height=160 --width=320
+   fi   
 fi
 

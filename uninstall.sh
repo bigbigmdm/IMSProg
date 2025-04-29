@@ -16,7 +16,9 @@ fi
 
 files+=(
     "${CMAKE_INSTALL_PREFIX}/bin/IMSProg"
-    "${CMAKE_INSTALL_PREFIX}/share/pixmaps"
+    "${CMAKE_INSTALL_PREFIX}/share/pixmaps/chipEdit64.png"
+    "${CMAKE_INSTALL_PREFIX}/share/pixmaps/IMSProg64.png"
+    "${CMAKE_INSTALL_PREFIX}/share/pixmaps/IMSProg_database_update.png"
     "${CMAKE_INSTALL_PREFIX}/share/imsprog"
     "${CMAKE_INSTALL_PREFIX}/share/doc/imsprog"
     "${CMAKE_INSTALL_PREFIX}/bin/IMSProg_database_update"
@@ -47,5 +49,9 @@ if [[ $confirm != "y" && $confirm != "Y" ]]; then
 fi
 
 for file in "${files[@]}"; do
+    if [ ! -e "$file" ]; then
+        continue
+    else
         sudo rm -rf "$file"
+    fi
 done && echo Uninstall Complete

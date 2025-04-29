@@ -1,3 +1,7 @@
+- Ver. 1.5.3 - Copyright information updated, last version of QHexEdit used,
+hex-functions optimised, added support GIANTEC, DOSILICON NOR FLASH chips, Fix: 
+incorrect uninstall script, i2C 128K size is repeated twice, error calculating 
+file size.
 - Ver. 1.5.2 - Fix: Gigadevice status registers write error. Fix: memory leaks.
 New SPI chip sizes added. New Boya, Winbond chips added to database. Added 
 Fidelix, Zetta OTP algorithm.

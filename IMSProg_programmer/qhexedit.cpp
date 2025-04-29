@@ -1,17 +1,20 @@
 /*
-* Copyright (C) 2015-2016 Winfried Simon
+* QHexEdit is a Hex Editor Widget for the Qt Framework
+* Copyright (C) 2010-2025 Winfried Simon
 *
-* This software may be used under the terms of the GNU Lesser General 
-* Public License version 2.1 as published by the Free Software Foundation 
-* and appearing in the file license.txt included in the packaging of this file.
+* This library is free software; you can redistribute it and/or
+* modify it under the terms of the GNU Lesser General Public
+* License as published by the Free Software Foundation; either
+* version 2.1 of the License, or (at your option) any later version.
 *
-* This program is distributed in the hope that it will be useful,
+* This library is distributed in the hope that it will be useful,
 * but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-* GNU Lesser General Public License for more details.
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+* Lesser General Public License for more details.
 *
-* You should have received a copy of the GNU General Public License
-* along with this program.  If not, see <http://www.gnu.org/licenses/>.
+* You should have received a copy of the GNU Lesser General Public
+* License along with this library; if not, see
+* https://www.gnu.org/licenses/
 */
 #include <QApplication>
 #include <QClipboard>
@@ -41,19 +44,13 @@ QHexEdit::QHexEdit(QWidget *parent) : QAbstractScrollArea(parent)
     , _cursorPosition(0)
     , _lastEventSize(0)
     , _undoStack(new UndoStack(_chunks, this))
+    , _colorManager(new ColorManager())
 {
 #ifdef Q_OS_WIN32
     setFont(QFont("Courier", 10));
 #else
     setFont(QFont("Monospace", 10));
 #endif
-    setAddressAreaColor(this->palette().alternateBase().color());
-    setHighlightingColor(QColor(0xff, 0xff, 0x99, 0xff));
-    setSelectionColor(this->palette().highlight().color());
-    setAddressFontColor(QPalette::WindowText);
-    setAsciiAreaColor(this->palette().alternateBase().color());
-    setAsciiFontColor(QPalette::WindowText);
-
     connect(&_cursorTimer, SIGNAL(timeout()), this, SLOT(updateCursor()));
     connect(verticalScrollBar(), SIGNAL(valueChanged(int)), this, SLOT(adjust()));
     connect(horizontalScrollBar(), SIGNAL(valueChanged(int)), this, SLOT(adjust()));
@@ -70,7 +67,6 @@ QHexEdit::QHexEdit(QWidget *parent) : QAbstractScrollArea(parent)
     setReadOnly(false);
 
     init();
-
 }
 
 QHexEdit::~QHexEdit()
@@ -90,61 +86,6 @@ void QHexEdit::setAddressArea(bool addressArea)
 bool QHexEdit::addressArea()
 {
     return _addressArea;
-}
-
-void QHexEdit::setAddressAreaColor(const QColor &color)
-{
-    _addressAreaColor = color;
-    viewport()->update();
-}
-
-QColor QHexEdit::addressAreaColor()
-{
-    return _addressAreaColor;
-}
-
-void QHexEdit::setAddressFontColor(const QColor &color)
-{
-    _addressFontColor = color;
-    viewport()->update();
-}
-
-QColor QHexEdit::addressFontColor()
-{
-    return _addressFontColor;
-}
-
-void QHexEdit::setAsciiAreaColor(const QColor &color)
-{
-    _asciiAreaColor = color;
-    viewport()->update();
-}
-
-QColor QHexEdit::asciiAreaColor()
-{
-    return _asciiAreaColor;
-}
-
-void QHexEdit::setAsciiFontColor(const QColor &color)
-{
-    _asciiFontColor = color;
-    viewport()->update();
-}
-
-QColor QHexEdit::asciiFontColor()
-{
-    return _asciiFontColor;
-}
-
-void QHexEdit::setHexFontColor(const QColor &color)
-{
-    _hexFontColor = color;
-    viewport()->update();
-}
-
-QColor QHexEdit::hexFontColor()
-{
-    return _hexFontColor;
 }
 
 void QHexEdit::setAddressOffset(qint64 addressOffset)
@@ -239,10 +180,29 @@ void QHexEdit::setCursorPosition(qint64 position)
         _cursorPosition = position;
     }
 
-    if (_overwriteMode)
-        _cursorRect = QRect(_pxCursorX - horizontalScrollBar()->value(), _pxCursorY + _pxCursorWidth, _pxCharWidth, _pxCursorWidth);
-    else
-        _cursorRect = QRect(_pxCursorX - horizontalScrollBar()->value(), _pxCursorY - _pxCharHeight + 4, _pxCursorWidth, _pxCharHeight);
+    int pxOfsX = horizontalScrollBar()->value();
+    if (_readOnly)
+        _cursorRect = QRect(
+            _pxCursorX - pxOfsX, 
+            _pxCursorY - _pxCharHeight + _pxSelectionSub, 
+            _pxCharWidth, 
+            _pxCharHeight
+        );
+    else 
+        if (_overwriteMode)
+            _cursorRect = QRect(
+                _pxCursorX - pxOfsX, 
+                _pxCursorY + _pxCursorWidth, 
+                _pxCharWidth, 
+                _pxCursorWidth
+            );
+        else
+            _cursorRect = QRect(
+                _pxCursorX - pxOfsX, 
+                _pxCursorY - _pxCharHeight + _pxSelectionSub, 
+                _pxCursorWidth, 
+                _pxCharHeight
+            );
 
     // 4. Immediately draw new cursor
     _blink = true;
@@ -305,14 +265,13 @@ bool QHexEdit::highlighting()
 
 void QHexEdit::setHighlightingColor(const QColor &color)
 {
-    _brushHighlighted = QBrush(color);
-    _penHighlighted = QPen(viewport()->palette().color(QPalette::WindowText));
+    _colorManager->highlighting().setAreaColor(color);
     viewport()->update();
 }
 
 QColor QHexEdit::highlightingColor()
 {
-    return _brushHighlighted.color();
+    return _colorManager->highlighting().areaColor();
 }
 
 void QHexEdit::setOverwriteMode(bool overwriteMode)
@@ -324,18 +283,6 @@ void QHexEdit::setOverwriteMode(bool overwriteMode)
 bool QHexEdit::overwriteMode()
 {
     return _overwriteMode;
-}
-
-void QHexEdit::setSelectionColor(const QColor &color)
-{
-    _brushSelection = QBrush(color);
-    _penSelection = QPen(Qt::white);
-    viewport()->update();
-}
-
-QColor QHexEdit::selectionColor()
-{
-    return _brushSelection.color();
 }
 
 bool QHexEdit::isReadOnly()
@@ -350,11 +297,8 @@ void QHexEdit::setReadOnly(bool readOnly)
 
 void QHexEdit::setHexCaps(const bool isCaps)
 {
-    if (_hexCaps != isCaps)
-    {
-        _hexCaps = isCaps;
-        viewport()->update();
-    }
+    _hexCaps = isCaps;
+    viewport()->update();
 }
 
 bool QHexEdit::hexCaps()
@@ -378,7 +322,6 @@ bool QHexEdit::setData(QIODevice &iODevice)
 {
     bool ok = _chunks->setIODevice(iODevice);
     init();
-    dataChangedPrivate();
     return ok;
 }
 
@@ -421,6 +364,19 @@ void QHexEdit::insert(qint64 pos, const QByteArray &ba)
 void QHexEdit::replace(qint64 pos, qint64 len, const QByteArray &ba)
 {
     _undoStack->overwrite(pos, len, ba);
+    refresh();
+}
+
+// ********************************************************************** User marking areas
+void QHexEdit::addUserArea(qint64 posStart, qint64 posEnd, QColor fontColor, QBrush areaStyle)
+{
+    _colorManager->addUserArea(posStart, posEnd, fontColor, areaStyle);
+    refresh();
+}
+
+void QHexEdit::clearUserAreas()
+{
+    _colorManager->clearUserAreas();
     refresh();
 }
 
@@ -502,9 +458,7 @@ void QHexEdit::setFont(const QFont &font)
     _pxCharWidth = metrics.width(QLatin1Char('2'));
 #endif
     _pxCharHeight = metrics.height();
-    _pxGapAdr = _pxCharWidth / 2;
-    _pxGapAdrHex = _pxCharWidth;
-    _pxGapHexAscii = 2 * _pxCharWidth;
+    _pxAreaMargin = _pxCharWidth / 2;
     _pxCursorWidth = _pxCharHeight / 7;
     _pxSelectionSub = _pxCharHeight / 5;
     viewport()->update();
@@ -869,7 +823,6 @@ void QHexEdit::keyPressEvent(QKeyEvent *event)
     }
 
     refresh();
-    QAbstractScrollArea::keyPressEvent(event);
 }
 
 void QHexEdit::mouseMoveEvent(QMouseEvent * event)
@@ -901,133 +854,144 @@ void QHexEdit::paintEvent(QPaintEvent *event)
 {
     QPainter painter(viewport());
     int pxOfsX = horizontalScrollBar()->value();
+    int pxPosAsciiX2 = _pxPosAsciiX  - pxOfsX;
 
     if (event->rect() != _cursorRect)
     {
         int pxPosStartY = _pxCharHeight;
 
-        // draw some patterns if needed
-        painter.fillRect(event->rect(), viewport()->palette().color(QPalette::Base));
+        // *** prepare background
+        painter.fillRect(
+            event->rect(), 
+            viewport()->palette().color(QPalette::Base)
+        );
         if (_addressArea)
-            painter.fillRect(QRect(-pxOfsX, event->rect().top(), _pxPosHexX - _pxGapAdrHex/2, height()), _addressAreaColor);
+            painter.fillRect(
+                QRect(
+                    -pxOfsX, 
+                    event->rect().top(), 
+                    _pxCharWidth * (_addrDigits + 1), 
+                    height()
+                ), 
+                _colorManager->notMarked(Area::Address).areaStyle()
+            );
         if (_asciiArea)
         {
-            int linePos = _pxPosAsciiX - (_pxGapHexAscii / 2);
-            painter.setPen(Qt::gray);
-            painter.drawLine(linePos - pxOfsX, event->rect().top(), linePos - pxOfsX, height());
+            painter.fillRect(
+                QRect(
+                    pxPosAsciiX2 - _pxAreaMargin, 
+                    event->rect().top(),  
+                    _pxCharWidth * _bytesPerLine  + 2 * _pxAreaMargin, 
+                    height()
+                ),
+                _colorManager->notMarked(Area::Ascii).areaStyle()
+            );
         }
 
-        painter.setPen(viewport()->palette().color(QPalette::WindowText));
-
-        // paint address area
-        if (_addressArea)
-        {
-            QString address;
-            for (int row=0, pxPosY = _pxCharHeight; row <= (_dataShown.size()/_bytesPerLine); row++, pxPosY +=_pxCharHeight)
-            {
-                address = QString("%1").arg(_bPosFirst + row*_bytesPerLine + _addressOffset, _addrDigits, 16, QChar('0'));
-                painter.setPen(QPen(_addressFontColor));
-                painter.drawText(_pxPosAdrX - pxOfsX, pxPosY, hexCaps() ? address.toUpper() : address);
-            }
-        }
-
-        // paint hex and ascii area
-        QPen colStandard = QPen(viewport()->palette().color(QPalette::WindowText));
-
-        painter.setBackgroundMode(Qt::TransparentMode);
-
+        // *** paint central areas
         for (int row = 0, pxPosY = pxPosStartY; row <= _rowsShown; row++, pxPosY +=_pxCharHeight)
         {
             QByteArray hex;
+            qint64 bPosLine = row * _bytesPerLine;
             int pxPosX = _pxPosHexX  - pxOfsX;
             int pxPosAsciiX2 = _pxPosAsciiX  - pxOfsX;
-            qint64 bPosLine = row * _bytesPerLine;
+
+            // *** address info
+            if (_addressArea && row * _bytesPerLine < _dataShown.size()) 
+            {
+                QString address = QString("%1").arg(_bPosFirst + row*_bytesPerLine + _addressOffset, _addrDigits, 16, QChar('0'));
+                ColoredArea addressArea = _colorManager->notMarked(Area::Address);
+
+                painter.setPen(addressArea.fontPen());
+                painter.drawText(_pxPosAdrX - pxOfsX, pxPosY, hexCaps() ? address.toUpper() : address);
+            }
+
             for (int colIdx = 0; ((bPosLine + colIdx) < _dataShown.size() && (colIdx < _bytesPerLine)); colIdx++)
             {
-                QColor c = viewport()->palette().color(QPalette::Base);
-                painter.setPen(QPen(_hexFontColor));
-
                 qint64 posBa = _bPosFirst + bPosLine + colIdx;
-                if ((getSelectionBegin() <= posBa) && (getSelectionEnd() > posBa))
-                {
-                    c = _brushSelection.color();
-                    painter.setPen(_penSelection);
-                }
-                else
-                {
-                    if (_highlighting)
-                        if (_markedShown.at((int)(posBa - _bPosFirst)))
-                        {
-                            c = _brushHighlighted.color();
-                            painter.setPen(_penHighlighted);
-                        }
-                }
 
-                // render hex value
-                QRect r;
+                // *** hex values
+                ColoredArea hexArea = _colorManager->markedArea(posBa, Area::Hex, _chunks);
+                painter.setPen(hexArea.fontPen());
+                QRect rect;
                 if (colIdx == 0)
-                    r.setRect(pxPosX, pxPosY - _pxCharHeight + _pxSelectionSub, 2*_pxCharWidth, _pxCharHeight);
+                    rect = QRect(
+                        pxPosX, 
+                        pxPosY - _pxCharHeight + _pxSelectionSub, 
+                        2*_pxCharWidth, 
+                        _pxCharHeight
+                    );
                 else
-                    r.setRect(pxPosX - _pxCharWidth, pxPosY - _pxCharHeight + _pxSelectionSub, 3*_pxCharWidth, _pxCharHeight);
-                painter.fillRect(r, c);
+                    rect = QRect(
+                        pxPosX - _pxCharWidth, 
+                        pxPosY - _pxCharHeight + _pxSelectionSub, 
+                        3*_pxCharWidth, 
+                        _pxCharHeight
+                    );
+                painter.fillRect(rect, hexArea.areaStyle());
                 hex = _hexDataShown.mid((bPosLine + colIdx) * 2, 2);
                 painter.drawText(pxPosX, pxPosY, hexCaps()?hex.toUpper():hex);
                 pxPosX += 3*_pxCharWidth;
 
-                // render ascii value
+                // *** ascii values
                 if (_asciiArea)
                 {
-                    if (c == viewport()->palette().color(QPalette::Base))
-                        c = _asciiAreaColor;
+                    ColoredArea asciiArea = _colorManager->markedArea(posBa, Area::Ascii, _chunks);
+                    painter.setPen(asciiArea.fontPen());
+
                     int ch = (uchar)_dataShown.at(bPosLine + colIdx);
                     if ( ch < ' ' || ch > '~' )
                         ch = '.';
-                    r.setRect(pxPosAsciiX2, pxPosY - _pxCharHeight + _pxSelectionSub, _pxCharWidth, _pxCharHeight);
-                    painter.fillRect(r, c);
-                    painter.setPen(QPen(_asciiFontColor));
+                    rect.setRect(pxPosAsciiX2, pxPosY - _pxCharHeight + _pxSelectionSub, _pxCharWidth, _pxCharHeight);
+                    painter.fillRect(rect, asciiArea.areaStyle());
                     painter.drawText(pxPosAsciiX2, pxPosY, QChar(ch));
                     pxPosAsciiX2 += _pxCharWidth;
                 }
             }
         }
-        painter.setBackgroundMode(Qt::TransparentMode);
-        painter.setPen(viewport()->palette().color(QPalette::WindowText));
     }
 
-    // _cursorPosition counts in 2, _bPosFirst counts in 1
-    int hexPositionInShowData = _cursorPosition - 2 * _bPosFirst;
+    // *** paint cursor, _cursorPosition counts in 2, _bPosFirst counts in 1
+    int hexPos = _cursorPosition - 2 * _bPosFirst;
 
     // due to scrolling the cursor can go out of the currently displayed data
-    if ((hexPositionInShowData >= 0) && (hexPositionInShowData < _hexDataShown.size()))
+    if ((hexPos >= 0) && (hexPos <= _hexDataShown.size()))
     {
-        // paint cursor
-        if (_readOnly)
+        ColoredArea curArea;
+        if (_editAreaIsAscii)
+            curArea = _colorManager->markedArea(hexPos / 2, Area::Ascii, _chunks);
+        else
+            curArea = _colorManager->markedArea(hexPos / 2, Area::Hex, _chunks);
+
+        if (_blink && hasFocus())
         {
-            QColor color = viewport()->palette().dark().color();
-            painter.fillRect(QRect(_pxCursorX - pxOfsX, _pxCursorY - _pxCharHeight + _pxSelectionSub, _pxCharWidth, _pxCharHeight), color);
+            if (_readOnly)
+                painter.fillRect(_cursorRect, curArea.fontColor());
+            else
+                painter.fillRect(_cursorRect, curArea.fontColor());
+        }
+
+        // We have to repaint the current char because the curser destroys the char
+        painter.setPen(curArea.fontColor());
+        if (_editAreaIsAscii)
+        {
+            // every 2 hex there is 1 ascii
+            int ch = (uchar)_dataShown.at(hexPos / 2);
+            if (ch < ' ' || ch > '~')
+                ch = '.';
+
+            painter.drawText(_pxCursorX - pxOfsX, _pxCursorY, QChar(ch));
         }
         else
         {
-            if (_blink && hasFocus())
-                painter.fillRect(_cursorRect, this->palette().color(QPalette::WindowText));
+            QByteArray txt = _hexDataShown.mid(hexPos, 1);
+            if (_hexCaps)
+                txt = txt.toUpper();
+            painter.drawText(_pxCursorX - pxOfsX, _pxCursorY, txt);
         }
-            if (_editAreaIsAscii)
-            {
-                // every 2 hex there is 1 ascii
-                int asciiPositionInShowData = hexPositionInShowData / 2;
-                int ch = (uchar)_dataShown.at(asciiPositionInShowData);
-                if (ch < ' ' || ch > '~')
-                    ch = '.';
-
-                painter.drawText(_pxCursorX - pxOfsX, _pxCursorY, QChar(ch));
-            }
-            else
-            {
-                painter.drawText(_pxCursorX - pxOfsX, _pxCursorY, hexCaps() ? _hexDataShown.mid(hexPositionInShowData, 1).toUpper() : _hexDataShown.mid(hexPositionInShowData, 1));
-            }
     }
 
-    // emit event, if size has changed
+    // *** emit event, if size has changed
     if (_lastEventSize != _chunks->size())
     {
         _lastEventSize = _chunks->size();
@@ -1041,17 +1005,17 @@ void QHexEdit::resizeEvent(QResizeEvent *)
     {
         int pxFixGaps = 0;
         if (_addressArea)
-            pxFixGaps = addressWidth() * _pxCharWidth + _pxGapAdr;
-        pxFixGaps += _pxGapAdrHex;
+            pxFixGaps = addressWidth() * _pxCharWidth + 2 * _pxAreaMargin;
+        pxFixGaps += 2 * _pxAreaMargin;
         if (_asciiArea)
-            pxFixGaps += _pxGapHexAscii;
+            pxFixGaps += 2 * _pxAreaMargin;
 
         // +1 because the last hex value do not have space. so it is effective one char more
         int charWidth = (viewport()->width() - pxFixGaps ) / _pxCharWidth + 1;
 
         // 2 hex alfa-digits 1 space 1 ascii per byte = 4; if ascii is disabled then 3
         // to prevent devision by zero use the min value 1
-        setBytesPerLine(std::max(charWidth / (_asciiArea ? 4 : 3),1));
+        setBytesPerLine(std::max(charWidth / (_asciiArea ? 4 : 3), 1));
     }
     adjust();
 }
@@ -1074,8 +1038,9 @@ bool QHexEdit::focusNextPrevChild(bool next)
 // ********************************************************************** Handle selections
 void QHexEdit::resetSelection()
 {
-    _bSelectionBegin = _bSelectionInit;
-    _bSelectionEnd = _bSelectionInit;
+    _bSelectionBegin = 0;
+    _bSelectionEnd = 0;
+    _colorManager->selection().setRange(_bSelectionBegin, _bSelectionEnd);
 }
 
 void QHexEdit::resetSelection(qint64 pos)
@@ -1086,9 +1051,9 @@ void QHexEdit::resetSelection(qint64 pos)
     if (pos > _chunks->size())
         pos = _chunks->size();
 
-    _bSelectionInit = pos;
     _bSelectionBegin = pos;
     _bSelectionEnd = pos;
+    _colorManager->selection().setRange(_bSelectionBegin, _bSelectionEnd);
 }
 
 void QHexEdit::setSelection(qint64 pos)
@@ -1099,16 +1064,15 @@ void QHexEdit::setSelection(qint64 pos)
     if (pos > _chunks->size())
         pos = _chunks->size();
 
-    if (pos >= _bSelectionInit)
+    if (pos > _bSelectionBegin)
     {
         _bSelectionEnd = pos;
-        _bSelectionBegin = _bSelectionInit;
     }
     else
     {
         _bSelectionBegin = pos;
-        _bSelectionEnd = _bSelectionInit;
     }
+    _colorManager->selection().setRange(_bSelectionBegin, _bSelectionEnd);
 }
 
 qint64 QHexEdit::getSelectionBegin()
@@ -1122,6 +1086,16 @@ qint64 QHexEdit::getSelectionEnd()
 }
 
 // ********************************************************************** Private utility functions
+bool QHexEdit::event(QEvent *event)
+{
+    if (event->type() == QEvent::QEvent::PaletteChange)
+    {
+        QPalette palette = this->palette();
+        _colorManager->setPalette(palette);
+    }
+    return QAbstractScrollArea::event(event);
+}
+
 void QHexEdit::init()
 {
     _undoStack->clear();
@@ -1138,12 +1112,12 @@ void QHexEdit::adjust()
     if (_addressArea)
     {
         _addrDigits = addressWidth();
-        _pxPosHexX = _pxGapAdr + _addrDigits*_pxCharWidth + _pxGapAdrHex;
+        _pxPosHexX = _pxAreaMargin + _addrDigits*_pxCharWidth + 2 * _pxAreaMargin;
     }
     else
-        _pxPosHexX = _pxGapAdrHex;
-    _pxPosAdrX = _pxGapAdr;
-    _pxPosAsciiX = _pxPosHexX + _hexCharsInLine * _pxCharWidth + _pxGapHexAscii;
+        _pxPosHexX = _pxAreaMargin;
+    _pxPosAdrX = _pxAreaMargin;
+    _pxPosAsciiX = _pxPosHexX + _hexCharsInLine * _pxCharWidth + 2 * _pxAreaMargin;
 
     // set horizontalScrollBar()
     int pxWidth = _pxPosAsciiX;

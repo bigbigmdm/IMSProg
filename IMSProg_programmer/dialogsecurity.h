@@ -79,7 +79,6 @@ private:
     algSettings curSettings;
     securCommands curCommands;
     QByteArray regData;
-    QColor defaultTextColor;
     QHexEdit *hexEdit;
     QString curPath;
 };

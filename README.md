@@ -489,6 +489,11 @@ MX25U51245G(1.8V), MX25L1655D, MX25L6455E, MX25L12855E, MX25L25655E, MX25R1035F,
 MX25R2035F, MX25R4035F, MX25R8035F, MX25R1635F, MX25R3235F, MX25R6435F, 
 MX25L3225D, MX25L3255D
 
+- Giantec
+
+GT25D05C, GT25D10C, GT25D20C, GT25Q40C, GT25D05E, GT25D10E, GT25D20E, GT25Q80A, 
+GT25Q16A, GT25Q32A-H, GT25Q64A-S 
+
 - GigaDevice
 
 GD25F40, GD25F80, GD25D40, GD25D80, GD25D05C, GD25D10C, GD25Q20C, GD25Q40C, 
@@ -506,6 +511,10 @@ N25S80, N25S32
 - PARAGON
 
 PN25F08, PN25F16, PN25F32, PN25F64, PN25F128
+
+- DOSILICON
+
+DS25Q64A, DS25Q4AA, DS25M4CB, DS25M64E, DS25M4AE, DS25M4AB, DS25M4BA
 
 - WINBOND
 
@@ -563,6 +572,8 @@ sudo dnf install imsprog
 - The `ARCH AUR repository` by [kjkent](https://github.com/kjkent) is [here](https://aur.archlinux.org/packages/imsprog)
 - The `openSUSE` package is [here](https://software.opensuse.org/package/IMSProg?search_term=imsprog)
 - The `Debian` package is [here](https://tracker.debian.org/pkg/imsprog)
+- The Windows release by [Anime4000](https://github.com/Anime4000) is [here](https://github.com/Anime4000/IMSProg/releases/tag/v1.5.2-win64)
+
 
 ## Project structure
 

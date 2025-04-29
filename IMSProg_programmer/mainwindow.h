@@ -29,6 +29,7 @@
 #include "dialogsfdp.h"
 #include "dialogsr.h"
 #include "searchdialog.h"
+#include "hexutility.h"
 extern "C" {
 #include "bitbang_microwire.h"
 #include "ch341a_gpio.h"
@@ -108,12 +109,10 @@ private slots:
     void slotTimerAlarm();
     void on_actionGoto_address_triggered();
     void on_comboBox_i2cSpeed_currentIndexChanged(int index);
-
     void on_actionSecurity_registers_triggered();
 
 private:
     Ui::MainWindow *ui;
-    QColor defaultTextColor;
     QString grnKeyStyle, redKeyStyle;
     QString lastDirectory;
     int statusCH341;
@@ -123,7 +122,6 @@ private:
     unsigned int currentAddr4bit;
     bool isHalted;
     QTimer *timer;
-    QString bytePrint(unsigned char z);
     QVector <QString> chType = {"SPI_FLASH","25_EEPROM","93_EEPROM","24_EEPROM","95_EEPROM"};
     struct chip_data {
         QString chipManuf;
@@ -147,10 +145,6 @@ private:
     QString fileName;
     bool cmdStarted;
     QHexEdit *hexEdit;
-    QString sizeConvert(int a);
-    QString hexiAddr(uint32_t a);
-    uint32_t hexToInt(QString str);
-    QString getCRC32();
     void ch341StatusFlashing();
     QByteArray block;
     uint32_t blockStartAddr, blockLen;
