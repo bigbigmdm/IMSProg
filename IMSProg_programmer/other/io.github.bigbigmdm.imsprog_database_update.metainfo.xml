@@ -76,6 +76,17 @@
      <name>Mikhail Medvedev</name>
   </developer>
   <releases>
+  <release version="1.5.3" date="2025-04-29" urgency="medium">	  
+    <description>
+        <p>Copyright information updated.</p>
+	    <p>Fixed: incorrect uninstall script.</p>
+	    <p>Fixed: i2C 128K size is repeated twice.</p>
+	    <p>Fixed: error calculating file size.</p>
+	    <p>Added: Last version of QHexEdit used.</p>
+	    <p>Added: Hex-functions optimised.</p>
+	    <p>Added: Added support GIANTEC, DOSILICON NOR FLASH chips.</p>
+    </description>
+  </release>
   <release version="1.5.2" date="2025-03-05" urgency="medium">	  
     <description>
 	    <p>Fixed: Gigadevice status registers write error.</p>
