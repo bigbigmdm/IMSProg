@@ -514,20 +514,13 @@ void MainWindow::on_comboBox_page_currentIndexChanged(int index)
     if ((currentChipSize !=0) && (currentBlockSize!=0) && (currentChipType ==0))
     {
         currentNumBlocks = currentChipSize / currentBlockSize;
-        chipData.resize(static_cast<int>(currentChipSize));
-        chipData.fill(char(0xff));
-        hexEdit->setData(chipData);
     }
     if ((currentChipSize !=0) && (currentPageSize!=0)  && (currentChipType > 0))
     {
     currentNumBlocks = currentChipSize / currentPageSize;
-    chipData.resize(static_cast<int>(currentChipSize));
-    chipData.fill(char(0xff));
-    hexEdit->setData(chipData);
     }
     index = index + 0;
 }
-
 
 void MainWindow::on_actionDetect_triggered()
 {
