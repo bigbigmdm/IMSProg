@@ -475,24 +475,7 @@ void MainWindow::on_pushButton_2_clicked()
             }
         }
     }
-    currentChipSize = ui->comboBox_size->currentData().toUInt();
-    currentBlockSize = ui->comboBox_block->currentData().toUInt();
-    currentPageSize = ui->comboBox_page->currentData().toUInt();
-    currentAddr4bit = ui->comboBox_addr4bit->currentData().toUInt();
-    if ((currentChipSize !=0) && (currentBlockSize!=0)  && (currentChipType == 0))
-    {
-    currentNumBlocks = currentChipSize / currentBlockSize;
-    chipData.resize(static_cast<int>(currentChipSize));
-    chipData.fill(char(0xff));
-    hexEdit->setData(chipData);
-    }
-    if ((currentChipSize !=0) && (currentPageSize!=0)  && (currentChipType == 1))
-    {
-    currentNumBlocks = currentChipSize / currentPageSize;
-    chipData.resize(static_cast<int>(currentChipSize));
-    chipData.fill(char(0xff));
-    hexEdit->setData(chipData);
-    }
+
     ui->pushButton_2->setStyleSheet(grnKeyStyle);
     ui->crcEdit->setText(getCRC32(chipData));
     ch341a_spi_shutdown();
