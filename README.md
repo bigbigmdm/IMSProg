@@ -279,6 +279,8 @@ search/replace. The `[Ctrl+A]` key used to update the CRC24 checksum. The
 | Ctrl+C | Copy selected bytes (Hex editor)              |
 | Ctrl+D | Detect chip                                   |
 | Ctrl+E | Erase chip                                    |
+| Ctrl+F | Find/Replace (Hex editor)                     |
+| Ctrl+G | Goto address (Hex editor)                     |
 | Chrl+H | About IMSProg                                 |
 | Ctrl+I | Force stop chip operation                     |
 | Ctrl+O | Open file                                     |
