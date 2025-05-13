@@ -1137,7 +1137,7 @@ void MainWindow::on_actionVerify_triggered()
                       if (chipData[addr + j] != char(buf[addr + j - k * step]))
                           {
                             //error compare
-                            QMessageBox::about(this, tr("Error"), tr("Error comparing data!\nAddress:   ") + hexiAddr(addr + j) + tr("\nBuffer: ") + bytePrint( static_cast<unsigned char>(chipData[addr + j])) + tr("    Chip: ") + bytePrint(buf[addr + j - k * currentBlockSize]));
+                            QMessageBox::about(this, tr("Error"), tr("Error comparing data!\nAddress:   ") + hexiAddr(addr + j) + tr("\nBuffer: ") + bytePrint( static_cast<unsigned char>(chipData[addr + j])) + tr("    Chip: ") + bytePrint(buf[addr + j - k * step]));
                             ui->statusBar->showMessage("");
                             ui->checkBox_3->setStyleSheet("");
                             ch341a_spi_shutdown();
