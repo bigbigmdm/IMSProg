@@ -738,12 +738,12 @@ void MainWindow::on_actionOpen_triggered()
    cmdStarted = false;
 
     QFileInfo info(fileName);
-    ui->statusBar->showMessage(tr("Current file: ") + info.fileName());
     lastDirectory = info.filePath();
     // if ChipSze = 0 (Chip is not selected) IMSProg using at hexeditor only. chipsize -> hexedit.data
     // if ChipSize < FileSize - showing error message
     // if Filesize <= ChipSize - filling fileArray to hexedit.Data, the end of the array chipData remains filled 0xff
     QFile file(fileName);
+    ui->statusBar->showMessage("");
     if ((info.size() > currentChipSize) && (currentChipSize != 0))
     {
       QMessageBox::about(this, tr("Error"), tr("The file size exceeds the chip size. Please select another chip or file or use `Save part` to split the file."));
@@ -754,6 +754,7 @@ void MainWindow::on_actionOpen_triggered()
 
         return;
     }
+    ui->statusBar->showMessage(tr("Current file: ") + info.fileName());
     buf.resize(static_cast<int>(info.size()));
     buf = file.readAll();
     if (currentChipSize == 0)
@@ -778,7 +779,7 @@ void MainWindow::on_actionExtract_from_ASUS_CAP_triggered()
                                 lastDirectory,
                                 "ASUS Data Images (*.cap *.CAP);;All files (*.*)");
     QFileInfo info(fileName);
-    ui->statusBar->showMessage(tr("Current file: ") + info.fileName());
+    ui->statusBar->showMessage("");
     lastDirectory = info.filePath();
     if ((info.size() - 0x800 > currentChipSize) && (currentChipSize != 0))
     {
@@ -792,6 +793,7 @@ void MainWindow::on_actionExtract_from_ASUS_CAP_triggered()
 
         return;
     }
+    ui->statusBar->showMessage(tr("Current file: ") + info.fileName());
     buf.resize(int(info.size()));
     buf = file.readAll();
     file.close();
