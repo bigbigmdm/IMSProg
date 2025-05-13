@@ -271,6 +271,29 @@ It contains the following controls: ![Undo](img/undo.png) undo,
 search/replace. The `[Ctrl+A]` key used to update the CRC24 checksum. The 
 `[Ctrl+G]` key used to to move the cursor to the entered address.
 
+### List of hotkeys:
+
+| Hotkey |       Function                                |
+| :---   |       :---                                    |
+| Ctrl+A | Checksum calculate                            |
+| Ctrl+C | Copy selected bytes (Hex editor)              |
+| Ctrl+D | Detect chip                                   |
+| Ctrl+E | Erase chip                                    |
+| Chrl+H | About IMSProg                                 |
+| Ctrl+I | Force stop chip operation                     |
+| Ctrl+O | Open file                                     |
+| Ctrl+P | Chip info (SFDP + status registers)           |
+| Ctrl+Q | Edit chip database                            |
+| Ctrl+R | Read chip                                     |
+| Ctrl+S | Save file                                     |
+| Ctrl+T | Verify chip                                   |
+| Ctrl+U | Security registers                            |
+| Ctrl+V | Paste selected bytes (Hex editor)             |
+| Ctrl+W | Write chip                                    |
+| Ctrl+X | Exit                                          |
+| Ctrl+Y | Redo (Hex editor)                             |
+| Ctrl+Z | Undo (Hex editor)                             |
+
 ## Chip database editor
 
 ![Chip editor](img/chip_editor_eng.png)
