@@ -233,6 +233,7 @@ void MainWindow::on_pushButton_clicked()
             {
                QMessageBox::about(this, tr("Error"), tr("Error reading block ") + QString::number(curBlock));
                ch341a_spi_shutdown();
+               ui->pushButton->setStyleSheet(grnKeyStyle);
                doNotDisturbCancel();
                return;
             }
@@ -1129,6 +1130,7 @@ void MainWindow::on_actionVerify_triggered()
                     {
                         QMessageBox::about(this, tr("Error"), tr("Error reading block ") + QString::number(curBlock));
                         ch341a_spi_shutdown();
+                        ui->pushButton->setStyleSheet(grnKeyStyle);
                         doNotDisturbCancel();
                         return;
                     }
