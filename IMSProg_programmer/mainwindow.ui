@@ -961,8 +961,10 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
     <addaction name="actionUndo"/>
     <addaction name="actionRedo"/>
     <addaction name="actionFind_Replace"/>
-    <addaction name="actionChecksum_calculate"/>
     <addaction name="actionGoto_address"/>
+    <addaction name="separator"/>
+    <addaction name="actionChecksum_calculate"/>
+    <addaction name="actionFill_test_image"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
@@ -1285,6 +1287,21 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+U</string>
+   </property>
+  </action>
+  <action name="actionFill_test_image">
+   <property name="icon">
+    <iconset resource="recource.qrc">
+     <normaloff>:/res/img/fill64.png</normaloff>:/res/img/fill64.png</iconset>
+   </property>
+   <property name="text">
+    <string>Fill test image</string>
+   </property>
+   <property name="toolTip">
+    <string>Filling the hex editor with a test array</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+L</string>
    </property>
   </action>
  </widget>

@@ -110,6 +110,7 @@ private slots:
     void on_actionGoto_address_triggered();
     void on_comboBox_i2cSpeed_currentIndexChanged(int index);
     void on_actionSecurity_registers_triggered();
+    void on_actionFill_test_image_triggered();
 
 private:
     Ui::MainWindow *ui;

@@ -2025,5 +2025,60 @@ void MainWindow::on_actionImport_from_Intel_HEX_triggered()
     ui->crcEdit->setText(getCRC32(chipData));
 }
 
+void MainWindow::on_actionFill_test_image_triggered()
+{
+    int fileSize, addrSize, txtSize, i, j, curPos, hiDigit;
+    char k;
+    fileSize = chipData.size();
+    ui->progressBar->setValue(0);
+    ui->progressBar->setRange(0, fileSize);
+    addrSize = 0;
+    j = fileSize;
+    hiDigit = 1;
+    while (j > 1)
+    {
+        j = j / 16;
+        addrSize ++;
+        hiDigit = hiDigit * 16;
+    }
+    char digits[16];
+    txtSize = 16 - addrSize - 4;
+    curPos = 0;
+    chipData.resize(0);
+           k = 0x40;
+           while (curPos < fileSize)
+           {
+               //String
+              chipData.append('<');
+              chipData.append('0');
+              chipData.append('x');
 
 
+              //calculate digits
+              i = hiDigit / 16;
+              for (j=addrSize - 1; j>=0; j--)
+              {
+                  digits[j] = (curPos / i) % 16;
+                  i = i / 16;
+              }
+              for (j = addrSize -1; j >=0; j--)
+              {
+                 if (digits[j] < 10) digits[j] = digits[j] + 0x30;
+                 else digits[j] = digits[j] + 0x37;
+                 chipData.append(digits[j]);
+              }
+
+              chipData.append('>');
+              for (i = 0; i < txtSize; i++)
+              {
+                  chipData.append(k);
+                  k ++;
+                  if (k > 0x7e) k = 0x40;
+              }
+              curPos = curPos + 16;
+              if (curPos % 512 == 0) ui->progressBar->setValue(curPos);
+           }
+    hexEdit->setData(chipData);
+    ui->crcEdit->setText(getCRC32(chipData));
+    ui->progressBar->setValue(0);
+}
