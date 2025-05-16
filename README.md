@@ -270,7 +270,7 @@ It contains the following controls: ![Undo](img/undo.png) undo,
 ![Redo](img/redo64.png) redo, and the ![Search](img/hexsearch64.png) 
 search/replace. The `[Ctrl+A]` key used to update the CRC24 checksum. The 
 `[Ctrl+G]` key used to move the cursor to the entered address. The `[Ctrl+L]` 
-key is used to fill the hex editor buffer with a special test array.
+key is used to fill the hex editor buffer with a special test array. The `[Ctrl+L]` key used for compares the results of the last and penultimate chip read or file open operation.
 
 ### List of hotkeys:
 
@@ -284,7 +284,8 @@ key is used to fill the hex editor buffer with a special test array.
 | Ctrl+G | Goto address (Hex editor)                     |
 | Chrl+H | About IMSProg                                 |
 | Ctrl+I | Force stop chip operation                     |
-| Ctrl+L | Fill the test array (Hex editor)
+| Ctrl+L | Fill the test array (Hex editor)              |
+| Ctrl+M | Compare files (Hex editor)                    |
 | Ctrl+O | Open file                                     |
 | Ctrl+P | Chip info (SFDP + status registers)           |
 | Ctrl+Q | Edit chip database                            |

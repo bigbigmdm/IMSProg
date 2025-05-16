@@ -29,5 +29,6 @@
         <file>img/goto64.png</file>
         <file>img/ch341_45.png</file>
         <file>img/fill64.png</file>
+        <file>img/compare64.png</file>
     </qresource>
 </RCC>

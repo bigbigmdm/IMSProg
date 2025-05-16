@@ -964,6 +964,7 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
     <addaction name="actionGoto_address"/>
     <addaction name="separator"/>
     <addaction name="actionChecksum_calculate"/>
+    <addaction name="actionCompare_files"/>
     <addaction name="actionFill_test_image"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
@@ -1302,6 +1303,21 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+L</string>
+   </property>
+  </action>
+  <action name="actionCompare_files">
+   <property name="icon">
+    <iconset resource="recource.qrc">
+     <normaloff>:/res/img/compare64.png</normaloff>:/res/img/compare64.png</iconset>
+   </property>
+   <property name="text">
+    <string>Compare files</string>
+   </property>
+   <property name="toolTip">
+    <string>Compares the results of the last and penultimate chip read or file open operation</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+M</string>
    </property>
   </action>
  </widget>
