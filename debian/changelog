@@ -1,3 +1,12 @@
+imsprog (1.6.1-1) unstable; urgency=medium
+
+  * New upstream version:
+    - Added new feature: compare files
+    - Added new feature: fill test array
+    - Fix: when the page size is changed, the buffer is cleared
+    - Fix: code slows down the display of the interface
+ -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Mon, 19 May 2025 12:20:31 +0300
+
 imsprog (1.5.3-1) unstable; urgency=medium
 
   * New upstream version:
