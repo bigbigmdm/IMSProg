@@ -76,6 +76,14 @@
      <name>Mikhail Medvedev</name>
   </developer>
   <releases>
+  <release version="1.6.1" date="2025-05-19" urgency="medium">	  
+    <description>
+	    <p>Fixed: when the page size is changed, the buffer is cleared.</p>
+	    <p>Fixed: the code is executed twice and the code slows down the display of the interface.</p>
+	    <p>Added: New feature - compare files.</p>
+	    <p>Added: New feature - fill test array.</p>
+    </description>
+  </release>
   <release version="1.5.3" date="2025-04-29" urgency="medium">	  
     <description>
         <p>Copyright information updated.</p>

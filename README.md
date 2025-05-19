@@ -269,7 +269,37 @@ modify buffer data.
 It contains the following controls: ![Undo](img/undo.png) undo, 
 ![Redo](img/redo64.png) redo, and the ![Search](img/hexsearch64.png) 
 search/replace. The `[Ctrl+A]` key used to update the CRC24 checksum. The 
-`[Ctrl+G]` key used to to move the cursor to the entered address.
+`[Ctrl+G]` key used to move the cursor to the entered address. The `[Ctrl+L]` 
+key is used to fill the hex editor buffer with a special test array. The `[Ctrl+L]` key used for compares the results of the last and penultimate chip read or file open operation.
+
+![compare](img/compare_files_en.png)
+
+### List of hotkeys:
+
+| Hotkey |       Function                                |
+| :---   |       :---                                    |
+| Ctrl+A | Checksum calculate                            |
+| Ctrl+C | Copy selected bytes (Hex editor)              |
+| Ctrl+D | Detect chip                                   |
+| Ctrl+E | Erase chip                                    |
+| Ctrl+F | Find/Replace (Hex editor)                     |
+| Ctrl+G | Goto address (Hex editor)                     |
+| Chrl+H | About IMSProg                                 |
+| Ctrl+I | Force stop chip operation                     |
+| Ctrl+L | Fill the test array (Hex editor)              |
+| Ctrl+M | Compare files (Hex editor)                    |
+| Ctrl+O | Open file                                     |
+| Ctrl+P | Chip info (SFDP + status registers)           |
+| Ctrl+Q | Edit chip database                            |
+| Ctrl+R | Read chip                                     |
+| Ctrl+S | Save file                                     |
+| Ctrl+T | Verify chip                                   |
+| Ctrl+U | Security registers                            |
+| Ctrl+V | Paste selected bytes (Hex editor)             |
+| Ctrl+W | Write chip                                    |
+| Ctrl+X | Exit                                          |
+| Ctrl+Y | Redo (Hex editor)                             |
+| Ctrl+Z | Undo (Hex editor)                             |
 
 ## Chip database editor
 
@@ -572,7 +602,7 @@ sudo dnf install imsprog
 - The `ARCH AUR repository` by [kjkent](https://github.com/kjkent) is [here](https://aur.archlinux.org/packages/imsprog)
 - The `openSUSE` package is [here](https://software.opensuse.org/package/IMSProg?search_term=imsprog)
 - The `Debian` package is [here](https://tracker.debian.org/pkg/imsprog)
-- The Windows release by [Anime4000](https://github.com/Anime4000) is [here](https://github.com/Anime4000/IMSProg/releases/tag/v1.5.2-win64)
+- The Windows release by [Anime4000](https://github.com/Anime4000) is [here](https://github.com/Anime4000/IMSProg/releases/latest)
 
 
 ## Project structure

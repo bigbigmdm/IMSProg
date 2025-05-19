@@ -1,3 +1,6 @@
+- Ver. 1.6.1 - New feature: compare files. New feature: fill test array. 
+Fix: when the page size is changed, the buffer is cleared. Fix: the code is 
+executed twice and the code slows down the display of the interface.
 - Ver. 1.5.3 - Copyright information updated, last version of QHexEdit used,
 hex-functions optimised, added support GIANTEC, DOSILICON NOR FLASH chips, Fix: 
 incorrect uninstall script, i2C 128K size is repeated twice, error calculating 
