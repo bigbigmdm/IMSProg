@@ -104,7 +104,7 @@ Files: IMSProg_programmer/commands.h
        IMSProg_programmer/color_manager.cpp
 Copyright: 2010-2025 Winfried Simon
 Comment: from https://github.com/Simsys/qhexedit2/
-License: LGPL-2.1
+License: LGPL-2.1+
 
 License: GPL-2+
  This package is free software; you can redistribute it and/or modify
