@@ -24,6 +24,7 @@ DialogRP::DialogRP(QWidget *parent) :
     ui(new Ui::DialogRP)
 {
     ui->setupUi(this);
+    setWindowFlags(Qt::Window| Qt::WindowMinimizeButtonHint | Qt::WindowCloseButtonHint);
     QRegExp reHex( "[A-Fa-f0-9]{1,8}" );
     QRegExpValidator *validator = new QRegExpValidator(reHex, this);
     ui->lineEditStart->setValidator(validator);

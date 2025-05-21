@@ -24,6 +24,7 @@ DialogSecurity::DialogSecurity(QWidget *parent) :
     ui(new Ui::DialogSecurity)
 {
     ui->setupUi(this);
+    setWindowFlags(Qt::Window| Qt::WindowMinimizeButtonHint | Qt::WindowCloseButtonHint);
 }
 
 DialogSecurity::~DialogSecurity()

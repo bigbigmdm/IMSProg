@@ -28,6 +28,7 @@ DialogCompare::DialogCompare(QWidget *parent) :
     ui(new Ui::DialogCompare)
 {
     ui->setupUi(this);
+    setWindowFlags(Qt::Window | Qt::WindowMinimizeButtonHint | Qt::WindowCloseButtonHint);
     QFont heFont;
     //heFont = QFont("Monospace", 10);
     heFont = QFont("DejaVu Sans Mono", 10);

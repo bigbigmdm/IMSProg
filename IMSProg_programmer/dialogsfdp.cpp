@@ -24,6 +24,7 @@ DialogSFDP::DialogSFDP(QWidget *parent) :
     ui(new Ui::DialogSFDP)
 {
     ui->setupUi(this);
+    setWindowFlags(Qt::Window | Qt::WindowMinimizeButtonHint | Qt::WindowCloseButtonHint);
     setLineEditFilter();
     r1Enable();
     numOfRegisters = 3; // 3-not reading, 2 - three registers, 1 - two registers, 0 - one register
