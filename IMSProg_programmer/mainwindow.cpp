@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2023 - 2024 Mikhail Medvedev <e-ink-reader@yandex.ru>
+ * Copyright (C) 2023 - 2025 Mikhail Medvedev <e-ink-reader@yandex.ru>
  *
  *
  * This program is free software; you can redistribute it and/or
@@ -801,6 +801,8 @@ void MainWindow::on_actionExtract_from_ASUS_CAP_triggered()
 {
     QByteArray buf;
     ui->statusMessage->setText(tr("Opening file"));
+    if (numberOfReads == 0) oldFileName = fileName;
+    else oldFileName = ui->comboBox_name->currentText();
     fileName = QFileDialog::getOpenFileName(this,
                                 QString(tr("Open file")),
                                 lastDirectory,
@@ -821,6 +823,8 @@ void MainWindow::on_actionExtract_from_ASUS_CAP_triggered()
         return;
     }
     ui->statusMessage->setText(tr("Current file: ") + info.fileName());
+    preparingToCompare(0);
+    filled = 0;
     buf.resize(int(info.size()));
     buf = file.readAll();
     file.close();
