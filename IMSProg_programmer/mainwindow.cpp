@@ -45,7 +45,9 @@ MainWindow::MainWindow(QWidget *parent) :
  connect(timer, SIGNAL(timeout()), this, SLOT(slotTimerAlarm()));
  timer->start(2000);
 
+ ui->statusMessage->setText("");
  ui->actionStop->setDisabled(true);
+ ui->statusBar->addPermanentWidget(ui->statusMessage,1);
  ui->statusBar->addPermanentWidget(ui->lStatus,0);
  ui->statusBar->addPermanentWidget(ui->eStatus,0);
  ui->statusBar->addPermanentWidget(ui->jLabel,0);
@@ -199,7 +201,7 @@ void MainWindow::on_pushButton_clicked()
        ui->progressBar->setValue(0);
        std::shared_ptr<uint8_t[]> buf(new uint8_t[step]);
        ui->pushButton->setStyleSheet(redKeyStyle);
-       ui->statusBar->showMessage(tr("Reading data from ") + ui->comboBox_name->currentText());
+       ui->statusMessage->setText(tr("Reading data from ") + ui->comboBox_name->currentText());
        for (k = 0; k < numBlocks; k++)
        {
            switch (currentChipType)
@@ -273,7 +275,7 @@ void MainWindow::on_pushButton_clicked()
        if (currentChipType  >0 ) QMessageBox::about(this, tr("Error"), tr("Please select the chip parameters - manufacture and chip name"));
     }
     hexEdit->setData(chipData);
-    ui->statusBar->showMessage("");
+    ui->statusMessage->setText("");
     ui->progressBar->setValue(0);
     ui->pushButton->setStyleSheet(grnKeyStyle);
     ui->crcEdit->setText(getCRC32(chipData));
@@ -556,7 +558,7 @@ void MainWindow::on_actionSave_triggered()
     lastDirectory.replace(".hex", ".bin");
     lastDirectory.replace(".HEX", ".bin");
 
-    ui->statusBar->showMessage(tr("Saving file"));
+    ui->statusMessage->setText(tr("Saving file"));
     fileName = QFileDialog::getSaveFileName(this,
                                 QString(tr("Save file")),
                                 lastDirectory,
@@ -574,6 +576,7 @@ void MainWindow::on_actionSave_triggered()
     }
     file.write(hexEdit->data());
     file.close();
+    ui->statusMessage->setText("");
 }
 
 void MainWindow::on_actionErase_triggered()
@@ -588,7 +591,7 @@ void MainWindow::on_actionErase_triggered()
         QMessageBox::about(this, tr("Error"), tr("Programmer CH341a is not connected!"));
         return;
       }
-    ui->statusBar->showMessage(tr("Erasing the ") + ui->comboBox_name->currentText());
+    ui->statusMessage->setText(tr("Erasing the ") + ui->comboBox_name->currentText());
     ui->checkBox->setStyleSheet("QCheckBox{font-weight:600;}");
     ui->centralWidget->repaint();
     ui->progressBar->setRange(0, 100);
@@ -727,7 +730,7 @@ void MainWindow::on_actionErase_triggered()
     }
     doNotDisturbCancel();
     ui->checkBox->setStyleSheet("");
-    ui->statusBar->showMessage("");
+    ui->statusMessage->setText("");
     ui->progressBar->setValue(0);
     ui->centralWidget->repaint();
     ch341a_spi_shutdown();
@@ -746,7 +749,7 @@ void MainWindow::on_actionRedo_triggered()
 void MainWindow::on_actionOpen_triggered()
 {    
     QByteArray buf;
-    ui->statusBar->showMessage(tr("Opening file"));
+    ui->statusMessage->setText(tr("Opening file"));
     if (numberOfReads == 0) oldFileName = fileName;
     else oldFileName = ui->comboBox_name->currentText();
     if (!cmdStarted)
@@ -765,7 +768,7 @@ void MainWindow::on_actionOpen_triggered()
     // if ChipSize < FileSize - showing error message
     // if Filesize <= ChipSize - filling fileArray to hexedit.Data, the end of the array chipData remains filled 0xff
     QFile file(fileName);
-    ui->statusBar->showMessage("");
+    ui->statusMessage->setText("");
     if ((info.size() > currentChipSize) && (currentChipSize != 0))
     {
       QMessageBox::about(this, tr("Error"), tr("The file size exceeds the chip size. Please select another chip or file or use `Save part` to split the file."));
@@ -776,7 +779,7 @@ void MainWindow::on_actionOpen_triggered()
 
         return;
     }
-    ui->statusBar->showMessage(tr("Current file: ") + info.fileName());
+    ui->statusMessage->setText(tr("Current file: ") + info.fileName());
     preparingToCompare(0);
     filled = 0;
     buf.resize(static_cast<int>(info.size()));
@@ -791,20 +794,19 @@ void MainWindow::on_actionOpen_triggered()
 
     file.close();
 
-    //ui->statusBar->showMessage("");
     ui->crcEdit->setText(getCRC32(chipData));
 }
 
 void MainWindow::on_actionExtract_from_ASUS_CAP_triggered()
 {
     QByteArray buf;
-    ui->statusBar->showMessage(tr("Opening file"));
+    ui->statusMessage->setText(tr("Opening file"));
     fileName = QFileDialog::getOpenFileName(this,
                                 QString(tr("Open file")),
                                 lastDirectory,
                                 "ASUS Data Images (*.cap *.CAP);;All files (*.*)");
     QFileInfo info(fileName);
-    ui->statusBar->showMessage("");
+    ui->statusMessage->setText("");
     lastDirectory = info.filePath();
     if ((info.size() - 0x800 > currentChipSize) && (currentChipSize != 0))
     {
@@ -818,7 +820,7 @@ void MainWindow::on_actionExtract_from_ASUS_CAP_triggered()
 
         return;
     }
-    ui->statusBar->showMessage(tr("Current file: ") + info.fileName());
+    ui->statusMessage->setText(tr("Current file: ") + info.fileName());
     buf.resize(int(info.size()));
     buf = file.readAll();
     file.close();
@@ -873,7 +875,7 @@ void MainWindow::on_actionWrite_triggered()
     uint32_t addr = 0;
     uint32_t curBlock = 0;    
     uint32_t j, k;
-    ui->statusBar->showMessage(tr("Writing data to ") + ui->comboBox_name->currentText());
+    ui->statusMessage->setText(tr("Writing data to ") + ui->comboBox_name->currentText());
     //progerssbar settings
     ui->progressBar->setRange(0, static_cast<int>(numBlocks));
     ui->checkBox_2->setStyleSheet("QCheckBox{font-weight:800;}");
@@ -951,7 +953,7 @@ void MainWindow::on_actionWrite_triggered()
     doNotDisturbCancel();
     ui->progressBar->setValue(0);
     ui->checkBox_2->setStyleSheet("");
-    ui->statusBar->showMessage("");    
+    ui->statusMessage->setText("");    
     }
     else
     {
@@ -996,7 +998,7 @@ void MainWindow::on_comboBox_man_currentIndexChanged(int index)
         ui->comboBox_block->setCurrentIndex(0);
         ui->comboBox_size->setCurrentIndex(0);
         ui->comboBox_addr4bit->setCurrentIndex(0);
-        ui->statusBar->showMessage("");
+        ui->statusMessage->setText("");
    }
  index = index + 0;
 }
@@ -1114,7 +1116,7 @@ void MainWindow::on_actionVerify_triggered()
                std::shared_ptr<uint8_t[]> buf(new uint8_t[step]);
                chipData = hexEdit->data();
                ui->checkBox_3->setStyleSheet("QCheckBox{font-weight:800;}");
-               ui->statusBar->showMessage(tr("Veryfing data from ") + ui->comboBox_name->currentText());
+               ui->statusMessage->setText(tr("Veryfing data from ") + ui->comboBox_name->currentText());
                for (k = 0; k < numBlocks; k++)
                {
                    switch (currentChipType)
@@ -1171,7 +1173,7 @@ void MainWindow::on_actionVerify_triggered()
                           {
                             //error compare
                             QMessageBox::about(this, tr("Error"), tr("Error comparing data!\nAddress:   ") + hexiAddr(addr + j) + tr("\nBuffer: ") + bytePrint( static_cast<unsigned char>(chipData[addr + j])) + tr("    Chip: ") + bytePrint(buf[addr + j - k * step]));
-                            ui->statusBar->showMessage("");
+                            ui->statusMessage->setText("");
                             ui->checkBox_3->setStyleSheet("");
                             ch341a_spi_shutdown();
                             doNotDisturbCancel();
@@ -1199,7 +1201,7 @@ void MainWindow::on_actionVerify_triggered()
 
              }
              doNotDisturbCancel();
-             ui->statusBar->showMessage("");
+             ui->statusMessage->setText("");
              ui->progressBar->setValue(0);
              ui->checkBox_3->setStyleSheet("");
              ui->crcEdit->setText(getCRC32(chipData));
@@ -1250,7 +1252,7 @@ void MainWindow::receiveAddr(QString addressData)
     {
         block[ee] = chipData[ee + blockStartAddr];
     }
-    ui->statusBar->showMessage(tr("Saving block"));
+    ui->statusMessage->setText(tr("Saving block"));
     fileName = QFileDialog::getSaveFileName(this,
                                 QString(tr("Save block")),
                                 lastDirectory,
@@ -1267,6 +1269,7 @@ void MainWindow::receiveAddr(QString addressData)
     }
     file.write(block);
     file.close();
+    ui->statusMessage->setText("");
 }
 
 void MainWindow::receiveAddr2(QString addressData)
@@ -1276,12 +1279,12 @@ void MainWindow::receiveAddr2(QString addressData)
     blockStartAddr = 0;
     blockLen = 0;
     blockStartAddr = hexToInt(addressData);
-    ui->statusBar->showMessage(tr("Opening block"));
+    ui->statusMessage->setText(tr("Opening block"));
     fileName = QFileDialog::getOpenFileName(this,
                                 QString(tr("Open block")),
                                 lastDirectory,
                                 "Data Images (*.bin *.BIN);;All files (*.*)");
-    ui->statusBar->showMessage(tr("Current file: ") + fileName);
+    ui->statusMessage->setText(tr("Current file: ") + fileName);
     QFileInfo info(fileName);
     lastDirectory = info.filePath();
     QFile file(fileName);
@@ -1304,7 +1307,7 @@ void MainWindow::receiveAddr2(QString addressData)
     }
     hexEdit->setData(chipData);
     file.close();
-    ui->statusBar->showMessage("");
+    ui->statusMessage->setText("");
 }
 
 void MainWindow::on_actionSave_Part_triggered()
@@ -1439,7 +1442,7 @@ void MainWindow::on_comboBox_type_currentIndexChanged(int index)
                     if (( index2 == -1 ) && (chips[i].chipTypeHex == currentChipType)) ui->comboBox_man->addItem(chips[i].chipManuf);
     }
      ui->comboBox_man->setCurrentIndex(0);
-     ui->statusBar->showMessage("");
+     ui->statusMessage->setText("");
      ui->comboBox_man->setCurrentIndex(0);
      ui->comboBox_vcc->setCurrentIndex(0);
      ui->comboBox_name->setCurrentIndex(0);
@@ -1649,7 +1652,7 @@ void MainWindow::on_actionStop_triggered()
   ui->checkBox_2->setStyleSheet("");
   ui->checkBox_3->setStyleSheet("");
   ui->pushButton_3->setStyleSheet(grnKeyStyle);
-  ui->statusBar->showMessage("");
+  ui->statusMessage->setText("");
   return;
 }
 
@@ -1693,7 +1696,7 @@ void MainWindow::progInit()
     QString datFileNameReserve = "/usr/share/imsprog/IMSProg.Dat";
     QString currentDatFilePath = "";
     //opening chip database file
-    ui->statusBar->showMessage(tr("Opening DAT file"));
+    ui->statusMessage->setText(tr("Opening DAT file"));
 
     if (QFileInfo(datFileNameMain).exists()) currentDatFilePath = datFileNameMain;
     else if (QFileInfo(datFileNameReserve).exists()) currentDatFilePath = datFileNameReserve;
@@ -1708,7 +1711,7 @@ void MainWindow::progInit()
     dataChips = datfile.readAll();
     datfile.close();
     //parsing dat file
-    ui->statusBar->showMessage(tr("Parsing DAT file"));
+    ui->statusMessage->setText(tr("Parsing DAT file"));
     //parsing qbytearray
     char txtBuf[0x30];
     int i, j, recNo, dataPoz, dataSize, delay;
@@ -1808,7 +1811,7 @@ void MainWindow::progInit()
                     if ((index2 == -1) && (chips[i].chipTypeHex ==0)) ui->comboBox_man->addItem(chips[i].chipManuf);
     }
      ui->comboBox_man->setCurrentIndex(0);
-     ui->statusBar->showMessage("");
+     ui->statusMessage->setText("");
      currentChipType = 0;
      ui->comboBox_type->setCurrentIndex(0);
 }
@@ -1881,15 +1884,16 @@ void MainWindow::on_actionExport_to_Intel_HEX_triggered()
          int ostatok = 0;
          ui->progressBar->setRange(0,chipData.size());
          lastDirectory.replace(".bin", ".hex");
-         ui->statusBar->showMessage(tr("Saving file"));
+         ui->statusMessage->setText(tr("Saving file"));
          fileName = QFileDialog::getSaveFileName(this,
                                      QString(tr("Save file")),
                                      lastDirectory,
                                      "Intel HEX Images (*.hex *.HEX);;All files (*.*)");         
          QFileInfo info(fileName);
+         ui->statusMessage->setText("");
          lastDirectory = info.filePath();
          if (QString::compare(info.suffix(), "hex", Qt::CaseInsensitive)) fileName = fileName + ".hex";
-         ui->statusBar->showMessage(tr("Current file: ") + info.fileName());
+         ui->statusMessage->setText(tr("Current file: ") + info.fileName());
          QFile file(fileName);
          QTextStream stream(&file);
          if (!file.open(QIODevice::ReadWrite | QIODevice::Truncate | QIODevice::Text))
@@ -1951,13 +1955,13 @@ void MainWindow::on_actionImport_from_Intel_HEX_triggered()
     unsigned char currByte;
     uint8_t counter, checkSUM;
     QString currStr ="", strVal = "";
-    ui->statusBar->showMessage(tr("Opening file"));
+    ui->statusMessage->setText(tr("Opening file"));
     fileName = QFileDialog::getOpenFileName(this,
                                 QString(tr("Open file")),
                                 lastDirectory,
                                 "Intel HEX Images (*.hex *.HEX);;All files (*.*)");
     QFileInfo info(fileName);
-    ui->statusBar->showMessage(tr("Current file: ") + info.fileName());
+    ui->statusMessage->setText(tr("Current file: ") + info.fileName());
     lastDirectory = info.filePath();
     QFile file(fileName);
 
