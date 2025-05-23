@@ -1960,20 +1960,23 @@ void MainWindow::on_actionImport_from_Intel_HEX_triggered()
     uint8_t counter, checkSUM;
     QString currStr ="", strVal = "";
     ui->statusMessage->setText(tr("Opening file"));
+    if (numberOfReads == 0) oldFileName = fileName;
+    else oldFileName = ui->comboBox_name->currentText();
     fileName = QFileDialog::getOpenFileName(this,
                                 QString(tr("Open file")),
                                 lastDirectory,
                                 "Intel HEX Images (*.hex *.HEX);;All files (*.*)");
     QFileInfo info(fileName);
-    ui->statusMessage->setText(tr("Current file: ") + info.fileName());
-    lastDirectory = info.filePath();
     QFile file(fileName);
 
     if (!file.open(QIODevice::ReadOnly))
     {
-
         return;
     }
+    ui->statusMessage->setText(tr("Current file: ") + info.fileName());
+    lastDirectory = info.filePath();
+    preparingToCompare(0);
+    filled = 0;
     hi_addr = 0;
     lo_addr = 0;
     ui->progressBar->setRange(0, chipSize);
@@ -2143,7 +2146,6 @@ void MainWindow::preparingToCompare(bool type)
     {
         if (numberOfReads > 0)
         {
-           //oldFileName = ui->comboBox_name->currentText();
            numberOfReads = 0;
         }
         newFileName = fileName;
