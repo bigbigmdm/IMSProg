@@ -1,7 +1,7 @@
 /*
  * This file is part of the IMSProg_Editor project.
  *
- * Copyright (C) 2023-2024 Mikhail Medvedev (e-ink-reader@yandex.ru)
+ * Copyright (C) 2023-2025 Mikhail Medvedev (e-ink-reader@yandex.ru)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -182,6 +182,7 @@ void MainWindow::on_actionOpen_triggered()
              else if(chips[recNo].chipTypeTxt.compare("95_EEPROM")==0) model->item(recNo, 0)->setBackground(QBrush(QColor(0xcc, 0xff, 0xcc)));
              else if(chips[recNo].chipTypeTxt.compare("25_EEPROM")==0) model->item(recNo, 0)->setBackground(QBrush(QColor(0xff, 0xcc, 0xff)));
              else if(chips[recNo].chipTypeTxt.compare("45_EEPROM")==0) model->item(recNo, 0)->setBackground(QBrush(QColor(0xcc, 0xcc, 0xff)));
+             else if(chips[recNo].chipTypeTxt.compare("SPI_NAND")==0) model->item(recNo, 0)->setBackground(QBrush(QColor(0xcc, 0xcc, 0xcc)));
              item = new QStandardItem(chips[recNo].chipManuf);
              model->setItem(recNo, 1, item);
              item = new QStandardItem(chips[recNo].chipName);
@@ -277,6 +278,7 @@ QString MainWindow::bytePrint(unsigned char z)
         else if(tmpStr.compare("95_EEPROM")==0) model->item(row, 0)->setBackground(QBrush(QColor(0xcc, 0xff, 0xcc)));
         else if(tmpStr.compare("25_EEPROM")==0) model->item(row, 0)->setBackground(QBrush(QColor(0xff, 0xcc, 0xff)));
         else if(tmpStr.compare("45_EEPROM")==0) model->item(row, 0)->setBackground(QBrush(QColor(0xcc, 0xcc, 0xff)));
+        else if(tmpStr.compare("SPI_NAND")==0) model->item(row, 0)->setBackground(QBrush(QColor(0xcc, 0xcc, 0xcc)));
         else  model->item(row, 0)->setBackground(QBrush(QColor(0xff, 0xff, 0xff)));
        }
      }
@@ -805,6 +807,7 @@ void MainWindow::on_actionImport_from_CSV_triggered()
              else if(chType.compare("95_EEPROM")==0) model->item(recNo, 0)->setBackground(QBrush(QColor(0xcc, 0xff, 0xcc)));
              else if(chType.compare("25_EEPROM")==0) model->item(recNo, 0)->setBackground(QBrush(QColor(0xff, 0xcc, 0xff)));
              else if(chType.compare("45_EEPROM")==0) model->item(recNo, 0)->setBackground(QBrush(QColor(0xcc, 0xcc, 0xff)));
+             else if(chType.compare("SPI_NAND")==0) model->item(recNo, 0)->setBackground(QBrush(QColor(0xcc, 0xcc, 0xcc)));
              else  model->item(recNo, 0)->setBackground(QBrush(QColor(0xff, 0xff, 0xff)));
 
            }
