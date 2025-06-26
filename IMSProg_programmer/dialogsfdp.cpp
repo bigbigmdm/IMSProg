@@ -19,6 +19,8 @@
 #include "unistd.h"
 #include "memory"
 #include <QDebug>
+#include <QRegularExpression>
+#include <QValidator>
 DialogSFDP::DialogSFDP(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::DialogSFDP)
@@ -468,32 +470,17 @@ void DialogSFDP::setLineEditFilter()
 {
     QRegExp reHex( "[0-1]{1}" );
     QRegExpValidator *validator = new QRegExpValidator(reHex, this);
-    ui->lineEdit_sr00->setValidator(validator);
-    ui->lineEdit_sr01->setValidator(validator);
-    ui->lineEdit_sr02->setValidator(validator);
-    ui->lineEdit_sr03->setValidator(validator);
-    ui->lineEdit_sr04->setValidator(validator);
-    ui->lineEdit_sr05->setValidator(validator);
-    ui->lineEdit_sr06->setValidator(validator);
-    ui->lineEdit_sr07->setValidator(validator);
+    //searching all lineEdit_srXX, XX - numbers
+    QString searchText = "lineEdit_sr\\d+";
+        QRegularExpression regex(searchText);
 
-    ui->lineEdit_sr10->setValidator(validator);
-    ui->lineEdit_sr11->setValidator(validator);
-    ui->lineEdit_sr12->setValidator(validator);
-    ui->lineEdit_sr13->setValidator(validator);
-    ui->lineEdit_sr14->setValidator(validator);
-    ui->lineEdit_sr15->setValidator(validator);
-    ui->lineEdit_sr16->setValidator(validator);
-    ui->lineEdit_sr17->setValidator(validator);
-
-    ui->lineEdit_sr20->setValidator(validator);
-    ui->lineEdit_sr21->setValidator(validator);
-    ui->lineEdit_sr22->setValidator(validator);
-    ui->lineEdit_sr23->setValidator(validator);
-    ui->lineEdit_sr24->setValidator(validator);
-    ui->lineEdit_sr25->setValidator(validator);
-    ui->lineEdit_sr26->setValidator(validator);
-    ui->lineEdit_sr27->setValidator(validator);
+            for (QLineEdit* edit : findChildren<QLineEdit*>())
+            {
+                if (regex.match(edit->objectName()).hasMatch())
+                {
+                    edit->setValidator(validator);
+                }
+            }
 }
 
 void DialogSFDP::r1Disable()
