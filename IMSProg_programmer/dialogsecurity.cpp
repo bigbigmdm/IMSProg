@@ -43,6 +43,7 @@ void DialogSecurity::setAlgorithm(uint8_t currentAlg)
       { 2,  0x03,  0x02, 0x20, 0x3a,  0x04,    0},  //EON
       { 3,  0x68,  0x62, 0x64,    0,     0,    1},  //ISSI
       { 4,  0x03,  0x02, 0x00, 0xb1,  0xc1,    0},  //MXIC, Fidelix, Zetta
+      { 5,  0x4b,  0xb1, 0x00,    0,     0,    0},  //PFlash
     };
     algSettings algSet[] = {
     //    id algType RegNum Size   rg0add   rg1add   rg2add   rg3add allErase a4byte curCommand
@@ -76,6 +77,7 @@ void DialogSecurity::setAlgorithm(uint8_t currentAlg)
       { 0x1b,      0,     3,  64,  0x0010,  0x0020,  0x0030,       0,       0,     1,         1}, //Gigadevice
       { 0x1c,      0,     3,  16,  0x0000,  0x0004,  0x0008,       0,       0,     0,         1}, //Giantec GT25Q32A
       { 0x1d,      0,     3,  16,  0x0000,  0x0008,  0x0010,       0,       0,     0,         1}, //Giantec GT25Q64A
+      { 0x1e,      0,     1,   1,  0x0000,       0,       0,       0,       0,     0,         5}, //Pm25LQ032
       
     };
     curAlg = currentAlg;
@@ -242,7 +244,8 @@ void DialogSecurity::on_toolButton_write_clicked()
                SPI_CONTROLLER_Write_One_Byte(a23a16); //A23...A16
                SPI_CONTROLLER_Write_One_Byte(a15a08); //A15...A08
                SPI_CONTROLLER_Write_One_Byte(0x00);   //A07...A00
-               retval = SPI_CONTROLLER_Write_NByte(buf.get(), 256, SPI_CONTROLLER_SPEED_SINGLE);
+               if (curSettings.size < 4) retval = SPI_CONTROLLER_Write_NByte(buf.get(), curSettings.size * 64, SPI_CONTROLLER_SPEED_SINGLE);
+               else retval = SPI_CONTROLLER_Write_NByte(buf.get(), 256, SPI_CONTROLLER_SPEED_SINGLE);
                SPI_CONTROLLER_Chip_Select_High();
                usleep(1);
 
@@ -251,9 +254,12 @@ void DialogSecurity::on_toolButton_write_clicked()
                   QMessageBox::about(this, tr("Error"), tr("Error writing register!"));
                   return;
               }
-              for (i = 0; i < 256; i++)
+              if (curSettings.size > 3)
               {
-                  buf[i] = buf[i + 256 * (k +1)];
+                  for (i = 0; i < 256; i++)
+                  {
+                      buf[i] = buf[i + 256 * (k +1)];
+                  }
               }
               a15a08++;
               for (i = 0; i < 256; i++)
