@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2023 - 2024 Mikhail Medvedev <e-ink-reader@yandex.ru>
+ * Copyright (C) 2023 - 2025 Mikhail Medvedev <e-ink-reader@yandex.ru>
  *
  *
  * This program is free software; you can redistribute it and/or
@@ -28,7 +28,7 @@ DialogSFDP::DialogSFDP(QWidget *parent) :
     ui->setupUi(this);
     setWindowFlags(Qt::Window | Qt::WindowMinimizeButtonHint | Qt::WindowCloseButtonHint);
     setLineEditFilter();
-    r1Enable();
+    setRegStatus(1, true);
     numOfRegisters = 3; // 3-not reading, 2 - three registers, 1 - two registers, 0 - one register
 }
 
@@ -235,7 +235,7 @@ void DialogSFDP::on_pushButton_clicked()
         if (sfdpBuf[0] != 0xff)
         {
             numOfRegisters++;
-            r1Enable();
+            setRegStatus(1, true);
             ui->lineEdit_sr17->setText(QString::number(((sfdpBuf[0] & 128) >> 7)));
             ui->lineEdit_sr16->setText(QString::number(((sfdpBuf[0] & 64) >> 6)));
             ui->lineEdit_sr15->setText(QString::number(((sfdpBuf[0] & 32) >> 5)));
@@ -245,7 +245,7 @@ void DialogSFDP::on_pushButton_clicked()
             ui->lineEdit_sr11->setText(QString::number(((sfdpBuf[0] & 2) >> 1)));
             ui->lineEdit_sr10->setText(QString::number((sfdpBuf[0] & 1)));
         }
-        else r1Disable();
+        else setRegStatus(1, false);
 
         //READING STATUS REGISTER 2
         SPI_CONTROLLER_Chip_Select_Low();
@@ -261,7 +261,7 @@ void DialogSFDP::on_pushButton_clicked()
         if (sfdpBuf[0] != 0xff)
         {
             numOfRegisters++;
-            r2Enable();
+            setRegStatus(2, true);
             ui->lineEdit_sr27->setText(QString::number(((sfdpBuf[0] & 128) >> 7)));
             ui->lineEdit_sr26->setText(QString::number(((sfdpBuf[0] & 64) >> 6)));
             ui->lineEdit_sr25->setText(QString::number(((sfdpBuf[0] & 32) >> 5)));
@@ -271,7 +271,7 @@ void DialogSFDP::on_pushButton_clicked()
             ui->lineEdit_sr21->setText(QString::number(((sfdpBuf[0] & 2) >> 1)));
             ui->lineEdit_sr20->setText(QString::number((sfdpBuf[0] & 1)));
         }
-        else r2Disable();
+        else setRegStatus(2, false);
 
         //Reading Unique ID
         SPI_CONTROLLER_Chip_Select_Low();
@@ -483,72 +483,36 @@ void DialogSFDP::setLineEditFilter()
             }
 }
 
-void DialogSFDP::r1Disable()
+void DialogSFDP:: setRegStatus(uint8_t regNumber, bool state)
 {
-   ui->lineEdit_sr10->setDisabled(true);
-   ui->lineEdit_sr11->setDisabled(true);
-   ui->lineEdit_sr12->setDisabled(true);
-   ui->lineEdit_sr13->setDisabled(true);
-   ui->lineEdit_sr14->setDisabled(true);
-   ui->lineEdit_sr15->setDisabled(true);
-   ui->lineEdit_sr16->setDisabled(true);
-   ui->lineEdit_sr17->setDisabled(true);
-   ui->label_11->setDisabled(true);
-   ui->lineEdit_sr10->setText("");
-   ui->lineEdit_sr11->setText("");
-   ui->lineEdit_sr12->setText("");
-   ui->lineEdit_sr13->setText("");
-   ui->lineEdit_sr14->setText("");
-   ui->lineEdit_sr15->setText("");
-   ui->lineEdit_sr16->setText("");
-   ui->lineEdit_sr17->setText("");
-}
+    QString searchText = "lineEdit_sr" + QString::number(regNumber) + "\\d+";
+    QRegularExpression regex(searchText);
 
-void DialogSFDP::r2Disable()
-{
-   ui->lineEdit_sr20->setDisabled(true);
-   ui->lineEdit_sr21->setDisabled(true);
-   ui->lineEdit_sr22->setDisabled(true);
-   ui->lineEdit_sr23->setDisabled(true);
-   ui->lineEdit_sr24->setDisabled(true);
-   ui->lineEdit_sr25->setDisabled(true);
-   ui->lineEdit_sr26->setDisabled(true);
-   ui->lineEdit_sr27->setDisabled(true);
-   ui->label_34->setDisabled(true);
-   ui->lineEdit_sr20->setText("");
-   ui->lineEdit_sr21->setText("");
-   ui->lineEdit_sr22->setText("");
-   ui->lineEdit_sr23->setText("");
-   ui->lineEdit_sr24->setText("");
-   ui->lineEdit_sr25->setText("");
-   ui->lineEdit_sr26->setText("");
-   ui->lineEdit_sr27->setText("");
-}
-
-void DialogSFDP::r1Enable()
-{
-    ui->lineEdit_sr10->setDisabled(false);
-    ui->lineEdit_sr11->setDisabled(false);
-    ui->lineEdit_sr12->setDisabled(false);
-    ui->lineEdit_sr13->setDisabled(false);
-    ui->lineEdit_sr14->setDisabled(false);
-    ui->lineEdit_sr15->setDisabled(false);
-    ui->lineEdit_sr16->setDisabled(false);
-    ui->lineEdit_sr17->setDisabled(false);
-    ui->label_11->setDisabled(false);
-}
-
-void DialogSFDP::r2Enable()
-{
-    ui->lineEdit_sr20->setDisabled(false);
-    ui->lineEdit_sr21->setDisabled(false);
-    ui->lineEdit_sr22->setDisabled(false);
-    ui->lineEdit_sr23->setDisabled(false);
-    ui->lineEdit_sr24->setDisabled(false);
-    ui->lineEdit_sr25->setDisabled(false);
-    ui->lineEdit_sr26->setDisabled(false);
-    ui->lineEdit_sr27->setDisabled(false);
-    ui->label_34->setDisabled(false);
+        for (QLineEdit* edit : findChildren<QLineEdit*>())
+        {
+            if (regex.match(edit->objectName()).hasMatch())
+            {
+                if (state == false)
+                {
+                    edit->setDisabled(true);
+                    edit->setText("");
+                }
+                else
+                {
+                    edit->setDisabled(false);
+                }
+            }
+        }
+        if (state == true)
+        {
+            if (regNumber == 1) ui->label_11->setDisabled(false);
+            if (regNumber == 2) ui->label_34->setDisabled(false);
+        }
+        else
+        {
+            if (regNumber == 1) ui->label_11->setDisabled(true);
+            if (regNumber == 2) ui->label_34->setDisabled(true);
+        }
 }
 
 void DialogSFDP::closeEvent(QCloseEvent* event)
