@@ -355,76 +355,76 @@
         <translation>Cerrar</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.cpp" line="81"/>
-        <location filename="../dialogsfdp.cpp" line="101"/>
-        <location filename="../dialogsfdp.cpp" line="210"/>
-        <location filename="../dialogsfdp.cpp" line="230"/>
-        <location filename="../dialogsfdp.cpp" line="256"/>
-        <location filename="../dialogsfdp.cpp" line="285"/>
-        <location filename="../dialogsfdp.cpp" line="300"/>
-        <location filename="../dialogsfdp.cpp" line="462"/>
-        <location filename="../dialogsfdp.cpp" line="464"/>
+        <location filename="../dialogsfdp.cpp" line="83"/>
+        <location filename="../dialogsfdp.cpp" line="103"/>
+        <location filename="../dialogsfdp.cpp" line="212"/>
+        <location filename="../dialogsfdp.cpp" line="225"/>
+        <location filename="../dialogsfdp.cpp" line="244"/>
+        <location filename="../dialogsfdp.cpp" line="266"/>
+        <location filename="../dialogsfdp.cpp" line="281"/>
+        <location filename="../dialogsfdp.cpp" line="434"/>
+        <location filename="../dialogsfdp.cpp" line="436"/>
         <source>Error</source>
         <translation>Error</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.cpp" line="101"/>
-        <location filename="../dialogsfdp.cpp" line="210"/>
-        <location filename="../dialogsfdp.cpp" line="230"/>
-        <location filename="../dialogsfdp.cpp" line="256"/>
+        <location filename="../dialogsfdp.cpp" line="103"/>
+        <location filename="../dialogsfdp.cpp" line="212"/>
+        <location filename="../dialogsfdp.cpp" line="225"/>
+        <location filename="../dialogsfdp.cpp" line="244"/>
         <source>Error reading register!</source>
         <translation>¡Error al leer el registro!</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.cpp" line="173"/>
+        <location filename="../dialogsfdp.cpp" line="175"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt; Hex SFDP register data:
 </source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt; Datos hexadecimales del registro SFDP:
 </translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.cpp" line="174"/>
+        <location filename="../dialogsfdp.cpp" line="176"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Addr:&lt;br&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Addr:&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.cpp" line="464"/>
+        <location filename="../dialogsfdp.cpp" line="436"/>
         <source>Before writing the registers, please press the `Read` button!</source>
         <translation>¡Antes de escribir los registros, presione el botón &quot;Leer&quot;!</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.cpp" line="81"/>
+        <location filename="../dialogsfdp.cpp" line="83"/>
         <source>Error reading JEDEC ID!</source>
         <translation>¡Error al leer el ID JEDEC!</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.cpp" line="41"/>
+        <location filename="../dialogsfdp.cpp" line="43"/>
         <source>Legend:</source>
         <translation>Legend:</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.cpp" line="42"/>
+        <location filename="../dialogsfdp.cpp" line="44"/>
         <source> - Basic area</source>
         <translation> - Zona básica</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.cpp" line="43"/>
+        <location filename="../dialogsfdp.cpp" line="45"/>
         <source> - Extended area</source>
         <translation> - Zona ampliada</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.cpp" line="44"/>
+        <location filename="../dialogsfdp.cpp" line="46"/>
         <source> - Manufacture area</source>
         <translation> - Zona de fabricación</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.cpp" line="285"/>
+        <location filename="../dialogsfdp.cpp" line="266"/>
         <source>Error reading unique ID!</source>
         <translation>¡Error al leer el identificador único!</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.cpp" line="300"/>
-        <location filename="../dialogsfdp.cpp" line="462"/>
+        <location filename="../dialogsfdp.cpp" line="281"/>
+        <location filename="../dialogsfdp.cpp" line="434"/>
         <source>Programmer CH341a is not connected!</source>
         <translation>¡El programador CH341a no está conectado!</translation>
     </message>
@@ -593,50 +593,50 @@
         <translation>Número de registro de seguridad:</translation>
     </message>
     <message>
-        <location filename="../dialogsecurity.cpp" line="168"/>
-        <location filename="../dialogsecurity.cpp" line="178"/>
-        <location filename="../dialogsecurity.cpp" line="251"/>
-        <location filename="../dialogsecurity.cpp" line="285"/>
-        <location filename="../dialogsecurity.cpp" line="354"/>
-        <location filename="../dialogsecurity.cpp" line="379"/>
-        <location filename="../dialogsecurity.cpp" line="412"/>
+        <location filename="../dialogsecurity.cpp" line="170"/>
+        <location filename="../dialogsecurity.cpp" line="180"/>
+        <location filename="../dialogsecurity.cpp" line="254"/>
+        <location filename="../dialogsecurity.cpp" line="291"/>
+        <location filename="../dialogsecurity.cpp" line="360"/>
+        <location filename="../dialogsecurity.cpp" line="385"/>
+        <location filename="../dialogsecurity.cpp" line="418"/>
         <source>Error</source>
         <translation>Error</translation>
     </message>
     <message>
-        <location filename="../dialogsecurity.cpp" line="168"/>
+        <location filename="../dialogsecurity.cpp" line="170"/>
         <source>Error reading register!</source>
         <translation>¡Error al leer el registro!</translation>
     </message>
     <message>
-        <location filename="../dialogsecurity.cpp" line="178"/>
-        <location filename="../dialogsecurity.cpp" line="285"/>
-        <location filename="../dialogsecurity.cpp" line="354"/>
+        <location filename="../dialogsecurity.cpp" line="180"/>
+        <location filename="../dialogsecurity.cpp" line="291"/>
+        <location filename="../dialogsecurity.cpp" line="360"/>
         <source>Programmer CH341a is not connected!</source>
         <translation>¡El programador CH341a no está conectado!</translation>
     </message>
     <message>
-        <location filename="../dialogsecurity.cpp" line="251"/>
+        <location filename="../dialogsecurity.cpp" line="254"/>
         <source>Error writing register!</source>
         <translation>Error al escribir el registro.</translation>
     </message>
     <message>
-        <location filename="../dialogsecurity.cpp" line="370"/>
+        <location filename="../dialogsecurity.cpp" line="376"/>
         <source>Open file</source>
         <translation>Abrir expediente</translation>
     </message>
     <message>
-        <location filename="../dialogsecurity.cpp" line="379"/>
+        <location filename="../dialogsecurity.cpp" line="385"/>
         <source>The file size exceeds the security register size.</source>
         <translation>El tamaño del archivo supera el tamaño del registro de seguridad.</translation>
     </message>
     <message>
-        <location filename="../dialogsecurity.cpp" line="401"/>
+        <location filename="../dialogsecurity.cpp" line="407"/>
         <source>Save file</source>
         <translation>Guardar archivo</translation>
     </message>
     <message>
-        <location filename="../dialogsecurity.cpp" line="412"/>
+        <location filename="../dialogsecurity.cpp" line="418"/>
         <source>Error saving file!</source>
         <translation>¡Error al guardar el archivo!</translation>
     </message>

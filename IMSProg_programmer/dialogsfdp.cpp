@@ -20,7 +20,6 @@
 #include "memory"
 #include <QDebug>
 #include <QRegularExpression>
-#include <QValidator>
 DialogSFDP::DialogSFDP(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::DialogSFDP)
@@ -212,14 +211,7 @@ void DialogSFDP::on_pushButton_clicked()
            QMessageBox::about(this, tr("Error"), tr("Error reading register!"));
            return;
         }
-        ui->lineEdit_sr07->setText(QString::number(((sfdpBuf[0] & 128) >> 7)));
-        ui->lineEdit_sr06->setText(QString::number(((sfdpBuf[0] & 64) >> 6)));
-        ui->lineEdit_sr05->setText(QString::number(((sfdpBuf[0] & 32) >> 5)));
-        ui->lineEdit_sr04->setText(QString::number(((sfdpBuf[0] & 16) >> 4)));
-        ui->lineEdit_sr03->setText(QString::number(((sfdpBuf[0] & 8) >> 3)));
-        ui->lineEdit_sr02->setText(QString::number(((sfdpBuf[0] & 4) >> 2)));
-        ui->lineEdit_sr01->setText(QString::number(((sfdpBuf[0] & 2) >> 1)));
-        ui->lineEdit_sr00->setText(QString::number((sfdpBuf[0] & 1)));
+        printRegData(0, sfdpBuf[0]);
         //READING STATUS REGISTER 1
         numOfRegisters = 0;
         SPI_CONTROLLER_Chip_Select_Low();
@@ -236,14 +228,7 @@ void DialogSFDP::on_pushButton_clicked()
         {
             numOfRegisters++;
             setRegStatus(1, true);
-            ui->lineEdit_sr17->setText(QString::number(((sfdpBuf[0] & 128) >> 7)));
-            ui->lineEdit_sr16->setText(QString::number(((sfdpBuf[0] & 64) >> 6)));
-            ui->lineEdit_sr15->setText(QString::number(((sfdpBuf[0] & 32) >> 5)));
-            ui->lineEdit_sr14->setText(QString::number(((sfdpBuf[0] & 16) >> 4)));
-            ui->lineEdit_sr13->setText(QString::number(((sfdpBuf[0] & 8) >> 3)));
-            ui->lineEdit_sr12->setText(QString::number(((sfdpBuf[0] & 4) >> 2)));
-            ui->lineEdit_sr11->setText(QString::number(((sfdpBuf[0] & 2) >> 1)));
-            ui->lineEdit_sr10->setText(QString::number((sfdpBuf[0] & 1)));
+            printRegData(1, sfdpBuf[0]);
         }
         else setRegStatus(1, false);
 
@@ -262,14 +247,7 @@ void DialogSFDP::on_pushButton_clicked()
         {
             numOfRegisters++;
             setRegStatus(2, true);
-            ui->lineEdit_sr27->setText(QString::number(((sfdpBuf[0] & 128) >> 7)));
-            ui->lineEdit_sr26->setText(QString::number(((sfdpBuf[0] & 64) >> 6)));
-            ui->lineEdit_sr25->setText(QString::number(((sfdpBuf[0] & 32) >> 5)));
-            ui->lineEdit_sr24->setText(QString::number(((sfdpBuf[0] & 16) >> 4)));
-            ui->lineEdit_sr23->setText(QString::number(((sfdpBuf[0] & 8) >> 3)));
-            ui->lineEdit_sr22->setText(QString::number(((sfdpBuf[0] & 4) >> 2)));
-            ui->lineEdit_sr21->setText(QString::number(((sfdpBuf[0] & 2) >> 1)));
-            ui->lineEdit_sr20->setText(QString::number((sfdpBuf[0] & 1)));
+            printRegData(2,sfdpBuf[0]);
         }
         else setRegStatus(2, false);
 
@@ -316,37 +294,28 @@ void DialogSFDP::on_pushButton_3_clicked()
     stCH341 = ch341a_spi_init();
     if (stCH341 == 0)
     {
-       uint8_t r0, r1, r2;
-
-       r0 = 0;
-       r1 = 0;
-       r2 = 0;
-       if (QString::compare(ui->lineEdit_sr07->text(), "0", Qt::CaseInsensitive)) r0 = r0 + 128;
-       if (QString::compare(ui->lineEdit_sr06->text(), "0", Qt::CaseInsensitive)) r0 = r0 +  64;
-       if (QString::compare(ui->lineEdit_sr05->text(), "0", Qt::CaseInsensitive)) r0 = r0 +  32;
-       if (QString::compare(ui->lineEdit_sr04->text(), "0", Qt::CaseInsensitive)) r0 = r0 +  16;
-       if (QString::compare(ui->lineEdit_sr03->text(), "0", Qt::CaseInsensitive)) r0 = r0 +   8;
-       if (QString::compare(ui->lineEdit_sr02->text(), "0", Qt::CaseInsensitive)) r0 = r0 +   4;
-       if (QString::compare(ui->lineEdit_sr01->text(), "0", Qt::CaseInsensitive)) r0 = r0 +   2;
-       if (QString::compare(ui->lineEdit_sr00->text(), "0", Qt::CaseInsensitive)) r0 = r0 +   1;
-
-       if (QString::compare(ui->lineEdit_sr17->text(), "0", Qt::CaseInsensitive)) r1 = r1 + 128;
-       if (QString::compare(ui->lineEdit_sr16->text(), "0", Qt::CaseInsensitive)) r1 = r1 +  64;
-       if (QString::compare(ui->lineEdit_sr15->text(), "0", Qt::CaseInsensitive)) r1 = r1 +  32;
-       if (QString::compare(ui->lineEdit_sr14->text(), "0", Qt::CaseInsensitive)) r1 = r1 +  16;
-       if (QString::compare(ui->lineEdit_sr13->text(), "0", Qt::CaseInsensitive)) r1 = r1 +   8;
-       if (QString::compare(ui->lineEdit_sr12->text(), "0", Qt::CaseInsensitive)) r1 = r1 +   4;
-       if (QString::compare(ui->lineEdit_sr11->text(), "0", Qt::CaseInsensitive)) r1 = r1 +   2;
-       if (QString::compare(ui->lineEdit_sr10->text(), "0", Qt::CaseInsensitive)) r1 = r1 +   1;
-
-       if (QString::compare(ui->lineEdit_sr27->text(), "0", Qt::CaseInsensitive)) r2 = r2 + 128;
-       if (QString::compare(ui->lineEdit_sr26->text(), "0", Qt::CaseInsensitive)) r2 = r2 +  64;
-       if (QString::compare(ui->lineEdit_sr25->text(), "0", Qt::CaseInsensitive)) r2 = r2 +  32;
-       if (QString::compare(ui->lineEdit_sr24->text(), "0", Qt::CaseInsensitive)) r2 = r2 +  16;
-       if (QString::compare(ui->lineEdit_sr23->text(), "0", Qt::CaseInsensitive)) r2 = r2 +   8;
-       if (QString::compare(ui->lineEdit_sr22->text(), "0", Qt::CaseInsensitive)) r2 = r2 +   4;
-       if (QString::compare(ui->lineEdit_sr21->text(), "0", Qt::CaseInsensitive)) r2 = r2 +   2;
-       if (QString::compare(ui->lineEdit_sr20->text(), "0", Qt::CaseInsensitive)) r2 = r2 +   1;
+       //scanning data from the form
+       uint8_t r[3], k, i;
+       int j;
+       r[0] = 0;
+       r[1] = 0;
+       r[2] = 0;
+       for (k = 0; k < 3; k++)
+       {
+           i = 128;
+           for (j = 7; j >= 0; j--)
+           {
+               QString currRegName = "lineEdit_sr" + QString::number(k) + QString::number(j);
+                       for (QLineEdit* edit : findChildren<QLineEdit*>())
+                       {
+                           if (edit->objectName() == currRegName)
+                           {
+                               if (QString::compare(edit->text(), "0", Qt::CaseInsensitive)) r[k] = r[k] + i;
+                               i = i / 2;
+                           }
+                       }
+           }
+       }
 
        //Writing status registers 0,1 for Winbond
 
@@ -362,8 +331,8 @@ void DialogSFDP::on_pushButton_3_clicked()
 
        SPI_CONTROLLER_Chip_Select_Low();
        SPI_CONTROLLER_Write_One_Byte(0x01);
-       SPI_CONTROLLER_Write_One_Byte(r0);
-       if (numOfRegisters > 0) SPI_CONTROLLER_Write_One_Byte(r1);
+       SPI_CONTROLLER_Write_One_Byte(r[0]);
+       if (numOfRegisters > 0) SPI_CONTROLLER_Write_One_Byte(r[1]);
        SPI_CONTROLLER_Chip_Select_High();
        usleep(1);
 
@@ -392,7 +361,7 @@ void DialogSFDP::on_pushButton_3_clicked()
 
            SPI_CONTROLLER_Chip_Select_Low();
            SPI_CONTROLLER_Write_One_Byte(0x01);
-           SPI_CONTROLLER_Write_One_Byte(r0);
+           SPI_CONTROLLER_Write_One_Byte(r[0]);
            SPI_CONTROLLER_Chip_Select_High();
            usleep(1);
 
@@ -418,7 +387,7 @@ void DialogSFDP::on_pushButton_3_clicked()
 
            SPI_CONTROLLER_Chip_Select_Low();
            SPI_CONTROLLER_Write_One_Byte(0x31);
-           SPI_CONTROLLER_Write_One_Byte(r1);
+           SPI_CONTROLLER_Write_One_Byte(r[1]);
            SPI_CONTROLLER_Chip_Select_High();
            usleep(1);
 
@@ -448,7 +417,7 @@ void DialogSFDP::on_pushButton_3_clicked()
 
            SPI_CONTROLLER_Chip_Select_Low();
            SPI_CONTROLLER_Write_One_Byte(0x11);
-           SPI_CONTROLLER_Write_One_Byte(r2);
+           SPI_CONTROLLER_Write_One_Byte(r[2]);
            SPI_CONTROLLER_Chip_Select_High();
            usleep(1);
 
@@ -519,4 +488,24 @@ void DialogSFDP::closeEvent(QCloseEvent* event)
 {
     emit closeRequestHasArrived();
     QWidget::closeEvent(event);
+}
+
+void DialogSFDP::printRegData(uint8_t regNumber, uint8_t regData)
+{
+    uint8_t i;
+    int j;
+    i = 128;
+
+    for (j = 7; j >= 0; j--)
+    {
+        QString currRegName = "lineEdit_sr" + QString::number(regNumber) + QString::number(j);
+        for (QLineEdit* edit : findChildren<QLineEdit*>())
+        {
+            if (edit->objectName() == currRegName)
+            {
+                edit->setText(QString::number(((regData & i) >> j)));
+            }
+        }
+        i = i / 2;
+    }
 }
