@@ -40,6 +40,7 @@ private slots:
     void on_pushButton_2_clicked();
     void on_pushButton_3_clicked();
     void setRegStatus(uint8_t regNumber, bool state);
+    void printRegData(uint8_t regNumber, uint8_t regData);
 
 signals:
     void closeRequestHasArrived();
