@@ -1,3 +1,14 @@
+imsprog (1.6.2-1) unstable; urgency=medium
+
+  * New upstream version:
+    - Fix: program crashed if security registers was less than 256 bytes
+    - Fix: Information in the status bar disappears when hovering over a menu
+    - Added comparison of INTEL HEX and ASUS CAP with other files
+    - Added close and minimise buttons for subordinate forms
+    - New chips added to database
+    - Chip information form code optimized
+ -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Tue, 1 Jul 2025 11:32:27 +0300
+
 imsprog (1.6.1-1) unstable; urgency=medium
 
   * New upstream version:
