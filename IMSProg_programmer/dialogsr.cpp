@@ -24,6 +24,7 @@ DialogSR::DialogSR(QWidget *parent) :
     ui(new Ui::DialogSR)
 {
     ui->setupUi(this);
+    setWindowFlags(Qt::Window | Qt::WindowMinimizeButtonHint | Qt::WindowCloseButtonHint);
     setLineEditFilter();
     regReaded = false;
 }

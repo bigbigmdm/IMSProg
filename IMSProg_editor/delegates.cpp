@@ -34,6 +34,8 @@
         editor->addItem("93_EEPROM");
         editor->addItem("24_EEPROM");
         editor->addItem("95_EEPROM");
+        editor->addItem("45_EEPROM");
+        editor->addItem("SPI_NAND");
         return editor;
     }
     void chTypeDelegate::setEditorData(QWidget *editor, const QModelIndex &index) const
@@ -117,12 +119,21 @@
     QWidget *chBlSizeDelegate::createEditor(QWidget *parent, const QStyleOptionViewItem &option, const QModelIndex &index) const
     {
         QComboBox *editor = new QComboBox(parent);
+        editor->addItem("1");
+        editor->addItem("2");
+        editor->addItem("4");
         editor->addItem("8");
         editor->addItem("16");
         editor->addItem("32");
         editor->addItem("64");
         editor->addItem("128");
         editor->addItem("256");
+        editor->addItem("264");
+        editor->addItem("512");
+        editor->addItem("528");
+        editor->addItem("1024");
+        editor->addItem("2048");
+        editor->addItem("4096");
         return editor;
     }
     void chBlSizeDelegate::setEditorData(QWidget *editor, const QModelIndex &index) const

@@ -90,6 +90,15 @@
     </screenshot>
   </screenshots>
   <releases>
+  <release version="1.6.2" date="2025-07-01" urgency="medium">	  
+    <description>
+	    <p>Fixed: program crashed if security registers was less than 256 bytes.</p>
+	    <p>Fixed: Information in the status bar disappears when hovering over a menu.</p>
+	    <p>Added: close and minimise buttons for subordinate forms.</p>
+	    <p>Added: comparison of INTEL HEX and ASUS CAP with other files.</p>
+	    <p>Added: new chips to the database.</p>
+    </description>
+  </release>
   <release version="1.6.1" date="2025-05-19" urgency="medium">	  
     <description>
 	    <p>Fixed: when the page size is changed, the buffer is cleared.</p>

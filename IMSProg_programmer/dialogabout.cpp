@@ -20,10 +20,11 @@ DialogAbout::DialogAbout(QWidget *parent) :
     ui(new Ui::DialogAbout)
 {
     ui->setupUi(this);
+    setWindowFlags(Qt::Window | Qt::WindowMinimizeButtonHint | Qt::WindowCloseButtonHint);
     ui->label_7->setTextFormat(Qt::RichText);
     ui->label_7->setTextInteractionFlags(Qt::TextBrowserInteraction);
     ui->label_7->setOpenExternalLinks(true);
-    ui->label_8->setText("V1.6.1");
+    ui->label_8->setText("V1.6.2");
 }
 
 DialogAbout::~DialogAbout()

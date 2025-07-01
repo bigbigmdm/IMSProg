@@ -20,6 +20,7 @@ DialogInfo::DialogInfo(QWidget *parent) :
     ui(new Ui::DialogInfo)
 {
     ui->setupUi(this);
+    setWindowFlags(Qt::Window | Qt::WindowMinimizeButtonHint | Qt::WindowCloseButtonHint);
     pix24 = new QPixmap(":/res/img/ch341_24.png");
     pix93 = new QPixmap(":/res/img/ch341_93.png");
     pix25 = new QPixmap(":/res/img/ch341_spi.png");

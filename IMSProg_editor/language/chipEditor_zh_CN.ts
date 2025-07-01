@@ -132,16 +132,16 @@
     <message>
         <location filename="../ezp_chip_editor.cpp" line="51"/>
         <location filename="../ezp_chip_editor.cpp" line="53"/>
-        <location filename="../ezp_chip_editor.cpp" line="732"/>
-        <location filename="../ezp_chip_editor.cpp" line="753"/>
+        <location filename="../ezp_chip_editor.cpp" line="736"/>
+        <location filename="../ezp_chip_editor.cpp" line="757"/>
         <source>Open the file</source>
         <translation>打开文件</translation>
     </message>
     <message>
         <location filename="../ezp_chip_editor.cpp" line="56"/>
-        <location filename="../ezp_chip_editor.cpp" line="697"/>
-        <location filename="../ezp_chip_editor.cpp" line="735"/>
-        <location filename="../ezp_chip_editor.cpp" line="756"/>
+        <location filename="../ezp_chip_editor.cpp" line="701"/>
+        <location filename="../ezp_chip_editor.cpp" line="739"/>
+        <location filename="../ezp_chip_editor.cpp" line="760"/>
         <source>Current file: </source>
         <translation>当前文件： </translation>
     </message>
@@ -222,47 +222,47 @@ pages</source>
         <translation>VCC</translation>
     </message>
     <message>
-        <location filename="../ezp_chip_editor.cpp" line="528"/>
-        <location filename="../ezp_chip_editor.cpp" line="565"/>
-        <location filename="../ezp_chip_editor.cpp" line="593"/>
-        <location filename="../ezp_chip_editor.cpp" line="632"/>
-        <location filename="../ezp_chip_editor.cpp" line="672"/>
-        <location filename="../ezp_chip_editor.cpp" line="792"/>
-        <location filename="../ezp_chip_editor.cpp" line="824"/>
+        <location filename="../ezp_chip_editor.cpp" line="532"/>
+        <location filename="../ezp_chip_editor.cpp" line="569"/>
+        <location filename="../ezp_chip_editor.cpp" line="597"/>
+        <location filename="../ezp_chip_editor.cpp" line="636"/>
+        <location filename="../ezp_chip_editor.cpp" line="676"/>
+        <location filename="../ezp_chip_editor.cpp" line="796"/>
+        <location filename="../ezp_chip_editor.cpp" line="830"/>
         <source>Warning</source>
         <translation>警告</translation>
     </message>
     <message>
-        <location filename="../ezp_chip_editor.cpp" line="528"/>
-        <location filename="../ezp_chip_editor.cpp" line="565"/>
-        <location filename="../ezp_chip_editor.cpp" line="593"/>
-        <location filename="../ezp_chip_editor.cpp" line="632"/>
-        <location filename="../ezp_chip_editor.cpp" line="672"/>
+        <location filename="../ezp_chip_editor.cpp" line="532"/>
+        <location filename="../ezp_chip_editor.cpp" line="569"/>
+        <location filename="../ezp_chip_editor.cpp" line="597"/>
+        <location filename="../ezp_chip_editor.cpp" line="636"/>
+        <location filename="../ezp_chip_editor.cpp" line="676"/>
         <source>No string selected.</source>
         <translation>未选择字符串。</translation>
     </message>
     <message>
-        <location filename="../ezp_chip_editor.cpp" line="692"/>
+        <location filename="../ezp_chip_editor.cpp" line="696"/>
         <source>Saving file</source>
         <translation>保存文件</translation>
     </message>
     <message>
-        <location filename="../ezp_chip_editor.cpp" line="694"/>
+        <location filename="../ezp_chip_editor.cpp" line="698"/>
         <source>Save file</source>
         <translation>保存文件</translation>
     </message>
     <message>
-        <location filename="../ezp_chip_editor.cpp" line="751"/>
+        <location filename="../ezp_chip_editor.cpp" line="755"/>
         <source>Opening file</source>
         <translation>打开文件</translation>
     </message>
     <message>
-        <location filename="../ezp_chip_editor.cpp" line="792"/>
+        <location filename="../ezp_chip_editor.cpp" line="796"/>
         <source>Invalid CSV data file format.</source>
         <translation>CSV 数据文件格式无效。</translation>
     </message>
     <message>
-        <location filename="../ezp_chip_editor.cpp" line="824"/>
+        <location filename="../ezp_chip_editor.cpp" line="830"/>
         <source>Invalid CSV header file format.</source>
         <translation>CSV 头文件格式无效。</translation>
     </message>

@@ -767,11 +767,17 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
           <widget class="QLineEdit" name="jedecEdit">
            <property name="geometry">
             <rect>
-             <x>200</x>
-             <y>350</y>
-             <width>21</width>
+             <x>90</x>
+             <y>320</y>
+             <width>100</width>
              <height>25</height>
             </rect>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>100</width>
+             <height>0</height>
+            </size>
            </property>
            <property name="maximumSize">
             <size>
@@ -792,8 +798,8 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
           <widget class="QLabel" name="jLabel">
            <property name="geometry">
             <rect>
-             <x>140</x>
-             <y>350</y>
+             <x>20</x>
+             <y>320</y>
              <width>67</width>
              <height>17</height>
             </rect>
@@ -811,8 +817,8 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
           <widget class="QLabel" name="lStatus">
            <property name="geometry">
             <rect>
-             <x>60</x>
-             <y>350</y>
+             <x>40</x>
+             <y>290</y>
              <width>61</width>
              <height>16</height>
             </rect>
@@ -824,11 +830,17 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
           <widget class="QLineEdit" name="eStatus">
            <property name="geometry">
             <rect>
-             <x>110</x>
-             <y>350</y>
-             <width>31</width>
+             <x>90</x>
+             <y>290</y>
+             <width>100</width>
              <height>21</height>
             </rect>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>100</width>
+             <height>0</height>
+            </size>
            </property>
            <property name="maximumSize">
             <size>
@@ -849,7 +861,7 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
           <widget class="QLabel" name="cLabel">
            <property name="geometry">
             <rect>
-             <x>230</x>
+             <x>20</x>
              <y>350</y>
              <width>67</width>
              <height>17</height>
@@ -865,11 +877,17 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
           <widget class="QLineEdit" name="crcEdit">
            <property name="geometry">
             <rect>
-             <x>290</x>
+             <x>90</x>
              <y>350</y>
-             <width>21</width>
+             <width>100</width>
              <height>25</height>
             </rect>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>100</width>
+             <height>0</height>
+            </size>
            </property>
            <property name="maximumSize">
             <size>
@@ -885,6 +903,31 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
            </property>
            <property name="styleSheet">
             <string notr="true">border: 2px solid gray;border-radius: 5px;font-weight:600;border-style:inset;</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="statusMessage">
+           <property name="geometry">
+            <rect>
+             <x>40</x>
+             <y>390</y>
+             <width>315</width>
+             <height>16</height>
+            </rect>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>315</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>Message</string>
            </property>
           </widget>
          </widget>

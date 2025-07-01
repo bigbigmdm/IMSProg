@@ -270,7 +270,7 @@ It contains the following controls: ![Undo](img/undo.png) undo,
 ![Redo](img/redo64.png) redo, and the ![Search](img/hexsearch64.png) 
 search/replace. The `[Ctrl+A]` key used to update the CRC24 checksum. The 
 `[Ctrl+G]` key used to move the cursor to the entered address. The `[Ctrl+L]` 
-key is used to fill the hex editor buffer with a special test array. The `[Ctrl+L]` key used for compares the results of the last and penultimate chip read or file open operation.
+key is used to fill the hex editor buffer with a special test array. The `[Ctrl+M]` key used for compares the results of the last and penultimate chip read or file open operation.
 
 ![compare](img/compare_files_en.png)
 

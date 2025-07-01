@@ -132,16 +132,16 @@
     <message>
         <location filename="../ezp_chip_editor.cpp" line="51"/>
         <location filename="../ezp_chip_editor.cpp" line="53"/>
-        <location filename="../ezp_chip_editor.cpp" line="734"/>
-        <location filename="../ezp_chip_editor.cpp" line="755"/>
+        <location filename="../ezp_chip_editor.cpp" line="736"/>
+        <location filename="../ezp_chip_editor.cpp" line="757"/>
         <source>Open the file</source>
         <translation>Abrir o arquivo</translation>
     </message>
     <message>
         <location filename="../ezp_chip_editor.cpp" line="56"/>
-        <location filename="../ezp_chip_editor.cpp" line="699"/>
-        <location filename="../ezp_chip_editor.cpp" line="737"/>
-        <location filename="../ezp_chip_editor.cpp" line="758"/>
+        <location filename="../ezp_chip_editor.cpp" line="701"/>
+        <location filename="../ezp_chip_editor.cpp" line="739"/>
+        <location filename="../ezp_chip_editor.cpp" line="760"/>
         <source>Current file: </source>
         <translation>Arquivo atual: </translation>
     </message>
@@ -223,47 +223,47 @@ páginas</translation>
         <translation>VCC</translation>
     </message>
     <message>
-        <location filename="../ezp_chip_editor.cpp" line="530"/>
-        <location filename="../ezp_chip_editor.cpp" line="567"/>
-        <location filename="../ezp_chip_editor.cpp" line="595"/>
-        <location filename="../ezp_chip_editor.cpp" line="634"/>
-        <location filename="../ezp_chip_editor.cpp" line="674"/>
-        <location filename="../ezp_chip_editor.cpp" line="794"/>
-        <location filename="../ezp_chip_editor.cpp" line="827"/>
+        <location filename="../ezp_chip_editor.cpp" line="532"/>
+        <location filename="../ezp_chip_editor.cpp" line="569"/>
+        <location filename="../ezp_chip_editor.cpp" line="597"/>
+        <location filename="../ezp_chip_editor.cpp" line="636"/>
+        <location filename="../ezp_chip_editor.cpp" line="676"/>
+        <location filename="../ezp_chip_editor.cpp" line="796"/>
+        <location filename="../ezp_chip_editor.cpp" line="830"/>
         <source>Warning</source>
         <translation>Advertência</translation>
     </message>
     <message>
-        <location filename="../ezp_chip_editor.cpp" line="530"/>
-        <location filename="../ezp_chip_editor.cpp" line="567"/>
-        <location filename="../ezp_chip_editor.cpp" line="595"/>
-        <location filename="../ezp_chip_editor.cpp" line="634"/>
-        <location filename="../ezp_chip_editor.cpp" line="674"/>
+        <location filename="../ezp_chip_editor.cpp" line="532"/>
+        <location filename="../ezp_chip_editor.cpp" line="569"/>
+        <location filename="../ezp_chip_editor.cpp" line="597"/>
+        <location filename="../ezp_chip_editor.cpp" line="636"/>
+        <location filename="../ezp_chip_editor.cpp" line="676"/>
         <source>No string selected.</source>
         <translation>Nenhuma sequência selecionada.</translation>
     </message>
     <message>
-        <location filename="../ezp_chip_editor.cpp" line="694"/>
+        <location filename="../ezp_chip_editor.cpp" line="696"/>
         <source>Saving file</source>
         <translation>Salvando arquivo</translation>
     </message>
     <message>
-        <location filename="../ezp_chip_editor.cpp" line="696"/>
+        <location filename="../ezp_chip_editor.cpp" line="698"/>
         <source>Save file</source>
         <translation>Salvar arquivo</translation>
     </message>
     <message>
-        <location filename="../ezp_chip_editor.cpp" line="753"/>
+        <location filename="../ezp_chip_editor.cpp" line="755"/>
         <source>Opening file</source>
         <translation>Abrindo arquivo</translation>
     </message>
     <message>
-        <location filename="../ezp_chip_editor.cpp" line="794"/>
+        <location filename="../ezp_chip_editor.cpp" line="796"/>
         <source>Invalid CSV data file format.</source>
         <translation>Formato de arquivo de dados CSV inválido.</translation>
     </message>
     <message>
-        <location filename="../ezp_chip_editor.cpp" line="827"/>
+        <location filename="../ezp_chip_editor.cpp" line="830"/>
         <source>Invalid CSV header file format.</source>
         <translation>Formato de arquivo de cabeçalho CSV inválido.</translation>
     </message>

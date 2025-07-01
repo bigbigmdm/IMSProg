@@ -24,6 +24,7 @@ DialogSP::DialogSP(QWidget *parent) :
     ui(new Ui::DialogSP)
 {
     ui->setupUi(this);
+    setWindowFlags(Qt::Window | Qt::WindowMinimizeButtonHint | Qt::WindowCloseButtonHint);
     ui->comboBox_end->addItem(tr("End address"), 0);
     ui->comboBox_end->addItem(tr("Length"), 1);
     QRegExp reHex( "[A-Fa-f0-9]{1,8}" );
