@@ -14,6 +14,7 @@
   <summary xml:lang="ru">Чтение, запись и стирание микросхем EEPROM</summary>
   <summary xml:lang="uk">Читання, запис і стирання мікросхем EEPROM</summary>
   <summary xml:lang="zh_CN">读取、写入和擦除 EEPROM 芯片</summary>
+  <summary xml:lang="zh_TW">讀取、寫入及清除 EEPROM 晶片</summary>
   <icon type="remote" width="64" height="64">https://github.com/bigbigmdm/IMSProg/tree/main/IMSProg_programmer/img/IMSProg64.png</icon>
   <description>
     <p>IMSProg is a free software for CH341A based chip programmers with graphical interface. With IMSProg you can read, verify, program, erase i2C, SPI, SPI NOR, MicroWire EEPROM chips using the CH341A programmer device.</p>
@@ -25,6 +26,7 @@
     <p xml:lang="ru">IMSProg - это бесплатное программное обеспечение для программаторов микросхем на базе CH341A с графическим интерфейсом. С помощью IMSProg вы можете читать, проверять, программировать, стирать микросхемы i2C, SPI, SPI NOR, MicroWire EEPROM, используя устройство-программатор CH341A.</p>
     <p xml:lang="uk">IMSProg - вільне програмне забезпечення для програматорів мікросхем на базі CH341A з графічним інтерфейсом. За допомогою IMSProg ви можете читати, перевіряти, програмувати, стирати мікросхеми i2C, SPI, SPI NOR, MicroWire EEPROM за допомогою програматора CH341A.</p>
     <p xml:lang="zh_CN">MSProg 是一套 I2C、SPI、MicroWire EEPROM/Flash 芯片 CH341A 编程器免费软件。借助 IMSProg，您可以使用 CH341A 编程器读取、编程、校验、擦除 I2C、SPI、SPI NOR 和 MicroWire 芯片。</p>
+    <p xml:lang="zh_TW">IMSProg 是一款針對 CH341A 晶片燒錄器的免費軟體，具備圖形介面。您可以透過 CH341A 裝置，讀取、驗證、燒錄、清除 i2C、SPI、SPI NOR、MicroWire EEPROM 晶片。</p>
     <p>IMSProg is a collection of tools:</p>
     <p xml:lang="de">IMSProg ist eine Sammlung von Werkzeugen:</p>
     <p xml:lang="es">IMSProg es una colección de herramientas:</p>
@@ -34,6 +36,7 @@
     <p xml:lang="ru">IMSProg - это набор инструментов:</p>
     <p xml:lang="uk">IMSProg - це набір інструментів:</p>
     <p xml:lang="zh_CN">IMSProg 是一套工具集合</p>
+    <p xml:lang="zh_TW">IMSProg 是一套工具集合：</p>
       <ul>
         <li>IMSProg - the chip programmer (it's the main part).</li>
         <li xml:lang="de">IMSProg - der Chip-Programmierer (das ist der Hauptteil).</li>
@@ -44,6 +47,7 @@
         <li xml:lang="ru">IMSProg - программатор микросхем (это основная часть).</li>
         <li xml:lang="uk">IMSProg - програматор мікросхеми (це основна частина).</li>
         <li xml:lang="zh_CN">IMSProg - 芯片编程器（主要部分）</li>
+        <li xml:lang="zh_TW">IMSProg - 晶片燒錄器（這是主要部分）。</li>
         <li>IMSProg_editor - chip database editor.</li>
         <li xml:lang="de">IMSProg_editor - Chipdatenbank-Editor.</li>
         <li xml:lang="es">IMSProg_editor - editor de bases de datos de chips.</li>
@@ -53,6 +57,7 @@
         <li xml:lang="ru">IMSProg_editor - редактор базы данных микросхем.</li>
         <li xml:lang="uk">IMSProg_editor - редактор бази даних мікросхем.</li>
         <li xml:lang="zh_CN">IMSProg_editor - 芯片数据库编辑器。</li>
+        <li xml:lang="zh_TW">IMSProg_editor - 晶片資料庫編輯器。</li>
         <li>IMSProg_database_update - script to update chip database using external web-server.</li>
         <li xml:lang="de">IMSProg_database_update - Skript zur Aktualisierung der Chipdatenbank mit Hilfe eines externen Web-Servers.</li>
         <li xml:lang="es">IMSProg_database_update - script para actualizar la base de datos de chips utilizando un servidor web externo.</li>
@@ -62,6 +67,7 @@
         <li xml:lang="ru">IMSProg_database_update - скрипт для обновления базы данных микросхем с помощью внешнего веб-сервера.</li>
         <li xml:lang="uk">IMSProg_database_update - скрипт для оновлення бази даних чіпів за допомогою зовнішнього веб-сервера.</li>
         <li xml:lang="zh_CN">IMSProg_database_update - 使用外部Web服务器更新芯片数据库的脚本。</li>
+        <li xml:lang="zh_TW">IMSProg_database_update - 使用外部網路伺服器更新晶片資料庫的腳本。</li>
       </ul>
   </description>
   <categories>
@@ -101,6 +107,9 @@
      <keyword xml:lang="zh_CN">微电路</keyword>
      <keyword xml:lang="zh_CN">微芯片</keyword>
      <keyword xml:lang="zh_CN">集成电路</keyword>
+     <keyword xml:lang="zh_TW">微電路</keyword>
+     <keyword xml:lang="zh_TW">微晶片</keyword>
+     <keyword xml:lang="zh_TW">積體電路</keyword>
   </keywords>
   <url type="homepage">https://github.com/bigbigmdm/IMSProg/tree/main</url>
   <url type="contact">https://github.com/bigbigmdm</url>
@@ -124,6 +133,7 @@
       <caption xml:lang="ru">Главный экран с формой подключения микросхемы.</caption>
       <caption xml:lang="uk">Головний екран з формою підключення чіпа.</caption>
       <caption xml:lang="zn_CH">主屏幕显示芯片连接表。</caption>	
+      <caption xml:lang="zh_TW">主畫面與晶片連結表單。</caption>
       <image type="source" width="905" height="650">https://github.com/bigbigmdm/IMSProg/raw/main/img/IMSProg.png</image>
     </screenshot>
     <screenshot>
@@ -136,6 +146,7 @@
       <caption xml:lang="ru">Главный экран.</caption>
       <caption xml:lang="uk">Головний екран.</caption>
       <caption xml:lang="zn_CH">主屏幕。</caption>	
+      <caption xml:lang="zh_TW">主畫面。</caption>
       <image type="source" width="905" height="650">https://github.com/bigbigmdm/IMSProg/raw/main/img/IMSProg_1.png</image>
     </screenshot>
     <screenshot>
@@ -148,6 +159,7 @@
       <caption xml:lang="ru">Форма информации о микросхеме (SFDP и регистры статуса).</caption>
       <caption xml:lang="uk">Форма інформації про чіп (SFDP та регістри стану).</caption>
       <caption xml:lang="zn_CH">芯片信息表（SFDP 和状态寄存器）。</caption>	
+      <caption xml:lang="zh_TW">晶片資訊表單（SFDP和狀態暫存器）。</caption>
       <image type="source" width="954" height="660">https://github.com/bigbigmdm/IMSProg/raw/main/img/sfdp_unblock_en.png</image>
     </screenshot>
   </screenshots>
