@@ -14,6 +14,7 @@
   <summary xml:lang="ru">Редактор баз данных микросхем для программатора IMSProg</summary>
   <summary xml:lang="uk">Редактор бази даних мікросхем для програматорі IMSProg</summary>
   <summary xml:lang="zh_CN">IMSProg 编程器的芯片数据库编辑器。</summary>
+  <summary xml:lang="zh_TW">IMSProg 燒錄器的晶片資料庫編輯器</summary>
   <icon type="remote" width="64" height="64">https://github.com/bigbigmdm/IMSProg/tree/main/IMSProg_editor/img/chipEdit64.png</icon>
   <description>
     <p>IMSProg_editor is used to modify and supplement or export/import in csv format the chip database for the IMSProg programmer.</p>
@@ -25,6 +26,7 @@
     <p xml:lang="ru">IMSProg_editor используется для изменения и дополнения или экспорта/импорта в формате csv базы данных микросхем для программиста IMSProg.</p>
     <p xml:lang="uk">IMSProg_editor використовується для зміни та доповнення або експорту/імпорту у форматі csv бази даних мікросхем для програматорі IMSProg.</p>
     <p xml:lang="zh_CN">IMSProg_editor 用于修改、补充或以 CSV 格式导出/导入芯片数据库，供 IMSProg 编程器使用。</p>
+    <p xml:lang="zh_TW">IMSProg_editor 用於修改、補充或以 CSV 格式匯出/匯入晶片資料庫，供 IMSProg 燒錄器使用。</p>
   </description>
   <categories>
      <category>Development</category>
@@ -64,6 +66,9 @@
      <keyword xml:lang="zh_CN">微电路</keyword>
      <keyword xml:lang="zh_CN">微芯片</keyword>
      <keyword xml:lang="zh_CN">集成电路</keyword>
+     <keyword xml:lang="zh_TW">微電路</keyword>
+     <keyword xml:lang="zh_TW">微晶片</keyword>
+     <keyword xml:lang="zh_TW">積體電路</keyword>
   </keywords>
   <url type="homepage">https://github.com/bigbigmdm/IMSProg/tree/main</url>
   <url type="contact">https://github.com/bigbigmdm</url>
@@ -85,7 +90,8 @@
       <caption xml:lang="pt_BR">Tela principal.</caption>
       <caption xml:lang="ru">Главный экран.</caption>
       <caption xml:lang="uk">Головний екран.</caption>
-      <caption xml:lang="zn_CH">主屏幕。</caption>	
+      <caption xml:lang="zn_CH">主屏幕。</caption>
+      <caption xml:lang="zh_TW">主畫面。</caption>
       <image type="source" width="889" height="436">https://github.com/bigbigmdm/IMSProg/raw/main/IMSProg_editor/img/ezp_editor.png</image>
     </screenshot>
   </screenshots>
