@@ -73,6 +73,7 @@ set(TS_FILES
     language/chipProgrammer_de_DE.ts
     language/chipProgrammer_es_ES.ts
     language/chipProgrammer_zh_CN.ts
+    language/chipProgrammer_zh_TW.ts
     language/chipProgrammer_uk_UA.ts
     language/chipProgrammer_hu_HU.ts
     language/chipProgrammer_pt_BR.ts

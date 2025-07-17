@@ -62,6 +62,7 @@ TRANSLATIONS += language/chipEditor_ru_RU.ts \
         language/chipEditor_hu_HU.ts \
         language/chipEditor_de_DE.ts \
         language/chipEditor_zh_CN.ts \
+        language/chipEditor_zh_TW.ts \
         language/chipEditor_uk_UA.ts \
         language/chipEditor_pt_BR.ts \
         language/chipEditor_it_IT.ts

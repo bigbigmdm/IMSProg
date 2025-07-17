@@ -741,6 +741,7 @@ are [GPL-2+](https://www.gnu.org/licenses/old-licenses/gpl-2.0.html) and from
 - Ukrainian translation by [Sergey Golovko](https://github.com/cappelikan)
 - Chinese translation by [Tian-HP](https://github.com/Tian-HP)
 - German translation by [wucke13](https://github.com/wucke13)
+- Traditional Chinese translation by [ystartgo](https://github.com/ystartgo)
 
 Anyone can add or improve a translation by making a pull request.
 Translations files are located in: [IMSProg_programmer/language/](https://github.com/bigbigmdm/IMSProg/tree/main/IMSProg_programmer/language) and [IMSProg_editor/language/](https://github.com/bigbigmdm/IMSProg/tree/main/IMSProg_editor/language)
