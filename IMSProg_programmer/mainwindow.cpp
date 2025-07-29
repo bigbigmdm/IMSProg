@@ -1649,6 +1649,8 @@ void MainWindow::doNotDisturbCancel()
 void MainWindow::on_actionStop_triggered()
 {
   //ch341a_spi_shutdown();
+  hexEdit->setData(chipData);
+  ui->crcEdit->setText(getCRC32(chipData));  
   isHalted = true;
   QMessageBox::about(this, tr("Stop"), tr("Operation aborted!"));
   ui->pushButton->setStyleSheet(grnKeyStyle);
