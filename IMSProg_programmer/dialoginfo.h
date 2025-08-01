@@ -39,8 +39,10 @@ private:
     QPixmap *pix24;
     QPixmap *pix93;
     QPixmap *pix25;
+    QPixmap *pix35;
     QPixmap *pix45;
     QPixmap *pix2518;
+    QPixmap *pix3518;
     QPixmap *pixnone;
 
 };

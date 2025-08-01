@@ -1021,14 +1021,13 @@ static inline void nand_write_disable(void)
 
 void nand_unprotect(void)
 {
-    int retval;
     u8 prot_reg;
     SPI_CONTROLLER_Chip_Select_Low();
     SPI_CONTROLLER_Write_One_Byte(0x0f);
     SPI_CONTROLLER_Write_One_Byte(0xa0);
-    retval = SPI_CONTROLLER_Read_NByte(&prot_reg, 1, SPI_CONTROLLER_SPEED_SINGLE);
+    SPI_CONTROLLER_Read_NByte(&prot_reg, 1, SPI_CONTROLLER_SPEED_SINGLE);
     SPI_CONTROLLER_Chip_Select_High();
-    usleep(1);//nand_wait_ready(2);
+    usleep(1);
     SPI_CONTROLLER_Chip_Select_Low();
     SPI_CONTROLLER_Write_One_Byte(0x1f);
     SPI_CONTROLLER_Write_One_Byte(0xa0);
@@ -1072,7 +1071,7 @@ int nand_page_write(unsigned char *buf, unsigned int page_size, uint32_t sector_
     retval = SPI_CONTROLLER_Write_NByte( buf, page_size, SPI_CONTROLLER_SPEED_SINGLE );
     if (retval == -1) return retval;
     SPI_CONTROLLER_Chip_Select_High();
-    nand_wait_ready(100);
+    nand_wait_ready(200);
     nand_write_enable();
 
     cmdbuf[0] = 0x10; //From buffer to chip
@@ -1083,4 +1082,20 @@ int nand_page_write(unsigned char *buf, unsigned int page_size, uint32_t sector_
     retval = SPI_CONTROLLER_Write_NByte( cmdbuf, 4, SPI_CONTROLLER_SPEED_SINGLE );
     SPI_CONTROLLER_Chip_Select_High();
     return retval;
+}
+
+void nand_ECCEnable(void)
+{
+    u8 ecc_reg;
+    SPI_CONTROLLER_Chip_Select_Low();
+    SPI_CONTROLLER_Write_One_Byte(0x0f);
+    SPI_CONTROLLER_Write_One_Byte(0xb0);
+    SPI_CONTROLLER_Read_NByte(&ecc_reg, 1, SPI_CONTROLLER_SPEED_SINGLE);
+    SPI_CONTROLLER_Chip_Select_High();
+    usleep(1);
+    SPI_CONTROLLER_Chip_Select_Low();
+    SPI_CONTROLLER_Write_One_Byte(0x1f);
+    SPI_CONTROLLER_Write_One_Byte(0xa0);
+    SPI_CONTROLLER_Write_One_Byte(ecc_reg | 0x10); //set to 1 byte 4
+    SPI_CONTROLLER_Chip_Select_High();
 }
