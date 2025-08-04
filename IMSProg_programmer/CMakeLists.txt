@@ -93,6 +93,7 @@ commands.cpp
 dialogsp.cpp
 dialogrp.cpp
 dialogsfdp.cpp
+dialognandsr.cpp
 dialogsecurity.cpp
 dialogcompare.cpp
 dialogsr.cpp
@@ -123,6 +124,7 @@ dialogsp.h
 dialogrp.h
 dialogsfdp.h
 dialogsecurity.h
+dialognandsr.h
 dialogcompare.h
 dialogsr.h
 dialoginfo.h
@@ -150,6 +152,7 @@ mainwindow.ui
 dialogsp.ui
 dialogrp.ui
 dialogsfdp.ui
+dialognandsr.ui
 dialogsecurity.ui
 dialogcompare.ui
 dialogsr.ui

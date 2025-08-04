@@ -1019,28 +1019,14 @@ static inline void nand_write_disable(void)
     usleep(1);
 }
 
-void nand_unprotect(void)
-{
-    u8 prot_reg;
-    SPI_CONTROLLER_Chip_Select_Low();
-    SPI_CONTROLLER_Write_One_Byte(0x0f);
-    SPI_CONTROLLER_Write_One_Byte(0xa0);
-    SPI_CONTROLLER_Read_NByte(&prot_reg, 1, SPI_CONTROLLER_SPEED_SINGLE);
-    SPI_CONTROLLER_Chip_Select_High();
-    usleep(1);
-    SPI_CONTROLLER_Chip_Select_Low();
-    SPI_CONTROLLER_Write_One_Byte(0x1f);
-    SPI_CONTROLLER_Write_One_Byte(0xa0);
-    SPI_CONTROLLER_Write_One_Byte(prot_reg & 0x83); //set to 0 bytes 6,5,4,3,2
-    SPI_CONTROLLER_Chip_Select_High();
-}
-
 int nand_block_erase(unsigned int sector_number, unsigned int blockSize)
 {
 
     /* Wait until finished previous write command. */
     if (nand_wait_ready(950)) return -1;
-    sector_number = sector_number * 64; //??? << 6
+    sector_number = sector_number << 6;
+    // PA[15:6] is the address for 128KB blocks (total 1,024 blocks), PA[5:0] is
+    //the address for 2KB pages (total 64 pages for each block)
     nand_write_enable();
     nand_unprotect();
     SPI_CONTROLLER_Chip_Select_Low();
@@ -1084,18 +1070,37 @@ int nand_page_write(unsigned char *buf, unsigned int page_size, uint32_t sector_
     return retval;
 }
 
-void nand_ECCEnable(void)
+void nand_unprotect(void)
 {
-    u8 ecc_reg;
+    u8 prot_reg;
     SPI_CONTROLLER_Chip_Select_Low();
     SPI_CONTROLLER_Write_One_Byte(0x0f);
-    SPI_CONTROLLER_Write_One_Byte(0xb0);
-    SPI_CONTROLLER_Read_NByte(&ecc_reg, 1, SPI_CONTROLLER_SPEED_SINGLE);
+    SPI_CONTROLLER_Write_One_Byte(0xa0);
+    SPI_CONTROLLER_Read_NByte(&prot_reg, 1, SPI_CONTROLLER_SPEED_SINGLE);
     SPI_CONTROLLER_Chip_Select_High();
     usleep(1);
     SPI_CONTROLLER_Chip_Select_Low();
     SPI_CONTROLLER_Write_One_Byte(0x1f);
     SPI_CONTROLLER_Write_One_Byte(0xa0);
-    SPI_CONTROLLER_Write_One_Byte(ecc_reg | 0x10); //set to 1 byte 4
+    SPI_CONTROLLER_Write_One_Byte(prot_reg & 0x83); //set to 0 bytes 6,5,4,3,2
     SPI_CONTROLLER_Chip_Select_High();
+}
+
+void nand_ECCEnable(void)
+{
+    u8 val;
+    SPI_CONTROLLER_Chip_Select_Low();
+    SPI_CONTROLLER_Write_One_Byte(0x0f);
+    SPI_CONTROLLER_Write_One_Byte(0xb0);
+    SPI_CONTROLLER_Read_NByte(&val, 1, SPI_CONTROLLER_SPEED_SINGLE);
+    SPI_CONTROLLER_Chip_Select_High();
+    usleep(2);
+    nand_write_enable();
+    //val = val | 0x10;
+    SPI_CONTROLLER_Chip_Select_Low();
+    SPI_CONTROLLER_Write_One_Byte(0x1f);
+    SPI_CONTROLLER_Write_One_Byte(0xb0);
+    SPI_CONTROLLER_Write_One_Byte(val | 0x10);  //set to 1 byte 4
+    SPI_CONTROLLER_Chip_Select_High();
+    usleep(2);
 }

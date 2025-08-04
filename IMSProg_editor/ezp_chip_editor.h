@@ -51,7 +51,7 @@ public:
     QStandardItem *item;
     const QString csvHeader =  "Type;Manufacture;IC Name;JEDEC ID;SIZE;Block size;Type HEX;Algorithm;Delay;Extend;EEPROM;EEPROM pages;VCC\n";
     const QString csvHeader2 = "Type,Manufacture,IC Name,JEDEC ID,SIZE,Block size,Type HEX,Algorithm,Delay,Extend,EEPROM,EEPROM pages,VCC\n";
-    QVector <QString> chType = {"SPI_FLASH","25_EEPROM","93_EEPROM","24_EEPROM","95_EEPROM", "45_EEPROM"};
+    QVector <QString> chType = {"SPI_FLASH","25_EEPROM","93_EEPROM","24_EEPROM","95_EEPROM", "45_EEPROM","SPI_NAND"};
     struct chip_data {
         QString chipManuf;
         QString chipTypeTxt;

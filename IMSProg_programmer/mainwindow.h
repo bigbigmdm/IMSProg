@@ -27,6 +27,7 @@
 #include "dialogabout.h"
 #include "dialoginfo.h"
 #include "dialogsfdp.h"
+#include "dialognandsr.h"
 #include "dialogsr.h"
 #include "dialogcompare.h"
 #include "searchdialog.h"
@@ -115,13 +116,17 @@ private slots:
     void preparingToCompare(bool type);
     void on_actionCompare_files_triggered();
 
+    void on_comboBox_ECC_currentIndexChanged(int index);
+
+    void on_comboBox_eraseSize_currentIndexChanged(int index);
+
 private:
     Ui::MainWindow *ui;
     QString grnKeyStyle, redKeyStyle;
     QString lastDirectory;
     int statusCH341;
     QByteArray chipData, oldChipData;
-    uint32_t currentChipSize, currentNumBlocks, currentBlockSize, currentPageSize;
+    uint32_t currentChipSize, currentNumBlocks, currentBlockSize, currentPageSize, currentECCsize, currentEraseSize;
     uint8_t currentAlgorithm, currentChipType, currentI2CBusSpeed;
     unsigned int currentAddr4bit;
     bool isHalted;
