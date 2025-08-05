@@ -20,7 +20,6 @@
 #include <QValidator>
 #include <QRegExp>
 #include "unistd.h"
-#include "memory"
 #include <QDebug>
 #include <QRegularExpression>
 
@@ -59,11 +58,12 @@ void DialogNANDSr::setLineEditFilter()
 void DialogNANDSr::on_pushButton_read_clicked()
 {
     //READING STATUS REGISTERS
-        std::shared_ptr<uint8_t[]> buf(new uint8_t[256]);
+        uint8_t *buf;
         QString currRegName;
         int retval;
         uint8_t currRegister, currBit, currByte;
         int stCH341 = 0;
+        buf = (uint8_t *)malloc(2);
         stCH341 = ch341a_spi_init();
         if (stCH341 == 0)
             {
@@ -75,7 +75,7 @@ void DialogNANDSr::on_pushButton_read_clicked()
                     SPI_CONTROLLER_Chip_Select_Low();
                     SPI_CONTROLLER_Write_One_Byte(0x0f);
                     SPI_CONTROLLER_Write_One_Byte(RegNumbers[currRegister]);
-                    retval = SPI_CONTROLLER_Read_NByte(buf.get(),1,SPI_CONTROLLER_SPEED_SINGLE);
+                    retval = SPI_CONTROLLER_Read_NByte(buf,1,SPI_CONTROLLER_SPEED_SINGLE);
                     SPI_CONTROLLER_Chip_Select_High();
                     usleep(1);
                     if (retval)
@@ -336,6 +336,58 @@ void DialogNANDSr::setPattern(const uint pattern)
            ui->label_55->setText("X");
            ui->label_56->setText("X");
            ui->label_57->setText("X");
+         break;
+         case 3: //MXIC
+           RegNumbers[0] = 0xa0;
+           RegNumbers[1] = 0xb0;
+           RegNumbers[2] = 0xc0;
+           RegNumbers[3] = 0xe0;
+           RegNumbers[4] = 0x10;
+
+           ui->label_10->setText("BPWRD");
+           ui->label_11->setText("X");
+           ui->label_12->setText("BP2");
+           ui->label_13->setText("BP1");
+           ui->label_14->setText("BP0");
+           ui->label_15->setText("INV");
+           ui->label_16->setText("CMP");
+           ui->label_17->setText("SP");
+
+           ui->label_20->setText("OTP-P");
+           ui->label_21->setText("OTP-E");
+           ui->label_22->setText("X");
+           ui->label_23->setText("ECC-E");
+           ui->label_24->setText("X");
+           ui->label_25->setText("CONT");
+           ui->label_26->setText("X");
+           ui->label_27->setText("QE");
+
+           ui->label_30->setText("CRBSY");
+           ui->label_31->setText("BBMT_F");
+           ui->label_32->setText("ECC-1");
+           ui->label_33->setText("ECC-0");
+           ui->label_34->setText("P-FAIL");
+           ui->label_35->setText("E-FAIL");
+           ui->label_36->setText("WEL");
+           ui->label_37->setText("BUSY");
+
+           ui->label_40->setText("DS_IO");
+           ui->label_41->setText("DS_IO");
+           ui->label_42->setText("X");
+           ui->label_43->setText("X");
+           ui->label_44->setText("X");
+           ui->label_45->setText("X");
+           ui->label_46->setText("X");
+           ui->label_47->setText("X");
+
+           ui->label_50->setText("BFT3");
+           ui->label_51->setText("BFT2");
+           ui->label_52->setText("BFT1");
+           ui->label_53->setText("BFT0");
+           ui->label_54->setText("X");
+           ui->label_55->setText("X");
+           ui->label_56->setText("X");
+           ui->label_57->setText("ENPGM");
          break;
        }
 }
