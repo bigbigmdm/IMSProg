@@ -20,6 +20,7 @@
 #include <QValidator>
 #include <QRegExp>
 #include "unistd.h"
+#include "memory"
 #include <QDebug>
 #include <QRegularExpression>
 
@@ -58,12 +59,11 @@ void DialogNANDSr::setLineEditFilter()
 void DialogNANDSr::on_pushButton_read_clicked()
 {
     //READING STATUS REGISTERS
-        uint8_t *buf;
+        std::shared_ptr<uint8_t[]> buf(new uint8_t[256]);
         QString currRegName;
         int retval;
         uint8_t currRegister, currBit, currByte;
         int stCH341 = 0;
-        buf = (uint8_t *)malloc(2);
         stCH341 = ch341a_spi_init();
         if (stCH341 == 0)
             {
@@ -75,7 +75,7 @@ void DialogNANDSr::on_pushButton_read_clicked()
                     SPI_CONTROLLER_Chip_Select_Low();
                     SPI_CONTROLLER_Write_One_Byte(0x0f);
                     SPI_CONTROLLER_Write_One_Byte(RegNumbers[currRegister]);
-                    retval = SPI_CONTROLLER_Read_NByte(buf,1,SPI_CONTROLLER_SPEED_SINGLE);
+                    retval = SPI_CONTROLLER_Read_NByte(buf.get(),1,SPI_CONTROLLER_SPEED_SINGLE);
                     SPI_CONTROLLER_Chip_Select_High();
                     usleep(1);
                     if (retval)
