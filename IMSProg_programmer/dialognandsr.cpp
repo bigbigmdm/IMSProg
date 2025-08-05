@@ -231,7 +231,7 @@ void DialogNANDSr::setPattern(const uint pattern)
            ui->label_57->setText("X");
          break;
 
-         case 1: //Gigadevice
+         case 1: //Gigadevice 1
            RegNumbers[0] = 0xa0;
            RegNumbers[1] = 0xb0;
            RegNumbers[2] = 0xc0;
@@ -278,6 +278,60 @@ void DialogNANDSr::setPattern(const uint pattern)
            ui->label_51->setText("X");
            ui->label_52->setText("ECCS1");
            ui->label_53->setText("ECCS0");
+           ui->label_54->setText("X");
+           ui->label_55->setText("X");
+           ui->label_56->setText("X");
+           ui->label_57->setText("X");
+         break;
+         case 2: //Gigadevice 2
+           RegNumbers[0] = 0xa0;
+           RegNumbers[1] = 0xb0;
+           RegNumbers[2] = 0xc0;
+           RegNumbers[3] = 0xff;
+           RegNumbers[4] = 0xff;
+           setRegDisabled(3);
+           setRegDisabled(4);
+
+           ui->label_10->setText("BWRD");
+           ui->label_11->setText("X");
+           ui->label_12->setText("BP2");
+           ui->label_13->setText("BP1");
+           ui->label_14->setText("BP0");
+           ui->label_15->setText("INV");
+           ui->label_16->setText("CMP");
+           ui->label_17->setText("X");
+
+           ui->label_20->setText("OTP-P");
+           ui->label_21->setText("OTP-E");
+           ui->label_22->setText("X");
+           ui->label_23->setText("ECC-E");
+           ui->label_24->setText("X");
+           ui->label_25->setText("X");
+           ui->label_26->setText("X");
+           ui->label_27->setText("QE");
+
+           ui->label_30->setText("X");
+           ui->label_31->setText("X");
+           ui->label_32->setText("ECC-1");
+           ui->label_33->setText("ECC-0");
+           ui->label_34->setText("P-FAIL");
+           ui->label_35->setText("E-FAIL");
+           ui->label_36->setText("WEL");
+           ui->label_37->setText("BUSY");
+
+           ui->label_40->setText("X");
+           ui->label_41->setText("X");
+           ui->label_42->setText("X");
+           ui->label_43->setText("X");
+           ui->label_44->setText("X");
+           ui->label_45->setText("X");
+           ui->label_46->setText("X");
+           ui->label_47->setText("X");
+
+           ui->label_50->setText("X");
+           ui->label_51->setText("X");
+           ui->label_52->setText("X");
+           ui->label_53->setText("X");
            ui->label_54->setText("X");
            ui->label_55->setText("X");
            ui->label_56->setText("X");
