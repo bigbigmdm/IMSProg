@@ -49,6 +49,7 @@ private:
     void setLineEditFilter();
     void allRegEnabled();
     void setRegDisabled(uint8_t regNumber);
+    void clearAllFields();
     uint8_t RegNumbers[5];
     bool regReaded;
 };

@@ -20,6 +20,8 @@
 #include <QValidator>
 #include <QRegExp>
 #include "unistd.h"
+#include "hexutility.h"
+#include "memory"
 #include <QDebug>
 #include <QRegularExpression>
 
@@ -31,6 +33,13 @@ DialogNANDSr::DialogNANDSr(QWidget *parent) :
     setWindowFlags(Qt::Window | Qt::WindowMinimizeButtonHint | Qt::WindowCloseButtonHint);
     setLineEditFilter();
     regReaded = false;
+    QFontMetrics fm(ui->textEdit_buf->fontMetrics());
+        int pixelsHigh = fm.height();
+        int pixelsWidth = fm.horizontalAdvance("00> 4F 4E 46 49 00 00 00 00 02 00 00 00 00 00 00 00 ") + 20;
+        int sectionHeight = pixelsHigh * 16 + 6;
+        ui->textEdit_buf->setMinimumHeight(sectionHeight);
+        ui->textEdit_buf->setMinimumWidth(pixelsWidth);
+        ui->textEdit_ID->setMaximumHeight(pixelsHigh * 2 + 16);
 }
 
 DialogNANDSr::~DialogNANDSr()
@@ -57,13 +66,19 @@ void DialogNANDSr::setLineEditFilter()
 
 void DialogNANDSr::on_pushButton_read_clicked()
 {
-    //READING STATUS REGISTERS
-        uint8_t *buf;
+        bool otp;
+        int i,j, pageSize, numBlocks, pagesPerBlock;
+        QString buftxt = "";
+        otp = false;
+        //Clearing fields
+        clearAllFields();
+        ui->textEdit_ID->clear();
+        //READING STATUS REGISTERS
+        std::shared_ptr<uint8_t[]> buf(new uint8_t[512]);
         QString currRegName;
         int retval;
         uint8_t currRegister, currBit, currByte;
         int stCH341 = 0;
-        buf = (uint8_t *)malloc(2);
         stCH341 = ch341a_spi_init();
         if (stCH341 == 0)
             {
@@ -75,7 +90,7 @@ void DialogNANDSr::on_pushButton_read_clicked()
                     SPI_CONTROLLER_Chip_Select_Low();
                     SPI_CONTROLLER_Write_One_Byte(0x0f);
                     SPI_CONTROLLER_Write_One_Byte(RegNumbers[currRegister]);
-                    retval = SPI_CONTROLLER_Read_NByte(buf,1,SPI_CONTROLLER_SPEED_SINGLE);
+                    retval = SPI_CONTROLLER_Read_NByte(buf.get(),1,SPI_CONTROLLER_SPEED_SINGLE);
                     SPI_CONTROLLER_Chip_Select_High();
                     usleep(1);
                     if (retval)
@@ -99,9 +114,181 @@ void DialogNANDSr::on_pushButton_read_clicked()
                     }
                 }
             }
-                ch341a_spi_shutdown();
+
                 regReaded = true;
-           }
+                //ch341a_spi_shutdown();
+                //READING PARAMETER PAGE
+                //stCH341 = ch341a_spi_init();
+
+
+                usleep(100);
+                SPI_CONTROLLER_Chip_Select_Low(); //Reading status
+                SPI_CONTROLLER_Write_One_Byte(0x0f);
+                SPI_CONTROLLER_Write_One_Byte(0xb0);
+                retval = SPI_CONTROLLER_Read_NByte(buf.get(),1,SPI_CONTROLLER_SPEED_SINGLE);
+                SPI_CONTROLLER_Chip_Select_High();
+                usleep(1);
+                if ((buf[0] & 0x40) == 0) //OPT Disabled ?
+                {
+                    otp = false;
+                    // Enable OTP MODE
+
+                    SPI_CONTROLLER_Chip_Select_Low();  //Write enable
+                    SPI_CONTROLLER_Write_One_Byte(0x06);
+                    SPI_CONTROLLER_Chip_Select_High();
+                    usleep(1);
+
+                    SPI_CONTROLLER_Chip_Select_Low();
+                    SPI_CONTROLLER_Write_One_Byte(0x1f);
+                    SPI_CONTROLLER_Write_One_Byte(0xb0);
+                    SPI_CONTROLLER_Write_One_Byte(buf[0] | 0x40); //&bf to clear
+                    SPI_CONTROLLER_Chip_Select_High();
+                    usleep(1);
+                }
+                else otp = true;
+
+                SPI_CONTROLLER_Chip_Select_Low();
+                SPI_CONTROLLER_Write_One_Byte(0x13);
+                SPI_CONTROLLER_Write_One_Byte(0x00);
+                SPI_CONTROLLER_Write_One_Byte(0x00);
+                SPI_CONTROLLER_Write_One_Byte(0x01);
+                SPI_CONTROLLER_Chip_Select_High();
+                usleep(1000);
+                SPI_CONTROLLER_Chip_Select_Low();
+                SPI_CONTROLLER_Write_One_Byte(0x03);
+                SPI_CONTROLLER_Write_One_Byte(0x00);
+                SPI_CONTROLLER_Write_One_Byte(0x00);
+                SPI_CONTROLLER_Write_One_Byte(0x00);
+                retval = SPI_CONTROLLER_Read_NByte(buf.get(),256,SPI_CONTROLLER_SPEED_SINGLE);
+                SPI_CONTROLLER_Chip_Select_High();
+                if (retval)
+                   {
+                      QMessageBox::about(this, tr("Error"), tr("Error reading Parameter Page!"));
+                      return;
+                   }
+                usleep(100);
+                if ((buf[0] == 0x4f) && (buf[1] == 0x4e) && (buf[2] == 0x46) && (buf[3] == 0x49) )
+                {
+                    //Parameter page supported
+                    for (j = 0; j < 255; j = j + 16)
+                    {
+                        //address
+                        buftxt = buftxt + bytePrint(static_cast<uint8_t>(j)) + "> ";
+                        //dump
+                        for (i = 0; i < 16; i++)
+                        {
+                            buftxt = buftxt + bytePrint(buf[j + i]) + " ";
+                        }
+                        buftxt = buftxt + "\n";
+                    }
+                    buftxt.chop(1);
+                    ui->textEdit_buf->setText(buftxt);
+                    // Parsing parameter page
+                    //Manufacture
+                    buftxt.clear();
+                    for (i = 32; i < 44; i++) buftxt = buftxt + static_cast<char>(buf[i]);
+                    ui->lineEdit_man->setText(buftxt);
+                    //Model
+                    buftxt.clear();
+                    for (i = 44; i < 64; i++) buftxt = buftxt + static_cast<char>(buf[i]);
+                    ui->lineEdit_model->setText(buftxt);
+                    //Page size
+                    buftxt.clear();
+                    i = buf[80] + buf[81] * 256 + buf[82] * 256 * 256 + buf[83] * 256 * 256 * 256;
+                    buftxt = QString::number(i);
+                    pageSize = i;
+                    ui->lineEdit_page->setText(buftxt);
+                    //ECC size
+                    buftxt.clear();
+                    i = buf[84] + buf[85] * 256;
+                    buftxt = QString::number(i);
+                    ui->lineEdit_ECC->setText(buftxt);
+                    //Number of pages per block
+                    buftxt.clear();
+                    i = buf[92] + buf[93] * 256 + buf[94] * 256 * 256 + buf[95] * 256 * 256 * 256;
+                    buftxt = QString::number(i);
+                    pagesPerBlock = i;
+                    ui->lineEdit_pages->setText(buftxt);
+                    //Number of blocks per logical unit
+                    buftxt.clear();
+                    i = buf[96] + buf[97] * 256 + buf[98] * 256 * 256 + buf[99] * 256 * 256 * 256;
+                    buftxt = QString::number(i);
+                    numBlocks = i;
+                    ui->lineEdit_blocks->setText(buftxt);
+                    //Block Size
+                    i = pageSize * pagesPerBlock / 1024;
+                    buftxt = QString::number(i) + " K";
+                    ui->lineEdit_blocksize->setText(buftxt);
+                    //Chip size
+                    i = pageSize * pagesPerBlock * numBlocks / 1024 / 1024;
+                    buftxt = QString::number(i) + " M";
+                    ui->lineEdit_ChipSize->setText(buftxt);
+                }
+                else ui->textEdit_buf->setText(tr("The Parameter Page is not supported."));
+                //Get unique ID
+                SPI_CONTROLLER_Chip_Select_Low();
+                SPI_CONTROLLER_Write_One_Byte(0x13);
+                SPI_CONTROLLER_Write_One_Byte(0x00);
+                SPI_CONTROLLER_Write_One_Byte(0x00);
+                SPI_CONTROLLER_Write_One_Byte(0x00);
+                SPI_CONTROLLER_Chip_Select_High();
+                usleep(1000);
+                SPI_CONTROLLER_Chip_Select_Low();
+                SPI_CONTROLLER_Write_One_Byte(0x03);
+                SPI_CONTROLLER_Write_One_Byte(0x00);
+                SPI_CONTROLLER_Write_One_Byte(0x00);
+                SPI_CONTROLLER_Write_One_Byte(0x00);
+                retval = SPI_CONTROLLER_Read_NByte(buf.get(),256,SPI_CONTROLLER_SPEED_SINGLE);
+                SPI_CONTROLLER_Chip_Select_High();
+                if (retval)
+                   {
+                      QMessageBox::about(this, tr("Error"), tr("Error reading ID!"));
+                      return;
+                   }
+                 buftxt.clear();
+                 for (i = 0; i < 32; i++)
+                 {
+                     buftxt = buftxt + bytePrint(buf[i]) + " ";
+                     if (i == 15)
+                     {
+                         buftxt.chop(1);
+                         buftxt = buftxt + "\n";
+                     }
+                 }
+                 ui->textEdit_ID->setText(buftxt);
+
+                if (otp == false) //OPT Disabled
+                {
+                    // Disable OTP MODE
+                    SPI_CONTROLLER_Chip_Select_Low(); //Reading status
+                    SPI_CONTROLLER_Write_One_Byte(0x0f);
+                    SPI_CONTROLLER_Write_One_Byte(0xb0);
+                    retval = SPI_CONTROLLER_Read_NByte(buf.get(),1,SPI_CONTROLLER_SPEED_SINGLE);
+                    SPI_CONTROLLER_Chip_Select_High();
+                    usleep(1);
+
+                    SPI_CONTROLLER_Chip_Select_Low();  //Write enable
+                    SPI_CONTROLLER_Write_One_Byte(0x06);
+                    SPI_CONTROLLER_Chip_Select_High();
+                    usleep(1);
+
+                    SPI_CONTROLLER_Chip_Select_Low();
+                    SPI_CONTROLLER_Write_One_Byte(0x1f);
+                    SPI_CONTROLLER_Write_One_Byte(0xb0);
+                    SPI_CONTROLLER_Write_One_Byte(buf[0] & 0xbf);
+                    SPI_CONTROLLER_Chip_Select_High();
+                    usleep(1);
+                }
+                SPI_CONTROLLER_Chip_Select_Low();  //Write disable
+                SPI_CONTROLLER_Write_One_Byte(0x04);
+                SPI_CONTROLLER_Chip_Select_High();
+                usleep(1);
+
+
+
+
+                ch341a_spi_shutdown();
+          }
         else QMessageBox::about(this, tr("Error"), tr("Programmer CH341a is not connected!"));
 }
 
@@ -128,7 +315,6 @@ void DialogNANDSr::on_pushButton_write_clicked()
                             {
                                 if (edit->objectName() == currRegName)
                                 {
-                                    //edit->setText(QString::number((buf[0] & currByte) >> currBit));
                                     currValue = edit->text();
                                     if (QString::compare(currValue, "0", Qt::CaseInsensitive)) regData = regData + currByte;
                                 }
@@ -389,60 +575,6 @@ void DialogNANDSr::setPattern(const uint pattern)
            ui->label_56->setText("X");
            ui->label_57->setText("ENPGM");
          break;
-         case 4: //ESMT
-           RegNumbers[0] = 0xa0;
-           RegNumbers[1] = 0xb0;
-           RegNumbers[2] = 0xc0;
-           RegNumbers[3] = 0xff;
-           RegNumbers[4] = 0xff;
-           setRegDisabled(3);
-           setRegDisabled(4);
-
-           ui->label_10->setText("BRWD");
-           ui->label_11->setText("BP3");
-           ui->label_12->setText("BP2");
-           ui->label_13->setText("BP1");
-           ui->label_14->setText("BP0");
-           ui->label_15->setText("TB");
-           ui->label_16->setText("WP_DIS");
-           ui->label_17->setText("X");
-
-           ui->label_20->setText("CFG2");
-           ui->label_21->setText("CFG1");
-           ui->label_22->setText("LOT_EN");
-           ui->label_23->setText("ECC_EN");
-           ui->label_24->setText("X");
-           ui->label_25->setText("X");
-           ui->label_26->setText("CFG0");
-           ui->label_27->setText("X");
-
-           ui->label_30->setText("CRBSY");
-           ui->label_31->setText("ECCS2");
-           ui->label_32->setText("ECCS1");
-           ui->label_33->setText("ECCS0");
-           ui->label_34->setText("P-FAIL");
-           ui->label_35->setText("E-FAIL");
-           ui->label_36->setText("WEL");
-           ui->label_37->setText("BUSY");
-
-           ui->label_40->setText("X");
-           ui->label_41->setText("X");
-           ui->label_42->setText("X");
-           ui->label_43->setText("X");
-           ui->label_44->setText("X");
-           ui->label_45->setText("X");
-           ui->label_46->setText("X");
-           ui->label_47->setText("X");
-
-           ui->label_50->setText("X");
-           ui->label_51->setText("X");
-           ui->label_52->setText("X");
-           ui->label_53->setText("X");
-           ui->label_54->setText("X");
-           ui->label_55->setText("X");
-           ui->label_56->setText("X");
-           ui->label_57->setText("X");
-         break;
        }
 }
 
@@ -452,6 +584,15 @@ void DialogNANDSr::allRegEnabled()
     for (auto lineEdit : lineEdits)
     {
         lineEdit->setDisabled(false);
+    }
+}
+
+void DialogNANDSr::clearAllFields()
+{
+    auto lineEdits = findChildren<QLineEdit*>();
+    for (auto lineEdit : lineEdits)
+    {
+        lineEdit->clear();
     }
 }
 
