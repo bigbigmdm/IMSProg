@@ -115,188 +115,255 @@
 <context>
     <name>DialogNANDSr</name>
     <message>
-        <location filename="../dialognandsr.ui" line="14"/>
+        <location filename="../dialognandsr.ui" line="20"/>
         <source>Status registers</source>
         <translation>Registri di stato</translation>
     </message>
     <message>
-        <location filename="../dialognandsr.ui" line="31"/>
+        <location filename="../dialognandsr.ui" line="37"/>
         <source>Status register 1</source>
         <translation>Registro di stato 1</translation>
     </message>
     <message>
-        <location filename="../dialognandsr.ui" line="312"/>
+        <location filename="../dialognandsr.ui" line="318"/>
         <source>SRP0</source>
         <translation>SRP0</translation>
     </message>
     <message>
-        <location filename="../dialognandsr.ui" line="343"/>
+        <location filename="../dialognandsr.ui" line="349"/>
         <source>BP3</source>
         <translation>BP3</translation>
     </message>
     <message>
-        <location filename="../dialognandsr.ui" line="374"/>
+        <location filename="../dialognandsr.ui" line="380"/>
         <source>BP2</source>
         <translation>BP2</translation>
     </message>
     <message>
-        <location filename="../dialognandsr.ui" line="405"/>
+        <location filename="../dialognandsr.ui" line="411"/>
         <source>BP1</source>
         <translation>BP1</translation>
     </message>
     <message>
-        <location filename="../dialognandsr.ui" line="436"/>
+        <location filename="../dialognandsr.ui" line="442"/>
         <source>BP0</source>
         <translation>BP0</translation>
     </message>
     <message>
-        <location filename="../dialognandsr.ui" line="467"/>
+        <location filename="../dialognandsr.ui" line="473"/>
         <source>TB</source>
         <translation>TB</translation>
     </message>
     <message>
-        <location filename="../dialognandsr.ui" line="498"/>
+        <location filename="../dialognandsr.ui" line="504"/>
         <source>WP-E</source>
         <translation>WP-E</translation>
     </message>
     <message>
-        <location filename="../dialognandsr.ui" line="529"/>
+        <location filename="../dialognandsr.ui" line="535"/>
         <source>SRP1</source>
         <translation>SRP1</translation>
     </message>
     <message>
-        <location filename="../dialognandsr.ui" line="546"/>
+        <location filename="../dialognandsr.ui" line="552"/>
         <source>Status register 2</source>
         <translation>Registro di stato 2</translation>
     </message>
     <message>
-        <location filename="../dialognandsr.ui" line="818"/>
+        <location filename="../dialognandsr.ui" line="824"/>
         <source>OTP-L</source>
         <translation>OTP-L</translation>
     </message>
     <message>
-        <location filename="../dialognandsr.ui" line="846"/>
+        <location filename="../dialognandsr.ui" line="852"/>
         <source>OTP-E</source>
         <translation>OTP-E</translation>
     </message>
     <message>
-        <location filename="../dialognandsr.ui" line="874"/>
+        <location filename="../dialognandsr.ui" line="880"/>
         <source>SR1-L</source>
         <translation>SR1-L</translation>
     </message>
     <message>
-        <location filename="../dialognandsr.ui" line="902"/>
+        <location filename="../dialognandsr.ui" line="908"/>
         <source>ECC-E</source>
         <translation>ECC-E</translation>
     </message>
     <message>
-        <location filename="../dialognandsr.ui" line="930"/>
+        <location filename="../dialognandsr.ui" line="936"/>
         <source>BUF</source>
         <translation>BUF</translation>
     </message>
     <message>
-        <location filename="../dialognandsr.ui" line="958"/>
-        <location filename="../dialognandsr.ui" line="986"/>
-        <location filename="../dialognandsr.ui" line="1014"/>
-        <location filename="../dialognandsr.ui" line="1303"/>
+        <location filename="../dialognandsr.ui" line="964"/>
+        <location filename="../dialognandsr.ui" line="992"/>
+        <location filename="../dialognandsr.ui" line="1020"/>
+        <location filename="../dialognandsr.ui" line="1309"/>
         <source>(R)</source>
         <translation>(R)</translation>
     </message>
     <message>
-        <location filename="../dialognandsr.ui" line="1034"/>
+        <location filename="../dialognandsr.ui" line="1040"/>
         <source>Status register 3</source>
         <translation>Registro di stato 3</translation>
     </message>
     <message>
-        <location filename="../dialognandsr.ui" line="1331"/>
+        <location filename="../dialognandsr.ui" line="1337"/>
         <source>LUT-F</source>
         <translation>LUT-F</translation>
     </message>
     <message>
-        <location filename="../dialognandsr.ui" line="1359"/>
+        <location filename="../dialognandsr.ui" line="1365"/>
         <source>ECC-1</source>
         <translation>ECC-1</translation>
     </message>
     <message>
-        <location filename="../dialognandsr.ui" line="1387"/>
+        <location filename="../dialognandsr.ui" line="1393"/>
         <source>ECC-0</source>
         <translation>ECC-0</translation>
     </message>
     <message>
-        <location filename="../dialognandsr.ui" line="1415"/>
+        <location filename="../dialognandsr.ui" line="1421"/>
         <source>P-FAIL</source>
         <translation>P-FAIL</translation>
     </message>
     <message>
-        <location filename="../dialognandsr.ui" line="1443"/>
+        <location filename="../dialognandsr.ui" line="1449"/>
         <source>WELL</source>
         <translation>WELL</translation>
     </message>
     <message>
-        <location filename="../dialognandsr.ui" line="1471"/>
+        <location filename="../dialognandsr.ui" line="1477"/>
         <source>BUSY</source>
         <translation>BUSY</translation>
     </message>
     <message>
-        <location filename="../dialognandsr.ui" line="1499"/>
+        <location filename="../dialognandsr.ui" line="1505"/>
         <source>E_FAIL</source>
         <translation>E_FAIL</translation>
     </message>
     <message>
-        <location filename="../dialognandsr.ui" line="1516"/>
+        <location filename="../dialognandsr.ui" line="1522"/>
         <source>Status register 4</source>
         <translation>Registro di stato 4</translation>
     </message>
     <message>
-        <location filename="../dialognandsr.ui" line="1779"/>
-        <location filename="../dialognandsr.ui" line="1807"/>
-        <location filename="../dialognandsr.ui" line="1835"/>
-        <location filename="../dialognandsr.ui" line="1863"/>
-        <location filename="../dialognandsr.ui" line="1891"/>
-        <location filename="../dialognandsr.ui" line="1919"/>
-        <location filename="../dialognandsr.ui" line="1947"/>
-        <location filename="../dialognandsr.ui" line="1975"/>
-        <location filename="../dialognandsr.ui" line="2255"/>
-        <location filename="../dialognandsr.ui" line="2283"/>
-        <location filename="../dialognandsr.ui" line="2311"/>
-        <location filename="../dialognandsr.ui" line="2339"/>
-        <location filename="../dialognandsr.ui" line="2367"/>
-        <location filename="../dialognandsr.ui" line="2395"/>
-        <location filename="../dialognandsr.ui" line="2423"/>
-        <location filename="../dialognandsr.ui" line="2451"/>
+        <location filename="../dialognandsr.ui" line="1785"/>
+        <location filename="../dialognandsr.ui" line="1813"/>
+        <location filename="../dialognandsr.ui" line="1841"/>
+        <location filename="../dialognandsr.ui" line="1869"/>
+        <location filename="../dialognandsr.ui" line="1897"/>
+        <location filename="../dialognandsr.ui" line="1925"/>
+        <location filename="../dialognandsr.ui" line="1953"/>
+        <location filename="../dialognandsr.ui" line="1981"/>
+        <location filename="../dialognandsr.ui" line="2261"/>
+        <location filename="../dialognandsr.ui" line="2289"/>
+        <location filename="../dialognandsr.ui" line="2317"/>
+        <location filename="../dialognandsr.ui" line="2345"/>
+        <location filename="../dialognandsr.ui" line="2373"/>
+        <location filename="../dialognandsr.ui" line="2401"/>
+        <location filename="../dialognandsr.ui" line="2429"/>
+        <location filename="../dialognandsr.ui" line="2457"/>
         <source>---</source>
         <translation>---</translation>
     </message>
     <message>
-        <location filename="../dialognandsr.ui" line="1992"/>
+        <location filename="../dialognandsr.ui" line="1998"/>
         <source>Status register 5</source>
         <translation>Registro di stato 5</translation>
     </message>
     <message>
-        <location filename="../dialognandsr.ui" line="2496"/>
+        <location filename="../dialognandsr.ui" line="2482"/>
+        <source>Unique ID:</source>
+        <translation>ID unico:</translation>
+    </message>
+    <message>
+        <location filename="../dialognandsr.ui" line="2538"/>
         <source>Read</source>
         <translation>Leggi</translation>
     </message>
     <message>
-        <location filename="../dialognandsr.ui" line="2522"/>
+        <location filename="../dialognandsr.ui" line="2564"/>
         <source>Write</source>
         <translation>Scrivi</translation>
     </message>
     <message>
-        <location filename="../dialognandsr.cpp" line="83"/>
-        <location filename="../dialognandsr.cpp" line="105"/>
-        <location filename="../dialognandsr.cpp" line="163"/>
+        <location filename="../dialognandsr.ui" line="2580"/>
+        <source>Parameter page:</source>
+        <translation>Pagina dei parametri:</translation>
+    </message>
+    <message>
+        <location filename="../dialognandsr.ui" line="2608"/>
+        <source>Manufacturer:</source>
+        <translation>Fabbricante:</translation>
+    </message>
+    <message>
+        <location filename="../dialognandsr.ui" line="2618"/>
+        <source>Model:</source>
+        <translation>Modello:</translation>
+    </message>
+    <message>
+        <location filename="../dialognandsr.ui" line="2628"/>
+        <source>Page size:</source>
+        <translation>Dim. pagina:</translation>
+    </message>
+    <message>
+        <location filename="../dialognandsr.ui" line="2635"/>
+        <source>ECC size:</source>
+        <translation>Dimensione ECC:</translation>
+    </message>
+    <message>
+        <location filename="../dialognandsr.ui" line="2648"/>
+        <source>Pages per block:</source>
+        <translation>Pagine per blocco:</translation>
+    </message>
+    <message>
+        <location filename="../dialognandsr.ui" line="2655"/>
+        <source>Block per unit:</source>
+        <translation>Blocco per unità:</translation>
+    </message>
+    <message>
+        <location filename="../dialognandsr.ui" line="2662"/>
+        <source>Block size:</source>
+        <translation>Dim. blocco:</translation>
+    </message>
+    <message>
+        <location filename="../dialognandsr.ui" line="2678"/>
+        <source>Chip size:</source>
+        <translation>Capacità del chip:</translation>
+    </message>
+    <message>
+        <location filename="../dialognandsr.cpp" line="98"/>
+        <location filename="../dialognandsr.cpp" line="166"/>
+        <location filename="../dialognandsr.cpp" line="245"/>
+        <location filename="../dialognandsr.cpp" line="292"/>
+        <location filename="../dialognandsr.cpp" line="349"/>
         <source>Error</source>
         <translation>Errore</translation>
     </message>
     <message>
-        <location filename="../dialognandsr.cpp" line="83"/>
+        <location filename="../dialognandsr.cpp" line="98"/>
         <source>Error reading register!</source>
         <translation>Si è verificato un errore durante la lettura del registro!</translation>
     </message>
     <message>
-        <location filename="../dialognandsr.cpp" line="105"/>
-        <location filename="../dialognandsr.cpp" line="163"/>
+        <location filename="../dialognandsr.cpp" line="166"/>
+        <source>Error reading Parameter Page!</source>
+        <translation>Errore durante la lettura della pagina dei parametri!</translation>
+    </message>
+    <message>
+        <location filename="../dialognandsr.cpp" line="227"/>
+        <source>The Parameter Page is not supported.</source>
+        <translation>La pagina dei parametri non è supportata.</translation>
+    </message>
+    <message>
+        <location filename="../dialognandsr.cpp" line="245"/>
+        <source>Error reading ID!</source>
+        <translation>Errore durante la lettura dell&apos;ID!</translation>
+    </message>
+    <message>
+        <location filename="../dialognandsr.cpp" line="292"/>
+        <location filename="../dialognandsr.cpp" line="349"/>
         <source>Programmer CH341a is not connected!</source>
         <translation>Il programmatore CH341a non è collegato!</translation>
     </message>
@@ -544,76 +611,76 @@
         <translation>Chiudi</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.cpp" line="82"/>
-        <location filename="../dialogsfdp.cpp" line="102"/>
-        <location filename="../dialogsfdp.cpp" line="211"/>
-        <location filename="../dialogsfdp.cpp" line="224"/>
-        <location filename="../dialogsfdp.cpp" line="243"/>
-        <location filename="../dialogsfdp.cpp" line="265"/>
-        <location filename="../dialogsfdp.cpp" line="280"/>
-        <location filename="../dialogsfdp.cpp" line="433"/>
-        <location filename="../dialogsfdp.cpp" line="435"/>
+        <location filename="../dialogsfdp.cpp" line="83"/>
+        <location filename="../dialogsfdp.cpp" line="103"/>
+        <location filename="../dialogsfdp.cpp" line="212"/>
+        <location filename="../dialogsfdp.cpp" line="225"/>
+        <location filename="../dialogsfdp.cpp" line="244"/>
+        <location filename="../dialogsfdp.cpp" line="266"/>
+        <location filename="../dialogsfdp.cpp" line="281"/>
+        <location filename="../dialogsfdp.cpp" line="434"/>
+        <location filename="../dialogsfdp.cpp" line="436"/>
         <source>Error</source>
         <translation>Errore</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.cpp" line="102"/>
-        <location filename="../dialogsfdp.cpp" line="211"/>
-        <location filename="../dialogsfdp.cpp" line="224"/>
-        <location filename="../dialogsfdp.cpp" line="243"/>
+        <location filename="../dialogsfdp.cpp" line="103"/>
+        <location filename="../dialogsfdp.cpp" line="212"/>
+        <location filename="../dialogsfdp.cpp" line="225"/>
+        <location filename="../dialogsfdp.cpp" line="244"/>
         <source>Error reading register!</source>
         <translation>Si è verificato un errore durante la lettura del registro!</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.cpp" line="174"/>
+        <location filename="../dialogsfdp.cpp" line="175"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt; Hex SFDP register data:
 </source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt; Dati HEX del registro SFDP:
 </translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.cpp" line="175"/>
+        <location filename="../dialogsfdp.cpp" line="176"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Addr:&lt;br&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Indirizzo:&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.cpp" line="435"/>
+        <location filename="../dialogsfdp.cpp" line="436"/>
         <source>Before writing the registers, please press the `Read` button!</source>
         <translation>Prima di scrivere i registri, premi il pulsante `Leggi`!</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.cpp" line="82"/>
+        <location filename="../dialogsfdp.cpp" line="83"/>
         <source>Error reading JEDEC ID!</source>
         <translation>Si è verificato un errore durante la lettura dell&apos;ID JEDEC!</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.cpp" line="42"/>
+        <location filename="../dialogsfdp.cpp" line="43"/>
         <source>Legend:</source>
         <translation>Legenda:</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.cpp" line="43"/>
+        <location filename="../dialogsfdp.cpp" line="44"/>
         <source> - Basic area</source>
         <translation> - Area base</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.cpp" line="44"/>
+        <location filename="../dialogsfdp.cpp" line="45"/>
         <source> - Extended area</source>
         <translation> - Area estesa</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.cpp" line="45"/>
+        <location filename="../dialogsfdp.cpp" line="46"/>
         <source> - Manufacture area</source>
         <translation> - Area fabbricante</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.cpp" line="265"/>
+        <location filename="../dialogsfdp.cpp" line="266"/>
         <source>Error reading unique ID!</source>
         <translation>Si è verificato un errore durante la lettura dell&apos;ID unico!</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.cpp" line="280"/>
-        <location filename="../dialogsfdp.cpp" line="433"/>
+        <location filename="../dialogsfdp.cpp" line="281"/>
+        <location filename="../dialogsfdp.cpp" line="434"/>
         <source>Programmer CH341a is not connected!</source>
         <translation>Il programmatore CH341a non è connesso!</translation>
     </message>
