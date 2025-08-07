@@ -575,6 +575,58 @@ void DialogNANDSr::setPattern(const uint pattern)
            ui->label_56->setText("X");
            ui->label_57->setText("ENPGM");
          break;
+         case 4: //ESMT
+           RegNumbers[0] = 0xa0;
+           RegNumbers[1] = 0xb0;
+           RegNumbers[2] = 0xc0;
+           RegNumbers[3] = 0xff;
+           RegNumbers[4] = 0xff;
+
+           ui->label_10->setText("BRWD");
+           ui->label_11->setText("BP3");
+           ui->label_12->setText("BP2");
+           ui->label_13->setText("BP1");
+           ui->label_14->setText("BP0");
+           ui->label_15->setText("TB");
+           ui->label_16->setText("WP_DIS");
+           ui->label_17->setText("X");
+
+           ui->label_20->setText("CFG2");
+           ui->label_21->setText("CFG1");
+           ui->label_22->setText("LOT_EN");
+           ui->label_23->setText("ECC-E");
+           ui->label_24->setText("X");
+           ui->label_25->setText("X");
+           ui->label_26->setText("CFG0");
+           ui->label_27->setText("X");
+
+           ui->label_30->setText("CRBSY");
+           ui->label_31->setText("ECCS2");
+           ui->label_32->setText("ECCS1");
+           ui->label_33->setText("ECCS0");
+           ui->label_34->setText("P-FAIL");
+           ui->label_35->setText("E-FAIL");
+           ui->label_36->setText("WEL");
+           ui->label_37->setText("BUSY");
+
+           ui->label_40->setText("X");
+           ui->label_41->setText("X");
+           ui->label_42->setText("X");
+           ui->label_43->setText("X");
+           ui->label_44->setText("X");
+           ui->label_45->setText("X");
+           ui->label_46->setText("X");
+           ui->label_47->setText("X");
+
+           ui->label_50->setText("X");
+           ui->label_51->setText("X");
+           ui->label_52->setText("X");
+           ui->label_53->setText("X");
+           ui->label_54->setText("X");
+           ui->label_55->setText("X");
+           ui->label_56->setText("X");
+           ui->label_57->setText("X");
+         break;
        }
 }
 
