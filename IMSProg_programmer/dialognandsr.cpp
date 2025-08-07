@@ -581,6 +581,8 @@ void DialogNANDSr::setPattern(const uint pattern)
            RegNumbers[2] = 0xc0;
            RegNumbers[3] = 0xff;
            RegNumbers[4] = 0xff;
+           setRegDisabled(3);
+           setRegDisabled(4);
 
            ui->label_10->setText("BRWD");
            ui->label_11->setText("BP3");
