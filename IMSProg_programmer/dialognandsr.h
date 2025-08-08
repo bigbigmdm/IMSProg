@@ -50,6 +50,7 @@ private:
     void allRegEnabled();
     void setRegDisabled(uint8_t regNumber);
     void clearAllFields();
+    void setRegLabels(uint8_t regNumber, QString lt);
     uint8_t RegNumbers[5];
     bool regReaded;
 };

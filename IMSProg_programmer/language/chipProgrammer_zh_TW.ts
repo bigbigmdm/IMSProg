@@ -333,37 +333,37 @@
         <translation>晶片大小：</translation>
     </message>
     <message>
-        <location filename="../dialognandsr.cpp" line="98"/>
-        <location filename="../dialognandsr.cpp" line="166"/>
-        <location filename="../dialognandsr.cpp" line="245"/>
-        <location filename="../dialognandsr.cpp" line="292"/>
-        <location filename="../dialognandsr.cpp" line="349"/>
+        <location filename="../dialognandsr.cpp" line="100"/>
+        <location filename="../dialognandsr.cpp" line="168"/>
+        <location filename="../dialognandsr.cpp" line="247"/>
+        <location filename="../dialognandsr.cpp" line="294"/>
+        <location filename="../dialognandsr.cpp" line="351"/>
         <source>Error</source>
         <translation>錯誤</translation>
     </message>
     <message>
-        <location filename="../dialognandsr.cpp" line="98"/>
+        <location filename="../dialognandsr.cpp" line="100"/>
         <source>Error reading register!</source>
         <translation>讀取暫存器錯誤！</translation>
     </message>
     <message>
-        <location filename="../dialognandsr.cpp" line="166"/>
+        <location filename="../dialognandsr.cpp" line="168"/>
         <source>Error reading Parameter Page!</source>
         <translation>錯誤讀取參數頁面!</translation>
     </message>
     <message>
-        <location filename="../dialognandsr.cpp" line="227"/>
+        <location filename="../dialognandsr.cpp" line="229"/>
         <source>The Parameter Page is not supported.</source>
         <translation>不支援參數頁。</translation>
     </message>
     <message>
-        <location filename="../dialognandsr.cpp" line="245"/>
+        <location filename="../dialognandsr.cpp" line="247"/>
         <source>Error reading ID!</source>
         <translation>錯誤讀取 ID！</translation>
     </message>
     <message>
-        <location filename="../dialognandsr.cpp" line="292"/>
-        <location filename="../dialognandsr.cpp" line="349"/>
+        <location filename="../dialognandsr.cpp" line="294"/>
+        <location filename="../dialognandsr.cpp" line="351"/>
         <source>Programmer CH341a is not connected!</source>
         <translation>CH341A 程式燒錄器未連接！</translation>
     </message>

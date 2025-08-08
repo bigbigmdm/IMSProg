@@ -333,37 +333,37 @@
         <translation>Tamanho do chip:</translation>
     </message>
     <message>
-        <location filename="../dialognandsr.cpp" line="98"/>
-        <location filename="../dialognandsr.cpp" line="166"/>
-        <location filename="../dialognandsr.cpp" line="245"/>
-        <location filename="../dialognandsr.cpp" line="292"/>
-        <location filename="../dialognandsr.cpp" line="349"/>
+        <location filename="../dialognandsr.cpp" line="100"/>
+        <location filename="../dialognandsr.cpp" line="168"/>
+        <location filename="../dialognandsr.cpp" line="247"/>
+        <location filename="../dialognandsr.cpp" line="294"/>
+        <location filename="../dialognandsr.cpp" line="351"/>
         <source>Error</source>
         <translation>Erro</translation>
     </message>
     <message>
-        <location filename="../dialognandsr.cpp" line="98"/>
+        <location filename="../dialognandsr.cpp" line="100"/>
         <source>Error reading register!</source>
         <translation>Erro ao ler o registro!</translation>
     </message>
     <message>
-        <location filename="../dialognandsr.cpp" line="166"/>
+        <location filename="../dialognandsr.cpp" line="168"/>
         <source>Error reading Parameter Page!</source>
         <translation>Erro ao ler a página de parâmetros!</translation>
     </message>
     <message>
-        <location filename="../dialognandsr.cpp" line="227"/>
+        <location filename="../dialognandsr.cpp" line="229"/>
         <source>The Parameter Page is not supported.</source>
         <translation>A página Parâmetros não é compatível.</translation>
     </message>
     <message>
-        <location filename="../dialognandsr.cpp" line="245"/>
+        <location filename="../dialognandsr.cpp" line="247"/>
         <source>Error reading ID!</source>
         <translation>Erro ao ler o ID!</translation>
     </message>
     <message>
-        <location filename="../dialognandsr.cpp" line="292"/>
-        <location filename="../dialognandsr.cpp" line="349"/>
+        <location filename="../dialognandsr.cpp" line="294"/>
+        <location filename="../dialognandsr.cpp" line="351"/>
         <source>Programmer CH341a is not connected!</source>
         <translation>O programador CH341a não está conectado!</translation>
     </message>

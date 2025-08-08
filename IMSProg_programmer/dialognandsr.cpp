@@ -15,10 +15,12 @@
 #include "dialognandsr.h"
 #include "ui_dialognandsr.h"
 #include <QLineEdit>
+#include <QLabel>
 #include <QWidget>
 #include <QApplication>
 #include <QValidator>
 #include <QRegExp>
+#include <QStringList>
 #include "unistd.h"
 #include "hexutility.h"
 #include "memory"
@@ -360,6 +362,7 @@ void DialogNANDSr::closeEvent(QCloseEvent* event)
 void DialogNANDSr::setPattern(const uint pattern)
 {
     allRegEnabled();
+    QStringList r0, r1, r2, r3, r4;
     switch (pattern)
        {
         case 0: //Winbond
@@ -370,51 +373,10 @@ void DialogNANDSr::setPattern(const uint pattern)
            RegNumbers[4] = 0xff;
            setRegDisabled(3);
            setRegDisabled(4);
-
-           ui->label_10->setText("SRP0");
-           ui->label_11->setText("BP3");
-           ui->label_12->setText("BP2");
-           ui->label_13->setText("BP1");
-           ui->label_14->setText("BP0");
-           ui->label_15->setText("TB");
-           ui->label_16->setText("WP-E");
-           ui->label_17->setText("SRP1");
-
-           ui->label_20->setText("OTP-L");
-           ui->label_21->setText("OTP-E");
-           ui->label_22->setText("SR1-L");
-           ui->label_23->setText("ECC-E");
-           ui->label_24->setText("BUF");
-           ui->label_25->setText("X");
-           ui->label_26->setText("X");
-           ui->label_27->setText("X");
-
-           ui->label_30->setText("X");
-           ui->label_31->setText("LUT-F");
-           ui->label_32->setText("ECC-1");
-           ui->label_33->setText("ECC-0");
-           ui->label_34->setText("P-FAIL");
-           ui->label_35->setText("E-FAIL");
-           ui->label_36->setText("WEL");
-           ui->label_37->setText("BUSY");
-
-           ui->label_40->setText("X");
-           ui->label_41->setText("X");
-           ui->label_42->setText("X");
-           ui->label_43->setText("X");
-           ui->label_44->setText("X");
-           ui->label_45->setText("X");
-           ui->label_46->setText("X");
-           ui->label_47->setText("X");
-
-           ui->label_50->setText("X");
-           ui->label_51->setText("X");
-           ui->label_52->setText("X");
-           ui->label_53->setText("X");
-           ui->label_54->setText("X");
-           ui->label_55->setText("X");
-           ui->label_56->setText("X");
-           ui->label_57->setText("X");
+           //                         7     6     5     4     3     2      1     0
+           setRegLabels(0, QString("SRP0 ,BP3  ,BP2  ,BP1  ,BP0   ,TB    ,WP-E ,SRP1 "));
+           setRegLabels(1, QString("OTP-L,OTP-E,SR1-L,ECC-E,BUF   ,X     ,X    ,X    "));
+           setRegLabels(2, QString("X    ,LUT-F,ECC-1,ECC-0,P-FAIL,E-FAIL,WEL  ,BUSY "));
          break;
 
          case 1: //Gigadevice 1
@@ -423,52 +385,14 @@ void DialogNANDSr::setPattern(const uint pattern)
            RegNumbers[2] = 0xc0;
            RegNumbers[3] = 0xd0;
            RegNumbers[4] = 0xf0;
-
-           ui->label_10->setText("BWRD");
-           ui->label_11->setText("X");
-           ui->label_12->setText("BP2");
-           ui->label_13->setText("BP1");
-           ui->label_14->setText("BP0");
-           ui->label_15->setText("INV");
-           ui->label_16->setText("CMP");
-           ui->label_17->setText("X");
-
-           ui->label_20->setText("OTP-P");
-           ui->label_21->setText("OTP-E");
-           ui->label_22->setText("X");
-           ui->label_23->setText("ECC-E");
-           ui->label_24->setText("X");
-           ui->label_25->setText("X");
-           ui->label_26->setText("X");
-           ui->label_27->setText("QE");
-
-           ui->label_30->setText("X");
-           ui->label_31->setText("X");
-           ui->label_32->setText("ECC-1");
-           ui->label_33->setText("ECC-0");
-           ui->label_34->setText("P-FAIL");
-           ui->label_35->setText("E-FAIL");
-           ui->label_36->setText("WEL");
-           ui->label_37->setText("BUSY");
-
-           ui->label_40->setText("X");
-           ui->label_41->setText("DS_S1");
-           ui->label_42->setText("DS-S0");
-           ui->label_43->setText("X");
-           ui->label_44->setText("X");
-           ui->label_45->setText("X");
-           ui->label_46->setText("X");
-           ui->label_47->setText("X");
-
-           ui->label_50->setText("X");
-           ui->label_51->setText("X");
-           ui->label_52->setText("ECCS1");
-           ui->label_53->setText("ECCS0");
-           ui->label_54->setText("X");
-           ui->label_55->setText("X");
-           ui->label_56->setText("X");
-           ui->label_57->setText("X");
+           //                         7     6     5     4     3     2      1     0
+           setRegLabels(0, QString("BWRD ,X    ,BP2  ,BP1  ,BP0   ,INV   ,CMP  ,X    "));
+           setRegLabels(1, QString("OTP-P,OTP-E,X    ,ECC-E,X     ,X     ,X    ,QE   "));
+           setRegLabels(2, QString("X    ,X    ,ECC-1,ECC-0,P-FAIL,E-FAIL,WEL  ,BUSY "));
+           setRegLabels(3, QString("X    ,DS_S1,DS-S0,X    ,X     ,X     ,X    ,X    "));
+           setRegLabels(4, QString("X    ,X    ,ECCS1,ECCS0,X     ,X     ,X    ,X    "));
          break;
+
          case 2: //Gigadevice 2
            RegNumbers[0] = 0xa0;
            RegNumbers[1] = 0xb0;
@@ -477,51 +401,11 @@ void DialogNANDSr::setPattern(const uint pattern)
            RegNumbers[4] = 0xff;
            setRegDisabled(3);
            setRegDisabled(4);
+           //                         7     6     5     4     3     2      1     0
+           setRegLabels(0, QString("BWRD ,X    ,BP2  ,BP1  ,BP0   ,INV   ,CMP  ,X    "));
+           setRegLabels(1, QString("OTP-P,OTP-E,X    ,ECC-E,X     ,X     ,X    ,QE   "));
+           setRegLabels(2, QString("X    ,X    ,ECC-1,ECC-0,P-FAIL,E-FAIL,WEL  ,BUSY "));
 
-           ui->label_10->setText("BWRD");
-           ui->label_11->setText("X");
-           ui->label_12->setText("BP2");
-           ui->label_13->setText("BP1");
-           ui->label_14->setText("BP0");
-           ui->label_15->setText("INV");
-           ui->label_16->setText("CMP");
-           ui->label_17->setText("X");
-
-           ui->label_20->setText("OTP-P");
-           ui->label_21->setText("OTP-E");
-           ui->label_22->setText("X");
-           ui->label_23->setText("ECC-E");
-           ui->label_24->setText("X");
-           ui->label_25->setText("X");
-           ui->label_26->setText("X");
-           ui->label_27->setText("QE");
-
-           ui->label_30->setText("X");
-           ui->label_31->setText("X");
-           ui->label_32->setText("ECC-1");
-           ui->label_33->setText("ECC-0");
-           ui->label_34->setText("P-FAIL");
-           ui->label_35->setText("E-FAIL");
-           ui->label_36->setText("WEL");
-           ui->label_37->setText("BUSY");
-
-           ui->label_40->setText("X");
-           ui->label_41->setText("X");
-           ui->label_42->setText("X");
-           ui->label_43->setText("X");
-           ui->label_44->setText("X");
-           ui->label_45->setText("X");
-           ui->label_46->setText("X");
-           ui->label_47->setText("X");
-
-           ui->label_50->setText("X");
-           ui->label_51->setText("X");
-           ui->label_52->setText("X");
-           ui->label_53->setText("X");
-           ui->label_54->setText("X");
-           ui->label_55->setText("X");
-           ui->label_56->setText("X");
-           ui->label_57->setText("X");
          break;
          case 3: //MXIC
            RegNumbers[0] = 0xa0;
@@ -529,52 +413,14 @@ void DialogNANDSr::setPattern(const uint pattern)
            RegNumbers[2] = 0xc0;
            RegNumbers[3] = 0xe0;
            RegNumbers[4] = 0x10;
-
-           ui->label_10->setText("BPWRD");
-           ui->label_11->setText("X");
-           ui->label_12->setText("BP2");
-           ui->label_13->setText("BP1");
-           ui->label_14->setText("BP0");
-           ui->label_15->setText("INV");
-           ui->label_16->setText("CMP");
-           ui->label_17->setText("SP");
-
-           ui->label_20->setText("OTP-P");
-           ui->label_21->setText("OTP-E");
-           ui->label_22->setText("X");
-           ui->label_23->setText("ECC-E");
-           ui->label_24->setText("X");
-           ui->label_25->setText("CONT");
-           ui->label_26->setText("X");
-           ui->label_27->setText("QE");
-
-           ui->label_30->setText("CRBSY");
-           ui->label_31->setText("BBMT_F");
-           ui->label_32->setText("ECC-1");
-           ui->label_33->setText("ECC-0");
-           ui->label_34->setText("P-FAIL");
-           ui->label_35->setText("E-FAIL");
-           ui->label_36->setText("WEL");
-           ui->label_37->setText("BUSY");
-
-           ui->label_40->setText("DS_IO");
-           ui->label_41->setText("DS_IO");
-           ui->label_42->setText("X");
-           ui->label_43->setText("X");
-           ui->label_44->setText("X");
-           ui->label_45->setText("X");
-           ui->label_46->setText("X");
-           ui->label_47->setText("X");
-
-           ui->label_50->setText("BFT3");
-           ui->label_51->setText("BFT2");
-           ui->label_52->setText("BFT1");
-           ui->label_53->setText("BFT0");
-           ui->label_54->setText("X");
-           ui->label_55->setText("X");
-           ui->label_56->setText("X");
-           ui->label_57->setText("ENPGM");
+           //                         7     6     5     4     3     2      1     0
+           setRegLabels(0, QString("BPWRD,X     ,BP2  ,BP1  ,BP0   ,INV   ,CMP  ,SP    "));
+           setRegLabels(1, QString("OTP-P,OTP-E ,X    ,ECC-E,X     ,CONT  ,X    ,QE    "));
+           setRegLabels(2, QString("CRBSY,BBMT_F,ECC-1,ECC-0,P-FAIL,E-FAIL,WEL  ,BUSY  "));
+           setRegLabels(3, QString("DS_IO,DS_IO ,X    ,X    ,X     ,X     ,X    ,X     "));
+           setRegLabels(4, QString("BFT3 ,BFT2  ,BFT1 ,BFT00,X     ,X     ,X    ,ENPGM "));
          break;
+
          case 4: //ESMT
            RegNumbers[0] = 0xa0;
            RegNumbers[1] = 0xb0;
@@ -583,52 +429,65 @@ void DialogNANDSr::setPattern(const uint pattern)
            RegNumbers[4] = 0xff;
            setRegDisabled(3);
            setRegDisabled(4);
-
-           ui->label_10->setText("BRWD");
-           ui->label_11->setText("BP3");
-           ui->label_12->setText("BP2");
-           ui->label_13->setText("BP1");
-           ui->label_14->setText("BP0");
-           ui->label_15->setText("TB");
-           ui->label_16->setText("WP_DIS");
-           ui->label_17->setText("X");
-
-           ui->label_20->setText("CFG2");
-           ui->label_21->setText("CFG1");
-           ui->label_22->setText("LOT_EN");
-           ui->label_23->setText("ECC-E");
-           ui->label_24->setText("X");
-           ui->label_25->setText("X");
-           ui->label_26->setText("CFG0");
-           ui->label_27->setText("X");
-
-           ui->label_30->setText("CRBSY");
-           ui->label_31->setText("ECCS2");
-           ui->label_32->setText("ECCS1");
-           ui->label_33->setText("ECCS0");
-           ui->label_34->setText("P-FAIL");
-           ui->label_35->setText("E-FAIL");
-           ui->label_36->setText("WEL");
-           ui->label_37->setText("BUSY");
-
-           ui->label_40->setText("X");
-           ui->label_41->setText("X");
-           ui->label_42->setText("X");
-           ui->label_43->setText("X");
-           ui->label_44->setText("X");
-           ui->label_45->setText("X");
-           ui->label_46->setText("X");
-           ui->label_47->setText("X");
-
-           ui->label_50->setText("X");
-           ui->label_51->setText("X");
-           ui->label_52->setText("X");
-           ui->label_53->setText("X");
-           ui->label_54->setText("X");
-           ui->label_55->setText("X");
-           ui->label_56->setText("X");
-           ui->label_57->setText("X");
+           //                         7     6     5     4     3     2      1     0
+           setRegLabels(0, QString("BWRD ,BP3  ,BP2   ,BP1  ,BP0   ,TB    ,WP_DIS,X    "));
+           setRegLabels(1, QString("CFG2 ,CFG1 ,LOT_EN,ECC-E,X     ,X     ,CFG0  ,X    "));
+           setRegLabels(2, QString("CRBSY,ECCS2,ECCS1,ECCS0 ,P-FAIL,E-FAIL,WEL   ,BUSY "));
          break;
+
+    case 5: //ESMT2
+      RegNumbers[0] = 0xa0;
+      RegNumbers[1] = 0xb0;
+      RegNumbers[2] = 0xc0;
+      RegNumbers[3] = 0xd0;
+      RegNumbers[4] = 0xff;
+      setRegDisabled(4);
+      //                         7     6     5     4      3      2      1      0
+      setRegLabels(0, QString("PRP0 ,BP3   ,BP2   ,BP1  ,BP0   ,T/BP  ,WPE   ,PRP1 "));
+      setRegLabels(1, QString("OTP-P,OTP-E ,PR-L  ,ECC-E,X     ,X     ,X     ,X    "));
+      setRegLabels(2, QString("X    ,X     ,ECC_S1,ECC_S0,P-FAIL,E-FAIL,WEL  ,BUSY "));
+      setRegLabels(3, QString("X    ,DRV_S1,DRV_S0,X    ,X     ,X     ,X     ,X    "));
+    break;
+
+    case 6: //MXIC2
+      RegNumbers[0] = 0xa0;
+      RegNumbers[1] = 0xb0;
+      RegNumbers[2] = 0xc0;
+      RegNumbers[3] = 0xe0;
+      RegNumbers[4] = 0x10;
+      //                         7     6     5     4     3     2       1      0
+      setRegLabels(0, QString("BPWRD,X     ,BP2  ,BP1  ,BP0   ,INV    ,CMP   ,SP    "));
+      setRegLabels(1, QString("OTP-P,OTP-E ,X    ,ECC-E,X     ,X      ,X     ,QE    "));
+      setRegLabels(2, QString("CRBSY,X     ,X    ,X    ,P-FAIL,E-FAIL ,WEL   ,BUSY  "));
+      setRegLabels(3, QString("DS_IO,DS_IO ,X    ,X    ,X     ,X      ,X     ,X     "));
+      setRegLabels(4, QString("X    ,X     ,X    ,X    ,X     ,RANDOPT,RANDEN,ENPGM "));
+    break;
+    case 7: //MXIC3
+      RegNumbers[0] = 0xa0;
+      RegNumbers[1] = 0xb0;
+      RegNumbers[2] = 0xc0;
+      RegNumbers[3] = 0xff;
+      RegNumbers[4] = 0xff;
+      setRegDisabled(3);
+      setRegDisabled(4);
+      //                         7     6     5     4     3     2       1      0
+      setRegLabels(0, QString("BPWRD,X     ,BP2  ,BP1  ,BP0   ,INV    ,CMP   ,SP    "));
+      setRegLabels(1, QString("OTP-P,OTP-E ,X    ,ECC-E,X     ,X      ,X     ,QE    "));
+      setRegLabels(2, QString("X    ,X     ,X    ,X    ,P-FAIL,E-FAIL ,WEL   ,BUSY  "));
+    break;
+    case 8: //Winbond2
+       RegNumbers[0] = 0xa0;
+       RegNumbers[1] = 0xb0;
+       RegNumbers[2] = 0xc0;
+       RegNumbers[3] = 0xff;
+       RegNumbers[4] = 0xff;
+       setRegDisabled(3);
+       setRegDisabled(4);
+       //                         7     6     5     4     3     2      1     0
+       setRegLabels(0, QString("SRP0 ,BP3  ,BP2  ,BP1  ,BP0   ,TB    ,WP-E ,SRP1  "));
+       setRegLabels(1, QString("OTP-L,OTP-E,SR1-L,ECC-E,BUF   ,OSD-1 ,OSD-0 ,H-DIS"));
+       setRegLabels(2, QString("X    ,LUT-F,ECC-1,ECC-0,P-FAIL,E-FAIL,WEL   ,BUSY "));
+     break;
        }
 }
 
@@ -650,16 +509,45 @@ void DialogNANDSr::clearAllFields()
     }
 }
 
-void DialogNANDSr:: setRegDisabled(uint8_t regNumber)
+void DialogNANDSr::setRegDisabled(uint8_t regNumber)
 {
-    QString searchText = "lineEdit_sr" + QString::number(regNumber) + "\\d+";
-    QRegularExpression regex(searchText);
+    QString searchTextE = "lineEdit_sr" + QString::number(regNumber) + "\\d+";
+    QString searchTextL = "label_" + QString::number(regNumber) + "\\d+";
+    QRegularExpression regexE(searchTextE);
+    QRegularExpression regexL(searchTextL);
 
         for (QLineEdit* edit : findChildren<QLineEdit*>())
         {
-            if (regex.match(edit->objectName()).hasMatch())
+            if (regexE.match(edit->objectName()).hasMatch())
             {
                 edit->setDisabled(true);
             }
         }
+
+        for (QLabel* label : findChildren<QLabel*>())
+        {
+
+            if (regexL.match(label->objectName()).hasMatch())
+            {
+                label->setText("X");
+            }
+
+        }
+}
+
+void DialogNANDSr::setRegLabels(uint8_t regNumber, QString lt)
+{
+  lt.replace( " ", "" );
+  QStringList list = lt.split(",");
+  int lastIndex = list.size() - 1;
+
+      for (int i = 0; i <= lastIndex; ++i)
+      {
+          QString labelName = QString("label_") + QString::number(regNumber) + QString::number(i);
+
+          if (QLabel* label = findChild<QLabel*>(labelName))
+          {
+              label->setText(list.at(lastIndex - i));
+          }
+      }
 }

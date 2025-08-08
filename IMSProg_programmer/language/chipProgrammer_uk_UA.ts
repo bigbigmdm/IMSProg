@@ -333,37 +333,37 @@
         <translation>Обсяг МС:</translation>
     </message>
     <message>
-        <location filename="../dialognandsr.cpp" line="98"/>
-        <location filename="../dialognandsr.cpp" line="166"/>
-        <location filename="../dialognandsr.cpp" line="245"/>
-        <location filename="../dialognandsr.cpp" line="292"/>
-        <location filename="../dialognandsr.cpp" line="349"/>
+        <location filename="../dialognandsr.cpp" line="100"/>
+        <location filename="../dialognandsr.cpp" line="168"/>
+        <location filename="../dialognandsr.cpp" line="247"/>
+        <location filename="../dialognandsr.cpp" line="294"/>
+        <location filename="../dialognandsr.cpp" line="351"/>
         <source>Error</source>
         <translation>Помилка</translation>
     </message>
     <message>
-        <location filename="../dialognandsr.cpp" line="98"/>
+        <location filename="../dialognandsr.cpp" line="100"/>
         <source>Error reading register!</source>
         <translation>Помилка читання регістру!</translation>
     </message>
     <message>
-        <location filename="../dialognandsr.cpp" line="166"/>
+        <location filename="../dialognandsr.cpp" line="168"/>
         <source>Error reading Parameter Page!</source>
         <translation>Помилка під час читання сторінки параметрів!</translation>
     </message>
     <message>
-        <location filename="../dialognandsr.cpp" line="227"/>
+        <location filename="../dialognandsr.cpp" line="229"/>
         <source>The Parameter Page is not supported.</source>
         <translation>Сторінка параметрів не підтримується.</translation>
     </message>
     <message>
-        <location filename="../dialognandsr.cpp" line="245"/>
+        <location filename="../dialognandsr.cpp" line="247"/>
         <source>Error reading ID!</source>
         <translation>Помилка під час зчитування ідентифікатора!</translation>
     </message>
     <message>
-        <location filename="../dialognandsr.cpp" line="292"/>
-        <location filename="../dialognandsr.cpp" line="349"/>
+        <location filename="../dialognandsr.cpp" line="294"/>
+        <location filename="../dialognandsr.cpp" line="351"/>
         <source>Programmer CH341a is not connected!</source>
         <translation>Програматор CH341a не підключений!</translation>
     </message>

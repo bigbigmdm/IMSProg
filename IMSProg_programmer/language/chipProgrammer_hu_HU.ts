@@ -333,37 +333,37 @@
         <translation>Chip mérete:</translation>
     </message>
     <message>
-        <location filename="../dialognandsr.cpp" line="98"/>
-        <location filename="../dialognandsr.cpp" line="166"/>
-        <location filename="../dialognandsr.cpp" line="245"/>
-        <location filename="../dialognandsr.cpp" line="292"/>
-        <location filename="../dialognandsr.cpp" line="349"/>
+        <location filename="../dialognandsr.cpp" line="100"/>
+        <location filename="../dialognandsr.cpp" line="168"/>
+        <location filename="../dialognandsr.cpp" line="247"/>
+        <location filename="../dialognandsr.cpp" line="294"/>
+        <location filename="../dialognandsr.cpp" line="351"/>
         <source>Error</source>
         <translation>Hiba</translation>
     </message>
     <message>
-        <location filename="../dialognandsr.cpp" line="98"/>
+        <location filename="../dialognandsr.cpp" line="100"/>
         <source>Error reading register!</source>
         <translation>Hiba a regiszter olvasásakor!</translation>
     </message>
     <message>
-        <location filename="../dialognandsr.cpp" line="166"/>
+        <location filename="../dialognandsr.cpp" line="168"/>
         <source>Error reading Parameter Page!</source>
         <translation>Hiba a paraméteroldal olvasásakor!</translation>
     </message>
     <message>
-        <location filename="../dialognandsr.cpp" line="227"/>
+        <location filename="../dialognandsr.cpp" line="229"/>
         <source>The Parameter Page is not supported.</source>
         <translation>A paraméteroldal nem támogatott.</translation>
     </message>
     <message>
-        <location filename="../dialognandsr.cpp" line="245"/>
+        <location filename="../dialognandsr.cpp" line="247"/>
         <source>Error reading ID!</source>
         <translation>Hiba az azonosító olvasásakor!</translation>
     </message>
     <message>
-        <location filename="../dialognandsr.cpp" line="292"/>
-        <location filename="../dialognandsr.cpp" line="349"/>
+        <location filename="../dialognandsr.cpp" line="294"/>
+        <location filename="../dialognandsr.cpp" line="351"/>
         <source>Programmer CH341a is not connected!</source>
         <translation>A CH341a programozó nincs csatlakoztatva!</translation>
     </message>
