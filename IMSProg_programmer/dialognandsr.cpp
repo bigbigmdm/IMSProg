@@ -373,10 +373,10 @@ void DialogNANDSr::setPattern(const uint pattern)
            RegNumbers[4] = 0xff;
            setRegDisabled(3);
            setRegDisabled(4);
-           //                         7     6     5     4     3     2      1     0
-           setRegLabels(0, QString("SRP0 ,BP3  ,BP2  ,BP1  ,BP0   ,TB    ,WP-E ,SRP1 "));
-           setRegLabels(1, QString("OTP-L,OTP-E,SR1-L,ECC-E,BUF   ,X     ,X    ,X    "));
-           setRegLabels(2, QString("X    ,LUT-F,ECC-1,ECC-0,P-FAIL,E-FAIL,WEL  ,BUSY "));
+           //                       7      6      5      4      3      2      1      0
+           setRegLabels(0, QString("SRP0  ,BP3   ,BP2   ,BP1   ,BP0   ,TB    ,WP-E  ,SRP1 "));
+           setRegLabels(1, QString("OTP-L ,OTP-E ,SR1-L ,ECC-E ,BUF   ,X     ,X     ,QE   "));
+           setRegLabels(2, QString("X     ,LUT-F ,ECC-1 ,ECC-0 ,P-FAIL,E-FAIL,WEL   ,BUSY "));
          break;
 
          case 1: //Gigadevice 1
@@ -385,12 +385,12 @@ void DialogNANDSr::setPattern(const uint pattern)
            RegNumbers[2] = 0xc0;
            RegNumbers[3] = 0xd0;
            RegNumbers[4] = 0xf0;
-           //                         7     6     5     4     3     2      1     0
-           setRegLabels(0, QString("BWRD ,X    ,BP2  ,BP1  ,BP0   ,INV   ,CMP  ,X    "));
-           setRegLabels(1, QString("OTP-P,OTP-E,X    ,ECC-E,X     ,X     ,X    ,QE   "));
-           setRegLabels(2, QString("X    ,X    ,ECC-1,ECC-0,P-FAIL,E-FAIL,WEL  ,BUSY "));
-           setRegLabels(3, QString("X    ,DS_S1,DS-S0,X    ,X     ,X     ,X    ,X    "));
-           setRegLabels(4, QString("X    ,X    ,ECCS1,ECCS0,X     ,X     ,X    ,X    "));
+           //                       7      6      5      4      3      2      1      0
+           setRegLabels(0, QString("BWRD  ,X     ,BP2   ,BP1   ,BP0   ,INV   ,CMP   ,X    "));
+           setRegLabels(1, QString("OTP-P ,OTP-E ,X     ,ECC-E ,X     ,X     ,X     ,QE   "));
+           setRegLabels(2, QString("X     ,X     ,ECC-1 ,ECC-0 ,P-FAIL,E-FAIL,WEL   ,BUSY "));
+           setRegLabels(3, QString("X     ,DS_S1 ,DS-S0 ,X     ,X     ,X     ,X     ,X    "));
+           setRegLabels(4, QString("X     ,X     ,ECCS1 ,ECCS0 ,X     ,X     ,X     ,X    "));
          break;
 
          case 2: //Gigadevice 2
@@ -401,10 +401,10 @@ void DialogNANDSr::setPattern(const uint pattern)
            RegNumbers[4] = 0xff;
            setRegDisabled(3);
            setRegDisabled(4);
-           //                         7     6     5     4     3     2      1     0
-           setRegLabels(0, QString("BWRD ,X    ,BP2  ,BP1  ,BP0   ,INV   ,CMP  ,X    "));
-           setRegLabels(1, QString("OTP-P,OTP-E,X    ,ECC-E,X     ,X     ,X    ,QE   "));
-           setRegLabels(2, QString("X    ,X    ,ECC-1,ECC-0,P-FAIL,E-FAIL,WEL  ,BUSY "));
+           //                       7      6      5      4      3      2      1      0
+           setRegLabels(0, QString("BWRD  ,X     ,BP2   ,BP1   ,BP0   ,INV   ,CMP   ,X    "));
+           setRegLabels(1, QString("OTP-P ,OTP-E ,X     ,ECC-E ,X     ,X     ,X     ,QE   "));
+           setRegLabels(2, QString("X     ,X     ,ECC-1 ,ECC-0 ,P-FAIL,E-FAIL,WEL   ,BUSY "));
 
          break;
          case 3: //MXIC
@@ -413,12 +413,12 @@ void DialogNANDSr::setPattern(const uint pattern)
            RegNumbers[2] = 0xc0;
            RegNumbers[3] = 0xe0;
            RegNumbers[4] = 0x10;
-           //                         7     6     5     4     3     2      1     0
-           setRegLabels(0, QString("BPWRD,X     ,BP2  ,BP1  ,BP0   ,INV   ,CMP  ,SP    "));
-           setRegLabels(1, QString("OTP-P,OTP-E ,X    ,ECC-E,X     ,CONT  ,X    ,QE    "));
-           setRegLabels(2, QString("CRBSY,BBMT_F,ECC-1,ECC-0,P-FAIL,E-FAIL,WEL  ,BUSY  "));
-           setRegLabels(3, QString("DS_IO,DS_IO ,X    ,X    ,X     ,X     ,X    ,X     "));
-           setRegLabels(4, QString("BFT3 ,BFT2  ,BFT1 ,BFT00,X     ,X     ,X    ,ENPGM "));
+           //                       7      6      5      4      3      2      1      0
+           setRegLabels(0, QString("BPWRD ,X     ,BP2   ,BP1   ,BP0   ,INV   ,CMP   ,SP    "));
+           setRegLabels(1, QString("OTP-P ,OTP-E ,X     ,ECC-E ,X     ,CONT  ,X     ,QE    "));
+           setRegLabels(2, QString("CRBSY ,BBMT_F,ECC-1 ,ECC-0 ,P-FAIL,E-FAIL,WEL   ,BUSY  "));
+           setRegLabels(3, QString("DS_IO ,DS_IO ,X     ,X     ,X     ,X     ,X     ,X     "));
+           setRegLabels(4, QString("BFT3  ,BFT2  ,BFT1  ,BFT00 ,X     ,X     ,X     ,ENPGM "));
          break;
 
          case 4: //ESMT
@@ -429,65 +429,78 @@ void DialogNANDSr::setPattern(const uint pattern)
            RegNumbers[4] = 0xff;
            setRegDisabled(3);
            setRegDisabled(4);
-           //                         7     6     5     4     3     2      1     0
-           setRegLabels(0, QString("BWRD ,BP3  ,BP2   ,BP1  ,BP0   ,TB    ,WP_DIS,X    "));
-           setRegLabels(1, QString("CFG2 ,CFG1 ,LOT_EN,ECC-E,X     ,X     ,CFG0  ,X    "));
-           setRegLabels(2, QString("CRBSY,ECCS2,ECCS1,ECCS0 ,P-FAIL,E-FAIL,WEL   ,BUSY "));
+           //                       7      6      5      4      3      2      1      0
+           setRegLabels(0, QString("BWRD  ,BP3   ,BP2   ,BP1   ,BP0   ,TB    ,WP_DIS,X    "));
+           setRegLabels(1, QString("CFG2  ,CFG1  ,LOT_EN,ECC-E ,X     ,X     ,CFG0  ,X    "));
+           setRegLabels(2, QString("CRBSY ,ECCS2 ,ECCS1 ,ECCS0 ,P-FAIL,E-FAIL,WEL   ,BUSY "));
          break;
 
-    case 5: //ESMT2
-      RegNumbers[0] = 0xa0;
-      RegNumbers[1] = 0xb0;
-      RegNumbers[2] = 0xc0;
-      RegNumbers[3] = 0xd0;
-      RegNumbers[4] = 0xff;
-      setRegDisabled(4);
-      //                         7     6     5     4      3      2      1      0
-      setRegLabels(0, QString("PRP0 ,BP3   ,BP2   ,BP1  ,BP0   ,T/BP  ,WPE   ,PRP1 "));
-      setRegLabels(1, QString("OTP-P,OTP-E ,PR-L  ,ECC-E,X     ,X     ,X     ,X    "));
-      setRegLabels(2, QString("X    ,X     ,ECC_S1,ECC_S0,P-FAIL,E-FAIL,WEL  ,BUSY "));
-      setRegLabels(3, QString("X    ,DRV_S1,DRV_S0,X    ,X     ,X     ,X     ,X    "));
-    break;
+         case 5: //ESMT2
+           RegNumbers[0] = 0xa0;
+           RegNumbers[1] = 0xb0;
+           RegNumbers[2] = 0xc0;
+           RegNumbers[3] = 0xd0;
+           RegNumbers[4] = 0xff;
+           setRegDisabled(4);
+           //                       7      6      5      4      3      2      1      0
+           setRegLabels(0, QString("PRP0  ,BP3   ,BP2   ,BP1   ,BP0   ,T/BP  ,WPE   ,PRP1 "));
+           setRegLabels(1, QString("OTP-P ,OTP-E ,PR-L  ,ECC-E ,X     ,X     ,X     ,X    "));
+           setRegLabels(2, QString("X     ,X     ,ECC_S1,ECC_S0,P-FAIL,E-FAIL,WEL  ,BUSY  "));
+           setRegLabels(3, QString("X     ,DRV_S1,DRV_S0,X     ,X     ,X     ,X     ,X    "));
+         break;
 
-    case 6: //MXIC2
-      RegNumbers[0] = 0xa0;
-      RegNumbers[1] = 0xb0;
-      RegNumbers[2] = 0xc0;
-      RegNumbers[3] = 0xe0;
-      RegNumbers[4] = 0x10;
-      //                         7     6     5     4     3     2       1      0
-      setRegLabels(0, QString("BPWRD,X     ,BP2  ,BP1  ,BP0   ,INV    ,CMP   ,SP    "));
-      setRegLabels(1, QString("OTP-P,OTP-E ,X    ,ECC-E,X     ,X      ,X     ,QE    "));
-      setRegLabels(2, QString("CRBSY,X     ,X    ,X    ,P-FAIL,E-FAIL ,WEL   ,BUSY  "));
-      setRegLabels(3, QString("DS_IO,DS_IO ,X    ,X    ,X     ,X      ,X     ,X     "));
-      setRegLabels(4, QString("X    ,X     ,X    ,X    ,X     ,RANDOPT,RANDEN,ENPGM "));
-    break;
-    case 7: //MXIC3
-      RegNumbers[0] = 0xa0;
-      RegNumbers[1] = 0xb0;
-      RegNumbers[2] = 0xc0;
-      RegNumbers[3] = 0xff;
-      RegNumbers[4] = 0xff;
-      setRegDisabled(3);
-      setRegDisabled(4);
-      //                         7     6     5     4     3     2       1      0
-      setRegLabels(0, QString("BPWRD,X     ,BP2  ,BP1  ,BP0   ,INV    ,CMP   ,SP    "));
-      setRegLabels(1, QString("OTP-P,OTP-E ,X    ,ECC-E,X     ,X      ,X     ,QE    "));
-      setRegLabels(2, QString("X    ,X     ,X    ,X    ,P-FAIL,E-FAIL ,WEL   ,BUSY  "));
-    break;
-    case 8: //Winbond2
-       RegNumbers[0] = 0xa0;
-       RegNumbers[1] = 0xb0;
-       RegNumbers[2] = 0xc0;
-       RegNumbers[3] = 0xff;
-       RegNumbers[4] = 0xff;
-       setRegDisabled(3);
-       setRegDisabled(4);
-       //                         7     6     5     4     3     2      1     0
-       setRegLabels(0, QString("SRP0 ,BP3  ,BP2  ,BP1  ,BP0   ,TB    ,WP-E ,SRP1  "));
-       setRegLabels(1, QString("OTP-L,OTP-E,SR1-L,ECC-E,BUF   ,OSD-1 ,OSD-0 ,H-DIS"));
-       setRegLabels(2, QString("X    ,LUT-F,ECC-1,ECC-0,P-FAIL,E-FAIL,WEL   ,BUSY "));
-     break;
+         case 6: //MXIC2
+           RegNumbers[0] = 0xa0;
+           RegNumbers[1] = 0xb0;
+           RegNumbers[2] = 0xc0;
+           RegNumbers[3] = 0xe0;
+           RegNumbers[4] = 0x10;
+           //                       7      6      5      4      3      2      1      0
+           setRegLabels(0, QString("BPWRD ,X     ,BP2   ,BP1   ,BP0   ,INV    ,CMP   ,SP    "));
+           setRegLabels(1, QString("OTP-P ,OTP-E ,X     ,ECC-E ,X     ,X      ,X     ,QE    "));
+           setRegLabels(2, QString("CRBSY ,X     ,X     ,X     ,P-FAIL,E-FAIL ,WEL   ,BUSY  "));
+           setRegLabels(3, QString("DS_IO ,DS_IO ,X     ,X     ,X     ,X      ,X     ,X     "));
+           setRegLabels(4, QString("X     ,X     ,X     ,X     ,X     ,RANDOPT,RANDEN,ENPGM "));
+         break;
+         case 7: //MXIC3
+           RegNumbers[0] = 0xa0;
+           RegNumbers[1] = 0xb0;
+           RegNumbers[2] = 0xc0;
+           RegNumbers[3] = 0xff;
+           RegNumbers[4] = 0xff;
+           setRegDisabled(3);
+           setRegDisabled(4);
+           //                       7      6      5      4      3      2      1      0
+           setRegLabels(0, QString("BPWRD ,X     ,BP2   ,BP1   ,BP0   ,INV   ,CMP   ,SP    "));
+           setRegLabels(1, QString("OTP-P ,OTP-E ,X     ,ECC-E ,X     ,X     ,X     ,QE    "));
+           setRegLabels(2, QString("X     ,X     ,X     ,X     ,P-FAIL,E-FAIL,WEL   ,BUSY  "));
+         break;
+         case 8: //Winbond2
+           RegNumbers[0] = 0xa0;
+           RegNumbers[1] = 0xb0;
+           RegNumbers[2] = 0xc0;
+           RegNumbers[3] = 0xff;
+           RegNumbers[4] = 0xff;
+           setRegDisabled(3);
+           setRegDisabled(4);
+           //                       7      6      5      4      3      2      1      0
+           setRegLabels(0, QString("SRP0  ,BP3   ,BP2   ,BP1   ,BP0   ,TB    ,WP-E  ,SRP1  "));
+           setRegLabels(1, QString("OTP-L ,OTP-E ,SR1-L ,ECC-E ,BUF   ,OSD-1 ,OSD-0 ,H-DIS "));
+           setRegLabels(2, QString("X     ,LUT-F ,ECC-1 ,ECC-0 ,P-FAIL,E-FAIL,WEL   ,BUSY  "));
+         break;
+         case 9: //Winbond3
+           RegNumbers[0] = 0xa0;
+           RegNumbers[1] = 0xb0;
+           RegNumbers[2] = 0xc0;
+           RegNumbers[3] = 0xd0;
+           RegNumbers[4] = 0xff;
+           setRegDisabled(4);
+           //                       7      6      5      4      3      2      1      0
+           setRegLabels(0, QString("SRP0  ,BP3   ,BP2   ,BP1   ,BP0   ,TB    ,WP-E  ,SRP1  "));
+           setRegLabels(1, QString("OTP-L ,OTP-E ,SR1-L ,ECC-E ,BUF   ,OSD-1 ,OSD-0 ,H-DIS "));
+           setRegLabels(2, QString("X     ,LUT-F ,ECC-1 ,ECC-0 ,P-FAIL,E-FAIL,WEL   ,BUSY  "));
+           setRegLabels(3, QString("X     ,ODS1  ,ODS0  ,X     ,DLP-E ,HS    ,X     ,X     "));
+         break;
        }
 }
 
