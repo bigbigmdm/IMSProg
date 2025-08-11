@@ -527,6 +527,32 @@ void DialogNANDSr::setPattern(const uint pattern)
            setRegLabels(1, QString("OTPPRT,OTP_EN,X     ,ECC_EN,X     ,X     ,X     ,QE    "));
            setRegLabels(2, QString("X     ,X     ,ECCS3 ,ECCS2 ,P_FAIL,E_FAIL,WEL   ,BUSY  "));
          break;
+         case 12: //XTX3
+           RegNumbers[0] = 0xa0;
+           RegNumbers[1] = 0xb0;
+           RegNumbers[2] = 0xc0;
+           RegNumbers[3] = 0xd0;
+           RegNumbers[4] = 0xff;
+           setRegDisabled(4);
+           //                       7      6      5      4      3      2      1      0
+           setRegLabels(0, QString("BRWD  ,X     ,BP2   ,BP1   ,BP0   ,INV   ,CMP   ,X     "));
+           setRegLabels(1, QString("OTPPRT,OTP_EN,X     ,ECC_EN,CRM   ,X     ,HSE   ,QE    "));
+           setRegLabels(2, QString("ECCS3 ,ECCS2 ,ECCS1 ,ECCS0 ,P_FAIL,E_FAIL,WEL   ,BUSY  "));
+           setRegLabels(3, QString("X     ,DS_IO1,DS_IO2,X     ,X     ,X     ,X     ,X     "));
+         break;
+         case 14: //Micron
+           RegNumbers[0] = 0xa0;
+           RegNumbers[1] = 0xb0;
+           RegNumbers[2] = 0xc0;
+           RegNumbers[3] = 0xd0;
+           RegNumbers[4] = 0xff;
+           setRegDisabled(4);
+           //                       7      6      5      4      3      2      1      0
+           setRegLabels(0, QString("BRWD  ,BP3   ,BP2   ,BP1   ,BP0   ,T/BP  ,WP_DIS,X    "));
+           setRegLabels(1, QString("CFG2  ,CFG1  ,LOT_EN,ECC-E,DS_S1 ,DS_S0 ,CFG0   ,CON_RD"));
+           setRegLabels(2, QString("CRBSY ,ECCS2 ,ECCS1 ,ECCS0,P-FAIL,E-FAIL,WEL    ,BUSY  "));
+           setRegLabels(3, QString("X     ,DS0   ,X     ,X     ,X     ,X     ,X     ,X    "));
+         break;
        }
 }
 
