@@ -553,6 +553,20 @@ void DialogNANDSr::setPattern(const uint pattern)
            setRegLabels(2, QString("CRBSY ,ECCS2 ,ECCS1 ,ECCS0,P-FAIL,E-FAIL,WEL    ,BUSY  "));
            setRegLabels(3, QString("X     ,DS0   ,X     ,X     ,X     ,X     ,X     ,X    "));
          break;
+         case 15: //Foressy
+           RegNumbers[0] = 0xa0;
+           RegNumbers[1] = 0xb0;
+           RegNumbers[2] = 0xc0;
+           RegNumbers[3] = 0x80;
+           RegNumbers[4] = 0x84;
+           setRegDisabled(4);
+           //                       7      6      5      4      3      2      1      0
+           setRegLabels(0, QString("BRWD  ,BP3   ,BP2   ,BP1   ,BP0   ,TB    ,X     ,SP    "));
+           setRegLabels(1, QString("OTP-L ,OTP-E ,X     ,ECC-E ,X     ,DRV1  ,DRV0  ,QE    "));
+           setRegLabels(2, QString("X     ,X     ,ECCS1 ,ECCS0 ,P-FAIL,E-FAIL,WEL   ,BUSY  "));
+           setRegLabels(3, QString("X     ,X     ,X     ,X     ,S0ES3 ,S0ES2 ,S0ES1 ,S0ES0 "));
+           setRegLabels(4, QString("X     ,X     ,X     ,X     ,S1ES3 ,S1ES2 ,S1ES1 ,S1ES0 "));
+         break;
        }
 }
 
