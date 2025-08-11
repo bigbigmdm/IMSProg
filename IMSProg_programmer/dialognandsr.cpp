@@ -559,7 +559,6 @@ void DialogNANDSr::setPattern(const uint pattern)
            RegNumbers[2] = 0xc0;
            RegNumbers[3] = 0x80;
            RegNumbers[4] = 0x84;
-           setRegDisabled(4);
            //                       7      6      5      4      3      2      1      0
            setRegLabels(0, QString("BRWD  ,BP3   ,BP2   ,BP1   ,BP0   ,TB    ,X     ,SP    "));
            setRegLabels(1, QString("OTP-L ,OTP-E ,X     ,ECC-E ,X     ,DRV1  ,DRV0  ,QE    "));
@@ -567,6 +566,20 @@ void DialogNANDSr::setPattern(const uint pattern)
            setRegLabels(3, QString("X     ,X     ,X     ,X     ,S0ES3 ,S0ES2 ,S0ES1 ,S0ES0 "));
            setRegLabels(4, QString("X     ,X     ,X     ,X     ,S1ES3 ,S1ES2 ,S1ES1 ,S1ES0 "));
          break;
+         case 16: //Foressy2
+           RegNumbers[0] = 0xa0;
+           RegNumbers[1] = 0xb0;
+           RegNumbers[2] = 0xc0;
+           RegNumbers[3] = 0xd0;
+           RegNumbers[4] = 0x10;
+           //                       7      6      5      4      3      2      1      0
+          setRegLabels(0, QString("BRWD  ,BP3   ,BP2   ,BP1   ,BP0   ,TB    ,X     ,SP    "));
+          setRegLabels(1, QString("OTP-L ,OTP-E ,X     ,ECC-E ,X     ,DRV1  ,DRV0  ,QE    "));
+          setRegLabels(2, QString("X     ,X     ,ECCS1 ,ECCS0 ,P-FAIL,E-FAIL,WEL   ,BUSY  "));
+          setRegLabels(3, QString("X     ,X     ,X     ,X     ,X     ,X     ,X     ,ECC-M "));
+          setRegLabels(4, QString("X     ,X     ,X     ,X     ,S0ES3 ,S0ES2 ,S0ES1 ,S0ES0 "));
+    break;
+
        }
 }
 
