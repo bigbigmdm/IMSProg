@@ -102,10 +102,6 @@ MainWindow::MainWindow(QWidget *parent) :
  ui->comboBox_ECC->addItem("128", 2);
  ui->comboBox_ECC->addItem("256", 3);
 
- ui->comboBox_eraseSize->addItem(" ",      0);
- ui->comboBox_eraseSize->addItem("128K",   1);
- ui->comboBox_eraseSize->addItem("256K",   2);
-
  ui->comboBox_i2cSpeed->addItem("20 kHz",  0);
  ui->comboBox_i2cSpeed->addItem("100 kHz", 1);
  ui->comboBox_i2cSpeed->addItem("400 kHz", 2);
@@ -123,7 +119,6 @@ MainWindow::MainWindow(QWidget *parent) :
  blockLen = 0;
  currentAddr4bit = 0;
  currentECCsize = 0;
- currentEraseSize = 0;
  filled = 0;
  numberOfReads = 0;
  cmdStarted = false;
@@ -412,11 +407,6 @@ void MainWindow::on_pushButton_2_clicked()
             { // -1 for not found
                ui->comboBox_ECC->setCurrentIndex(index);
             }
-            index = ui->comboBox_eraseSize->findData(chips[i].addr4bit);
-            if ( index != -1 )
-            { // -1 for not found
-               ui->comboBox_eraseSize->setCurrentIndex(index);
-            }
             ui->pushButton_2->setStyleSheet(grnKeyStyle);
             break;
         }
@@ -557,7 +547,6 @@ void MainWindow::on_comboBox_size_currentIndexChanged(int index)
     currentPageSize = ui->comboBox_page->currentData().toUInt();
     currentAddr4bit = ui->comboBox_addr4bit->currentData().toUInt();
     currentECCsize = (ui->comboBox_ECC->currentData().toUInt()) * 64;
-    currentEraseSize = (ui->comboBox_eraseSize->currentData().toUInt()) * 128 * 1024;
     if ((currentChipSize !=0) && (currentBlockSize!=0) && (currentChipType == 0))
     {
         currentNumBlocks = currentChipSize / currentBlockSize;
@@ -588,7 +577,6 @@ void MainWindow::on_comboBox_page_currentIndexChanged(int index)
     currentPageSize = ui->comboBox_page->currentData().toUInt();
     currentAddr4bit = ui->comboBox_addr4bit->currentData().toUInt();
     currentECCsize = (ui->comboBox_ECC->currentData().toUInt()) * 64;
-    currentEraseSize = (ui->comboBox_eraseSize->currentData().toUInt()) * 128 * 1024;
     if ((currentChipSize !=0) && (currentBlockSize!=0) && (currentChipType ==0))
     {
         currentNumBlocks = currentChipSize / currentBlockSize;
@@ -784,13 +772,13 @@ void MainWindow::on_actionErase_triggered()
     }
     if (currentChipType == 6)
     {
-       numBlocks = currentChipSize / currentEraseSize;
+       numBlocks = currentChipSize / currentBlockSize;
        if (numBlocks > 0)
        {
            ui->progressBar->setRange(0, static_cast<int>(numBlocks));
            for (uint32_t curBlock = 0; curBlock < numBlocks; curBlock++)
            {
-               ret = nand_block_erase( curBlock,  currentEraseSize);
+               ret = nand_block_erase( curBlock,  currentBlockSize);
                if (ret != 0)
                  {
                    QMessageBox::about(this, tr("Error"), tr("Error erasing sector ") + QString::number(curBlock));
@@ -1102,7 +1090,6 @@ void MainWindow::on_comboBox_man_currentIndexChanged(int index)
         ui->comboBox_size->setCurrentIndex(0);
         ui->comboBox_addr4bit->setCurrentIndex(0);
         ui->comboBox_ECC->setCurrentIndex(0);
-        ui->comboBox_eraseSize->setCurrentIndex(0);
         ui->statusMessage->setText("");
    }
  index = index + 0;
@@ -1150,11 +1137,6 @@ void MainWindow::on_comboBox_name_currentIndexChanged(const QString &arg1)
                { // -1 for not found
                   ui->comboBox_ECC->setCurrentIndex(index);
                }
-               index = ui->comboBox_eraseSize->findData(chips[i].addr4bit);
-               if ( index != -1 )
-               { // -1 for not found
-                  ui->comboBox_eraseSize->setCurrentIndex(index);
-               }
                currentAlgorithm = chips[i].algorithmCode;
            }
        }
@@ -1163,7 +1145,6 @@ void MainWindow::on_comboBox_name_currentIndexChanged(const QString &arg1)
        currentPageSize = ui->comboBox_page->currentData().toUInt();
        currentAddr4bit = ui->comboBox_addr4bit->currentData().toUInt();
        currentECCsize = (ui->comboBox_ECC->currentData().toUInt()) * 64;
-       currentEraseSize = (ui->comboBox_eraseSize->currentData().toUInt()) * 128 * 1024;
        preparingToCompare(1);
 
        if ((currentChipSize !=0) && (currentBlockSize!=0) && (currentChipType == 0))
@@ -1588,7 +1569,6 @@ void MainWindow::on_comboBox_type_currentIndexChanged(int index)
      ui->comboBox_size->setCurrentIndex(0);
      ui->comboBox_addr4bit->setCurrentIndex(0);
      ui->comboBox_ECC->setCurrentIndex(0);
-     ui->comboBox_eraseSize->setCurrentIndex(0);
      if ((index > 0) && (index < 3))
      {
          ui->pushButton_2->hide();
@@ -1644,10 +1624,8 @@ void MainWindow::on_comboBox_type_currentIndexChanged(int index)
          ui->label_8->hide();
          ui->label_9->show();
          ui->label_11->show();
-         ui->label_12->show();
          ui->comboBox_block->show();
          ui->comboBox_ECC->show();
-         ui->comboBox_eraseSize->show();
          ui->actionDetect->setEnabled(true);
          ui->actionChip_info->setEnabled(true);
          //ui->actionSecurity_registers->setEnabled(true);
@@ -1655,9 +1633,7 @@ void MainWindow::on_comboBox_type_currentIndexChanged(int index)
      if (index != 6)
      {
          ui->label_11->hide();
-         ui->label_12->hide();
          ui->comboBox_ECC->hide();
-         ui->comboBox_eraseSize->hide();
      }
 }
 
@@ -1676,12 +1652,6 @@ void MainWindow::on_comboBox_i2cSpeed_currentIndexChanged(int index)
 void MainWindow::on_comboBox_ECC_currentIndexChanged(int index)
 {
     currentECCsize = (ui->comboBox_ECC->currentData().toUInt()) * 64;
-    index++;
-}
-
-void MainWindow::on_comboBox_eraseSize_currentIndexChanged(int index)
-{
-    currentEraseSize = (ui->comboBox_eraseSize->currentData().toUInt()) * 128 * 1024;
     index++;
 }
 
@@ -1766,7 +1736,6 @@ void MainWindow::doNotDisturb()
    ui->comboBox_addr4bit->setDisabled(true);
    ui->comboBox_i2cSpeed->setDisabled(true);
    ui->comboBox_ECC->setDisabled(true);
-   ui->comboBox_eraseSize->setDisabled(true);
 
    hexEdit->blockSignals(true);
    timer->stop();
@@ -1812,7 +1781,6 @@ void MainWindow::doNotDisturbCancel()
       ui->comboBox_addr4bit->setDisabled(false);
       ui->comboBox_i2cSpeed->setDisabled(false);
       ui->comboBox_ECC->setDisabled(false);
-      ui->comboBox_eraseSize->setDisabled(false);
 
       hexEdit->blockSignals(false);
       timer->start();

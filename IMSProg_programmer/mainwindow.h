@@ -115,10 +115,7 @@ private slots:
     void on_actionFill_test_image_triggered();
     void preparingToCompare(bool type);
     void on_actionCompare_files_triggered();
-
     void on_comboBox_ECC_currentIndexChanged(int index);
-
-    void on_comboBox_eraseSize_currentIndexChanged(int index);
 
 private:
     Ui::MainWindow *ui;
@@ -126,7 +123,7 @@ private:
     QString lastDirectory;
     int statusCH341;
     QByteArray chipData, oldChipData;
-    uint32_t currentChipSize, currentNumBlocks, currentBlockSize, currentPageSize, currentECCsize, currentEraseSize;
+    uint32_t currentChipSize, currentNumBlocks, currentBlockSize, currentPageSize, currentECCsize;
     uint8_t currentAlgorithm, currentChipType, currentI2CBusSpeed;
     unsigned int currentAddr4bit;
     bool isHalted;

@@ -324,134 +324,6 @@ QGroupBox::title {
            </property>
           </widget>
          </item>
-         <item row="7" column="0">
-          <widget class="QLabel" name="label_8">
-           <property name="styleSheet">
-            <string notr="true"/>
-           </property>
-           <property name="text">
-            <string>4byte Addr.</string>
-           </property>
-          </widget>
-         </item>
-         <item row="7" column="1">
-          <widget class="QComboBox" name="comboBox_addr4bit">
-           <property name="minimumSize">
-            <size>
-             <width>111</width>
-             <height>21</height>
-            </size>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>250</width>
-             <height>21</height>
-            </size>
-           </property>
-           <property name="font">
-            <font>
-             <weight>75</weight>
-             <bold>true</bold>
-            </font>
-           </property>
-           <property name="styleSheet">
-            <string notr="true"/>
-           </property>
-           <property name="sizeAdjustPolicy">
-            <enum>QComboBox::AdjustToMinimumContentsLengthWithIcon</enum>
-           </property>
-           <property name="minimumContentsLength">
-            <number>22</number>
-           </property>
-          </widget>
-         </item>
-         <item row="11" column="0">
-          <spacer name="verticalSpacer_2">
-           <property name="orientation">
-            <enum>Qt::Vertical</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>20</width>
-             <height>6</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item row="11" column="1">
-          <spacer name="verticalSpacer_3">
-           <property name="orientation">
-            <enum>Qt::Vertical</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>127</width>
-             <height>6</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item row="12" column="0">
-          <widget class="QPushButton" name="pushButton_2">
-           <property name="minimumSize">
-            <size>
-             <width>90</width>
-             <height>25</height>
-            </size>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">QPushButton{
-color: rgb(255, 255, 255);
-background-color: rgb(120, 183, 140);
-border-radius: 20px;
-border: 2px solid #094065;border-radius:8px;font-weight:600;
-}
-QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
-           </property>
-           <property name="text">
-            <string>Detect</string>
-           </property>
-          </widget>
-         </item>
-         <item row="12" column="1">
-          <layout class="QHBoxLayout" name="horizontalLayout">
-           <item>
-            <spacer name="horizontalSpacer">
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>28</width>
-               <height>20</height>
-              </size>
-             </property>
-            </spacer>
-           </item>
-           <item>
-            <widget class="QPushButton" name="pushButton">
-             <property name="minimumSize">
-              <size>
-               <width>90</width>
-               <height>25</height>
-              </size>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">QPushButton{
-color: rgb(255, 255, 255);
-background-color: rgb(120, 183, 140);
-border-radius: 20px;
-border: 2px solid #094065;border-radius:8px;font-weight:600;
-}
-QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
-             </property>
-             <property name="text">
-              <string>Read</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </item>
          <item row="6" column="1">
           <layout class="QHBoxLayout" name="horizontalLayout_6">
            <property name="spacing">
@@ -542,8 +414,18 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
            </item>
           </layout>
          </item>
-         <item row="8" column="1">
-          <widget class="QComboBox" name="comboBox_i2cSpeed">
+         <item row="7" column="0">
+          <widget class="QLabel" name="label_8">
+           <property name="styleSheet">
+            <string notr="true"/>
+           </property>
+           <property name="text">
+            <string>4byte Addr.</string>
+           </property>
+          </widget>
+         </item>
+         <item row="7" column="1">
+          <widget class="QComboBox" name="comboBox_addr4bit">
            <property name="minimumSize">
             <size>
              <width>111</width>
@@ -562,6 +444,9 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
              <bold>true</bold>
             </font>
            </property>
+           <property name="styleSheet">
+            <string notr="true"/>
+           </property>
            <property name="sizeAdjustPolicy">
             <enum>QComboBox::AdjustToMinimumContentsLengthWithIcon</enum>
            </property>
@@ -577,15 +462,8 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
            </property>
           </widget>
          </item>
-         <item row="10" column="0">
-          <widget class="QLabel" name="label_12">
-           <property name="text">
-            <string>Erase size</string>
-           </property>
-          </widget>
-         </item>
-         <item row="10" column="1">
-          <widget class="QComboBox" name="comboBox_eraseSize">
+         <item row="8" column="1">
+          <widget class="QComboBox" name="comboBox_i2cSpeed">
            <property name="minimumSize">
             <size>
              <width>111</width>
@@ -646,6 +524,93 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
             <number>22</number>
            </property>
           </widget>
+         </item>
+         <item row="10" column="0">
+          <spacer name="verticalSpacer_2">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>6</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item row="10" column="1">
+          <spacer name="verticalSpacer_3">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>127</width>
+             <height>6</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item row="11" column="0">
+          <widget class="QPushButton" name="pushButton_2">
+           <property name="minimumSize">
+            <size>
+             <width>90</width>
+             <height>25</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QPushButton{
+color: rgb(255, 255, 255);
+background-color: rgb(120, 183, 140);
+border-radius: 20px;
+border: 2px solid #094065;border-radius:8px;font-weight:600;
+}
+QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
+           </property>
+           <property name="text">
+            <string>Detect</string>
+           </property>
+          </widget>
+         </item>
+         <item row="11" column="1">
+          <layout class="QHBoxLayout" name="horizontalLayout">
+           <item>
+            <spacer name="horizontalSpacer">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>28</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <widget class="QPushButton" name="pushButton">
+             <property name="minimumSize">
+              <size>
+               <width>90</width>
+               <height>25</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton{
+color: rgb(255, 255, 255);
+background-color: rgb(120, 183, 140);
+border-radius: 20px;
+border: 2px solid #094065;border-radius:8px;font-weight:600;
+}
+QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
+             </property>
+             <property name="text">
+              <string>Read</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
          </item>
         </layout>
        </widget>
