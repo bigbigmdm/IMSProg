@@ -84,7 +84,7 @@ jobs:
             qttools5-dev \
             pkg-config
           apt-get satisfy "systemd-dev (>= 253-2~) | udev (<< 253-2~)" --yes
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Build
         working-directory: .
         run: |
