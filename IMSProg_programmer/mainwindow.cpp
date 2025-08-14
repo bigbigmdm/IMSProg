@@ -96,6 +96,7 @@ MainWindow::MainWindow(QWidget *parent) :
  ui->comboBox_block->addItem(" ", 0);
  ui->comboBox_block->addItem("64 K",   64 * 1024);
  ui->comboBox_block->addItem("128 K", 128 * 1024);
+ ui->comboBox_block->addItem("256 K", 256 * 1024);
 
  ui->comboBox_ECC->addItem(" ",   0);
  ui->comboBox_ECC->addItem("64",  1);
@@ -1934,7 +1935,7 @@ void MainWindow::progInit()
              tmpBuf = static_cast<unsigned char>(dataChips[recNo * 0x44 + 0x38]);
              blockSize = tmpBuf;
              tmpBuf = static_cast<unsigned char>(dataChips[recNo * 0x44 + 0x39]);
-             blockSize = blockSize + tmpBuf * 256;             
+             blockSize = blockSize + tmpBuf * 256;
              chips[recNo].sectorSize = blockSize;
              tmpBuf = static_cast<unsigned char>(dataChips[recNo * 0x44 + 0x3a]);
              chips[recNo].chipTypeHex = tmpBuf;
@@ -1947,8 +1948,10 @@ void MainWindow::progInit()
              chips[recNo].delay = delay;
              tmpBuf = static_cast<unsigned char>(dataChips[recNo * 0x44 + 0x3e]);
              chips[recNo].addr4bit = tmpBuf;
+             tmpBuf = static_cast<unsigned char>(dataChips[recNo * 0x44 + 0x3f]);
+             chips[recNo].blockSize = tmpBuf * 256 * 1024;
              tmpBuf = static_cast<unsigned char>(dataChips[recNo * 0x44 + 0x40]);
-             chips[recNo].blockSize = tmpBuf * 1024;
+             chips[recNo].blockSize = chips[recNo].blockSize + tmpBuf * 1024;
              tmpBuf = static_cast<unsigned char>(dataChips[recNo * 0x44 + 0x42]);
              chips[recNo].eepromPages = tmpBuf;
              tmpBuf = static_cast<unsigned char>(dataChips[recNo * 0x44 + 0x43]);
