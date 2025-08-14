@@ -346,7 +346,7 @@ page in both .Dat and .csv formats.
 ## Chip updater
 
  IMSProg_database_update uses the zenity graphical Gnome utility.  Once started, 
- it copies the downloaded database to the ~/.local/imsprog folder. The script 
+ it copies the downloaded database to the ~/.local/share/imsprog folder. The script 
  then displays the number of of chips in the database before and after the 
  upgrade.
 
@@ -567,9 +567,9 @@ UC25IQ128
 
 The latest version of the chip database can be found 
 [here](https://antenna-dvb-t2.ru/dl_all/IMSProg.Dat).
-You can download it and copy it to the ~/.local/imsprog folder:
+You can download it and copy it to the ~/.local/share/imsprog folder:
 
-`cp IMSProg.Dat ~/.local/imsprog`
+`cp IMSProg.Dat ~/.local/share/imsprog`
 
 [![Watch the video](img/IMSProg_1_0_24.mp4)](img/IMSProg_1_0_24.mp4)
 
