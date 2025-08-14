@@ -92,6 +92,7 @@ MainWindow::MainWindow(QWidget *parent) :
  ui->comboBox_page->addItem("528", 528);
  ui->comboBox_page->addItem("1024", 1024);
  ui->comboBox_page->addItem("2048", 2048);
+ ui->comboBox_page->addItem("4096", 4096);
 
  ui->comboBox_block->addItem(" ", 0);
  ui->comboBox_block->addItem("64 K",   64 * 1024);
@@ -1548,6 +1549,7 @@ void MainWindow::on_comboBox_type_currentIndexChanged(int index)
         ui->comboBox_size->addItem("64 M", 65536 * 1024);
         ui->comboBox_size->addItem("128 M", 65536 * 2048);
         ui->comboBox_size->addItem("256 M", 65536 * 4096);
+        ui->comboBox_size->addItem("512 M", 65536 * 8192);
        break;
        default:
           //Unsupport
