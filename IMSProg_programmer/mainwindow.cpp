@@ -920,6 +920,7 @@ void MainWindow::on_actionWrite_triggered()
     statusCH341 = ch341a_init(currentChipType, currentI2CBusSpeed);
     if (statusCH341 == 0)
     {
+    chipData = hexEdit->data();
     if (((currentNumBlocks > 0) && (currentBlockSize >0) && (currentChipType == 0)) ||
          ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 1)) ||
          ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 2)) ||
