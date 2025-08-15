@@ -1046,7 +1046,6 @@ int nand_page_write(unsigned char *buf, unsigned int page_size, uint32_t sector_
     int retval;
     unsigned char cmdbuf[4];
     if (nand_wait_ready(950)) return -1;
-    nand_unprotect();
     nand_write_enable();
     cmdbuf[0] = 0x02; //From PC to buffer
     cmdbuf[1] = 0x00;
@@ -1072,6 +1071,7 @@ int nand_page_write(unsigned char *buf, unsigned int page_size, uint32_t sector_
 
 void nand_unprotect(void)
 {
+    nand_write_enable();
     u8 prot_reg;
     SPI_CONTROLLER_Chip_Select_Low();
     SPI_CONTROLLER_Write_One_Byte(0x0f);

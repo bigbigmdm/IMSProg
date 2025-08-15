@@ -949,6 +949,7 @@ void MainWindow::on_actionWrite_triggered()
                       case 6:             //NAND 35xx, GD5xx, W25xx
                          step = currentPageSize;
                          numBlocks = currentChipSize / step;
+                         nand_unprotect();
                          nand_ECCEnable();
                       break;
                       default:
