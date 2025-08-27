@@ -2233,7 +2233,8 @@ void MainWindow::on_actionImport_from_Intel_HEX_triggered()
 
 void MainWindow::on_actionFill_test_image_triggered()
 {
-    int fileSize, addrSize, txtSize, i, j, curPos, hiDigit;
+    int addrSize, txtSize, i, j, hiDigit;
+    uint64_t curPos, fileSize;
     char k;
     fileSize = chipData.size();
     ui->progressBar->setValue(0);
@@ -2259,10 +2260,9 @@ void MainWindow::on_actionFill_test_image_triggered()
               chipData.append('0');
               chipData.append('x');
 
-
               //calculate digits
               i = hiDigit / 16;
-              for (j=addrSize - 1; j>=0; j--)
+              for (j=addrSize - 1; j >= 0; j--)
               {
                   digits[j] = (curPos / i) % 16;
                   i = i / 16;
@@ -2273,7 +2273,6 @@ void MainWindow::on_actionFill_test_image_triggered()
                  else digits[j] = digits[j] + 0x37;
                  chipData.append(digits[j]);
               }
-
               chipData.append('>');
               for (i = 0; i < txtSize; i++)
               {
