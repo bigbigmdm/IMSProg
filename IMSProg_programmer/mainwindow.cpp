@@ -2244,9 +2244,9 @@ void MainWindow::on_actionFill_test_image_triggered()
     hiDigit = 1;
     while (j > 1)
     {
-        j = j / 16;
+        j = j >> 4;
         addrSize ++;
-        hiDigit = hiDigit * 16;
+        hiDigit = hiDigit << 4;
     }
     char digits[16];
     txtSize = 16 - addrSize - 4;
@@ -2261,11 +2261,11 @@ void MainWindow::on_actionFill_test_image_triggered()
               chipData.append('x');
 
               //calculate digits
-              i = hiDigit / 16;
+              i = hiDigit >> 4;
               for (j=addrSize - 1; j >= 0; j--)
               {
                   digits[j] = (curPos / i) % 16;
-                  i = i / 16;
+                  i = i >> 4;
               }
               for (j = addrSize -1; j >=0; j--)
               {
@@ -2297,7 +2297,7 @@ void MainWindow::on_actionCompare_files_triggered()
 
 void MainWindow::preparingToCompare(bool type)
 {
-    //For comparing function
+    // For comparing function
     // type = 0 - file reading
     // type = 1 - chip reading
     if (filled == 0) oldChipData = hexEdit->data();
