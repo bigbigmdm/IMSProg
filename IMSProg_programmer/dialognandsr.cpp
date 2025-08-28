@@ -20,6 +20,7 @@
 #include <QApplication>
 #include <QValidator>
 #include <QRegExp>
+#include <QString>
 #include <QStringList>
 #include "unistd.h"
 #include "hexutility.h"
@@ -79,8 +80,9 @@ void DialogNANDSr::on_pushButton_read_clicked()
         std::shared_ptr<uint8_t[]> buf(new uint8_t[512]);
         QString currRegName;
         int retval;
-        uint8_t currRegister, currBit, currByte;
+        uint8_t currRegister, currBit, currByte, idBlockAddr;
         int stCH341 = 0;
+        idBlockAddr = 0x00;
         stCH341 = ch341a_spi_init();
         if (stCH341 == 0)
             {
@@ -169,9 +171,30 @@ void DialogNANDSr::on_pushButton_read_clicked()
                       return;
                    }
                 usleep(100);
-                if ((buf[0] == 0x4f) && (buf[1] == 0x4e) && (buf[2] == 0x46) && (buf[3] == 0x49) )
+                if (!((buf[0] == 0x4f) && (buf[1] == 0x4e) && (buf[2] == 0x46) && (buf[3] == 0x49)))
+                {
+                    //Non standard parameter page placed
+                    SPI_CONTROLLER_Chip_Select_Low();
+                    SPI_CONTROLLER_Write_One_Byte(0x13);
+                    SPI_CONTROLLER_Write_One_Byte(0x00);
+                    SPI_CONTROLLER_Write_One_Byte(0x00);
+                    SPI_CONTROLLER_Write_One_Byte(0x04);
+                    SPI_CONTROLLER_Chip_Select_High();
+                    usleep(1000);
+                    SPI_CONTROLLER_Chip_Select_Low();
+                    SPI_CONTROLLER_Write_One_Byte(0x03);
+                    SPI_CONTROLLER_Write_One_Byte(0x00);
+                    SPI_CONTROLLER_Write_One_Byte(0x00);
+                    SPI_CONTROLLER_Write_One_Byte(0x00);
+                    retval = SPI_CONTROLLER_Read_NByte(buf.get(),256,SPI_CONTROLLER_SPEED_SINGLE);
+                    SPI_CONTROLLER_Chip_Select_High();
+                    idBlockAddr = 0x06;
+                }
+
+                if ((buf[0] == 0x4f) && (buf[1] == 0x4e) && (buf[2] == 0x46) && (buf[3] == 0x49))
                 {
                     //Parameter page supported
+
                     for (j = 0; j < 255; j = j + 16)
                     {
                         //address
@@ -189,11 +212,11 @@ void DialogNANDSr::on_pushButton_read_clicked()
                     //Manufacture
                     buftxt.clear();
                     for (i = 32; i < 44; i++) buftxt = buftxt + static_cast<char>(buf[i]);
-                    ui->lineEdit_man->setText(buftxt);
+                    ui->lineEdit_man->setText(strtrip(buftxt));
                     //Model
                     buftxt.clear();
                     for (i = 44; i < 64; i++) buftxt = buftxt + static_cast<char>(buf[i]);
-                    ui->lineEdit_model->setText(buftxt);
+                    ui->lineEdit_model->setText(strtrip(buftxt));
                     //Page size
                     buftxt.clear();
                     i = buf[80] + buf[81] * 256 + buf[82] * 256 * 256 + buf[83] * 256 * 256 * 256;
@@ -232,7 +255,7 @@ void DialogNANDSr::on_pushButton_read_clicked()
                 SPI_CONTROLLER_Write_One_Byte(0x13);
                 SPI_CONTROLLER_Write_One_Byte(0x00);
                 SPI_CONTROLLER_Write_One_Byte(0x00);
-                SPI_CONTROLLER_Write_One_Byte(0x00);
+                SPI_CONTROLLER_Write_One_Byte(idBlockAddr);
                 SPI_CONTROLLER_Chip_Select_High();
                 usleep(1000);
                 SPI_CONTROLLER_Chip_Select_Low();
@@ -655,4 +678,15 @@ void DialogNANDSr::setRegLabels(uint8_t regNumber, QString lt)
               label->setText(list.at(lastIndex - i));
           }
       }
+}
+
+QString DialogNANDSr::strtrip(const QString& str)
+{
+  int n = str.size() - 1;
+  for (; n >= 0; --n) {
+    if (!str.at(n).isSpace()) {
+      return str.left(n + 1);
+    }
+  }
+  return "";
 }

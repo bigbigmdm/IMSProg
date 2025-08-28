@@ -51,6 +51,7 @@ private:
     void setRegDisabled(uint8_t regNumber);
     void clearAllFields();
     void setRegLabels(uint8_t regNumber, QString lt);
+    QString strtrip(const QString& str);
     uint8_t RegNumbers[5];
     bool regReaded;
 };
