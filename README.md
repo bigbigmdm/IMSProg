@@ -156,19 +156,20 @@ progress.
 
 
 ### Chip type selecting
-Select the type of chip used from the `Type` pop-up menu: `SPI FLASH` when 
-using SPI NOR FLASH chips of the `25xxx` series, `24_EEPROM` when using I2C 
-EEPROM of the `24xxx` series, `93_EEPROM` when using MicroWire EEPROM of the 
-`93xxx` series, `45_EEPROM` when using DataFlash chips `AT45DBxxx` series.
-When using `25xxx` series SPI NOR FLASH chips (Menu item `type` -> `SPI_FLASH`), 
-or `AT45DBxx` series  SPI FLASH (Menu item `type` -> `45_EEPROM`) the `Detect` 
-button will be available. When the `Detect` button or ![Detect](img/test64.png) 
-or `<Ctrl+D>` is pressed, the JEDEC information is read from the chip and all 
-parameters of that chip are loaded from the chip database. Any parameter 
-(`size`, `page size`, `block size`, `VCC voltage`, `and 4-bit address length`) 
-can be changed manually. You can manually enter the `Manufacture` and `Name` 
-pop-up menu data - all other parameters will be automatically loaded from the 
-chip database. 
+Select the type of chip used from the `Type` pop-up menu: `SPI_FLASH` when 
+using SPI NOR FLASH chips of the `25xxx` series, `SPI_NAND` when 
+using SPI NAND FLASH chips, `24_EEPROM` when using I2C EEPROM of the `24xxx` 
+series, `93_EEPROM` when using MicroWire EEPROM of the `93xxx` series, 
+`45_EEPROM` when using DataFlash chips `AT45DBxxx` series.
+When using `25xxx` series SPI NOR FLASH chips (Menu item `type` -> `SPI_FLASH`),
+or SPI NAND FLASH chips (Menu item `type` -> `SPI_NAND`), or `AT45DBxx` series 
+SPI FLASH (Menu item `type` -> `45_EEPROM`) the `Detect` button will be 
+available. When the `Detect` button or ![Detect](img/test64.png) or `<Ctrl+D>` 
+is pressed, the JEDEC information is read from the chip and all parameters of 
+that chip are loaded from the chip database. Any parameter (`size`, `page size`,
+`block size`, `VCC voltage`, `and 4-bit address length`) can be changed 
+manually. You can manually enter the `Manufacture` and `Name` pop-up menu data -
+all other parameters will be automatically loaded from the chip database. 
 When using `24xxx` or `93xxx` or `95xxx` or `25xxx` SPI EEPROM (non NOR FLASH) 
 series chips, it is necessary to manually enter the `Manufacture` and `Name` 
 pop-up menu data - all other parameters will be automatically loaded from the 
@@ -245,6 +246,10 @@ For `25xxx`, `95xxx` and `45xxx` series chips that have only one status
 register, the `Chip info` form is as follows:
 
 ![SFDP](img/sr0_en.png)
+
+For `SPI NAND FLASH` chips the `Chip info` form is as follows:
+
+![SFDP](img/sr_nand_en.png)
 
 - The `Main menu -> Programmer -> Security Registers` or `<Ctrl+U>` item is used 
 to work with SPI NOR Flash security registers data. This form allows reading, 
@@ -565,6 +570,56 @@ FM25M08A(1.8V), FM25M16A(1.8V), FM25M32A(1.8V), FM25M64A(1.8V), FM25M4AA(1.8V)
 UC25HQ05, UC25HQ10, UC25HQ20, UC25HQ40, UC25HQ80, UC25HQ16, UC25HQ32, UC25HQ64,
 UC25IQ128
 
+### SPI NAND Flash
+
+- ESMT
+
+F50L2G41XA, F50L1G41LB(2M), F50L512M41A, F50L4G41XB
+
+- MICRON
+
+MT29F4G01ABBFD12, MT29F4G01ABAFD12, MX35LF1G24AD-Z41, MX35LF2G24AD-Z41 
+
+- MXIC
+
+MX35LF4G24AD-Z41, MX35LF2G24AD-Z418, MX35LF4G24AD-Z418, MX35LF1GE4AB, 
+MX35UF1G24AD-Z4I, MX35UF2G24AD-Z4I, MX35UF4G24AD-Z4I, MX35UF2G24AD-Z4I8, 
+MX35UF4G24AD-Z4I8, MX35UF1G14AC, MX35UF2G14AC, MX35UF1GE4AC, MX35UF2GE4AC, 
+MX35UF1GE4AD, MX35UF2GE4AD, MX35UF4GE4AD, MX35LF2GE4AD, MX35LF4GE4AD
+
+- WINBOND
+
+W25N512GW, W25N512GV, W25N01KW, W25N01KV, W25N01JW, W25N01GW, W25N01GV, 
+W25N02KW, W25N02KV, W25N02JW, W25N04LW, W25N04KW, W25N04KV
+
+- XTX
+
+XT26G01C, XT26G01A, XT26G01D, XT26G11C, XT26G11D, XT26Q01D, XT26G02D, XT26G02C,
+XT26G12D-B, XT26Q02D, XT26Q04D
+XTX	XT26Q14D
+
+- Dosilicon
+
+DS35Q12B, DS35M12B, DS35Q12C, DS35M12C, DS35Q1GA, DS35M1GA, DS35Q1GB, DS35M1GB,
+DS35Q2GA, DS35M2GA, DS35Q2GB, DS35M2GB, DS35Q2GBS, DS35M2GBS, DS35Q4GM, 
+DS35Q4GM, DS35Q4GB, DS35M4GB
+
+- ZETTA
+
+ZD35Q1GC-IB
+
+- FORESEE
+
+F35SQA001G, F35SQB004G, F35SQA512M, F35UQA002G, F35SQA002G, GD5F1GQ5UExxG
+
+- GigaDevice
+
+GD5F1GQ5RExxG, GD5F1GM7UExxG, GD5F1GM7RExxG, GD5F1GM9UExxG, GD5F1GM9RExxG, 
+GD5F1GQ4UFxxG, GD5F1GQ4RFxxG, GD5F1GQ4UAxxG, GD5F2GQ5UExxG, GD5F2GQ5RExxG,
+GD5F2GM7UExxG, GD5F2GM7RExxG, GD5F4GQ6UExxG, GD5F4GQ6RExxG, GD5F4GM8UExxG,
+GD5F4GM8RExxG, GD5F1GQ4UExxG, GD5F1GQ4RExxG, GD5F1GQ4UFxxS, GD5F1GQ4RFxxS,
+GD5F2GQ4UExxG, GD5F2GQ4RExxG
+
 The latest version of the chip database can be found 
 [here](https://antenna-dvb-t2.ru/dl_all/IMSProg.Dat).
 You can download it and copy it to the ~/.local/share/imsprog folder:
@@ -710,6 +765,7 @@ offset	 Size   Value
                 - 45xxx SPI EEPROM  - 0x?D - 13 bit sector address number
                 - 45xxx SPI EEPROM  - 0x?F - 15 bit sector address number
                 - SPI NOR Flash - algorithm number for working with  security registers
+                - SPI NAND Flash - algorithm number for reading status registers
 3C        2     Timing parameter:
 3D              3000/1000/500/300/200/100 - NOR FLASH, 4000/2000 - 24xxx, 100 - 93xxx
 3E        2     SPI NOR Flash 4bit address type:
@@ -718,10 +774,15 @@ offset	 Size   Value
                 - 0x01 - Default 4 bit command using
                 - 0x11 - Winbond algorithm
                 - 0x21 - Spansion algorithm
+                SPI NAND Flash security registers data:
+                - 0x0? - Start sector 00
+                - 0x2? - Start sector 02
+                - 0x?x - security registers algorithm number
 3F        1     0x00
 40        1     SPI NOR FLASH block size in KB (64K = 0x40)
 41        1     0x00
-42        1     EEPROM pages 0x01 - 0x04
+42        1     - EEPROM pages 0x01 - 0x04
+                - For SPI NAND Flash - ECC Size / 64
 43        1     VCC 00=>3.3V 01=>1.8V 02=>5.0V
 The end record is 0x44 (68) zero bytes.
 ```
