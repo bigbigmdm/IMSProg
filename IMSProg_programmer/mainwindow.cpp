@@ -2233,21 +2233,24 @@ void MainWindow::on_actionImport_from_Intel_HEX_triggered()
 
 void MainWindow::on_actionFill_test_image_triggered()
 {
-    int addrSize, txtSize, i, j, hiDigit;
-    uint64_t curPos, fileSize;
+    int addrSize, txtSize, i, j, divider;
+    uint64_t curPos, fileSize, jj, hiDigit;
     char k;
-    fileSize = chipData.size();
+    fileSize = static_cast<uint64_t>(chipData.size());
+    if (fileSize > 512) divider = 9;
+    else divider = 0;
     ui->progressBar->setValue(0);
-    ui->progressBar->setRange(0, fileSize);
+    ui->progressBar->setRange(0, (static_cast<int>(fileSize >> divider)));
     addrSize = 0;
-    j = fileSize;
+    jj = fileSize;
     hiDigit = 1;
-    while (j > 1)
+    while (jj > 1)
     {
-        j = j >> 4;
+        jj = jj >> 4;
         addrSize ++;
         hiDigit = hiDigit << 4;
     }
+    qDebug()<<"addrSize="<<addrSize<<" hidigit="<<hiDigit;
     char digits[16];
     txtSize = 16 - addrSize - 4;
     curPos = 0;
@@ -2261,10 +2264,10 @@ void MainWindow::on_actionFill_test_image_triggered()
               chipData.append('x');
 
               //calculate digits
-              i = hiDigit >> 4;
+              i = static_cast<int>(hiDigit >> 4);
               for (j=addrSize - 1; j >= 0; j--)
               {
-                  digits[j] = (curPos / i) % 16;
+                  digits[j] = (curPos / static_cast<uint64_t>(i)) % 16;
                   i = i >> 4;
               }
               for (j = addrSize -1; j >=0; j--)
@@ -2281,7 +2284,7 @@ void MainWindow::on_actionFill_test_image_triggered()
                   if (k > 0x7e) k = 0x40;
               }
               curPos = curPos + 16;
-              if (curPos % 512 == 0) ui->progressBar->setValue(curPos);
+              if (curPos % 512 == 0) ui->progressBar->setValue(static_cast<int>(curPos >> divider));
            }
     hexEdit->setData(chipData);
     ui->crcEdit->setText(getCRC32(chipData));
