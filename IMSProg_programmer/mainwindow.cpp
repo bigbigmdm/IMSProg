@@ -2250,7 +2250,6 @@ void MainWindow::on_actionFill_test_image_triggered()
         addrSize ++;
         hiDigit = hiDigit << 4;
     }
-    qDebug()<<"addrSize="<<addrSize<<" hidigit="<<hiDigit;
     char digits[16];
     txtSize = 16 - addrSize - 4;
     curPos = 0;
@@ -2258,7 +2257,7 @@ void MainWindow::on_actionFill_test_image_triggered()
            k = 0x40;
            while (curPos < fileSize)
            {
-               //String
+              //String
               chipData.append('<');
               chipData.append('0');
               chipData.append('x');
