@@ -138,6 +138,8 @@ inserted into the `93xxx adapter` and the adapter into the marking `25xxx`
 programmer slot. The DataFlash `AT45DBxxx` series chips must be mounted in a 
 `SOP-8 DIP-8` and this adapter shall be inserted into the `45xxx` adapter. 
 The `45xxx` adapter must be installed in the programmer slot marked `25xxx`.
+The SPI NAND Flash chips must be mounted in a WSON-8 DIP-8 adapter. This adapter 
+must be installed in the programmer slot marked `25xxx`.
 
 ![Adapter](img/93xxx_adapter.png)
  
