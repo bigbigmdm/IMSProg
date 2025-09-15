@@ -9,27 +9,6 @@ imsprog (1.6.2-1) unstable; urgency=medium
     - Chip information form code optimized
  -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Tue, 1 Jul 2025 11:32:27 +0300
 
-imsprog (1.6.1-1) unstable; urgency=medium
-
-  * New upstream version:
-    - Added new feature: compare files
-    - Added new feature: fill test array
-    - Fix: when the page size is changed, the buffer is cleared
-    - Fix: code slows down the display of the interface
- -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Mon, 19 May 2025 12:20:31 +0300
-
-imsprog (1.5.3-1) unstable; urgency=medium
-
-  * New upstream version:
-    - Copyright information updated
-    - Last version of QHexEdit used
-    - Hex-functions optimised
-    - Added support GIANTEC, DOSILICON NOR FLASH chips
-    - Fix: incorrect uninstall script
-    - Fix: i2C 128K size is repeated twice
-    - Fix: incorrect calculating file size
- -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Tue, 29 Apr 2025 14:05:18 +0300
-
 imsprog (1.5.2-1) unstable; urgency=medium
 
   * New upstream version:
