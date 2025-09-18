@@ -616,6 +616,19 @@ void DialogNANDSr::setPattern(const uint pattern)
            setRegLabels(3, QString("X     ,DS_S1 ,DS-S0 ,X     ,X     ,X     ,X     ,X    "));
          break;
 
+         case 18: //Gigadevice 1, other Security registers
+           RegNumbers[0] = 0xa0;
+           RegNumbers[1] = 0xb0;
+           RegNumbers[2] = 0xc0;
+           RegNumbers[3] = 0xd0;
+           RegNumbers[4] = 0xf0;
+           //                       7      6      5      4      3      2      1      0
+           setRegLabels(0, QString("BWRD  ,X     ,BP2   ,BP1   ,BP0   ,INV   ,CMP   ,X    "));
+           setRegLabels(1, QString("OTP-P ,OTP-E ,X     ,ECC-E ,X     ,X     ,X     ,QE   "));
+           setRegLabels(2, QString("X     ,X     ,ECC-1 ,ECC-0 ,P-FAIL,E-FAIL,WEL   ,BUSY "));
+           setRegLabels(3, QString("X     ,DS_S1 ,DS-S0 ,X     ,X     ,X     ,X     ,X    "));
+           setRegLabels(4, QString("X     ,X     ,ECCS1 ,ECCS0 ,BPS   ,X     ,X     ,X    "));
+    break;
        }
 }
 
