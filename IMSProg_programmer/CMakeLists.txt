@@ -95,6 +95,7 @@ dialogrp.cpp
 dialogsfdp.cpp
 dialognandsr.cpp
 dialogsecurity.cpp
+dialognandsecurity.cpp
 dialogcompare.cpp
 dialogsr.cpp
 dialogsetaddr.cpp
@@ -124,6 +125,7 @@ dialogsp.h
 dialogrp.h
 dialogsfdp.h
 dialogsecurity.h
+dialognandsecurity.h
 dialognandsr.h
 dialogcompare.h
 dialogsr.h
@@ -154,6 +156,7 @@ dialogrp.ui
 dialogsfdp.ui
 dialognandsr.ui
 dialogsecurity.ui
+dialognandsecurity.ui
 dialogcompare.ui
 dialogsr.ui
 dialogsetaddr.ui

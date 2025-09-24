@@ -54,7 +54,8 @@ SOURCES += \
     hexutility.cpp \
     color_manager.cpp \
     dialogcompare.cpp \
-    dialognandsr.cpp
+    dialognandsr.cpp \
+    dialognandsecurity.cpp
 
 HEADERS += \
        mainwindow.h \
@@ -89,7 +90,8 @@ HEADERS += \
     hexutility.h \
     color_manager.h \
     dialogcompare.h \
-    dialognandsr.h
+    dialognandsr.h \
+    dialognandsecurity.h
 
 FORMS += \
         mainwindow.ui \
@@ -103,7 +105,8 @@ FORMS += \
         dialogsetaddr.ui \
         dialogsecurity.ui \
     dialogcompare.ui \
-    dialognandsr.ui
+    dialognandsr.ui \
+    dialognandsecurity.ui
 
 TRANSLATIONS += language/chipProgrammer_ru_RU.ts \
          language/chipProgrammer_es_ES.ts \

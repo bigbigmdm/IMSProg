@@ -21,11 +21,15 @@
 #include <QDragEnterEvent>
 #include <QtGui>
 #include <QFileInfo>
+#include <QInputMethod>
+#include <QKeyEvent>
+#include <QInputMethod>
 #include "qhexedit.h"
 #include "dialogsp.h"
 #include "dialogrp.h"
 #include "dialogsetaddr.h"
 #include "dialogsecurity.h"
+#include "dialognandsecurity.h"
 #include "dialognandsr.h"
 #include "hexutility.h"
 #include <stddef.h>
@@ -1633,7 +1637,7 @@ void MainWindow::on_comboBox_type_currentIndexChanged(int index)
          ui->comboBox_ECC->show();
          ui->actionDetect->setEnabled(true);
          ui->actionChip_info->setEnabled(true);
-         //ui->actionSecurity_registers->setEnabled(true);
+         ui->actionSecurity_registers->setEnabled(true);
      }
      if (index != 6)
      {
@@ -1769,7 +1773,7 @@ void MainWindow::doNotDisturbCancel()
       ui->actionGoto_address->setDisabled(false);
       ui->actionCompare_files->setDisabled(false);
       if ((currentChipType == 0) || (currentChipType == 6) || (currentChipType > 2)) ui->actionChip_info->setDisabled(false);
-      if (currentChipType == 0) ui->actionSecurity_registers->setDisabled(false);
+      if ((currentChipType == 0) || (currentChipType == 6)) ui->actionSecurity_registers->setDisabled(false);
       ui->actionStop->setDisabled(true);
 
       ui->pushButton->blockSignals(false);
@@ -2025,17 +2029,30 @@ void MainWindow::on_actionSecurity_registers_triggered()
         QMessageBox::about(this, tr("Error"), tr("Before working with the security registers, click the 'Detect' button"));
         return;
     }
-    if (currentAlgorithm > 0)
+    if (currentChipType == 0)
     {
-        timer->stop();
-        DialogSecurity* securityDialog = new DialogSecurity();
-        connect(securityDialog, SIGNAL(closeRequestHasArrived()), this, SLOT(closeSR()));
-        securityDialog->setAlgorithm(currentAlgorithm);
-        securityDialog->setPath(lastDirectory);
-        securityDialog->show();
+        if (currentAlgorithm > 0)
+        {
+            timer->stop();
+            DialogSecurity* securityDialog = new DialogSecurity();
+            connect(securityDialog, SIGNAL(closeRequestHasArrived()), this, SLOT(closeSR()));
+            securityDialog->setAlgorithm(currentAlgorithm);
+            securityDialog->setPath(lastDirectory);
+            securityDialog->show();
+        }
+        else QMessageBox::about(this, tr("Error"), tr("There are no security registers in this chip or the current version of IMSProg does not support this algorithm."));
     }
-    else QMessageBox::about(this, tr("Error"), tr("There are no security registers in this chip or the current version of IMSProg does not support this algorithm."));
+    if (currentChipType == 6)
+    {
 
+            DialogNandSecurity* securityNandDialog = new DialogNandSecurity();
+            connect(securityNandDialog, SIGNAL(closeRequestHasArrived()), this, SLOT(closeSR()));
+            securityNandDialog->setAlgorithm(currentAlgorithm);
+            securityNandDialog->setSectorSize(currentPageSize);
+            qDebug()<<"Main:"<<currentPageSize<<" "<< currentAlgorithm;
+            securityNandDialog->setPath(lastDirectory);
+            securityNandDialog->show();
+    }
 }
 
 void MainWindow::on_actionExport_to_Intel_HEX_triggered()
@@ -2317,3 +2334,21 @@ void MainWindow::preparingToCompare(bool type)
     }
 }
 
+
+void MainWindow::on_actionCopy_triggered()
+{
+        QKeyEvent* keyPress = new QKeyEvent(QEvent::KeyPress, Qt::Key_C, Qt::ControlModifier, "C");
+        QKeyEvent* keyRelease = new QKeyEvent(QEvent::KeyRelease, Qt::Key_C, Qt::ControlModifier, "C");
+
+        QCoreApplication::postEvent(hexEdit, keyPress);
+        QCoreApplication::postEvent(hexEdit, keyRelease);
+}
+
+void MainWindow::on_actionPaste_triggered()
+{
+        QKeyEvent* keyPress = new QKeyEvent(QEvent::KeyPress, Qt::Key_V, Qt::ControlModifier, "V");
+        QKeyEvent* keyRelease = new QKeyEvent(QEvent::KeyRelease, Qt::Key_V, Qt::ControlModifier, "V");
+
+        QCoreApplication::postEvent(hexEdit, keyPress);
+        QCoreApplication::postEvent(hexEdit, keyRelease);
+}

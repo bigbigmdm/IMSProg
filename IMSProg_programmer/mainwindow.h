@@ -117,6 +117,10 @@ private slots:
     void on_actionCompare_files_triggered();
     void on_comboBox_ECC_currentIndexChanged(int index);
 
+    void on_actionCopy_triggered();
+
+    void on_actionPaste_triggered();
+
 private:
     Ui::MainWindow *ui;
     QString grnKeyStyle, redKeyStyle;
