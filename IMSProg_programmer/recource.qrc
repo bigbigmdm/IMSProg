@@ -32,5 +32,7 @@
         <file>img/compare64.png</file>
         <file>img/ch341_spi_18_wson.png</file>
         <file>img/ch341_35.png</file>
+        <file>img/paste64.png</file>
+        <file>img/copy64.png</file>
     </qresource>
 </RCC>

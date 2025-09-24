@@ -1038,6 +1038,8 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
     </property>
     <addaction name="actionUndo"/>
     <addaction name="actionRedo"/>
+    <addaction name="actionCopy"/>
+    <addaction name="actionPaste"/>
     <addaction name="actionFind_Replace"/>
     <addaction name="actionGoto_address"/>
     <addaction name="separator"/>
@@ -1396,6 +1398,24 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+M</string>
+   </property>
+  </action>
+  <action name="actionCopy">
+   <property name="icon">
+    <iconset resource="recource.qrc">
+     <normaloff>:/res/img/copy64.png</normaloff>:/res/img/copy64.png</iconset>
+   </property>
+   <property name="text">
+    <string>Copy</string>
+   </property>
+  </action>
+  <action name="actionPaste">
+   <property name="icon">
+    <iconset resource="recource.qrc">
+     <normaloff>:/res/img/paste64.png</normaloff>:/res/img/paste64.png</iconset>
+   </property>
+   <property name="text">
+    <string>Paste</string>
    </property>
   </action>
  </widget>
