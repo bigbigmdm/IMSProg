@@ -1434,7 +1434,7 @@ void MainWindow::receiveAddr2(QString addressData)
 
 void MainWindow::on_actionSave_Part_triggered()
 {
-    DialogSP* savePartDialog = new DialogSP();
+    DialogSP* savePartDialog = new DialogSP(this);
     savePartDialog->show();
 
     connect(savePartDialog, SIGNAL(sendAddr(QString)), this, SLOT(receiveAddr(QString)));
@@ -1442,7 +1442,7 @@ void MainWindow::on_actionSave_Part_triggered()
 
 void MainWindow::on_actionLoad_Part_triggered()
 {
-    DialogRP* loadPartDialog = new DialogRP();
+    DialogRP* loadPartDialog = new DialogRP(this);
     loadPartDialog->show();
 
     connect(loadPartDialog, SIGNAL(sendAddr2(QString)), this, SLOT(receiveAddr2(QString)));
@@ -1666,7 +1666,7 @@ void MainWindow::on_comboBox_ECC_currentIndexChanged(int index)
 
 void MainWindow::on_actionAbout_triggered()
 {
-    DialogAbout* aboutDialog = new DialogAbout();
+    DialogAbout* aboutDialog = new DialogAbout(this);
     aboutDialog->show();
 }
 
@@ -1814,7 +1814,7 @@ void MainWindow::on_actionStop_triggered()
 void MainWindow::on_pushButton_4_clicked()
 {
     //info form showing
-    DialogInfo* infoDialog = new DialogInfo();
+    DialogInfo* infoDialog = new DialogInfo(this);
     infoDialog->show();
     if ((currentChipType == 0) && (ui->comboBox_vcc->currentIndex() == 1)) infoDialog->setChip(2); //NOR_FLASH 1.8
     if ((currentChipType == 0) && (ui->comboBox_vcc->currentIndex() == 2)) infoDialog->setChip(3); //NOR FLASH 3.3
@@ -1832,14 +1832,14 @@ void MainWindow::on_actionChip_info_triggered()
      timer->stop();
      if (currentChipType == 0)
      {
-        DialogSFDP* sfdpDialog = new DialogSFDP();
+        DialogSFDP* sfdpDialog = new DialogSFDP(this);
         connect(sfdpDialog, SIGNAL(closeRequestHasArrived()), this, SLOT(closeSFDP()));
         sfdpDialog->show();
      }
 
      if (currentChipType == 6)
      {
-         DialogNANDSr* nandSRDialog = new DialogNANDSr();
+         DialogNANDSr* nandSRDialog = new DialogNANDSr(this);
          connect(nandSRDialog, SIGNAL(closeRequestHasArrived()), this, SLOT(closeSR()));
          nandSRDialog->show();
          nandSRDialog->setPattern(currentAlgorithm);
@@ -1847,7 +1847,7 @@ void MainWindow::on_actionChip_info_triggered()
 
      if ((currentChipType > 2) && (currentChipType != 6))
      {
-         DialogSR* srDialog = new DialogSR();
+         DialogSR* srDialog = new DialogSR(this);
          connect(srDialog, SIGNAL(closeRequestHasArrived()), this, SLOT(closeSR()));
          srDialog->show();
          srDialog->setChipType(currentChipType);
@@ -2010,7 +2010,7 @@ void MainWindow::closeSR()
 void MainWindow::on_actionGoto_address_triggered()
 {
     //HExEditor --> goto address
-    DialogSetAddr* gotoAddrDialog = new DialogSetAddr();
+    DialogSetAddr* gotoAddrDialog = new DialogSetAddr(this);
     gotoAddrDialog->show();
     connect(gotoAddrDialog, SIGNAL(sendAddr3(qint64)), this, SLOT(receiveAddr3(qint64)));
 
@@ -2034,7 +2034,7 @@ void MainWindow::on_actionSecurity_registers_triggered()
         if (currentAlgorithm > 0)
         {
             timer->stop();
-            DialogSecurity* securityDialog = new DialogSecurity();
+            DialogSecurity* securityDialog = new DialogSecurity(this);
             connect(securityDialog, SIGNAL(closeRequestHasArrived()), this, SLOT(closeSR()));
             securityDialog->setAlgorithm(currentAlgorithm);
             securityDialog->setPath(lastDirectory);
@@ -2045,7 +2045,7 @@ void MainWindow::on_actionSecurity_registers_triggered()
     if (currentChipType == 6)
     {
 
-            DialogNandSecurity* securityNandDialog = new DialogNandSecurity();
+            DialogNandSecurity* securityNandDialog = new DialogNandSecurity(this);
             connect(securityNandDialog, SIGNAL(closeRequestHasArrived()), this, SLOT(closeSR()));
             securityNandDialog->setAlgorithm(currentAlgorithm);
             securityNandDialog->setSectorSize(currentPageSize);
@@ -2309,7 +2309,7 @@ void MainWindow::on_actionFill_test_image_triggered()
 
 void MainWindow::on_actionCompare_files_triggered()
 {
-    DialogCompare* compDialog = new DialogCompare();
+    DialogCompare* compDialog = new DialogCompare(this);
     compDialog->show();
     compDialog->showArrays(&chipData, &oldChipData, &newFileName, &oldFileName);
 }
