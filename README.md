@@ -254,8 +254,9 @@ For `SPI NAND FLASH` chips the `Chip info` form is as follows:
 ![SFDP](img/sr_nand_en.png)
 
 - The `Main menu -> Programmer -> Security Registers` or `<Ctrl+U>` item is used 
-to work with SPI NOR Flash security registers data. This form allows reading, 
-write, erase, save and load security register data from the computer.
+to work with `SPI NOR Flash` nad `SPI NAND FLASH` security registers data. This
+form allows reading, write, erase, save and load security register data from the
+computer.
 
 ![Security registers](img/Security_registers_form.png)
 
