@@ -41,7 +41,7 @@ QString bytePrint(unsigned char z)
     z = z % 16;
     if (z > 0x9) z = z + 0x37;
     else z = z + 0x30;
-    return QString(s) + QString(z);
+    return QString(static_cast<char>(s)) + QString(static_cast<char>(z));
 }
 
 QString getCRC32(const QByteArray &buf)
