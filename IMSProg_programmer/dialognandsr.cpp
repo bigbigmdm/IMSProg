@@ -19,7 +19,6 @@
 #include <QWidget>
 #include <QApplication>
 #include <QValidator>
-#include <QRegExp>
 #include <QString>
 #include <QStringList>
 #include "unistd.h"
@@ -52,8 +51,8 @@ DialogNANDSr::~DialogNANDSr()
 
 void DialogNANDSr::setLineEditFilter()
 {
-    QRegExp reHex( "[0-1]{1}" );
-    QRegExpValidator *validator = new QRegExpValidator(reHex, this);
+    QRegularExpression reHex( "[0-1]{1}" );
+    QRegularExpressionValidator *validator = new QRegularExpressionValidator(reHex, this);
     //searching all lineEdit_srXX, XX - numbers
     QString searchText = "lineEdit_sr\\d+";
         QRegularExpression regex(searchText);
