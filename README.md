@@ -768,7 +768,7 @@ offset	 Size   Value
                 - 45xxx SPI EEPROM  - 0x?D - 13 bit sector address number
                 - 45xxx SPI EEPROM  - 0x?F - 15 bit sector address number
                 - SPI NOR Flash - algorithm number for working with  security registers
-                - SPI NAND Flash - algorithm number for reading status registers
+                - SPI NAND Flash - algorithm number for reading status and security registers
 3C        2     Timing parameter:
 3D              3000/1000/500/300/200/100 - NOR FLASH, 4000/2000 - 24xxx, 100 - 93xxx
 3E        2     SPI NOR Flash 4bit address type:
@@ -777,10 +777,6 @@ offset	 Size   Value
                 - 0x01 - Default 4 bit command using
                 - 0x11 - Winbond algorithm
                 - 0x21 - Spansion algorithm
-                SPI NAND Flash security registers data:
-                - 0x0? - Start sector 00
-                - 0x2? - Start sector 02
-                - 0x?x - security registers algorithm number
 3F        1     0x00
 40        1     SPI NOR FLASH block size in KB (64K = 0x40)
 41        1     0x00
