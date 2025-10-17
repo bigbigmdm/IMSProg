@@ -15,7 +15,6 @@
 #include "dialogsfdp.h"
 #include "ui_dialogsfdp.h"
 #include <QValidator>
-#include <QRegExp>
 #include "unistd.h"
 #include "memory"
 #include <QDebug>
@@ -438,8 +437,8 @@ void DialogSFDP::on_pushButton_3_clicked()
 
 void DialogSFDP::setLineEditFilter()
 {
-    QRegExp reHex( "[0-1]{1}" );
-    QRegExpValidator *validator = new QRegExpValidator(reHex, this);
+    QRegularExpression reHex( "[0-1]{1}" );
+    QRegularExpressionValidator *validator = new QRegularExpressionValidator(reHex, this);
     //searching all lineEdit_srXX, XX - numbers
     QString searchText = "lineEdit_sr\\d+";
         QRegularExpression regex(searchText);
