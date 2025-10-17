@@ -1031,6 +1031,7 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
     <addaction name="actionStop"/>
     <addaction name="actionChip_info"/>
     <addaction name="actionSecurity_registers"/>
+    <addaction name="actionBad_block_management"/>
    </widget>
    <widget class="QMenu" name="menuHex_Editor">
     <property name="title">
@@ -1416,6 +1417,18 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
    </property>
    <property name="text">
     <string>Paste</string>
+   </property>
+  </action>
+  <action name="actionBad_block_management">
+   <property name="icon">
+    <iconset resource="recource.qrc">
+     <normaloff>:/res/img/info64.png</normaloff>:/res/img/info64.png</iconset>
+   </property>
+   <property name="text">
+    <string>Bad block management</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+B</string>
    </property>
   </action>
  </widget>

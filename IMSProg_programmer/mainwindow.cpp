@@ -31,6 +31,7 @@
 #include "dialogsecurity.h"
 #include "dialognandsecurity.h"
 #include "dialognandsr.h"
+#include "dialogbbm.h"
 #include "hexutility.h"
 #include <stddef.h>
 #include <stdint.h>
@@ -127,6 +128,7 @@ MainWindow::MainWindow(QWidget *parent) :
  currentECCsize = 0;
  filled = 0;
  numberOfReads = 0;
+ nandSettings = 0;
  cmdStarted = false;
  // connect and status check
  statusCH341 = ch341a_spi_init();
@@ -1638,11 +1640,13 @@ void MainWindow::on_comboBox_type_currentIndexChanged(int index)
          ui->actionDetect->setEnabled(true);
          ui->actionChip_info->setEnabled(true);
          ui->actionSecurity_registers->setEnabled(true);
+         ui->actionBad_block_management->setEnabled(true);
      }
      if (index != 6)
      {
          ui->label_11->hide();
          ui->comboBox_ECC->hide();
+         ui->actionBad_block_management->setEnabled(false);
      }
 }
 
@@ -1729,6 +1733,7 @@ void MainWindow::doNotDisturb()
    ui->actionCompare_files->setDisabled(true);
    ui->actionChip_info->setDisabled(true);
    ui->actionSecurity_registers->setDisabled(true);
+   ui->actionBad_block_management->setDisabled(true);
    ui->actionStop->setDisabled(false);
 
    ui->pushButton->blockSignals(true);
@@ -1774,6 +1779,7 @@ void MainWindow::doNotDisturbCancel()
       ui->actionCompare_files->setDisabled(false);
       if ((currentChipType == 0) || (currentChipType == 6) || (currentChipType > 2)) ui->actionChip_info->setDisabled(false);
       if ((currentChipType == 0) || (currentChipType == 6)) ui->actionSecurity_registers->setDisabled(false);
+      if (currentChipType == 6) ui->actionBad_block_management->setDisabled(false);
       ui->actionStop->setDisabled(true);
 
       ui->pushButton->blockSignals(false);
@@ -2351,4 +2357,26 @@ void MainWindow::on_actionPaste_triggered()
 
         QCoreApplication::postEvent(hexEdit, keyPress);
         QCoreApplication::postEvent(hexEdit, keyRelease);
+}
+
+void MainWindow::on_actionBad_block_management_triggered()
+{
+    if ((currentChipSize != 0) && (currentPageSize != 0) && (currentBlockSize !=0))
+    {
+        DialogBBM* bbmDialog = new DialogBBM(this);
+        bbmDialog->show();
+        bbmDialog->getSectorSize(currentPageSize);
+        bbmDialog->getBlockSize(currentBlockSize);
+        bbmDialog->getTotalBlocks(currentChipSize / currentBlockSize);
+        bbmDialog->getSettings(nandSettings);
+        connect(bbmDialog, SIGNAL(sendNandParam(uint8_t)), this, SLOT(receiveNandStatus(uint8_t)));
+    }
+    else QMessageBox::about(this, tr("Error"), tr("Please select the chip parameters - manufacture and chip name."));
+
+}
+
+void MainWindow::receiveNandStatus(uint8_t setParam)
+{
+    nandSettings = setParam;
+    qDebug()<<setParam;
 }

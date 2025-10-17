@@ -46,7 +46,6 @@ extern "C" {
 #include "spi_controller.h"
 #include "spi_eeprom.h"
 #include "spi_eeprom_api.h"
-#include "spi_nand_flash.h"
 #include "timer.h"
 #include "types.h"
 }
@@ -71,6 +70,7 @@ public slots:
     void receiveAddr3(qint64);
     void closeSFDP();
     void closeSR();
+    void receiveNandStatus(uint8_t);
 
 private slots:
     void progInit();
@@ -116,10 +116,10 @@ private slots:
     void preparingToCompare(bool type);
     void on_actionCompare_files_triggered();
     void on_comboBox_ECC_currentIndexChanged(int index);
-
     void on_actionCopy_triggered();
-
     void on_actionPaste_triggered();
+    void on_actionBad_block_management_triggered();
+
 
 private:
     Ui::MainWindow *ui;
@@ -160,6 +160,7 @@ private:
     void ch341StatusFlashing();
     QByteArray block;
     uint32_t blockStartAddr, blockLen;
+    uint8_t nandSettings;
 };
 
 #endif // MAINWINDOW_H

@@ -90,6 +90,7 @@ mainwindow.cpp
 qhexedit.cpp
 chunks.cpp
 commands.cpp
+dialogbbm.cpp
 dialogsp.cpp
 dialogrp.cpp
 dialogsfdp.cpp
@@ -121,6 +122,7 @@ qhexedit.h
 chunks.h
 commands.h
 color_manager.h
+dialogbbm.h
 dialogsp.h
 dialogrp.h
 dialogsfdp.h
@@ -151,6 +153,7 @@ timer.h
 types.h
 dialogabout.h
 mainwindow.ui
+dialogbbm.ui
 dialogsp.ui
 dialogrp.ui
 dialogsfdp.ui
