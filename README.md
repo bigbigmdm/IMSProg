@@ -287,6 +287,7 @@ key is used to fill the hex editor buffer with a special test array. The `[Ctrl+
 | Hotkey |       Function                                |
 | :---   |       :---                                    |
 | Ctrl+A | Checksum calculate                            |
+| Ctrl+B | Bad block management for NAND chips           |
 | Ctrl+C | Copy selected bytes (Hex editor)              |
 | Ctrl+D | Detect chip                                   |
 | Ctrl+E | Erase chip                                    |
