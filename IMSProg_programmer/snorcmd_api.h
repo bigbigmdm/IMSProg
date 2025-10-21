@@ -46,5 +46,6 @@ void nand_write_enable(void);
 void nand_unprotect(void);
 int nand_page_write(unsigned char *buf, unsigned int page_size, u32 sector_number);
 void nand_ECCEnable(void);
+int nand_checkBadBlock(u32 blockNo, u32 sectSize, u32 blockPerSector);
 #endif /* __SNORCMD_API_H__ */
 /* End of [snorcmd_api.h] package */

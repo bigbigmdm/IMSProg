@@ -44,7 +44,7 @@ DialogBBM::~DialogBBM()
 void DialogBBM::on_pushButton_clicked()
 {
     bool scanResult = false;
-    int i, stCH341 = 0, retval, curSectNo, bbmCount;
+    int i, stCH341 = 0, retval, bbmCount;
     uint32_t sectInBlock;
     uint8_t tmp_hi, tmp_lo;
     QString col_block, col_start, col_end;
@@ -58,24 +58,8 @@ void DialogBBM::on_pushButton_clicked()
     {
         for (i = 0; i < static_cast<int>(totBlocks); i++)
         {
-            curSectNo = i * static_cast<int>( sectInBlock );
-
-            SPI_CONTROLLER_Chip_Select_Low();
-            SPI_CONTROLLER_Write_One_Byte(0x13);
-            SPI_CONTROLLER_Write_One_Byte(static_cast<uint8_t>((0xff0000 & curSectNo) >> 16));
-            SPI_CONTROLLER_Write_One_Byte(static_cast<uint8_t>((0x00ff00 & curSectNo) >> 8));
-            SPI_CONTROLLER_Write_One_Byte(static_cast<uint8_t>(0x0000ff & curSectNo));
-            SPI_CONTROLLER_Chip_Select_High();
-            //usleep(1000);
-            nand_wait_ready(950);
-            SPI_CONTROLLER_Chip_Select_Low();
-            SPI_CONTROLLER_Write_One_Byte(0x03);
-            SPI_CONTROLLER_Write_One_Byte(0x08); //high address
-            SPI_CONTROLLER_Write_One_Byte(0x00); //low address
-            SPI_CONTROLLER_Write_One_Byte(0x00); //dymmy byte
-            retval = SPI_CONTROLLER_Read_NByte(buf.get(),2,SPI_CONTROLLER_SPEED_SINGLE);
-            SPI_CONTROLLER_Chip_Select_High();
-            if (buf[0] != 0xff)
+            retval = nand_checkBadBlock(static_cast<uint32_t>(i), static_cast<uint32_t>(sectSize), static_cast<uint32_t>(sectInBlock));
+            if (retval == 1)//(buf[0] != 0xff)
             {                
                 scanResult = true;
                 tmp_hi = static_cast<uint8_t>( i >> 8 );
@@ -88,12 +72,10 @@ void DialogBBM::on_pushButton_clicked()
                 ui->tableWidgetScan->setItem(bbmCount, 1, new QTableWidgetItem(col_block));
                 ui->tableWidgetScan->setItem(bbmCount, 2, new QTableWidgetItem(col_start));
                 ui->tableWidgetScan->setItem(bbmCount, 3, new QTableWidgetItem(col_end));
-
                 bbmCount++;
-
             }
             ui->progressBar->setValue(i);
-            if (retval)
+            if (retval == -1)
                {
                   QMessageBox::about(this, tr("Error"), tr("Error reading chip!"));
                   return;

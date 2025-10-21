@@ -780,20 +780,32 @@ void MainWindow::on_actionErase_triggered()
     }
     if (currentChipType == 6)
     {
+       uint32_t sectInBlock;
+       int retval;
        numBlocks = currentChipSize / currentBlockSize;
+       sectInBlock = currentBlockSize / currentPageSize;
        if (numBlocks > 0)
        {
            ui->progressBar->setRange(0, static_cast<int>(numBlocks));
            for (uint32_t curBlock = 0; curBlock < numBlocks; curBlock++)
            {
-               ret = nand_block_erase( curBlock,  currentBlockSize);
-               if (ret != 0)
-                 {
-                   QMessageBox::about(this, tr("Error"), tr("Error erasing sector ") + QString::number(curBlock));
-                   ch341a_spi_shutdown();
-                   doNotDisturbCancel();
-                   return;
-                 }
+               if ((nandSettings & 0xf0) == 0x00)
+               {
+                   retval = nand_checkBadBlock(static_cast<uint32_t>(curBlock), static_cast<uint32_t>(currentPageSize), static_cast<uint32_t>(sectInBlock));
+               }
+               else retval = 0;
+
+               if (retval == 0) //skip bad sectors, if checkbox enable
+               {
+                   ret = nand_block_erase( curBlock,  currentBlockSize);
+                   if (ret != 0)
+                     {
+                       QMessageBox::about(this, tr("Error"), tr("Error erasing sector ") + QString::number(curBlock));
+                       ch341a_spi_shutdown();
+                       doNotDisturbCancel();
+                       return;
+                     }
+               }
                qApp->processEvents();
                ui->progressBar->setValue( static_cast<int>(curBlock));
                if (isHalted)
@@ -922,7 +934,7 @@ void MainWindow::on_actionWrite_triggered()
 {
     //Writting data to chip
     int res = 0;
-    uint32_t numBlocks, step;
+    uint32_t numBlocks, step, sectorsPerBlock;
     statusCH341 = ch341a_init(currentChipType, currentI2CBusSpeed);
     if (statusCH341 == 0)
     {
@@ -956,6 +968,7 @@ void MainWindow::on_actionWrite_triggered()
                       case 6:             //NAND 35xx, GD5xx, W25xx
                          step = currentPageSize;
                          numBlocks = currentChipSize / step;
+                         sectorsPerBlock = currentBlockSize / currentPageSize;
                          nand_unprotect();
                          nand_ECCEnable();
                       break;
