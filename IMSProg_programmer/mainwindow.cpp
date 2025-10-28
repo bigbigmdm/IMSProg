@@ -173,7 +173,7 @@ void MainWindow::on_pushButton_clicked()
   //Reading data from chip  
   newFileName = ui->comboBox_name->currentText();
   int res = 0;
-  uint32_t numBlocks, step;
+  uint32_t numBlocks, step, sectorsPerBlock;
   statusCH341 = ch341a_init(currentChipType, currentI2CBusSpeed);
   if (statusCH341 == 0)
   {
@@ -214,8 +214,9 @@ void MainWindow::on_pushButton_clicked()
              numBlocks = currentChipSize / step;
           break;
           case 6:             //NAND 35xx, GD5xx, W25xx
-             step = currentPageSize;
+             step = currentBlockSize;
              numBlocks = currentChipSize / step;
+             sectorsPerBlock = currentBlockSize / currentPageSize;
              nand_ECCEnable();
           break;
           default:
@@ -260,7 +261,8 @@ void MainWindow::on_pushButton_clicked()
               break;
            case 6:
               //NAND
-              res = nand_page_read(buf.get(), step, k);
+              //res = nand_page_read(buf.get(), step, k);
+               res = nand_block_read(buf.get(), currentPageSize, k, sectorsPerBlock);
               if (res==0) res = 1;
            break;
               default:
@@ -966,8 +968,9 @@ void MainWindow::on_actionWrite_triggered()
                          numBlocks = currentChipSize / step;
                       break;
                       case 6:             //NAND 35xx, GD5xx, W25xx
-                         step = currentPageSize;
+                         step = currentBlockSize;
                          numBlocks = currentChipSize / step;
+                         //numBlocks = currentNumBlocks;
                          sectorsPerBlock = currentBlockSize / currentPageSize;
                          nand_unprotect();
                          nand_ECCEnable();
@@ -1020,7 +1023,7 @@ void MainWindow::on_actionWrite_triggered()
                        break;
                        case 6:
                           //NAND
-                          res = nand_page_write(buf.get(), step, k);
+                          res = nand_block_write(buf.get(), currentPageSize, k, sectorsPerBlock);//nand_page_write(buf.get(), step, k);
                           if (res==0) res = 1;
                        break;
                        default:

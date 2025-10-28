@@ -1069,6 +1069,34 @@ int nand_page_write(unsigned char *buf, unsigned int page_size, uint32_t sector_
     return retval;
 }
 
+int nand_block_read(unsigned char *buf, unsigned int page_size, uint32_t block_number, unsigned int pages_per_block)
+{
+    int retval;
+    unsigned int i;
+    uint32_t secNumber;
+    for (i = 0; i < pages_per_block; i++)
+    {
+        secNumber = block_number * pages_per_block + i;
+        retval = nand_page_read(&buf[i * page_size], page_size, secNumber);
+        if (retval == -1) return retval;
+    }
+    return 0;
+}
+
+int nand_block_write(unsigned char *buf, unsigned int page_size, uint32_t block_number, unsigned int pages_per_block)
+{
+    int retval;
+    unsigned int i;
+    uint32_t secNumber;
+    for (i = 0; i < pages_per_block; i++)
+    {
+        secNumber = block_number * pages_per_block + i;
+        retval = nand_page_write(&buf[i * page_size], page_size, secNumber);
+        if (retval == -1) return retval;
+    }
+    return 0;
+}
+
 void nand_unprotect(void)
 {
     nand_write_enable();
