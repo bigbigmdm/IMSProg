@@ -261,7 +261,6 @@ void MainWindow::on_pushButton_clicked()
               break;
            case 6:
               //NAND
-              //res = nand_page_read(buf.get(), step, k);
                res = nand_block_read(buf.get(), currentPageSize, k, sectorsPerBlock);
               if (res==0) res = 1;
            break;
@@ -935,7 +934,7 @@ void MainWindow::on_actionExtract_from_ASUS_CAP_triggered()
 void MainWindow::on_actionWrite_triggered()
 {
     //Writting data to chip
-    int res = 0;
+    int res = 0, badResult = 0;
     uint32_t numBlocks, step, sectorsPerBlock;
     statusCH341 = ch341a_init(currentChipType, currentI2CBusSpeed);
     if (statusCH341 == 0)
@@ -984,7 +983,7 @@ void MainWindow::on_actionWrite_triggered()
                       return;
                       }
     ch341StatusFlashing();
-    uint32_t addr = 0;
+    uint32_t addrSrc = 0, addrDest = 0;
     uint32_t curBlock = 0;    
     uint32_t j, k;
     ui->statusMessage->setText(tr("Writing data to ") + ui->comboBox_name->currentText());
@@ -995,35 +994,47 @@ void MainWindow::on_actionWrite_triggered()
     std::shared_ptr<uint8_t[]> buf(new uint8_t[step]);
     for (k = 0; k < numBlocks; k++)
       {
-
+qDebug()<<"chipData->buf: bufaddr="<<printAddress(addrDest - k * step, 8)<<" chipDataAddr="<<printAddress(addrSrc,8);
          for (j = 0; j < step; j++)
             {
-               buf[addr + j - k * step] =  static_cast<uint8_t>(chipData[addr + j]) ;
+               buf[addrDest + j - k * step] =  static_cast<uint8_t>(chipData[addrSrc + j]) ;
             }
          switch (currentChipType)
                        {
                        case 0:                           //SPI
-                          res = snor_write_param(buf.get(), addr, step, step, currentAddr4bit);
+                          addrSrc = addrSrc + step;
+                          res = snor_write_param(buf.get(), addrDest, step, step, currentAddr4bit);
                        break;
                        case 1:                           //I2C
+                          addrSrc = addrSrc + step;
                           res = ch341writeEEPROM_param(buf.get(), curBlock * 128, 128, currentPageSize, currentAlgorithm);
                           if (res==0) res = 1;
                        break;
                        case 2:                           //MicroWire
+                          addrSrc = addrSrc + step;
                           res = Write_EEPROM_3wire_param(buf.get(), static_cast<int>(curBlock * step), static_cast<int>(step), static_cast<int>(currentChipSize), currentAlgorithm);
                           if (res==0) res = 1;
                        break;
                        case 3:                           //25xxx
                        case 4:                           //M95xx
-                          res = s95_write_param(buf.get(), addr, step, step, currentAlgorithm);
+                          addrSrc = addrSrc + step;
+                          res = s95_write_param(buf.get(), addrDest, step, step, currentAlgorithm);
                        break;
                        case 5:
                           //AT45DBxx
-                          res = at45_write_param(buf.get(), addr, step, step, currentAlgorithm);
+                          addrSrc = addrSrc + step;
+                          res = at45_write_param(buf.get(), addrDest, step, step, currentAlgorithm);
                        break;
                        case 6:
                           //NAND
-                          res = nand_block_write(buf.get(), currentPageSize, k, sectorsPerBlock);//nand_page_write(buf.get(), step, k);
+                          if ((nandSettings & 0x0f) == 0x01)
+                          {
+                             //skip bad block enabled
+                             badResult = nand_checkBadBlock(k, currentPageSize, sectorsPerBlock);
+                             if(badResult != 1) addrSrc = addrSrc + step;
+                          }
+                          else addrSrc = addrSrc + step;
+                          res = nand_block_write(buf.get(), currentPageSize, k, sectorsPerBlock);
                           if (res==0) res = 1;
                        break;
                        default:
@@ -1049,7 +1060,7 @@ void MainWindow::on_actionWrite_triggered()
              ch341a_spi_shutdown();
              return;
            }
-         addr = addr + step;
+         addrDest = addrDest + step;
          curBlock++;
          qApp->processEvents();
          if (isHalted)
@@ -1060,6 +1071,7 @@ void MainWindow::on_actionWrite_triggered()
              return;
          }
          ui->progressBar->setValue( static_cast<int>(curBlock));
+qDebug()<<"End of cycle addrSrc="<<printAddress(addrSrc,8)<<" addrDest="<<printAddress(addrDest,8)<<" k="<<k<<" curBlock="<<curBlock<<"numBlock="<<numBlocks;
       }
     }
     else
@@ -1773,7 +1785,7 @@ void MainWindow::doNotDisturb()
 
 void MainWindow::doNotDisturbCancel()
 {
-      if (currentChipType == 0) ui->actionDetect->setDisabled(false);
+      if ((currentChipType == 0) || (currentChipType == 5) || (currentChipType == 6)) ui->actionDetect->setDisabled(false);
       ui->actionOpen->setDisabled(false);
       ui->actionSave->setDisabled(false);
       ui->actionLoad_Part->setDisabled(false);
@@ -2394,5 +2406,4 @@ void MainWindow::on_actionBad_block_management_triggered()
 void MainWindow::receiveNandStatus(uint8_t setParam)
 {
     nandSettings = setParam;
-    qDebug()<<setParam;
 }
