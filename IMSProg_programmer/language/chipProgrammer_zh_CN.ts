@@ -49,6 +49,167 @@
     </message>
 </context>
 <context>
+    <name>DialogBBM</name>
+    <message>
+        <location filename="../dialogbbm.ui" line="20"/>
+        <source>Bad block management</source>
+        <translation>坏块管理</translation>
+    </message>
+    <message>
+        <location filename="../dialogbbm.ui" line="34"/>
+        <source>Chip scan</source>
+        <translation>芯片扫描</translation>
+    </message>
+    <message>
+        <location filename="../dialogbbm.ui" line="69"/>
+        <location filename="../dialogbbm.ui" line="285"/>
+        <source>No</source>
+        <translation>数字</translation>
+    </message>
+    <message>
+        <location filename="../dialogbbm.ui" line="77"/>
+        <source>Block</source>
+        <translation>区块编号</translation>
+    </message>
+    <message>
+        <location filename="../dialogbbm.ui" line="85"/>
+        <source>Start address</source>
+        <translation>起始地址</translation>
+    </message>
+    <message>
+        <location filename="../dialogbbm.ui" line="93"/>
+        <source>End address</source>
+        <translation>结束地址</translation>
+    </message>
+    <message>
+        <location filename="../dialogbbm.ui" line="137"/>
+        <source>Check</source>
+        <translation>检查</translation>
+    </message>
+    <message>
+        <location filename="../dialogbbm.ui" line="147"/>
+        <source>Settings</source>
+        <translation>设置</translation>
+    </message>
+    <message>
+        <location filename="../dialogbbm.ui" line="167"/>
+        <source>Erasing</source>
+        <translation>擦除</translation>
+    </message>
+    <message>
+        <location filename="../dialogbbm.ui" line="173"/>
+        <source>Skip bad blocks during erase procedure  (recommended)</source>
+        <translation>擦除过程中跳过坏块（推荐）</translation>
+    </message>
+    <message>
+        <location filename="../dialogbbm.ui" line="180"/>
+        <source>Don&apos;t skip bad blocks</source>
+        <translation>不要跳过坏扇区</translation>
+    </message>
+    <message>
+        <source>Don&apos;t skip bad sectors</source>
+        <translation type="vanished">不要跳过坏扇区</translation>
+    </message>
+    <message>
+        <location filename="../dialogbbm.ui" line="190"/>
+        <source>Writing</source>
+        <translation>写作</translation>
+    </message>
+    <message>
+        <location filename="../dialogbbm.ui" line="196"/>
+        <source>Write all blocks one to one (ignore bad blocks)</source>
+        <translation>分别写入每个扇区（忽略坏扇区）</translation>
+    </message>
+    <message>
+        <location filename="../dialogbbm.ui" line="203"/>
+        <source>Skip bad blocks during writing procedure</source>
+        <translation>在写入过程中跳过坏扇区</translation>
+    </message>
+    <message>
+        <location filename="../dialogbbm.ui" line="256"/>
+        <source>Ok</source>
+        <translation>Ok</translation>
+    </message>
+    <message>
+        <location filename="../dialogbbm.ui" line="268"/>
+        <source>BBM table (Winbond)</source>
+        <translation>坏块管理表（Winbond）</translation>
+    </message>
+    <message>
+        <location filename="../dialogbbm.ui" line="274"/>
+        <source>This operation is used only in some Winbond chips.</source>
+        <translation>此操作仅适用于某些 Winbond 芯片。</translation>
+    </message>
+    <message>
+        <location filename="../dialogbbm.ui" line="290"/>
+        <source>Bad block</source>
+        <translation>坏块编号</translation>
+    </message>
+    <message>
+        <location filename="../dialogbbm.ui" line="295"/>
+        <source>Changed block</source>
+        <translation>变更块编号</translation>
+    </message>
+    <message>
+        <location filename="../dialogbbm.ui" line="300"/>
+        <source>Status</source>
+        <translation>状态</translation>
+    </message>
+    <message>
+        <location filename="../dialogbbm.ui" line="348"/>
+        <source>Read</source>
+        <translation>读取</translation>
+    </message>
+    <message>
+        <location filename="../dialogbbm.cpp" line="80"/>
+        <location filename="../dialogbbm.cpp" line="92"/>
+        <location filename="../dialogbbm.cpp" line="163"/>
+        <source>Error</source>
+        <translation>错误</translation>
+    </message>
+    <message>
+        <location filename="../dialogbbm.cpp" line="80"/>
+        <source>Error reading chip!</source>
+        <translation>读取芯片错误！</translation>
+    </message>
+    <message>
+        <location filename="../dialogbbm.cpp" line="84"/>
+        <source>Corrupted blocks found:</source>
+        <translation>发现损坏的区块：</translation>
+    </message>
+    <message>
+        <location filename="../dialogbbm.cpp" line="85"/>
+        <source>All blocks in the chip are good!</source>
+        <translation>芯片中的所有模块都运行正常！</translation>
+    </message>
+    <message>
+        <location filename="../dialogbbm.cpp" line="92"/>
+        <location filename="../dialogbbm.cpp" line="163"/>
+        <source>Programmer CH341a is not connected!</source>
+        <translation>CH341A 编程器未连接！</translation>
+    </message>
+    <message>
+        <location filename="../dialogbbm.cpp" line="153"/>
+        <source>Not used</source>
+        <translation>未使用</translation>
+    </message>
+    <message>
+        <location filename="../dialogbbm.cpp" line="154"/>
+        <source>Active, valid</source>
+        <translation>有效，有效</translation>
+    </message>
+    <message>
+        <location filename="../dialogbbm.cpp" line="155"/>
+        <source>Active, not valid</source>
+        <translation>有效，但未激活</translation>
+    </message>
+    <message>
+        <location filename="../dialogbbm.cpp" line="160"/>
+        <source>BBM table is not used in this chip.</source>
+        <translation>该芯片未使用坏块管理表。</translation>
+    </message>
+</context>
+<context>
     <name>DialogCompare</name>
     <message>
         <location filename="../dialogcompare.ui" line="14"/>
@@ -421,9 +582,9 @@
     <message>
         <location filename="../dialognandsecurity.cpp" line="80"/>
         <location filename="../dialognandsecurity.cpp" line="120"/>
-        <location filename="../dialognandsecurity.cpp" line="217"/>
-        <location filename="../dialognandsecurity.cpp" line="235"/>
-        <location filename="../dialognandsecurity.cpp" line="268"/>
+        <location filename="../dialognandsecurity.cpp" line="215"/>
+        <location filename="../dialognandsecurity.cpp" line="233"/>
+        <location filename="../dialognandsecurity.cpp" line="266"/>
         <source>Error</source>
         <translation>错误</translation>
     </message>
@@ -434,27 +595,27 @@
     </message>
     <message>
         <location filename="../dialognandsecurity.cpp" line="120"/>
-        <location filename="../dialognandsecurity.cpp" line="217"/>
+        <location filename="../dialognandsecurity.cpp" line="215"/>
         <source>Programmer CH341a is not connected!</source>
         <translation>CH341A 编程器未连接！</translation>
     </message>
     <message>
-        <location filename="../dialognandsecurity.cpp" line="226"/>
+        <location filename="../dialognandsecurity.cpp" line="224"/>
         <source>Open file</source>
         <translation>打开文件</translation>
     </message>
     <message>
-        <location filename="../dialognandsecurity.cpp" line="235"/>
+        <location filename="../dialognandsecurity.cpp" line="233"/>
         <source>The file size exceeds the security register size.</source>
         <translation>文件大小超过安全寄存器大小。</translation>
     </message>
     <message>
-        <location filename="../dialognandsecurity.cpp" line="257"/>
+        <location filename="../dialognandsecurity.cpp" line="255"/>
         <source>Save file</source>
         <translation>保存文件</translation>
     </message>
     <message>
-        <location filename="../dialognandsecurity.cpp" line="268"/>
+        <location filename="../dialognandsecurity.cpp" line="266"/>
         <source>Error saving file!</source>
         <translation>保存文件出错！</translation>
     </message>
@@ -1018,27 +1179,27 @@
         <translation>文件</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1104"/>
+        <location filename="../mainwindow.ui" line="1105"/>
         <source>Open</source>
         <translation>打开</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1107"/>
+        <location filename="../mainwindow.ui" line="1108"/>
         <source>Ctrl+O</source>
         <translation>Ctrl+O</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1128"/>
+        <location filename="../mainwindow.ui" line="1129"/>
         <source>Exit</source>
         <translation>退出</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1131"/>
+        <location filename="../mainwindow.ui" line="1132"/>
         <source>Ctrl+X</source>
         <translation>Ctrl+X</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1116"/>
+        <location filename="../mainwindow.ui" line="1117"/>
         <source>Save</source>
         <translation>保存</translation>
     </message>
@@ -1079,13 +1240,13 @@
     </message>
     <message>
         <location filename="../mainwindow.ui" line="572"/>
-        <location filename="../mainwindow.ui" line="1140"/>
+        <location filename="../mainwindow.ui" line="1141"/>
         <source>Detect</source>
         <translation>检测</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="609"/>
-        <location filename="../mainwindow.ui" line="1152"/>
+        <location filename="../mainwindow.ui" line="1153"/>
         <source>Read</source>
         <translation>读取</translation>
     </message>
@@ -1115,7 +1276,7 @@
     </message>
     <message>
         <location filename="../mainwindow.ui" line="664"/>
-        <location filename="../mainwindow.ui" line="1164"/>
+        <location filename="../mainwindow.ui" line="1165"/>
         <source>Erase</source>
         <translation>擦除</translation>
     </message>
@@ -1126,7 +1287,7 @@
     </message>
     <message>
         <location filename="../mainwindow.ui" line="684"/>
-        <location filename="../mainwindow.ui" line="1188"/>
+        <location filename="../mainwindow.ui" line="1189"/>
         <source>Verify</source>
         <translation>校验</translation>
     </message>
@@ -1137,7 +1298,7 @@
     </message>
     <message>
         <location filename="../mainwindow.ui" line="778"/>
-        <location filename="../mainwindow.ui" line="1037"/>
+        <location filename="../mainwindow.ui" line="1038"/>
         <source>Hex Editor</source>
         <translation>十六进制编辑器</translation>
     </message>
@@ -1172,237 +1333,247 @@
         <translation>编程器</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1052"/>
+        <location filename="../mainwindow.ui" line="1053"/>
         <source>Help</source>
         <translation>帮助</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1119"/>
+        <location filename="../mainwindow.ui" line="1120"/>
         <source>Ctrl+S</source>
         <translation>Ctrl+S</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1143"/>
+        <location filename="../mainwindow.ui" line="1144"/>
         <source>Ctrl+D</source>
         <translation>Ctrl+D</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1155"/>
+        <location filename="../mainwindow.ui" line="1156"/>
         <source>Ctrl+R</source>
         <translation>Ctrl+R</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1167"/>
+        <location filename="../mainwindow.ui" line="1168"/>
         <source>Ctrl+E</source>
         <translation>Ctrl+E</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1176"/>
+        <location filename="../mainwindow.ui" line="1177"/>
         <source>Write</source>
         <translation>写入</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1179"/>
+        <location filename="../mainwindow.ui" line="1180"/>
         <source>Ctrl+W</source>
         <translation>Ctrl+W</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1191"/>
+        <location filename="../mainwindow.ui" line="1192"/>
         <source>Ctrl+T</source>
         <translation>Ctrl+T</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1200"/>
+        <location filename="../mainwindow.ui" line="1201"/>
         <source>Undo</source>
         <translation>撤消</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1203"/>
+        <location filename="../mainwindow.ui" line="1204"/>
         <source>Ctrl+Z</source>
         <translation>Ctrl+Z</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1212"/>
+        <location filename="../mainwindow.ui" line="1213"/>
         <source>Redo</source>
         <translation>重做</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1215"/>
+        <location filename="../mainwindow.ui" line="1216"/>
         <source>Ctrl+Y</source>
         <translation>Ctrl+Y</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1325"/>
+        <location filename="../mainwindow.ui" line="1326"/>
         <source>Import from Intel HEX</source>
         <translation>从英特尔 HEX 导入</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1334"/>
+        <location filename="../mainwindow.ui" line="1335"/>
         <source>Export to Intel HEX</source>
         <translation>导出为英特尔 HEX</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1343"/>
+        <location filename="../mainwindow.ui" line="1344"/>
         <source>Extract from ASUS CAP</source>
         <translation>从ASUS CAP移除</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1352"/>
+        <location filename="../mainwindow.ui" line="1353"/>
         <source>Goto address</source>
         <translation>转到地址</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1355"/>
+        <location filename="../mainwindow.ui" line="1356"/>
         <source>Move the cursor to the entered address</source>
         <translation>将光标移至输入的地址</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1358"/>
+        <location filename="../mainwindow.ui" line="1359"/>
         <source>Ctrl+G</source>
         <translation>Ctrl+G</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1367"/>
+        <location filename="../mainwindow.ui" line="1368"/>
         <source>Security registers</source>
         <translation>安全登记册</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1370"/>
+        <location filename="../mainwindow.ui" line="1371"/>
         <source>Ctrl+U</source>
         <translation>Ctrl+U</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1379"/>
+        <location filename="../mainwindow.ui" line="1380"/>
         <source>Fill test image</source>
         <translation>填充测试图像</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1382"/>
+        <location filename="../mainwindow.ui" line="1383"/>
         <source>Filling the hex editor with a test array</source>
         <translation>用测试数组填充十六进制编辑器</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1385"/>
+        <location filename="../mainwindow.ui" line="1386"/>
         <source>Ctrl+L</source>
         <translation>Ctrl+L</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1394"/>
+        <location filename="../mainwindow.ui" line="1395"/>
         <source>Compare files</source>
         <translation>比较文件</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1397"/>
+        <location filename="../mainwindow.ui" line="1398"/>
         <source>Compares the results of the last and penultimate chip read or file open operation</source>
         <translation>比较最后一次和倒数第二次芯片读取或文件打开操作的结果。</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1400"/>
+        <location filename="../mainwindow.ui" line="1401"/>
         <source>Ctrl+M</source>
         <translation>Ctrl+M</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1409"/>
+        <location filename="../mainwindow.ui" line="1410"/>
         <source>Copy</source>
         <translation>复制</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1418"/>
+        <location filename="../mainwindow.ui" line="1419"/>
         <source>Paste</source>
         <translation>粘贴</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1224"/>
+        <location filename="../mainwindow.ui" line="1428"/>
+        <source>Bad block management</source>
+        <translation>坏块管理</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="1431"/>
+        <source>Ctrl+B</source>
+        <translation>Ctrl+B</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="1225"/>
         <source>Save Part</source>
         <translation>部分保存</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1236"/>
+        <location filename="../mainwindow.ui" line="1237"/>
         <source>Load Part</source>
         <translation>部分加载</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1248"/>
+        <location filename="../mainwindow.ui" line="1249"/>
         <source>Find / Replace</source>
         <translation>查找/替换</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1251"/>
+        <location filename="../mainwindow.ui" line="1252"/>
         <source>Ctrl+F</source>
         <translation>Ctrl+F</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1256"/>
+        <location filename="../mainwindow.ui" line="1257"/>
         <source>About</source>
         <translation>关于</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1259"/>
+        <location filename="../mainwindow.ui" line="1260"/>
         <source>About IMSProgrammer</source>
         <translation>关于 IMSProg</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1262"/>
+        <location filename="../mainwindow.ui" line="1263"/>
         <source>Ctrl+H</source>
         <translation>Ctrl+H</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1271"/>
+        <location filename="../mainwindow.ui" line="1272"/>
         <source>Checksum calculate</source>
         <translation>计算校验和</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1274"/>
+        <location filename="../mainwindow.ui" line="1275"/>
         <source>Ctrl+A</source>
         <translation>Ctrl+A</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1283"/>
+        <location filename="../mainwindow.ui" line="1284"/>
         <source>Edit chips Database</source>
         <translation>编辑芯片数据库</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1286"/>
+        <location filename="../mainwindow.ui" line="1287"/>
         <source>Ctrl+Q</source>
         <translation>Ctrl+Q</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1295"/>
-        <location filename="../mainwindow.cpp" line="1804"/>
+        <location filename="../mainwindow.ui" line="1296"/>
+        <location filename="../mainwindow.cpp" line="1836"/>
         <source>Stop</source>
         <translation>停止</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1298"/>
+        <location filename="../mainwindow.ui" line="1299"/>
         <source>Forced stop of read, write, erase and verification operations</source>
         <translation>强制停止读、写、擦除和校验操作</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1301"/>
+        <location filename="../mainwindow.ui" line="1302"/>
         <source>Ctrl+I</source>
         <translation>Ctrl+I</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1310"/>
+        <location filename="../mainwindow.ui" line="1311"/>
         <source>Chip info</source>
         <translation>芯片信息</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1313"/>
+        <location filename="../mainwindow.ui" line="1314"/>
         <source>Information about SFDP and status registers</source>
         <translation>有关 SFDP 和状态寄存器的信息</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1316"/>
+        <location filename="../mainwindow.ui" line="1317"/>
         <source>Ctrl+P</source>
         <translation>Ctrl+P</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="859"/>
-        <location filename="../mainwindow.cpp" line="902"/>
-        <location filename="../mainwindow.cpp" line="1409"/>
-        <location filename="../mainwindow.cpp" line="2077"/>
-        <location filename="../mainwindow.cpp" line="2153"/>
+        <location filename="../mainwindow.cpp" line="874"/>
+        <location filename="../mainwindow.cpp" line="917"/>
+        <location filename="../mainwindow.cpp" line="1437"/>
+        <location filename="../mainwindow.cpp" line="2112"/>
+        <location filename="../mainwindow.cpp" line="2188"/>
         <source>Current file: </source>
         <translation>当前文件： </translation>
     </message>
@@ -1422,289 +1593,291 @@
         <translation>大小</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1865"/>
+        <location filename="../mainwindow.cpp" line="1900"/>
         <source>Opening DAT file</source>
         <translation>打开 DAT 文件</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="221"/>
-        <location filename="../mainwindow.cpp" line="266"/>
-        <location filename="../mainwindow.cpp" line="274"/>
-        <location filename="../mainwindow.cpp" line="280"/>
-        <location filename="../mainwindow.cpp" line="307"/>
-        <location filename="../mainwindow.cpp" line="308"/>
-        <location filename="../mainwindow.cpp" line="320"/>
-        <location filename="../mainwindow.cpp" line="337"/>
-        <location filename="../mainwindow.cpp" line="352"/>
-        <location filename="../mainwindow.cpp" line="623"/>
-        <location filename="../mainwindow.cpp" line="640"/>
-        <location filename="../mainwindow.cpp" line="659"/>
-        <location filename="../mainwindow.cpp" line="704"/>
-        <location filename="../mainwindow.cpp" line="754"/>
-        <location filename="../mainwindow.cpp" line="790"/>
-        <location filename="../mainwindow.cpp" line="852"/>
-        <location filename="../mainwindow.cpp" line="892"/>
-        <location filename="../mainwindow.cpp" line="962"/>
-        <location filename="../mainwindow.cpp" line="1013"/>
-        <location filename="../mainwindow.cpp" line="1022"/>
-        <location filename="../mainwindow.cpp" line="1029"/>
+        <location filename="../mainwindow.cpp" line="224"/>
+        <location filename="../mainwindow.cpp" line="269"/>
+        <location filename="../mainwindow.cpp" line="277"/>
+        <location filename="../mainwindow.cpp" line="283"/>
+        <location filename="../mainwindow.cpp" line="310"/>
+        <location filename="../mainwindow.cpp" line="311"/>
+        <location filename="../mainwindow.cpp" line="323"/>
+        <location filename="../mainwindow.cpp" line="340"/>
+        <location filename="../mainwindow.cpp" line="355"/>
+        <location filename="../mainwindow.cpp" line="626"/>
+        <location filename="../mainwindow.cpp" line="643"/>
+        <location filename="../mainwindow.cpp" line="662"/>
+        <location filename="../mainwindow.cpp" line="707"/>
+        <location filename="../mainwindow.cpp" line="757"/>
+        <location filename="../mainwindow.cpp" line="804"/>
+        <location filename="../mainwindow.cpp" line="867"/>
+        <location filename="../mainwindow.cpp" line="907"/>
+        <location filename="../mainwindow.cpp" line="979"/>
+        <location filename="../mainwindow.cpp" line="1041"/>
         <location filename="../mainwindow.cpp" line="1050"/>
-        <location filename="../mainwindow.cpp" line="1060"/>
-        <location filename="../mainwindow.cpp" line="1220"/>
-        <location filename="../mainwindow.cpp" line="1271"/>
-        <location filename="../mainwindow.cpp" line="1280"/>
-        <location filename="../mainwindow.cpp" line="1286"/>
-        <location filename="../mainwindow.cpp" line="1297"/>
-        <location filename="../mainwindow.cpp" line="1321"/>
-        <location filename="../mainwindow.cpp" line="1322"/>
-        <location filename="../mainwindow.cpp" line="1336"/>
-        <location filename="../mainwindow.cpp" line="1365"/>
-        <location filename="../mainwindow.cpp" line="1389"/>
-        <location filename="../mainwindow.cpp" line="1423"/>
-        <location filename="../mainwindow.cpp" line="1704"/>
-        <location filename="../mainwindow.cpp" line="1874"/>
-        <location filename="../mainwindow.cpp" line="2029"/>
-        <location filename="../mainwindow.cpp" line="2043"/>
-        <location filename="../mainwindow.cpp" line="2167"/>
-        <location filename="../mainwindow.cpp" line="2199"/>
-        <location filename="../mainwindow.cpp" line="2217"/>
-        <location filename="../mainwindow.cpp" line="2237"/>
+        <location filename="../mainwindow.cpp" line="1057"/>
+        <location filename="../mainwindow.cpp" line="1078"/>
+        <location filename="../mainwindow.cpp" line="1088"/>
+        <location filename="../mainwindow.cpp" line="1248"/>
+        <location filename="../mainwindow.cpp" line="1299"/>
+        <location filename="../mainwindow.cpp" line="1308"/>
+        <location filename="../mainwindow.cpp" line="1314"/>
+        <location filename="../mainwindow.cpp" line="1325"/>
+        <location filename="../mainwindow.cpp" line="1349"/>
+        <location filename="../mainwindow.cpp" line="1350"/>
+        <location filename="../mainwindow.cpp" line="1364"/>
+        <location filename="../mainwindow.cpp" line="1393"/>
+        <location filename="../mainwindow.cpp" line="1417"/>
+        <location filename="../mainwindow.cpp" line="1451"/>
+        <location filename="../mainwindow.cpp" line="1734"/>
+        <location filename="../mainwindow.cpp" line="1909"/>
+        <location filename="../mainwindow.cpp" line="2064"/>
+        <location filename="../mainwindow.cpp" line="2078"/>
+        <location filename="../mainwindow.cpp" line="2202"/>
+        <location filename="../mainwindow.cpp" line="2234"/>
+        <location filename="../mainwindow.cpp" line="2252"/>
+        <location filename="../mainwindow.cpp" line="2272"/>
+        <location filename="../mainwindow.cpp" line="2403"/>
         <source>Error</source>
         <translation>错误</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1704"/>
+        <location filename="../mainwindow.cpp" line="1734"/>
         <source>File &apos;IMSProg_editor&apos; not found!</source>
         <translation>¡未找到文件 `IMSProg_editor`！</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1874"/>
+        <location filename="../mainwindow.cpp" line="1909"/>
         <source>Error loading chip database file!</source>
         <translation>加载芯片数据库文件时出错！</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1880"/>
+        <location filename="../mainwindow.cpp" line="1915"/>
         <source>Parsing DAT file</source>
         <translation>解析 DAT 文件</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="232"/>
+        <location filename="../mainwindow.cpp" line="235"/>
         <source>Reading data from </source>
         <translation>读取的数据来自</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="221"/>
-        <location filename="../mainwindow.cpp" line="266"/>
-        <location filename="../mainwindow.cpp" line="962"/>
-        <location filename="../mainwindow.cpp" line="1013"/>
-        <location filename="../mainwindow.cpp" line="1220"/>
-        <location filename="../mainwindow.cpp" line="1271"/>
+        <location filename="../mainwindow.cpp" line="224"/>
+        <location filename="../mainwindow.cpp" line="269"/>
+        <location filename="../mainwindow.cpp" line="979"/>
+        <location filename="../mainwindow.cpp" line="1041"/>
+        <location filename="../mainwindow.cpp" line="1248"/>
+        <location filename="../mainwindow.cpp" line="1299"/>
         <source>Unsupported chip type!</source>
         <translation>不支持的芯片类型！</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="274"/>
-        <location filename="../mainwindow.cpp" line="320"/>
-        <location filename="../mainwindow.cpp" line="337"/>
-        <location filename="../mainwindow.cpp" line="640"/>
-        <location filename="../mainwindow.cpp" line="1022"/>
-        <location filename="../mainwindow.cpp" line="1060"/>
-        <location filename="../mainwindow.cpp" line="1280"/>
-        <location filename="../mainwindow.cpp" line="1336"/>
+        <location filename="../mainwindow.cpp" line="277"/>
+        <location filename="../mainwindow.cpp" line="323"/>
+        <location filename="../mainwindow.cpp" line="340"/>
+        <location filename="../mainwindow.cpp" line="643"/>
+        <location filename="../mainwindow.cpp" line="1050"/>
+        <location filename="../mainwindow.cpp" line="1088"/>
+        <location filename="../mainwindow.cpp" line="1308"/>
+        <location filename="../mainwindow.cpp" line="1364"/>
         <source>Programmer CH341a is not connected!</source>
         <translation>CH341A 编程器未连接！</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="280"/>
-        <location filename="../mainwindow.cpp" line="1286"/>
+        <location filename="../mainwindow.cpp" line="283"/>
+        <location filename="../mainwindow.cpp" line="1314"/>
         <source>Error reading block </source>
         <translation>读取程序块编号出错 </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="307"/>
-        <location filename="../mainwindow.cpp" line="1050"/>
-        <location filename="../mainwindow.cpp" line="1321"/>
+        <location filename="../mainwindow.cpp" line="310"/>
+        <location filename="../mainwindow.cpp" line="1078"/>
+        <location filename="../mainwindow.cpp" line="1349"/>
         <source>Before reading from chip please press &apos;Detect&apos; button.</source>
         <translation>读取芯片数据前，请按下 &apos;检测&apos; 按钮。</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="308"/>
+        <location filename="../mainwindow.cpp" line="311"/>
         <source>Please select the chip parameters - manufacture and chip name</source>
         <translation>请选择芯片参数 - &apos;制造商&apos; 和芯片 &apos;名称&apos;。</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="352"/>
+        <location filename="../mainwindow.cpp" line="355"/>
         <source>The chip is not connect or missing!</source>
         <translation>芯片没有连接或丢失！</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="610"/>
-        <location filename="../mainwindow.cpp" line="2068"/>
+        <location filename="../mainwindow.cpp" line="613"/>
+        <location filename="../mainwindow.cpp" line="2103"/>
         <source>Saving file</source>
         <translation>保存文件</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="612"/>
-        <location filename="../mainwindow.cpp" line="2070"/>
+        <location filename="../mainwindow.cpp" line="615"/>
+        <location filename="../mainwindow.cpp" line="2105"/>
         <source>Save file</source>
         <translation>保存文件</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="623"/>
-        <location filename="../mainwindow.cpp" line="1389"/>
+        <location filename="../mainwindow.cpp" line="626"/>
+        <location filename="../mainwindow.cpp" line="1417"/>
         <source>Error saving file!</source>
         <translation>保存文件出错！</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="643"/>
+        <location filename="../mainwindow.cpp" line="646"/>
         <source>Erasing the </source>
         <translation>擦除芯片 </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="659"/>
-        <location filename="../mainwindow.cpp" line="704"/>
-        <location filename="../mainwindow.cpp" line="754"/>
-        <location filename="../mainwindow.cpp" line="790"/>
+        <location filename="../mainwindow.cpp" line="662"/>
+        <location filename="../mainwindow.cpp" line="707"/>
+        <location filename="../mainwindow.cpp" line="757"/>
+        <location filename="../mainwindow.cpp" line="804"/>
         <source>Error erasing sector </source>
         <translation>擦除扇区号出错 </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="830"/>
-        <location filename="../mainwindow.cpp" line="880"/>
-        <location filename="../mainwindow.cpp" line="2139"/>
+        <location filename="../mainwindow.cpp" line="845"/>
+        <location filename="../mainwindow.cpp" line="895"/>
+        <location filename="../mainwindow.cpp" line="2174"/>
         <source>Opening file</source>
         <translation>打开文件</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="836"/>
-        <location filename="../mainwindow.cpp" line="884"/>
-        <location filename="../mainwindow.cpp" line="2143"/>
+        <location filename="../mainwindow.cpp" line="851"/>
+        <location filename="../mainwindow.cpp" line="899"/>
+        <location filename="../mainwindow.cpp" line="2178"/>
         <source>Open file</source>
         <translation>打开文件</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="852"/>
-        <location filename="../mainwindow.cpp" line="892"/>
+        <location filename="../mainwindow.cpp" line="867"/>
+        <location filename="../mainwindow.cpp" line="907"/>
         <source>The file size exceeds the chip size. Please select another chip or file or use `Save part` to split the file.</source>
         <translation>文件大小超出芯片大小。请选择其他芯片或文件，或使用 &quot;部分保存&quot; 分割文件。</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="972"/>
+        <location filename="../mainwindow.cpp" line="989"/>
         <source>Writing data to </source>
         <translation>将数据写入 </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1029"/>
+        <location filename="../mainwindow.cpp" line="1057"/>
         <source>Error writing sector </source>
         <translation>写入扇区号出错 </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1236"/>
+        <location filename="../mainwindow.cpp" line="1264"/>
         <source>Veryfing data from </source>
         <translation>从芯片中提取数据 </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1297"/>
+        <location filename="../mainwindow.cpp" line="1325"/>
         <source>Error comparing data!
 Address:   </source>
         <translation>数据比较错误！
 地址：   </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1297"/>
+        <location filename="../mainwindow.cpp" line="1325"/>
         <source>
 Buffer: </source>
         <translation>
 缓冲区：  </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1297"/>
+        <location filename="../mainwindow.cpp" line="1325"/>
         <source>    Chip: </source>
         <translation>    芯片： </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1322"/>
+        <location filename="../mainwindow.cpp" line="1350"/>
+        <location filename="../mainwindow.cpp" line="2403"/>
         <source>Please select the chip parameters - manufacture and chip name.</source>
         <translation>请选择芯片参数 - &apos;制造商&apos; 和芯片 &apos;名称&apos;。</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1331"/>
+        <location filename="../mainwindow.cpp" line="1359"/>
         <source>Ok!</source>
         <translation>Ok!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1331"/>
+        <location filename="../mainwindow.cpp" line="1359"/>
         <source>The operation was successful!</source>
         <translation>操作成功！</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1365"/>
+        <location filename="../mainwindow.cpp" line="1393"/>
         <source>The end address must be greater than the starting address.</source>
         <translation>结束地址必须大于起始地址。</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1377"/>
+        <location filename="../mainwindow.cpp" line="1405"/>
         <source>Saving block</source>
         <translation>保存块</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1379"/>
+        <location filename="../mainwindow.cpp" line="1407"/>
         <source>Save block</source>
         <translation>保存块</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1404"/>
+        <location filename="../mainwindow.cpp" line="1432"/>
         <source>Opening block</source>
         <translation>打开块</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1406"/>
+        <location filename="../mainwindow.cpp" line="1434"/>
         <source>Open block</source>
         <translation>打开块</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1423"/>
+        <location filename="../mainwindow.cpp" line="1451"/>
         <source>The end address out of image size!</source>
         <translation>末端地址超出映像大小范围！</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1461"/>
+        <location filename="../mainwindow.cpp" line="1489"/>
         <source>Connected</source>
         <translation>已连接</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1466"/>
+        <location filename="../mainwindow.cpp" line="1494"/>
         <source>Not connected</source>
         <translation>未连接</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2029"/>
+        <location filename="../mainwindow.cpp" line="2064"/>
         <source>Before working with the security registers, click the &apos;Detect&apos; button</source>
         <translation>在使用安全注册表之前，请点击 &apos;检测&apos;按钮</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2043"/>
+        <location filename="../mainwindow.cpp" line="2078"/>
         <source>There are no security registers in this chip or the current version of IMSProg does not support this algorithm.</source>
         <translation>该芯片中没有安全寄存器，或者当前版本的 IMSProg 不支持这种算法。</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2167"/>
+        <location filename="../mainwindow.cpp" line="2202"/>
         <source>Not valid HEX format!</source>
         <translation>不是有效的 HEX 格式！</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2199"/>
+        <location filename="../mainwindow.cpp" line="2234"/>
         <source>The address is larger than the size of the chip!</source>
         <translation>地址大于芯片大小！</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2217"/>
-        <location filename="../mainwindow.cpp" line="2237"/>
+        <location filename="../mainwindow.cpp" line="2252"/>
+        <location filename="../mainwindow.cpp" line="2272"/>
         <source>Checksum error!</source>
         <translation>校验和错误！</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1804"/>
+        <location filename="../mainwindow.cpp" line="1836"/>
         <source>Operation aborted!</source>
         <translation>操作中止！</translation>
     </message>
