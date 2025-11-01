@@ -177,7 +177,7 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
             <item>
              <widget class="QRadioButton" name="radioButton_e2">
               <property name="text">
-               <string>Don't skip bad sectors</string>
+               <string>Don't skip bad blocks</string>
               </property>
              </widget>
             </item>
