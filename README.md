@@ -270,7 +270,7 @@ please see `Main Menu -> Programmer -> Chip Information` item or <Ctrl+P>, data
 fields in `LB3`, `LB2` and `LB1` in `Status register 1`. 
 Please refer to the datasheet of your chip for detailed information.
 For NAND FLASH chips you can scanning bad blocks, use 
-`Main Menu -> Programmer -> ` or `<Ctrl+B>` key.
+`Main Menu -> Programmer -> Bad block management` or `<Ctrl+B>` key.
 
 ![Bad block scan](img/bbm_chip_scan_en.png)
 
