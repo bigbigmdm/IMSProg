@@ -1,3 +1,5 @@
+- Ver. 1.7.1 - Fix: pressing the Stop key did not stop auto operations. 
+New feature - added support for SPI NAND flash.
 - Ver. 1.6.2 - Fix: program crashed if security registers was less than 256 
 bytes. Fix: Information in the status bar disappears when hovering over a menu. 
 New chips added to database. Chip information form code optimized. Added 

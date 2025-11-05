@@ -994,7 +994,6 @@ void MainWindow::on_actionWrite_triggered()
     std::shared_ptr<uint8_t[]> buf(new uint8_t[step]);
     for (k = 0; k < numBlocks; k++)
       {
-qDebug()<<"chipData->buf: bufaddr="<<printAddress(addrDest - k * step, 8)<<" chipDataAddr="<<printAddress(addrSrc,8);
          for (j = 0; j < step; j++)
             {
                buf[addrDest + j - k * step] =  static_cast<uint8_t>(chipData[addrSrc + j]) ;
@@ -1071,7 +1070,6 @@ qDebug()<<"chipData->buf: bufaddr="<<printAddress(addrDest - k * step, 8)<<" chi
              return;
          }
          ui->progressBar->setValue( static_cast<int>(curBlock));
-qDebug()<<"End of cycle addrSrc="<<printAddress(addrSrc,8)<<" addrDest="<<printAddress(addrDest,8)<<" k="<<k<<" curBlock="<<curBlock<<"numBlock="<<numBlocks;
       }
     }
     else
@@ -1840,6 +1838,9 @@ void MainWindow::on_actionStop_triggered()
   ui->checkBox->setStyleSheet("");
   ui->checkBox_2->setStyleSheet("");
   ui->checkBox_3->setStyleSheet("");
+  ui->checkBox->setChecked(false);
+  ui->checkBox_2->setChecked(false);
+  ui->checkBox_3->setChecked(false);
   ui->pushButton_3->setStyleSheet(grnKeyStyle);
   ui->statusMessage->setText("");
   return;

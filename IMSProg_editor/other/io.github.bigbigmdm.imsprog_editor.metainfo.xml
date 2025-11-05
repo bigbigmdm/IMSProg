@@ -96,6 +96,12 @@
     </screenshot>
   </screenshots>
   <releases>
+  <release version="1.7.1" date="2025-11-05" urgency="medium">	  
+    <description>
+	    <p>Fixed: pressing the Stop key did not stop auto operations.</p>
+	    <p>Added: New feature - support for SPI NAND flash.</p>
+    </description>
+  </release>
   <release version="1.6.2" date="2025-07-01" urgency="medium">	  
     <description>
 	    <p>Fixed: program crashed if security registers was less than 256 bytes.</p>
