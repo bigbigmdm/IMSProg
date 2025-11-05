@@ -21,11 +21,17 @@
 #include <QDragEnterEvent>
 #include <QtGui>
 #include <QFileInfo>
+#include <QInputMethod>
+#include <QKeyEvent>
+#include <QInputMethod>
 #include "qhexedit.h"
 #include "dialogsp.h"
 #include "dialogrp.h"
 #include "dialogsetaddr.h"
 #include "dialogsecurity.h"
+#include "dialognandsecurity.h"
+#include "dialognandsr.h"
+#include "dialogbbm.h"
 #include "hexutility.h"
 #include <stddef.h>
 #include <stdint.h>
@@ -69,6 +75,7 @@ MainWindow::MainWindow(QWidget *parent) :
  ui->comboBox_type->addItem("25_EEPROM", 3);
  ui->comboBox_type->addItem("95_EEPROM", 4);
  ui->comboBox_type->addItem("45_EEPROM", 5);
+ ui->comboBox_type->addItem("SPI_NAND ", 6);
 
  ui->comboBox_addr4bit->addItem("No", 0);
  ui->comboBox_addr4bit->addItem("Yes", 0x01);
@@ -88,9 +95,19 @@ MainWindow::MainWindow(QWidget *parent) :
  ui->comboBox_page->addItem("264", 264);
  ui->comboBox_page->addItem("512", 512);
  ui->comboBox_page->addItem("528", 528);
+ ui->comboBox_page->addItem("1024", 1024);
+ ui->comboBox_page->addItem("2048", 2048);
+ ui->comboBox_page->addItem("4096", 4096);
 
  ui->comboBox_block->addItem(" ", 0);
- ui->comboBox_block->addItem("64 K", 64 * 1024);
+ ui->comboBox_block->addItem("64 K",   64 * 1024);
+ ui->comboBox_block->addItem("128 K", 128 * 1024);
+ ui->comboBox_block->addItem("256 K", 256 * 1024);
+
+ ui->comboBox_ECC->addItem(" ",   0);
+ ui->comboBox_ECC->addItem("64",  1);
+ ui->comboBox_ECC->addItem("128", 2);
+ ui->comboBox_ECC->addItem("256", 3);
 
  ui->comboBox_i2cSpeed->addItem("20 kHz",  0);
  ui->comboBox_i2cSpeed->addItem("100 kHz", 1);
@@ -108,16 +125,18 @@ MainWindow::MainWindow(QWidget *parent) :
  blockStartAddr = 0;
  blockLen = 0;
  currentAddr4bit = 0;
+ currentECCsize = 0;
  filled = 0;
  numberOfReads = 0;
+ nandSettings = 0;
  cmdStarted = false;
  // connect and status check
  statusCH341 = ch341a_spi_init();
  ch341StatusFlashing();
- chipData.reserve(256 * 1024 *1024 + 2048);
+ chipData.reserve(512 * 1024 *1024 + 2048);
  chipData.resize(256);
  chipData.fill(char(0xff));
- oldChipData.reserve(256 * 1024 *1024 + 2048);
+ oldChipData.reserve(512 * 1024 *1024 + 2048);
  oldChipData.resize(256);
  oldChipData.fill(char(0xff));
  ch341a_spi_shutdown();
@@ -154,7 +173,7 @@ void MainWindow::on_pushButton_clicked()
   //Reading data from chip  
   newFileName = ui->comboBox_name->currentText();
   int res = 0;
-  uint32_t numBlocks, step;
+  uint32_t numBlocks, step, sectorsPerBlock;
   statusCH341 = ch341a_init(currentChipType, currentI2CBusSpeed);
   if (statusCH341 == 0)
   {
@@ -164,7 +183,8 @@ void MainWindow::on_pushButton_clicked()
          ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 2)) ||
          ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 3)) ||
          ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 4)) ||
-         ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 5)))
+         ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 5)) ||
+         ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 6)))
     {
        doNotDisturb();
        ch341StatusFlashing();
@@ -193,8 +213,19 @@ void MainWindow::on_pushButton_clicked()
              step = currentPageSize;
              numBlocks = currentChipSize / step;
           break;
+          case 6:             //NAND 35xx, GD5xx, W25xx
+             step = currentBlockSize;
+             numBlocks = currentChipSize / step;
+             sectorsPerBlock = currentBlockSize / currentPageSize;
+             nand_ECCEnable();
+          break;
           default:
-          return;
+             //Unsupport
+             QMessageBox::about(this, tr("Error"), tr("Unsupported chip type!"));
+             doNotDisturbCancel();
+             ch341a_spi_shutdown();
+             ui->checkBox_3->setStyleSheet("");
+       return;
           }
        //progerssbar settings
        ui->progressBar->setRange(0, static_cast<int>(numBlocks));
@@ -222,12 +253,17 @@ void MainWindow::on_pushButton_clicked()
                  //25xxx
               case 4:
                  //95xxx
-                 res = s95_read_param(buf.get(),curBlock * step, step, step, currentAlgorithm);
+                 res = s95_read_param(buf.get(), curBlock * step, step, step, currentAlgorithm);
               break;
               case 5:
                  //45xx
-                 res = at45_read_param(buf.get(),curBlock * step, step, step, currentAlgorithm);
+                 res = at45_read_param(buf.get(), curBlock * step, step, step, currentAlgorithm);
               break;
+           case 6:
+              //NAND
+               res = nand_block_read(buf.get(), currentPageSize, k, sectorsPerBlock);
+              if (res==0) res = 1;
+           break;
               default:
                  //Unsupport
                  QMessageBox::about(this, tr("Error"), tr("Unsupported chip type!"));
@@ -310,8 +346,10 @@ void MainWindow::on_pushButton_2_clicked()
     ui->crcEdit->setText("");
     int i, index;
     // print JEDEC info
-    unsigned char bufid[5]={0xff,0xff,0xff,0xff,0xff};
-    snor_read_devid(bufid, 5);
+    unsigned char bufid[5] = {0xff,0xff,0xff,0xff,0xff};
+    if (currentChipType != 6) snor_read_devid(bufid, 5);
+    else nand_read_devid(bufid, 5);
+
     if ((bufid[0] == 0xff) && (bufid[1] == 0xff) && (bufid[2] == 0xff) && (currentChipType != 5))
     {
         QMessageBox::about(this, tr("Error"), tr("The chip is not connect or missing!"));
@@ -320,6 +358,14 @@ void MainWindow::on_pushButton_2_clicked()
         timer->start();
         return;
     }
+
+    if ((bufid[0] == 0xff) && (bufid[1] != 0xff)) ui->comboBox_type->setCurrentIndex(6);
+
+    if ((currentChipType == 6) && (bufid[0] == 0xff))
+    {
+        nand_read_devid(bufid, 5);
+    }
+
     ui->jedecEdit->setText(bytePrint(bufid[0]) + " " + bytePrint(bufid[1]) + " " + bytePrint(bufid[2]));
     for (i = 0; i< max_rec; i++)
     {
@@ -365,7 +411,11 @@ void MainWindow::on_pushButton_2_clicked()
             { // -1 for not found
                ui->comboBox_vcc->setCurrentIndex(index);
             }
-
+            index = ui->comboBox_vcc->findData(chips[i].eepromPages);
+            if ( index != -1 )
+            { // -1 for not found
+               ui->comboBox_ECC->setCurrentIndex(index);
+            }
             ui->pushButton_2->setStyleSheet(grnKeyStyle);
             break;
         }
@@ -505,6 +555,7 @@ void MainWindow::on_comboBox_size_currentIndexChanged(int index)
     currentBlockSize = ui->comboBox_block->currentData().toUInt();
     currentPageSize = ui->comboBox_page->currentData().toUInt();
     currentAddr4bit = ui->comboBox_addr4bit->currentData().toUInt();
+    currentECCsize = (ui->comboBox_ECC->currentData().toUInt()) * 64;
     if ((currentChipSize !=0) && (currentBlockSize!=0) && (currentChipType == 0))
     {
         currentNumBlocks = currentChipSize / currentBlockSize;
@@ -534,6 +585,7 @@ void MainWindow::on_comboBox_page_currentIndexChanged(int index)
     currentBlockSize = ui->comboBox_block->currentData().toUInt();
     currentPageSize = ui->comboBox_page->currentData().toUInt();
     currentAddr4bit = ui->comboBox_addr4bit->currentData().toUInt();
+    currentECCsize = (ui->comboBox_ECC->currentData().toUInt()) * 64;
     if ((currentChipSize !=0) && (currentBlockSize!=0) && (currentChipType ==0))
     {
         currentNumBlocks = currentChipSize / currentBlockSize;
@@ -647,7 +699,6 @@ void MainWindow::on_actionErase_triggered()
         }
         for (curBlock = 0; curBlock < currentNumBlocks; curBlock++)
         {
-            //res = ch341writeEEPROM_param(buf, curBlock * 128, 128, currentPageSize, currentAlgorithm);
             res =  s95_write_param(buf.get(), curBlock * step, step, step, currentAlgorithm);
             qApp->processEvents();
             ui->progressBar->setValue( static_cast<int>(curBlock));
@@ -728,6 +779,48 @@ void MainWindow::on_actionErase_triggered()
              ui->progressBar->setValue(static_cast<int>(curBlock));
         }
     }
+    if (currentChipType == 6)
+    {
+       uint32_t sectInBlock;
+       int retval;
+       numBlocks = currentChipSize / currentBlockSize;
+       sectInBlock = currentBlockSize / currentPageSize;
+       if (numBlocks > 0)
+       {
+           ui->progressBar->setRange(0, static_cast<int>(numBlocks));
+           for (uint32_t curBlock = 0; curBlock < numBlocks; curBlock++)
+           {
+               if ((nandSettings & 0xf0) == 0x00)
+               {
+                   retval = nand_checkBadBlock(static_cast<uint32_t>(curBlock), static_cast<uint32_t>(currentPageSize), static_cast<uint32_t>(sectInBlock));
+               }
+               else retval = 0;
+
+               if (retval == 0) //skip bad sectors, if checkbox enable
+               {
+                   ret = nand_block_erase( curBlock,  currentBlockSize);
+                   if (ret != 0)
+                     {
+                       QMessageBox::about(this, tr("Error"), tr("Error erasing sector ") + QString::number(curBlock));
+                       ch341a_spi_shutdown();
+                       doNotDisturbCancel();
+                       return;
+                     }
+               }
+               qApp->processEvents();
+               ui->progressBar->setValue( static_cast<int>(curBlock));
+               if (isHalted)
+               {
+                   isHalted = false;
+                   ch341a_spi_shutdown();
+                   doNotDisturbCancel();
+                   return;
+               }
+           }
+       }
+
+    }
+
     doNotDisturbCancel();
     ui->checkBox->setStyleSheet("");
     ui->statusMessage->setText("");
@@ -776,7 +869,6 @@ void MainWindow::on_actionOpen_triggered()
     }
     if (!file.open(QIODevice::ReadOnly))
     {
-
         return;
     }
     ui->statusMessage->setText(tr("Current file: ") + info.fileName());
@@ -842,17 +934,19 @@ void MainWindow::on_actionExtract_from_ASUS_CAP_triggered()
 void MainWindow::on_actionWrite_triggered()
 {
     //Writting data to chip
-    int res = 0;
-    uint32_t numBlocks, step;
+    int res = 0, badResult = 0;
+    uint32_t numBlocks, step, sectorsPerBlock;
     statusCH341 = ch341a_init(currentChipType, currentI2CBusSpeed);
     if (statusCH341 == 0)
     {
+    chipData = hexEdit->data();
     if (((currentNumBlocks > 0) && (currentBlockSize >0) && (currentChipType == 0)) ||
          ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 1)) ||
          ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 2)) ||
          ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 3)) ||
          ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 4)) ||
-         ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 5)))
+         ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 5)) ||
+         ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 6)))
         {
         doNotDisturb();
         switch (currentChipType)
@@ -872,11 +966,24 @@ void MainWindow::on_actionWrite_triggered()
                          step = currentPageSize;
                          numBlocks = currentChipSize / step;
                       break;
+                      case 6:             //NAND 35xx, GD5xx, W25xx
+                         step = currentBlockSize;
+                         numBlocks = currentChipSize / step;
+                         //numBlocks = currentNumBlocks;
+                         sectorsPerBlock = currentBlockSize / currentPageSize;
+                         nand_unprotect();
+                         nand_ECCEnable();
+                      break;
                       default:
+                         //Unsupport
+                         QMessageBox::about(this, tr("Error"), tr("Unsupported chip type!"));
+                         doNotDisturbCancel();
+                         ch341a_spi_shutdown();
+                         ui->checkBox_2->setStyleSheet("");
                       return;
                       }
     ch341StatusFlashing();
-    uint32_t addr = 0;
+    uint32_t addrSrc = 0, addrDest = 0;
     uint32_t curBlock = 0;    
     uint32_t j, k;
     ui->statusMessage->setText(tr("Writing data to ") + ui->comboBox_name->currentText());
@@ -887,31 +994,47 @@ void MainWindow::on_actionWrite_triggered()
     std::shared_ptr<uint8_t[]> buf(new uint8_t[step]);
     for (k = 0; k < numBlocks; k++)
       {
-
          for (j = 0; j < step; j++)
             {
-               buf[addr + j - k * step] =  static_cast<uint8_t>(chipData[addr + j]) ;
+               buf[addrDest + j - k * step] =  static_cast<uint8_t>(chipData[addrSrc + j]) ;
             }
          switch (currentChipType)
                        {
                        case 0:                           //SPI
-                          res =  snor_write_param(buf.get(), addr, step, step, currentAddr4bit);
+                          addrSrc = addrSrc + step;
+                          res = snor_write_param(buf.get(), addrDest, step, step, currentAddr4bit);
                        break;
                        case 1:                           //I2C
+                          addrSrc = addrSrc + step;
                           res = ch341writeEEPROM_param(buf.get(), curBlock * 128, 128, currentPageSize, currentAlgorithm);
                           if (res==0) res = 1;
                        break;
                        case 2:                           //MicroWire
+                          addrSrc = addrSrc + step;
                           res = Write_EEPROM_3wire_param(buf.get(), static_cast<int>(curBlock * step), static_cast<int>(step), static_cast<int>(currentChipSize), currentAlgorithm);
                           if (res==0) res = 1;
                        break;
                        case 3:                           //25xxx
                        case 4:                           //M95xx
-                          res =  s95_write_param(buf.get(), addr, step, step, currentAlgorithm);
+                          addrSrc = addrSrc + step;
+                          res = s95_write_param(buf.get(), addrDest, step, step, currentAlgorithm);
                        break;
                        case 5:
                           //AT45DBxx
-                          res =  at45_write_param(buf.get(), addr, step, step, currentAlgorithm);
+                          addrSrc = addrSrc + step;
+                          res = at45_write_param(buf.get(), addrDest, step, step, currentAlgorithm);
+                       break;
+                       case 6:
+                          //NAND
+                          if ((nandSettings & 0x0f) == 0x01)
+                          {
+                             //skip bad block enabled
+                             badResult = nand_checkBadBlock(k, currentPageSize, sectorsPerBlock);
+                             if(badResult != 1) addrSrc = addrSrc + step;
+                          }
+                          else addrSrc = addrSrc + step;
+                          res = nand_block_write(buf.get(), currentPageSize, k, sectorsPerBlock);
+                          if (res==0) res = 1;
                        break;
                        default:
                           //Unsupport
@@ -936,7 +1059,7 @@ void MainWindow::on_actionWrite_triggered()
              ch341a_spi_shutdown();
              return;
            }
-         addr = addr + step;
+         addrDest = addrDest + step;
          curBlock++;
          qApp->processEvents();
          if (isHalted)
@@ -1002,6 +1125,7 @@ void MainWindow::on_comboBox_man_currentIndexChanged(int index)
         ui->comboBox_block->setCurrentIndex(0);
         ui->comboBox_size->setCurrentIndex(0);
         ui->comboBox_addr4bit->setCurrentIndex(0);
+        ui->comboBox_ECC->setCurrentIndex(0);
         ui->statusMessage->setText("");
    }
  index = index + 0;
@@ -1044,6 +1168,11 @@ void MainWindow::on_comboBox_name_currentIndexChanged(const QString &arg1)
                { // -1 for not found
                   ui->comboBox_vcc->setCurrentIndex(index);
                }
+               index = ui->comboBox_ECC->findData(chips[i].eepromPages);
+               if ( index != -1 )
+               { // -1 for not found
+                  ui->comboBox_ECC->setCurrentIndex(index);
+               }
                currentAlgorithm = chips[i].algorithmCode;
            }
        }
@@ -1051,6 +1180,7 @@ void MainWindow::on_comboBox_name_currentIndexChanged(const QString &arg1)
        currentBlockSize = ui->comboBox_block->currentData().toUInt();
        currentPageSize = ui->comboBox_page->currentData().toUInt();
        currentAddr4bit = ui->comboBox_addr4bit->currentData().toUInt();
+       currentECCsize = (ui->comboBox_ECC->currentData().toUInt()) * 64;
        preparingToCompare(1);
 
        if ((currentChipSize !=0) && (currentBlockSize!=0) && (currentChipType == 0))
@@ -1086,7 +1216,8 @@ void MainWindow::on_actionVerify_triggered()
             ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 2)) ||
             ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 3)) ||
             ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 4)) ||
-            ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 5)))
+            ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 5)) ||
+            ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 6)))
            {
                ui->crcEdit->setText("");
                doNotDisturb();
@@ -1107,7 +1238,17 @@ void MainWindow::on_actionVerify_triggered()
                                 step = currentPageSize;
                                 numBlocks = currentChipSize / step;
                              break;
+                             case 6:             //NAND 35xx, GD5xx, W25xx
+                                step = currentPageSize;
+                                numBlocks = currentChipSize / step;
+                                nand_ECCEnable();
+                             break;
                              default:
+                                //Unsupport
+                                QMessageBox::about(this, tr("Error"), tr("Unsupported chip type!"));
+                                doNotDisturbCancel();
+                                ch341a_spi_shutdown();
+                                ui->checkBox_3->setStyleSheet("");
                              return;
                              }
                ch341StatusFlashing();
@@ -1147,6 +1288,11 @@ void MainWindow::on_actionVerify_triggered()
                       break;
                       case 5:
                          res = at45_read_param(buf.get(), curBlock * step, step, step, currentAlgorithm);
+                      break;
+                      case 6:
+                         //NAND
+                         res = nand_page_read(buf.get(), step, k);
+                         if (res==0) res = 1;
                       break;
                       default:
                          //Unsupport
@@ -1316,7 +1462,7 @@ void MainWindow::receiveAddr2(QString addressData)
 
 void MainWindow::on_actionSave_Part_triggered()
 {
-    DialogSP* savePartDialog = new DialogSP();
+    DialogSP* savePartDialog = new DialogSP(this);
     savePartDialog->show();
 
     connect(savePartDialog, SIGNAL(sendAddr(QString)), this, SLOT(receiveAddr(QString)));
@@ -1324,7 +1470,7 @@ void MainWindow::on_actionSave_Part_triggered()
 
 void MainWindow::on_actionLoad_Part_triggered()
 {
-    DialogRP* loadPartDialog = new DialogRP();
+    DialogRP* loadPartDialog = new DialogRP(this);
     loadPartDialog->show();
 
     connect(loadPartDialog, SIGNAL(sendAddr2(QString)), this, SLOT(receiveAddr2(QString)));
@@ -1332,8 +1478,6 @@ void MainWindow::on_actionLoad_Part_triggered()
 
 void MainWindow::on_actionFind_Replace_triggered()
 {
-    //DialogSP* savePartDialog = new DialogSP();
-    //savePartDialog->show();
     SearchDialog* searchDialog = new SearchDialog(hexEdit);
     searchDialog->show();
 }
@@ -1434,16 +1578,23 @@ void MainWindow::on_comboBox_type_currentIndexChanged(int index)
           ui->comboBox_size->addItem("4224 K", 4224 * 1024);
           ui->comboBox_size->addItem("8448 K", 8448 * 1024);
        break;
+       case 6:
+        // SPI NAND FLASH
+        ui->comboBox_size->addItem("64 M", 65536 * 1024);
+        ui->comboBox_size->addItem("128 M", 65536 * 2048);
+        ui->comboBox_size->addItem("256 M", 65536 * 4096);
+        ui->comboBox_size->addItem("512 M", 65536 * 8192);
+       break;
        default:
           //Unsupport
        return;
        }
 
-    for (i = 0; i<max_rec; i++)
+    for (i = 0; i < max_rec; i++)
     {
         //replacing items to combobox Manufacture
         index2 = ui->comboBox_man->findText(chips[i].chipManuf);
-                    if (( index2 == -1 ) && (chips[i].chipTypeHex == currentChipType)) ui->comboBox_man->addItem(chips[i].chipManuf);
+        if (( index2 == -1 ) && (chips[i].chipTypeHex == currentChipType)) ui->comboBox_man->addItem(chips[i].chipManuf);
     }
      ui->comboBox_man->setCurrentIndex(0);
      ui->statusMessage->setText("");
@@ -1454,6 +1605,7 @@ void MainWindow::on_comboBox_type_currentIndexChanged(int index)
      ui->comboBox_block->setCurrentIndex(0);
      ui->comboBox_size->setCurrentIndex(0);
      ui->comboBox_addr4bit->setCurrentIndex(0);
+     ui->comboBox_ECC->setCurrentIndex(0);
      if ((index > 0) && (index < 3))
      {
          ui->pushButton_2->hide();
@@ -1503,6 +1655,25 @@ void MainWindow::on_comboBox_type_currentIndexChanged(int index)
           ui->pushButton_2->show();
           ui->actionDetect->setEnabled(true);
      }
+     if (index == 6)
+     {
+         ui->pushButton_2->show();
+         ui->label_8->hide();
+         ui->label_9->show();
+         ui->label_11->show();
+         ui->comboBox_block->show();
+         ui->comboBox_ECC->show();
+         ui->actionDetect->setEnabled(true);
+         ui->actionChip_info->setEnabled(true);
+         ui->actionSecurity_registers->setEnabled(true);
+         ui->actionBad_block_management->setEnabled(true);
+     }
+     if (index != 6)
+     {
+         ui->label_11->hide();
+         ui->comboBox_ECC->hide();
+         ui->actionBad_block_management->setEnabled(false);
+     }
 }
 
 void MainWindow::on_comboBox_addr4bit_currentIndexChanged(int index)
@@ -1517,9 +1688,15 @@ void MainWindow::on_comboBox_i2cSpeed_currentIndexChanged(int index)
    index++;
 }
 
+void MainWindow::on_comboBox_ECC_currentIndexChanged(int index)
+{
+    currentECCsize = (ui->comboBox_ECC->currentData().toUInt()) * 64;
+    index++;
+}
+
 void MainWindow::on_actionAbout_triggered()
 {
-    DialogAbout* aboutDialog = new DialogAbout();
+    DialogAbout* aboutDialog = new DialogAbout(this);
     aboutDialog->show();
 }
 
@@ -1582,6 +1759,7 @@ void MainWindow::doNotDisturb()
    ui->actionCompare_files->setDisabled(true);
    ui->actionChip_info->setDisabled(true);
    ui->actionSecurity_registers->setDisabled(true);
+   ui->actionBad_block_management->setDisabled(true);
    ui->actionStop->setDisabled(false);
 
    ui->pushButton->blockSignals(true);
@@ -1597,6 +1775,7 @@ void MainWindow::doNotDisturb()
    ui->comboBox_vcc->setDisabled(true);
    ui->comboBox_addr4bit->setDisabled(true);
    ui->comboBox_i2cSpeed->setDisabled(true);
+   ui->comboBox_ECC->setDisabled(true);
 
    hexEdit->blockSignals(true);
    timer->stop();
@@ -1604,7 +1783,7 @@ void MainWindow::doNotDisturb()
 
 void MainWindow::doNotDisturbCancel()
 {
-      if (currentChipType == 0) ui->actionDetect->setDisabled(false);
+      if ((currentChipType == 0) || (currentChipType == 5) || (currentChipType == 6)) ui->actionDetect->setDisabled(false);
       ui->actionOpen->setDisabled(false);
       ui->actionSave->setDisabled(false);
       ui->actionLoad_Part->setDisabled(false);
@@ -1624,8 +1803,9 @@ void MainWindow::doNotDisturbCancel()
       ui->actionChecksum_calculate->setDisabled(false);
       ui->actionGoto_address->setDisabled(false);
       ui->actionCompare_files->setDisabled(false);
-      if ((currentChipType == 0) || (currentChipType > 2)) ui->actionChip_info->setDisabled(false);
-      if (currentChipType == 0) ui->actionSecurity_registers->setDisabled(false);
+      if ((currentChipType == 0) || (currentChipType == 6) || (currentChipType > 2)) ui->actionChip_info->setDisabled(false);
+      if ((currentChipType == 0) || (currentChipType == 6)) ui->actionSecurity_registers->setDisabled(false);
+      if (currentChipType == 6) ui->actionBad_block_management->setDisabled(false);
       ui->actionStop->setDisabled(true);
 
       ui->pushButton->blockSignals(false);
@@ -1641,6 +1821,7 @@ void MainWindow::doNotDisturbCancel()
       ui->comboBox_vcc->setDisabled(false);
       ui->comboBox_addr4bit->setDisabled(false);
       ui->comboBox_i2cSpeed->setDisabled(false);
+      ui->comboBox_ECC->setDisabled(false);
 
       hexEdit->blockSignals(false);
       timer->start();
@@ -1649,12 +1830,17 @@ void MainWindow::doNotDisturbCancel()
 void MainWindow::on_actionStop_triggered()
 {
   //ch341a_spi_shutdown();
+  hexEdit->setData(chipData);
+  ui->crcEdit->setText(getCRC32(chipData));
   isHalted = true;
   QMessageBox::about(this, tr("Stop"), tr("Operation aborted!"));
   ui->pushButton->setStyleSheet(grnKeyStyle);
   ui->checkBox->setStyleSheet("");
   ui->checkBox_2->setStyleSheet("");
   ui->checkBox_3->setStyleSheet("");
+  ui->checkBox->setChecked(false);
+  ui->checkBox_2->setChecked(false);
+  ui->checkBox_3->setChecked(false);
   ui->pushButton_3->setStyleSheet(grnKeyStyle);
   ui->statusMessage->setText("");
   return;
@@ -1663,7 +1849,7 @@ void MainWindow::on_actionStop_triggered()
 void MainWindow::on_pushButton_4_clicked()
 {
     //info form showing
-    DialogInfo* infoDialog = new DialogInfo();
+    DialogInfo* infoDialog = new DialogInfo(this);
     infoDialog->show();
     if ((currentChipType == 0) && (ui->comboBox_vcc->currentIndex() == 1)) infoDialog->setChip(2); //NOR_FLASH 1.8
     if ((currentChipType == 0) && (ui->comboBox_vcc->currentIndex() == 2)) infoDialog->setChip(3); //NOR FLASH 3.3
@@ -1672,6 +1858,8 @@ void MainWindow::on_pushButton_4_clicked()
     if ((currentChipType == 3) && (ui->comboBox_vcc->currentIndex() == 1)) infoDialog->setChip(2); //25xxx 3.3
     if ((currentChipType == 4) && (ui->comboBox_vcc->currentIndex() == 1)) infoDialog->setChip(2); //95xxx 3.3
     if ((currentChipType == 5) && (ui->comboBox_vcc->currentIndex() == 1)) infoDialog->setChip(5); //45xxx 3.3
+    if ((currentChipType == 6) && (ui->comboBox_vcc->currentIndex() == 1)) infoDialog->setChip(6); //NAND_FLASH 3.3
+    if ((currentChipType == 6) && (ui->comboBox_vcc->currentIndex() == 2)) infoDialog->setChip(7); //NAND_FLASH 1.8
 }
 
 void MainWindow::on_actionChip_info_triggered()
@@ -1679,13 +1867,22 @@ void MainWindow::on_actionChip_info_triggered()
      timer->stop();
      if (currentChipType == 0)
      {
-        DialogSFDP* sfdpDialog = new DialogSFDP();
+        DialogSFDP* sfdpDialog = new DialogSFDP(this);
         connect(sfdpDialog, SIGNAL(closeRequestHasArrived()), this, SLOT(closeSFDP()));
         sfdpDialog->show();
      }
-     if (currentChipType > 2)
+
+     if (currentChipType == 6)
      {
-         DialogSR* srDialog = new DialogSR();
+         DialogNANDSr* nandSRDialog = new DialogNANDSr(this);
+         connect(nandSRDialog, SIGNAL(closeRequestHasArrived()), this, SLOT(closeSR()));
+         nandSRDialog->show();
+         nandSRDialog->setPattern(currentAlgorithm);
+     }
+
+     if ((currentChipType > 2) && (currentChipType != 6))
+     {
+         DialogSR* srDialog = new DialogSR(this);
          connect(srDialog, SIGNAL(closeRequestHasArrived()), this, SLOT(closeSR()));
          srDialog->show();
          srDialog->setChipType(currentChipType);
@@ -1794,8 +1991,10 @@ void MainWindow::progInit()
              chips[recNo].delay = delay;
              tmpBuf = static_cast<unsigned char>(dataChips[recNo * 0x44 + 0x3e]);
              chips[recNo].addr4bit = tmpBuf;
+             tmpBuf = static_cast<unsigned char>(dataChips[recNo * 0x44 + 0x3f]);
+             chips[recNo].blockSize = tmpBuf * 256 * 1024;
              tmpBuf = static_cast<unsigned char>(dataChips[recNo * 0x44 + 0x40]);
-             chips[recNo].blockSize = tmpBuf * 1024;
+             chips[recNo].blockSize = chips[recNo].blockSize + tmpBuf * 1024;
              tmpBuf = static_cast<unsigned char>(dataChips[recNo * 0x44 + 0x42]);
              chips[recNo].eepromPages = tmpBuf;
              tmpBuf = static_cast<unsigned char>(dataChips[recNo * 0x44 + 0x43]);
@@ -1812,7 +2011,7 @@ void MainWindow::progInit()
     {
         //replacing items to combobox Manufacture
         index2 = ui->comboBox_man->findText(chips[i].chipManuf);
-                    if ((index2 == -1) && (chips[i].chipTypeHex ==0)) ui->comboBox_man->addItem(chips[i].chipManuf);
+        if ((index2 == -1) && (chips[i].chipTypeHex == 0)) ui->comboBox_man->addItem(chips[i].chipManuf);
     }
      ui->comboBox_man->setCurrentIndex(0);
      ui->statusMessage->setText("");
@@ -1846,7 +2045,7 @@ void MainWindow::closeSR()
 void MainWindow::on_actionGoto_address_triggered()
 {
     //HExEditor --> goto address
-    DialogSetAddr* gotoAddrDialog = new DialogSetAddr();
+    DialogSetAddr* gotoAddrDialog = new DialogSetAddr(this);
     gotoAddrDialog->show();
     connect(gotoAddrDialog, SIGNAL(sendAddr3(qint64)), this, SLOT(receiveAddr3(qint64)));
 
@@ -1865,17 +2064,30 @@ void MainWindow::on_actionSecurity_registers_triggered()
         QMessageBox::about(this, tr("Error"), tr("Before working with the security registers, click the 'Detect' button"));
         return;
     }
-    if (currentAlgorithm > 0)
+    if (currentChipType == 0)
     {
-        timer->stop();
-        DialogSecurity* securityDialog = new DialogSecurity();
-        connect(securityDialog, SIGNAL(closeRequestHasArrived()), this, SLOT(closeSR()));
-        securityDialog->setAlgorithm(currentAlgorithm);
-        securityDialog->setPath(lastDirectory);
-        securityDialog->show();
+        if (currentAlgorithm > 0)
+        {
+            timer->stop();
+            DialogSecurity* securityDialog = new DialogSecurity(this);
+            connect(securityDialog, SIGNAL(closeRequestHasArrived()), this, SLOT(closeSR()));
+            securityDialog->setAlgorithm(currentAlgorithm);
+            securityDialog->setPath(lastDirectory);
+            securityDialog->show();
+        }
+        else QMessageBox::about(this, tr("Error"), tr("There are no security registers in this chip or the current version of IMSProg does not support this algorithm."));
     }
-    else QMessageBox::about(this, tr("Error"), tr("There are no security registers in this chip or the current version of IMSProg does not support this algorithm."));
+    if (currentChipType == 6)
+    {
 
+            DialogNandSecurity* securityNandDialog = new DialogNandSecurity(this);
+            connect(securityNandDialog, SIGNAL(closeRequestHasArrived()), this, SLOT(closeSR()));
+            securityNandDialog->setAlgorithm(currentAlgorithm);
+            securityNandDialog->setSectorSize(currentPageSize);
+            qDebug()<<"Main:"<<currentPageSize<<" "<< currentAlgorithm;
+            securityNandDialog->setPath(lastDirectory);
+            securityNandDialog->show();
+    }
 }
 
 void MainWindow::on_actionExport_to_Intel_HEX_triggered()
@@ -2073,19 +2285,22 @@ void MainWindow::on_actionImport_from_Intel_HEX_triggered()
 
 void MainWindow::on_actionFill_test_image_triggered()
 {
-    int fileSize, addrSize, txtSize, i, j, curPos, hiDigit;
+    int addrSize, txtSize, i, j, divider;
+    uint64_t curPos, fileSize, jj, hiDigit;
     char k;
-    fileSize = chipData.size();
+    fileSize = static_cast<uint64_t>(chipData.size());
+    if (fileSize > 512) divider = 9;
+    else divider = 0;
     ui->progressBar->setValue(0);
-    ui->progressBar->setRange(0, fileSize);
+    ui->progressBar->setRange(0, (static_cast<int>(fileSize >> divider)));
     addrSize = 0;
-    j = fileSize;
+    jj = fileSize;
     hiDigit = 1;
-    while (j > 1)
+    while (jj > 1)
     {
-        j = j / 16;
+        jj = jj >> 4;
         addrSize ++;
-        hiDigit = hiDigit * 16;
+        hiDigit = hiDigit << 4;
     }
     char digits[16];
     txtSize = 16 - addrSize - 4;
@@ -2094,18 +2309,17 @@ void MainWindow::on_actionFill_test_image_triggered()
            k = 0x40;
            while (curPos < fileSize)
            {
-               //String
+              //String
               chipData.append('<');
               chipData.append('0');
               chipData.append('x');
 
-
               //calculate digits
-              i = hiDigit / 16;
-              for (j=addrSize - 1; j>=0; j--)
+              i = static_cast<int>(hiDigit >> 4);
+              for (j=addrSize - 1; j >= 0; j--)
               {
-                  digits[j] = (curPos / i) % 16;
-                  i = i / 16;
+                  digits[j] = (curPos / static_cast<uint64_t>(i)) % 16;
+                  i = i >> 4;
               }
               for (j = addrSize -1; j >=0; j--)
               {
@@ -2113,7 +2327,6 @@ void MainWindow::on_actionFill_test_image_triggered()
                  else digits[j] = digits[j] + 0x37;
                  chipData.append(digits[j]);
               }
-
               chipData.append('>');
               for (i = 0; i < txtSize; i++)
               {
@@ -2122,7 +2335,7 @@ void MainWindow::on_actionFill_test_image_triggered()
                   if (k > 0x7e) k = 0x40;
               }
               curPos = curPos + 16;
-              if (curPos % 512 == 0) ui->progressBar->setValue(curPos);
+              if (curPos % 512 == 0) ui->progressBar->setValue(static_cast<int>(curPos >> divider));
            }
     hexEdit->setData(chipData);
     ui->crcEdit->setText(getCRC32(chipData));
@@ -2131,14 +2344,14 @@ void MainWindow::on_actionFill_test_image_triggered()
 
 void MainWindow::on_actionCompare_files_triggered()
 {
-    DialogCompare* compDialog = new DialogCompare();
+    DialogCompare* compDialog = new DialogCompare(this);
     compDialog->show();
     compDialog->showArrays(&chipData, &oldChipData, &newFileName, &oldFileName);
 }
 
 void MainWindow::preparingToCompare(bool type)
 {
-    //For comparing function
+    // For comparing function
     // type = 0 - file reading
     // type = 1 - chip reading
     if (filled == 0) oldChipData = hexEdit->data();
@@ -2154,4 +2367,44 @@ void MainWindow::preparingToCompare(bool type)
     {
         newFileName = ui->comboBox_name->currentText();
     }
+}
+
+
+void MainWindow::on_actionCopy_triggered()
+{
+        QKeyEvent* keyPress = new QKeyEvent(QEvent::KeyPress, Qt::Key_C, Qt::ControlModifier, "C");
+        QKeyEvent* keyRelease = new QKeyEvent(QEvent::KeyRelease, Qt::Key_C, Qt::ControlModifier, "C");
+
+        QCoreApplication::postEvent(hexEdit, keyPress);
+        QCoreApplication::postEvent(hexEdit, keyRelease);
+}
+
+void MainWindow::on_actionPaste_triggered()
+{
+        QKeyEvent* keyPress = new QKeyEvent(QEvent::KeyPress, Qt::Key_V, Qt::ControlModifier, "V");
+        QKeyEvent* keyRelease = new QKeyEvent(QEvent::KeyRelease, Qt::Key_V, Qt::ControlModifier, "V");
+
+        QCoreApplication::postEvent(hexEdit, keyPress);
+        QCoreApplication::postEvent(hexEdit, keyRelease);
+}
+
+void MainWindow::on_actionBad_block_management_triggered()
+{
+    if ((currentChipSize != 0) && (currentPageSize != 0) && (currentBlockSize !=0))
+    {
+        DialogBBM* bbmDialog = new DialogBBM(this);
+        bbmDialog->show();
+        bbmDialog->getSectorSize(currentPageSize);
+        bbmDialog->getBlockSize(currentBlockSize);
+        bbmDialog->getTotalBlocks(currentChipSize / currentBlockSize);
+        bbmDialog->getSettings(nandSettings);
+        connect(bbmDialog, SIGNAL(sendNandParam(uint8_t)), this, SLOT(receiveNandStatus(uint8_t)));
+    }
+    else QMessageBox::about(this, tr("Error"), tr("Please select the chip parameters - manufacture and chip name."));
+
+}
+
+void MainWindow::receiveNandStatus(uint8_t setParam)
+{
+    nandSettings = setParam;
 }

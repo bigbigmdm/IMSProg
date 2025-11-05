@@ -14,6 +14,7 @@
   <summary xml:lang="ru">Скрипт обновления базы данных чипов для программатора IMSProg</summary>
   <summary xml:lang="uk">Скрипт оновлення бази даних мікросхем для програматорі IMSProg</summary>
   <summary xml:lang="zh_CN"> IMSProg 编程器的芯片数据库更新脚本</summary>
+  <summary xml:lang="zh_TW">IMSProg 燒錄器的晶片資料庫更新腳本</summary>
   <icon type="remote" width="64" height="64">https://github.com/bigbigmdm/IMSProg/tree/main/IMSProg_programmer/img/IMSProg_database_update.png</icon>
   <description>
     <p>IMSProg_database_update  - online chip database update from the external web-server. IMSProg_database_update uses the zenity graphical Gnome utility.   Once started,  it  copies  the  downloaded  database to the ~/.local/imsprog folder. The script then displays the number of of chips in the database before and after the upgrade.</p>
@@ -25,6 +26,7 @@
     <p xml:lang="ru">IMSProg_database_update - онлайн обновление базы данных микросхем с внешнего веб-сервера. IMSProg_database_update использует графическую Gnome-утилиту zenity.   После запуска он копирует загруженную базу данных в папку ~/.local/imsprog. Затем скрипт отображает количество чипов в базе данных до и после обновления.</p>
     <p xml:lang="uk">IMSProg_database_update - онлайн оновлення бази даних мікросхем із зовнішнього веб-сервера. IMSProg_database_update використовує графічну утиліту Gnome zenity.   Після запуску вон копіює завантажену базу даних до теки ~/.local/imsprog. Потім скрипт показує кількість мікросхем у базі даних до і після оновлення.</p>
     <p xml:lang="zh_CN">IMSProg_database_update - 从外部Web服务器在线更新芯片数据库。IMSProg_database_update 使用 Gnome 图形工具 zenity。  启动后，它会将下载的数据库复制到 ~/.local/imsprog 文件夹。然后，脚本会显示升级前后数据库中芯片的数量。</p>
+    <p xml:lang="zh_TW">IMSProg_database_update - 從外部網路伺服器在線更新晶片資料庫。IMSProg_database_update 使用 Gnome 圖形工具 zenity。啟動後，它會將下載的資料庫複製到 ~/.local/imsprog 資料夾。然後，腳本會顯示升級前後資料庫中晶片的數量。</p>
   </description>
   <categories>
      <category>Development</category>
@@ -64,6 +66,9 @@
      <keyword xml:lang="zh_CN">微电路</keyword>
      <keyword xml:lang="zh_CN">微芯片</keyword>
      <keyword xml:lang="zh_CN">集成电路</keyword>
+     <keyword xml:lang="zh_TW">微電路</keyword>
+     <keyword xml:lang="zh_TW">微晶片</keyword>
+     <keyword xml:lang="zh_TW">積體電路</keyword>
   </keywords>
   <url type="homepage">https://github.com/bigbigmdm/IMSProg/tree/main</url>
   <url type="contact">https://github.com/bigbigmdm</url>
@@ -76,6 +81,12 @@
      <name>Mikhail Medvedev</name>
   </developer>
   <releases>
+  <release version="1.7.1" date="2025-11-05" urgency="medium">	  
+    <description>
+	    <p>Fixed: pressing the Stop key did not stop auto operations.</p>
+	    <p>Added: New feature - support for SPI NAND flash.</p>
+    </description>
+  </release>
   <release version="1.6.2" date="2025-07-01" urgency="medium">	  
     <description>
 	    <p>Fixed: program crashed if security registers was less than 256 bytes.</p>

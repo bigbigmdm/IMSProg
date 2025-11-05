@@ -20,6 +20,7 @@
 #include "memory"
 #include <QDebug>
 #include <QRegularExpression>
+#include "hexutility.h"
 DialogSFDP::DialogSFDP(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::DialogSFDP)

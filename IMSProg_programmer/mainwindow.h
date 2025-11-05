@@ -27,6 +27,7 @@
 #include "dialogabout.h"
 #include "dialoginfo.h"
 #include "dialogsfdp.h"
+#include "dialognandsr.h"
 #include "dialogsr.h"
 #include "dialogcompare.h"
 #include "searchdialog.h"
@@ -45,7 +46,6 @@ extern "C" {
 #include "spi_controller.h"
 #include "spi_eeprom.h"
 #include "spi_eeprom_api.h"
-#include "spi_nand_flash.h"
 #include "timer.h"
 #include "types.h"
 }
@@ -70,6 +70,7 @@ public slots:
     void receiveAddr3(qint64);
     void closeSFDP();
     void closeSR();
+    void receiveNandStatus(uint8_t);
 
 private slots:
     void progInit();
@@ -114,6 +115,11 @@ private slots:
     void on_actionFill_test_image_triggered();
     void preparingToCompare(bool type);
     void on_actionCompare_files_triggered();
+    void on_comboBox_ECC_currentIndexChanged(int index);
+    void on_actionCopy_triggered();
+    void on_actionPaste_triggered();
+    void on_actionBad_block_management_triggered();
+
 
 private:
     Ui::MainWindow *ui;
@@ -121,7 +127,7 @@ private:
     QString lastDirectory;
     int statusCH341;
     QByteArray chipData, oldChipData;
-    uint32_t currentChipSize, currentNumBlocks, currentBlockSize, currentPageSize;
+    uint32_t currentChipSize, currentNumBlocks, currentBlockSize, currentPageSize, currentECCsize;
     uint8_t currentAlgorithm, currentChipType, currentI2CBusSpeed;
     unsigned int currentAddr4bit;
     bool isHalted;
@@ -154,6 +160,7 @@ private:
     void ch341StatusFlashing();
     QByteArray block;
     uint32_t blockStartAddr, blockLen;
+    uint8_t nandSettings;
 };
 
 #endif // MAINWINDOW_H

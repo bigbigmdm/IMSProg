@@ -73,6 +73,7 @@ set(TS_FILES
     language/chipProgrammer_de_DE.ts
     language/chipProgrammer_es_ES.ts
     language/chipProgrammer_zh_CN.ts
+    language/chipProgrammer_zh_TW.ts
     language/chipProgrammer_uk_UA.ts
     language/chipProgrammer_hu_HU.ts
     language/chipProgrammer_pt_BR.ts
@@ -89,10 +90,13 @@ mainwindow.cpp
 qhexedit.cpp
 chunks.cpp
 commands.cpp
+dialogbbm.cpp
 dialogsp.cpp
 dialogrp.cpp
 dialogsfdp.cpp
+dialognandsr.cpp
 dialogsecurity.cpp
+dialognandsecurity.cpp
 dialogcompare.cpp
 dialogsr.cpp
 dialogsetaddr.cpp
@@ -118,10 +122,13 @@ qhexedit.h
 chunks.h
 commands.h
 color_manager.h
+dialogbbm.h
 dialogsp.h
 dialogrp.h
 dialogsfdp.h
 dialogsecurity.h
+dialognandsecurity.h
+dialognandsr.h
 dialogcompare.h
 dialogsr.h
 dialoginfo.h
@@ -146,10 +153,13 @@ timer.h
 types.h
 dialogabout.h
 mainwindow.ui
+dialogbbm.ui
 dialogsp.ui
 dialogrp.ui
 dialogsfdp.ui
+dialognandsr.ui
 dialogsecurity.ui
+dialognandsecurity.ui
 dialogcompare.ui
 dialogsr.ui
 dialogsetaddr.ui

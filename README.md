@@ -138,6 +138,8 @@ inserted into the `93xxx adapter` and the adapter into the marking `25xxx`
 programmer slot. The DataFlash `AT45DBxxx` series chips must be mounted in a 
 `SOP-8 DIP-8` and this adapter shall be inserted into the `45xxx` adapter. 
 The `45xxx` adapter must be installed in the programmer slot marked `25xxx`.
+The SPI NAND Flash chips must be mounted in a `WSON-8 DIP-8` adapter. This 
+adapter must be installed in the programmer slot marked `25xxx`.
 
 ![Adapter](img/93xxx_adapter.png)
  
@@ -156,19 +158,20 @@ progress.
 
 
 ### Chip type selecting
-Select the type of chip used from the `Type` pop-up menu: `SPI FLASH` when 
-using SPI NOR FLASH chips of the `25xxx` series, `24_EEPROM` when using I2C 
-EEPROM of the `24xxx` series, `93_EEPROM` when using MicroWire EEPROM of the 
-`93xxx` series, `45_EEPROM` when using DataFlash chips `AT45DBxxx` series.
-When using `25xxx` series SPI NOR FLASH chips (Menu item `type` -> `SPI_FLASH`), 
-or `AT45DBxx` series  SPI FLASH (Menu item `type` -> `45_EEPROM`) the `Detect` 
-button will be available. When the `Detect` button or ![Detect](img/test64.png) 
-or `<Ctrl+D>` is pressed, the JEDEC information is read from the chip and all 
-parameters of that chip are loaded from the chip database. Any parameter 
-(`size`, `page size`, `block size`, `VCC voltage`, `and 4-bit address length`) 
-can be changed manually. You can manually enter the `Manufacture` and `Name` 
-pop-up menu data - all other parameters will be automatically loaded from the 
-chip database. 
+Select the type of chip used from the `Type` pop-up menu: `SPI_FLASH` when 
+using SPI NOR FLASH chips of the `25xxx` series, `SPI_NAND` when 
+using SPI NAND FLASH chips, `24_EEPROM` when using I2C EEPROM of the `24xxx` 
+series, `93_EEPROM` when using MicroWire EEPROM of the `93xxx` series, 
+`45_EEPROM` when using DataFlash chips `AT45DBxxx` series.
+When using `25xxx` series SPI NOR FLASH chips (Menu item `type` -> `SPI_FLASH`),
+or SPI NAND FLASH chips (Menu item `type` -> `SPI_NAND`), or `AT45DBxx` series 
+SPI FLASH (Menu item `type` -> `45_EEPROM`) the `Detect` button will be 
+available. When the `Detect` button or ![Detect](img/test64.png) or `<Ctrl+D>` 
+is pressed, the JEDEC information is read from the chip and all parameters of 
+that chip are loaded from the chip database. Any parameter (`size`, `page size`,
+`block size`, `VCC voltage`, `and 4-bit address length`) can be changed 
+manually. You can manually enter the `Manufacture` and `Name` pop-up menu data -
+all other parameters will be automatically loaded from the chip database. 
 When using `24xxx` or `93xxx` or `95xxx` or `25xxx` SPI EEPROM (non NOR FLASH) 
 series chips, it is necessary to manually enter the `Manufacture` and `Name` 
 pop-up menu data - all other parameters will be automatically loaded from the 
@@ -246,9 +249,14 @@ register, the `Chip info` form is as follows:
 
 ![SFDP](img/sr0_en.png)
 
+For `SPI NAND FLASH` chips the `Chip info` form is as follows:
+
+![SFDP](img/sr_nand_en.png)
+
 - The `Main menu -> Programmer -> Security Registers` or `<Ctrl+U>` item is used 
-to work with SPI NOR Flash security registers data. This form allows reading, 
-write, erase, save and load security register data from the computer.
+to work with `SPI NOR Flash` nad `SPI NAND FLASH` security registers data. This
+form allows reading, write, erase, save and load security register data from the
+computer.
 
 ![Security registers](img/Security_registers_form.png)
 
@@ -261,6 +269,15 @@ registers can be locked for writing forever. If you want to know about this,
 please see `Main Menu -> Programmer -> Chip Information` item or <Ctrl+P>, data 
 fields in `LB3`, `LB2` and `LB1` in `Status register 1`. 
 Please refer to the datasheet of your chip for detailed information.
+For NAND FLASH chips you can scanning bad blocks, use 
+`Main Menu -> Programmer -> Bad block management` or `<Ctrl+B>` key.
+
+![Bad block scan](img/bbm_chip_scan_en.png)
+
+For these chips, you can also change the erase and write parameters in 
+this menu.
+
+![Bad block scan](img/bbm_settings_en.png)
 
 ### Buffer (Hex editor) operations
 The hexadecimal chip editor (right side of the screen) is used to display and 
@@ -279,6 +296,7 @@ key is used to fill the hex editor buffer with a special test array. The `[Ctrl+
 | Hotkey |       Function                                |
 | :---   |       :---                                    |
 | Ctrl+A | Checksum calculate                            |
+| Ctrl+B | Bad block management for NAND chips           |
 | Ctrl+C | Copy selected bytes (Hex editor)              |
 | Ctrl+D | Detect chip                                   |
 | Ctrl+E | Erase chip                                    |
@@ -346,7 +364,7 @@ page in both .Dat and .csv formats.
 ## Chip updater
 
  IMSProg_database_update uses the zenity graphical Gnome utility.  Once started, 
- it copies the downloaded database to the ~/.local/imsprog folder. The script 
+ it copies the downloaded database to the ~/.local/share/imsprog folder. The script 
  then displays the number of of chips in the database before and after the 
  upgrade.
 
@@ -565,11 +583,61 @@ FM25M08A(1.8V), FM25M16A(1.8V), FM25M32A(1.8V), FM25M64A(1.8V), FM25M4AA(1.8V)
 UC25HQ05, UC25HQ10, UC25HQ20, UC25HQ40, UC25HQ80, UC25HQ16, UC25HQ32, UC25HQ64,
 UC25IQ128
 
+### SPI NAND Flash
+
+- ESMT
+
+F50L2G41XA, F50L1G41LB(2M), F50L512M41A, F50L4G41XB
+
+- MICRON
+
+MT29F4G01ABBFD12, MT29F4G01ABAFD12, MX35LF1G24AD-Z41, MX35LF2G24AD-Z41 
+
+- MXIC
+
+MX35LF4G24AD-Z41, MX35LF2G24AD-Z418, MX35LF4G24AD-Z418, MX35LF1GE4AB, 
+MX35UF1G24AD-Z4I, MX35UF2G24AD-Z4I, MX35UF4G24AD-Z4I, MX35UF2G24AD-Z4I8, 
+MX35UF4G24AD-Z4I8, MX35UF1G14AC, MX35UF2G14AC, MX35UF1GE4AC, MX35UF2GE4AC, 
+MX35UF1GE4AD, MX35UF2GE4AD, MX35UF4GE4AD, MX35LF2GE4AD, MX35LF4GE4AD
+
+- WINBOND
+
+W25N512GW, W25N512GV, W25N01KW, W25N01KV, W25N01JW, W25N01GW, W25N01GV, 
+W25N02KW, W25N02KV, W25N02JW, W25N04LW, W25N04KW, W25N04KV
+
+- XTX
+
+XT26G01C, XT26G01A, XT26G01D, XT26G11C, XT26G11D, XT26Q01D, XT26G02D, XT26G02C,
+XT26G12D-B, XT26Q02D, XT26Q04D
+XTX	XT26Q14D
+
+- Dosilicon
+
+DS35Q12B, DS35M12B, DS35Q12C, DS35M12C, DS35Q1GA, DS35M1GA, DS35Q1GB, DS35M1GB,
+DS35Q2GA, DS35M2GA, DS35Q2GB, DS35M2GB, DS35Q2GBS, DS35M2GBS, DS35Q4GM, 
+DS35Q4GM, DS35Q4GB, DS35M4GB
+
+- ZETTA
+
+ZD35Q1GC-IB
+
+- FORESEE
+
+F35SQA001G, F35SQB004G, F35SQA512M, F35UQA002G, F35SQA002G, GD5F1GQ5UExxG
+
+- GigaDevice
+
+GD5F1GQ5RExxG, GD5F1GM7UExxG, GD5F1GM7RExxG, GD5F1GM9UExxG, GD5F1GM9RExxG, 
+GD5F1GQ4UFxxG, GD5F1GQ4RFxxG, GD5F1GQ4UAxxG, GD5F2GQ5UExxG, GD5F2GQ5RExxG,
+GD5F2GM7UExxG, GD5F2GM7RExxG, GD5F4GQ6UExxG, GD5F4GQ6RExxG, GD5F4GM8UExxG,
+GD5F4GM8RExxG, GD5F1GQ4UExxG, GD5F1GQ4RExxG, GD5F1GQ4UFxxS, GD5F1GQ4RFxxS,
+GD5F2GQ4UExxG, GD5F2GQ4RExxG
+
 The latest version of the chip database can be found 
 [here](https://antenna-dvb-t2.ru/dl_all/IMSProg.Dat).
-You can download it and copy it to the ~/.local/imsprog folder:
+You can download it and copy it to the ~/.local/share/imsprog folder:
 
-`cp IMSProg.Dat ~/.local/imsprog`
+`cp IMSProg.Dat ~/.local/share/imsprog`
 
 [![Watch the video](img/IMSProg_1_0_24.mp4)](img/IMSProg_1_0_24.mp4)
 
@@ -710,6 +778,7 @@ offset	 Size   Value
                 - 45xxx SPI EEPROM  - 0x?D - 13 bit sector address number
                 - 45xxx SPI EEPROM  - 0x?F - 15 bit sector address number
                 - SPI NOR Flash - algorithm number for working with  security registers
+                - SPI NAND Flash - algorithm number for reading status and security registers
 3C        2     Timing parameter:
 3D              3000/1000/500/300/200/100 - NOR FLASH, 4000/2000 - 24xxx, 100 - 93xxx
 3E        2     SPI NOR Flash 4bit address type:
@@ -721,7 +790,8 @@ offset	 Size   Value
 3F        1     0x00
 40        1     SPI NOR FLASH block size in KB (64K = 0x40)
 41        1     0x00
-42        1     EEPROM pages 0x01 - 0x04
+42        1     - EEPROM pages 0x01 - 0x04
+                - For SPI NAND Flash - ECC Size / 64
 43        1     VCC 00=>3.3V 01=>1.8V 02=>5.0V
 The end record is 0x44 (68) zero bytes.
 ```
@@ -741,6 +811,7 @@ are [GPL-2+](https://www.gnu.org/licenses/old-licenses/gpl-2.0.html) and from
 - Ukrainian translation by [Sergey Golovko](https://github.com/cappelikan)
 - Chinese translation by [Tian-HP](https://github.com/Tian-HP)
 - German translation by [wucke13](https://github.com/wucke13)
+- Traditional Chinese translation by [ystartgo](https://github.com/ystartgo)
 
 Anyone can add or improve a translation by making a pull request.
 Translations files are located in: [IMSProg_programmer/language/](https://github.com/bigbigmdm/IMSProg/tree/main/IMSProg_programmer/language) and [IMSProg_editor/language/](https://github.com/bigbigmdm/IMSProg/tree/main/IMSProg_editor/language)

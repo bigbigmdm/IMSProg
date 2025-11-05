@@ -38,5 +38,16 @@ int at45_write_param(unsigned char *buf, unsigned long from, unsigned long len, 
 int at45_full_erase(void);
 int at45_sector_erase(unsigned int sectorNumber, unsigned int pageSize);
 int at45_read_sr(u8 *val);
+int nand_page_read(unsigned char *buf, unsigned int sector_size, u32 sector_number);
+int nand_block_read(unsigned char *buf, unsigned int page_size, u32 block_number, unsigned int pages_per_block);
+int nand_wait_ready(int sleep_ms);
+int nand_read_devid(u8 *rxbuf, int n_rx);
+int nand_block_erase(unsigned int sector_number, unsigned int blockSize);
+void nand_write_enable(void);
+void nand_unprotect(void);
+int nand_page_write(unsigned char *buf, unsigned int page_size, u32 sector_number);
+int nand_block_write(unsigned char *buf, unsigned int page_size, u32 block_number, unsigned int pages_per_block);
+void nand_ECCEnable(void);
+int nand_checkBadBlock(u32 blockNo, u32 sectSize, u32 blockPerSector);
 #endif /* __SNORCMD_API_H__ */
 /* End of [snorcmd_api.h] package */

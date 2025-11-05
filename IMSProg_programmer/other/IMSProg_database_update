@@ -28,6 +28,14 @@ if [[ "$LANG" == "zh_CN.UTF-8" ]]
    chgtxt="（原先）->（变为）"
    errtxt="文件 <b>'IMSProg.Dat'</b> 无法加载！"
 fi
+if [[ "$LANG" == "zh_TW.UTF-8" ]]
+   then
+   qsttxt="<b>'IMSProg.Dat'</b>檔案將被新版本取代。您可能會遺失已做的修改。是否繼續？"
+   tittxt="資料庫更新"
+   outtxt="資料庫中的晶片數："
+   chgtxt="（原本）->（變更為）"
+   errtxt="檔案 <b>'IMSProg.Dat'</b> 無法載入！"
+fi
 if [[ "$LANG" == "es_ES.UTF-8" ]]
    then
    qsttxt="El archivo <b>'IMSProg.Dat'</b> será sustituido por la nueva versión. Es posible que pierdas los cambios realizados en él. ¿Continuar?"

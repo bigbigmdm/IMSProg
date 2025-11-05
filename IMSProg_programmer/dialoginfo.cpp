@@ -24,8 +24,10 @@ DialogInfo::DialogInfo(QWidget *parent) :
     pix24 = new QPixmap(":/res/img/ch341_24.png");
     pix93 = new QPixmap(":/res/img/ch341_93.png");
     pix25 = new QPixmap(":/res/img/ch341_spi.png");
+    pix35 = new QPixmap(":/res/img/ch341_35.png");
     pix45 = new QPixmap(":/res/img/ch341_45.png");
     pix2518 = new QPixmap(":/res/img/ch341_spi_18.png");
+    pix3518 = new QPixmap(":/res/img/ch341_spi_18_wson.png");
     pixnone = new QPixmap(":/res/img/ch341_unknown.png");
 }
 
@@ -70,6 +72,16 @@ void DialogInfo::setChip(const uint chipType)
        ui->label_slot->setText("25xx");
        ui->label_adapter->setText("45xx adapter");
        ui->label->setPixmap(*pix45);
+     break;
+     case 6:
+       ui->label_slot->setText("25xx");
+       ui->label_adapter->setText("WSON adapter");
+       ui->label->setPixmap(*pix35);
+     break;
+     case 7:
+       ui->label->setPixmap(*pix3518);
+       ui->label_slot->setText("25xx");
+       ui->label_adapter->setText("1.8V + WSON");
      break;
      default:
        ui->label_slot->setText("-");
