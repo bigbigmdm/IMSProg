@@ -32,6 +32,11 @@ Files: IMSProg_programmer/language/chipProgrammer_zh_CN.ts
 Copyright: 2024 Tian-HP <https://github.com/Tian-HP>
 License: GPL-3+
 
+Files: IMSProg_programmer/language/chipProgrammer_zh_TW.ts
+       IMSProg_editor/language/chipEditor_zh_TW.ts
+Copyright: 2025 ystartgo <https://github.com/ystartgo>
+License: GPL-3+
+
 Files: IMSProg_programmer/language/chipProgrammer_pt_BR.ts
        IMSProg_editor/language/chipEditor_pt_BR.ts
 Copyright: 2023 Alexandre C. Leite <pu2tki@gmail.com>

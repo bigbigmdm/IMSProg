@@ -1,3 +1,12 @@
+imsprog (1.7.1-1) unstable; urgency=medium
+
+  * New upstream version:
+    - Fix: pressing the Stop key did not stop auto operations
+    - Added support for SPI NAND flash
+    - traditional chinese translation added
+    - copyright information changed
+ -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Wed, 5 Nov 2025 13:55:14 +0300
+
 imsprog (1.6.2-1) unstable; urgency=medium
 
   * New upstream version:
