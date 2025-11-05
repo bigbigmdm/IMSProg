@@ -269,6 +269,15 @@ registers can be locked for writing forever. If you want to know about this,
 please see `Main Menu -> Programmer -> Chip Information` item or <Ctrl+P>, data 
 fields in `LB3`, `LB2` and `LB1` in `Status register 1`. 
 Please refer to the datasheet of your chip for detailed information.
+For NAND FLASH chips you can scanning bad blocks, use 
+`Main Menu -> Programmer -> ` or `<Ctrl+B>` key.
+
+![Bad block scan](img/bbm_chip_scan_en.png)
+
+For these chips, you can also change the erase and write parameters in 
+this menu.
+
+![Bad block scan](img/bbm_settings_en.png)
 
 ### Buffer (Hex editor) operations
 The hexadecimal chip editor (right side of the screen) is used to display and 
