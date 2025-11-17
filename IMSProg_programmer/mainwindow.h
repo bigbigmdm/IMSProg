@@ -70,6 +70,7 @@ public slots:
     void receiveAddr3(qint64);
     void closeSFDP();
     void closeSR();
+    void closeNandSR();
     void receiveNandStatus(uint8_t);
 
 private slots:

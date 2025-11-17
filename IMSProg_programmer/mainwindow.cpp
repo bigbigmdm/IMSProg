@@ -2042,6 +2042,11 @@ void MainWindow::closeSR()
    timer->start();
 }
 
+void MainWindow::closeNandSR()
+{
+    timer->start();
+}
+
 void MainWindow::on_actionGoto_address_triggered()
 {
     //HExEditor --> goto address
@@ -2081,7 +2086,7 @@ void MainWindow::on_actionSecurity_registers_triggered()
     {
 
             DialogNandSecurity* securityNandDialog = new DialogNandSecurity(this);
-            connect(securityNandDialog, SIGNAL(closeRequestHasArrived()), this, SLOT(closeSR()));
+            connect(securityNandDialog, SIGNAL(closeRequestHasArrived()), this, SLOT(closeNandSR()));
             securityNandDialog->setAlgorithm(currentAlgorithm);
             securityNandDialog->setSectorSize(currentPageSize);
             qDebug()<<"Main:"<<currentPageSize<<" "<< currentAlgorithm;
