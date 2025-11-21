@@ -24,6 +24,7 @@
 #include <QInputMethod>
 #include <QKeyEvent>
 #include <QInputMethod>
+#include <QActionGroup>
 #include "qhexedit.h"
 #include "dialogsp.h"
 #include "dialogrp.h"
@@ -51,6 +52,7 @@ MainWindow::MainWindow(QWidget *parent) :
  connect(timer, SIGNAL(timeout()), this, SLOT(slotTimerAlarm()));
  timer->start(2000);
 
+ ui->actionSetProgrammerType->setExclusive(true);
  ui->statusMessage->setText("");
  ui->actionStop->setDisabled(true);
  ui->statusBar->addPermanentWidget(ui->statusMessage,1);

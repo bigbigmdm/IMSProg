@@ -1021,7 +1021,7 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
    </widget>
    <widget class="QMenu" name="menuProgrammer">
     <property name="title">
-     <string>Programmer</string>
+     <string>Chip</string>
     </property>
     <addaction name="actionRead"/>
     <addaction name="actionErase"/>
@@ -1054,9 +1054,16 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
     </property>
     <addaction name="actionAbout"/>
    </widget>
+   <widget class="QMenu" name="menuProgrammer_2">
+    <property name="title">
+     <string>Programmer</string>
+    </property>
+    <addaction name="actionCH341A_B_v1_2"/>
+   </widget>
    <addaction name="menuFile"/>
    <addaction name="menuProgrammer"/>
    <addaction name="menuHex_Editor"/>
+   <addaction name="menuProgrammer_2"/>
    <addaction name="menuHelp"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
@@ -1431,6 +1438,19 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
     <string>Ctrl+B</string>
    </property>
   </action>
+  <actiongroup name="actionSetProgrammerType">
+   <action name="actionCH341A_B_v1_2">
+    <property name="checkable">
+     <bool>true</bool>
+    </property>
+    <property name="checked">
+     <bool>true</bool>
+    </property>
+    <property name="text">
+     <string>CH341A/B v1.2</string>
+    </property>
+   </action>
+  </actiongroup> 
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources>
