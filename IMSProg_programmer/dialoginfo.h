@@ -29,6 +29,7 @@ public:
     explicit DialogInfo(QWidget *parent = nullptr);
     ~DialogInfo();
     void setChip(const uint chipType);
+    void setProgrammer(const uint8_t progType);
 
 private slots:
     void on_pushButton_clicked();
@@ -44,6 +45,15 @@ private:
     QPixmap *pix2518;
     QPixmap *pix3518;
     QPixmap *pixnone;
+    QPixmap *pix24v7;
+    QPixmap *pix25v718;
+    QPixmap *pix25v733;
+    QPixmap *pix93v17;
+    QPixmap *pix45v17;
+    QPixmap *pix35v718;
+    QPixmap *pix35v733;
+
+    uint8_t currentProg;
 
 };
 
