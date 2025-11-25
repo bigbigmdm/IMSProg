@@ -25,7 +25,6 @@
 #include "unistd.h"
 #include "hexutility.h"
 #include "memory"
-#include <QDebug>
 #include <QRegularExpression>
 
 DialogNANDSr::DialogNANDSr(QWidget *parent) :
@@ -70,7 +69,7 @@ void DialogNANDSr::setLineEditFilter()
 void DialogNANDSr::on_pushButton_read_clicked()
 {
         bool otp;
-        int i,j, pageSize, numBlocks, pagesPerBlock;
+        int i, j, pageSize, numBlocks, pagesPerBlock;
         QString buftxt = "";
         otp = false;
         //Clearing fields
@@ -80,14 +79,14 @@ void DialogNANDSr::on_pushButton_read_clicked()
         std::shared_ptr<uint8_t[]> buf(new uint8_t[512]);
         QString currRegName;
         int retval;
-        uint8_t currRegister, currBit, currByte, idBlockAddr;
+        int currRegister;
+        uint8_t  currBit, currByte, idBlockAddr;
         int stCH341 = 0;
         idBlockAddr = 0x00;
         stCH341 = ch341a_spi_init();
         if (stCH341 == 0)
             {
-
-            for (currRegister = 0; currRegister < 6; currRegister++)
+            for (currRegister = 0; currRegister < 5; currRegister++)
             {
                 if (RegNumbers[currRegister] != 0xff)
                 {
@@ -114,17 +113,13 @@ void DialogNANDSr::on_pushButton_read_clicked()
                                         edit->setText(QString::number((buf[0] & currByte) >> currBit));
                                     }
                                 }
-                        currByte = currByte << 1;
+                        currByte = static_cast<uint8_t>(currByte << 1);
                     }
                 }
             }
 
                 regReaded = true;
-                //ch341a_spi_shutdown();
                 //READING PARAMETER PAGE
-                //stCH341 = ch341a_spi_init();
-
-
                 usleep(100);
                 SPI_CONTROLLER_Chip_Select_Low(); //Reading status
                 SPI_CONTROLLER_Write_One_Byte(0x0f);
@@ -344,7 +339,7 @@ void DialogNANDSr::on_pushButton_write_clicked()
                                     if (QString::compare(currValue, "0", Qt::CaseInsensitive)) regData = regData + currByte;
                                 }
                             }
-                    currByte = currByte << 1;
+                    currByte = static_cast<uint8_t>(currByte << 1);
                 }
             }
 
@@ -372,8 +367,6 @@ void DialogNANDSr::on_pushButton_write_clicked()
        ch341a_spi_shutdown();
     }
     else QMessageBox::about(this, tr("Error"), tr("Programmer CH341a is not connected!"));
-   //}
-   //else QMessageBox::about(this, tr("Error"), tr("Before writing the registers, please press the `Read` button!"));
 }
 
 void DialogNANDSr::closeEvent(QCloseEvent* event)

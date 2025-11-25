@@ -70,6 +70,7 @@ public slots:
     void receiveAddr3(qint64);
     void closeSFDP();
     void closeSR();
+    void closeNandSR();
     void receiveNandStatus(uint8_t);
 
 private slots:
@@ -121,6 +122,10 @@ private slots:
     void on_actionBad_block_management_triggered();
 
 
+    void on_actionCH341A_B_v1_2_triggered();
+
+    void on_actionCH341A_v1_7_triggered();
+
 private:
     Ui::MainWindow *ui;
     QString grnKeyStyle, redKeyStyle;
@@ -161,6 +166,13 @@ private:
     QByteArray block;
     uint32_t blockStartAddr, blockLen;
     uint8_t nandSettings;
+    uint8_t current_programmer;
+    struct programmers {
+        uint8_t progID;
+        uint8_t progType;
+        QString progFullName;
+        QString progDownName;
+    };
 };
 
 #endif // MAINWINDOW_H

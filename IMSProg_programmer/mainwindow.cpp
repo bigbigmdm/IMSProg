@@ -24,6 +24,7 @@
 #include <QInputMethod>
 #include <QKeyEvent>
 #include <QInputMethod>
+#include <QActionGroup>
 #include "qhexedit.h"
 #include "dialogsp.h"
 #include "dialogrp.h"
@@ -51,6 +52,7 @@ MainWindow::MainWindow(QWidget *parent) :
  connect(timer, SIGNAL(timeout()), this, SLOT(slotTimerAlarm()));
  timer->start(2000);
 
+ ui->actionSetProgrammerType->setExclusive(true);
  ui->statusMessage->setText("");
  ui->actionStop->setDisabled(true);
  ui->statusBar->addPermanentWidget(ui->statusMessage,1);
@@ -115,6 +117,13 @@ MainWindow::MainWindow(QWidget *parent) :
  ui->comboBox_i2cSpeed->addItem("750 kHz", 3);
  ui->comboBox_i2cSpeed->setCurrentIndex(2);
  currentI2CBusSpeed = 2;
+
+ programmers programmer[] = {
+    //progID progType progFullName     progDownName
+     {0,     0,       "CH341A/B V1.2", "CH341"},
+     {1,     0,       "CH341A V1.7",   "CH341"}
+ };
+ current_programmer = 0;
 
  currentChipSize = 0;
  currentNumBlocks = 0;
@@ -1851,6 +1860,7 @@ void MainWindow::on_pushButton_4_clicked()
     //info form showing
     DialogInfo* infoDialog = new DialogInfo(this);
     infoDialog->show();
+    infoDialog->setProgrammer(current_programmer);
     if ((currentChipType == 0) && (ui->comboBox_vcc->currentIndex() == 1)) infoDialog->setChip(2); //NOR_FLASH 1.8
     if ((currentChipType == 0) && (ui->comboBox_vcc->currentIndex() == 2)) infoDialog->setChip(3); //NOR FLASH 3.3
     if ((currentChipType == 1) && (ui->comboBox_vcc->currentIndex() == 1)) infoDialog->setChip(1); //24xxx 3.3
@@ -2042,6 +2052,11 @@ void MainWindow::closeSR()
    timer->start();
 }
 
+void MainWindow::closeNandSR()
+{
+    timer->start();
+}
+
 void MainWindow::on_actionGoto_address_triggered()
 {
     //HExEditor --> goto address
@@ -2081,7 +2096,7 @@ void MainWindow::on_actionSecurity_registers_triggered()
     {
 
             DialogNandSecurity* securityNandDialog = new DialogNandSecurity(this);
-            connect(securityNandDialog, SIGNAL(closeRequestHasArrived()), this, SLOT(closeSR()));
+            connect(securityNandDialog, SIGNAL(closeRequestHasArrived()), this, SLOT(closeNandSR()));
             securityNandDialog->setAlgorithm(currentAlgorithm);
             securityNandDialog->setSectorSize(currentPageSize);
             qDebug()<<"Main:"<<currentPageSize<<" "<< currentAlgorithm;
@@ -2407,4 +2422,14 @@ void MainWindow::on_actionBad_block_management_triggered()
 void MainWindow::receiveNandStatus(uint8_t setParam)
 {
     nandSettings = setParam;
+}
+
+void MainWindow::on_actionCH341A_B_v1_2_triggered()
+{
+    current_programmer = 0;
+}
+
+void MainWindow::on_actionCH341A_v1_7_triggered()
+{
+    current_programmer = 1;
 }

@@ -164,6 +164,14 @@
     </screenshot>
   </screenshots>
   <releases>
+  <release version="1.7.2" date="2025-11-25" urgency="medium">	  
+    <description>
+	    <p>Fixed: NAND Flash information form freeze.</p>
+	    <p>Added: Programmer type menu.</p>
+	    <p>Added: New images for CH341A v1.7.</p>
+	    <p>Added: support for the AT24CM02 chip.</p>
+    </description>
+  </release>
   <release version="1.7.1" date="2025-11-05" urgency="medium">	  
     <description>
 	    <p>Fixed: pressing the Stop key did not stop auto operations.</p>

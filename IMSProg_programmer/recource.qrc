@@ -34,5 +34,12 @@
         <file>img/ch341_35.png</file>
         <file>img/paste64.png</file>
         <file>img/copy64.png</file>
+        <file>img/v1_7_NAND_1v8.png</file>
+        <file>img/v1_7_NAND_3v3.png</file>
+        <file>img/v1_7_mw_3v3.png</file>
+        <file>img/v1_7_45_3v3.png</file>
+        <file>img/v1_7_i2c_3v3.png</file>
+        <file>img/v1_7_spi_3v3.png</file>
+        <file>img/v1_7_spi_1v8.png</file>
     </qresource>
 </RCC>
