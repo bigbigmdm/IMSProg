@@ -15,7 +15,7 @@
 #include "dialogsetaddr.h"
 #include "ui_dialogsetaddr.h"
 #include <QValidator>
-#include <QRegExp>
+#include <QRegularExpression>
 #include <QString>
 
 DialogSetAddr::DialogSetAddr(QWidget *parent) :
@@ -24,8 +24,8 @@ DialogSetAddr::DialogSetAddr(QWidget *parent) :
 {
     ui->setupUi(this);
     setWindowFlags(Qt::Window | Qt::WindowMinimizeButtonHint | Qt::WindowCloseButtonHint);
-    QRegExp reHex( "[A-Fa-f0-9]{1,8}" );
-    QRegExpValidator *validator = new QRegExpValidator(reHex, this);
+    QRegularExpression reHex( "[A-Fa-f0-9]{1,8}" );
+    QRegularExpressionValidator *validator = new QRegularExpressionValidator(reHex, this);
     ui->lineEditStart->setValidator(validator);
 }
 
