@@ -24,7 +24,7 @@ DialogAbout::DialogAbout(QWidget *parent) :
     ui->label_7->setTextFormat(Qt::RichText);
     ui->label_7->setTextInteractionFlags(Qt::TextBrowserInteraction);
     ui->label_7->setOpenExternalLinks(true);
-    ui->label_8->setText("V1.7.1");
+    ui->label_8->setText("V1.7.2");
 }
 
 DialogAbout::~DialogAbout()
