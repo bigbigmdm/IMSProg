@@ -1,3 +1,12 @@
+imsprog (1.7.2-1) unstable; urgency=medium
+
+  * New upstream version:
+    - Fix: NAND Flash information form freeze
+    - Added support for AT24CM02
+    - Programmer type menu added
+    - New images added for CH341A v1.7
+ -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Tue, 25 Nov 2025 10:11:47 +0300
+
 imsprog (1.7.1-1) unstable; urgency=medium
 
   * New upstream version:
