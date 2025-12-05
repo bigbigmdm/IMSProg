@@ -54,11 +54,11 @@ if [[ "$LANG" == "uk_UA.UTF-8" ]]
 fi
 if [[ "$LANG" == "it_IT.UTF-8" ]]
    then
-   qsttxt="Il file <b>'IMSProg.Dat'</b> verrà sostituito con la nuova versione. Le modifiche apportate potrebbero andare perse. Vuoi continuare?"
+   qsttxt="Il file <b>'IMSProg.Dat'</b> verrà sostituito con la nuova versione. Potresti perdere le modifiche apportate. Vuoi continuare?"
    tittxt="Aggiornamento del database in corso"
-   outtxt="Il numero di chip nel database:"
+   outtxt="Numero di chip nel database:"
    chgtxt="(era) -> (è diventato)"
-   errtxt="Il file <b>'IMSProg.Dat'</b> non può essere caricato!"
+   errtxt="Impossibile caricare il file <b>'IMSProg.Dat'</b>!"
 fi
 if [[ "$LANG" == "pt_BR.UTF-8" ]]
    then
