@@ -16,7 +16,7 @@
 #include "ui_dialogrp.h"
 #include "mainwindow.h"
 #include <QValidator>
-#include <QRegExp>
+#include <QRegularExpression>
 #include <QDebug>
 #include <QString>
 DialogRP::DialogRP(QWidget *parent) :
@@ -25,8 +25,8 @@ DialogRP::DialogRP(QWidget *parent) :
 {
     ui->setupUi(this);
     setWindowFlags(Qt::Window| Qt::WindowMinimizeButtonHint | Qt::WindowCloseButtonHint);
-    QRegExp reHex( "[A-Fa-f0-9]{1,8}" );
-    QRegExpValidator *validator = new QRegExpValidator(reHex, this);
+    QRegularExpression reHex( "[A-Fa-f0-9]{1,8}" );
+    QRegularExpressionValidator *validator = new QRegularExpressionValidator(reHex, this);
     ui->lineEditStart->setValidator(validator);
 }
 
