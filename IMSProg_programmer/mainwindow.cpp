@@ -1770,6 +1770,8 @@ void MainWindow::doNotDisturb()
    ui->actionSecurity_registers->setDisabled(true);
    ui->actionBad_block_management->setDisabled(true);
    ui->actionStop->setDisabled(false);
+   ui->actionCH341A_B_v1_2->setDisabled(true);
+   ui->actionCH341A_v1_7->setDisabled(true);
 
    ui->pushButton->blockSignals(true);
    ui->pushButton_2->blockSignals(true);
@@ -1812,6 +1814,8 @@ void MainWindow::doNotDisturbCancel()
       ui->actionChecksum_calculate->setDisabled(false);
       ui->actionGoto_address->setDisabled(false);
       ui->actionCompare_files->setDisabled(false);
+      ui->actionCH341A_B_v1_2->setDisabled(false);
+      ui->actionCH341A_v1_7->setDisabled(false);
       if ((currentChipType == 0) || (currentChipType == 6) || (currentChipType > 2)) ui->actionChip_info->setDisabled(false);
       if ((currentChipType == 0) || (currentChipType == 6)) ui->actionSecurity_registers->setDisabled(false);
       if (currentChipType == 6) ui->actionBad_block_management->setDisabled(false);
