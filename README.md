@@ -93,7 +93,8 @@ Optionally if you want to use IMSProg_database_update script:
 unable to have it working on them.
 
 ### macOS
-if using Homebrew then Xcode Command Line Tools will install by default, if not then install manually from terminal:   
+if using Homebrew then Xcode Command Line Tools will install by default, if not 
+then install manually from terminal:   
 
 ```
 xcode-select --install
@@ -107,7 +108,8 @@ using brew:
 brew install qt@5 libusb cmake pkgconf
 ```
 
-if not using the [build_all.sh](build_all.sh) script then make sure `libusb` is in your `C_INCLUDE_PATH`
+if not using the [build_all.sh](build_all.sh) script then make sure `libusb` is 
+in your `C_INCLUDE_PATH`
 
 ```
 export C_INCLUDE_PATH=/usr/local/opt/libusb/include
@@ -225,7 +227,7 @@ checkbox for that operation.
 of chip read/write/erase/verify operations.
 
 - The `i` key show the connection chip to CH341A device image form.
-- The `Main menu -> Programmer -> Chip info` or `<Ctrl+P>` item shows the 
+- The `Main menu -> Chip -> Chip info` or `<Ctrl+P>` item shows the 
 Serial Flash Discoverable Parameter (SFDP) register and the status registers 
 of the SPI NOR flash memory chips.
 
@@ -253,7 +255,7 @@ For `SPI NAND FLASH` chips the `Chip info` form is as follows:
 
 ![SFDP](img/sr_nand_en.png)
 
-- The `Main menu -> Programmer -> Security Registers` or `<Ctrl+U>` item is used 
+- The `Main menu -> Chip -> Security Registers` or `<Ctrl+U>` item is used 
 to work with `SPI NOR Flash` nad `SPI NAND FLASH` security registers data. This
 form allows reading, write, erase, save and load security register data from the
 computer.
@@ -266,11 +268,11 @@ The buttons at the bottom of the form (![Read](img/read64.png),
 main form. The `Security register number:` drop-down menu allows you to select 
 one of the valid registers for the current chip for operation. The security 
 registers can be locked for writing forever. If you want to know about this, 
-please see `Main Menu -> Programmer -> Chip Information` item or <Ctrl+P>, data 
+please see `Main Menu -> Chip -> Chip Information` item or <Ctrl+P>, data 
 fields in `LB3`, `LB2` and `LB1` in `Status register 1`. 
 Please refer to the datasheet of your chip for detailed information.
 For NAND FLASH chips you can scanning bad blocks, use 
-`Main Menu -> Programmer -> Bad block management` or `<Ctrl+B>` key.
+`Main Menu -> Chip -> Bad block management` or `<Ctrl+B>` key.
 
 ![Bad block scan](img/bbm_chip_scan_en.png)
 
@@ -287,9 +289,14 @@ It contains the following controls: ![Undo](img/undo.png) undo,
 ![Redo](img/redo64.png) redo, and the ![Search](img/hexsearch64.png) 
 search/replace. The `[Ctrl+A]` key used to update the CRC24 checksum. The 
 `[Ctrl+G]` key used to move the cursor to the entered address. The `[Ctrl+L]` 
-key is used to fill the hex editor buffer with a special test array. The `[Ctrl+M]` key used for compares the results of the last and penultimate chip read or file open operation.
+key is used to fill the hex editor buffer with a special test array. The 
+`[Ctrl+M]` key used for compares the results of the last and penultimate chip 
+read or file open operation.
 
 ![compare](img/compare_files_en.png)
+
+### Programmer type
+The `Main menu -> Programmer`  item is used to change the programmer type.
 
 ### List of hotkeys:
 
