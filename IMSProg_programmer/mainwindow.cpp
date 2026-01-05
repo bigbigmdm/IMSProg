@@ -25,6 +25,8 @@
 #include <QKeyEvent>
 #include <QInputMethod>
 #include <QActionGroup>
+#include <QCloseEvent>
+#include <QSettings>
 #include "qhexedit.h"
 #include "dialogsp.h"
 #include "dialogrp.h"
@@ -149,6 +151,29 @@ MainWindow::MainWindow(QWidget *parent) :
  oldChipData.resize(256);
  oldChipData.fill(char(0xff));
  ch341a_spi_shutdown();
+
+ //Reading ini file
+ QString iniPath = QDir::homePath() + "/.local/share/imsprog/config.ini";
+ if (QFileInfo(iniPath).exists())
+ {
+     QSettings settings(iniPath, QSettings::IniFormat);
+     settings.beginGroup("Chip");
+       lastDirectory = settings.value("ChipDirectory").toString();
+     settings.endGroup();
+     settings.beginGroup("Device");
+       current_programmer =  settings.value("ProgrammerType").toInt();
+       if (current_programmer == 0) ui->actionCH341A_B_v1_2->setChecked(true);
+       if (current_programmer == 1) ui->actionCH341A_v1_7->setChecked(true);
+     settings.endGroup();
+     settings.beginGroup("FormPosition");
+        MainWindow::move(settings.value("MWXposition").toInt(), settings.value("MWYposition").toInt());
+        MainWindow::resize(settings.value("MWWidth").toInt(), settings.value("MWHeight").toInt());
+     settings.endGroup();
+ }
+
+ //MainWindow::resize(1000,1000);
+ //MainWindow::move(200,200);
+
  QFont heFont;
  heFont = QFont("Monospace", 10);
  hexEdit = new QHexEdit(ui->frame);
@@ -1106,6 +1131,7 @@ void MainWindow::on_actionRead_triggered()
 
 void MainWindow::on_actionExit_triggered()
 {
+
     ch341a_spi_shutdown();
     MainWindow::close();
 }
@@ -2437,3 +2463,30 @@ void MainWindow::on_actionCH341A_v1_7_triggered()
 {
     current_programmer = 1;
 }
+
+void MainWindow::closeEvent(QCloseEvent( *event))
+{
+    //Storing parameters in ini file
+    QSize size = this->size();
+    int w = size.width();
+    int h = size.height();
+    QPoint pos = this->pos();
+    int x = pos.x();
+    int y = pos.y();
+    if (lastDirectory == NULL) lastDirectory = QDir::homePath();
+    QSettings settings(QDir::homePath() + "/.local/share/imsprog/config.ini", QSettings::IniFormat);
+    settings.beginGroup("Chip");
+    settings.setValue("ChipDirectory", lastDirectory);
+    settings.endGroup();
+    settings.beginGroup("Device");
+    settings.setValue("ProgrammerType", current_programmer);
+    settings.endGroup();
+    settings.beginGroup("FormPosition");
+    settings.setValue("MWXposition", x);
+    settings.setValue("MWYposition", y);
+    settings.setValue("MWWidth", w);
+    settings.setValue("MWHeight", h);
+    settings.endGroup();
+
+}
+

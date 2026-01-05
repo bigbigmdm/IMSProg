@@ -21,6 +21,7 @@
 #include <QFileDialog>
 #include <QTime>
 #include <QTimer>
+#include <QSettings>
 #include <unistd.h>
 #include "qhexedit.h"
 #include "dialogsp.h"
@@ -120,12 +121,9 @@ private slots:
     void on_actionCopy_triggered();
     void on_actionPaste_triggered();
     void on_actionBad_block_management_triggered();
-
-
     void on_actionCH341A_B_v1_2_triggered();
-
     void on_actionCH341A_v1_7_triggered();
-
+    void closeEvent(QCloseEvent *event);
 private:
     Ui::MainWindow *ui;
     QString grnKeyStyle, redKeyStyle;
