@@ -22,6 +22,7 @@
 #include <QTime>
 #include <QTimer>
 #include <QSettings>
+#include <QResizeEvent>
 #include <unistd.h>
 #include "qhexedit.h"
 #include "dialogsp.h"
@@ -124,7 +125,9 @@ private slots:
     void on_actionCH341A_B_v1_2_triggered();
     void on_actionCH341A_v1_7_triggered();
     void closeEvent(QCloseEvent *event);
-private:
+    void showEvent(QShowEvent* event);
+
+    private:
     Ui::MainWindow *ui;
     QString grnKeyStyle, redKeyStyle;
     QString lastDirectory;

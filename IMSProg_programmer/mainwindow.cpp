@@ -161,7 +161,7 @@ MainWindow::MainWindow(QWidget *parent) :
        lastDirectory = settings.value("ChipDirectory").toString();
      settings.endGroup();
      settings.beginGroup("Device");
-       current_programmer =  settings.value("ProgrammerType").toInt();
+       current_programmer =  static_cast<unsigned char>(settings.value("ProgrammerType").toInt());
        if (current_programmer == 0) ui->actionCH341A_B_v1_2->setChecked(true);
        if (current_programmer == 1) ui->actionCH341A_v1_7->setChecked(true);
      settings.endGroup();
@@ -170,14 +170,9 @@ MainWindow::MainWindow(QWidget *parent) :
         MainWindow::resize(settings.value("MWWidth").toInt(), settings.value("MWHeight").toInt());
      settings.endGroup();
  }
-
- //MainWindow::resize(1000,1000);
- //MainWindow::move(200,200);
-
  QFont heFont;
  heFont = QFont("Monospace", 10);
  hexEdit = new QHexEdit(ui->frame);
- hexEdit->setGeometry(0,0,ui->frame->width(),ui->frame->height());
  hexEdit->setData(chipData);
  hexEdit->setHexCaps(true);
  hexEdit->setFont(heFont);
@@ -2490,3 +2485,8 @@ void MainWindow::closeEvent(QCloseEvent( *event))
 
 }
 
+void MainWindow::showEvent(QShowEvent* event)
+{
+    QMainWindow::showEvent(event);
+    hexEdit->setGeometry(0, 0, ui->frame->width(), ui->frame->height());
+}
