@@ -14,6 +14,7 @@
  */
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include <QDebug>
 #include <QLineEdit>
 #include <QLabel>
 #include <QMessageBox>
@@ -166,8 +167,10 @@ MainWindow::MainWindow(QWidget *parent) :
        if (current_programmer == 1) ui->actionCH341A_v1_7->setChecked(true);
      settings.endGroup();
      settings.beginGroup("FormPosition");
-        MainWindow::move(settings.value("MWXposition").toInt(), settings.value("MWYposition").toInt());
-        MainWindow::resize(settings.value("MWWidth").toInt(), settings.value("MWHeight").toInt());
+     if (settings.contains("geometry"))
+     {
+         restoreGeometry(settings.value("geometry").toByteArray());
+     }
      settings.endGroup();
  }
  QFont heFont;
@@ -2463,6 +2466,7 @@ void MainWindow::closeEvent(QCloseEvent( *event))
 {
     //Storing parameters in ini file
     QSize size = this->size();
+    qDebug()<<size;
     int w = size.width();
     int h = size.height();
     QPoint pos = this->pos();
@@ -2477,12 +2481,13 @@ void MainWindow::closeEvent(QCloseEvent( *event))
     settings.setValue("ProgrammerType", current_programmer);
     settings.endGroup();
     settings.beginGroup("FormPosition");
-    settings.setValue("MWXposition", x);
-    settings.setValue("MWYposition", y);
-    settings.setValue("MWWidth", w);
-    settings.setValue("MWHeight", h);
+    //settings.setValue("MWXposition", x);
+    //settings.setValue("MWYposition", y);
+    //settings.setValue("MWWidth", w);
+    //settings.setValue("MWHeight", h);
+    settings.setValue("geometry", saveGeometry());
     settings.endGroup();
-
+    QMainWindow::closeEvent(event);
 }
 
 void MainWindow::showEvent(QShowEvent* event)
