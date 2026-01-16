@@ -14,7 +14,6 @@
  */
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include <QDebug>
 #include <QLineEdit>
 #include <QLabel>
 #include <QMessageBox>
@@ -2127,7 +2126,6 @@ void MainWindow::on_actionSecurity_registers_triggered()
             connect(securityNandDialog, SIGNAL(closeRequestHasArrived()), this, SLOT(closeNandSR()));
             securityNandDialog->setAlgorithm(currentAlgorithm);
             securityNandDialog->setSectorSize(currentPageSize);
-            qDebug()<<"Main:"<<currentPageSize<<" "<< currentAlgorithm;
             securityNandDialog->setPath(lastDirectory);
             securityNandDialog->show();
     }
@@ -2466,7 +2464,6 @@ void MainWindow::closeEvent(QCloseEvent( *event))
 {
     //Storing parameters in ini file
     QSize size = this->size();
-    qDebug()<<size;
     int w = size.width();
     int h = size.height();
     QPoint pos = this->pos();
@@ -2481,10 +2478,6 @@ void MainWindow::closeEvent(QCloseEvent( *event))
     settings.setValue("ProgrammerType", current_programmer);
     settings.endGroup();
     settings.beginGroup("FormPosition");
-    //settings.setValue("MWXposition", x);
-    //settings.setValue("MWYposition", y);
-    //settings.setValue("MWWidth", w);
-    //settings.setValue("MWHeight", h);
     settings.setValue("geometry", saveGeometry());
     settings.endGroup();
     QMainWindow::closeEvent(event);
