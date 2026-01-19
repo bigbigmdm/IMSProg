@@ -2463,12 +2463,6 @@ void MainWindow::on_actionCH341A_v1_7_triggered()
 void MainWindow::closeEvent(QCloseEvent( *event))
 {
     //Storing parameters in ini file
-    QSize size = this->size();
-    int w = size.width();
-    int h = size.height();
-    QPoint pos = this->pos();
-    int x = pos.x();
-    int y = pos.y();
     if (lastDirectory == NULL) lastDirectory = QDir::homePath();
     QSettings settings(QDir::homePath() + "/.local/share/imsprog/config.ini", QSettings::IniFormat);
     settings.beginGroup("Chip");
