@@ -168,12 +168,6 @@ private slots:
     uint32_t blockStartAddr, blockLen;
     uint8_t nandSettings;
     uint8_t current_programmer;
-    struct programmers {
-        uint8_t progID;
-        uint8_t progType;
-        QString progFullName;
-        QString progDownName;
-    };
 };
 
 #endif // MAINWINDOW_H

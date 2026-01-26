@@ -120,11 +120,6 @@ MainWindow::MainWindow(QWidget *parent) :
  ui->comboBox_i2cSpeed->setCurrentIndex(2);
  currentI2CBusSpeed = 2;
 
- programmers programmer[] = {
-    //progID progType progFullName     progDownName
-     {0,     0,       "CH341A/B V1.2", "CH341"},
-     {1,     0,       "CH341A V1.7",   "CH341"}
- };
  current_programmer = 0;
 
  currentChipSize = 0;
