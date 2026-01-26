@@ -96,6 +96,12 @@
     </screenshot>
   </screenshots>
   <releases>
+  <release version="1.7.3" date="2026-01-26" urgency="medium">	  
+    <description>
+	    <p>Fixed: Incorrect HexEdit size when starting the program.</p>
+	    <p>Added: When closing the program, the programmer type, chip image directory, and main window size are saved in the ini file.</p>
+    </description>
+  </release>
   <release version="1.7.2" date="2025-11-25" urgency="medium">	  
     <description>
 	    <p>Fixed: NAND Flash information form freeze.</p>

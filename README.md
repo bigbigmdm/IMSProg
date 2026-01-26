@@ -805,7 +805,7 @@ The end record is 0x44 (68) zero bytes.
 ```
 ## Licensing
 
-Copyright (C) 2023 - 2025 Mikhail Medvedev. 
+Copyright (C) 2023 - 2026 Mikhail Medvedev. 
 This project use [GPL-3+ License](https://www.gnu.org/licenses/gpl-3.0.html), 
 some parts taken from project [SNANDer](https://github.com/McMCCRU/SNANDer/commits?author=McMCCRU) 
 are [GPL-2+](https://www.gnu.org/licenses/old-licenses/gpl-2.0.html) and from 
