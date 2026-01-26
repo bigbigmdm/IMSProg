@@ -41,5 +41,6 @@
         <file>img/v1_7_i2c_3v3.png</file>
         <file>img/v1_7_spi_3v3.png</file>
         <file>img/v1_7_spi_1v8.png</file>
+        <file>img/ch341v1_7.png</file>
     </qresource>
 </RCC>

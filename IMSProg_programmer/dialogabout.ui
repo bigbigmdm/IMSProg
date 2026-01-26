@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>515</width>
+    <width>555</width>
     <height>440</height>
    </rect>
   </property>
@@ -59,6 +59,26 @@
          </property>
          <property name="pixmap">
           <pixmap resource="recource.qrc">:/res/img/ch341_black150.png</pixmap>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_9">
+         <property name="text">
+          <string>OR</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_10">
+         <property name="text">
+          <string/>
+         </property>
+         <property name="pixmap">
+          <pixmap resource="recource.qrc">:/res/img/ch341v1_7.png</pixmap>
          </property>
         </widget>
        </item>
