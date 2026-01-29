@@ -343,6 +343,9 @@ void DialogSecurity::on_toolButton_erase_clicked()
            }
            else SPI_CONTROLLER_Write_One_Byte(0x00);
            SPI_CONTROLLER_Write_One_Byte(0x00);  //A7...A0
+           SPI_CONTROLLER_Chip_Select_High();
+           usleep(1);
+
 
            if (curSettings.algType == 1)
            {
