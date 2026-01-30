@@ -15,7 +15,7 @@
 #include "dialogsr.h"
 #include "ui_dialogsr.h"
 #include <QValidator>
-#include <QRegExp>
+#include <QRegularExpression>
 #include "unistd.h"
 #include <QDebug>
 
@@ -115,8 +115,8 @@ void DialogSR::on_pushButton_write_clicked()
 
 void DialogSR::setLineEditFilter()
 {
-    QRegExp reHex( "[0-1]{1}" );
-    QRegExpValidator *validator = new QRegExpValidator(reHex, this);
+    QRegularExpression reHex( "[0-1]{1}" );
+    QRegularExpressionValidator *validator = new QRegularExpressionValidator(reHex, this);
     ui->lineEdit_sr00->setValidator(validator);
     ui->lineEdit_sr01->setValidator(validator);
     ui->lineEdit_sr02->setValidator(validator);
