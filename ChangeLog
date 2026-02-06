@@ -1,3 +1,7 @@
+- Ver. 1.7.3 — When closing the program, the programmer type, chip image 
+directory, and main window size are saved in the 
+~/.local/share/imsprog/settings.ini file. Fix: Incorrect HexEdit size when 
+starting the program.
 - Ver. 1.7.2 - Fix: NAND Flash information form freeze. Programmer type menu 
 added. New images added for CH341A v1.7. AT24CM02 support added.
 - Ver. 1.7.1 - Fix: pressing the Stop key did not stop auto operations. 

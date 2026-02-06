@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2023 - 2024 Mikhail Medvedev <e-ink-reader@yandex.ru>
+ * Copyright (C) 2023 - 2026 Mikhail Medvedev <e-ink-reader@yandex.ru>
  *
  *
  * This program is free software; you can redistribute it and/or
@@ -24,7 +24,7 @@ DialogAbout::DialogAbout(QWidget *parent) :
     ui->label_7->setTextFormat(Qt::RichText);
     ui->label_7->setTextInteractionFlags(Qt::TextBrowserInteraction);
     ui->label_7->setOpenExternalLinks(true);
-    ui->label_8->setText("V1.7.2");
+    ui->label_8->setText("V1.7.3");
 }
 
 DialogAbout::~DialogAbout()

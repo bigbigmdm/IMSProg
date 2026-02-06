@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2023 - 2024 Mikhail Medvedev <e-ink-reader@yandex.ru>
+ * Copyright (C) 2023 - 2026 Mikhail Medvedev <e-ink-reader@yandex.ru>
  *
  *
  * This program is free software; you can redistribute it and/or
@@ -21,6 +21,8 @@
 #include <QFileDialog>
 #include <QTime>
 #include <QTimer>
+#include <QSettings>
+#include <QResizeEvent>
 #include <unistd.h>
 #include "qhexedit.h"
 #include "dialogsp.h"
@@ -120,13 +122,12 @@ private slots:
     void on_actionCopy_triggered();
     void on_actionPaste_triggered();
     void on_actionBad_block_management_triggered();
-
-
     void on_actionCH341A_B_v1_2_triggered();
-
     void on_actionCH341A_v1_7_triggered();
+    void closeEvent(QCloseEvent *event);
+    void showEvent(QShowEvent* event);
 
-private:
+    private:
     Ui::MainWindow *ui;
     QString grnKeyStyle, redKeyStyle;
     QString lastDirectory;
@@ -167,12 +168,6 @@ private:
     uint32_t blockStartAddr, blockLen;
     uint8_t nandSettings;
     uint8_t current_programmer;
-    struct programmers {
-        uint8_t progID;
-        uint8_t progType;
-        QString progFullName;
-        QString progDownName;
-    };
 };
 
 #endif // MAINWINDOW_H

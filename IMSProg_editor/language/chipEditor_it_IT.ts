@@ -52,27 +52,27 @@
     <message>
         <location filename="../ezp_chip_editor.ui" line="144"/>
         <source>Delete lines</source>
-        <translation>Cancella linee</translation>
+        <translation>Elimina righe</translation>
     </message>
     <message>
         <location filename="../ezp_chip_editor.ui" line="147"/>
         <source>Delete selected lines</source>
-        <translation>Cancella linee selezionate</translation>
+        <translation>Elimina righe selezionate</translation>
     </message>
     <message>
         <location filename="../ezp_chip_editor.ui" line="150"/>
         <source>Del</source>
-        <translation>Cancella</translation>
+        <translation>Elimina</translation>
     </message>
     <message>
         <location filename="../ezp_chip_editor.ui" line="159"/>
         <source>Add line</source>
-        <translation>Aggiungi linea</translation>
+        <translation>Aggiungi riga</translation>
     </message>
     <message>
         <location filename="../ezp_chip_editor.ui" line="162"/>
         <source>Add selected lines and duplicate data</source>
-        <translation>Aggiungi linee selezionate e duplica i dati</translation>
+        <translation>Aggiungi le righe selezionate e duplica i dati</translation>
     </message>
     <message>
         <location filename="../ezp_chip_editor.ui" line="165"/>
@@ -87,7 +87,7 @@
     <message>
         <location filename="../ezp_chip_editor.ui" line="177"/>
         <source>Move lines up</source>
-        <translation>Sposta su le linee</translation>
+        <translation>Sposta su le righe</translation>
     </message>
     <message>
         <location filename="../ezp_chip_editor.ui" line="180"/>
@@ -102,7 +102,7 @@
     <message>
         <location filename="../ezp_chip_editor.ui" line="192"/>
         <source>Move lines down</source>
-        <translation>Sposta giù le linee</translation>
+        <translation>Sposta giù le righe</translation>
     </message>
     <message>
         <location filename="../ezp_chip_editor.ui" line="195"/>
@@ -112,7 +112,7 @@
     <message>
         <location filename="../ezp_chip_editor.ui" line="204"/>
         <source>Export selected lines to CSV file</source>
-        <translation>Esporta le linee selezionate in un file CSV</translation>
+        <translation>Esporta le righe selezionate in un file CSV</translation>
     </message>
     <message>
         <location filename="../ezp_chip_editor.ui" line="213"/>
@@ -153,7 +153,7 @@
     <message>
         <location filename="../ezp_chip_editor.cpp" line="81"/>
         <source>Manufacturer</source>
-        <translation>Fabbricante</translation>
+        <translation>Produttore</translation>
     </message>
     <message>
         <location filename="../ezp_chip_editor.cpp" line="82"/>
@@ -260,12 +260,12 @@ EEPROM</translation>
     <message>
         <location filename="../ezp_chip_editor.cpp" line="796"/>
         <source>Invalid CSV data file format.</source>
-        <translation>Formato del file dati CSV non valido.</translation>
+        <translation>Formato del file di dati CSV non valido.</translation>
     </message>
     <message>
         <location filename="../ezp_chip_editor.cpp" line="830"/>
         <source>Invalid CSV header file format.</source>
-        <translation>Formato del file header CSV non valido.</translation>
+        <translation>Formato dell’intestazione CSV non valido.</translation>
     </message>
 </context>
 </TS>

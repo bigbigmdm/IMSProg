@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2023 - 2025 Mikhail Medvedev <e-ink-reader@yandex.ru>
+ * Copyright (C) 2023 - 2026 Mikhail Medvedev <e-ink-reader@yandex.ru>
  *
  *
  * This program is free software; you can redistribute it and/or
@@ -25,6 +25,8 @@
 #include <QKeyEvent>
 #include <QInputMethod>
 #include <QActionGroup>
+#include <QCloseEvent>
+#include <QSettings>
 #include "qhexedit.h"
 #include "dialogsp.h"
 #include "dialogrp.h"
@@ -118,11 +120,6 @@ MainWindow::MainWindow(QWidget *parent) :
  ui->comboBox_i2cSpeed->setCurrentIndex(2);
  currentI2CBusSpeed = 2;
 
- programmers programmer[] = {
-    //progID progType progFullName     progDownName
-     {0,     0,       "CH341A/B V1.2", "CH341"},
-     {1,     0,       "CH341A V1.7",   "CH341"}
- };
  current_programmer = 0;
 
  currentChipSize = 0;
@@ -149,10 +146,30 @@ MainWindow::MainWindow(QWidget *parent) :
  oldChipData.resize(256);
  oldChipData.fill(char(0xff));
  ch341a_spi_shutdown();
+
+ //Reading ini file
+ QString iniPath = QDir::homePath() + "/.local/share/imsprog/config.ini";
+ if (QFileInfo(iniPath).exists())
+ {
+     QSettings settings(iniPath, QSettings::IniFormat);
+     settings.beginGroup("Chip");
+       lastDirectory = settings.value("ChipDirectory").toString();
+     settings.endGroup();
+     settings.beginGroup("Device");
+       current_programmer =  static_cast<unsigned char>(settings.value("ProgrammerType").toInt());
+       if (current_programmer == 0) ui->actionCH341A_B_v1_2->setChecked(true);
+       if (current_programmer == 1) ui->actionCH341A_v1_7->setChecked(true);
+     settings.endGroup();
+     settings.beginGroup("FormPosition");
+     if (settings.contains("geometry"))
+     {
+         restoreGeometry(settings.value("geometry").toByteArray());
+     }
+     settings.endGroup();
+ }
  QFont heFont;
  heFont = QFont("Monospace", 10);
  hexEdit = new QHexEdit(ui->frame);
- hexEdit->setGeometry(0,0,ui->frame->width(),ui->frame->height());
  hexEdit->setData(chipData);
  hexEdit->setHexCaps(true);
  hexEdit->setFont(heFont);
@@ -1106,6 +1123,7 @@ void MainWindow::on_actionRead_triggered()
 
 void MainWindow::on_actionExit_triggered()
 {
+
     ch341a_spi_shutdown();
     MainWindow::close();
 }
@@ -1770,6 +1788,8 @@ void MainWindow::doNotDisturb()
    ui->actionSecurity_registers->setDisabled(true);
    ui->actionBad_block_management->setDisabled(true);
    ui->actionStop->setDisabled(false);
+   ui->actionCH341A_B_v1_2->setDisabled(true);
+   ui->actionCH341A_v1_7->setDisabled(true);
 
    ui->pushButton->blockSignals(true);
    ui->pushButton_2->blockSignals(true);
@@ -1812,6 +1832,8 @@ void MainWindow::doNotDisturbCancel()
       ui->actionChecksum_calculate->setDisabled(false);
       ui->actionGoto_address->setDisabled(false);
       ui->actionCompare_files->setDisabled(false);
+      ui->actionCH341A_B_v1_2->setDisabled(false);
+      ui->actionCH341A_v1_7->setDisabled(false);
       if ((currentChipType == 0) || (currentChipType == 6) || (currentChipType > 2)) ui->actionChip_info->setDisabled(false);
       if ((currentChipType == 0) || (currentChipType == 6)) ui->actionSecurity_registers->setDisabled(false);
       if (currentChipType == 6) ui->actionBad_block_management->setDisabled(false);
@@ -2099,7 +2121,6 @@ void MainWindow::on_actionSecurity_registers_triggered()
             connect(securityNandDialog, SIGNAL(closeRequestHasArrived()), this, SLOT(closeNandSR()));
             securityNandDialog->setAlgorithm(currentAlgorithm);
             securityNandDialog->setSectorSize(currentPageSize);
-            qDebug()<<"Main:"<<currentPageSize<<" "<< currentAlgorithm;
             securityNandDialog->setPath(lastDirectory);
             securityNandDialog->show();
     }
@@ -2432,4 +2453,27 @@ void MainWindow::on_actionCH341A_B_v1_2_triggered()
 void MainWindow::on_actionCH341A_v1_7_triggered()
 {
     current_programmer = 1;
+}
+
+void MainWindow::closeEvent(QCloseEvent( *event))
+{
+    //Storing parameters in ini file
+    if (lastDirectory == NULL) lastDirectory = QDir::homePath();
+    QSettings settings(QDir::homePath() + "/.local/share/imsprog/config.ini", QSettings::IniFormat);
+    settings.beginGroup("Chip");
+    settings.setValue("ChipDirectory", lastDirectory);
+    settings.endGroup();
+    settings.beginGroup("Device");
+    settings.setValue("ProgrammerType", current_programmer);
+    settings.endGroup();
+    settings.beginGroup("FormPosition");
+    settings.setValue("geometry", saveGeometry());
+    settings.endGroup();
+    QMainWindow::closeEvent(event);
+}
+
+void MainWindow::showEvent(QShowEvent* event)
+{
+    QMainWindow::showEvent(event);
+    hexEdit->setGeometry(0, 0, ui->frame->width(), ui->frame->height());
 }
