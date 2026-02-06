@@ -1,3 +1,10 @@
+imsprog (1.7.3-1) unstable; urgency=medium
+
+  * New upstream version:
+    - Fix: Incorrect HexEdit size when starting the program
+    - Added: saving program settings to an ini file
+ -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Fri, 6 Feb 2026 08:15:21 +0300
+
 imsprog (1.7.2-1) unstable; urgency=medium
 
   * New upstream version:
