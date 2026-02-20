@@ -180,6 +180,8 @@ install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/database/IMSProg.Dat" DESTINATION "${
 
 if(NOT ${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
   install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/other/IMSProg.desktop" DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/applications")
+endif()
+if(${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
   install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/other/71-CH341.rules" DESTINATION "${UDEVDIR}/rules.d")
 endif()
 
