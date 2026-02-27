@@ -27,6 +27,7 @@ DialogSR::DialogSR(QWidget *parent) :
     setWindowFlags(Qt::Window | Qt::WindowMinimizeButtonHint | Qt::WindowCloseButtonHint);
     setLineEditFilter();
     regReaded = false;
+    programmerType = 0;
 }
 
 DialogSR::~DialogSR()
@@ -41,15 +42,15 @@ void DialogSR::on_pushButton_read_clicked()
     int retval;
     int stCH341 = 0;
     buf = (uint8_t *)malloc(2);
-    stCH341 = ch341a_spi_init();
+    stCH341 = ProgDeviceInit( programmerType, 3, 1 );
     if (stCH341 == 0)
         {
-           SPI_CONTROLLER_Chip_Select_Low();
-           if (currentChipType != 5) SPI_CONTROLLER_Write_One_Byte(0x05);
-           else SPI_CONTROLLER_Write_One_Byte(0xd7);
-           retval = SPI_CONTROLLER_Read_NByte(buf,1,SPI_CONTROLLER_SPEED_SINGLE);
+           SPI_CONTROLLER_Chip_Select_Low(programmerType);
+           if (currentChipType != 5) SPI_CONTROLLER_Write_One_Byte(0x05, programmerType);
+           else SPI_CONTROLLER_Write_One_Byte(0xd7, programmerType);
+           retval = SPI_CONTROLLER_Read_NByte(buf,1,SPI_CONTROLLER_SPEED_SINGLE, programmerType);
            qDebug() << "retval=" << retval;
-           SPI_CONTROLLER_Chip_Select_High();
+           SPI_CONTROLLER_Chip_Select_High(programmerType);
            usleep(1);
            if (retval)
               {
@@ -64,10 +65,10 @@ void DialogSR::on_pushButton_read_clicked()
             ui->lineEdit_sr02->setText(QString::number(((buf[0] & 4) >> 2)));
             ui->lineEdit_sr01->setText(QString::number(((buf[0] & 2) >> 1)));
             ui->lineEdit_sr00->setText(QString::number((buf[0] & 1)));
-            ch341a_spi_shutdown();
+            ProgDeviceClose( programmerType );
             regReaded = true;
        }
-    else QMessageBox::about(this, tr("Error"), tr("Programmer CH341a is not connected!"));
+    else QMessageBox::about(this, tr("Error"), tr("Programmer ") + programmerName + tr(" is not connected!"));
 }
 
 void DialogSR::on_pushButton_write_clicked()
@@ -75,7 +76,7 @@ void DialogSR::on_pushButton_write_clicked()
     //WRITING STATUS REGISTER
     uint8_t r0 = 0;
     int stCH341 = 0;
-    stCH341 = ch341a_spi_init();
+    stCH341 = ProgDeviceInit( programmerType, 3, 1 );
     if (stCH341 == 0)
         {
            if (regReaded)
@@ -89,28 +90,28 @@ void DialogSR::on_pushButton_write_clicked()
                if (QString::compare(ui->lineEdit_sr01->text(), "0", Qt::CaseInsensitive)) r0 = r0 +   2;
                if (QString::compare(ui->lineEdit_sr00->text(), "0", Qt::CaseInsensitive)) r0 = r0 +   1;
                //Writing status registers
-               SPI_CONTROLLER_Chip_Select_Low();
-               SPI_CONTROLLER_Write_One_Byte(0x06);
-               SPI_CONTROLLER_Chip_Select_High();
+               SPI_CONTROLLER_Chip_Select_Low(programmerType);
+               SPI_CONTROLLER_Write_One_Byte(0x06, programmerType);
+               SPI_CONTROLLER_Chip_Select_High(programmerType);
                usleep(1);
 
-               SPI_CONTROLLER_Chip_Select_Low();
-               SPI_CONTROLLER_Write_One_Byte(0x01);
-               SPI_CONTROLLER_Write_One_Byte(r0);
-               SPI_CONTROLLER_Chip_Select_High();
+               SPI_CONTROLLER_Chip_Select_Low(programmerType);
+               SPI_CONTROLLER_Write_One_Byte(0x01, programmerType);
+               SPI_CONTROLLER_Write_One_Byte(r0, programmerType);
+               SPI_CONTROLLER_Chip_Select_High(programmerType);
                usleep(1);
 
-               SPI_CONTROLLER_Chip_Select_Low();
-               SPI_CONTROLLER_Write_One_Byte(0x04);
-               SPI_CONTROLLER_Chip_Select_High();
+               SPI_CONTROLLER_Chip_Select_Low(programmerType);
+               SPI_CONTROLLER_Write_One_Byte(0x04, programmerType);
+               SPI_CONTROLLER_Chip_Select_High(programmerType);
                usleep(1);
 
            }
            else QMessageBox::about(this, tr("Error"), tr("Before writing the register, please press the `Read` button!"));
          }
 
-    else QMessageBox::about(this, tr("Error"), tr("Programmer CH341a is not connected!"));
-    ch341a_spi_shutdown();
+    else QMessageBox::about(this, tr("Error"), tr("Programmer ") + programmerName + tr(" is not connected!"));
+    ProgDeviceClose( programmerType );
 }
 
 void DialogSR::setLineEditFilter()
@@ -172,4 +173,11 @@ void DialogSR::closeEvent(QCloseEvent* event)
 {
     emit closeRequestHasArrived();
     QWidget::closeEvent(event);
+}
+
+void DialogSR::setDeviceType(const uint8_t pType)
+{
+    programmerType = pType;
+    if (programmerType < 2)  programmerName ="CH341A";
+    if (programmerType == 2) programmerName ="CH347T";
 }

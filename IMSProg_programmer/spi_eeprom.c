@@ -33,10 +33,10 @@ static void wait_ready(void)
 	uint8_t data[1];
 
 	while (1) {
-		SPI_CONTROLLER_Chip_Select_Low();
-		SPI_CONTROLLER_Write_One_Byte(SEEP_RDSR_CMD);
-		SPI_CONTROLLER_Read_NByte(data, 1, SPI_CONTROLLER_SPEED_SINGLE);
-		SPI_CONTROLLER_Chip_Select_High();
+        SPI_CONTROLLER_Chip_Select_Low(1);
+        SPI_CONTROLLER_Write_One_Byte(SEEP_RDSR_CMD,1);
+        SPI_CONTROLLER_Read_NByte(data, 1, SPI_CONTROLLER_SPEED_SINGLE,1);
+        SPI_CONTROLLER_Chip_Select_High(1);
 
 		if ((data[0] & 0x01) == 0) break;
 		usleep(1);
@@ -48,15 +48,15 @@ static void write_enable(void)
 	uint8_t data[1];
 
 	while (1) {
-		SPI_CONTROLLER_Chip_Select_Low();
-		SPI_CONTROLLER_Write_One_Byte(SEEP_WREN_CMD);
-		SPI_CONTROLLER_Chip_Select_High();
+        SPI_CONTROLLER_Chip_Select_Low(1);
+        SPI_CONTROLLER_Write_One_Byte(SEEP_WREN_CMD,1);
+        SPI_CONTROLLER_Chip_Select_High(1);
 		usleep(1);
 
-		SPI_CONTROLLER_Chip_Select_Low();
-		SPI_CONTROLLER_Write_One_Byte(SEEP_RDSR_CMD);
-		SPI_CONTROLLER_Read_NByte(data, 1, SPI_CONTROLLER_SPEED_SINGLE);
-		SPI_CONTROLLER_Chip_Select_High();
+        SPI_CONTROLLER_Chip_Select_Low(1);
+        SPI_CONTROLLER_Write_One_Byte(SEEP_RDSR_CMD,1);
+        SPI_CONTROLLER_Read_NByte(data, 1, SPI_CONTROLLER_SPEED_SINGLE,1);
+        SPI_CONTROLLER_Chip_Select_High(1);
 
 		if (data[0] == 0x02) break;
 		usleep(1);
@@ -73,24 +73,24 @@ static void eeprom_write_byte(struct spi_eeprom *dev, uint32_t address, uint8_t 
 	if (dev->addr_bits == 9 && address > 0xFF)
 		buf[0] = buf[0] | 0x08;
 
-	SPI_CONTROLLER_Chip_Select_Low();
+    SPI_CONTROLLER_Chip_Select_Low(1);
 	if (dev->addr_bits > 16) {
 		buf[1] = (address & 0xFF0000) >> 16;
 		buf[2] = (address & 0xFF00) >> 8;
 		buf[3] = (address & 0xFF);
 		buf[4] = data;
-		SPI_CONTROLLER_Write_NByte(buf, 5, SPI_CONTROLLER_SPEED_SINGLE);
+        SPI_CONTROLLER_Write_NByte(buf, 5, SPI_CONTROLLER_SPEED_SINGLE,1);
 	} else if (dev->addr_bits < 10) {
 		buf[1] = (address & 0xFF);
 		buf[2] = data;
-		SPI_CONTROLLER_Write_NByte(buf, 3, SPI_CONTROLLER_SPEED_SINGLE);
+        SPI_CONTROLLER_Write_NByte(buf, 3, SPI_CONTROLLER_SPEED_SINGLE,1);
 	} else {
 		buf[1] = (address & 0xFF00) >> 8;
 		buf[2] = (address & 0xFF);
 		buf[3] = data;
-		SPI_CONTROLLER_Write_NByte(buf, 4, SPI_CONTROLLER_SPEED_SINGLE);
+        SPI_CONTROLLER_Write_NByte(buf, 4, SPI_CONTROLLER_SPEED_SINGLE,1);
 	}
-	SPI_CONTROLLER_Chip_Select_High();
+    SPI_CONTROLLER_Chip_Select_High(1);
 
 	wait_ready();
 }
@@ -124,9 +124,9 @@ static void eeprom_write_page(struct spi_eeprom *dev, uint32_t address, int page
 
 	write_enable();
 
-	SPI_CONTROLLER_Chip_Select_Low();
-	SPI_CONTROLLER_Write_NByte(buf, offs + page_size, SPI_CONTROLLER_SPEED_SINGLE);
-	SPI_CONTROLLER_Chip_Select_High();
+    SPI_CONTROLLER_Chip_Select_Low(1);
+    SPI_CONTROLLER_Write_NByte(buf, offs + page_size, SPI_CONTROLLER_SPEED_SINGLE,1);
+    SPI_CONTROLLER_Chip_Select_High(1);
 
 	wait_ready();
 }
@@ -140,27 +140,27 @@ static uint8_t eeprom_read_byte(struct spi_eeprom *dev, uint32_t address)
 	if (dev->addr_bits == 9 && address > 0xFF)
 		buf[0] = buf[0] | 0x08;
 
-	SPI_CONTROLLER_Chip_Select_Low();
+    SPI_CONTROLLER_Chip_Select_Low(1);
 	if (dev->addr_bits > 16) {
 		buf[1] = (address & 0xFF0000) >> 16;
 		buf[2] = (address & 0xFF00) >> 8;
 		buf[3] = (address & 0xFF);
-		SPI_CONTROLLER_Write_NByte(buf, 4, SPI_CONTROLLER_SPEED_SINGLE);
-		SPI_CONTROLLER_Read_NByte(buf, 1, SPI_CONTROLLER_SPEED_SINGLE);
+        SPI_CONTROLLER_Write_NByte(buf, 4, SPI_CONTROLLER_SPEED_SINGLE,1);
+        SPI_CONTROLLER_Read_NByte(buf, 1, SPI_CONTROLLER_SPEED_SINGLE,1);
 		data = buf[0];
 	} else if (dev->addr_bits < 10) {
 		buf[1] = (address & 0xFF);
-		SPI_CONTROLLER_Write_NByte(buf, 2, SPI_CONTROLLER_SPEED_SINGLE);
-		SPI_CONTROLLER_Read_NByte(buf, 1, SPI_CONTROLLER_SPEED_SINGLE);
+        SPI_CONTROLLER_Write_NByte(buf, 2, SPI_CONTROLLER_SPEED_SINGLE,1);
+        SPI_CONTROLLER_Read_NByte(buf, 1, SPI_CONTROLLER_SPEED_SINGLE,1);
 		data = buf[0];
 	} else {
 		buf[1] = (address & 0xFF00) >> 8;
 		buf[2] = (address & 0xFF);
-		SPI_CONTROLLER_Write_NByte(buf, 3, SPI_CONTROLLER_SPEED_SINGLE);
-		SPI_CONTROLLER_Read_NByte(buf, 1, SPI_CONTROLLER_SPEED_SINGLE);
+        SPI_CONTROLLER_Write_NByte(buf, 3, SPI_CONTROLLER_SPEED_SINGLE,1);
+        SPI_CONTROLLER_Read_NByte(buf, 1, SPI_CONTROLLER_SPEED_SINGLE,1);
 		data = buf[0];
 	}
-	SPI_CONTROLLER_Chip_Select_High();
+    SPI_CONTROLLER_Chip_Select_High(1);
 
 	return data;
 }
@@ -291,7 +291,7 @@ long spi_eeprom_init(void)
 		return -1;
 	}
 
-	bsize = 1;
+    //int bsize = 1;
 
 	printf("SPI EEPROM chip: %s, Size: %d bytes\n", eepromname, seepromsize);
 

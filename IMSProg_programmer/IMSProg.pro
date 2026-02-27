@@ -42,7 +42,6 @@ SOURCES += \
        mw_eeprom.c \
        spi_controller.c \
        spi_eeprom.c \
-       spi_nand_flash.c \
        spi_nor_flash.c \
        timer.c \
        dialogabout.cpp \
@@ -56,7 +55,9 @@ SOURCES += \
     dialogcompare.cpp \
     dialognandsr.cpp \
     dialognandsecurity.cpp \
-    dialogbbm.cpp
+    dialogbbm.cpp \
+    ch347.c \
+    ch347funcs.c
 
 HEADERS += \
        mainwindow.h \
@@ -93,7 +94,9 @@ HEADERS += \
     dialogcompare.h \
     dialognandsr.h \
     dialognandsecurity.h \
-    dialogbbm.h
+    dialogbbm.h \
+    ch347.h \
+    ch347eeprom.h
 
 FORMS += \
         mainwindow.ui \

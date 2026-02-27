@@ -20,35 +20,59 @@
  */
 #include "ch341a_spi.h"
 #include "spi_controller.h"
+#include "ch347.h"
+
+extern struct ch347_priv *priv;
+
+int ProgDeviceInit( u8 deviceType, u8 chipType, u8 i2cSpeed )
+{
+    int ret;
+    if (deviceType < 2)  ret = ch341a_init(chipType, i2cSpeed);
+    if (deviceType == 2) ret = ch347_spi_init(chipType, i2cSpeed);
+    return ret;
+}
+
+int ProgDeviceClose( u8 deviceType )
+{
+    if (deviceType < 2)  ch341a_spi_shutdown();
+    if (deviceType == 2) ch347_spi_shutdown();
+    return 0;
+}
+
 
 SPI_CONTROLLER_RTN_T SPI_CONTROLLER_Enable_Manual_Mode( void )
 {
 	return 0;
 }
 
-SPI_CONTROLLER_RTN_T SPI_CONTROLLER_Write_One_Byte( u8  data )
+SPI_CONTROLLER_RTN_T SPI_CONTROLLER_Write_One_Byte( u8  data, u8 deviceType )
 {
-	return (SPI_CONTROLLER_RTN_T)ch341a_spi_send_command(1, 0, &data, NULL);
+    if (deviceType < 2) return (SPI_CONTROLLER_RTN_T)ch341a_spi_send_command(1, 0, &data, NULL);
+    else return (SPI_CONTROLLER_RTN_T)ch347_spi_tx(priv, &data, 1);
 }
 
-SPI_CONTROLLER_RTN_T SPI_CONTROLLER_Chip_Select_High( void )
+SPI_CONTROLLER_RTN_T SPI_CONTROLLER_Chip_Select_High( u8 deviceType )
 {
-	return (SPI_CONTROLLER_RTN_T)enable_pins(false);
+    if (deviceType < 2) return (SPI_CONTROLLER_RTN_T)enable_pins(false);
+    else return (SPI_CONTROLLER_RTN_T)ch347_set_cs(priv, 0, 1);
 }
 
-SPI_CONTROLLER_RTN_T SPI_CONTROLLER_Chip_Select_Low( void )
+SPI_CONTROLLER_RTN_T SPI_CONTROLLER_Chip_Select_Low( u8 deviceType )
 {
-	return (SPI_CONTROLLER_RTN_T)enable_pins(true);
+    if (deviceType < 2) return (SPI_CONTROLLER_RTN_T)enable_pins(true);
+    else return (SPI_CONTROLLER_RTN_T)ch347_set_cs(priv, 0, 0);
 }
 
-SPI_CONTROLLER_RTN_T SPI_CONTROLLER_Read_NByte( u8 *ptr_rtn_data, u32 len, SPI_CONTROLLER_SPEED_T speed )
+SPI_CONTROLLER_RTN_T SPI_CONTROLLER_Read_NByte( u8 *ptr_rtn_data, u32 len, SPI_CONTROLLER_SPEED_T speed, u8 deviceType )
 {
-	return (SPI_CONTROLLER_RTN_T)ch341a_spi_send_command(0, len, NULL, ptr_rtn_data);
+    if (deviceType < 2) return (SPI_CONTROLLER_RTN_T)ch341a_spi_send_command(0, len, NULL, ptr_rtn_data);
+    else return (SPI_CONTROLLER_RTN_T)ch347_spi_rx(priv, ptr_rtn_data, len);
 }
 
-SPI_CONTROLLER_RTN_T SPI_CONTROLLER_Write_NByte( u8 *ptr_data, u32 len, SPI_CONTROLLER_SPEED_T speed )
+SPI_CONTROLLER_RTN_T SPI_CONTROLLER_Write_NByte( u8 *ptr_data, u32 len, SPI_CONTROLLER_SPEED_T speed, u8 deviceType )
 {
-	return (SPI_CONTROLLER_RTN_T)ch341a_spi_send_command(len, 0, ptr_data, NULL);
+    if (deviceType < 2) return (SPI_CONTROLLER_RTN_T)ch341a_spi_send_command(len, 0, ptr_data, NULL);
+    else return (SPI_CONTROLLER_RTN_T)ch347_spi_tx(priv, ptr_data, len);
 }
 
 #if 0

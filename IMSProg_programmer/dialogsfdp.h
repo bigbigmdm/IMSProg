@@ -20,6 +20,7 @@
 #include "hexutility.h"
 extern "C" {
 #include "ch341a_spi.h"
+#include "ch347.h"
 #include "spi_controller.h"
 }
 namespace Ui {
@@ -34,6 +35,7 @@ public:
     explicit DialogSFDP(QWidget *parent = nullptr);
     ~DialogSFDP();
     void closeEvent(QCloseEvent* event);
+    void setDeviceType(const uint8_t pType);
 
 private slots:
     void on_pushButton_clicked();
@@ -50,6 +52,8 @@ private:
     void setLineEditFilter();
     void legendPrint(QString basic, QString extended, QString manufacture);
     int numOfRegisters;
+    uint8_t programmerType;
+    QString programmerName;
 };
 
 #endif // DIALOGSFDP_H

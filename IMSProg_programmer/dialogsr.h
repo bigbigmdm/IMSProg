@@ -33,6 +33,7 @@ public:
     explicit DialogSR(QWidget *parent = nullptr);
     void setChipType(const uint chipType);
     void closeEvent(QCloseEvent* event);
+    void setDeviceType(const uint8_t pType);
     uint currentChipType;
     ~DialogSR();
 
@@ -47,6 +48,8 @@ private:
     Ui::DialogSR *ui;
     void setLineEditFilter();
     bool regReaded;
+    uint8_t programmerType;
+    QString programmerName;
 };
 
 #endif // DIALOGSR_H

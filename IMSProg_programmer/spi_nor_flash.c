@@ -1,6 +1,6 @@
 /*
  * Copyright (C) 2018-2021 McMCC <mcmcc@mail.ru>
- * 2023-2025 Mikhail Medvedev <e-ink-reader@yandex.ru>
+ * 2023-2026 Mikhail Medvedev <e-ink-reader@yandex.ru>
  * spi_nor_flash.c
  *
  * This program is free software; you can redistribute it and/or
@@ -77,6 +77,7 @@
 /* #define snor_dbg(args...) do { if (1) printf(args); } while(0) */
 
 #define udelay(x)			usleep(x)
+u8 programmerType = 0;
 /*
 struct chip_info {
 	char		*name;
@@ -106,29 +107,29 @@ extern unsigned int bsize;
  */
 static inline void snor_write_enable(void)
 {
-	SPI_CONTROLLER_Chip_Select_Low();
-	SPI_CONTROLLER_Write_One_Byte(OPCODE_WREN);
-	SPI_CONTROLLER_Chip_Select_High();
+    SPI_CONTROLLER_Chip_Select_Low(programmerType);
+    SPI_CONTROLLER_Write_One_Byte(OPCODE_WREN, programmerType);
+    SPI_CONTROLLER_Chip_Select_High(programmerType);
 }
 
 static inline void snor_write_disable(void)
 {
-	SPI_CONTROLLER_Chip_Select_Low();
-	SPI_CONTROLLER_Write_One_Byte(OPCODE_WRDI);
-	SPI_CONTROLLER_Chip_Select_High();
+    SPI_CONTROLLER_Chip_Select_Low(programmerType);
+    SPI_CONTROLLER_Write_One_Byte(OPCODE_WRDI, programmerType);
+    SPI_CONTROLLER_Chip_Select_High(programmerType);
 }
 static inline void s95_write_enable(void)
 {
-    SPI_CONTROLLER_Chip_Select_Low();
-    SPI_CONTROLLER_Write_One_Byte(0x06);
-    SPI_CONTROLLER_Chip_Select_High();
+    SPI_CONTROLLER_Chip_Select_Low(programmerType);
+    SPI_CONTROLLER_Write_One_Byte(0x06, programmerType);
+    SPI_CONTROLLER_Chip_Select_High(programmerType);
 }
 
 static inline void s95_write_disable(void)
 {
-    SPI_CONTROLLER_Chip_Select_Low();
-    SPI_CONTROLLER_Write_One_Byte(0x04);
-    SPI_CONTROLLER_Chip_Select_High();
+    SPI_CONTROLLER_Chip_Select_Low(programmerType);
+    SPI_CONTROLLER_Write_One_Byte(0x04, programmerType);
+    SPI_CONTROLLER_Chip_Select_High(programmerType);
 }
 /*
  * Set all sectors (global) unprotected if they are protected.
@@ -182,10 +183,10 @@ static int snor_read_rg(u8 code, u8 *val)
 {
 	int retval;
 
-	SPI_CONTROLLER_Chip_Select_Low();
-	SPI_CONTROLLER_Write_One_Byte(code);
-	retval = SPI_CONTROLLER_Read_NByte(val, 1, SPI_CONTROLLER_SPEED_SINGLE);
-	SPI_CONTROLLER_Chip_Select_High();
+    SPI_CONTROLLER_Chip_Select_Low(programmerType);
+    SPI_CONTROLLER_Write_One_Byte(code, programmerType);
+    retval = SPI_CONTROLLER_Read_NByte(val, 1, SPI_CONTROLLER_SPEED_SINGLE, programmerType);
+    SPI_CONTROLLER_Chip_Select_High(programmerType);
 	if (retval) {
 		printf("%s: ret: %x\n", __func__, retval);
 		return -1;
@@ -201,10 +202,10 @@ static int snor_write_rg(u8 code, u8 *val)
 {
 	int retval;
 
-	SPI_CONTROLLER_Chip_Select_Low();
-	SPI_CONTROLLER_Write_One_Byte(code);
-	retval = SPI_CONTROLLER_Write_NByte(val, 1, SPI_CONTROLLER_SPEED_SINGLE);
-	SPI_CONTROLLER_Chip_Select_High();
+    SPI_CONTROLLER_Chip_Select_Low(programmerType);
+    SPI_CONTROLLER_Write_One_Byte(code, programmerType);
+    retval = SPI_CONTROLLER_Write_NByte(val, 1, SPI_CONTROLLER_SPEED_SINGLE, programmerType);
+    SPI_CONTROLLER_Chip_Select_High(programmerType);
 	if (retval) {
 		printf("%s: ret: %x\n", __func__, retval);
 		return -1;
@@ -235,9 +236,9 @@ static int snor_4byte_mode(int enable)
 	} else {
 		u8 code = enable ? 0xb7 : 0xe9; /* B7: enter 4B, E9: exit 4B */
 
-		SPI_CONTROLLER_Chip_Select_Low();
-		retval = SPI_CONTROLLER_Write_One_Byte(code);
-		SPI_CONTROLLER_Chip_Select_High();
+        SPI_CONTROLLER_Chip_Select_Low(programmerType);
+        retval = SPI_CONTROLLER_Write_One_Byte(code, programmerType);
+        SPI_CONTROLLER_Chip_Select_High(programmerType);
 		if (retval) {
 			printf("%s: ret: %x\n", __func__, retval);
 			return -1;
@@ -265,9 +266,9 @@ int full_erase_chip(void)
 	snor_write_enable();
 	snor_unprotect();
 
-	SPI_CONTROLLER_Chip_Select_Low();
-	SPI_CONTROLLER_Write_One_Byte(OPCODE_BE1);
-	SPI_CONTROLLER_Chip_Select_High();
+    SPI_CONTROLLER_Chip_Select_Low(programmerType);
+    SPI_CONTROLLER_Write_One_Byte(OPCODE_BE1, programmerType);
+    SPI_CONTROLLER_Chip_Select_High(programmerType);
 
 	snor_wait_ready(950);
 	snor_write_disable();
@@ -276,13 +277,14 @@ int full_erase_chip(void)
 	return 0;
 }
 
-int snor_block_erase(unsigned int sector_number, unsigned int blockSize, u8 addr4b)
+int snor_block_erase(unsigned int sector_number, unsigned int blockSize, u8 addr4b, u8 progType)
 {
     unsigned int physical_addr;
     //addr4bit transforming
     algType = (addr4b & 0xf0) >> 4;
     addr4b = addr4b & 0x0f;
 
+    programmerType = progType;
 
     if (addr4b) snor_4byte_mode(1);
 
@@ -292,14 +294,14 @@ int snor_block_erase(unsigned int sector_number, unsigned int blockSize, u8 addr
     snor_write_enable();
     snor_unprotect();
 
-    SPI_CONTROLLER_Chip_Select_Low();
-    SPI_CONTROLLER_Write_One_Byte(0xd8);
-    if (addr4b) SPI_CONTROLLER_Write_One_Byte((physical_addr >> 24) & 0xff);
+    SPI_CONTROLLER_Chip_Select_Low(programmerType);
+    SPI_CONTROLLER_Write_One_Byte(0xd8, programmerType);
+    if (addr4b) SPI_CONTROLLER_Write_One_Byte((physical_addr >> 24) & 0xff, programmerType);
 
-    SPI_CONTROLLER_Write_One_Byte((physical_addr >> 16) & 0xff);
-    SPI_CONTROLLER_Write_One_Byte((physical_addr >> 8) & 0xff);
-    SPI_CONTROLLER_Write_One_Byte(physical_addr & 0xff);
-    SPI_CONTROLLER_Chip_Select_High();
+    SPI_CONTROLLER_Write_One_Byte((physical_addr >> 16) & 0xff, programmerType);
+    SPI_CONTROLLER_Write_One_Byte((physical_addr >> 8) & 0xff, programmerType);
+    SPI_CONTROLLER_Write_One_Byte(physical_addr & 0xff, programmerType);
+    SPI_CONTROLLER_Chip_Select_High(programmerType);
 
     snor_write_disable();
     if (addr4b) snor_4byte_mode(0);
@@ -309,19 +311,28 @@ int snor_block_erase(unsigned int sector_number, unsigned int blockSize, u8 addr
 /*
  * read SPI flash device ID
  */
-int snor_read_devid(u8 *rxbuf, int n_rx)
+int snor_read_devid(u8 *rxbuf, int n_rx, uint8_t progType)
 {
 	int retval = 0;
+    programmerType = progType;
 
-	SPI_CONTROLLER_Chip_Select_Low();
-	SPI_CONTROLLER_Write_One_Byte(OPCODE_RDID);
+    SPI_CONTROLLER_Chip_Select_Low(programmerType);
+    SPI_CONTROLLER_Write_One_Byte(OPCODE_RDID, programmerType);
 
-	retval = SPI_CONTROLLER_Read_NByte(rxbuf, n_rx, SPI_CONTROLLER_SPEED_SINGLE);
-	SPI_CONTROLLER_Chip_Select_High();
+    retval = SPI_CONTROLLER_Read_NByte(rxbuf, n_rx, SPI_CONTROLLER_SPEED_SINGLE, programmerType);
+    SPI_CONTROLLER_Chip_Select_High(programmerType);
+
 	if (retval) {
 		printf("%s: ret: %x\n", __func__, retval);
 		return retval;
 	}
+
+    if ((rxbuf[0] == 0) && (rxbuf[1] == 0) && (rxbuf[2] == 0))
+    {
+        rxbuf[0] = 0xff;
+        rxbuf[1] = 0xff;
+        rxbuf[2] = 0xff;
+    }
 
 	return 0;
 }
@@ -333,11 +344,11 @@ static int snor_read_sr(u8 *val)
 {
 	int retval = 0;
 
-	SPI_CONTROLLER_Chip_Select_Low();
-	SPI_CONTROLLER_Write_One_Byte(OPCODE_RDSR);
+    SPI_CONTROLLER_Chip_Select_Low(programmerType);
+    SPI_CONTROLLER_Write_One_Byte(OPCODE_RDSR, programmerType);
 
-	retval = SPI_CONTROLLER_Read_NByte(val, 1, SPI_CONTROLLER_SPEED_SINGLE);
-	SPI_CONTROLLER_Chip_Select_High();
+    retval = SPI_CONTROLLER_Read_NByte(val, 1, SPI_CONTROLLER_SPEED_SINGLE, programmerType);
+    SPI_CONTROLLER_Chip_Select_High(programmerType);
 	if (retval) {
 		printf("%s: ret: %x\n", __func__, retval);
 		return retval;
@@ -353,11 +364,11 @@ static int snor_write_sr(u8 *val)
 {
 	int retval = 0;
 
-	SPI_CONTROLLER_Chip_Select_Low();
-	SPI_CONTROLLER_Write_One_Byte(OPCODE_WRSR);
+    SPI_CONTROLLER_Chip_Select_Low(programmerType);
+    SPI_CONTROLLER_Write_One_Byte(OPCODE_WRSR, programmerType);
 
-	retval = SPI_CONTROLLER_Write_NByte(val, 1, SPI_CONTROLLER_SPEED_SINGLE);
-	SPI_CONTROLLER_Chip_Select_High();
+    retval = SPI_CONTROLLER_Write_NByte(val, 1, SPI_CONTROLLER_SPEED_SINGLE, programmerType);
+    SPI_CONTROLLER_Chip_Select_High(programmerType);
 	if (retval) {
 		printf("%s: ret: %x\n", __func__, retval);
 		return retval;
@@ -366,10 +377,10 @@ static int snor_write_sr(u8 *val)
 }
 
 
-int snor_read_param(unsigned char *buf, unsigned long from, unsigned long len, unsigned int sector_size, unsigned int addr4b)
+int snor_read_param(unsigned char *buf, unsigned long from, unsigned long len, unsigned int sector_size, unsigned int addr4b, uint8_t progType)
 {
     u32 read_addr, physical_read_addr, remain_len, data_offset;
-
+    programmerType = progType;
     //addr4bit transforming
     algType = (addr4b & 0xf0) >> 4;
     addr4b = addr4b & 0x0f;
@@ -397,21 +408,21 @@ int snor_read_param(unsigned char *buf, unsigned long from, unsigned long len, u
         if (addr4b)
             snor_4byte_mode(1);
 
-        SPI_CONTROLLER_Chip_Select_Low();
+        SPI_CONTROLLER_Chip_Select_Low(programmerType);
 
         /* Set up the write data buffer. */
-        SPI_CONTROLLER_Write_One_Byte(OPCODE_READ);
+        SPI_CONTROLLER_Write_One_Byte(OPCODE_READ, programmerType);
 
         if (addr4b)
-        SPI_CONTROLLER_Write_One_Byte((physical_read_addr >> 24) & 0xff);
-        SPI_CONTROLLER_Write_One_Byte((physical_read_addr >> 16) & 0xff);
-        SPI_CONTROLLER_Write_One_Byte((physical_read_addr >> 8) & 0xff);
-        SPI_CONTROLLER_Write_One_Byte(physical_read_addr & 0xff);
+        SPI_CONTROLLER_Write_One_Byte((physical_read_addr >> 24) & 0xff, programmerType);
+        SPI_CONTROLLER_Write_One_Byte((physical_read_addr >> 16) & 0xff, programmerType);
+        SPI_CONTROLLER_Write_One_Byte((physical_read_addr >> 8) & 0xff, programmerType);
+        SPI_CONTROLLER_Write_One_Byte(physical_read_addr & 0xff, programmerType);
 
         if( (data_offset + remain_len) < sector_size )
         {
-            if(SPI_CONTROLLER_Read_NByte(&buf[len - remain_len], remain_len, SPI_CONTROLLER_SPEED_SINGLE)) {
-                SPI_CONTROLLER_Chip_Select_High();
+            if(SPI_CONTROLLER_Read_NByte(&buf[len - remain_len], remain_len, SPI_CONTROLLER_SPEED_SINGLE, programmerType)) {
+                SPI_CONTROLLER_Chip_Select_High(programmerType);
                 if (addr4b)
                     snor_4byte_mode(0);
                 len = -1;
@@ -419,8 +430,8 @@ int snor_read_param(unsigned char *buf, unsigned long from, unsigned long len, u
             }
             remain_len = 0;
         } else {
-            if(SPI_CONTROLLER_Read_NByte(&buf[len - remain_len], sector_size - data_offset, SPI_CONTROLLER_SPEED_SINGLE)) {
-                SPI_CONTROLLER_Chip_Select_High();
+            if(SPI_CONTROLLER_Read_NByte(&buf[len - remain_len], sector_size - data_offset, SPI_CONTROLLER_SPEED_SINGLE, programmerType)) {
+                SPI_CONTROLLER_Chip_Select_High(programmerType);
                 if (addr4b)
                     snor_4byte_mode(0);
                 len = -1;
@@ -431,7 +442,7 @@ int snor_read_param(unsigned char *buf, unsigned long from, unsigned long len, u
 
         }
 
-        SPI_CONTROLLER_Chip_Select_High();
+        SPI_CONTROLLER_Chip_Select_High(programmerType);
 
         if (addr4b)
             snor_4byte_mode(0);
@@ -440,10 +451,12 @@ int snor_read_param(unsigned char *buf, unsigned long from, unsigned long len, u
     return len;
 }
 
-int snor_write_param(unsigned char *buf, unsigned long to, unsigned long len, unsigned int sector_size, unsigned int addr4b)
+int snor_write_param(unsigned char *buf, unsigned long to, unsigned long len, unsigned int sector_size, unsigned int addr4b, u8 progType)
 {
     u32 page_offset, page_size;
     int rc = 0, retlen = 0;
+
+    programmerType = progType;
 
     //addr4bit transforming
     algType = (addr4b & 0xf0) >> 4;
@@ -480,22 +493,22 @@ int snor_write_param(unsigned char *buf, unsigned long to, unsigned long len, un
         snor_write_enable();
         snor_unprotect();
 
-        SPI_CONTROLLER_Chip_Select_Low();
+        SPI_CONTROLLER_Chip_Select_Low(programmerType);
         /* Set up the opcode in the write buffer. */
-        SPI_CONTROLLER_Write_One_Byte(OPCODE_PP);
+        SPI_CONTROLLER_Write_One_Byte(OPCODE_PP, programmerType);
 
         if (addr4b)
-            SPI_CONTROLLER_Write_One_Byte((to >> 24) & 0xff);
-        SPI_CONTROLLER_Write_One_Byte((to >> 16) & 0xff);
-        SPI_CONTROLLER_Write_One_Byte((to >> 8) & 0xff);
-        SPI_CONTROLLER_Write_One_Byte(to & 0xff);
+            SPI_CONTROLLER_Write_One_Byte((to >> 24) & 0xff, programmerType);
+        SPI_CONTROLLER_Write_One_Byte((to >> 16) & 0xff, programmerType);
+        SPI_CONTROLLER_Write_One_Byte((to >> 8) & 0xff, programmerType);
+        SPI_CONTROLLER_Write_One_Byte(to & 0xff, programmerType);
 
-        if(!SPI_CONTROLLER_Write_NByte(buf, page_size, SPI_CONTROLLER_SPEED_SINGLE))
+        if(!SPI_CONTROLLER_Write_NByte(buf, page_size, SPI_CONTROLLER_SPEED_SINGLE, programmerType))
             rc = page_size;
         else
             rc = 1;
 
-        SPI_CONTROLLER_Chip_Select_High();
+        SPI_CONTROLLER_Chip_Select_High(programmerType);
 
         snor_dbg("%s: to:%x page_size:%x ret:%x\n", __func__, to, page_size, rc);
 
@@ -522,13 +535,15 @@ int snor_write_param(unsigned char *buf, unsigned long to, unsigned long len, un
     return retlen;
 }
 
-int s95_read_param(unsigned char *buf, unsigned long from, unsigned long len, unsigned int sector_size, unsigned char currentAlgorithm)
+int s95_read_param(unsigned char *buf, unsigned long from, unsigned long len, unsigned int sector_size, unsigned char currentAlgorithm, u8 progType)
 {
     u32 physical_read_addr, remain_len, data_offset;
     u32 read_addr;
     unsigned char algorythm = currentAlgorithm & 0x0f;
     unsigned char a8 = currentAlgorithm & 0x10;
     snor_dbg("%s: from:%x len:%x \n", __func__, from, len);
+
+    programmerType = progType;
 
     /* sanity checks */
     if (len == 0)
@@ -549,27 +564,27 @@ int s95_read_param(unsigned char *buf, unsigned long from, unsigned long len, un
         data_offset = (physical_read_addr % (sector_size));
 
 
-        SPI_CONTROLLER_Chip_Select_Low();
+        SPI_CONTROLLER_Chip_Select_Low(programmerType);
 
         /* Set up the write data buffer. */
-        if ((from > 255) && (a8 > 0)) SPI_CONTROLLER_Write_One_Byte(0x0b); //read command + a8 bit
-        else SPI_CONTROLLER_Write_One_Byte(0x03); //read command
+        if ((from > 255) && (a8 > 0)) SPI_CONTROLLER_Write_One_Byte(0x0b, programmerType); //read command + a8 bit
+        else SPI_CONTROLLER_Write_One_Byte(0x03, programmerType); //read command
 
-        if (algorythm == 2) SPI_CONTROLLER_Write_One_Byte((physical_read_addr >> 16) & 0xff);
-        if (algorythm > 0)  SPI_CONTROLLER_Write_One_Byte((physical_read_addr >> 8) & 0xff);
-        SPI_CONTROLLER_Write_One_Byte(physical_read_addr & 0xff);
+        if (algorythm == 2) SPI_CONTROLLER_Write_One_Byte((physical_read_addr >> 16) & 0xff, programmerType);
+        if (algorythm > 0)  SPI_CONTROLLER_Write_One_Byte((physical_read_addr >> 8) & 0xff, programmerType);
+        SPI_CONTROLLER_Write_One_Byte(physical_read_addr & 0xff, programmerType);
 
         if( (data_offset + remain_len) < sector_size )
         {
-            if(SPI_CONTROLLER_Read_NByte(&buf[len - remain_len], remain_len, SPI_CONTROLLER_SPEED_SINGLE)) {
-                SPI_CONTROLLER_Chip_Select_High();
+            if(SPI_CONTROLLER_Read_NByte(&buf[len - remain_len], remain_len, SPI_CONTROLLER_SPEED_SINGLE, programmerType)) {
+                SPI_CONTROLLER_Chip_Select_High(programmerType);
                 len = -1;
                 break;
             }
             remain_len = 0;
         } else {
-            if(SPI_CONTROLLER_Read_NByte(&buf[len - remain_len], sector_size - data_offset, SPI_CONTROLLER_SPEED_SINGLE)) {
-                SPI_CONTROLLER_Chip_Select_High();
+            if(SPI_CONTROLLER_Read_NByte(&buf[len - remain_len], sector_size - data_offset, SPI_CONTROLLER_SPEED_SINGLE, programmerType)) {
+                SPI_CONTROLLER_Chip_Select_High(programmerType);
                 len = -1;
                 break;
             }
@@ -577,14 +592,14 @@ int s95_read_param(unsigned char *buf, unsigned long from, unsigned long len, un
             read_addr += sector_size - data_offset;
         }
 
-        SPI_CONTROLLER_Chip_Select_High();
+        SPI_CONTROLLER_Chip_Select_High(programmerType);
 
     }
 
     return len;
 }
 
-int s95_write_param(unsigned char *buf, unsigned long to, unsigned long len, unsigned int sector_size, unsigned char currentAlgorithm)
+int s95_write_param(unsigned char *buf, unsigned long to, unsigned long len, unsigned int sector_size, unsigned char currentAlgorithm, u8 progType)
 {
     u32 page_offset, page_size;
     int rc = 0, retlen = 0;
@@ -592,6 +607,8 @@ int s95_write_param(unsigned char *buf, unsigned long to, unsigned long len, uns
     unsigned char algorythm = currentAlgorithm & 0x0f;
     unsigned char a8 = currentAlgorithm & 0x10;
     snor_dbg("%s: to:%x len:%x \n", __func__, to, len);
+
+    programmerType = progType;
 
     /* sanity checks */
     if (len == 0) return 0;
@@ -612,21 +629,21 @@ int s95_write_param(unsigned char *buf, unsigned long to, unsigned long len, uns
         s95_write_enable();
         s95_unprotect();
 
-        SPI_CONTROLLER_Chip_Select_Low();
+        SPI_CONTROLLER_Chip_Select_Low(programmerType);
         /* Set up the opcode in the write buffer. */
-        if ((to > 255) && (a8 > 0)) SPI_CONTROLLER_Write_One_Byte(0x0a); //write command + a8 bit
-        else SPI_CONTROLLER_Write_One_Byte(0x02); //write command
+        if ((to > 255) && (a8 > 0)) SPI_CONTROLLER_Write_One_Byte(0x0a, programmerType); //write command + a8 bit
+        else SPI_CONTROLLER_Write_One_Byte(0x02, programmerType); //write command
 
-        if (algorythm == 2) SPI_CONTROLLER_Write_One_Byte((to >> 16) & 0xff);
-        if (algorythm > 0) SPI_CONTROLLER_Write_One_Byte((to >> 8) & 0xff);
-        SPI_CONTROLLER_Write_One_Byte(to & 0xff);
+        if (algorythm == 2) SPI_CONTROLLER_Write_One_Byte((to >> 16) & 0xff, programmerType);
+        if (algorythm > 0) SPI_CONTROLLER_Write_One_Byte((to >> 8) & 0xff, programmerType);
+        SPI_CONTROLLER_Write_One_Byte(to & 0xff, programmerType);
 
-        if(!SPI_CONTROLLER_Write_NByte(buf, page_size, SPI_CONTROLLER_SPEED_SINGLE))
+        if(!SPI_CONTROLLER_Write_NByte(buf, page_size, SPI_CONTROLLER_SPEED_SINGLE, programmerType))
             rc = page_size;
         else
             rc = 1;
 
-        SPI_CONTROLLER_Chip_Select_High();
+        SPI_CONTROLLER_Chip_Select_High(programmerType);
 
         snor_dbg("%s: to:%x page_size:%x ret:%x\n", __func__, to, page_size, rc);
 
@@ -653,8 +670,10 @@ int s95_write_param(unsigned char *buf, unsigned long to, unsigned long len, uns
 }
 
 
-int s95_full_erase(void)
+int s95_full_erase(u8 progType)
 {
+    programmerType = progType;
+
     timer_start();
     /* Wait until finished previous write command. */
     if (s95_wait_ready(3))
@@ -664,9 +683,9 @@ int s95_full_erase(void)
     s95_write_enable();
     s95_unprotect();
 
-    SPI_CONTROLLER_Chip_Select_Low();
-    SPI_CONTROLLER_Write_One_Byte(0x62);
-    SPI_CONTROLLER_Chip_Select_High();
+    SPI_CONTROLLER_Chip_Select_Low(programmerType);
+    SPI_CONTROLLER_Write_One_Byte(0x62, programmerType);
+    SPI_CONTROLLER_Chip_Select_High(programmerType);
 
     s95_wait_ready(950);
     s95_write_disable();
@@ -681,10 +700,10 @@ static int s95_read_sr(u8 *val)
 {
     int retval = 0;
 
-    SPI_CONTROLLER_Chip_Select_Low();
-    SPI_CONTROLLER_Write_One_Byte(0x05);
-    retval = SPI_CONTROLLER_Read_NByte(val, 1, SPI_CONTROLLER_SPEED_SINGLE);
-    SPI_CONTROLLER_Chip_Select_High();
+    SPI_CONTROLLER_Chip_Select_Low(programmerType);
+    SPI_CONTROLLER_Write_One_Byte(0x05, programmerType);
+    retval = SPI_CONTROLLER_Read_NByte(val, 1, SPI_CONTROLLER_SPEED_SINGLE, programmerType);
+    SPI_CONTROLLER_Chip_Select_High(programmerType);
     if (retval) {
         printf("%s: ret: %x\n", __func__, retval);
         return retval;
@@ -696,11 +715,11 @@ static int s95_write_sr(u8 *val)
 {
     int retval = 0;
 
-    SPI_CONTROLLER_Chip_Select_Low();
-    SPI_CONTROLLER_Write_One_Byte(0x01);
+    SPI_CONTROLLER_Chip_Select_Low(programmerType);
+    SPI_CONTROLLER_Write_One_Byte(0x01, programmerType);
 
-    retval = SPI_CONTROLLER_Write_NByte(val, 1, SPI_CONTROLLER_SPEED_SINGLE);
-    SPI_CONTROLLER_Chip_Select_High();
+    retval = SPI_CONTROLLER_Write_NByte(val, 1, SPI_CONTROLLER_SPEED_SINGLE, programmerType);
+    SPI_CONTROLLER_Chip_Select_High(programmerType);
     if (retval) {
         printf("%s: ret: %x\n", __func__, retval);
         return retval;
@@ -749,10 +768,10 @@ int at45_read_sr(u8 *val)
 {
     int retval = 0;
 
-    SPI_CONTROLLER_Chip_Select_Low();
-    SPI_CONTROLLER_Write_One_Byte(0xd7);
-    retval = SPI_CONTROLLER_Read_NByte(val, 1, SPI_CONTROLLER_SPEED_SINGLE);
-    SPI_CONTROLLER_Chip_Select_High();
+    SPI_CONTROLLER_Chip_Select_Low(programmerType);
+    SPI_CONTROLLER_Write_One_Byte(0xd7, programmerType);
+    retval = SPI_CONTROLLER_Read_NByte(val, 1, SPI_CONTROLLER_SPEED_SINGLE, programmerType);
+    SPI_CONTROLLER_Chip_Select_High(programmerType);
     if (retval) {
         //printf("%s: ret: %x\n", __func__, retval);
         return retval;
@@ -783,7 +802,7 @@ int at45_wait_ready(int sleep_ms)
     return -1;
 }
 
-int at45_read_param(unsigned char *buf, unsigned long from, unsigned long len, unsigned int sector_size, unsigned char currentAlgorithm)
+int at45_read_param(unsigned char *buf, unsigned long from, unsigned long len, unsigned int sector_size, unsigned char currentAlgorithm, u8 progType)
 {
     u32 physical_read_addr, remain_len, data_offset;
     u32 read_addr;
@@ -791,6 +810,9 @@ int at45_read_param(unsigned char *buf, unsigned long from, unsigned long len, u
     unsigned char addrLen = 9;
     unsigned int sector_addr = 0;
     int retval;
+
+    programmerType = progType;
+
     if (sector_size > 511) addrLen++;
 
     /* sanity checks */
@@ -813,37 +835,40 @@ int at45_read_param(unsigned char *buf, unsigned long from, unsigned long len, u
         data_offset = (physical_read_addr % (sector_size));
 
 
-        SPI_CONTROLLER_Chip_Select_Low();
+        SPI_CONTROLLER_Chip_Select_Low(programmerType);
 
         //SPI_CONTROLLER_Write_One_Byte(0x52); //read command
-        SPI_CONTROLLER_Write_One_Byte(0xE8); //read command
-        SPI_CONTROLLER_Write_One_Byte((physical_read_addr >> 16) & 0xff);
-        SPI_CONTROLLER_Write_One_Byte((physical_read_addr >> 8) & 0xff);
-        SPI_CONTROLLER_Write_One_Byte(physical_read_addr & 0xff);
+        SPI_CONTROLLER_Write_One_Byte(0xE8, programmerType); //read command
+        SPI_CONTROLLER_Write_One_Byte((physical_read_addr >> 16) & 0xff, programmerType);
+        SPI_CONTROLLER_Write_One_Byte((physical_read_addr >> 8) & 0xff, programmerType);
+        SPI_CONTROLLER_Write_One_Byte(physical_read_addr & 0xff, programmerType);
 
-        SPI_CONTROLLER_Write_One_Byte(0xff);
-        SPI_CONTROLLER_Write_One_Byte(0xff);
-        SPI_CONTROLLER_Write_One_Byte(0xff);
-        SPI_CONTROLLER_Write_One_Byte(0xff);
+        SPI_CONTROLLER_Write_One_Byte(0xff, programmerType);
+        SPI_CONTROLLER_Write_One_Byte(0xff, programmerType);
+        SPI_CONTROLLER_Write_One_Byte(0xff, programmerType);
+        SPI_CONTROLLER_Write_One_Byte(0xff, programmerType);
 
-        retval = SPI_CONTROLLER_Read_NByte(&buf[0],sector_size,SPI_CONTROLLER_SPEED_SINGLE);
+        retval = SPI_CONTROLLER_Read_NByte(&buf[0],sector_size,SPI_CONTROLLER_SPEED_SINGLE, programmerType);
 
         if (retval)
         {
            return 0;//error
         }
-         SPI_CONTROLLER_Chip_Select_High();
+         SPI_CONTROLLER_Chip_Select_High(programmerType);
      return 1;
 }
 
 
-int at45_write_param(unsigned char *buf, unsigned long from, unsigned long len, unsigned int sector_size, unsigned char currentAlgorithm)
+int at45_write_param(unsigned char *buf, unsigned long from, unsigned long len, unsigned int sector_size, unsigned char currentAlgorithm, u8 progType)
 {    u32 physical_read_addr, remain_len, data_offset;
      u32 read_addr;
      unsigned char algorythm = (currentAlgorithm & 0xf0) >> 8;
      unsigned char addrLen = 9;
      unsigned int sector_addr = 0;
      int retval;
+
+     programmerType = progType;
+
      if (sector_size > 511) addrLen++;
 
      /* sanity checks */
@@ -864,38 +889,40 @@ int at45_write_param(unsigned char *buf, unsigned long from, unsigned long len, 
          data_offset = (physical_read_addr % (sector_size));
 
 
-         SPI_CONTROLLER_Chip_Select_Low();
+         SPI_CONTROLLER_Chip_Select_Low(programmerType);
 
-         SPI_CONTROLLER_Write_One_Byte(0x82); //write command
-         SPI_CONTROLLER_Write_One_Byte((physical_read_addr >> 16) & 0xff);
-         SPI_CONTROLLER_Write_One_Byte((physical_read_addr >> 8) & 0xff);
-         SPI_CONTROLLER_Write_One_Byte(physical_read_addr & 0xff);
+         SPI_CONTROLLER_Write_One_Byte(0x82, programmerType); //write command
+         SPI_CONTROLLER_Write_One_Byte((physical_read_addr >> 16) & 0xff, programmerType);
+         SPI_CONTROLLER_Write_One_Byte((physical_read_addr >> 8) & 0xff, programmerType);
+         SPI_CONTROLLER_Write_One_Byte(physical_read_addr & 0xff, programmerType);
 
          //SPI_CONTROLLER_Write_One_Byte(0xff);
 
-         retval = SPI_CONTROLLER_Write_NByte(buf, sector_size, SPI_CONTROLLER_SPEED_SINGLE);
+         retval = SPI_CONTROLLER_Write_NByte(buf, sector_size, SPI_CONTROLLER_SPEED_SINGLE, programmerType);
 
          if (retval)
          {
             return 0;//error
          }
-          SPI_CONTROLLER_Chip_Select_High();
+          SPI_CONTROLLER_Chip_Select_High(programmerType);
 
       return 1;
  }
 
-int at45_full_erase(void)
+int at45_full_erase(u8 progType)
 {
+    programmerType = progType;
+
     /* Wait until finished previous write command. */
     if (s95_wait_ready(3))
         return -1;
 
-    SPI_CONTROLLER_Chip_Select_Low();
-    SPI_CONTROLLER_Write_One_Byte(0xC7);
-    SPI_CONTROLLER_Write_One_Byte(0x94);
-    SPI_CONTROLLER_Write_One_Byte(0x80);
-    SPI_CONTROLLER_Write_One_Byte(0x9A);
-    SPI_CONTROLLER_Chip_Select_High();
+    SPI_CONTROLLER_Chip_Select_Low(programmerType);
+    SPI_CONTROLLER_Write_One_Byte(0xC7, programmerType);
+    SPI_CONTROLLER_Write_One_Byte(0x94, programmerType);
+    SPI_CONTROLLER_Write_One_Byte(0x80, programmerType);
+    SPI_CONTROLLER_Write_One_Byte(0x9A, programmerType);
+    SPI_CONTROLLER_Chip_Select_High(programmerType);
 
     at45_wait_ready(950);
     return 0;
@@ -903,22 +930,25 @@ int at45_full_erase(void)
 }
 
 
-int at45_sector_erase(unsigned int sectorNumber,  unsigned int pageSize)
+int at45_sector_erase(unsigned int sectorNumber,  unsigned int pageSize, u8 progType)
 {
     u32 send_addr = 0;
     unsigned char fullLen = 0x0c;
+
+    programmerType = progType;
+
     if (pageSize > 511) fullLen++;
     send_addr = sectorNumber << fullLen;
     /* Wait until finished previous write command. */
     if (at45_wait_ready(1))
         return -1;
 
-    SPI_CONTROLLER_Chip_Select_Low();
-    SPI_CONTROLLER_Write_One_Byte(0x50); //block erase command
-    SPI_CONTROLLER_Write_One_Byte((send_addr >> 16) & 0xff);
-    SPI_CONTROLLER_Write_One_Byte((send_addr >> 8) & 0xff);
-    SPI_CONTROLLER_Write_One_Byte(send_addr & 0xff);
-    SPI_CONTROLLER_Chip_Select_High();
+    SPI_CONTROLLER_Chip_Select_Low(programmerType);
+    SPI_CONTROLLER_Write_One_Byte(0x50, programmerType); //block erase command
+    SPI_CONTROLLER_Write_One_Byte((send_addr >> 16) & 0xff, programmerType);
+    SPI_CONTROLLER_Write_One_Byte((send_addr >> 8) & 0xff, programmerType);
+    SPI_CONTROLLER_Write_One_Byte(send_addr & 0xff, programmerType);
+    SPI_CONTROLLER_Chip_Select_High(programmerType);
 
     at45_wait_ready(1);
     return 0;
@@ -928,12 +958,12 @@ int at45_sector_erase(unsigned int sectorNumber,  unsigned int pageSize)
 static int nand_read_main_sr(u8 *val)
 {
     int retval = 0;
-    SPI_CONTROLLER_Chip_Select_Low();
-    SPI_CONTROLLER_Write_One_Byte(0x0f);
-    SPI_CONTROLLER_Write_One_Byte(0xc0); //main status / feature register address
+    SPI_CONTROLLER_Chip_Select_Low(programmerType);
+    SPI_CONTROLLER_Write_One_Byte(0x0f, programmerType);
+    SPI_CONTROLLER_Write_One_Byte(0xc0, programmerType); //main status / feature register address
 
-    retval = SPI_CONTROLLER_Read_NByte(val, 1, SPI_CONTROLLER_SPEED_SINGLE);
-    SPI_CONTROLLER_Chip_Select_High();
+    retval = SPI_CONTROLLER_Read_NByte(val, 1, SPI_CONTROLLER_SPEED_SINGLE, programmerType);
+    SPI_CONTROLLER_Chip_Select_High(programmerType);
     if (retval) {
         printf("%s: ret: %x\n", __func__, retval);
         return retval;
@@ -971,30 +1001,31 @@ int nand_page_read(unsigned char *buf, unsigned int page_size, uint32_t sector_n
     cmdbuf[2] = (sector_number >> 8) & 0xff;
     cmdbuf[3] = sector_number & 0xff;
     nand_wait_ready(100);
-    SPI_CONTROLLER_Chip_Select_Low();
-    SPI_CONTROLLER_Write_NByte( cmdbuf, 4, SPI_CONTROLLER_SPEED_SINGLE );
-    SPI_CONTROLLER_Chip_Select_High();
+    SPI_CONTROLLER_Chip_Select_Low(programmerType);
+    SPI_CONTROLLER_Write_NByte( cmdbuf, 4, SPI_CONTROLLER_SPEED_SINGLE, programmerType);
+    SPI_CONTROLLER_Chip_Select_High(programmerType);
     nand_wait_ready(100);
     cmdbuf[0] = 0x03;//Reading from buffer
     cmdbuf[1] = 0x00;
     cmdbuf[2] = 0x00;
     cmdbuf[3] = 0x00;
-    SPI_CONTROLLER_Chip_Select_Low();
-    SPI_CONTROLLER_Write_NByte( cmdbuf, 4, SPI_CONTROLLER_SPEED_SINGLE );
-    retval = SPI_CONTROLLER_Read_NByte(buf, page_size, SPI_CONTROLLER_SPEED_SINGLE);
-    SPI_CONTROLLER_Chip_Select_High();
+    SPI_CONTROLLER_Chip_Select_Low(programmerType);
+    SPI_CONTROLLER_Write_NByte( cmdbuf, 4, SPI_CONTROLLER_SPEED_SINGLE, programmerType);
+    retval = SPI_CONTROLLER_Read_NByte(buf, page_size, SPI_CONTROLLER_SPEED_SINGLE, programmerType);
+    SPI_CONTROLLER_Chip_Select_High(programmerType);
     return retval;
 }
 
-int nand_read_devid(u8 *rxbuf, int n_rx)
+int nand_read_devid(u8 *rxbuf, int n_rx, uint8_t progType)
 {
     int retval = 0;
+    programmerType = progType;
 
-    SPI_CONTROLLER_Chip_Select_Low();
-    SPI_CONTROLLER_Write_One_Byte(OPCODE_RDID);
-    SPI_CONTROLLER_Write_One_Byte(0x00);
-    retval = SPI_CONTROLLER_Read_NByte(rxbuf, n_rx, SPI_CONTROLLER_SPEED_SINGLE);
-    SPI_CONTROLLER_Chip_Select_High();
+    SPI_CONTROLLER_Chip_Select_Low(programmerType);
+    SPI_CONTROLLER_Write_One_Byte(OPCODE_RDID, programmerType);
+    SPI_CONTROLLER_Write_One_Byte(0x00, programmerType);
+    retval = SPI_CONTROLLER_Read_NByte(rxbuf, n_rx, SPI_CONTROLLER_SPEED_SINGLE, programmerType);
+    SPI_CONTROLLER_Chip_Select_High(programmerType);
     if (retval) {
         printf("%s: ret: %x\n", __func__, retval);
         return retval;
@@ -1005,21 +1036,21 @@ int nand_read_devid(u8 *rxbuf, int n_rx)
 
 void nand_write_enable(void)
 {
-    SPI_CONTROLLER_Chip_Select_Low();
-    SPI_CONTROLLER_Write_One_Byte(OPCODE_WREN);
-    SPI_CONTROLLER_Chip_Select_High();
+    SPI_CONTROLLER_Chip_Select_Low(programmerType);
+    SPI_CONTROLLER_Write_One_Byte(OPCODE_WREN, programmerType);
+    SPI_CONTROLLER_Chip_Select_High(programmerType);
     usleep(1);
 }
 
 static inline void nand_write_disable(void)
 {
-    SPI_CONTROLLER_Chip_Select_Low();
-    SPI_CONTROLLER_Write_One_Byte(OPCODE_WRDI);
-    SPI_CONTROLLER_Chip_Select_High();
+    SPI_CONTROLLER_Chip_Select_Low(programmerType);
+    SPI_CONTROLLER_Write_One_Byte(OPCODE_WRDI, programmerType);
+    SPI_CONTROLLER_Chip_Select_High(programmerType);
     usleep(1);
 }
 
-int nand_block_erase(unsigned int sector_number, unsigned int blockSize)
+int nand_block_erase(unsigned int sector_number, unsigned int blockSize, u8 progType)
 {
 
     /* Wait until finished previous write command. */
@@ -1028,13 +1059,13 @@ int nand_block_erase(unsigned int sector_number, unsigned int blockSize)
     // PA[15:6] is the address for 128KB blocks (total 1,024 blocks), PA[5:0] is
     //the address for 2KB pages (total 64 pages for each block)
     nand_write_enable();
-    nand_unprotect();
-    SPI_CONTROLLER_Chip_Select_Low();
-    SPI_CONTROLLER_Write_One_Byte(0xd8);
-    SPI_CONTROLLER_Write_One_Byte((sector_number >> 16) & 0xff);
-    SPI_CONTROLLER_Write_One_Byte((sector_number >>  8) & 0xff);
-    SPI_CONTROLLER_Write_One_Byte(sector_number & 0xff);
-    SPI_CONTROLLER_Chip_Select_High();
+    nand_unprotect(programmerType);
+    SPI_CONTROLLER_Chip_Select_Low(programmerType);
+    SPI_CONTROLLER_Write_One_Byte(0xd8, programmerType);
+    SPI_CONTROLLER_Write_One_Byte((sector_number >> 16) & 0xff, programmerType);
+    SPI_CONTROLLER_Write_One_Byte((sector_number >>  8) & 0xff, programmerType);
+    SPI_CONTROLLER_Write_One_Byte(sector_number & 0xff, programmerType);
+    SPI_CONTROLLER_Chip_Select_High(programmerType);
 
     //nand_write_disable();
     return 0;
@@ -1050,12 +1081,12 @@ int nand_page_write(unsigned char *buf, unsigned int page_size, uint32_t sector_
     cmdbuf[0] = 0x02; //From PC to buffer
     cmdbuf[1] = 0x00;
     cmdbuf[2] = 0x00;
-    SPI_CONTROLLER_Chip_Select_Low();
-    retval = SPI_CONTROLLER_Write_NByte( cmdbuf, 3, SPI_CONTROLLER_SPEED_SINGLE );
+    SPI_CONTROLLER_Chip_Select_Low(programmerType);
+    retval = SPI_CONTROLLER_Write_NByte(cmdbuf, 3, SPI_CONTROLLER_SPEED_SINGLE, programmerType);
     if (retval == -1) return retval;
-    retval = SPI_CONTROLLER_Write_NByte( buf, page_size, SPI_CONTROLLER_SPEED_SINGLE );
+    retval = SPI_CONTROLLER_Write_NByte(buf, page_size, SPI_CONTROLLER_SPEED_SINGLE, programmerType); //1010 page_size УБРАТЬ /8 !!!!
     if (retval == -1) return retval;
-    SPI_CONTROLLER_Chip_Select_High();
+    SPI_CONTROLLER_Chip_Select_High(programmerType);
     nand_wait_ready(200);
     nand_write_enable();
 
@@ -1063,17 +1094,18 @@ int nand_page_write(unsigned char *buf, unsigned int page_size, uint32_t sector_
     cmdbuf[1] = (sector_number >> 16) & 0xff;
     cmdbuf[2] = (sector_number >>  8) & 0xff;
     cmdbuf[3] = sector_number & 0xff;
-    SPI_CONTROLLER_Chip_Select_Low();
-    retval = SPI_CONTROLLER_Write_NByte( cmdbuf, 4, SPI_CONTROLLER_SPEED_SINGLE );
-    SPI_CONTROLLER_Chip_Select_High();
+    SPI_CONTROLLER_Chip_Select_Low(programmerType);
+    retval = SPI_CONTROLLER_Write_NByte(cmdbuf, 4, SPI_CONTROLLER_SPEED_SINGLE, programmerType);
+    SPI_CONTROLLER_Chip_Select_High(programmerType);
     return retval;
 }
 
-int nand_block_read(unsigned char *buf, unsigned int page_size, uint32_t block_number, unsigned int pages_per_block)
+int nand_block_read(unsigned char *buf, unsigned int page_size, uint32_t block_number, unsigned int pages_per_block, uint8_t progType)
 {
     int retval;
     unsigned int i;
     uint32_t secNumber;
+    programmerType = progType;
     for (i = 0; i < pages_per_block; i++)
     {
         secNumber = block_number * pages_per_block + i;
@@ -1083,11 +1115,14 @@ int nand_block_read(unsigned char *buf, unsigned int page_size, uint32_t block_n
     return 0;
 }
 
-int nand_block_write(unsigned char *buf, unsigned int page_size, uint32_t block_number, unsigned int pages_per_block)
+int nand_block_write(unsigned char *buf, unsigned int page_size, uint32_t block_number, unsigned int pages_per_block, u8 progType)
 {
     int retval;
     unsigned int i;
     uint32_t secNumber;
+
+    programmerType = progType;
+
     for (i = 0; i < pages_per_block; i++)
     {
         secNumber = block_number * pages_per_block + i;
@@ -1097,66 +1132,74 @@ int nand_block_write(unsigned char *buf, unsigned int page_size, uint32_t block_
     return 0;
 }
 
-void nand_unprotect(void)
+void nand_unprotect(u8 progType)
 {
+    programmerType = progType;
+
     nand_write_enable();
     u8 prot_reg;
-    SPI_CONTROLLER_Chip_Select_Low();
-    SPI_CONTROLLER_Write_One_Byte(0x0f);
-    SPI_CONTROLLER_Write_One_Byte(0xa0);
-    SPI_CONTROLLER_Read_NByte(&prot_reg, 1, SPI_CONTROLLER_SPEED_SINGLE);
-    SPI_CONTROLLER_Chip_Select_High();
+    SPI_CONTROLLER_Chip_Select_Low(programmerType);
+    SPI_CONTROLLER_Write_One_Byte(0x0f, programmerType);
+    SPI_CONTROLLER_Write_One_Byte(0xa0, programmerType);
+    SPI_CONTROLLER_Read_NByte(&prot_reg, 1, SPI_CONTROLLER_SPEED_SINGLE, programmerType);
+    SPI_CONTROLLER_Chip_Select_High(programmerType);
     usleep(1);
-    SPI_CONTROLLER_Chip_Select_Low();
-    SPI_CONTROLLER_Write_One_Byte(0x1f);
-    SPI_CONTROLLER_Write_One_Byte(0xa0);
-    SPI_CONTROLLER_Write_One_Byte(prot_reg & 0x83); //set to 0 bytes 6,5,4,3,2
-    SPI_CONTROLLER_Chip_Select_High();
+    SPI_CONTROLLER_Chip_Select_Low(programmerType);
+    SPI_CONTROLLER_Write_One_Byte(0x1f, programmerType);
+    SPI_CONTROLLER_Write_One_Byte(0xa0, programmerType);
+    SPI_CONTROLLER_Write_One_Byte(prot_reg & 0x83, programmerType); //set to 0 bytes 6,5,4,3,2
+    SPI_CONTROLLER_Chip_Select_High(programmerType);
 }
 
-void nand_ECCEnable(void)
+void nand_ECCEnable(u8 progType)
 {
     u8 val;
-    SPI_CONTROLLER_Chip_Select_Low();
-    SPI_CONTROLLER_Write_One_Byte(0x0f);
-    SPI_CONTROLLER_Write_One_Byte(0xb0);
-    SPI_CONTROLLER_Read_NByte(&val, 1, SPI_CONTROLLER_SPEED_SINGLE);
-    SPI_CONTROLLER_Chip_Select_High();
+
+    programmerType = progType;
+
+    SPI_CONTROLLER_Chip_Select_Low(programmerType);
+    SPI_CONTROLLER_Write_One_Byte(0x0f, programmerType);
+    SPI_CONTROLLER_Write_One_Byte(0xb0, programmerType);
+    SPI_CONTROLLER_Read_NByte(&val, 1, SPI_CONTROLLER_SPEED_SINGLE, programmerType);
+    SPI_CONTROLLER_Chip_Select_High(programmerType);
     usleep(2);
     nand_write_enable();
     //val = val | 0x10;
-    SPI_CONTROLLER_Chip_Select_Low();
-    SPI_CONTROLLER_Write_One_Byte(0x1f);
-    SPI_CONTROLLER_Write_One_Byte(0xb0);
-    SPI_CONTROLLER_Write_One_Byte(val | 0x10);  //set to 1 byte 4
-    SPI_CONTROLLER_Chip_Select_High();
+    SPI_CONTROLLER_Chip_Select_Low(programmerType);
+    SPI_CONTROLLER_Write_One_Byte(0x1f, programmerType);
+    SPI_CONTROLLER_Write_One_Byte(0xb0, programmerType);
+    SPI_CONTROLLER_Write_One_Byte(val | 0x10, programmerType);  //set to 1 byte 4
+    SPI_CONTROLLER_Chip_Select_High(programmerType);
     usleep(2);
 }
 
-int nand_checkBadBlock(uint32_t blockNo, uint32_t sectSize, uint32_t blockPerSector)
+int nand_checkBadBlock(uint32_t blockNo, uint32_t sectSize, uint32_t blockPerSector, u8 progType)
 {
     int retval; // Return: -1 - error operation, 0 - good block, 1 - bad block
     unsigned char buf[2];
     uint32_t sectNo;
     sectNo = blockNo * blockPerSector;
+
+    programmerType = progType;
+
     nand_wait_ready(950);
-    SPI_CONTROLLER_Chip_Select_Low();
-    SPI_CONTROLLER_Write_One_Byte(0x13);
-    SPI_CONTROLLER_Write_One_Byte((0xff0000 & sectNo) >> 16);
-    SPI_CONTROLLER_Write_One_Byte((0x00ff00 & sectNo) >> 8);
-    SPI_CONTROLLER_Write_One_Byte(0x0000ff & sectNo);
-    SPI_CONTROLLER_Chip_Select_High();
+    SPI_CONTROLLER_Chip_Select_Low(programmerType);
+    SPI_CONTROLLER_Write_One_Byte(0x13, programmerType);
+    SPI_CONTROLLER_Write_One_Byte((0xff0000 & sectNo) >> 16, programmerType);
+    SPI_CONTROLLER_Write_One_Byte((0x00ff00 & sectNo) >> 8, programmerType);
+    SPI_CONTROLLER_Write_One_Byte(0x0000ff & sectNo, programmerType);
+    SPI_CONTROLLER_Chip_Select_High(programmerType);
     //usleep(1000);
     nand_wait_ready(950);
-    SPI_CONTROLLER_Chip_Select_Low();
-    SPI_CONTROLLER_Write_One_Byte(0x03);
+    SPI_CONTROLLER_Chip_Select_Low(programmerType);
+    SPI_CONTROLLER_Write_One_Byte(0x03, programmerType);
 //    SPI_CONTROLLER_Write_One_Byte(0x08); //high address
 //    SPI_CONTROLLER_Write_One_Byte(0x00); //low address
-    SPI_CONTROLLER_Write_One_Byte((0x00ff00 & sectSize) >> 8);; //high address
-    SPI_CONTROLLER_Write_One_Byte(0x0000ff & sectSize); //low address
-    SPI_CONTROLLER_Write_One_Byte(0x00); //dymmy byte
-    retval = SPI_CONTROLLER_Read_NByte(buf,2,SPI_CONTROLLER_SPEED_SINGLE);
-    SPI_CONTROLLER_Chip_Select_High();
+    SPI_CONTROLLER_Write_One_Byte((0x00ff00 & sectSize) >> 8, programmerType); //high address
+    SPI_CONTROLLER_Write_One_Byte(0x0000ff & sectSize, programmerType); //low address
+    SPI_CONTROLLER_Write_One_Byte(0x00, programmerType); //dymmy byte
+    retval = SPI_CONTROLLER_Read_NByte(buf,2,SPI_CONTROLLER_SPEED_SINGLE, programmerType);
+    SPI_CONTROLLER_Chip_Select_High(programmerType);
     if (retval == -1) return retval;
     if (buf[0] == 0xff) return 0;
     else return 1;

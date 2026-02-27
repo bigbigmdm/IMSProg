@@ -39,10 +39,10 @@ extern "C" {
 #include "ch341a_gpio.h"
 #include "ch341a_i2c.h"
 #include "ch341a_spi.h"
+#include "ch347.h"
 #include "flashcmd_api.h"
 #include "i2c_eeprom_api.h"
 #include "mw_eeprom_api.h"
-#include "nandcmd_api.h"
 #include "res.h"
 #include "snorcmd_api.h"
 #include "spi_controller.h"
@@ -50,6 +50,7 @@ extern "C" {
 #include "spi_eeprom_api.h"
 #include "timer.h"
 #include "types.h"
+#include "ch347eeprom.h"
 }
 
 
@@ -126,8 +127,9 @@ private slots:
     void on_actionCH341A_v1_7_triggered();
     void closeEvent(QCloseEvent *event);
     void showEvent(QShowEvent* event);
+    void on_actionCH347T_triggered();
 
-    private:
+private:
     Ui::MainWindow *ui;
     QString grnKeyStyle, redKeyStyle;
     QString lastDirectory;

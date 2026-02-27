@@ -39,6 +39,7 @@ public:
     void getBlockSize(uint32_t blockSize);
     void getTotalBlocks(uint32_t totalBlocks);
     void getSettings(uint8_t settings);
+    void setDeviceType(const uint8_t pType);
     ~DialogBBM();
 
 private slots:
@@ -51,6 +52,8 @@ private:
     int maxBlock;
     uint32_t sectSize, blSize, totBlocks;
     uint8_t setParams;
+    uint8_t programmerType;
+    QString programmerName;
 
 signals:
     void sendNandParam(uint8_t);

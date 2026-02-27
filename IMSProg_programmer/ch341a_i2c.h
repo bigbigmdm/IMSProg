@@ -5,6 +5,7 @@
 #define __CH341A_I2C_H__
 
 #include <stdint.h>
+#include <libusb-1.0/libusb.h>
 
 #define MAX_EEPROM_SIZE			131072 /* For 24c1024*/
 

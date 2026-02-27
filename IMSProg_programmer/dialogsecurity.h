@@ -35,6 +35,7 @@ public:
     void setAlgorithm(uint8_t currentAlg);
     void setPath(QString lastPath);
     void closeEvent(QCloseEvent* event);
+    void setDeviceType(const uint8_t pType);
     ~DialogSecurity();
 
 private slots:
@@ -81,6 +82,8 @@ private:
     QByteArray regData;
     QHexEdit *hexEdit;
     QString curPath;
+    uint8_t programmerType;
+    QString programmerName;
 };
 
 #endif // DIALOGSECURITY_H

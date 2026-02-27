@@ -34,6 +34,7 @@ DialogBBM::DialogBBM(QWidget *parent) :
     ui->tableWidgetScan->setRowCount(1);
     ui->progressBar->setRange(0, 1024);
     ui->progressBar->setValue(0);
+    programmerType = 0;
 }
 
 DialogBBM::~DialogBBM()
@@ -48,7 +49,7 @@ void DialogBBM::on_pushButton_clicked()
     uint32_t sectInBlock;
     uint8_t tmp_hi, tmp_lo;
     QString col_block, col_start, col_end;
-    stCH341 = ch341a_spi_init();
+    stCH341 = ProgDeviceInit( programmerType, 6, 1 );
     bbmCount = 0;
     sectInBlock = blSize / sectSize;
     ui->label_scan->clear();
@@ -58,7 +59,7 @@ void DialogBBM::on_pushButton_clicked()
     {
         for (i = 0; i < static_cast<int>(totBlocks); i++)
         {
-            retval = nand_checkBadBlock(static_cast<uint32_t>(i), static_cast<uint32_t>(sectSize), static_cast<uint32_t>(sectInBlock));
+            retval = nand_checkBadBlock(static_cast<uint32_t>(i), static_cast<uint32_t>(sectSize), static_cast<uint32_t>(sectInBlock), programmerType);
             if (retval == 1)//(buf[0] != 0xff)
             {                
                 scanResult = true;
@@ -87,9 +88,9 @@ void DialogBBM::on_pushButton_clicked()
         ui->tableWidgetScan->removeRow(bbmCount);
         ui->progressBar->setValue(0);
         scanResult = false;
-        ch341a_spi_shutdown();
+        ProgDeviceClose( programmerType );
     }
-    else QMessageBox::about(this, tr("Error"), tr("Programmer CH341a is not connected!"));
+    else QMessageBox::about(this, tr("Error"), tr("Programmer ") + programmerName + tr(" is not connected!"));
 }
 
 
@@ -123,13 +124,13 @@ void DialogBBM::on_pushButton_2_clicked()
     uint8_t stringResult;
     QString numBlock;
     std::shared_ptr<uint8_t[]> buf(new uint8_t[256]);
-    stCH341 = ch341a_spi_init();
+    stCH341 = ProgDeviceInit( programmerType, 6, 1 );
     if (stCH341 == 0)
     {
-        SPI_CONTROLLER_Chip_Select_Low();
-        SPI_CONTROLLER_Write_One_Byte(0xa5);
-        retval = SPI_CONTROLLER_Read_NByte(buf.get(),1,SPI_CONTROLLER_SPEED_SINGLE);
-        retval = SPI_CONTROLLER_Read_NByte(buf.get(),256,SPI_CONTROLLER_SPEED_SINGLE);
+        SPI_CONTROLLER_Chip_Select_Low(programmerType);
+        SPI_CONTROLLER_Write_One_Byte(0xa5, programmerType);
+        retval = SPI_CONTROLLER_Read_NByte(buf.get(),1,SPI_CONTROLLER_SPEED_SINGLE, programmerType);
+        retval = SPI_CONTROLLER_Read_NByte(buf.get(),256,SPI_CONTROLLER_SPEED_SINGLE, programmerType);
         if ((buf[0] != 0xff) && (buf[1] != 0xff))
         {
             ui->tableWidgetBBM->setShowGrid(true);
@@ -158,9 +159,9 @@ void DialogBBM::on_pushButton_2_clicked()
             ui->tableWidgetBBM->resizeColumnsToContents();
         }
         else ui->label_bbm_result->setText(tr("BBM table is not used in this chip."));
-        ch341a_spi_shutdown();
+        ProgDeviceClose( programmerType );
     }
-    else QMessageBox::about(this, tr("Error"), tr("Programmer CH341a is not connected!"));
+    else QMessageBox::about(this, tr("Error"), tr("Programmer ") + programmerName + tr(" is not connected!"));
 }
 
 void DialogBBM::on_pushButton_3_clicked()
@@ -172,4 +173,11 @@ void DialogBBM::on_pushButton_3_clicked()
     if (ui->radioButton_w2->isChecked()) setParams = setParams | 0x01;
     emit sendNandParam(setParams);
     DialogBBM::close();
+}
+
+void DialogBBM::setDeviceType(const uint8_t pType)
+{
+    programmerType = pType;
+    if (programmerType < 2)  programmerName ="CH341A";
+    if (programmerType == 2) programmerName ="CH347T";
 }

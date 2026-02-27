@@ -26,6 +26,7 @@
 #include <string.h>
 #include <assert.h>
 #include "ch341a_i2c.h"
+#include "ch341a_spi.h"
 
 #define dprintf(args...)
 // #define dprintf(args...) do { if (1) printf(args); } while(0)

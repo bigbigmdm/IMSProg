@@ -16,6 +16,7 @@ public:
     void setAlgorithm(unsigned int currentAlg);
     void setSectorSize(uint32_t sectorSize);
     void setPath(QString lastPath);
+    void setDeviceType(const uint8_t pType);
     void closeEvent(QCloseEvent* event);
     ~DialogNandSecurity();
 
@@ -35,6 +36,8 @@ private:
     uint8_t startSector, endSector;
     QByteArray regData;
     QHexEdit *hexEdit;
+    uint8_t programmerType;
+    QString programmerName;
     struct algSettings
     {
         uint8_t id;          // Algorithm number

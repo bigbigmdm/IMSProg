@@ -1060,6 +1060,7 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
     </property>
     <addaction name="actionCH341A_B_v1_2"/>
     <addaction name="actionCH341A_v1_7"/>
+    <addaction name="actionCH347T"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuProgrammer"/>
@@ -1459,6 +1460,14 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
      <string>CH341A v1.7</string>
     </property>
    </action>
+   <action name="actionCH347T">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>CH347T</string>
+   </property>
+  </action>
   </actiongroup>
  </widget>
  <layoutdefault spacing="6" margin="11"/>

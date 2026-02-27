@@ -39,6 +39,7 @@
 #include <stddef.h>
 #include <stdint.h>
 
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -52,7 +53,7 @@ MainWindow::MainWindow(QWidget *parent) :
  redKeyStyle = "QPushButton{color:#fff;background-color:#f66;border-radius: 20px;border: 2px solid #094065;border-radius:8px;font-weight:600;}";
  timer = new QTimer();
  connect(timer, SIGNAL(timeout()), this, SLOT(slotTimerAlarm()));
- timer->start(2000);
+ timer->start(2000); //10000
 
  ui->actionSetProgrammerType->setExclusive(true);
  ui->statusMessage->setText("");
@@ -136,16 +137,12 @@ MainWindow::MainWindow(QWidget *parent) :
  numberOfReads = 0;
  nandSettings = 0;
  cmdStarted = false;
- // connect and status check
- statusCH341 = ch341a_spi_init();
- ch341StatusFlashing();
  chipData.reserve(512 * 1024 *1024 + 2048);
  chipData.resize(256);
  chipData.fill(char(0xff));
  oldChipData.reserve(512 * 1024 *1024 + 2048);
  oldChipData.resize(256);
  oldChipData.fill(char(0xff));
- ch341a_spi_shutdown();
 
  //Reading ini file
  QString iniPath = QDir::homePath() + "/.local/share/imsprog/config.ini";
@@ -159,6 +156,7 @@ MainWindow::MainWindow(QWidget *parent) :
        current_programmer =  static_cast<unsigned char>(settings.value("ProgrammerType").toInt());
        if (current_programmer == 0) ui->actionCH341A_B_v1_2->setChecked(true);
        if (current_programmer == 1) ui->actionCH341A_v1_7->setChecked(true);
+       if (current_programmer == 2) ui->actionCH347T->setChecked(true);
      settings.endGroup();
      settings.beginGroup("FormPosition");
      if (settings.contains("geometry"))
@@ -167,6 +165,12 @@ MainWindow::MainWindow(QWidget *parent) :
      }
      settings.endGroup();
  }
+ // connect and status check
+ if (current_programmer < 2) ui->lStatus->setText("CH341A");
+ if (current_programmer == 2) ui->lStatus->setText("CH347T");
+ statusCH341 =  ProgDeviceInit(current_programmer, currentChipType, currentI2CBusSpeed);
+ ch341StatusFlashing();
+ ProgDeviceClose(current_programmer);
  QFont heFont;
  heFont = QFont("Monospace", 10);
  hexEdit = new QHexEdit(ui->frame);
@@ -200,7 +204,7 @@ void MainWindow::on_pushButton_clicked()
   newFileName = ui->comboBox_name->currentText();
   int res = 0;
   uint32_t numBlocks, step, sectorsPerBlock;
-  statusCH341 = ch341a_init(currentChipType, currentI2CBusSpeed);
+  statusCH341 = ProgDeviceInit(current_programmer, currentChipType, currentI2CBusSpeed);
   if (statusCH341 == 0)
   {
     ui->crcEdit->setText("");
@@ -229,7 +233,8 @@ void MainWindow::on_pushButton_clicked()
              numBlocks = currentNumBlocks;
           break;
           case 1:             //I2C
-             step = 128;
+             //step = 128;
+             step = currentPageSize;
              numBlocks = currentChipSize / step;
           break;
           case 2:             //MicroWire
@@ -243,18 +248,21 @@ void MainWindow::on_pushButton_clicked()
              step = currentBlockSize;
              numBlocks = currentChipSize / step;
              sectorsPerBlock = currentBlockSize / currentPageSize;
-             nand_ECCEnable();
+             nand_ECCEnable(current_programmer);
           break;
           default:
              //Unsupport
              QMessageBox::about(this, tr("Error"), tr("Unsupported chip type!"));
              doNotDisturbCancel();
-             ch341a_spi_shutdown();
+             ProgDeviceClose(current_programmer);
              ui->checkBox_3->setStyleSheet("");
        return;
           }
        //progerssbar settings
-       ui->progressBar->setRange(0, static_cast<int>(numBlocks));
+       int currentPercent = 0;
+       int lastPercent = -1;
+       //ui->progressBar->setRange(0, static_cast<int>(numBlocks));
+       ui->progressBar->setRange(0, 100);
        ui->progressBar->setValue(0);
        std::shared_ptr<uint8_t[]> buf(new uint8_t[step]);
        ui->pushButton->setStyleSheet(redKeyStyle);
@@ -264,10 +272,11 @@ void MainWindow::on_pushButton_clicked()
            switch (currentChipType)
               {
               case 0:            //SPI
-                 res = snor_read_param(buf.get(), curBlock * step, step, step, currentAddr4bit);
+                 res = snor_read_param(buf.get(), curBlock * step, step, step, currentAddr4bit, current_programmer);
               break;
               case 1:            //I2C
-               res = ch341readEEPROM_param(buf.get(), curBlock * step, step, currentChipSize, currentPageSize, currentAlgorithm);//currentAlgorithm);
+               if (current_programmer < 2) res = ch341readEEPROM_param(buf.get(), curBlock * step, step, currentChipSize, currentPageSize, currentAlgorithm);
+               else res = ch347i2cBlockRead(buf.get(), curBlock * step, currentPageSize, currentAlgorithm);
                if (res==0) res = 1;
               break;
               case 2:
@@ -279,52 +288,59 @@ void MainWindow::on_pushButton_clicked()
                  //25xxx
               case 4:
                  //95xxx
-                 res = s95_read_param(buf.get(), curBlock * step, step, step, currentAlgorithm);
+                 res = s95_read_param(buf.get(), curBlock * step, step, step, currentAlgorithm, current_programmer);
               break;
               case 5:
                  //45xx
-                 res = at45_read_param(buf.get(), curBlock * step, step, step, currentAlgorithm);
+                 res = at45_read_param(buf.get(), curBlock * step, step, step, currentAlgorithm, current_programmer);
               break;
            case 6:
               //NAND
-               res = nand_block_read(buf.get(), currentPageSize, k, sectorsPerBlock);
+               res = nand_block_read(buf.get(), currentPageSize, k, sectorsPerBlock, current_programmer);
               if (res==0) res = 1;
            break;
               default:
                  //Unsupport
                  QMessageBox::about(this, tr("Error"), tr("Unsupported chip type!"));
                  doNotDisturbCancel();
-                 ch341a_spi_shutdown();
+                 ProgDeviceClose(current_programmer);
               return;
               }
           // if res=-1 - error, stop
           if (statusCH341 != 0)
             {
-                QMessageBox::about(this, tr("Error"), tr("Programmer CH341a is not connected!"));
+                QMessageBox::about(this, tr("Error"), tr("Programmer ") + ui->lStatus->text() + tr(" is not connected!"));
                 doNotDisturbCancel();
                 break;
             }
           if (res <= 0)
             {
                QMessageBox::about(this, tr("Error"), tr("Error reading block ") + QString::number(curBlock));
-               ch341a_spi_shutdown();
+               ProgDeviceClose(current_programmer);
                ui->pushButton->setStyleSheet(grnKeyStyle);
                doNotDisturbCancel();
                return;
             }
-         for (j = 0; j < step; j++)
-            {
-                  chipData[addr + j] = char(buf[addr + j - k * step]);
-            }
+//         for (j = 0; j < step; j++)
+//            {
+//                  chipData[addr + j] = char(buf[addr + j - k * step]);
+//            }
+          memcpy(chipData.data() + addr, buf.get() + (addr - k * step), step);
           addr = addr + step;
           if (curBlock * step < 0x500) hexEdit->setData(chipData); //show buffer in hehedit while chip data is visible
           curBlock++;
           qApp->processEvents();
-          ui->progressBar->setValue(static_cast<int>(curBlock));
+          //ui->progressBar->setValue(static_cast<int>(curBlock));
+          currentPercent = static_cast<int>((curBlock * 100.0) / numBlocks);
+          if (currentPercent != lastPercent)
+          {
+              ui->progressBar->setValue(currentPercent);
+              lastPercent = currentPercent;
+          }
           if (isHalted)
           {
               isHalted = false;
-              ch341a_spi_shutdown();
+              ProgDeviceClose(current_programmer);
               doNotDisturbCancel();
               return;
           }
@@ -346,9 +362,9 @@ void MainWindow::on_pushButton_clicked()
   else
   {
       ch341StatusFlashing();
-      QMessageBox::about(this, tr("Error"), tr("Programmer CH341a is not connected!"));
+      QMessageBox::about(this, tr("Error"), tr("Programmer ") + ui->lStatus->text() + tr(" is not connected!"));
   }
-  ch341a_spi_shutdown();
+  ProgDeviceClose(current_programmer);
   doNotDisturbCancel();
   filled = 0;
   numberOfReads++;
@@ -357,13 +373,13 @@ void MainWindow::on_pushButton_clicked()
 void MainWindow::on_pushButton_2_clicked()
 {
     timer->stop();
-    //searching the connected chip in database
+    //Detect button - searching the connected chip in database
     u8 sr;
-    statusCH341 = ch341a_spi_init();
+    statusCH341 = ProgDeviceInit(current_programmer, currentChipType, currentI2CBusSpeed);
     ch341StatusFlashing();
     if (statusCH341 != 0)
       {
-        QMessageBox::about(this, tr("Error"), tr("Programmer CH341a is not connected!"));
+        QMessageBox::about(this, tr("Error"), tr("Programmer ") + ui->lStatus->text() + tr(" is not connected!"));
         timer->start();
         return;
       }
@@ -373,23 +389,30 @@ void MainWindow::on_pushButton_2_clicked()
     int i, index;
     // print JEDEC info
     unsigned char bufid[5] = {0xff,0xff,0xff,0xff,0xff};
-    if (currentChipType != 6) snor_read_devid(bufid, 5);
-    else nand_read_devid(bufid, 5);
+    if (currentChipType != 6)
+    {
+       snor_read_devid(bufid, 5, current_programmer);
+       qDebug()<<bufid[0]<<" "<<bufid[1]<<" "<<bufid[2]<<bufid[3];
+    }
+    else
+    {
+        nand_read_devid(bufid, 5, current_programmer);
+    }
 
     if ((bufid[0] == 0xff) && (bufid[1] == 0xff) && (bufid[2] == 0xff) && (currentChipType != 5))
     {
         QMessageBox::about(this, tr("Error"), tr("The chip is not connect or missing!"));
         ui->pushButton_2->setStyleSheet(grnKeyStyle);
-        ch341a_spi_shutdown();
+        ProgDeviceClose(current_programmer);
         timer->start();
         return;
     }
 
-    if ((bufid[0] == 0xff) && (bufid[1] != 0xff)) ui->comboBox_type->setCurrentIndex(6);
+    if (((bufid[0] == 0xff) || (bufid[0] == 0x00)) && (bufid[1] != 0xff)) ui->comboBox_type->setCurrentIndex(6);
 
-    if ((currentChipType == 6) && (bufid[0] == 0xff))
+    if ((currentChipType == 6) && ((bufid[0] == 0xff) ||(bufid[0] == 0x00)))
     {
-        nand_read_devid(bufid, 5);
+        nand_read_devid(bufid, 5, current_programmer);
     }
 
     ui->jedecEdit->setText(bytePrint(bufid[0]) + " " + bytePrint(bufid[1]) + " " + bytePrint(bufid[2]));
@@ -571,7 +594,7 @@ void MainWindow::on_pushButton_2_clicked()
 
     ui->pushButton_2->setStyleSheet(grnKeyStyle);
     ui->crcEdit->setText(getCRC32(chipData));
-    ch341a_spi_shutdown();
+    ProgDeviceClose(current_programmer);
     timer->start();
 }
 
@@ -662,11 +685,11 @@ void MainWindow::on_actionErase_triggered()
     //statusCH341 = ch341a_spi_init();
     int ret;
     uint32_t curBlock, numBlocks, step;
-    statusCH341 = ch341a_init(currentChipType, currentI2CBusSpeed);
+    statusCH341 = ProgDeviceInit(current_programmer, currentChipType, currentI2CBusSpeed);//ch341a_init(currentChipType, currentI2CBusSpeed);
     ch341StatusFlashing();
     if (statusCH341 != 0)
       {
-        QMessageBox::about(this, tr("Error"), tr("Programmer CH341a is not connected!"));
+        QMessageBox::about(this, tr("Error"), tr("Programmer ") + ui->lStatus->text() + tr(" is not connected!"));
         return;
       }
     ui->statusMessage->setText(tr("Erasing the ") + ui->comboBox_name->currentText());
@@ -682,11 +705,11 @@ void MainWindow::on_actionErase_triggered()
            for (uint32_t curBlock = 0; curBlock < currentNumBlocks; curBlock++)
            {
                //config_stream(2);
-               ret = snor_block_erase( curBlock,  currentBlockSize, static_cast<u8>(currentAddr4bit));
+               ret = snor_block_erase( curBlock,  currentBlockSize, static_cast<u8>(currentAddr4bit), current_programmer);
                if (ret != 0)
                  {
                    QMessageBox::about(this, tr("Error"), tr("Error erasing sector ") + QString::number(curBlock));
-                   ch341a_spi_shutdown();
+                   ProgDeviceClose(current_programmer);
                    doNotDisturbCancel();
                    return;
                  }
@@ -695,7 +718,7 @@ void MainWindow::on_actionErase_triggered()
                if (isHalted)
                {
                    isHalted = false;
-                   ch341a_spi_shutdown();
+                   ProgDeviceClose(current_programmer);
                    doNotDisturbCancel();
                    return;
                }
@@ -714,7 +737,7 @@ void MainWindow::on_actionErase_triggered()
         if (isHalted)
         {
             isHalted = false;
-            ch341a_spi_shutdown();
+            ProgDeviceClose(current_programmer);
             doNotDisturbCancel();
             return;
         }
@@ -725,13 +748,13 @@ void MainWindow::on_actionErase_triggered()
         }
         for (curBlock = 0; curBlock < currentNumBlocks; curBlock++)
         {
-            res =  s95_write_param(buf.get(), curBlock * step, step, step, currentAlgorithm);
+            res =  s95_write_param(buf.get(), curBlock * step, step, step, currentAlgorithm, current_programmer);
             qApp->processEvents();
             ui->progressBar->setValue( static_cast<int>(curBlock));
             if (res <= 0)
               {
                 QMessageBox::about(this, tr("Error"), tr("Error erasing sector ") + QString::number(curBlock));
-                ch341a_spi_shutdown();
+                ProgDeviceClose(current_programmer);
                 doNotDisturbCancel();
                 return;
               }
@@ -740,7 +763,7 @@ void MainWindow::on_actionErase_triggered()
     if ((currentChipType == 3) && ((currentAlgorithm & 0x20) > 0))
     {
         ui->progressBar->setValue(50);
-        s95_full_erase();
+        s95_full_erase(current_programmer);
         sleep(1);
     }
     if (currentChipType == 2)
@@ -756,14 +779,15 @@ void MainWindow::on_actionErase_triggered()
         uint32_t curBlock = 0;
         uint32_t k;
         int res = 0;
-        step = 128;
+        //step = 128;
+        step = currentPageSize;
         numBlocks = currentChipSize / step;
         std::shared_ptr<uint8_t[]> buf(new uint8_t[step]);
         config_stream(2);
         if (isHalted)
         {
             isHalted = false;
-            ch341a_spi_shutdown();
+            ProgDeviceClose(current_programmer);
             doNotDisturbCancel();
             return;
         }
@@ -774,14 +798,15 @@ void MainWindow::on_actionErase_triggered()
         }
         for (curBlock = 0; curBlock < numBlocks; curBlock++)
         {
-            res = ch341writeEEPROM_param(buf.get(), curBlock * 128, 128, currentPageSize, currentAlgorithm);
+            if (current_programmer < 2) res = ch341writeEEPROM_param(buf.get(), curBlock * 128, 128, currentPageSize, currentAlgorithm);
+            else res = ch347i2cBlockWrite(buf.get(), curBlock * step, currentPageSize, currentAlgorithm);
             if (res==0) res = 1;
             qApp->processEvents();
             ui->progressBar->setValue( static_cast<int>(curBlock));
             if (res <= 0)
               {
                 QMessageBox::about(this, tr("Error"), tr("Error erasing sector ") + QString::number(curBlock));
-                ch341a_spi_shutdown();
+                ProgDeviceClose(current_programmer);
                 doNotDisturbCancel();
                 return;
               }
@@ -791,7 +816,7 @@ void MainWindow::on_actionErase_triggered()
     if ((currentChipType == 5) && ((currentAlgorithm & 0x10) > 0))
     {
         ui->progressBar->setValue(50);
-        at45_full_erase();
+        at45_full_erase(current_programmer);
         sleep(1);
     }
     if ((currentChipType == 5) && ((currentAlgorithm & 0x10) == 0))
@@ -801,7 +826,7 @@ void MainWindow::on_actionErase_triggered()
         uint32_t curBlock = 0;
         for (curBlock = 0; curBlock < numBlocks; curBlock++)
         {
-            at45_sector_erase(curBlock,  currentPageSize);
+            at45_sector_erase(curBlock,  currentPageSize, current_programmer);
              ui->progressBar->setValue(static_cast<int>(curBlock));
         }
     }
@@ -818,17 +843,17 @@ void MainWindow::on_actionErase_triggered()
            {
                if ((nandSettings & 0xf0) == 0x00)
                {
-                   retval = nand_checkBadBlock(static_cast<uint32_t>(curBlock), static_cast<uint32_t>(currentPageSize), static_cast<uint32_t>(sectInBlock));
+                   retval = nand_checkBadBlock(static_cast<uint32_t>(curBlock), static_cast<uint32_t>(currentPageSize), static_cast<uint32_t>(sectInBlock), current_programmer);
                }
                else retval = 0;
 
                if (retval == 0) //skip bad sectors, if checkbox enable
                {
-                   ret = nand_block_erase( curBlock,  currentBlockSize);
+                   ret = nand_block_erase( curBlock,  currentBlockSize, current_programmer);
                    if (ret != 0)
                      {
                        QMessageBox::about(this, tr("Error"), tr("Error erasing sector ") + QString::number(curBlock));
-                       ch341a_spi_shutdown();
+                       ProgDeviceClose(current_programmer);
                        doNotDisturbCancel();
                        return;
                      }
@@ -838,7 +863,7 @@ void MainWindow::on_actionErase_triggered()
                if (isHalted)
                {
                    isHalted = false;
-                   ch341a_spi_shutdown();
+                   ProgDeviceClose(current_programmer);
                    doNotDisturbCancel();
                    return;
                }
@@ -852,7 +877,7 @@ void MainWindow::on_actionErase_triggered()
     ui->statusMessage->setText("");
     ui->progressBar->setValue(0);
     ui->centralWidget->repaint();
-    ch341a_spi_shutdown();
+    ProgDeviceClose(current_programmer);
 }
 
 void MainWindow::on_actionUndo_triggered()
@@ -962,7 +987,7 @@ void MainWindow::on_actionWrite_triggered()
     //Writting data to chip
     int res = 0, badResult = 0;
     uint32_t numBlocks, step, sectorsPerBlock;
-    statusCH341 = ch341a_init(currentChipType, currentI2CBusSpeed);
+    statusCH341 = ProgDeviceInit(current_programmer, currentChipType, currentI2CBusSpeed);//statusCH341 = ProgDeviceInit(current_programmer);//ch341a_init(currentChipType, currentI2CBusSpeed);
     if (statusCH341 == 0)
     {
     chipData = hexEdit->data();
@@ -982,7 +1007,8 @@ void MainWindow::on_actionWrite_triggered()
                          numBlocks = currentNumBlocks;
                       break;
                       case 1:                 //I2C
-                         step = 128;
+                         //step = 64;
+                         step = currentPageSize;
                          numBlocks = currentChipSize / step;
                       break;
                       case 2:                 //MicroWire
@@ -997,14 +1023,14 @@ void MainWindow::on_actionWrite_triggered()
                          numBlocks = currentChipSize / step;
                          //numBlocks = currentNumBlocks;
                          sectorsPerBlock = currentBlockSize / currentPageSize;
-                         nand_unprotect();
-                         nand_ECCEnable();
+                         nand_unprotect(current_programmer);
+                         nand_ECCEnable(current_programmer);
                       break;
                       default:
                          //Unsupport
                          QMessageBox::about(this, tr("Error"), tr("Unsupported chip type!"));
                          doNotDisturbCancel();
-                         ch341a_spi_shutdown();
+                         ProgDeviceClose(current_programmer);
                          ui->checkBox_2->setStyleSheet("");
                       return;
                       }
@@ -1014,25 +1040,31 @@ void MainWindow::on_actionWrite_triggered()
     uint32_t j, k;
     ui->statusMessage->setText(tr("Writing data to ") + ui->comboBox_name->currentText());
     //progerssbar settings
-    ui->progressBar->setRange(0, static_cast<int>(numBlocks));
+    int currentPercent = 0;
+    int lastPercent = -1;
+    //ui->progressBar->setRange(0, static_cast<int>(numBlocks));
+    ui->progressBar->setRange(0, 100);
+    ui->progressBar->setValue(0);
     ui->checkBox_2->setStyleSheet("QCheckBox{font-weight:800;}");
     chipData = hexEdit->data();
     std::shared_ptr<uint8_t[]> buf(new uint8_t[step]);
     for (k = 0; k < numBlocks; k++)
       {
-         for (j = 0; j < step; j++)
-            {
-               buf[addrDest + j - k * step] =  static_cast<uint8_t>(chipData[addrSrc + j]) ;
-            }
+//         for (j = 0; j < step; j++)
+//            {
+//               buf[addrDest + j - k * step] =  static_cast<uint8_t>(chipData[addrSrc + j]) ;
+//            }
+         memcpy(buf.get() + addrDest - k * step, chipData.constData() + addrSrc, step);
          switch (currentChipType)
                        {
                        case 0:                           //SPI
                           addrSrc = addrSrc + step;
-                          res = snor_write_param(buf.get(), addrDest, step, step, currentAddr4bit);
+                          res = snor_write_param(buf.get(), addrDest, step, step, currentAddr4bit, current_programmer);
                        break;
                        case 1:                           //I2C
                           addrSrc = addrSrc + step;
-                          res = ch341writeEEPROM_param(buf.get(), curBlock * 128, 128, currentPageSize, currentAlgorithm);
+                          if (current_programmer < 2) res = ch341writeEEPROM_param(buf.get(), curBlock * 128, 128, currentPageSize, currentAlgorithm);
+                          else res = ch347i2cBlockWrite(buf.get(), curBlock * step, currentPageSize, currentAlgorithm);
                           if (res==0) res = 1;
                        break;
                        case 2:                           //MicroWire
@@ -1043,46 +1075,46 @@ void MainWindow::on_actionWrite_triggered()
                        case 3:                           //25xxx
                        case 4:                           //M95xx
                           addrSrc = addrSrc + step;
-                          res = s95_write_param(buf.get(), addrDest, step, step, currentAlgorithm);
+                          res = s95_write_param(buf.get(), addrDest, step, step, currentAlgorithm, current_programmer);
                        break;
                        case 5:
                           //AT45DBxx
                           addrSrc = addrSrc + step;
-                          res = at45_write_param(buf.get(), addrDest, step, step, currentAlgorithm);
+                          res = at45_write_param(buf.get(), addrDest, step, step, currentAlgorithm, current_programmer);
                        break;
                        case 6:
                           //NAND
                           if ((nandSettings & 0x0f) == 0x01)
                           {
                              //skip bad block enabled
-                             badResult = nand_checkBadBlock(k, currentPageSize, sectorsPerBlock);
+                             badResult = nand_checkBadBlock(k, currentPageSize, sectorsPerBlock, current_programmer);
                              if(badResult != 1) addrSrc = addrSrc + step;
                           }
                           else addrSrc = addrSrc + step;
-                          res = nand_block_write(buf.get(), currentPageSize, k, sectorsPerBlock);
+                          res = nand_block_write(buf.get(), currentPageSize, k, sectorsPerBlock, current_programmer);
                           if (res==0) res = 1;
                        break;
                        default:
                           //Unsupport
                           QMessageBox::about(this, tr("Error"), tr("Unsupported chip type!"));
                           doNotDisturbCancel();
-                          ch341a_spi_shutdown();
+                          ProgDeviceClose(current_programmer);
                           ui->checkBox_2->setStyleSheet("");
                        return;
                        }
          // if res=-1 - error, stop
          if (statusCH341 != 0)
            {
-             QMessageBox::about(this, tr("Error"), tr("Programmer CH341a is not connected!"));
+             QMessageBox::about(this, tr("Error"), tr("Programmer ") + ui->lStatus->text() + tr(" is not connected!"));
              doNotDisturbCancel();
-             ch341a_spi_shutdown();
+             ProgDeviceClose(current_programmer);
              break;
            }         
          if (res <= 0)
            {
              QMessageBox::about(this, tr("Error"), tr("Error writing sector ") + QString::number(curBlock));
              doNotDisturbCancel();
-             ch341a_spi_shutdown();
+             ProgDeviceClose(current_programmer);
              return;
            }
          addrDest = addrDest + step;
@@ -1091,11 +1123,17 @@ void MainWindow::on_actionWrite_triggered()
          if (isHalted)
          {
              isHalted = false;
-             ch341a_spi_shutdown();
+             ProgDeviceClose(current_programmer);
              doNotDisturbCancel();
              return;
          }
-         ui->progressBar->setValue( static_cast<int>(curBlock));
+         //ui->progressBar->setValue(static_cast<int>(curBlock));
+            currentPercent = static_cast<int>((curBlock * 100.0) / numBlocks);
+            if (currentPercent != lastPercent)
+            {
+                ui->progressBar->setValue(currentPercent);
+                lastPercent = currentPercent;
+            }
       }
     }
     else
@@ -1111,9 +1149,9 @@ void MainWindow::on_actionWrite_triggered()
     else
     {
         ch341StatusFlashing();
-        QMessageBox::about(this, tr("Error"), tr("Programmer CH341a is not connected!"));
+        QMessageBox::about(this, tr("Error"), tr("Programmer ") + ui->lStatus->text() + tr(" is not connected!"));
     }
-    ch341a_spi_shutdown();
+    ProgDeviceClose(current_programmer);
 }
 
 void MainWindow::on_actionRead_triggered()
@@ -1124,7 +1162,7 @@ void MainWindow::on_actionRead_triggered()
 void MainWindow::on_actionExit_triggered()
 {
 
-    ch341a_spi_shutdown();
+    ProgDeviceClose(current_programmer);
     MainWindow::close();
 }
 
@@ -1235,7 +1273,7 @@ void MainWindow::on_actionVerify_triggered()
     //Reading and veryfying data from chip
     int res = 0;
     uint32_t step, numBlocks;
-    statusCH341 = ch341a_init(currentChipType, currentI2CBusSpeed);
+    statusCH341 = statusCH341 = ProgDeviceInit(current_programmer, currentChipType, currentI2CBusSpeed);//ch341a_init(currentChipType, currentI2CBusSpeed);
     if (statusCH341 == 0)
     {
        if (((currentNumBlocks > 0) && (currentBlockSize >0) && (currentChipType == 0)) ||
@@ -1255,7 +1293,7 @@ void MainWindow::on_actionVerify_triggered()
                                 numBlocks = currentNumBlocks;
                              break;
                              case 1:                 //I2C
-                                step = 128;
+                                step = currentPageSize;
                                 numBlocks = currentChipSize / step;
                              break;
                              case 2:                 //MicroWire
@@ -1268,13 +1306,13 @@ void MainWindow::on_actionVerify_triggered()
                              case 6:             //NAND 35xx, GD5xx, W25xx
                                 step = currentPageSize;
                                 numBlocks = currentChipSize / step;
-                                nand_ECCEnable();
+                                nand_ECCEnable(current_programmer);
                              break;
                              default:
                                 //Unsupport
                                 QMessageBox::about(this, tr("Error"), tr("Unsupported chip type!"));
                                 doNotDisturbCancel();
-                                ch341a_spi_shutdown();
+                                ProgDeviceClose(current_programmer);
                                 ui->checkBox_3->setStyleSheet("");
                              return;
                              }
@@ -1283,7 +1321,10 @@ void MainWindow::on_actionVerify_triggered()
                uint32_t curBlock = 0;
                uint32_t j, k;               
                //progerssbar settings
-               ui->progressBar->setRange(0, static_cast<int>(numBlocks));
+               int currentPercent = 0;
+               int lastPercent = -1;
+               //ui->progressBar->setRange(0, static_cast<int>(numBlocks));
+               ui->progressBar->setRange(0, 100);
                ui->progressBar->setValue(0);
                std::shared_ptr<uint8_t[]> buf(new uint8_t[step]);
                chipData = hexEdit->data();
@@ -1295,11 +1336,12 @@ void MainWindow::on_actionVerify_triggered()
                       {
                       case 0:
                          //SPI
-                         res = snor_read_param(buf.get(),curBlock * step, step, step, currentAddr4bit);
+                         res = snor_read_param(buf.get(),curBlock * step, step, step, currentAddr4bit, current_programmer);
                       break;
                       case 1:
                          //I2C
-                       res = ch341readEEPROM_param(buf.get(), curBlock * step, step, currentChipSize, currentPageSize, currentAlgorithm);//currentAlgorithm);
+                       if (current_programmer < 2) res = ch341readEEPROM_param(buf.get(), curBlock * step, step, currentChipSize, currentPageSize, currentAlgorithm);
+                       else res = ch347i2cBlockRead(buf.get(), curBlock * step, currentPageSize, currentAlgorithm);
                        if (res==0) res = 1;
                       break;
                       case 2:
@@ -1311,10 +1353,10 @@ void MainWindow::on_actionVerify_triggered()
                          //25xxx
                       case 4:
                          //95xxx
-                         res = s95_read_param(buf.get(), curBlock * step, step, step, currentAlgorithm);
+                         res = s95_read_param(buf.get(), curBlock * step, step, step, currentAlgorithm, current_programmer);
                       break;
                       case 5:
-                         res = at45_read_param(buf.get(), curBlock * step, step, step, currentAlgorithm);
+                         res = at45_read_param(buf.get(), curBlock * step, step, step, currentAlgorithm, current_programmer);
                       break;
                       case 6:
                          //NAND
@@ -1325,21 +1367,21 @@ void MainWindow::on_actionVerify_triggered()
                          //Unsupport
                          QMessageBox::about(this, tr("Error"), tr("Unsupported chip type!"));
                          doNotDisturbCancel();
-                         ch341a_spi_shutdown();
+                         ProgDeviceClose(current_programmer);
                          ui->checkBox_3->setStyleSheet("");
                       return;
                       }
                     // if res=-1 - error, stop
                     if (statusCH341 != 0)
                     {
-                       QMessageBox::about(this, tr("Error"), tr("Programmer CH341a is not connected!"));
+                       QMessageBox::about(this, tr("Error"), tr("Programmer ") + ui->lStatus->text() + tr(" is not connected!"));
                        doNotDisturbCancel();
                        break;
                     }
                     if (res <= 0)
                     {
                         QMessageBox::about(this, tr("Error"), tr("Error reading block ") + QString::number(curBlock));
-                        ch341a_spi_shutdown();
+                        ProgDeviceClose(current_programmer);
                         ui->pushButton->setStyleSheet(grnKeyStyle);
                         doNotDisturbCancel();
                         return;
@@ -1352,7 +1394,7 @@ void MainWindow::on_actionVerify_triggered()
                             QMessageBox::about(this, tr("Error"), tr("Error comparing data!\nAddress:   ") + hexiAddr(addr + j) + tr("\nBuffer: ") + bytePrint( static_cast<unsigned char>(chipData[addr + j])) + tr("    Chip: ") + bytePrint(buf[addr + j - k * step]));
                             ui->statusMessage->setText("");
                             ui->checkBox_3->setStyleSheet("");
-                            ch341a_spi_shutdown();
+                            ProgDeviceClose(current_programmer);
                             doNotDisturbCancel();
                             return;
                            }
@@ -1363,11 +1405,17 @@ void MainWindow::on_actionVerify_triggered()
                      if (isHalted)
                      {
                          isHalted = false;
-                         ch341a_spi_shutdown();
+                         ProgDeviceClose(current_programmer);
                          doNotDisturbCancel();
                          return;
                      }
-                     ui->progressBar->setValue(static_cast<int>(curBlock));
+                     //ui->progressBar->setValue(static_cast<int>(curBlock));
+                     currentPercent = static_cast<int>((curBlock * 100.0) / numBlocks);
+                     if (currentPercent != lastPercent)
+                     {
+                         ui->progressBar->setValue(currentPercent);
+                         lastPercent = currentPercent;
+                     }
                  }
              }
              else
@@ -1382,13 +1430,13 @@ void MainWindow::on_actionVerify_triggered()
              ui->progressBar->setValue(0);
              ui->checkBox_3->setStyleSheet("");
              ui->crcEdit->setText(getCRC32(chipData));
-             ch341a_spi_shutdown();
+             ProgDeviceClose(current_programmer);
              QMessageBox::about(this, tr("Ok!"), tr("The operation was successful!"));
     }
       else
       {
           ch341StatusFlashing();
-          QMessageBox::about(this, tr("Error"), tr("Programmer CH341a is not connected!"));
+          QMessageBox::about(this, tr("Error"), tr("Programmer ") + ui->lStatus->text() + tr(" is not connected!"));
       }
 }
 
@@ -1860,7 +1908,7 @@ void MainWindow::doNotDisturbCancel()
 
 void MainWindow::on_actionStop_triggered()
 {
-  //ch341a_spi_shutdown();
+
   hexEdit->setData(chipData);
   ui->crcEdit->setText(getCRC32(chipData));
   isHalted = true;
@@ -1902,6 +1950,7 @@ void MainWindow::on_actionChip_info_triggered()
         DialogSFDP* sfdpDialog = new DialogSFDP(this);
         connect(sfdpDialog, SIGNAL(closeRequestHasArrived()), this, SLOT(closeSFDP()));
         sfdpDialog->show();
+        sfdpDialog->setDeviceType(current_programmer);
      }
 
      if (currentChipType == 6)
@@ -1910,6 +1959,7 @@ void MainWindow::on_actionChip_info_triggered()
          connect(nandSRDialog, SIGNAL(closeRequestHasArrived()), this, SLOT(closeSR()));
          nandSRDialog->show();
          nandSRDialog->setPattern(currentAlgorithm);
+         nandSRDialog->setDeviceType(current_programmer);
      }
 
      if ((currentChipType > 2) && (currentChipType != 6))
@@ -1918,6 +1968,7 @@ void MainWindow::on_actionChip_info_triggered()
          connect(srDialog, SIGNAL(closeRequestHasArrived()), this, SLOT(closeSR()));
          srDialog->show();
          srDialog->setChipType(currentChipType);
+         srDialog->setDeviceType(current_programmer);
      }
 
 }
@@ -2053,9 +2104,13 @@ void MainWindow::progInit()
 
 void MainWindow::slotTimerAlarm()
 {
-        statusCH341 = ch341a_spi_init();
+    statusCH341 = ProgDeviceInit(current_programmer, 0, 1);
+    //if (current_programmer < 2) statusCH341 = ch341a_spi_init();
+    //if (current_programmer == 2) statusCH341 = ch347_spi_init(currentChipType);
         ch341StatusFlashing();
-        ch341a_spi_shutdown();
+    //if (current_programmer < 2) ProgDeviceClose(current_programmer);
+    //if (current_programmer == 2) ch347_spi_shutdown();
+    ProgDeviceClose(current_programmer);
 }
 
 void MainWindow::resizeEvent(QResizeEvent* event)
@@ -2111,6 +2166,8 @@ void MainWindow::on_actionSecurity_registers_triggered()
             securityDialog->setAlgorithm(currentAlgorithm);
             securityDialog->setPath(lastDirectory);
             securityDialog->show();
+            securityDialog->setDeviceType(current_programmer);
+
         }
         else QMessageBox::about(this, tr("Error"), tr("There are no security registers in this chip or the current version of IMSProg does not support this algorithm."));
     }
@@ -2122,6 +2179,7 @@ void MainWindow::on_actionSecurity_registers_triggered()
             securityNandDialog->setAlgorithm(currentAlgorithm);
             securityNandDialog->setSectorSize(currentPageSize);
             securityNandDialog->setPath(lastDirectory);
+            securityNandDialog->setDeviceType(current_programmer);
             securityNandDialog->show();
     }
 }
@@ -2434,6 +2492,7 @@ void MainWindow::on_actionBad_block_management_triggered()
         bbmDialog->getBlockSize(currentBlockSize);
         bbmDialog->getTotalBlocks(currentChipSize / currentBlockSize);
         bbmDialog->getSettings(nandSettings);
+        bbmDialog->setDeviceType(current_programmer);
         connect(bbmDialog, SIGNAL(sendNandParam(uint8_t)), this, SLOT(receiveNandStatus(uint8_t)));
     }
     else QMessageBox::about(this, tr("Error"), tr("Please select the chip parameters - manufacture and chip name."));
@@ -2448,11 +2507,19 @@ void MainWindow::receiveNandStatus(uint8_t setParam)
 void MainWindow::on_actionCH341A_B_v1_2_triggered()
 {
     current_programmer = 0;
+    ui->lStatus->setText("CH341A");
 }
 
 void MainWindow::on_actionCH341A_v1_7_triggered()
 {
     current_programmer = 1;
+    ui->lStatus->setText("CH341A");
+}
+
+void MainWindow::on_actionCH347T_triggered()
+{
+    current_programmer = 2;
+    ui->lStatus->setText("CH347T");
 }
 
 void MainWindow::closeEvent(QCloseEvent( *event))
