@@ -156,146 +156,160 @@ int32_t ch347setstream(uint32_t speed)
     return 0;
 }
 
-
 int ch347i2cBlockRead(uint8_t *buf, uint32_t address, uint32_t blockSize, uint8_t algorithm)
 {
     int ret;
+    uint32_t step, maxstep;
     int32_t actuallen = 0;
     uint32_t size = blockSize;
-    uint8_t *ptr = i2c_dev.obuf;
+
     uint8_t deviceAddress = 0;
     uint8_t wordAddressLo = 0;
     uint8_t wordAddressHi = 0;
 
         if (size > 64) size = 64;
+        maxstep = blockSize / size;
 
-        *ptr++ = mch347A_CMD_I2C_STREAM;
-        *ptr++ = mch347A_CMD_I2C_STM_STA;
-
-        if ((algorithm & 0x0f) == 0x01) //1 byte address
+        for (step = 0; step < maxstep; step++)
         {
-            *ptr++ = mch347A_CMD_I2C_STM_OUT | 2;
-            deviceAddress = (uint8_t) ( ((((address & 0xff00) >> 8) & ((algorithm & 0xf0) >> 4)) << 1) | 0xa0);
-            wordAddressLo = (uint8_t) (address & 0x00ff);
-            *ptr++ = deviceAddress;
-            *ptr++ = wordAddressLo;
-        }
-        if ((algorithm & 0x0f) == 0x02) //2 byte address
-        {
-            *ptr++ = mch347A_CMD_I2C_STM_OUT | 3;
-            deviceAddress = (uint8_t) ( ((((address & 0xff0000) >> 16) & ((algorithm & 0xf0) >> 4)) << 1) | 0xa0);
-            wordAddressLo = (uint8_t) (address & 0x00ff);
-            wordAddressHi = (uint8_t) ((address & 0xff00) >> 8);
-            *ptr++ = deviceAddress;
-            *ptr++ = wordAddressHi;
-            *ptr++ = wordAddressLo;
-        }
-            //device addr + read bit
+            uint8_t *ptr = i2c_dev.obuf;
+            *ptr++ = mch347A_CMD_I2C_STREAM;
             *ptr++ = mch347A_CMD_I2C_STM_STA;
-            *ptr++ = mch347A_CMD_I2C_STM_OUT | 1;
-            *ptr++ = deviceAddress | 0x01;
 
-            *ptr++ = mch347A_CMD_I2C_STM_IN | ((uint8_t)(size - 1));
+            if ((algorithm & 0x0f) == 0x01) //1 byte address
+            {
+                *ptr++ = mch347A_CMD_I2C_STM_OUT | 2;
+                deviceAddress = (uint8_t) ( ((((address & 0xff00) >> 8) & ((algorithm & 0xf0) >> 4)) << 1) | 0xa0);
+                wordAddressLo = (uint8_t) (address & 0x00ff);
+                *ptr++ = deviceAddress;
+                *ptr++ = wordAddressLo;
+            }
+            if ((algorithm & 0x0f) == 0x02) //2 byte address
+            {
+                *ptr++ = mch347A_CMD_I2C_STM_OUT | 3;
+                deviceAddress = (uint8_t) ( ((((address & 0xff0000) >> 16) & ((algorithm & 0xf0) >> 4)) << 1) | 0xa0);
+                wordAddressLo = (uint8_t) (address & 0x00ff);
+                wordAddressHi = (uint8_t) ((address & 0xff00) >> 8);
+                *ptr++ = deviceAddress;
+                *ptr++ = wordAddressHi;
+                *ptr++ = wordAddressLo;
+            }
+                //device addr + read bit
+                *ptr++ = mch347A_CMD_I2C_STM_STA;
+                *ptr++ = mch347A_CMD_I2C_STM_OUT | 1;
+                *ptr++ = deviceAddress | 0x01;
 
-            *ptr++ = mch347A_CMD_I2C_STM_IN; //last byte and end of packet
-            *ptr++ = mch347A_CMD_I2C_STM_STO;
-            *ptr++ = mch347A_CMD_I2C_STM_END;
+                *ptr++ = mch347A_CMD_I2C_STM_IN | ((uint8_t)(size - 1));
+
+                *ptr++ = mch347A_CMD_I2C_STM_IN; //last byte and end of packet
+                *ptr++ = mch347A_CMD_I2C_STM_STO;
+                *ptr++ = mch347A_CMD_I2C_STM_END;
 
 
-        ret = libusb_bulk_transfer(priv->handle, BULK_WRITE_ENDPOINT, i2c_dev.obuf, 15 , &actuallen, DEFAULT_TIMEOUT);
-        if (ret < 0)
-        {
-            fprintf(stderr, "USB write error : %s\n", strerror(-ret));
-            return ret;
+            ret = libusb_bulk_transfer(priv->handle, BULK_WRITE_ENDPOINT, i2c_dev.obuf, 15 , &actuallen, DEFAULT_TIMEOUT);
+            if (ret < 0)
+            {
+                fprintf(stderr, "USB write error : %s\n", strerror(-ret));
+                return ret;
+            }
+            ret = libusb_bulk_transfer(priv->handle, BULK_READ_ENDPOINT, i2c_dev.ibuf, blockSize + 4, &actuallen, DEFAULT_TIMEOUT);
+            if (ret < 0)
+            {
+                fprintf(stderr, "USB read error : %s\n", strerror(-ret));
+                return ret;
+            }
+
+            if ((algorithm & 0x0f) == 0x02) memcpy(&buf[step * size], &i2c_dev.ibuf[4], size);
+            else memcpy(&buf[step * size], &i2c_dev.ibuf[3], size);
+
+            address = address + size;
+            ret = ch347delay_ms(10);
+            if (ret < 0)
+            {
+                fprintf(stderr, "Failed to set timeout: '%s'\n", strerror(-ret));
+                return -1;
+            }
         }
-        ret = libusb_bulk_transfer(priv->handle, BULK_READ_ENDPOINT, i2c_dev.ibuf, blockSize + 4, &actuallen, DEFAULT_TIMEOUT);
-        if (ret < 0)
-        {
-            fprintf(stderr, "USB read error : %s\n", strerror(-ret));
-            return ret;
-        }
-
-        if ((algorithm & 0x0f) == 0x02) memcpy(buf, &i2c_dev.ibuf[4], size);
-        else memcpy(buf, &i2c_dev.ibuf[3], size);
-
     return 0;
 }
 
-int ch347i2cBlockWrite(uint8_t *buf, uint32_t address, uint32_t blockSize, uint8_t algorithm)
+int ch347i2cBlockWrite(uint8_t *buf, uint32_t address, uint32_t blockSize, uint32_t sectorSize, uint8_t algorithm)
 {
     int ret;
     int32_t actuallen = 0;
     uint32_t size = blockSize;
-    uint8_t *ptr = i2c_dev.obuf;
+    uint32_t step, maxstep;
     uint8_t deviceAddress = 0;
     uint8_t wordAddressLo = 0;
     uint8_t wordAddressHi = 0;
 
-        if (size > 64) size = 64;
+        if (size > sectorSize) size = sectorSize;
+        maxstep = blockSize / size;
 
-        *ptr++ = mch347A_CMD_I2C_STREAM;
-        *ptr++ = mch347A_CMD_I2C_STM_STA;
-
-        if ((algorithm & 0x0f) == 0x01) //1 byte address
+        for (step = 0; step < maxstep; step++)
         {
-            *ptr++ = mch347A_CMD_I2C_STM_OUT | 2;
-            deviceAddress = (uint8_t) ( ((((address & 0xff00) >> 8) & ((algorithm & 0xf0) >> 4)) << 1) | 0xa0);
-            wordAddressLo = (uint8_t) (address & 0x00ff);
-            *ptr++ = deviceAddress;
-            *ptr++ = wordAddressLo;
-        }
-        if ((algorithm & 0x0f) == 0x02) //2 byte address
-        {
-            *ptr++ = mch347A_CMD_I2C_STM_OUT | 3;
-            deviceAddress = (uint8_t) ( ((((address & 0xff0000) >> 16) & ((algorithm & 0xf0) >> 4)) << 1) | 0xa0);
-            wordAddressLo = (uint8_t) (address & 0x00ff);
-            wordAddressHi = (uint8_t) ((address & 0xff00) >> 8);
-            *ptr++ = deviceAddress;
-            *ptr++ = wordAddressHi;
-            *ptr++ = wordAddressLo;
-        }
-            *ptr++ = mch347A_CMD_I2C_STM_OUT | ((uint8_t)(size ));
+            uint8_t *ptr = i2c_dev.obuf;
+            *ptr++ = mch347A_CMD_I2C_STREAM;
+            *ptr++ = mch347A_CMD_I2C_STM_STA;
 
-//            for (i = 0; i < size; i++) *ptr++ = buf[i];
-
-             memcpy(ptr, buf, size);
-             ptr += size;
-
-            *ptr++ = mch347A_CMD_I2C_STM_STO;
-            *ptr++ = mch347A_CMD_I2C_STM_END;
-
-
-        ret = libusb_bulk_transfer(priv->handle, BULK_WRITE_ENDPOINT, i2c_dev.obuf, size + 12 , &actuallen, DEFAULT_TIMEOUT);
-        if (ret < 0)
-        {
-            fprintf(stderr, "Failed to write to I2C: '%s'\n", strerror(-ret));
-            return ret;
-        }
-        ret = libusb_bulk_transfer(priv->handle, BULK_READ_ENDPOINT, i2c_dev.ibuf, 512, &actuallen, DEFAULT_TIMEOUT);
-
-        if (ret < 0) {
-            fprintf(stderr, "Failed to write to I2C: '%s'\n", strerror(-ret));
-            return -1;
-        }
-
-        for (unsigned i = 0; i < actuallen; ++i)
-        {
-            if (i2c_dev.ibuf[i] != 0x01)
+            if ((algorithm & 0x0f) == 0x01) //1 byte address
             {
-                fprintf(stderr, "received NACK at %d", i);
+                *ptr++ = mch347A_CMD_I2C_STM_OUT | 2;
+                deviceAddress = (uint8_t) ( ((((address & 0xff00) >> 8) & ((algorithm & 0xf0) >> 4)) << 1) | 0xa0);
+                wordAddressLo = (uint8_t) (address & 0x00ff);
+                *ptr++ = deviceAddress;
+                *ptr++ = wordAddressLo;
+            }
+            if ((algorithm & 0x0f) == 0x02) //2 byte address
+            {
+                *ptr++ = mch347A_CMD_I2C_STM_OUT | 3;
+                deviceAddress = (uint8_t) ( ((((address & 0xff0000) >> 16) & ((algorithm & 0xf0) >> 4)) << 1) | 0xa0);
+                wordAddressLo = (uint8_t) (address & 0x00ff);
+                wordAddressHi = (uint8_t) ((address & 0xff00) >> 8);
+                *ptr++ = deviceAddress;
+                *ptr++ = wordAddressHi;
+                *ptr++ = wordAddressLo;
+            }
+                *ptr++ = mch347A_CMD_I2C_STM_OUT | ((uint8_t)(size ));
+
+                 for (uint32_t i = 0; i < size; i++) *ptr++ = buf[i + step * size];
+
+                *ptr++ = mch347A_CMD_I2C_STM_STO;
+                *ptr++ = mch347A_CMD_I2C_STM_END;
+
+
+            ret = libusb_bulk_transfer(priv->handle, BULK_WRITE_ENDPOINT, i2c_dev.obuf, size + 12 , &actuallen, DEFAULT_TIMEOUT);
+            if (ret < 0)
+            {
+                fprintf(stderr, "Failed to write to I2C: '%s'\n", strerror(-ret));
+                return ret;
+            }
+            ret = libusb_bulk_transfer(priv->handle, BULK_READ_ENDPOINT, i2c_dev.ibuf, 512, &actuallen, DEFAULT_TIMEOUT);
+
+            if (ret < 0) {
+                fprintf(stderr, "Failed to write to I2C: '%s'\n", strerror(-ret));
                 return -1;
             }
-        }
-        ret = ch347delay_ms(10);
-        if (ret < 0)
-        {
-            fprintf(stderr, "Failed to set timeout: '%s'\n", strerror(-ret));
-            return -1;
+
+            for (unsigned i = 0; i < actuallen; ++i)
+            {
+                if (i2c_dev.ibuf[i] != 0x01)
+                {
+                    fprintf(stderr, "received NACK at %d", i);
+                    return -1;
+                }
+            }
+            ret = ch347delay_ms(10);
+            if (ret < 0)
+            {
+                fprintf(stderr, "Failed to set timeout: '%s'\n", strerror(-ret));
+                return -1;
+            }
+            address = address + size;
         }
 
     return 0;
 }
-
 
 int ch347_i2c_read(struct i2c_msg *msg)
 {

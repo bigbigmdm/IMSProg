@@ -26,7 +26,6 @@
 #include <string.h>
 #include <assert.h>
 #include "ch341a_i2c.h"
-#include "ch341a_spi.h"
 
 #define dprintf(args...)
 // #define dprintf(args...) do { if (1) printf(args); } while(0)
@@ -559,3 +558,79 @@ int32_t ch341writeEEPROM_param(uint8_t *buffer, uint32_t offset, uint32_t bytesu
 	return -1;
 }
 */
+
+
+
+
+
+
+
+struct xxx {
+  uint8_t ibuf[512];
+  uint8_t obuf[512];
+} i2c_dev1;
+
+int ch341i2cBlockRead(uint8_t *buf, uint32_t address, uint32_t blockSize, uint8_t algorithm)
+{
+    int ret;
+
+    int32_t actuallen = 0;
+    uint32_t size = blockSize;
+    uint8_t *ptr = i2c_dev1.obuf;
+    uint8_t deviceAddress = 0;
+    uint8_t wordAddressLo = 0;
+    uint8_t wordAddressHi = 0;
+
+        if (size > 16) size = 16;
+
+        *ptr++ = mCH341A_CMD_I2C_STREAM;
+        *ptr++ = mCH341A_CMD_I2C_STM_STA;
+
+        if ((algorithm & 0x0f) == 0x01) //1 byte address
+        {
+            *ptr++ = mCH341A_CMD_I2C_STM_OUT | 2;
+            deviceAddress = (uint8_t) ( ((((address & 0xff00) >> 8) & ((algorithm & 0xf0) >> 4)) << 1) | 0xa0);
+            wordAddressLo = (uint8_t) (address & 0x00ff);
+            *ptr++ = deviceAddress;
+            *ptr++ = wordAddressLo;
+        }
+        if ((algorithm & 0x0f) == 0x02) //2 byte address
+        {
+            *ptr++ = mCH341A_CMD_I2C_STM_OUT | 3;
+            deviceAddress = (uint8_t) ( ((((address & 0xff0000) >> 16) & ((algorithm & 0xf0) >> 4)) << 1) | 0xa0);
+            wordAddressLo = (uint8_t) (address & 0x00ff);
+            wordAddressHi = (uint8_t) ((address & 0xff00) >> 8);
+            *ptr++ = deviceAddress;
+            *ptr++ = wordAddressHi;
+            *ptr++ = wordAddressLo;
+        }
+            //device addr + read bit
+            *ptr++ = mCH341A_CMD_I2C_STM_STA;
+            *ptr++ = mCH341A_CMD_I2C_STM_OUT | 1;
+            *ptr++ = deviceAddress | 0x01;
+
+            *ptr++ = mCH341A_CMD_I2C_STM_IN | ((uint8_t)(size - 1));
+
+            *ptr++ = mCH341A_CMD_I2C_STM_IN; //last byte and end of packet
+            *ptr++ = mCH341A_CMD_I2C_STM_STO;
+            *ptr++ = mCH341A_CMD_I2C_STM_END;
+
+
+        ret = libusb_bulk_transfer(handle, BULK_WRITE_ENDPOINT, i2c_dev1.obuf, 15 , &actuallen, DEFAULT_TIMEOUT);
+        if (ret < 0)
+        {
+            fprintf(stderr, "USB write error : %s\n", strerror(-ret));
+            return ret;
+        }
+        ret = libusb_bulk_transfer(handle, BULK_READ_ENDPOINT, i2c_dev1.ibuf, size + 4, &actuallen, DEFAULT_TIMEOUT);
+        if (ret < 0)
+        {
+            fprintf(stderr, "USB read error : %s\n", strerror(-ret));
+            return ret;
+        }
+
+        if ((algorithm & 0x0f) == 0x02) memcpy(buf, &i2c_dev1.ibuf[0], size);
+        else memcpy(buf, &i2c_dev1.ibuf[0], size);
+
+    return 0;
+}

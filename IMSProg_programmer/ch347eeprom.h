@@ -153,4 +153,4 @@ int32_t ch347setstream( uint32_t speed);
 int ch347_quick_write( uint8_t addr);
 //int32_t parseEEPsize(char *eepromname, const struct EEPROM **eeprom);
 int ch347i2cBlockRead(uint8_t * buf, uint32_t address, uint32_t blockSize, uint8_t algorithm);
-int ch347i2cBlockWrite(uint8_t * buf, uint32_t address, uint32_t blockSize, uint8_t algorithm);
+int ch347i2cBlockWrite(uint8_t * buf, uint32_t address, uint32_t blockSize, uint32_t sectorSize, uint8_t algorithm);

@@ -233,8 +233,8 @@ void MainWindow::on_pushButton_clicked()
              numBlocks = currentNumBlocks;
           break;
           case 1:             //I2C
-             //step = 128;
-             step = currentPageSize;
+             step = 128;
+             //step = currentPageSize;
              numBlocks = currentChipSize / step;
           break;
           case 2:             //MicroWire
@@ -275,14 +275,13 @@ void MainWindow::on_pushButton_clicked()
                  res = snor_read_param(buf.get(), curBlock * step, step, step, currentAddr4bit, current_programmer);
               break;
               case 1:            //I2C
-               if (current_programmer < 2) res = ch341readEEPROM_param(buf.get(), curBlock * step, step, currentChipSize, currentPageSize, currentAlgorithm);
-               else res = ch347i2cBlockRead(buf.get(), curBlock * step, currentPageSize, currentAlgorithm);
-               if (res==0) res = 1;
+                   res = ch34xi2cBlockRead(buf.get(), curBlock * step, step, currentAlgorithm, current_programmer);
+                   if (res==0) res = 1;
               break;
               case 2:
                  //MicroWire
-               res = Read_EEPROM_3wire_param(buf.get(), static_cast<int>(curBlock * step), static_cast<int>(step), static_cast<int>(currentChipSize), currentAlgorithm);
-               if (res==0) res = 1;
+                   res = Read_EEPROM_3wire_param(buf.get(), static_cast<int>(curBlock * step), static_cast<int>(step), static_cast<int>(currentChipSize), currentAlgorithm);
+                   if (res==0) res = 1;
               break;
               case 3:
                  //25xxx
@@ -799,7 +798,7 @@ void MainWindow::on_actionErase_triggered()
         for (curBlock = 0; curBlock < numBlocks; curBlock++)
         {
             if (current_programmer < 2) res = ch341writeEEPROM_param(buf.get(), curBlock * 128, 128, currentPageSize, currentAlgorithm);
-            else res = ch347i2cBlockWrite(buf.get(), curBlock * step, currentPageSize, currentAlgorithm);
+            else res = ch347i2cBlockWrite(buf.get(), curBlock * step, step, currentPageSize, currentAlgorithm);
             if (res==0) res = 1;
             qApp->processEvents();
             ui->progressBar->setValue( static_cast<int>(curBlock));
@@ -1007,8 +1006,8 @@ void MainWindow::on_actionWrite_triggered()
                          numBlocks = currentNumBlocks;
                       break;
                       case 1:                 //I2C
-                         //step = 64;
-                         step = currentPageSize;
+                         step = 128;
+                         //step = currentPageSize;
                          numBlocks = currentChipSize / step;
                       break;
                       case 2:                 //MicroWire
@@ -1064,7 +1063,7 @@ void MainWindow::on_actionWrite_triggered()
                        case 1:                           //I2C
                           addrSrc = addrSrc + step;
                           if (current_programmer < 2) res = ch341writeEEPROM_param(buf.get(), curBlock * 128, 128, currentPageSize, currentAlgorithm);
-                          else res = ch347i2cBlockWrite(buf.get(), curBlock * step, currentPageSize, currentAlgorithm);
+                          else res = ch34xi2cBlockWrite(buf.get(), curBlock * step, step, currentPageSize, currentAlgorithm, current_programmer);
                           if (res==0) res = 1;
                        break;
                        case 2:                           //MicroWire
@@ -1293,7 +1292,8 @@ void MainWindow::on_actionVerify_triggered()
                                 numBlocks = currentNumBlocks;
                              break;
                              case 1:                 //I2C
-                                step = currentPageSize;
+                                //step = currentPageSize;
+                                step = 128;
                                 numBlocks = currentChipSize / step;
                              break;
                              case 2:                 //MicroWire
@@ -1340,14 +1340,13 @@ void MainWindow::on_actionVerify_triggered()
                       break;
                       case 1:
                          //I2C
-                       if (current_programmer < 2) res = ch341readEEPROM_param(buf.get(), curBlock * step, step, currentChipSize, currentPageSize, currentAlgorithm);
-                       else res = ch347i2cBlockRead(buf.get(), curBlock * step, currentPageSize, currentAlgorithm);
-                       if (res==0) res = 1;
+                         res = ch34xi2cBlockRead(buf.get(), curBlock * step, step, currentAlgorithm, current_programmer);
+                         if (res==0) res = 1;
                       break;
                       case 2:
                          //MicroWire
-                       res = Read_EEPROM_3wire_param(buf.get(), static_cast<int>(curBlock * step), static_cast<int>(step), static_cast<int>(currentChipSize), currentAlgorithm);
-                       if (res==0) res = 1;
+                         res = Read_EEPROM_3wire_param(buf.get(), static_cast<int>(curBlock * step), static_cast<int>(step), static_cast<int>(currentChipSize), currentAlgorithm);
+                         if (res==0) res = 1;
                       break;
                       case 3:
                          //25xxx

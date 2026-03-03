@@ -57,7 +57,8 @@ SOURCES += \
     dialognandsecurity.cpp \
     dialogbbm.cpp \
     ch347.c \
-    ch347funcs.c
+    ch347funcs.c \
+    ch34x_i2c.c
 
 HEADERS += \
        mainwindow.h \
@@ -96,7 +97,8 @@ HEADERS += \
     dialognandsecurity.h \
     dialogbbm.h \
     ch347.h \
-    ch347eeprom.h
+    ch347eeprom.h \
+    ch34x_i2c.h
 
 FORMS += \
         mainwindow.ui \

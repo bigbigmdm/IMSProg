@@ -51,6 +51,7 @@ extern "C" {
 #include "timer.h"
 #include "types.h"
 #include "ch347eeprom.h"
+#include "ch34x_i2c.h"
 }
 
 
