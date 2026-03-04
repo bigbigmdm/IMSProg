@@ -107,6 +107,7 @@ bitbang_microwire.c
 ch341a_gpio.c
 ch341a_spi.c
 ch34x_i2c.c
+ch347.c
 color_manager.cpp
 flashcmd_api.c
 mw_eeprom.c
@@ -136,6 +137,7 @@ bitbang_microwire.h
 ch341a_gpio.h
 ch341a_spi.h
 ch34x_i2c.h
+ch347.h
 flashcmd_api.h
 mw_eeprom_api.h
 nandcmd_api.h
