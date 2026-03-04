@@ -31,7 +31,7 @@
 #include "ch34x_i2c.h"
 #include "ch347.h"
 #include "ch341a_spi.h"
-
+//Initialise and close CH341A see in ch341a_spi.h, CH347 - in ch347.h
 extern struct libusb_device_handle *handle;
 extern struct ch347_priv *priv;
 
@@ -47,8 +47,8 @@ int ch34xdelay_ms(unsigned ms) {
     i2c_buf.obuf[1] = ch34x_CMD_I2C_STM_MS | (ms & 0xf);        // Wait up to 15ms
     i2c_buf.obuf[2] = ch34x_CMD_I2C_STM_END;
     int actuallen = 0;
-    if (progDev > 1) libusb_bulk_transfer(priv->handle, BULK_WRITE_ENDPOINT, i2c_buf.obuf, 3, &actuallen, DEFAULT_TIMEOUT);
-    else libusb_bulk_transfer(handle, BULK_WRITE_ENDPOINT, i2c_buf.obuf, 3, &actuallen, DEFAULT_TIMEOUT);
+    if (progDev > 1) libusb_bulk_transfer(priv->handle, ch347_BULK_WRITE_ENDPOINT, i2c_buf.obuf, 3, &actuallen, DEFAULT_TIMEOUT);
+    else libusb_bulk_transfer(handle, ch341_BULK_WRITE_ENDPOINT, i2c_buf.obuf, 3, &actuallen, DEFAULT_TIMEOUT);
     return 0;
 }
 
@@ -147,6 +147,7 @@ int ch34xi2cBlockWrite(uint8_t *buf, uint32_t address, uint32_t blockSize, uint3
     progDev = progDevice;
 
         if (size > sectorSize) size = sectorSize;
+        if ((progDev < 2) && (size > 16)) size = 16;
         maxstep = blockSize / size;
 
         for (step = 0; step < maxstep; step++)
@@ -181,26 +182,32 @@ int ch34xi2cBlockWrite(uint8_t *buf, uint32_t address, uint32_t blockSize, uint3
                 *ptr++ = ch34x_CMD_I2C_STM_END;
 
 
-            ret = libusb_bulk_transfer(priv->handle, ch347_BULK_WRITE_ENDPOINT, i2c_buf.obuf, size + 12 , &actuallen, DEFAULT_TIMEOUT);
+            if (progDev > 1) ret = libusb_bulk_transfer(priv->handle, ch347_BULK_WRITE_ENDPOINT, i2c_buf.obuf, size + 12 , &actuallen, DEFAULT_TIMEOUT);
+            else ret = libusb_bulk_transfer(handle, ch341_BULK_WRITE_ENDPOINT, i2c_buf.obuf, size + 12 , &actuallen, DEFAULT_TIMEOUT);
             if (ret < 0)
             {
                 fprintf(stderr, "Failed to write to I2C: '%s'\n", strerror(-ret));
                 return ret;
             }
-            ret = libusb_bulk_transfer(priv->handle, ch347_BULK_READ_ENDPOINT, i2c_buf.ibuf, 512, &actuallen, DEFAULT_TIMEOUT);
-
-            if (ret < 0) {
-                fprintf(stderr, "Failed to write to I2C: '%s'\n", strerror(-ret));
-                return -1;
-            }
-
-            for (unsigned i = 0; i < actuallen; ++i)
+            if (progDev > 1)
             {
-                if (i2c_buf.ibuf[i] != 0x01)
-                {
-                    fprintf(stderr, "received NACK at %d", i);
+                if (progDev > 1) ret = libusb_bulk_transfer(priv->handle, ch347_BULK_READ_ENDPOINT, i2c_buf.ibuf, 512, &actuallen, DEFAULT_TIMEOUT);
+                else ret = libusb_bulk_transfer(handle, ch341_BULK_WRITE_ENDPOINT, i2c_buf.obuf, size + 12 , &actuallen, DEFAULT_TIMEOUT);
+
+                if (ret < 0) {
+                    fprintf(stderr, "Failed to write to I2C: '%s'\n", strerror(-ret));
                     return -1;
                 }
+
+                for (unsigned i = 0; i < actuallen; ++i)
+                {
+                    if (i2c_buf.ibuf[i] != 0x01)
+                    {
+                        fprintf(stderr, "received NACK at %d", i);
+                        return -1;
+                    }
+                }
+
             }
             ret = ch34xdelay_ms(10);
             if (ret < 0)

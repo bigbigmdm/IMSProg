@@ -778,8 +778,8 @@ void MainWindow::on_actionErase_triggered()
         uint32_t curBlock = 0;
         uint32_t k;
         int res = 0;
-        //step = 128;
-        step = currentPageSize;
+        step = 128;
+        //step = currentPageSize;
         numBlocks = currentChipSize / step;
         std::shared_ptr<uint8_t[]> buf(new uint8_t[step]);
         config_stream(2);
@@ -797,8 +797,7 @@ void MainWindow::on_actionErase_triggered()
         }
         for (curBlock = 0; curBlock < numBlocks; curBlock++)
         {
-            if (current_programmer < 2) res = ch341writeEEPROM_param(buf.get(), curBlock * 128, 128, currentPageSize, currentAlgorithm);
-            else res = ch347i2cBlockWrite(buf.get(), curBlock * step, step, currentPageSize, currentAlgorithm);
+            res = ch34xi2cBlockWrite(buf.get(), curBlock * step, step, currentPageSize, currentAlgorithm, current_programmer);
             if (res==0) res = 1;
             qApp->processEvents();
             ui->progressBar->setValue( static_cast<int>(curBlock));
@@ -1062,8 +1061,7 @@ void MainWindow::on_actionWrite_triggered()
                        break;
                        case 1:                           //I2C
                           addrSrc = addrSrc + step;
-                          if (current_programmer < 2) res = ch341writeEEPROM_param(buf.get(), curBlock * 128, 128, currentPageSize, currentAlgorithm);
-                          else res = ch34xi2cBlockWrite(buf.get(), curBlock * step, step, currentPageSize, currentAlgorithm, current_programmer);
+                          res = ch34xi2cBlockWrite(buf.get(), curBlock * step, step, currentPageSize, currentAlgorithm, current_programmer);
                           if (res==0) res = 1;
                        break;
                        case 2:                           //MicroWire

@@ -12,7 +12,6 @@
 #include <stdlib.h>
 #include <errno.h>
 #include <string.h>
-#include "ch347eeprom.h"
 
 #if defined(__BYTE_ORDER__) && (__BYTE_ORDER__ == __ORDER_BIG_ENDIAN__)
 #error You need to convert every USB communications to little endian before this library would work.

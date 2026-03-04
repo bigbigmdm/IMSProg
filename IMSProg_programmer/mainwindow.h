@@ -37,20 +37,16 @@
 extern "C" {
 #include "bitbang_microwire.h"
 #include "ch341a_gpio.h"
-#include "ch341a_i2c.h"
 #include "ch341a_spi.h"
 #include "ch347.h"
 #include "flashcmd_api.h"
-#include "i2c_eeprom_api.h"
 #include "mw_eeprom_api.h"
 #include "res.h"
 #include "snorcmd_api.h"
 #include "spi_controller.h"
-#include "spi_eeprom.h"
 #include "spi_eeprom_api.h"
 #include "timer.h"
 #include "types.h"
-#include "ch347eeprom.h"
 #include "ch34x_i2c.h"
 }
 
