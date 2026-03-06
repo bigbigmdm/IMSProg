@@ -331,10 +331,7 @@ bool ch347_spi_init(uint8_t ch_type, uint8_t i2cBusSpeed) {
                 break;
              case 1: //24xxx I2C
                 freq = 100;
-
                 ch347setI2Cstream(i2cBusSpeed);
-                //ch347configure(0x1a86,0x5512);
-                //ch347setI2Cstream(priv->handle, 1);
                 break;
              case 2: //93xxx Microwire
                 freq = 100;
@@ -352,19 +349,12 @@ bool ch347_spi_init(uint8_t ch_type, uint8_t i2cBusSpeed) {
                 break;
           }
 
-    fprintf(stderr, "ch347: Clock rate = %d kHZ\n", freq);
-    //int freq = 60000;//60000;
     if (ch_type != 1) ret = ch347_set_spi_freq(priv, &freq);
     return ret == 1;
 }
 
 void ch347_spi_shutdown()
 {
-//    if (!priv)
-//    {
-//        if (ch347i2cClose())
-//        return;
-//    }
     if (!priv)  return;
     ch347_close(priv);
 }

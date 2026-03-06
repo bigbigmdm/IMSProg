@@ -1193,8 +1193,6 @@ int nand_checkBadBlock(uint32_t blockNo, uint32_t sectSize, uint32_t blockPerSec
     nand_wait_ready(950);
     SPI_CONTROLLER_Chip_Select_Low(programmerType);
     SPI_CONTROLLER_Write_One_Byte(0x03, programmerType);
-//    SPI_CONTROLLER_Write_One_Byte(0x08); //high address
-//    SPI_CONTROLLER_Write_One_Byte(0x00); //low address
     SPI_CONTROLLER_Write_One_Byte((0x00ff00 & sectSize) >> 8, programmerType); //high address
     SPI_CONTROLLER_Write_One_Byte(0x0000ff & sectSize, programmerType); //low address
     SPI_CONTROLLER_Write_One_Byte(0x00, programmerType); //dymmy byte

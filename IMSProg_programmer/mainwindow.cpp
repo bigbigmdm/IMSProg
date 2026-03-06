@@ -326,10 +326,6 @@ void MainWindow::on_pushButton_clicked()
                doNotDisturbCancel();
                return;
             }
-//         for (j = 0; j < step; j++)
-//            {
-//                  chipData[addr + j] = char(buf[addr + j - k * step]);
-//            }
           memcpy(chipData.data() + addr, buf.get() + (addr - k * step), step);
           addr = addr + step;
           if (curBlock * step < 0x500) hexEdit->setData(chipData); //show buffer in hehedit while chip data is visible
@@ -355,7 +351,7 @@ void MainWindow::on_pushButton_clicked()
     {
        //Not correct Number found size of blocks
        if (currentChipType == 0) QMessageBox::about(this, tr("Error"), tr("Before reading from chip please press 'Detect' button."));
-       if (currentChipType  >0 ) QMessageBox::about(this, tr("Error"), tr("Please select the chip parameters - manufacture and chip name"));
+       if (currentChipType  > 0 ) QMessageBox::about(this, tr("Error"), tr("Please select the chip parameters - manufacture and chip name"));
     }
     hexEdit->setData(chipData);
     ui->statusMessage->setText("");
@@ -1046,7 +1042,6 @@ void MainWindow::on_actionWrite_triggered()
     //progerssbar settings
     int currentPercent = 0;
     int lastPercent = -1;
-    //ui->progressBar->setRange(0, static_cast<int>(numBlocks));
     ui->progressBar->setRange(0, 100);
     ui->progressBar->setValue(0);
     ui->checkBox_2->setStyleSheet("QCheckBox{font-weight:800;}");
@@ -1054,10 +1049,6 @@ void MainWindow::on_actionWrite_triggered()
     std::shared_ptr<uint8_t[]> buf(new uint8_t[step]);
     for (k = 0; k < numBlocks; k++)
       {
-//         for (j = 0; j < step; j++)
-//            {
-//               buf[addrDest + j - k * step] =  static_cast<uint8_t>(chipData[addrSrc + j]) ;
-//            }
          memcpy(buf.get() + addrDest - k * step, chipData.constData() + addrSrc, step);
          switch (currentChipType)
                        {
@@ -1130,7 +1121,6 @@ void MainWindow::on_actionWrite_triggered()
              doNotDisturbCancel();
              return;
          }
-         //ui->progressBar->setValue(static_cast<int>(curBlock));
             currentPercent = static_cast<int>((curBlock * 100.0) / numBlocks);
             if (currentPercent != lastPercent)
             {
@@ -1412,7 +1402,6 @@ void MainWindow::on_actionVerify_triggered()
                          doNotDisturbCancel();
                          return;
                      }
-                     //ui->progressBar->setValue(static_cast<int>(curBlock));
                      currentPercent = static_cast<int>((curBlock * 100.0) / numBlocks);
                      if (currentPercent != lastPercent)
                      {
@@ -2108,11 +2097,7 @@ void MainWindow::progInit()
 void MainWindow::slotTimerAlarm()
 {
     statusCH341 = ProgDeviceInit(current_programmer, 0, 1);
-    //if (current_programmer < 2) statusCH341 = ch341a_spi_init();
-    //if (current_programmer == 2) statusCH341 = ch347_spi_init(currentChipType);
-        ch341StatusFlashing();
-    //if (current_programmer < 2) ProgDeviceClose(current_programmer);
-    //if (current_programmer == 2) ch347_spi_shutdown();
+    ch341StatusFlashing();
     ProgDeviceClose(current_programmer);
 }
 

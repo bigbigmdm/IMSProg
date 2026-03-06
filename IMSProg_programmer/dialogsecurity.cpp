@@ -180,7 +180,7 @@ void DialogSecurity::on_toolButton_read_clicked()
            hexEdit->setData(regData);
 
         }
-        else QMessageBox::about(this, tr("Error"), tr("Programmer CH341a is not connected!"));
+        else QMessageBox::about(this, tr("Error"), tr("Programmer ") + programmerName + tr(" is not connected!"));
        ProgDeviceClose( programmerType );
     }
 }
@@ -291,7 +291,7 @@ void DialogSecurity::on_toolButton_write_clicked()
           }
 
         }
-        else QMessageBox::about(this, tr("Error"), tr("Programmer CH341a is not connected!"));
+        else QMessageBox::about(this, tr("Error"), tr("Programmer ") + programmerName + tr(" is not connected!"));
          ProgDeviceClose( programmerType );
     }
 }
@@ -362,7 +362,7 @@ void DialogSecurity::on_toolButton_erase_clicked()
            SPI_CONTROLLER_Chip_Select_High(programmerType);
            usleep(1);
     }
-       else QMessageBox::about(this, tr("Error"), tr("Programmer CH341a is not connected!"));
+       else QMessageBox::about(this, tr("Error"), tr("Programmer ") + programmerName + tr(" is not connected!"));
         ProgDeviceClose( programmerType );
 
 }

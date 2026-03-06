@@ -30,16 +30,15 @@ qDebug()<<"curregister="<<curRegister;
     //READING OTP PAGE
     stCH341 = ProgDeviceInit( programmerType, 6, 1 );
 
-    usleep(100);
-    SPI_CONTROLLER_Chip_Select_Low(programmerType); //Reading status
-    SPI_CONTROLLER_Write_One_Byte(0x0f, programmerType);
-    SPI_CONTROLLER_Write_One_Byte(0xb0, programmerType);
-    retval = SPI_CONTROLLER_Read_NByte(buf.get(),1,SPI_CONTROLLER_SPEED_SINGLE, programmerType);
-    SPI_CONTROLLER_Chip_Select_High(programmerType);
-    usleep(1);
     if (stCH341 == 0)
     {
-
+        usleep(100);
+        SPI_CONTROLLER_Chip_Select_Low(programmerType); //Reading status
+        SPI_CONTROLLER_Write_One_Byte(0x0f, programmerType);
+        SPI_CONTROLLER_Write_One_Byte(0xb0, programmerType);
+        retval = SPI_CONTROLLER_Read_NByte(buf.get(),1,SPI_CONTROLLER_SPEED_SINGLE, programmerType);
+        SPI_CONTROLLER_Chip_Select_High(programmerType);
+        usleep(1);
 
         if ((buf[0] & 0x40) == 0) //OPT Disabled ?
         {
@@ -129,15 +128,15 @@ void DialogNandSecurity::on_toolButton_write_clicked()
     //READING OTP PAGE
     stCH341 = ProgDeviceInit( programmerType, 6, 1 );
 
-    usleep(100);
-    SPI_CONTROLLER_Chip_Select_Low(programmerType); //Reading status
-    SPI_CONTROLLER_Write_One_Byte(0x0f, programmerType);
-    SPI_CONTROLLER_Write_One_Byte(0xb0, programmerType);
-    retval = SPI_CONTROLLER_Read_NByte(buf.get(),1,SPI_CONTROLLER_SPEED_SINGLE, programmerType);
-    SPI_CONTROLLER_Chip_Select_High(programmerType);
-    usleep(1);
     if (stCH341 == 0)
     {
+        usleep(100);
+        SPI_CONTROLLER_Chip_Select_Low(programmerType); //Reading status
+        SPI_CONTROLLER_Write_One_Byte(0x0f, programmerType);
+        SPI_CONTROLLER_Write_One_Byte(0xb0, programmerType);
+        retval = SPI_CONTROLLER_Read_NByte(buf.get(),1,SPI_CONTROLLER_SPEED_SINGLE, programmerType);
+        SPI_CONTROLLER_Chip_Select_High(programmerType);
+        usleep(1);
 
         if ((buf[0] & 0x40) == 0) //OPT Disabled ?
         {
