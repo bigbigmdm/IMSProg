@@ -158,7 +158,11 @@ MainWindow::MainWindow(QWidget *parent) :
        current_programmer =  static_cast<unsigned char>(settings.value("ProgrammerType").toInt());
        if (current_programmer == 0) ui->actionCH341A_B_v1_2->setChecked(true);
        if (current_programmer == 1) ui->actionCH341A_v1_7->setChecked(true);
-       if (current_programmer == 2) ui->actionCH347T->setChecked(true);
+       if (current_programmer == 2)
+          {
+              ui->actionCH347T->setChecked(true);
+              SetItemStatus("comboBox_type", 2, true);
+          }
      settings.endGroup();
      settings.beginGroup("FormPosition");
      if (settings.contains("geometry"))
