@@ -20,6 +20,8 @@
 #include <QErrorMessage>
 #include <QDragEnterEvent>
 #include <QtGui>
+#include <QComboBox>
+#include <QStandardItemModel>
 #include <QFileInfo>
 #include <QInputMethod>
 #include <QKeyEvent>
@@ -2505,18 +2507,21 @@ void MainWindow::on_actionCH341A_B_v1_2_triggered()
 {
     current_programmer = 0;
     ui->lStatus->setText("CH341A");
+    SetItemStatus("comboBox_type", 2, false);
 }
 
 void MainWindow::on_actionCH341A_v1_7_triggered()
 {
     current_programmer = 1;
     ui->lStatus->setText("CH341A");
+    SetItemStatus("comboBox_type", 2, false);
 }
 
 void MainWindow::on_actionCH347T_triggered()
 {
     current_programmer = 2;
     ui->lStatus->setText("CH347T");
+    SetItemStatus("comboBox_type", 2, true);
 }
 
 void MainWindow::closeEvent(QCloseEvent( *event))
@@ -2540,4 +2545,43 @@ void MainWindow::showEvent(QShowEvent* event)
 {
     QMainWindow::showEvent(event);
     hexEdit->setGeometry(0, 0, ui->frame->width(), ui->frame->height());
+}
+
+void MainWindow::SetItemStatus(QString comboboxName, int itemNumber, bool setDisable)
+{
+    QComboBox* comboBox = findChild<QComboBox*>(comboboxName);
+
+    if (!comboBox) {
+        qWarning() << "ComboBox" << comboboxName << "not found!";
+        return;
+    }
+
+    if (itemNumber < 0 || itemNumber >= comboBox->count()) {
+        qWarning() << "Item number" << itemNumber << "out of range";
+        return;
+    }
+
+    QStandardItemModel* model = qobject_cast<QStandardItemModel*>(comboBox->model());
+
+    if (!model) {
+        model = new QStandardItemModel(comboBox);
+        for (int i = 0; i < comboBox->count(); ++i) {
+            QStandardItem* item = new QStandardItem(comboBox->itemText(i));
+            item->setData(comboBox->itemData(i), Qt::UserRole);
+            model->appendRow(item);
+        }
+        comboBox->setModel(model);
+    }
+
+    QStandardItem* item = model->item(itemNumber);
+
+    if (item) {
+        if (setDisable) {
+            item->setFlags(item->flags() & ~Qt::ItemIsEnabled);
+            item->setForeground(QBrush(Qt::gray));
+        } else {
+            item->setFlags(item->flags() | Qt::ItemIsEnabled);
+            item->setForeground(QBrush(comboBox->palette().color(QPalette::Text)));
+        }
+    }
 }

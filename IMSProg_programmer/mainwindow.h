@@ -23,6 +23,8 @@
 #include <QTimer>
 #include <QSettings>
 #include <QResizeEvent>
+#include <QComboBox>
+#include <QStandardItemModel>
 #include <unistd.h>
 #include "qhexedit.h"
 #include "dialogsp.h"
@@ -125,6 +127,7 @@ private slots:
     void closeEvent(QCloseEvent *event);
     void showEvent(QShowEvent* event);
     void on_actionCH347T_triggered();
+    void SetItemStatus(QString comboboxName, int itemNumber, bool setDisable);
 
 private:
     Ui::MainWindow *ui;
