@@ -96,6 +96,14 @@
     </screenshot>
   </screenshots>
   <releases>
+  <release version="1.8.1" date="2026-03-11" urgency="medium">	  
+    <description>
+        <p>Added: Support for the CH347T programmer.</p>
+	    <p>Fixed: Incorrect chip page sizes values removed.</p>
+	    <p>Increased interface speed and SPI NOR Flash erase speed.</p>
+	    <p>SPI NOR Flash write speed increased by 30%.</p>
+    </description>
+  </release>
   <release version="1.7.3" date="2026-01-26" urgency="medium">	  
     <description>
 	    <p>Fixed: Incorrect HexEdit size when starting the program.</p>

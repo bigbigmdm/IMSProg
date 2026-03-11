@@ -15,11 +15,11 @@
 
 **IMSProg** - **I**2C, **M**icroWire and **S**PI EEPROM/Flash chip 
 **Prog**rammer - is a program to read, write EEPROM chips use the 
-`CH341A programmer` device.
+`CH341A programmer` device and `CH347T programmer` device.
 
-| CH341A/B v1.2 | CH341A v1.7|
-| :---:         | :---:      |
-| ![CH341A black](img/ch341_black150.png)  ![CH341A green](img/ch341_green150.png) | ![CH341A green](img/ch341v1_7.png) |
+| CH341A/B v1.2 | CH341A v1.7| CH347T v1.0|
+| :---:         | :---:      | :---:      |
+| ![CH341A black](img/ch341_black150.png)  ![CH341A green](img/ch341_green150.png) | ![CH341A green](img/ch341v1_7.png) |![CH347T green](img/ch347_150.png) |
 
 The IMSProg makes respect to [QHexEdit2](https://github.com/Simsys/qhexedit2) 
 hex editor and [SNANDer programmer](https://github.com/McMCCRU/SNANDer). The 
@@ -144,6 +144,9 @@ programmer slot. The DataFlash `AT45DBxxx` series chips must be mounted in a
 The `45xxx` adapter must be installed in the programmer slot marked `25xxx`.
 The SPI NAND Flash chips must be mounted in a `WSON-8 DIP-8` adapter. This 
 adapter must be installed in the programmer slot marked `25xxx`.
+
+*In the current version, the MicroWire (93Cxx) protocol is not supported by the 
+CH347 programming device.
 
 ![Adapter](img/93xxx_adapter.png)
  
@@ -381,9 +384,9 @@ page in both .Dat and .csv formats.
 
 ### I2C EEPROM
 24C01, 24C02, 24C04, 24C08, 24C16, 24C32, 24C64, 24C128, 24C256, 24C512, 
-24C1024
+24C1024, 24M02
 
-### MicroWire EEPROM
+### MicroWire EEPROM (only for CH341A programmer)
 93C46, 93C56, 93C66, 93C76, 93C86
 
 ### Serial SPI Bus EEPROM
