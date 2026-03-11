@@ -90,21 +90,7 @@ MainWindow::MainWindow(QWidget *parent) :
  ui->comboBox_addr4bit->addItem("Spansion", 0x21);
 
  ui->comboBox_page->addItem(" ", 0);
- ui->comboBox_page->addItem("1", 1);
- ui->comboBox_page->addItem("2", 2);
- ui->comboBox_page->addItem("4", 4);
- ui->comboBox_page->addItem("8", 8);
- ui->comboBox_page->addItem("16", 16);
- ui->comboBox_page->addItem("32", 32);
- ui->comboBox_page->addItem("64", 64);
- ui->comboBox_page->addItem("128", 128);
  ui->comboBox_page->addItem("256", 256);
- ui->comboBox_page->addItem("264", 264);
- ui->comboBox_page->addItem("512", 512);
- ui->comboBox_page->addItem("528", 528);
- ui->comboBox_page->addItem("1024", 1024);
- ui->comboBox_page->addItem("2048", 2048);
- ui->comboBox_page->addItem("4096", 4096);
 
  ui->comboBox_block->addItem(" ", 0);
  ui->comboBox_block->addItem("64 K",   64 * 1024);
@@ -1577,7 +1563,9 @@ void MainWindow::on_comboBox_type_currentIndexChanged(int index)
     currentChipType = static_cast<uint8_t>(ui->comboBox_type->itemData(index).toInt());
 
     ui->comboBox_size->clear();
+    ui->comboBox_page->clear();
     ui->comboBox_size->addItem(" ", 0);
+    ui->comboBox_page->addItem(" ", 0);
 
     switch (currentChipType)
        {
@@ -1596,6 +1584,7 @@ void MainWindow::on_comboBox_type_currentIndexChanged(int index)
           ui->comboBox_size->addItem("64 M", 65536 * 1024);
           ui->comboBox_size->addItem("128 M", 65536 * 2048);
           ui->comboBox_size->addItem("256 M", 65536 * 4096);
+          ui->comboBox_page->addItem("256", 256);
        break;
        case 1:
           //I2C
@@ -1611,6 +1600,9 @@ void MainWindow::on_comboBox_type_currentIndexChanged(int index)
           ui->comboBox_size->addItem("64 K", 64 * 1024);
           ui->comboBox_size->addItem("128 K", 128 * 1024);
           ui->comboBox_size->addItem("256 K", 256 * 1024);
+          ui->comboBox_page->addItem("8", 8);
+          ui->comboBox_page->addItem("16", 16);
+          ui->comboBox_page->addItem("32", 32);
        break;
        case 2:
           //MicroWire
@@ -1619,9 +1611,10 @@ void MainWindow::on_comboBox_type_currentIndexChanged(int index)
           ui->comboBox_size->addItem("512 B", 512);
           ui->comboBox_size->addItem("1 K", 1 * 1024);
           ui->comboBox_size->addItem("2 K", 2 * 1024);
+          ui->comboBox_page->addItem("16", 16);
        break;
        case 3:
-          //25xxx
+          //25xxx          
        case 4:
           //95xxx
           ui->comboBox_size->addItem("128 B", 128);
@@ -1637,9 +1630,14 @@ void MainWindow::on_comboBox_type_currentIndexChanged(int index)
           ui->comboBox_size->addItem("128 K", 128 * 1024);
           ui->comboBox_size->addItem("256 K", 256 * 1024);
           ui->comboBox_size->addItem("512 K", 512 * 1024);
+          ui->comboBox_page->addItem("16", 16);
+          ui->comboBox_page->addItem("32", 32);
+          ui->comboBox_page->addItem("64", 64);
+          ui->comboBox_page->addItem("128", 128);
+          ui->comboBox_page->addItem("256", 256);
        break;
        case 5:
-          //95xxx
+          //45xxx
           ui->comboBox_size->addItem("132 K",   132 * 1024);
           ui->comboBox_size->addItem("264 K",   264 * 1024);
           ui->comboBox_size->addItem("528 K",   528 * 1024);
@@ -1647,13 +1645,20 @@ void MainWindow::on_comboBox_type_currentIndexChanged(int index)
           ui->comboBox_size->addItem("2112 K", 2112 * 1024);
           ui->comboBox_size->addItem("4224 K", 4224 * 1024);
           ui->comboBox_size->addItem("8448 K", 8448 * 1024);
+          ui->comboBox_page->addItem("256", 256);
+          ui->comboBox_page->addItem("264", 264);
+          ui->comboBox_page->addItem("512", 512);
+          ui->comboBox_page->addItem("528", 528);
        break;
        case 6:
         // SPI NAND FLASH
-        ui->comboBox_size->addItem("64 M", 65536 * 1024);
-        ui->comboBox_size->addItem("128 M", 65536 * 2048);
-        ui->comboBox_size->addItem("256 M", 65536 * 4096);
-        ui->comboBox_size->addItem("512 M", 65536 * 8192);
+          ui->comboBox_size->addItem("64 M", 65536 * 1024);
+          ui->comboBox_size->addItem("128 M", 65536 * 2048);
+          ui->comboBox_size->addItem("256 M", 65536 * 4096);
+          ui->comboBox_size->addItem("512 M", 65536 * 8192);
+          ui->comboBox_page->addItem("1024", 1024);
+          ui->comboBox_page->addItem("2048", 2048);
+          ui->comboBox_page->addItem("4096", 4096);
        break;
        default:
           //Unsupport
