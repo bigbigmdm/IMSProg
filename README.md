@@ -814,7 +814,7 @@ This project use [GPL-3+ License](https://www.gnu.org/licenses/gpl-3.0.html),
 some parts taken from project [SNANDer](https://github.com/McMCCRU/SNANDer/commits?author=McMCCRU) 
 are [GPL-2+](https://www.gnu.org/licenses/old-licenses/gpl-2.0.html) and from 
 [QHexEdit2](https://github.com/Simsys/qhexedit2) is [LGPL-2.1](https://www.gnu.org/licenses/old-licenses/lgpl-2.1.html)
-and [CH347](https://github.com/981213/ch347-nor-prog/tree/master) parts is BSD-1-Clause. 
+and [CH347](https://github.com/981213/ch347-nor-prog/tree/master) parts is [BSD-1-Clause](https://github.com/spdx/license-list-data/blob/main/text/BSD-1-Clause.txt). 
 
 ## Translations
 
