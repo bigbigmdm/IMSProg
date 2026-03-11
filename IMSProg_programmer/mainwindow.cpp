@@ -1005,6 +1005,7 @@ void MainWindow::on_actionWrite_triggered()
                       case 0:                 //SPI
                          step = currentBlockSize;
                          numBlocks = currentNumBlocks;
+                         snorUnprotect(current_programmer);
                       break;
                       case 1:                 //I2C
                          step = 128;
@@ -1055,6 +1056,7 @@ void MainWindow::on_actionWrite_triggered()
                        case 0:                           //SPI
                           addrSrc = addrSrc + step;
                           res = snor_write_param(buf.get(), addrDest, step, step, currentAddr4bit, current_programmer);
+
                        break;
                        case 1:                           //I2C
                           addrSrc = addrSrc + step;

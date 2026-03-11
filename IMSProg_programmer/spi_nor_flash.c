@@ -76,6 +76,13 @@
 #define snor_dbg(args...)
 /* #define snor_dbg(args...) do { if (1) printf(args); } while(0) */
 
+
+struct xxx {
+  uint8_t ibuf[512];
+  uint8_t obuf[512];
+} spi_buf;
+
+
 #define udelay(x)			usleep(x)
 u8 programmerType = 0;
 /*
@@ -89,7 +96,6 @@ struct chip_info {
 };
 */
 unsigned char algType = 0;
-
 //struct chip_info *spi_chip_info;
 
 static int snor_read_sr(u8 *val);
@@ -480,28 +486,28 @@ int snor_write_param(unsigned char *buf, unsigned long to, unsigned long len, un
     /* what page do we start with? */
     page_offset = to % FLASH_PAGESIZE;
 
-    if (addr4b)
-        snor_4byte_mode(1);
+    if (addr4b) snor_4byte_mode(1);
 
     /* write everything in PAGESIZE chunks */
     while (len > 0) {
+        uint8_t *ptr = spi_buf.obuf;
         page_size = min(len, FLASH_PAGESIZE - page_offset);
         page_offset = 0;
         /* write the next page to flash */
 
         snor_wait_ready(3);
         snor_write_enable();
-        snor_unprotect();
 
         SPI_CONTROLLER_Chip_Select_Low(programmerType);
         /* Set up the opcode in the write buffer. */
-        SPI_CONTROLLER_Write_One_Byte(OPCODE_PP, programmerType);
 
-        if (addr4b)
-            SPI_CONTROLLER_Write_One_Byte((to >> 24) & 0xff, programmerType);
-        SPI_CONTROLLER_Write_One_Byte((to >> 16) & 0xff, programmerType);
-        SPI_CONTROLLER_Write_One_Byte((to >> 8) & 0xff, programmerType);
-        SPI_CONTROLLER_Write_One_Byte(to & 0xff, programmerType);
+        *ptr++ = OPCODE_PP;
+        if (addr4b) *ptr++ = (to >> 24) & 0xff;
+        *ptr++ = (to >> 16) & 0xff;
+        *ptr++ = (to >> 8) & 0xff;
+        *ptr++ = to & 0xff;
+        if (addr4b) SPI_CONTROLLER_Write_NByte(spi_buf.obuf, 5, SPI_CONTROLLER_SPEED_SINGLE, programmerType);
+        else SPI_CONTROLLER_Write_NByte(spi_buf.obuf, 4, SPI_CONTROLLER_SPEED_SINGLE, programmerType);
 
         if(!SPI_CONTROLLER_Write_NByte(buf, page_size, SPI_CONTROLLER_SPEED_SINGLE, programmerType))
             rc = page_size;
@@ -533,6 +539,34 @@ int snor_write_param(unsigned char *buf, unsigned long to, unsigned long len, un
     snor_write_disable();
 
     return retlen;
+}
+
+int snorUnprotect(u8 progType)
+{
+    int ret;
+    uint8_t buf[2];
+
+
+
+    SPI_CONTROLLER_Chip_Select_Low(programmerType);
+    SPI_CONTROLLER_Write_One_Byte(0x05, programmerType);
+    ret = SPI_CONTROLLER_Read_NByte(&buf[0],2,SPI_CONTROLLER_SPEED_SINGLE, programmerType);
+    SPI_CONTROLLER_Chip_Select_High(programmerType);
+    usleep(1);
+
+    buf[0] = buf[0] & 0xc3; //clear bp0 - bp3
+
+    SPI_CONTROLLER_Chip_Select_Low(programmerType);
+    SPI_CONTROLLER_Write_One_Byte(0x06, programmerType); //Write Enable
+    SPI_CONTROLLER_Chip_Select_High(programmerType);
+    usleep(1);
+
+    SPI_CONTROLLER_Chip_Select_Low(programmerType);
+    SPI_CONTROLLER_Write_One_Byte(0x01, programmerType);
+    SPI_CONTROLLER_Write_One_Byte(buf[0], programmerType);
+    SPI_CONTROLLER_Chip_Select_High(programmerType);
+    usleep(1);
+
 }
 
 int s95_read_param(unsigned char *buf, unsigned long from, unsigned long len, unsigned int sector_size, unsigned char currentAlgorithm, u8 progType)
