@@ -285,6 +285,7 @@ int full_erase_chip(void)
 
 int snor_block_erase(unsigned int sector_number, unsigned int blockSize, u8 addr4b, u8 progType)
 {
+    uint8_t *ptr = spi_buf.obuf;
     unsigned int physical_addr;
     //addr4bit transforming
     algType = (addr4b & 0xf0) >> 4;
@@ -298,19 +299,19 @@ int snor_block_erase(unsigned int sector_number, unsigned int blockSize, u8 addr
     /* Wait until finished previous write command. */
     if (snor_wait_ready(950)) return -1;
     snor_write_enable();
-    snor_unprotect();
 
     SPI_CONTROLLER_Chip_Select_Low(programmerType);
-    SPI_CONTROLLER_Write_One_Byte(0xd8, programmerType);
-    if (addr4b) SPI_CONTROLLER_Write_One_Byte((physical_addr >> 24) & 0xff, programmerType);
-
-    SPI_CONTROLLER_Write_One_Byte((physical_addr >> 16) & 0xff, programmerType);
-    SPI_CONTROLLER_Write_One_Byte((physical_addr >> 8) & 0xff, programmerType);
-    SPI_CONTROLLER_Write_One_Byte(physical_addr & 0xff, programmerType);
+    *ptr++ = 0xd8;
+    if (addr4b) *ptr++ = (physical_addr >> 24) & 0xff;
+    *ptr++ = (physical_addr >> 16) & 0xff;
+    *ptr++ = (physical_addr >> 8) & 0xff;
+    *ptr++ = physical_addr & 0xff;
+    if (addr4b) SPI_CONTROLLER_Write_NByte(spi_buf.obuf, 5, SPI_CONTROLLER_SPEED_SINGLE, programmerType);
+    else SPI_CONTROLLER_Write_NByte(spi_buf.obuf, 4, SPI_CONTROLLER_SPEED_SINGLE, programmerType);
     SPI_CONTROLLER_Chip_Select_High(programmerType);
 
     snor_write_disable();
-    if (addr4b) snor_4byte_mode(0);
+    //if (addr4b) snor_4byte_mode(0);
     return 0;
 }
 

@@ -700,6 +700,7 @@ void MainWindow::on_actionErase_triggered()
     doNotDisturb();
     if (currentChipType == 0)
     {
+       snorUnprotect(current_programmer);
        if (currentNumBlocks > 0)
        {
            ui->progressBar->setRange(0, static_cast<int>(currentNumBlocks));
