@@ -61,6 +61,14 @@ private:
     QPixmap *pix35x347_1v8_0;
     QPixmap *pix35x347_3v3_0;
 
+    QPixmap *pix24x347_3v3_1;
+    QPixmap *pix25x347_1v8_1;
+    QPixmap *pix25x347_3v3_1;
+    QPixmap *pix93x347_3v3_1;
+    QPixmap *pix45x347_3v3_1;
+    QPixmap *pix35x347_1v8_1;
+    QPixmap *pix35x347_3v3_1;
+
     QPixmap *pixnone;
 
     uint8_t currentProg;

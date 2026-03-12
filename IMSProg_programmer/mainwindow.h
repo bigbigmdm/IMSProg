@@ -128,6 +128,7 @@ private slots:
     void showEvent(QShowEvent* event);
     void on_actionCH347T_triggered();
     void SetItemStatus(QString comboboxName, int itemNumber, bool setDisable);
+    void on_actionCH347T_v1_1_triggered();
 
 private:
     Ui::MainWindow *ui;
