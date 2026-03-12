@@ -23,6 +23,8 @@
 #include <QTimer>
 #include <QSettings>
 #include <QResizeEvent>
+#include <QComboBox>
+#include <QStandardItemModel>
 #include <unistd.h>
 #include "qhexedit.h"
 #include "dialogsp.h"
@@ -37,19 +39,17 @@
 extern "C" {
 #include "bitbang_microwire.h"
 #include "ch341a_gpio.h"
-#include "ch341a_i2c.h"
 #include "ch341a_spi.h"
+#include "ch347.h"
 #include "flashcmd_api.h"
-#include "i2c_eeprom_api.h"
 #include "mw_eeprom_api.h"
-#include "nandcmd_api.h"
 #include "res.h"
 #include "snorcmd_api.h"
 #include "spi_controller.h"
-#include "spi_eeprom.h"
 #include "spi_eeprom_api.h"
 #include "timer.h"
 #include "types.h"
+#include "ch34x_i2c.h"
 }
 
 
@@ -126,8 +126,11 @@ private slots:
     void on_actionCH341A_v1_7_triggered();
     void closeEvent(QCloseEvent *event);
     void showEvent(QShowEvent* event);
+    void on_actionCH347T_triggered();
+    void SetItemStatus(QString comboboxName, int itemNumber, bool setDisable);
+    void on_actionCH347T_v1_1_triggered();
 
-    private:
+private:
     Ui::MainWindow *ui;
     QString grnKeyStyle, redKeyStyle;
     QString lastDirectory;

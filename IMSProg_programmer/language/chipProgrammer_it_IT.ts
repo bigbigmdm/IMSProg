@@ -13,37 +13,46 @@
         <translation type="vanished">IMSProg è un software libero per EEPROM/Flash chip I2C, SPI e MicroWire per il programmatore CH341a. IMSProg supporta i chip della serie 24Cxx, 25xx, 93Cxx e M95xx.</translation>
     </message>
     <message>
-        <location filename="../dialogabout.ui" line="70"/>
+        <location filename="../dialogabout.ui" line="26"/>
+        <source>IMSProg - free software I2C, SPI and MicroWire EEPROM/Flash chip programmer for CH341A and CH347T devices. IMSProg supports 24Cxx, 25xx, 93Cxx, AT45DBxx and M95xx series chips.</source>
+        <translation>IMSProg - è un software gratuito per la programmazione di chip I2C, SPI e MicroWire EEPROM/Flash da utilizzare con i dispositivi CH341A e CH347T. IMSProg supporta i chip delle serie 24Cxx, 25xx, 93Cxx e M95xx.</translation>
+    </message>
+    <message>
+        <location filename="../dialogabout.ui" line="90"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;In this program &lt;a href=&quot;https://github.com/Simsys/qhexedit2/&quot;&gt;QhexEditor2&lt;/a&gt; widget and modified programmer &lt;a href=&quot;https://github.com/McMCCRU/SNANDer&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;SNANDer&lt;/span&gt;&lt;/a&gt; were used.&lt;/p&gt;&lt;p&gt;The page on GitHub is &lt;a href=&quot;https://github.com/bigbigmdm/IMSProg&quot;&gt;here&lt;/a&gt;, the support page is &lt;a href=&quot;https://antenna-dvb-t2.ru/IMSProg.php&quot;&gt;here&lt;/a&gt;. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;In questo programma si usa il widget &lt;a href=&quot;https://github.com/Simsys/qhexedit2/&quot;&gt;QhexEditor2&lt;/a&gt; ed il software &lt;a href=&quot;https://github.com/McMCCRU/SNANDer&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;SNANDer&lt;/span&gt;&lt;/a&gt; modificato.&lt;/p&gt;&lt;p&gt;La pagina GitHub è &lt;a href=&quot;https://github.com/bigbigmdm/IMSProg&quot;&gt;qui&lt;/a&gt;, la pagina di supporto è &lt;a href=&quot;https://antenna-dvb-t2.ru/IMSProg.php&quot;&gt;qui&lt;/a&gt;. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogabout.ui" line="120"/>
+        <location filename="../dialogabout.ui" line="119"/>
+        <source>Written by 2023 - 2026 Mikhail Medvedev</source>
+        <translation>Scritto da Mikhail Medvedev nel 2023 -2026</translation>
+    </message>
+    <message>
+        <location filename="../dialogabout.ui" line="140"/>
         <source>Version: </source>
         <translation>Versione: </translation>
     </message>
     <message>
-        <location filename="../dialogabout.ui" line="130"/>
+        <location filename="../dialogabout.ui" line="150"/>
         <source>1.1.4</source>
         <translation>1.1.4</translation>
     </message>
     <message>
         <location filename="../dialogabout.ui" line="48"/>
+        <location filename="../dialogabout.ui" line="68"/>
         <source>OR</source>
         <translation>OPPURE</translation>
     </message>
     <message>
-        <location filename="../dialogabout.ui" line="26"/>
         <source>IMSProg - free software I2C, SPI and MicroWire EEPROM/Flash chip programmer for CH341a devices. IMSProg supports 24Cxx, 25xx, 93Cxx, AT45DBxx and M95xx series chips.</source>
-        <translation>IMSProg - è un software gratuito per la programmazione di chip I2C, SPI e MicroWire EEPROM/Flash da utilizzare con i dispositivi CH341a. IMSProg supporta i chip delle serie 24Cxx, 25xx, 93Cxx e M95xx.</translation>
+        <translation type="vanished">IMSProg - è un software gratuito per la programmazione di chip I2C, SPI e MicroWire EEPROM/Flash da utilizzare con i dispositivi CH341a. IMSProg supporta i chip delle serie 24Cxx, 25xx, 93Cxx e M95xx.</translation>
     </message>
     <message>
-        <location filename="../dialogabout.ui" line="99"/>
         <source>Written by 2023 Mikhail Medvedev</source>
-        <translation>Scritto da Mikhail Medvedev nel 2023</translation>
+        <translation type="vanished">Scritto da Mikhail Medvedev nel 2023</translation>
     </message>
     <message>
-        <location filename="../dialogabout.ui" line="169"/>
+        <location filename="../dialogabout.ui" line="189"/>
         <source>Close</source>
         <translation>Chiudi</translation>
     </message>
@@ -157,50 +166,60 @@
         <translation>Leggi</translation>
     </message>
     <message>
-        <location filename="../dialogbbm.cpp" line="80"/>
-        <location filename="../dialogbbm.cpp" line="92"/>
-        <location filename="../dialogbbm.cpp" line="163"/>
+        <location filename="../dialogbbm.cpp" line="81"/>
+        <location filename="../dialogbbm.cpp" line="93"/>
+        <location filename="../dialogbbm.cpp" line="164"/>
         <source>Error</source>
         <translation>Errore</translation>
     </message>
     <message>
-        <location filename="../dialogbbm.cpp" line="80"/>
+        <location filename="../dialogbbm.cpp" line="81"/>
         <source>Error reading chip!</source>
         <translation>Si è verificato un errore durante la lettura del chip!</translation>
     </message>
     <message>
-        <location filename="../dialogbbm.cpp" line="84"/>
+        <location filename="../dialogbbm.cpp" line="85"/>
         <source>Corrupted blocks found:</source>
         <translation>Blocchi danneggiati trovati:</translation>
     </message>
     <message>
-        <location filename="../dialogbbm.cpp" line="85"/>
+        <location filename="../dialogbbm.cpp" line="86"/>
         <source>All blocks in the chip are good!</source>
         <translation>Tutti i blocchi nel chip sono integri!</translation>
     </message>
     <message>
-        <location filename="../dialogbbm.cpp" line="92"/>
-        <location filename="../dialogbbm.cpp" line="163"/>
-        <source>Programmer CH341a is not connected!</source>
-        <translation>Il programmatore CH341a non è collegato!</translation>
+        <location filename="../dialogbbm.cpp" line="93"/>
+        <location filename="../dialogbbm.cpp" line="164"/>
+        <source>Programmer </source>
+        <translation>Il programmatore </translation>
     </message>
     <message>
-        <location filename="../dialogbbm.cpp" line="153"/>
+        <location filename="../dialogbbm.cpp" line="93"/>
+        <location filename="../dialogbbm.cpp" line="164"/>
+        <source> is not connected!</source>
+        <translation> non è connesso!</translation>
+    </message>
+    <message>
+        <source>Programmer CH341a is not connected!</source>
+        <translation type="vanished">Il programmatore CH341a non è collegato!</translation>
+    </message>
+    <message>
+        <location filename="../dialogbbm.cpp" line="154"/>
         <source>Not used</source>
         <translation>Non utilizzato</translation>
     </message>
     <message>
-        <location filename="../dialogbbm.cpp" line="154"/>
+        <location filename="../dialogbbm.cpp" line="155"/>
         <source>Active, valid</source>
         <translation>Attivo, valido</translation>
     </message>
     <message>
-        <location filename="../dialogbbm.cpp" line="155"/>
+        <location filename="../dialogbbm.cpp" line="156"/>
         <source>Active, not valid</source>
         <translation>Attivo, non valido</translation>
     </message>
     <message>
-        <location filename="../dialogbbm.cpp" line="160"/>
+        <location filename="../dialogbbm.cpp" line="161"/>
         <source>BBM table is not used in this chip.</source>
         <translation>La tabella BBM non è utilizzata in questo chip.</translation>
     </message>
@@ -490,39 +509,49 @@
         <translation>Dimensione chip:</translation>
     </message>
     <message>
-        <location filename="../dialognandsr.cpp" line="101"/>
-        <location filename="../dialognandsr.cpp" line="165"/>
-        <location filename="../dialognandsr.cpp" line="265"/>
-        <location filename="../dialognandsr.cpp" line="312"/>
-        <location filename="../dialognandsr.cpp" line="369"/>
+        <location filename="../dialognandsr.cpp" line="102"/>
+        <location filename="../dialognandsr.cpp" line="166"/>
+        <location filename="../dialognandsr.cpp" line="266"/>
+        <location filename="../dialognandsr.cpp" line="313"/>
+        <location filename="../dialognandsr.cpp" line="370"/>
         <source>Error</source>
         <translation>Errore</translation>
     </message>
     <message>
-        <location filename="../dialognandsr.cpp" line="101"/>
+        <location filename="../dialognandsr.cpp" line="102"/>
         <source>Error reading register!</source>
         <translation>Si è verificato un errore durante la lettura del registro!</translation>
     </message>
     <message>
-        <location filename="../dialognandsr.cpp" line="165"/>
+        <location filename="../dialognandsr.cpp" line="166"/>
         <source>Error reading Parameter Page!</source>
         <translation>Si è verificato un errore durante la lettura della pagina dei parametri!</translation>
     </message>
     <message>
-        <location filename="../dialognandsr.cpp" line="247"/>
+        <location filename="../dialognandsr.cpp" line="248"/>
         <source>The Parameter Page is not supported.</source>
         <translation>La pagina dei parametri non è supportata.</translation>
     </message>
     <message>
-        <location filename="../dialognandsr.cpp" line="265"/>
+        <location filename="../dialognandsr.cpp" line="266"/>
         <source>Error reading ID!</source>
         <translation>Si è verificato un errore durante la lettura dell&apos;ID!</translation>
     </message>
     <message>
-        <location filename="../dialognandsr.cpp" line="312"/>
-        <location filename="../dialognandsr.cpp" line="369"/>
+        <location filename="../dialognandsr.cpp" line="313"/>
+        <location filename="../dialognandsr.cpp" line="370"/>
+        <source>Programmer </source>
+        <translation>Il programmatore </translation>
+    </message>
+    <message>
+        <location filename="../dialognandsr.cpp" line="313"/>
+        <location filename="../dialognandsr.cpp" line="370"/>
+        <source> is not connected!</source>
+        <translation> non è connesso!</translation>
+    </message>
+    <message>
         <source>Programmer CH341a is not connected!</source>
-        <translation>Il programmatore CH341a non è collegato!</translation>
+        <translation type="vanished">Il programmatore CH341a non è collegato!</translation>
     </message>
 </context>
 <context>
@@ -576,42 +605,52 @@
         <translation>Numero del registro di sicurezza:</translation>
     </message>
     <message>
-        <location filename="../dialognandsecurity.cpp" line="80"/>
-        <location filename="../dialognandsecurity.cpp" line="120"/>
-        <location filename="../dialognandsecurity.cpp" line="215"/>
-        <location filename="../dialognandsecurity.cpp" line="233"/>
-        <location filename="../dialognandsecurity.cpp" line="266"/>
+        <location filename="../dialognandsecurity.cpp" line="79"/>
+        <location filename="../dialognandsecurity.cpp" line="119"/>
+        <location filename="../dialognandsecurity.cpp" line="214"/>
+        <location filename="../dialognandsecurity.cpp" line="232"/>
+        <location filename="../dialognandsecurity.cpp" line="265"/>
         <source>Error</source>
         <translation>Errore</translation>
     </message>
     <message>
-        <location filename="../dialognandsecurity.cpp" line="80"/>
+        <location filename="../dialognandsecurity.cpp" line="79"/>
         <source>Error reading Parameter Page!</source>
         <translation>Si è verificato un errore durante la lettura della pagina dei parametri!</translation>
     </message>
     <message>
-        <location filename="../dialognandsecurity.cpp" line="120"/>
-        <location filename="../dialognandsecurity.cpp" line="215"/>
         <source>Programmer CH341a is not connected!</source>
-        <translation>Il programmatore CH341a non è collegato!</translation>
+        <translation type="vanished">Il programmatore CH341a non è collegato!</translation>
     </message>
     <message>
-        <location filename="../dialognandsecurity.cpp" line="224"/>
+        <location filename="../dialognandsecurity.cpp" line="119"/>
+        <location filename="../dialognandsecurity.cpp" line="214"/>
+        <source>Programmer </source>
+        <translation>Il programmatore </translation>
+    </message>
+    <message>
+        <location filename="../dialognandsecurity.cpp" line="119"/>
+        <location filename="../dialognandsecurity.cpp" line="214"/>
+        <source> is not connected!</source>
+        <translation> non è connesso!</translation>
+    </message>
+    <message>
+        <location filename="../dialognandsecurity.cpp" line="223"/>
         <source>Open file</source>
         <translation>Apri file</translation>
     </message>
     <message>
-        <location filename="../dialognandsecurity.cpp" line="233"/>
+        <location filename="../dialognandsecurity.cpp" line="232"/>
         <source>The file size exceeds the security register size.</source>
         <translation>La dimensione del file supera la dimensione del registro di sicurezza.</translation>
     </message>
     <message>
-        <location filename="../dialognandsecurity.cpp" line="255"/>
+        <location filename="../dialognandsecurity.cpp" line="254"/>
         <source>Save file</source>
         <translation>Salva file</translation>
     </message>
     <message>
-        <location filename="../dialognandsecurity.cpp" line="266"/>
+        <location filename="../dialognandsecurity.cpp" line="265"/>
         <source>Error saving file!</source>
         <translation>Si è verificato un errore durante il salvataggio del file!</translation>
     </message>
@@ -859,78 +898,88 @@
         <translation>Chiudi</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.cpp" line="83"/>
-        <location filename="../dialogsfdp.cpp" line="103"/>
-        <location filename="../dialogsfdp.cpp" line="212"/>
-        <location filename="../dialogsfdp.cpp" line="225"/>
-        <location filename="../dialogsfdp.cpp" line="244"/>
-        <location filename="../dialogsfdp.cpp" line="266"/>
-        <location filename="../dialogsfdp.cpp" line="281"/>
-        <location filename="../dialogsfdp.cpp" line="434"/>
-        <location filename="../dialogsfdp.cpp" line="436"/>
+        <location filename="../dialogsfdp.cpp" line="84"/>
+        <location filename="../dialogsfdp.cpp" line="104"/>
+        <location filename="../dialogsfdp.cpp" line="213"/>
+        <location filename="../dialogsfdp.cpp" line="226"/>
+        <location filename="../dialogsfdp.cpp" line="245"/>
+        <location filename="../dialogsfdp.cpp" line="267"/>
+        <location filename="../dialogsfdp.cpp" line="282"/>
+        <location filename="../dialogsfdp.cpp" line="435"/>
+        <location filename="../dialogsfdp.cpp" line="439"/>
         <source>Error</source>
         <translation>Errore</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.cpp" line="103"/>
-        <location filename="../dialogsfdp.cpp" line="212"/>
-        <location filename="../dialogsfdp.cpp" line="225"/>
-        <location filename="../dialogsfdp.cpp" line="244"/>
+        <location filename="../dialogsfdp.cpp" line="104"/>
+        <location filename="../dialogsfdp.cpp" line="213"/>
+        <location filename="../dialogsfdp.cpp" line="226"/>
+        <location filename="../dialogsfdp.cpp" line="245"/>
         <source>Error reading register!</source>
         <translation>Si è verificato un errore durante la lettura del registro!</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.cpp" line="175"/>
+        <location filename="../dialogsfdp.cpp" line="176"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt; Hex SFDP register data:
 </source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt; Dati HEX del registro SFDP:
 </translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.cpp" line="176"/>
+        <location filename="../dialogsfdp.cpp" line="177"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Addr:&lt;br&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Indirizzo:&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.cpp" line="436"/>
+        <location filename="../dialogsfdp.cpp" line="282"/>
+        <location filename="../dialogsfdp.cpp" line="435"/>
+        <source>Programmer </source>
+        <translation>Il programmatore </translation>
+    </message>
+    <message>
+        <location filename="../dialogsfdp.cpp" line="282"/>
+        <location filename="../dialogsfdp.cpp" line="435"/>
+        <source> is not connected!</source>
+        <translation> non è connesso!</translation>
+    </message>
+    <message>
+        <location filename="../dialogsfdp.cpp" line="439"/>
         <source>Before writing the registers, please press the `Read` button!</source>
         <translation>Prima di scrivere i registri, premi il pulsante `Leggi`!</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.cpp" line="83"/>
+        <location filename="../dialogsfdp.cpp" line="84"/>
         <source>Error reading JEDEC ID!</source>
         <translation>Si è verificato un errore durante la lettura dell&apos;ID JEDEC!</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.cpp" line="43"/>
+        <location filename="../dialogsfdp.cpp" line="44"/>
         <source>Legend:</source>
         <translation>Legenda:</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.cpp" line="44"/>
+        <location filename="../dialogsfdp.cpp" line="45"/>
         <source> - Basic area</source>
         <translation> - Area base</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.cpp" line="45"/>
+        <location filename="../dialogsfdp.cpp" line="46"/>
         <source> - Extended area</source>
         <translation> - Area estesa</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.cpp" line="46"/>
+        <location filename="../dialogsfdp.cpp" line="47"/>
         <source> - Manufacture area</source>
         <translation> - Area produttore</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.cpp" line="266"/>
+        <location filename="../dialogsfdp.cpp" line="267"/>
         <source>Error reading unique ID!</source>
         <translation>Si è verificato un errore durante la lettura dell&apos;ID unico!</translation>
     </message>
     <message>
-        <location filename="../dialogsfdp.cpp" line="281"/>
-        <location filename="../dialogsfdp.cpp" line="434"/>
         <source>Programmer CH341a is not connected!</source>
-        <translation>Il programmatore CH341a non è connesso!</translation>
+        <translation type="vanished">Il programmatore CH341a non è connesso!</translation>
     </message>
 </context>
 <context>
@@ -1017,26 +1066,36 @@
         <translation>Scrivi</translation>
     </message>
     <message>
-        <location filename="../dialogsr.cpp" line="56"/>
-        <location filename="../dialogsr.cpp" line="70"/>
-        <location filename="../dialogsr.cpp" line="109"/>
-        <location filename="../dialogsr.cpp" line="112"/>
+        <location filename="../dialogsr.cpp" line="57"/>
+        <location filename="../dialogsr.cpp" line="71"/>
+        <location filename="../dialogsr.cpp" line="110"/>
+        <location filename="../dialogsr.cpp" line="113"/>
         <source>Error</source>
         <translation>Errore</translation>
     </message>
     <message>
-        <location filename="../dialogsr.cpp" line="56"/>
+        <location filename="../dialogsr.cpp" line="57"/>
         <source>Error reading register!</source>
         <translation>Si è verificato un errore durante la lettura del registro!</translation>
     </message>
     <message>
-        <location filename="../dialogsr.cpp" line="70"/>
-        <location filename="../dialogsr.cpp" line="112"/>
-        <source>Programmer CH341a is not connected!</source>
-        <translation>Il programmatore CH341a non è connesso!</translation>
+        <location filename="../dialogsr.cpp" line="71"/>
+        <location filename="../dialogsr.cpp" line="113"/>
+        <source>Programmer </source>
+        <translation>Il programmatore </translation>
     </message>
     <message>
-        <location filename="../dialogsr.cpp" line="109"/>
+        <location filename="../dialogsr.cpp" line="71"/>
+        <location filename="../dialogsr.cpp" line="113"/>
+        <source> is not connected!</source>
+        <translation> non è connesso!</translation>
+    </message>
+    <message>
+        <source>Programmer CH341a is not connected!</source>
+        <translation type="vanished">Il programmatore CH341a non è connesso!</translation>
+    </message>
+    <message>
+        <location filename="../dialogsr.cpp" line="110"/>
         <source>Before writing the register, please press the `Read` button!</source>
         <translation>Prima di scrivere il registro, premi il pulsante `Leggi`!</translation>
     </message>
@@ -1098,50 +1157,61 @@
         <translation>Numero del registro di sicurezza:</translation>
     </message>
     <message>
-        <location filename="../dialogsecurity.cpp" line="171"/>
-        <location filename="../dialogsecurity.cpp" line="181"/>
-        <location filename="../dialogsecurity.cpp" line="255"/>
-        <location filename="../dialogsecurity.cpp" line="292"/>
-        <location filename="../dialogsecurity.cpp" line="361"/>
-        <location filename="../dialogsecurity.cpp" line="386"/>
-        <location filename="../dialogsecurity.cpp" line="419"/>
+        <location filename="../dialogsecurity.cpp" line="173"/>
+        <location filename="../dialogsecurity.cpp" line="183"/>
+        <location filename="../dialogsecurity.cpp" line="257"/>
+        <location filename="../dialogsecurity.cpp" line="294"/>
+        <location filename="../dialogsecurity.cpp" line="365"/>
+        <location filename="../dialogsecurity.cpp" line="390"/>
+        <location filename="../dialogsecurity.cpp" line="423"/>
         <source>Error</source>
         <translation>Errore</translation>
     </message>
     <message>
-        <location filename="../dialogsecurity.cpp" line="171"/>
+        <location filename="../dialogsecurity.cpp" line="173"/>
         <source>Error reading register!</source>
         <translation>Si è verificato un errore durante la lettura del registro!</translation>
     </message>
     <message>
-        <location filename="../dialogsecurity.cpp" line="181"/>
-        <location filename="../dialogsecurity.cpp" line="292"/>
-        <location filename="../dialogsecurity.cpp" line="361"/>
         <source>Programmer CH341a is not connected!</source>
-        <translation>Il programmatore CH341a non è connesso!</translation>
+        <translation type="vanished">Il programmatore CH341a non è connesso!</translation>
     </message>
     <message>
-        <location filename="../dialogsecurity.cpp" line="255"/>
+        <location filename="../dialogsecurity.cpp" line="183"/>
+        <location filename="../dialogsecurity.cpp" line="294"/>
+        <location filename="../dialogsecurity.cpp" line="365"/>
+        <source>Programmer </source>
+        <translation>Il programmatore </translation>
+    </message>
+    <message>
+        <location filename="../dialogsecurity.cpp" line="183"/>
+        <location filename="../dialogsecurity.cpp" line="294"/>
+        <location filename="../dialogsecurity.cpp" line="365"/>
+        <source> is not connected!</source>
+        <translation> non è connesso!</translation>
+    </message>
+    <message>
+        <location filename="../dialogsecurity.cpp" line="257"/>
         <source>Error writing register!</source>
         <translation>Si è verificato un errore durante la scrittura del registro!</translation>
     </message>
     <message>
-        <location filename="../dialogsecurity.cpp" line="377"/>
+        <location filename="../dialogsecurity.cpp" line="381"/>
         <source>Open file</source>
         <translation>Apri file</translation>
     </message>
     <message>
-        <location filename="../dialogsecurity.cpp" line="386"/>
+        <location filename="../dialogsecurity.cpp" line="390"/>
         <source>The file size exceeds the security register size.</source>
         <translation>La dimensione del file supera la dimensione del registro di sicurezza.</translation>
     </message>
     <message>
-        <location filename="../dialogsecurity.cpp" line="408"/>
+        <location filename="../dialogsecurity.cpp" line="412"/>
         <source>Save file</source>
         <translation>Salva file</translation>
     </message>
     <message>
-        <location filename="../dialogsecurity.cpp" line="419"/>
+        <location filename="../dialogsecurity.cpp" line="423"/>
         <source>Error saving file!</source>
         <translation>Si è verificato un errore durante il salvataggio del file!</translation>
     </message>
@@ -1177,27 +1247,27 @@
         <translation>File</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1113"/>
+        <location filename="../mainwindow.ui" line="1115"/>
         <source>Open</source>
         <translation>Apri</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1116"/>
+        <location filename="../mainwindow.ui" line="1118"/>
         <source>Ctrl+O</source>
         <translation>Ctrl+O</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1137"/>
+        <location filename="../mainwindow.ui" line="1139"/>
         <source>Exit</source>
         <translation>Esci</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1140"/>
+        <location filename="../mainwindow.ui" line="1142"/>
         <source>Ctrl+X</source>
         <translation>Ctrl+X</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1125"/>
+        <location filename="../mainwindow.ui" line="1127"/>
         <source>Save</source>
         <translation>Salva</translation>
     </message>
@@ -1239,13 +1309,13 @@
     </message>
     <message>
         <location filename="../mainwindow.ui" line="572"/>
-        <location filename="../mainwindow.ui" line="1149"/>
+        <location filename="../mainwindow.ui" line="1151"/>
         <source>Detect</source>
         <translation>Rileva</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="609"/>
-        <location filename="../mainwindow.ui" line="1161"/>
+        <location filename="../mainwindow.ui" line="1163"/>
         <source>Read</source>
         <translation>Leggi</translation>
     </message>
@@ -1275,7 +1345,7 @@
     </message>
     <message>
         <location filename="../mainwindow.ui" line="664"/>
-        <location filename="../mainwindow.ui" line="1173"/>
+        <location filename="../mainwindow.ui" line="1175"/>
         <source>Erase</source>
         <translation>Cancella</translation>
     </message>
@@ -1286,7 +1356,7 @@
     </message>
     <message>
         <location filename="../mainwindow.ui" line="684"/>
-        <location filename="../mainwindow.ui" line="1197"/>
+        <location filename="../mainwindow.ui" line="1199"/>
         <source>Verify</source>
         <translation>Verifica</translation>
     </message>
@@ -1337,252 +1407,266 @@
         <translation>Aiuto</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1128"/>
+        <location filename="../mainwindow.ui" line="1130"/>
         <source>Ctrl+S</source>
         <translation>Ctrl+S</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1152"/>
+        <location filename="../mainwindow.ui" line="1154"/>
         <source>Ctrl+D</source>
         <translation>Ctrl+D</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1164"/>
+        <location filename="../mainwindow.ui" line="1166"/>
         <source>Ctrl+R</source>
         <translation>Ctrl+R</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1176"/>
+        <location filename="../mainwindow.ui" line="1178"/>
         <source>Ctrl+E</source>
         <translation>Ctrl+E</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1185"/>
+        <location filename="../mainwindow.ui" line="1187"/>
         <source>Write</source>
         <translation>Scrivi</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1188"/>
+        <location filename="../mainwindow.ui" line="1190"/>
         <source>Ctrl+W</source>
         <translation>Ctrl+W</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1200"/>
+        <location filename="../mainwindow.ui" line="1202"/>
         <source>Ctrl+T</source>
         <translation>Ctrl+T</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1209"/>
+        <location filename="../mainwindow.ui" line="1211"/>
         <source>Undo</source>
         <translation>Annulla</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1212"/>
+        <location filename="../mainwindow.ui" line="1214"/>
         <source>Ctrl+Z</source>
         <translation>Ctrl+Z</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1221"/>
+        <location filename="../mainwindow.ui" line="1223"/>
         <source>Redo</source>
         <translation>Ripristina</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1224"/>
+        <location filename="../mainwindow.ui" line="1226"/>
         <source>Ctrl+Y</source>
         <translation>Ctrl+Y</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1334"/>
+        <location filename="../mainwindow.ui" line="1336"/>
         <source>Import from Intel HEX</source>
         <translation>Importa da Intel HEX</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1343"/>
+        <location filename="../mainwindow.ui" line="1345"/>
         <source>Export to Intel HEX</source>
         <translation>Esporta in Intel HEX</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1352"/>
+        <location filename="../mainwindow.ui" line="1354"/>
         <source>Extract from ASUS CAP</source>
         <translation>Estrai dal CAP di ASUS</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1361"/>
+        <location filename="../mainwindow.ui" line="1363"/>
         <source>Goto address</source>
         <translation>Vai all&apos;indirizzo</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1364"/>
+        <location filename="../mainwindow.ui" line="1366"/>
         <source>Move the cursor to the entered address</source>
         <translation>Sposta il cursore all&apos;indirizzo inserito</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1367"/>
+        <location filename="../mainwindow.ui" line="1369"/>
         <source>Ctrl+G</source>
         <translation>Ctrl+G</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1376"/>
+        <location filename="../mainwindow.ui" line="1378"/>
         <source>Security registers</source>
         <translation>Registri di sicurezza</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1379"/>
+        <location filename="../mainwindow.ui" line="1381"/>
         <source>Ctrl+U</source>
         <translation>Ctrl+U</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1388"/>
+        <location filename="../mainwindow.ui" line="1390"/>
         <source>Fill test image</source>
         <translation>Riempi l&apos;immagine di prova</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1391"/>
+        <location filename="../mainwindow.ui" line="1393"/>
         <source>Filling the hex editor with a test array</source>
         <translation>Riempi l&apos;editor esadecimale con una matrice di prova</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1394"/>
+        <location filename="../mainwindow.ui" line="1396"/>
         <source>Ctrl+L</source>
         <translation>Ctrl+L</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1403"/>
+        <location filename="../mainwindow.ui" line="1405"/>
         <source>Compare files</source>
         <translation>Confronta i file</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1406"/>
+        <location filename="../mainwindow.ui" line="1408"/>
         <source>Compares the results of the last and penultimate chip read or file open operation</source>
         <translation>Confronta i risultati dell’ultima e della penultima operazione di lettura del chip o di apertura del file</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1409"/>
+        <location filename="../mainwindow.ui" line="1411"/>
         <source>Ctrl+M</source>
         <translation>Ctrl+M</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1418"/>
+        <location filename="../mainwindow.ui" line="1420"/>
         <source>Copy</source>
         <translation>Copia</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1427"/>
+        <location filename="../mainwindow.ui" line="1429"/>
         <source>Paste</source>
         <translation>Incolla</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1436"/>
+        <location filename="../mainwindow.ui" line="1438"/>
         <source>Bad block management</source>
         <translation>Gestione dei blocchi danneggiati</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1439"/>
+        <location filename="../mainwindow.ui" line="1441"/>
         <source>Ctrl+B</source>
         <translation>Ctrl+B</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1451"/>
+        <location filename="../mainwindow.ui" line="1453"/>
         <source>CH341A/B v1.2</source>
         <translation>CH341A/B v1.2</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1459"/>
+        <location filename="../mainwindow.ui" line="1461"/>
         <source>CH341A v1.7</source>
         <translation>CH341A v1.7</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1233"/>
+        <location filename="../mainwindow.ui" line="1469"/>
+        <source>CH347T v1.0</source>
+        <translation>CH347T v1.0</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="1477"/>
+        <source>CH347T v1.1</source>
+        <translation>CH347T v1.1</translation>
+    </message>
+    <message>
+        <source>CH347T</source>
+        <translation type="vanished">CH347T</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="1235"/>
         <source>Save Part</source>
         <translation>Salva parte</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1245"/>
+        <location filename="../mainwindow.ui" line="1247"/>
         <source>Load Part</source>
         <translation>Carica parte</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1257"/>
+        <location filename="../mainwindow.ui" line="1259"/>
         <source>Find / Replace</source>
         <translation>Trova / Sostituisci</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1260"/>
+        <location filename="../mainwindow.ui" line="1262"/>
         <source>Ctrl+F</source>
         <translation>Ctrl+F</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1265"/>
+        <location filename="../mainwindow.ui" line="1267"/>
         <source>About</source>
         <translation>Informazioni</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1268"/>
+        <location filename="../mainwindow.ui" line="1270"/>
         <source>About IMSProgrammer</source>
         <translation>Informazioni su IMSProgrammer</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1271"/>
+        <location filename="../mainwindow.ui" line="1273"/>
         <source>Ctrl+H</source>
         <translation>Ctrl+H</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1280"/>
+        <location filename="../mainwindow.ui" line="1282"/>
         <source>Checksum calculate</source>
         <translation>Calcola checksum</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1283"/>
+        <location filename="../mainwindow.ui" line="1285"/>
         <source>Ctrl+A</source>
         <translation>Ctrl+A</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1292"/>
+        <location filename="../mainwindow.ui" line="1294"/>
         <source>Edit chips Database</source>
         <translation>Modifica il database dei chip</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1295"/>
+        <location filename="../mainwindow.ui" line="1297"/>
         <source>Ctrl+Q</source>
         <translation>Ctrl+Q</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1304"/>
-        <location filename="../mainwindow.cpp" line="1867"/>
+        <location filename="../mainwindow.ui" line="1306"/>
+        <location filename="../mainwindow.cpp" line="1920"/>
         <source>Stop</source>
         <translation>Ferma</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1307"/>
+        <location filename="../mainwindow.ui" line="1309"/>
         <source>Forced stop of read, write, erase and verification operations</source>
         <translation>Arresto forzato delle operazioni di lettura, scrittura, cancellazione e verifica</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1310"/>
+        <location filename="../mainwindow.ui" line="1312"/>
         <source>Ctrl+I</source>
         <translation>Ctrl+I</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1319"/>
+        <location filename="../mainwindow.ui" line="1321"/>
         <source>Chip info</source>
         <translation>Informazioni sul chip</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1322"/>
+        <location filename="../mainwindow.ui" line="1324"/>
         <source>Information about SFDP and status registers</source>
         <translation>Informazioni su SFDP e registri di stato</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1325"/>
+        <location filename="../mainwindow.ui" line="1327"/>
         <source>Ctrl+P</source>
         <translation>Ctrl+P</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="900"/>
-        <location filename="../mainwindow.cpp" line="943"/>
-        <location filename="../mainwindow.cpp" line="1464"/>
-        <location filename="../mainwindow.cpp" line="2148"/>
-        <location filename="../mainwindow.cpp" line="2224"/>
+        <location filename="../mainwindow.cpp" line="917"/>
+        <location filename="../mainwindow.cpp" line="960"/>
+        <location filename="../mainwindow.cpp" line="1498"/>
+        <location filename="../mainwindow.cpp" line="2207"/>
+        <location filename="../mainwindow.cpp" line="2283"/>
         <source>Current file: </source>
         <translation>File attuale: </translation>
     </message>
@@ -1602,291 +1686,307 @@
         <translation>Dimensione</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1932"/>
+        <location filename="../mainwindow.cpp" line="1988"/>
         <source>Opening DAT file</source>
         <translation>Apertura in corso del file DAT</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="250"/>
-        <location filename="../mainwindow.cpp" line="295"/>
-        <location filename="../mainwindow.cpp" line="303"/>
-        <location filename="../mainwindow.cpp" line="309"/>
-        <location filename="../mainwindow.cpp" line="336"/>
-        <location filename="../mainwindow.cpp" line="337"/>
-        <location filename="../mainwindow.cpp" line="349"/>
-        <location filename="../mainwindow.cpp" line="366"/>
-        <location filename="../mainwindow.cpp" line="381"/>
-        <location filename="../mainwindow.cpp" line="652"/>
-        <location filename="../mainwindow.cpp" line="669"/>
-        <location filename="../mainwindow.cpp" line="688"/>
-        <location filename="../mainwindow.cpp" line="733"/>
-        <location filename="../mainwindow.cpp" line="783"/>
-        <location filename="../mainwindow.cpp" line="830"/>
-        <location filename="../mainwindow.cpp" line="893"/>
-        <location filename="../mainwindow.cpp" line="933"/>
-        <location filename="../mainwindow.cpp" line="1005"/>
-        <location filename="../mainwindow.cpp" line="1067"/>
-        <location filename="../mainwindow.cpp" line="1076"/>
-        <location filename="../mainwindow.cpp" line="1083"/>
-        <location filename="../mainwindow.cpp" line="1104"/>
-        <location filename="../mainwindow.cpp" line="1114"/>
-        <location filename="../mainwindow.cpp" line="1275"/>
-        <location filename="../mainwindow.cpp" line="1326"/>
-        <location filename="../mainwindow.cpp" line="1335"/>
-        <location filename="../mainwindow.cpp" line="1341"/>
-        <location filename="../mainwindow.cpp" line="1352"/>
-        <location filename="../mainwindow.cpp" line="1376"/>
-        <location filename="../mainwindow.cpp" line="1377"/>
-        <location filename="../mainwindow.cpp" line="1391"/>
-        <location filename="../mainwindow.cpp" line="1420"/>
-        <location filename="../mainwindow.cpp" line="1444"/>
+        <location filename="../mainwindow.cpp" line="252"/>
+        <location filename="../mainwindow.cpp" line="300"/>
+        <location filename="../mainwindow.cpp" line="308"/>
+        <location filename="../mainwindow.cpp" line="314"/>
+        <location filename="../mainwindow.cpp" line="344"/>
+        <location filename="../mainwindow.cpp" line="345"/>
+        <location filename="../mainwindow.cpp" line="357"/>
+        <location filename="../mainwindow.cpp" line="374"/>
+        <location filename="../mainwindow.cpp" line="396"/>
+        <location filename="../mainwindow.cpp" line="667"/>
+        <location filename="../mainwindow.cpp" line="684"/>
+        <location filename="../mainwindow.cpp" line="704"/>
+        <location filename="../mainwindow.cpp" line="749"/>
+        <location filename="../mainwindow.cpp" line="800"/>
+        <location filename="../mainwindow.cpp" line="847"/>
+        <location filename="../mainwindow.cpp" line="910"/>
+        <location filename="../mainwindow.cpp" line="950"/>
+        <location filename="../mainwindow.cpp" line="1024"/>
+        <location filename="../mainwindow.cpp" line="1087"/>
+        <location filename="../mainwindow.cpp" line="1096"/>
+        <location filename="../mainwindow.cpp" line="1103"/>
+        <location filename="../mainwindow.cpp" line="1129"/>
+        <location filename="../mainwindow.cpp" line="1139"/>
+        <location filename="../mainwindow.cpp" line="1301"/>
+        <location filename="../mainwindow.cpp" line="1355"/>
+        <location filename="../mainwindow.cpp" line="1364"/>
+        <location filename="../mainwindow.cpp" line="1370"/>
+        <location filename="../mainwindow.cpp" line="1381"/>
+        <location filename="../mainwindow.cpp" line="1410"/>
+        <location filename="../mainwindow.cpp" line="1411"/>
+        <location filename="../mainwindow.cpp" line="1425"/>
+        <location filename="../mainwindow.cpp" line="1454"/>
         <location filename="../mainwindow.cpp" line="1478"/>
-        <location filename="../mainwindow.cpp" line="1761"/>
-        <location filename="../mainwindow.cpp" line="1941"/>
-        <location filename="../mainwindow.cpp" line="2101"/>
-        <location filename="../mainwindow.cpp" line="2115"/>
-        <location filename="../mainwindow.cpp" line="2238"/>
-        <location filename="../mainwindow.cpp" line="2270"/>
-        <location filename="../mainwindow.cpp" line="2288"/>
-        <location filename="../mainwindow.cpp" line="2308"/>
-        <location filename="../mainwindow.cpp" line="2439"/>
+        <location filename="../mainwindow.cpp" line="1512"/>
+        <location filename="../mainwindow.cpp" line="1814"/>
+        <location filename="../mainwindow.cpp" line="1997"/>
+        <location filename="../mainwindow.cpp" line="2157"/>
+        <location filename="../mainwindow.cpp" line="2173"/>
+        <location filename="../mainwindow.cpp" line="2297"/>
+        <location filename="../mainwindow.cpp" line="2329"/>
+        <location filename="../mainwindow.cpp" line="2347"/>
+        <location filename="../mainwindow.cpp" line="2367"/>
+        <location filename="../mainwindow.cpp" line="2499"/>
         <source>Error</source>
         <translation>Errore</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1420"/>
+        <location filename="../mainwindow.cpp" line="1454"/>
         <source>The end address must be greater than the starting address.</source>
         <translation>L&apos;indirizzo finale deve essere maggiore dell&apos;indirizzo iniziale.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1761"/>
+        <location filename="../mainwindow.cpp" line="1814"/>
         <source>File &apos;IMSProg_editor&apos; not found!</source>
         <translation>&apos;IMSProg_editor&apos; non è stato trovato!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1941"/>
+        <location filename="../mainwindow.cpp" line="1997"/>
         <source>Error loading chip database file!</source>
         <translation>Si è verificato un errore durante l&apos;apertura del database dei chip!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1947"/>
+        <location filename="../mainwindow.cpp" line="2003"/>
         <source>Parsing DAT file</source>
         <translation>Analisi archivio DAT in corso</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="261"/>
+        <location filename="../mainwindow.cpp" line="266"/>
         <source>Reading data from </source>
         <translation>Lettura dati in corso da </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="250"/>
-        <location filename="../mainwindow.cpp" line="295"/>
-        <location filename="../mainwindow.cpp" line="1005"/>
-        <location filename="../mainwindow.cpp" line="1067"/>
-        <location filename="../mainwindow.cpp" line="1275"/>
-        <location filename="../mainwindow.cpp" line="1326"/>
+        <location filename="../mainwindow.cpp" line="252"/>
+        <location filename="../mainwindow.cpp" line="300"/>
+        <location filename="../mainwindow.cpp" line="1024"/>
+        <location filename="../mainwindow.cpp" line="1087"/>
+        <location filename="../mainwindow.cpp" line="1301"/>
+        <location filename="../mainwindow.cpp" line="1355"/>
         <source>Unsupported chip type!</source>
         <translation>Chip non supportato!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="303"/>
-        <location filename="../mainwindow.cpp" line="349"/>
-        <location filename="../mainwindow.cpp" line="366"/>
-        <location filename="../mainwindow.cpp" line="669"/>
-        <location filename="../mainwindow.cpp" line="1076"/>
-        <location filename="../mainwindow.cpp" line="1114"/>
-        <location filename="../mainwindow.cpp" line="1335"/>
-        <location filename="../mainwindow.cpp" line="1391"/>
         <source>Programmer CH341a is not connected!</source>
-        <translation>Il programatore CH341a non è connesso!</translation>
+        <translation type="vanished">Il programatore CH341a non è connesso!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="309"/>
-        <location filename="../mainwindow.cpp" line="1341"/>
+        <location filename="../mainwindow.cpp" line="314"/>
+        <location filename="../mainwindow.cpp" line="1370"/>
         <source>Error reading block </source>
         <translation>Si è verificato un errore durante la lettura del blocco </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="336"/>
-        <location filename="../mainwindow.cpp" line="1104"/>
-        <location filename="../mainwindow.cpp" line="1376"/>
+        <location filename="../mainwindow.cpp" line="344"/>
+        <location filename="../mainwindow.cpp" line="1129"/>
+        <location filename="../mainwindow.cpp" line="1410"/>
         <source>Before reading from chip please press &apos;Detect&apos; button.</source>
         <translation>Prima di leggere il chip, premere il pulsante &apos;Rileva&apos;.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="337"/>
+        <location filename="../mainwindow.cpp" line="345"/>
         <source>Please select the chip parameters - manufacture and chip name</source>
         <translation>Seleziona i parametri del chip: produttore e nome del chip</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="381"/>
+        <location filename="../mainwindow.cpp" line="396"/>
         <source>The chip is not connect or missing!</source>
         <translation>Il chip non è collegato oppure è mancante!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="639"/>
-        <location filename="../mainwindow.cpp" line="2139"/>
+        <location filename="../mainwindow.cpp" line="654"/>
+        <location filename="../mainwindow.cpp" line="2198"/>
         <source>Saving file</source>
         <translation>Salvataggio file in corso</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="641"/>
-        <location filename="../mainwindow.cpp" line="2141"/>
+        <location filename="../mainwindow.cpp" line="656"/>
+        <location filename="../mainwindow.cpp" line="2200"/>
         <source>Save file</source>
         <translation>Salva file</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="652"/>
-        <location filename="../mainwindow.cpp" line="1444"/>
+        <location filename="../mainwindow.cpp" line="667"/>
+        <location filename="../mainwindow.cpp" line="1478"/>
         <source>Error saving file!</source>
         <translation>Si è verificato un errore durante il salvataggio del file!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="672"/>
+        <location filename="../mainwindow.cpp" line="687"/>
         <source>Erasing the </source>
         <translation>Cancellazione in corso di </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="688"/>
-        <location filename="../mainwindow.cpp" line="733"/>
-        <location filename="../mainwindow.cpp" line="783"/>
-        <location filename="../mainwindow.cpp" line="830"/>
+        <location filename="../mainwindow.cpp" line="704"/>
+        <location filename="../mainwindow.cpp" line="749"/>
+        <location filename="../mainwindow.cpp" line="800"/>
+        <location filename="../mainwindow.cpp" line="847"/>
         <source>Error erasing sector </source>
         <translation>Si è verificato un errore durante la cancellazione del settore </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="871"/>
-        <location filename="../mainwindow.cpp" line="921"/>
-        <location filename="../mainwindow.cpp" line="2210"/>
+        <location filename="../mainwindow.cpp" line="888"/>
+        <location filename="../mainwindow.cpp" line="938"/>
+        <location filename="../mainwindow.cpp" line="2269"/>
         <source>Opening file</source>
         <translation>Apertura del file in corso</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="877"/>
-        <location filename="../mainwindow.cpp" line="925"/>
-        <location filename="../mainwindow.cpp" line="2214"/>
+        <location filename="../mainwindow.cpp" line="894"/>
+        <location filename="../mainwindow.cpp" line="942"/>
+        <location filename="../mainwindow.cpp" line="2273"/>
         <source>Open file</source>
         <translation>Apri file</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="893"/>
-        <location filename="../mainwindow.cpp" line="933"/>
+        <location filename="../mainwindow.cpp" line="910"/>
+        <location filename="../mainwindow.cpp" line="950"/>
         <source>The file size exceeds the chip size. Please select another chip or file or use `Save part` to split the file.</source>
         <translation>La dimensione del file supera quella del chip. Selezionare un altro chip o un altro file oppure utilizzare `Salva parte` per dividere il file.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2101"/>
+        <location filename="../mainwindow.cpp" line="2157"/>
         <source>Before working with the security registers, click the &apos;Detect&apos; button</source>
         <translation>Prima di lavorare con i registri di sicurezza, fai clic sul pulsante &apos;Rileva&apos;</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2115"/>
+        <location filename="../mainwindow.cpp" line="2173"/>
         <source>There are no security registers in this chip or the current version of IMSProg does not support this algorithm.</source>
         <translation>Non ci sono registri di sicurezza in questo chip o la versione attuale di IMSProg non supporta questo algoritmo.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2238"/>
+        <location filename="../mainwindow.cpp" line="2297"/>
         <source>Not valid HEX format!</source>
         <translation>Formato HEX non valido!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2270"/>
+        <location filename="../mainwindow.cpp" line="2329"/>
         <source>The address is larger than the size of the chip!</source>
         <translation>L&apos;indirizzo è più grande della dimensione del chip!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2288"/>
-        <location filename="../mainwindow.cpp" line="2308"/>
+        <location filename="../mainwindow.cpp" line="2347"/>
+        <location filename="../mainwindow.cpp" line="2367"/>
         <source>Checksum error!</source>
         <translation>Si è verificato un errore di checksum!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1015"/>
+        <location filename="../mainwindow.cpp" line="1034"/>
         <source>Writing data to </source>
         <translation>Scrittura dati in corso su </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1083"/>
+        <location filename="../mainwindow.cpp" line="308"/>
+        <location filename="../mainwindow.cpp" line="357"/>
+        <location filename="../mainwindow.cpp" line="374"/>
+        <location filename="../mainwindow.cpp" line="684"/>
+        <location filename="../mainwindow.cpp" line="1096"/>
+        <location filename="../mainwindow.cpp" line="1139"/>
+        <location filename="../mainwindow.cpp" line="1364"/>
+        <location filename="../mainwindow.cpp" line="1425"/>
+        <source>Programmer </source>
+        <translation>Il programmatore </translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="308"/>
+        <location filename="../mainwindow.cpp" line="357"/>
+        <location filename="../mainwindow.cpp" line="374"/>
+        <location filename="../mainwindow.cpp" line="684"/>
+        <location filename="../mainwindow.cpp" line="1096"/>
+        <location filename="../mainwindow.cpp" line="1139"/>
+        <location filename="../mainwindow.cpp" line="1364"/>
+        <location filename="../mainwindow.cpp" line="1425"/>
+        <source> is not connected!</source>
+        <translation> non è connesso!</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="1103"/>
         <source>Error writing sector </source>
         <translation>Si è verificato un errore durante la scrittura del settore </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1291"/>
+        <location filename="../mainwindow.cpp" line="1320"/>
         <source>Veryfing data from </source>
         <translation>Verifica dati in corso da </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1352"/>
+        <location filename="../mainwindow.cpp" line="1381"/>
         <source>Error comparing data!
 Address:   </source>
         <translation>Si è verificato un errore durante il confronto dei dati!
 Indirizzo:   </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1352"/>
+        <location filename="../mainwindow.cpp" line="1381"/>
         <source>
 Buffer: </source>
         <translation>
 Buffer: </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1352"/>
+        <location filename="../mainwindow.cpp" line="1381"/>
         <source>    Chip: </source>
         <translation>    Chip: </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1377"/>
-        <location filename="../mainwindow.cpp" line="2439"/>
+        <location filename="../mainwindow.cpp" line="1411"/>
+        <location filename="../mainwindow.cpp" line="2499"/>
         <source>Please select the chip parameters - manufacture and chip name.</source>
         <translation>Seleziona i parametri del chip: produttore e nome del chip.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1386"/>
+        <location filename="../mainwindow.cpp" line="1420"/>
         <source>Ok!</source>
         <translation>Ok!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1386"/>
+        <location filename="../mainwindow.cpp" line="1420"/>
         <source>The operation was successful!</source>
         <translation>Operazione completata!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1432"/>
+        <location filename="../mainwindow.cpp" line="1466"/>
         <source>Saving block</source>
         <translation>Salvataggio del blocco in corso</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1434"/>
+        <location filename="../mainwindow.cpp" line="1468"/>
         <source>Save block</source>
         <translation>Salva blocco</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1459"/>
+        <location filename="../mainwindow.cpp" line="1493"/>
         <source>Opening block</source>
         <translation>Apertura del blocco in corso</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1461"/>
+        <location filename="../mainwindow.cpp" line="1495"/>
         <source>Open block</source>
         <translation>Apri blocco</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1478"/>
+        <location filename="../mainwindow.cpp" line="1512"/>
         <source>The end address out of image size!</source>
         <translation>L’indirizzo finale supera la dimensione dell’immagine!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1516"/>
+        <location filename="../mainwindow.cpp" line="1550"/>
         <source>Connected</source>
         <translation>Connesso</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1521"/>
+        <location filename="../mainwindow.cpp" line="1555"/>
         <source>Not connected</source>
         <translation>Non connesso</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1867"/>
+        <location filename="../mainwindow.cpp" line="1920"/>
         <source>Operation aborted!</source>
         <translation>L&apos;operazione è stata annullata!</translation>
     </message>
