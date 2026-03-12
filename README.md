@@ -145,7 +145,8 @@ The `45xxx` adapter must be installed in the programmer slot marked `25xxx`.
 The SPI NAND Flash chips must be mounted in a `WSON-8 DIP-8` adapter. This 
 adapter must be installed in the programmer slot marked `25xxx`.
 
-:information_source: *In the current version, the MicroWire (93Cxx) protocol is 
+> [!NOTE] 
+> *In the current version, the MicroWire (93Cxx) protocol is 
 not supported by the CH347 programming device.*
 
 ![Adapter](img/93xxx_adapter.png)
