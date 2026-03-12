@@ -49,5 +49,12 @@
         <file>img/ch347_spi_1v8.png</file>
         <file>img/ch347_spi_3v3.png</file>
         <file>img/ch347_spi_18_wson.png</file>
+        <file>img/v1_1_i2c_3v3.png</file>
+        <file>img/v1_1_45_3v3.png</file>
+        <file>img/v1_1_mw_3v3.png</file>
+        <file>img/v1_1_NAND_1v8.png</file>
+        <file>img/v1_1_NAND_3v3.png</file>
+        <file>img/v1_1_spi_1v8.png</file>
+        <file>img/v1_1_spi_3v3.png</file>
     </qresource>
 </RCC>

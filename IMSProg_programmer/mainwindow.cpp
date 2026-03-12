@@ -149,6 +149,11 @@ MainWindow::MainWindow(QWidget *parent) :
               ui->actionCH347T->setChecked(true);
               SetItemStatus("comboBox_type", 2, true);
           }
+       if (current_programmer == 3)
+          {
+              ui->actionCH347T_v1_1->setChecked(true);
+              SetItemStatus("comboBox_type", 2, true);
+          }
      settings.endGroup();
      settings.beginGroup("FormPosition");
      if (settings.contains("geometry"))
@@ -159,7 +164,7 @@ MainWindow::MainWindow(QWidget *parent) :
  }
  // connect and status check
  if (current_programmer < 2) ui->lStatus->setText("CH341A");
- if (current_programmer == 2) ui->lStatus->setText("CH347T");
+ if (current_programmer >= 2) ui->lStatus->setText("CH347T");
  statusCH341 =  ProgDeviceInit(current_programmer, currentChipType, currentI2CBusSpeed);
  ch341StatusFlashing();
  ProgDeviceClose(current_programmer);
@@ -2521,6 +2526,13 @@ void MainWindow::on_actionCH347T_triggered()
     SetItemStatus("comboBox_type", 2, true);
 }
 
+void MainWindow::on_actionCH347T_v1_1_triggered()
+{
+    current_programmer = 3;
+    ui->lStatus->setText("CH347T");
+    SetItemStatus("comboBox_type", 2, true);
+}
+
 void MainWindow::closeEvent(QCloseEvent( *event))
 {
     //Storing parameters in ini file
@@ -2582,3 +2594,4 @@ void MainWindow::SetItemStatus(QString comboboxName, int itemNumber, bool setDis
         }
     }
 }
+

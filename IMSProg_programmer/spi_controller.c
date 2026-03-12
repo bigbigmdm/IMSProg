@@ -28,14 +28,14 @@ int ProgDeviceInit( u8 deviceType, u8 chipType, u8 i2cSpeed )
 {
     int ret;
     if (deviceType < 2)  ret = ch341a_init(chipType, i2cSpeed);
-    if (deviceType == 2) ret = ch347_spi_init(chipType, i2cSpeed);
+    if (deviceType >= 2) ret = ch347_spi_init(chipType, i2cSpeed);
     return ret;
 }
 
 int ProgDeviceClose( u8 deviceType )
 {
     if (deviceType < 2)  ch341a_spi_shutdown();
-    if (deviceType == 2) ch347_spi_shutdown();
+    if (deviceType >= 2) ch347_spi_shutdown();
     return 0;
 }
 
