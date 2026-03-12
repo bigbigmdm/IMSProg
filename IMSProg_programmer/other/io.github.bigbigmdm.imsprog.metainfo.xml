@@ -17,7 +17,7 @@
   <summary xml:lang="zh_TW">讀取、寫入及清除 EEPROM 晶片</summary>
   <icon type="remote" width="64" height="64">https://github.com/bigbigmdm/IMSProg/tree/main/IMSProg_programmer/img/IMSProg64.png</icon>
   <description>
-    <p>IMSProg is a free software for CH341A and CH347T based chip programmers with graphical interface. With IMSProg you can read, verify, program, erase i2C, SPI, SPI NOR, SPI NAND, MicroWire EEPROM chips using the CH341A programmer device.</p>
+    <p>IMSProg is a free software for CH341A and CH347T based chip programmers with graphical interface. With IMSProg you can read, verify, program, erase i2C, SPI, SPI NOR, SPI NAND, MicroWire EEPROM chips using the CH341A or CH347T programmer device.</p>
     <p xml:lang="de">IMSProg ist eine kostenlose Software für CH341A- und CH347T-basierte Chip-Programmiergeräte mit grafischer Oberfläche. Mit IMSProg können Sie i2C, SPI, SPI NOR, SPI NAND, MicroWire EEPROM Chips mit dem CH341A Programmiergerät lesen, verifizieren, programmieren, löschen.</p>
     <p xml:lang="es">IMSProg es un software gratuito para programadores de chips basados en CH341A/CH347T con interfaz gráfica. Con IMSProg puede leer, verificar, programar, borrar chips i2C, SPI, SPI NOR, MicroWire EEPROM utilizando el dispositivo programador CH341A.</p>
     <p xml:lang="hu">Az IMSProg egy ingyenes szoftver CH341A/CH347T alapú chipprogramozók számára grafikus felülettel. Az IMSProg segítségével a CH341A programozó eszközzel i2C, SPI, SPI NOR, SPI NAND, MicroWire EEPROM chipeket olvashat, ellenőrizhet, programozhat, törölhet.</p>
