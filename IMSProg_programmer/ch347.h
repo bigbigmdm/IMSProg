@@ -134,6 +134,8 @@ bool ch347_spi_init(uint8_t ch_type, uint8_t i2cBusSpeed);
 
 void ch347_spi_shutdown();
 
+int ch347GetDescriptor(uint8_t *buf);
+
 #ifdef __cplusplus
 }
 #endif

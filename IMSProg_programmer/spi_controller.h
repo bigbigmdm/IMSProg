@@ -54,6 +54,7 @@ typedef enum{
 
 int ProgDeviceInit( u8 deviceType, u8 chipType, u8 i2cSpeed );
 int ProgDeviceClose( u8 deviceType );
+int getDeviceDescriptor(u8 *data, u8 deviceType);
 
 /*------------------------------------------------------------------------------------
  * FUNCTION: SPI_CONTROLLER_RTN_T SPI_CONTROLLER_Enable_Manual_Mode( void )

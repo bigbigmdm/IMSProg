@@ -2595,3 +2595,16 @@ void MainWindow::SetItemStatus(QString comboboxName, int itemNumber, bool setDis
     }
 }
 
+
+void MainWindow::on_actionShow_programmer_version_triggered()
+{
+    std::shared_ptr<uint8_t[]> buf(new uint8_t[0x12]);
+    statusCH341 = ProgDeviceInit(current_programmer, currentChipType, currentI2CBusSpeed);
+    if (statusCH341 == 0)
+    {
+        getDeviceDescriptor(buf.get(), current_programmer);
+        ProgDeviceClose(current_programmer);
+        QMessageBox::about(this, tr("Info:"), (tr("Device revision: ") + QString::number(buf[12]) + "." + QString::number(buf[13])));
+    }
+    else QMessageBox::about(this, tr("Error"), tr("Programmer ") + ui->lStatus->text() + tr(" is not connected!"));
+}

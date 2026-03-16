@@ -358,3 +358,11 @@ void ch347_spi_shutdown()
     if (!priv)  return;
     ch347_close(priv);
 }
+
+int ch347GetDescriptor(uint8_t *buf)
+{
+    int ret;
+    ret = libusb_get_descriptor(priv->handle, LIBUSB_DT_DEVICE, 0x00, buf, 0x12);
+    if(ret < 0) printf("Failed to get device descriptor: '%x'\n", ret);
+    return ret;
+}

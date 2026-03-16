@@ -1062,6 +1062,8 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
     <addaction name="actionCH341A_v1_7"/>
     <addaction name="actionCH347T"/>
     <addaction name="actionCH347T_v1_1"/>
+    <addaction name="separator"/>
+    <addaction name="actionShow_programmer_version"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuProgrammer"/>
@@ -1441,6 +1443,11 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
     <string>Ctrl+B</string>
    </property>
   </action>
+  <action name="actionShow_programmer_version">
+   <property name="text">
+    <string>Show programmer version</string>
+   </property>
+  </action>
   <actiongroup name="actionSetProgrammerType">
    <action name="actionCH341A_B_v1_2">
     <property name="checkable">
@@ -1469,14 +1476,14 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
      <string>CH347T v1.0</string>
     </property>
    </action>
-  <action name="actionCH347T_v1_1">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
-   <property name="text">
-    <string>CH347T v1.1</string>
-   </property>
-  </action>
+   <action name="actionCH347T_v1_1">
+    <property name="checkable">
+     <bool>true</bool>
+    </property>
+    <property name="text">
+     <string>CH347T v1.1</string>
+    </property>
+   </action>
   </actiongroup>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
