@@ -254,7 +254,7 @@ int32_t ch347setI2Cstream(uint32_t speed)
     int ret = libusb_bulk_transfer(priv->handle, BULK_WRITE_ENDPOINT, buf, 3, &actuallen, 3000);
 
     if (ret < 0) {
-        fprintf(stderr, "ch347setstream(): Failed write %d bytes '%s'\n", 2, strerror(-ret));
+        fprintf(stderr, "ch347setstream(): Failed write %d bytes '%s'\n", 3, strerror(-ret));
         return -1;
     }
 
@@ -273,7 +273,7 @@ int32_t ch347setSDAandSCLHighlevels()
     int ret = libusb_bulk_transfer(priv->handle, BULK_WRITE_ENDPOINT, buf, 3, &actuallen, 3000);
 
     if (ret < 0) {
-        fprintf(stderr, "ch347setstream(): Failed write %d bytes '%s'\n", 2, strerror(-ret));
+        fprintf(stderr, "ch347setstream(): Failed write %d bytes '%s'\n", 3, strerror(-ret));
         return -1;
     }
 
