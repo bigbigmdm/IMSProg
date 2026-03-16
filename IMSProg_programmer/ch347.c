@@ -261,6 +261,26 @@ int32_t ch347setI2Cstream(uint32_t speed)
     return 0;
 }
 
+int32_t ch347setSDAandSCLHighlevels()
+{
+    int32_t actuallen = 0;
+    uint8_t buf[3];
+
+    buf[0] = mch347A_CMD_I2C_STREAM;
+    buf[1] = 0x12;
+    buf[2] = mch347A_CMD_I2C_STM_END;
+
+    int ret = libusb_bulk_transfer(priv->handle, BULK_WRITE_ENDPOINT, buf, 3, &actuallen, 3000);
+
+    if (ret < 0) {
+        fprintf(stderr, "ch347setstream(): Failed write %d bytes '%s'\n", 2, strerror(-ret));
+        return -1;
+    }
+
+    return 0;
+}
+
+
 struct ch347_priv *ch347_open() {
     struct ch347_priv *priv = calloc(1, sizeof(struct ch347_priv));
     int ret;
@@ -331,6 +351,7 @@ bool ch347_spi_init(uint8_t ch_type, uint8_t i2cBusSpeed) {
                 break;
              case 1: //24xxx I2C
                 freq = 100;
+                ch347setSDAandSCLHighlevels();
                 ch347setI2Cstream(i2cBusSpeed);
                 break;
              case 2: //93xxx Microwire
