@@ -2604,7 +2604,7 @@ void MainWindow::on_actionShow_programmer_version_triggered()
     {
         getDeviceDescriptor(buf.get(), current_programmer);
         ProgDeviceClose(current_programmer);
-        QMessageBox::about(this, tr("Info:"), (tr("Device revision: ") + QString::number(buf[13]) + "." + QString::number(buf[12])));
+        QMessageBox::about(this, tr("Info:"), (tr("Device revision: ") + byteBCDPrint(buf[13], false) + "." + byteBCDPrint(buf[12], true)));
     }
     else QMessageBox::about(this, tr("Error"), tr("Programmer ") + ui->lStatus->text() + tr(" is not connected!"));
 }

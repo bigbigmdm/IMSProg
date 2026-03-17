@@ -23,5 +23,6 @@ QString printAddress(int address, int digits);
 QString bytePrint(unsigned char z);
 QString sizeConvert(int a);
 uint32_t hexToInt(QString str);
+QString byteBCDPrint(uint8_t byte, bool zeroPrint);
 
 #endif // HEXUTILITY_H
