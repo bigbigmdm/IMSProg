@@ -148,6 +148,8 @@ adapter must be installed in the programmer slot marked `25xxx`.
 > [!NOTE] 
 > *In the current version, the MicroWire (93Cxx) protocol is 
 not supported by the CH347 programming device.*
+>
+> *CH347T V1.1 — a device with a lower speed than the CH347T V1.0.*
 
 ![Adapter](img/93xxx_adapter.png)
  
