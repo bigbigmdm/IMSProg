@@ -207,14 +207,17 @@ computer buffer into the chip.
 - Pressing ![Erase](img/erase64.png) or `<Ctrl+E>` will erase all data in the 
 chip.
 
+- By selecting ‘Main Menu -> Chip -> Check Deletion’ or pressing `<Ctrl+J>`, you
+ can check whether all data has been correctly deleted from the chip.
+
 - Pressing the ![Verify](img/verify64.png) or `<Ctrl+T>` button causes the 
 data in the chip and in the computer buffer to be compared.
 
 The progress bar shows the progress of the read, erase, and verify operations.
 
-- The `Auto` button is used to perform erase, write and verify operations in 
-sequence. If one of these operations is not needed, you can uncheck the 
-checkbox for that operation.
+- The `Auto` button is used to perform erase, check erase, write and verify 
+operations in sequence. If one of these operations is not needed, you can 
+uncheck the checkbox for that operation.
 
 - The ![Stop](img/stop64.png) or `<Ctrl+I>` key is used to force interruption 
 of chip read/write/erase/verify operations.
