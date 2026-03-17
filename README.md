@@ -39,24 +39,10 @@ web-server.
 
 ![CH341A EEPROM programmer](img/IMSProg.png) 
 
-## Compiling programmer
+## Compiling project
 ```
 git clone https://github.com/bigbigmdm/IMSProg.git && cd IMSProg
-cd IMSProg_programmer
-mkdir build
-cd build
-cmake ..
-make -j`nproc`
-sudo make install
-```
-## Compiling editor
-```
-cd IMSProg_editor
-mkdir build
-cd build
-cmake ..
-make -j`nproc`
-sudo make install
+sudo ./build_all.sh
 ```
 These commands are included in the `build_all.sh` file.
 
