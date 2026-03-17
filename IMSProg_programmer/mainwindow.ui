@@ -669,6 +669,13 @@ QGroupBox::title {
             </widget>
            </item>
            <item>
+            <widget class="QCheckBox" name="checkBox_1">
+             <property name="text">
+              <string>Check erase</string>
+             </property>
+            </widget>
+           </item>
+           <item>
             <widget class="QCheckBox" name="checkBox_2">
              <property name="text">
               <string>Program</string>
@@ -1025,6 +1032,7 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
     </property>
     <addaction name="actionRead"/>
     <addaction name="actionErase"/>
+    <addaction name="actionCheck_erase"/>
     <addaction name="actionWrite"/>
     <addaction name="actionVerify"/>
     <addaction name="actionDetect"/>
@@ -1446,6 +1454,18 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
   <action name="actionShow_programmer_version">
    <property name="text">
     <string>Show programmer version</string>
+   </property>
+  </action>
+  <action name="actionCheck_erase">
+   <property name="icon">
+    <iconset resource="recource.qrc">
+     <normaloff>:/res/img/checkErase64.png</normaloff>:/res/img/checkErase64.png</iconset>
+   </property>
+   <property name="text">
+    <string>Check erase</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+J</string>
    </property>
   </action>
   <actiongroup name="actionSetProgrammerType">

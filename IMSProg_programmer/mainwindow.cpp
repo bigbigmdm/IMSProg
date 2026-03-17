@@ -1030,7 +1030,7 @@ void MainWindow::on_actionWrite_triggered()
     ch341StatusFlashing();
     uint32_t addrSrc = 0, addrDest = 0;
     uint32_t curBlock = 0;    
-    uint32_t j, k;
+    uint32_t k;
     ui->statusMessage->setText(tr("Writing data to ") + ui->comboBox_name->currentText());
     //progerssbar settings
     int currentPercent = 0;
@@ -1260,7 +1260,7 @@ void MainWindow::on_actionVerify_triggered()
     //Reading and veryfying data from chip
     int res = 0;
     uint32_t step, numBlocks;
-    statusCH341 = statusCH341 = ProgDeviceInit(current_programmer, currentChipType, currentI2CBusSpeed);//ch341a_init(currentChipType, currentI2CBusSpeed);
+    statusCH341 = ProgDeviceInit(current_programmer, currentChipType, currentI2CBusSpeed);//ch341a_init(currentChipType, currentI2CBusSpeed);
     if (statusCH341 == 0)
     {
        if (((currentNumBlocks > 0) && (currentBlockSize >0) && (currentChipType == 0)) ||
@@ -1311,7 +1311,6 @@ void MainWindow::on_actionVerify_triggered()
                //progerssbar settings
                int currentPercent = 0;
                int lastPercent = -1;
-               //ui->progressBar->setRange(0, static_cast<int>(numBlocks));
                ui->progressBar->setRange(0, 100);
                ui->progressBar->setValue(0);
                std::shared_ptr<uint8_t[]> buf(new uint8_t[step]);
@@ -1430,6 +1429,7 @@ void MainWindow::on_pushButton_3_clicked()
 {
     ui->pushButton_3->setStyleSheet(redKeyStyle);
     if (ui->checkBox->isChecked()) MainWindow::on_actionErase_triggered();
+    if (ui->checkBox_1->isChecked()) MainWindow::on_actionCheck_erase_triggered();
     if (ui->checkBox_2->isChecked()) MainWindow::on_actionWrite_triggered();
     if (ui->checkBox_3->isChecked()) MainWindow::on_actionVerify_triggered();
     ui->pushButton_3->setStyleSheet(grnKeyStyle);
@@ -1830,6 +1830,7 @@ void MainWindow::doNotDisturb()
    ui->actionRead->setDisabled(true);
    ui->actionWrite->setDisabled(true);
    ui->actionErase->setDisabled(true);
+   ui->actionCheck_erase->setDisabled(true);
    ui->actionVerify->setDisabled(true);
    ui->actionFind_Replace->setDisabled(true);
    ui->actionUndo->setDisabled(true);
@@ -1878,6 +1879,7 @@ void MainWindow::doNotDisturbCancel()
       ui->actionRead->setDisabled(false);
       ui->actionWrite->setDisabled(false);
       ui->actionErase->setDisabled(false);
+      ui->actionCheck_erase->setDisabled(false);
       ui->actionVerify->setDisabled(false);
       ui->actionFind_Replace->setDisabled(false);
       ui->actionUndo->setDisabled(false);
@@ -1920,9 +1922,11 @@ void MainWindow::on_actionStop_triggered()
   QMessageBox::about(this, tr("Stop"), tr("Operation aborted!"));
   ui->pushButton->setStyleSheet(grnKeyStyle);
   ui->checkBox->setStyleSheet("");
+  ui->checkBox_1->setStyleSheet("");
   ui->checkBox_2->setStyleSheet("");
   ui->checkBox_3->setStyleSheet("");
   ui->checkBox->setChecked(false);
+  ui->checkBox_1->setChecked(false);
   ui->checkBox_2->setChecked(false);
   ui->checkBox_3->setChecked(false);
   ui->pushButton_3->setStyleSheet(grnKeyStyle);
@@ -2094,7 +2098,6 @@ void MainWindow::progInit()
              recNo++;
     }
     max_rec = recNo;
-    //ui->comboBox_man->addItem("");
     for (i = 0; i<max_rec; i++)
     {
         //replacing items to combobox Manufacture
@@ -2607,4 +2610,172 @@ void MainWindow::on_actionShow_programmer_version_triggered()
         QMessageBox::about(this, tr("Info:"), (tr("Device revision: ") + byteBCDPrint(buf[13], false) + "." + byteBCDPrint(buf[12], true)));
     }
     else QMessageBox::about(this, tr("Error"), tr("Programmer ") + ui->lStatus->text() + tr(" is not connected!"));
+}
+
+void MainWindow::on_actionCheck_erase_triggered()
+{
+    //Verification of data erasure from the chip
+    int res = 0;
+    uint32_t step, numBlocks;
+    statusCH341 = ProgDeviceInit(current_programmer, currentChipType, currentI2CBusSpeed);
+    if (statusCH341 == 0)
+    {
+       if (((currentNumBlocks > 0) && (currentBlockSize >0) && (currentChipType == 0)) ||
+            ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 1)) ||
+            ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 2)) ||
+            ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 3)) ||
+            ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 4)) ||
+            ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 5)) ||
+            ((currentNumBlocks > 0) && (currentPageSize >0) && (currentChipType == 6)))
+           {
+               ui->crcEdit->setText("");
+               doNotDisturb();
+               switch (currentChipType)
+                             {
+                             case 0:                 //SPI
+                                step = currentBlockSize;
+                                numBlocks = currentNumBlocks;
+                             break;
+                             case 1:                 //I2C
+                                //step = currentPageSize;
+                                step = 128;
+                                numBlocks = currentChipSize / step;
+                             break;
+                             case 2:                 //MicroWire
+                             case 3:                 //25xxx
+                             case 4:                 //95xxx
+                             case 5:                 //45xx
+                                step = currentPageSize;
+                                numBlocks = currentChipSize / step;
+                             break;
+                             case 6:             //NAND 35xx, GD5xx, W25xx
+                                step = currentPageSize;
+                                numBlocks = currentChipSize / step;
+                                nand_ECCEnable(current_programmer);
+                             break;
+                             default:
+                                //Unsupport
+                                QMessageBox::about(this, tr("Error"), tr("Unsupported chip type!"));
+                                doNotDisturbCancel();
+                                ProgDeviceClose(current_programmer);
+                                ui->checkBox_1->setStyleSheet("");
+                             return;
+                             }
+               ch341StatusFlashing();
+               uint32_t addr = 0;
+               uint32_t curBlock = 0;
+               uint32_t j, k;
+               //progerssbar settings
+               int currentPercent = 0;
+               int lastPercent = -1;
+               ui->progressBar->setRange(0, 100);
+               ui->progressBar->setValue(0);
+               std::shared_ptr<uint8_t[]> buf(new uint8_t[step]);
+               ui->checkBox_1->setStyleSheet("QCheckBox{font-weight:800;}");
+               ui->statusMessage->setText(tr("Erase checking in ") + ui->comboBox_name->currentText());
+               for (k = 0; k < numBlocks; k++)
+               {
+                   switch (currentChipType)
+                      {
+                      case 0:
+                         //SPI
+                         res = snor_read_param(buf.get(),curBlock * step, step, step, currentAddr4bit, current_programmer);
+                      break;
+                      case 1:
+                         //I2C
+                         res = ch34xi2cBlockRead(buf.get(), curBlock * step, step, currentAlgorithm, current_programmer);
+                         if (res==0) res = 1;
+                      break;
+                      case 2:
+                         //MicroWire
+                         res = Read_EEPROM_3wire_param(buf.get(), static_cast<int>(curBlock * step), static_cast<int>(step), static_cast<int>(currentChipSize), currentAlgorithm);
+                         if (res==0) res = 1;
+                      break;
+                      case 3:
+                         //25xxx
+                      case 4:
+                         //95xxx
+                         res = s95_read_param(buf.get(), curBlock * step, step, step, currentAlgorithm, current_programmer);
+                      break;
+                      case 5:
+                         res = at45_read_param(buf.get(), curBlock * step, step, step, currentAlgorithm, current_programmer);
+                      break;
+                      case 6:
+                         //NAND
+                         res = nand_page_read(buf.get(), step, k);
+                         if (res==0) res = 1;
+                      break;
+                      default:
+                         //Unsupport
+                         QMessageBox::about(this, tr("Error"), tr("Unsupported chip type!"));
+                         doNotDisturbCancel();
+                         ProgDeviceClose(current_programmer);
+                         ui->checkBox_1->setStyleSheet("");
+                      return;
+                      }
+                    // if res=-1 - error, stop
+                    if (statusCH341 != 0)
+                    {
+                       QMessageBox::about(this, tr("Error"), tr("Programmer ") + ui->lStatus->text() + tr(" is not connected!"));
+                       doNotDisturbCancel();
+                       break;
+                    }
+                    if (res <= 0)
+                    {
+                        QMessageBox::about(this, tr("Error"), tr("Error reading block ") + QString::number(curBlock));
+                        ProgDeviceClose(current_programmer);
+                        ui->pushButton->setStyleSheet(grnKeyStyle);
+                        doNotDisturbCancel();
+                        return;
+                    }
+                    for (j = 0; j < step; j++)
+                    {
+                      if ((buf[addr + j - k * step]) != 0xff)
+                          {
+                            //error compare
+                            QMessageBox::about(this, tr("Error"), tr("Error erasing chip!\nAddress:   ") + hexiAddr(addr + j) + tr("\nNeed: FF") + tr("    Chip: ") + bytePrint(buf[addr + j - k * step]));
+                            ui->statusMessage->setText("");
+                            ui->checkBox_1->setStyleSheet("");
+                            ProgDeviceClose(current_programmer);
+                            doNotDisturbCancel();
+                            return;
+                           }
+                     }
+                     addr = addr + step;
+                     curBlock++;
+                     qApp->processEvents();
+                     if (isHalted)
+                     {
+                         isHalted = false;
+                         ProgDeviceClose(current_programmer);
+                         doNotDisturbCancel();
+                         return;
+                     }
+                     currentPercent = static_cast<int>((curBlock * 100.0) / numBlocks);
+                     if (currentPercent != lastPercent)
+                     {
+                         ui->progressBar->setValue(currentPercent);
+                         lastPercent = currentPercent;
+                     }
+                 }
+             }
+             else
+             {
+                //Not correct Number fnd size of blocks
+               if (currentChipType == 0) QMessageBox::about(this, tr("Error"), tr("Before reading from chip please press 'Detect' button."));
+               if (currentChipType == 1) QMessageBox::about(this, tr("Error"), tr("Please select the chip parameters - manufacture and chip name."));
+
+             }
+             doNotDisturbCancel();
+             ui->statusMessage->setText("");
+             ui->progressBar->setValue(0);
+             ui->checkBox_1->setStyleSheet("");
+             ProgDeviceClose(current_programmer);
+
+    }
+      else
+      {
+          ch341StatusFlashing();
+          QMessageBox::about(this, tr("Error"), tr("Programmer ") + ui->lStatus->text() + tr(" is not connected!"));
+      }
 }

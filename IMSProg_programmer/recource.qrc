@@ -56,5 +56,6 @@
         <file>img/v1_1_NAND_3v3.png</file>
         <file>img/v1_1_spi_1v8.png</file>
         <file>img/v1_1_spi_3v3.png</file>
+        <file>img/checkErase64.png</file>
     </qresource>
 </RCC>
