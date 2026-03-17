@@ -274,6 +274,11 @@ this menu.
 
 ![Bad block scan](img/bbm_settings_en.png)
 
+> [!NOTE] 
+> *In this version of IMSProg, damaged blocks are not skipped when executing the 
+> `Verify` and `Check erase` functions for NAND Flash chips. If your chip 
+> contains damaged blocks, please do not use these functions.*
+
 ### Buffer (Hex editor) operations
 The hexadecimal chip editor (right side of the screen) is used to display and 
 modify buffer data.
@@ -304,6 +309,7 @@ The `Main menu -> Programmer`  item is used to change the programmer type.
 | Ctrl+G | Goto address (Hex editor)                     |
 | Chrl+H | About IMSProg                                 |
 | Ctrl+I | Force stop chip operation                     |
+| Ctrl+J | Check erase chip                              |
 | Ctrl+L | Fill the test array (Hex editor)              |
 | Ctrl+M | Compare files (Hex editor)                    |
 | Ctrl+O | Open file                                     |

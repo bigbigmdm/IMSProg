@@ -1464,6 +1464,9 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
    <property name="text">
     <string>Check erase</string>
    </property>
+   <property name="toolTip">
+    <string>Check erase chip</string>
+   </property>
    <property name="shortcut">
     <string>Ctrl+J</string>
    </property>
