@@ -333,7 +333,7 @@ void ch347_close(struct ch347_priv *priv) {
 }
 
 
-bool ch347_spi_init(uint8_t ch_type, uint8_t i2cBusSpeed) {
+bool ch347_spi_init(uint8_t ch_type, uint8_t i2cBusSpeed, bool version) {
     int ret;
     priv = ch347_open();
     if (!priv)  return 1;
@@ -347,7 +347,8 @@ bool ch347_spi_init(uint8_t ch_type, uint8_t i2cBusSpeed) {
     switch (ch_type)
           {
              case 0: //SPI NOR FLASH
-                freq = 30000;
+                if (!version) freq = 30000;
+                else freq = 15000;
                 break;
              case 1: //24xxx I2C
                 freq = 100;
@@ -363,7 +364,8 @@ bool ch347_spi_init(uint8_t ch_type, uint8_t i2cBusSpeed) {
                 freq = 5000;
                 break;
              case 6:
-                freq = 60000;
+                if (!version) freq = 60000;
+                else freq = 15000;
                 break;
              default:
                 freq = 60000;
