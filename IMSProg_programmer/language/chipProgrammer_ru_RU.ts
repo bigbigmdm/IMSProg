@@ -2051,7 +2051,8 @@ Address:   </source>
         <location filename="../mainwindow.cpp" line="2736"/>
         <source>
 Need: FF</source>
-        <translation>Нужно: FF</translation>
+        <translation type="unfinished">
+Нужно: FF</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1922"/>
