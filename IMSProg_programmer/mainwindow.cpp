@@ -1,7 +1,6 @@
 /*
  * Copyright (C) 2023 - 2026 Mikhail Medvedev <e-ink-reader@yandex.ru>
  *
- *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
  * as published by the Free Software Foundation; either version 3
@@ -2798,6 +2797,7 @@ void MainWindow::on_actionFill_with_code_triggered()
 void MainWindow::receiveAddr4(QString addressData)
 {
     QStringList resultOfForm;
+
     resultOfForm = addressData.split("-");
     uint32_t startAddr, endAddr, lenght, fillingCode, typeOfEnd, i;
     startAddr =   hexToInt(resultOfForm[0]);
@@ -2818,10 +2818,8 @@ void MainWindow::receiveAddr4(QString addressData)
        return;
     }
     chipData = hexEdit->data();
-    for (i = startAddr; i < endAddr; i++)
-    {
-        chipData[i] = static_cast<char>(fillingCode);
-    }
+    char *point = chipData.data();
+    std::fill(point + startAddr, point + endAddr, fillingCode);
     hexEdit->setData(chipData);
     ui->statusMessage->setText("");
 }
