@@ -1,14 +1,18 @@
-imsprog (1.8.1-1) unstable; urgency=medium
+imsprog (1.8.2-1) unstable; urgency=medium
 
   * New upstream version:
     - copyright information changed
+    - debian/control changed
     - unused files removed
     - increased GUI interface speed
     - Increased SPI NOR Flash operations speed
     - translations updated
     - Fix: Incorrect chip page sizes values removed
     - Added: support for the CH347T programmer
- -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Thu, 12 Mar 2026 15:09:44 +0300
+    - Added: showing the programmer revision function
+    - Added: erase check function
+    - Added: filling code function
+ -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Wed, 18 Mar 2026 16:11:37 +0300
 
 imsprog (1.7.3-1) unstable; urgency=medium
 

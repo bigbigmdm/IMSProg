@@ -17,10 +17,10 @@ Vcs-Browser: https://github.com/bigbigmdm/IMSProg/
 Rules-Requires-Root: no
 
 Package: imsprog
-Architecture: any
+Architecture: any !s390x
 Depends: ${misc:Depends}, ${shlibs:Depends}
 Suggests: wget, zenity
-Description: Linux chip programmer for CH341a devices
- Linux IMSProg - I2C, SPI and MicroWire chip programmer for CH341a devices.
+Description: Linux chip programmer for CH341A/CH347T devices
+ Linux IMSProg - I2C, SPI and MicroWire chip programmer for CH341/CH347 devices.
  The IMSProg is a free EEPROM programmer tool for CH341A device based on
  QhexEdit2 and modify SNANDer programmer.
