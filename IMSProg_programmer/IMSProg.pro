@@ -54,7 +54,8 @@ SOURCES += \
     dialognandsecurity.cpp \
     dialogbbm.cpp \
     ch347.c \
-    ch34x_i2c.c
+    ch34x_i2c.c \
+    dialogfill.cpp
 
 HEADERS += \
        mainwindow.h \
@@ -89,7 +90,8 @@ HEADERS += \
     dialognandsecurity.h \
     dialogbbm.h \
     ch347.h \
-    ch34x_i2c.h
+    ch34x_i2c.h \
+    dialogfill.h
 
 FORMS += \
         mainwindow.ui \
@@ -105,7 +107,8 @@ FORMS += \
     dialogcompare.ui \
     dialognandsr.ui \
     dialognandsecurity.ui \
-    dialogbbm.ui
+    dialogbbm.ui \
+    dialogfill.ui
 
 TRANSLATIONS += language/chipProgrammer_ru_RU.ts \
          language/chipProgrammer_es_ES.ts \

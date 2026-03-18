@@ -37,6 +37,7 @@
 #include "dialognandsecurity.h"
 #include "dialognandsr.h"
 #include "dialogbbm.h"
+#include "dialogfill.h"
 #include "hexutility.h"
 #include <stddef.h>
 #include <stdint.h>
@@ -1454,6 +1455,11 @@ void MainWindow::receiveAddr(QString addressData)
             QMessageBox::about(this, tr("Error"), tr("The end address must be greater than the starting address."));
             return;
         }
+        if (static_cast<int>(blockEndAddr) > hexEdit->data().length())
+        {
+           QMessageBox::about(this, tr("Error"), tr("The ending address must not exceed the buffer size."));
+           return;
+        }
         blockLen = blockEndAddr - blockStartAddr + 1;
     }
     else blockLen = hexToInt(addressData.mid(e + 1, t - e - 2));
@@ -1838,6 +1844,7 @@ void MainWindow::doNotDisturb()
    ui->actionChecksum_calculate->setDisabled(true);
    ui->actionGoto_address->setDisabled(true);
    ui->actionCompare_files->setDisabled(true);
+   ui->actionFill_with_code->setDisabled(true);
    ui->actionChip_info->setDisabled(true);
    ui->actionSecurity_registers->setDisabled(true);
    ui->actionBad_block_management->setDisabled(true);
@@ -1887,6 +1894,7 @@ void MainWindow::doNotDisturbCancel()
       ui->actionChecksum_calculate->setDisabled(false);
       ui->actionGoto_address->setDisabled(false);
       ui->actionCompare_files->setDisabled(false);
+      ui->actionFill_with_code->setDisabled(false);
       ui->actionCH341A_B_v1_2->setDisabled(false);
       ui->actionCH341A_v1_7->setDisabled(false);
       if ((currentChipType == 0) || (currentChipType == 6) || (currentChipType > 2)) ui->actionChip_info->setDisabled(false);
@@ -2778,4 +2786,42 @@ void MainWindow::on_actionCheck_erase_triggered()
           ch341StatusFlashing();
           QMessageBox::about(this, tr("Error"), tr("Programmer ") + ui->lStatus->text() + tr(" is not connected!"));
       }
+}
+
+void MainWindow::on_actionFill_with_code_triggered()
+{
+    DialogFill* fillDialog = new DialogFill(this);
+    fillDialog->show();
+    connect(fillDialog, SIGNAL(sendAddr4(QString)), this, SLOT(receiveAddr4(QString)));
+}
+
+void MainWindow::receiveAddr4(QString addressData)
+{
+    QStringList resultOfForm;
+    resultOfForm = addressData.split("-");
+    uint32_t startAddr, endAddr, lenght, fillingCode, typeOfEnd, i;
+    startAddr =   hexToInt(resultOfForm[0]);
+    endAddr =     hexToInt(resultOfForm[1]);
+    fillingCode = hexToInt(resultOfForm[2]);
+    typeOfEnd =   hexToInt(resultOfForm[3]);
+    if (typeOfEnd == 1) endAddr = endAddr + startAddr;
+    lenght = endAddr - startAddr;
+
+    if (endAddr < startAddr)
+    {
+       QMessageBox::about(this, tr("Error"), tr("The end address must be greater than the starting address."));
+       return;
+    }
+    if (static_cast<int>(endAddr) >  hexEdit->data().length())
+    {
+       QMessageBox::about(this, tr("Error"), tr("The ending address must not exceed the buffer size."));
+       return;
+    }
+    chipData = hexEdit->data();
+    for (i = startAddr; i < endAddr; i++)
+    {
+        chipData[i] = static_cast<char>(fillingCode);
+    }
+    hexEdit->setData(chipData);
+    ui->statusMessage->setText("");
 }

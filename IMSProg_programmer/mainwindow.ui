@@ -1055,6 +1055,7 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
     <addaction name="actionChecksum_calculate"/>
     <addaction name="actionCompare_files"/>
     <addaction name="actionFill_test_image"/>
+    <addaction name="actionFill_with_code"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
@@ -1469,6 +1470,18 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+J</string>
+   </property>
+  </action>
+  <action name="actionFill_with_code">
+   <property name="icon">
+    <iconset resource="recource.qrc">
+     <normaloff>:/res/img/fill64.png</normaloff>:/res/img/fill64.png</iconset>
+   </property>
+   <property name="text">
+    <string>Filling with code</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+K</string>
    </property>
   </action>
   <actiongroup name="actionSetProgrammerType">
