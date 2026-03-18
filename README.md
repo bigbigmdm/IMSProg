@@ -291,6 +291,7 @@ It contains the following controls: ![Undo](img/undo.png) undo,
 search/replace. The `[Ctrl+A]` key used to update the CRC24 checksum. The 
 `[Ctrl+G]` key used to move the cursor to the entered address. The `[Ctrl+L]` 
 key is used to fill the hex editor buffer with a special test array. The 
+`[Ctrl+K]` key is used to fill the hex editor buffer with a user code. The 
 `[Ctrl+M]` key used for compares the results of the last and penultimate chip 
 read or file open operation.
 
@@ -314,6 +315,7 @@ The `Main menu -> Programmer`  item is used to change the programmer type.
 | Ctrl+I | Force stop chip operation                     |
 | Ctrl+J | Check erase chip                              |
 | Ctrl+L | Fill the test array (Hex editor)              |
+| Ctrl+K | Fill the user code (Hex editor)               |
 | Ctrl+M | Compare files (Hex editor)                    |
 | Ctrl+O | Open file                                     |
 | Ctrl+P | Chip info (SFDP + status registers)           |
