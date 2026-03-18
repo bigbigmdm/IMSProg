@@ -17,7 +17,7 @@ Vcs-Browser: https://github.com/bigbigmdm/IMSProg/
 Rules-Requires-Root: no
 
 Package: imsprog
-Architecture: any !s390x
+Architecture: any
 Depends: ${misc:Depends}, ${shlibs:Depends}
 Suggests: wget, zenity
 Description: Linux chip programmer for CH341A/CH347T devices
