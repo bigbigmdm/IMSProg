@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2024 - 2025 Mikhail Medvedev <e-ink-reader@yandex.ru>
+ * Copyright (C) 2024 - 2026 Mikhail Medvedev <e-ink-reader@yandex.ru>
  *
  *
  * This program is free software; you can redistribute it and/or
@@ -42,6 +42,20 @@ QString bytePrint(unsigned char z)
     if (z > 0x9) z = z + 0x37;
     else z = z + 0x30;
     return QString(static_cast<char>(s)) + QString(static_cast<char>(z));
+}
+
+QString byteBCDPrint(uint8_t byte, bool zeroPrint)
+{
+    QString res;
+    res.clear();
+    uint8_t digit;
+    digit = byte >> 4;
+    if (digit != 0) res.append(QString::number(digit));
+    else if (zeroPrint) res.append("0");
+    else res.append(" ");
+    digit = byte & 0x0f;
+    res.append(QString::number(digit));
+    return res;
 }
 
 QString getCRC32(const QByteArray &buf)

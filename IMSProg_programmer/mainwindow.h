@@ -70,6 +70,7 @@ public slots:
     void receiveAddr(QString);
     void receiveAddr2(QString);
     void receiveAddr3(qint64);
+    void receiveAddr4(QString);
     void closeSFDP();
     void closeSR();
     void closeNandSR();
@@ -129,6 +130,9 @@ private slots:
     void on_actionCH347T_triggered();
     void SetItemStatus(QString comboboxName, int itemNumber, bool setDisable);
     void on_actionCH347T_v1_1_triggered();
+    void on_actionShow_programmer_version_triggered();
+    void on_actionCheck_erase_triggered();
+    void on_actionFill_with_code_triggered();
 
 private:
     Ui::MainWindow *ui;

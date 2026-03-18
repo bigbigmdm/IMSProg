@@ -28,7 +28,8 @@ int ProgDeviceInit( u8 deviceType, u8 chipType, u8 i2cSpeed )
 {
     int ret;
     if (deviceType < 2)  ret = ch341a_init(chipType, i2cSpeed);
-    if (deviceType >= 2) ret = ch347_spi_init(chipType, i2cSpeed);
+    if (deviceType == 2) ret = ch347_spi_init(chipType, i2cSpeed, false);
+    if (deviceType == 3) ret = ch347_spi_init(chipType, i2cSpeed, true);
     return ret;
 }
 
@@ -39,6 +40,11 @@ int ProgDeviceClose( u8 deviceType )
     return 0;
 }
 
+int getDeviceDescriptor(u8 *data, u8 deviceType)
+{
+    if (deviceType >= 2) ch347GetDescriptor(data);
+    if (deviceType < 2) ch341GetDescriptor(data);
+}
 
 SPI_CONTROLLER_RTN_T SPI_CONTROLLER_Enable_Manual_Mode( void )
 {

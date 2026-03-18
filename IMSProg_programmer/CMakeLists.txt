@@ -100,6 +100,7 @@ dialognandsecurity.cpp
 dialogcompare.cpp
 dialogsr.cpp
 dialogsetaddr.cpp
+dialogfill.cpp
 hexutility.cpp
 searchdialog.cpp
 dialoginfo.cpp
@@ -131,6 +132,7 @@ dialogcompare.h
 dialogsr.h
 dialoginfo.h
 dialogsetaddr.h
+dialogfill.h
 hexutility.h
 searchdialog.h
 bitbang_microwire.h
@@ -160,6 +162,7 @@ dialogcompare.ui
 dialogsr.ui
 dialogsetaddr.ui
 dialoginfo.ui
+dialogfill.ui
 searchdialog.ui
 dialogabout.ui
 recource.qrc

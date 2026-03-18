@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2024 - 2025 Mikhail Medvedev <e-ink-reader@yandex.ru>
+ * Copyright (C) 2024 - 2026 Mikhail Medvedev <e-ink-reader@yandex.ru>
  *
  *
  * This program is free software; you can redistribute it and/or
@@ -23,5 +23,6 @@ QString printAddress(int address, int digits);
 QString bytePrint(unsigned char z);
 QString sizeConvert(int a);
 uint32_t hexToInt(QString str);
+QString byteBCDPrint(uint8_t byte, bool zeroPrint);
 
 #endif // HEXUTILITY_H

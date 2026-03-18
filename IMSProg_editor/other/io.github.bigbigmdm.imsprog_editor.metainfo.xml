@@ -96,6 +96,15 @@
     </screenshot>
   </screenshots>
   <releases>
+  <release version="1.8.2" date="2026-03-18" urgency="medium">	  
+    <description>
+        <p>Fixed: Error reading/writing data from I2C chips on the CH347T version 5.44.</p>
+        <p>Fixed: Bit error during NOR/NAND operations in the CH347V1.1 programmer.</p>
+        <p>Added: Showing the programmer revision function</p>
+        <p>Added: Erase check function</p>
+        <p>Added: Filling code function</p>
+    </description>
+  </release>
   <release version="1.8.1" date="2026-03-11" urgency="medium">	  
     <description>
         <p>Added: Support for the CH347T programmer.</p>

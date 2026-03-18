@@ -254,12 +254,32 @@ int32_t ch347setI2Cstream(uint32_t speed)
     int ret = libusb_bulk_transfer(priv->handle, BULK_WRITE_ENDPOINT, buf, 3, &actuallen, 3000);
 
     if (ret < 0) {
-        fprintf(stderr, "ch347setstream(): Failed write %d bytes '%s'\n", 2, strerror(-ret));
+        fprintf(stderr, "ch347setstream(): Failed write %d bytes '%s'\n", 3, strerror(-ret));
         return -1;
     }
 
     return 0;
 }
+
+int32_t ch347setSDAandSCLHighlevels()
+{
+    int32_t actuallen = 0;
+    uint8_t buf[3];
+
+    buf[0] = mch347A_CMD_I2C_STREAM;
+    buf[1] = 0x12;
+    buf[2] = mch347A_CMD_I2C_STM_END;
+
+    int ret = libusb_bulk_transfer(priv->handle, BULK_WRITE_ENDPOINT, buf, 3, &actuallen, 3000);
+
+    if (ret < 0) {
+        fprintf(stderr, "ch347setstream(): Failed write %d bytes '%s'\n", 3, strerror(-ret));
+        return -1;
+    }
+
+    return 0;
+}
+
 
 struct ch347_priv *ch347_open() {
     struct ch347_priv *priv = calloc(1, sizeof(struct ch347_priv));
@@ -313,7 +333,7 @@ void ch347_close(struct ch347_priv *priv) {
 }
 
 
-bool ch347_spi_init(uint8_t ch_type, uint8_t i2cBusSpeed) {
+bool ch347_spi_init(uint8_t ch_type, uint8_t i2cBusSpeed, bool version) {
     int ret;
     priv = ch347_open();
     if (!priv)  return 1;
@@ -327,10 +347,12 @@ bool ch347_spi_init(uint8_t ch_type, uint8_t i2cBusSpeed) {
     switch (ch_type)
           {
              case 0: //SPI NOR FLASH
-                freq = 30000;
+                if (!version) freq = 30000;
+                else freq = 15000;
                 break;
              case 1: //24xxx I2C
                 freq = 100;
+                ch347setSDAandSCLHighlevels();
                 ch347setI2Cstream(i2cBusSpeed);
                 break;
              case 2: //93xxx Microwire
@@ -342,7 +364,8 @@ bool ch347_spi_init(uint8_t ch_type, uint8_t i2cBusSpeed) {
                 freq = 5000;
                 break;
              case 6:
-                freq = 60000;
+                if (!version) freq = 60000;
+                else freq = 15000;
                 break;
              default:
                 freq = 60000;
@@ -357,4 +380,12 @@ void ch347_spi_shutdown()
 {
     if (!priv)  return;
     ch347_close(priv);
+}
+
+int ch347GetDescriptor(uint8_t *buf)
+{
+    int ret;
+    ret = libusb_get_descriptor(priv->handle, LIBUSB_DT_DEVICE, 0x00, buf, 0x12);
+    if(ret < 0) printf("Failed to get device descriptor: '%x'\n", ret);
+    return ret;
 }
