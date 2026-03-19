@@ -44,6 +44,7 @@ int getDeviceDescriptor(u8 *data, u8 deviceType)
 {
     if (deviceType >= 2) ch347GetDescriptor(data);
     if (deviceType < 2) ch341GetDescriptor(data);
+    return 0;
 }
 
 SPI_CONTROLLER_RTN_T SPI_CONTROLLER_Enable_Manual_Mode( void )
