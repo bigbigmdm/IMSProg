@@ -391,7 +391,7 @@ int snor_read_param(unsigned char *buf, unsigned long from, unsigned long len, u
     //addr4bit transforming
     algType = (addr4b & 0xf0) >> 4;
     addr4b = addr4b & 0x0f;
-uint8_t *ptr = spi_buf.obuf;
+    uint8_t *ptr = spi_buf.obuf;
 
     snor_dbg("%s: from:%x len:%x \n", __func__, from, len);
 
