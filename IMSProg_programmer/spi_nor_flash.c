@@ -427,7 +427,6 @@ uint8_t *ptr = spi_buf.obuf;
         if (addr4b) SPI_CONTROLLER_Write_NByte(spi_buf.obuf, 5, SPI_CONTROLLER_SPEED_SINGLE, programmerType);
         else SPI_CONTROLLER_Write_NByte(spi_buf.obuf, 4, SPI_CONTROLLER_SPEED_SINGLE, programmerType);
 
-
         if( (data_offset + remain_len) < sector_size )
         {
             if(SPI_CONTROLLER_Read_NByte(&buf[len - remain_len], remain_len, SPI_CONTROLLER_SPEED_SINGLE, programmerType)) {
