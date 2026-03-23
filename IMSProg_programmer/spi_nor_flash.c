@@ -391,6 +391,7 @@ int snor_read_param(unsigned char *buf, unsigned long from, unsigned long len, u
     //addr4bit transforming
     algType = (addr4b & 0xf0) >> 4;
     addr4b = addr4b & 0x0f;
+uint8_t *ptr = spi_buf.obuf;
 
     snor_dbg("%s: from:%x len:%x \n", __func__, from, len);
 
@@ -418,13 +419,14 @@ int snor_read_param(unsigned char *buf, unsigned long from, unsigned long len, u
         SPI_CONTROLLER_Chip_Select_Low(programmerType);
 
         /* Set up the write data buffer. */
-        SPI_CONTROLLER_Write_One_Byte(OPCODE_READ, programmerType);
+        *ptr++ = OPCODE_READ;
+        if (addr4b) *ptr++ = (physical_read_addr >> 24) & 0xff;
+        *ptr++ = (physical_read_addr >> 16) & 0xff;
+        *ptr++ = (physical_read_addr >> 8) & 0xff;
+        *ptr++ = physical_read_addr & 0xff;
+        if (addr4b) SPI_CONTROLLER_Write_NByte(spi_buf.obuf, 5, SPI_CONTROLLER_SPEED_SINGLE, programmerType);
+        else SPI_CONTROLLER_Write_NByte(spi_buf.obuf, 4, SPI_CONTROLLER_SPEED_SINGLE, programmerType);
 
-        if (addr4b)
-        SPI_CONTROLLER_Write_One_Byte((physical_read_addr >> 24) & 0xff, programmerType);
-        SPI_CONTROLLER_Write_One_Byte((physical_read_addr >> 16) & 0xff, programmerType);
-        SPI_CONTROLLER_Write_One_Byte((physical_read_addr >> 8) & 0xff, programmerType);
-        SPI_CONTROLLER_Write_One_Byte(physical_read_addr & 0xff, programmerType);
 
         if( (data_offset + remain_len) < sector_size )
         {
