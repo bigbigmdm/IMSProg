@@ -508,13 +508,12 @@ int snor_write_param(unsigned char *buf, unsigned long to, unsigned long len, un
         *ptr++ = (to >> 16) & 0xff;
         *ptr++ = (to >> 8) & 0xff;
         *ptr++ = to & 0xff;
-        if (addr4b) SPI_CONTROLLER_Write_NByte(spi_buf.obuf, 5, SPI_CONTROLLER_SPEED_SINGLE, programmerType);
-        else SPI_CONTROLLER_Write_NByte(spi_buf.obuf, 4, SPI_CONTROLLER_SPEED_SINGLE, programmerType);
+        memcpy(ptr,buf,page_size);
+        if (addr4b) rc = SPI_CONTROLLER_Write_NByte(spi_buf.obuf, 5 + page_size, SPI_CONTROLLER_SPEED_SINGLE, programmerType);
+        else rc = SPI_CONTROLLER_Write_NByte(spi_buf.obuf, 4 + page_size, SPI_CONTROLLER_SPEED_SINGLE, programmerType);
 
-        if(!SPI_CONTROLLER_Write_NByte(buf, page_size, SPI_CONTROLLER_SPEED_SINGLE, programmerType))
-            rc = page_size;
-        else
-            rc = 1;
+        if (!rc) rc = page_size;
+        else rc = 1;
 
         SPI_CONTROLLER_Chip_Select_High(programmerType);
 
