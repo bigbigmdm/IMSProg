@@ -17,7 +17,6 @@
 
 int main(int argc, char *argv[])
 {
-    QApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
     QFont font("Monospace");
     font.setStyleHint(QFont::TypeWriter);
     font.setPointSize(12);
