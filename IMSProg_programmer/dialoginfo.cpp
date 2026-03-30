@@ -31,13 +31,14 @@ DialogInfo::DialogInfo(QWidget *parent) :
 
     pix24v7 = new QPixmap(":/res/img/v1_7_i2c_3v3.png");
     pix25v718 = new QPixmap(":/res/img/v1_7_spi_1v8.png");
+    pix25v725 = new QPixmap(":/res/img/v1_7_spi_2v5.png");
     pix25v733 = new QPixmap(":/res/img/v1_7_spi_3v3.png");
     pix93v17 = new QPixmap(":/res/img/v1_7_mw_3v3.png");
     pix45v17 = new QPixmap(":/res/img/v1_7_45_3v3.png");
     pix35v718 = new QPixmap(":/res/img/v1_7_NAND_1v8.png");
     pix35v733 = new QPixmap(":/res/img/v1_7_NAND_3v3.png");
 
-    pix24x347_3v3_0 = new QPixmap(":/res/img/ch347_i2c_3v3.png");
+    pix24x347_3v3_0 = new QPixmap(":/res/img/ch347_i2c_3v3.png");    
     pix25x347_1v8_0 = new QPixmap(":/res/img/ch347_spi_1v8.png");
     pix25x347_3v3_0 = new QPixmap(":/res/img/ch347_spi_3v3.png");
     pix93x347_3v3_0 = new QPixmap(":/res/img/ch347_mv_3v3.png");
@@ -46,6 +47,7 @@ DialogInfo::DialogInfo(QWidget *parent) :
     pix35x347_3v3_0 = new QPixmap(":/res/img/ch347_NAND_3v3.png");
 
     pix24x347_3v3_1 = new QPixmap(":/res/img/v1_1_i2c_3v3.png");
+    pix25x347_2v5_1 = new QPixmap(":/res/img/v1_1_spi_2v5.png");
     pix25x347_1v8_1 = new QPixmap(":/res/img/v1_1_spi_1v8.png");
     pix25x347_3v3_1 = new QPixmap(":/res/img/v1_1_spi_3v3.png");
     pix93x347_3v3_1 = new QPixmap(":/res/img/v1_1_mw_3v3.png");
@@ -72,6 +74,7 @@ DialogInfo::~DialogInfo()
     delete pix93v17;
     delete pix45v17;
     delete pix35v718;
+    delete pix25v725;
     delete pix35v733;
 
     delete pix24x347_3v3_0;
@@ -83,6 +86,7 @@ DialogInfo::~DialogInfo()
     delete pix35x347_3v3_0;
 
     delete pix24x347_3v3_1;
+    delete pix25x347_2v5_1;
     delete pix25x347_1v8_1;
     delete pix25x347_3v3_1;
     delete pix93x347_3v3_1;
@@ -169,6 +173,11 @@ void DialogInfo::setChip(const uint chipType)
        if (currentProg == 1) ui->label_adapter->setText("WSON");
        if (currentProg == 2) ui->label_adapter->setText("1.8V + WSON");
        if (currentProg == 3) ui->label_adapter->setText("WSON");
+     break;
+     case 8:
+       if (currentProg == 1) ui->label->setPixmap(*pix25v725);
+       if (currentProg == 3) ui->label->setPixmap(*pix25x347_2v5_1);
+       ui->label_slot->setText("25xx");
      break;
      default:
        ui->label_slot->setText("-");

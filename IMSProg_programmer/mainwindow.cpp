@@ -74,7 +74,8 @@ MainWindow::MainWindow(QWidget *parent) :
  ui->comboBox_vcc->addItem(" ", 0);
  ui->comboBox_vcc->addItem("3.3 V", 1);
  ui->comboBox_vcc->addItem("1.8 V", 2);
- ui->comboBox_vcc->addItem("5.0 V", 3);
+ ui->comboBox_vcc->addItem("2.5 V", 3);
+ ui->comboBox_vcc->addItem("5.0 V", 4);
 
  ui->comboBox_type->addItem("SPI_FLASH", 0);
  ui->comboBox_type->addItem("24_EEPROM", 1);
@@ -1949,6 +1950,7 @@ void MainWindow::on_pushButton_4_clicked()
     infoDialog->setProgrammer(current_programmer);
     if ((currentChipType == 0) && (ui->comboBox_vcc->currentIndex() == 1)) infoDialog->setChip(2); //NOR_FLASH 1.8
     if ((currentChipType == 0) && (ui->comboBox_vcc->currentIndex() == 2)) infoDialog->setChip(3); //NOR FLASH 3.3
+    if ((currentChipType == 0) && (ui->comboBox_vcc->currentIndex() == 3)) infoDialog->setChip(8); //NOR FLASH 2.5
     if ((currentChipType == 1) && (ui->comboBox_vcc->currentIndex() == 1)) infoDialog->setChip(1); //24xxx 3.3
     if ((currentChipType == 2) && (ui->comboBox_vcc->currentIndex() == 1)) infoDialog->setChip(4); //93xxx 3.3
     if ((currentChipType == 3) && (ui->comboBox_vcc->currentIndex() == 1)) infoDialog->setChip(2); //25xxx 3.3
@@ -2520,6 +2522,7 @@ void MainWindow::on_actionCH341A_B_v1_2_triggered()
     current_programmer = 0;
     ui->lStatus->setText("CH341A");
     SetItemStatus("comboBox_type", 2, false);
+    SetItemStatus("comboBox_vcc", 3, true);
 }
 
 void MainWindow::on_actionCH341A_v1_7_triggered()
@@ -2527,6 +2530,7 @@ void MainWindow::on_actionCH341A_v1_7_triggered()
     current_programmer = 1;
     ui->lStatus->setText("CH341A");
     SetItemStatus("comboBox_type", 2, false);
+    SetItemStatus("comboBox_vcc", 3, false);
 }
 
 void MainWindow::on_actionCH347T_triggered()
@@ -2534,6 +2538,7 @@ void MainWindow::on_actionCH347T_triggered()
     current_programmer = 2;
     ui->lStatus->setText("CH347T");
     SetItemStatus("comboBox_type", 2, true);
+    SetItemStatus("comboBox_vcc", 3, true);
 }
 
 void MainWindow::on_actionCH347T_v1_1_triggered()
@@ -2541,6 +2546,7 @@ void MainWindow::on_actionCH347T_v1_1_triggered()
     current_programmer = 3;
     ui->lStatus->setText("CH347T");
     SetItemStatus("comboBox_type", 2, true);
+    SetItemStatus("comboBox_vcc", 3, false);
 }
 
 void MainWindow::closeEvent(QCloseEvent( *event))

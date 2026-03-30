@@ -47,6 +47,7 @@ private:
 
     QPixmap *pix24v7;
     QPixmap *pix25v718;
+    QPixmap *pix25v725;
     QPixmap *pix25v733;
     QPixmap *pix93v17;
     QPixmap *pix45v17;
@@ -63,6 +64,7 @@ private:
 
     QPixmap *pix24x347_3v3_1;
     QPixmap *pix25x347_1v8_1;
+    QPixmap *pix25x347_2v5_1;
     QPixmap *pix25x347_3v3_1;
     QPixmap *pix93x347_3v3_1;
     QPixmap *pix45x347_3v3_1;
