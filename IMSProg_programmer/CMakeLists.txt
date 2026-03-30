@@ -9,6 +9,9 @@ set(CMAKE_AUTOUIC ON)
 
 project(IMSProg LANGUAGES C CXX)
 
+include(FindPkgConfig)
+pkg_check_modules(LIBUSB REQUIRED libusb-1.0)
+
 # Set the CMAKE_INSTALL_PREFIX to /usr if not specified
 if (CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
   if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
@@ -39,7 +42,6 @@ list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 
 find_package(Qt5 REQUIRED COMPONENTS Core Widgets)
 find_package(Qt5Widgets REQUIRED)
-find_package(LibUSB REQUIRED)
 
 if(NOT ${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 set(UDEVDIR "/usr/lib/udev")
@@ -170,8 +172,10 @@ ${QM_FILES}
 )
 
 target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
+target_include_directories(${PROJECT_NAME} PRIVATE ${LIBUSB_INCLUDE_DIRS})
 target_link_libraries(${PROJECT_NAME} Qt5::Core)
 target_link_libraries(${PROJECT_NAME} Qt5::Widgets ${LibUSB_LIBRARIES})
+target_link_libraries(${PROJECT_NAME} ${LIBUSB_LIBRARIES})
 
 install(TARGETS ${PROJECT_NAME} DESTINATION ${CMAKE_INSTALL_BINDIR})
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/img/IMSProg64.png" DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/pixmaps")

@@ -17,7 +17,7 @@ extern "C" {
 #include <endian.h>
 #include <stdint.h>
 #include <stdbool.h>
-#include <libusb-1.0/libusb.h>
+#include <libusb.h>
 
 #define CH347_SPI_VID 0x1a86
 #define CH347_SPI_PID 0x55db
