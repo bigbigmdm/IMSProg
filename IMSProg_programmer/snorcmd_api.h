@@ -21,7 +21,7 @@ int snor_wait_ready(int sleep_ms);
 int snor_read(unsigned char *buf, unsigned long from, unsigned long len);
 int snor_read_param(unsigned char *buf, unsigned long from, unsigned long len, unsigned int sector_size, unsigned int addr4b, u8 progType);
 int snor_write_param(unsigned char *buf, unsigned long to, unsigned long len, unsigned int sector_size, unsigned int addr4b, u8 progType);
-int snorUnprotect(u8 progType);
+void snorUnprotect(u8 progType);
 int snor_erase(unsigned long offs, unsigned long len);
 int full_erase_chip(void);
 int snor_block_erase(unsigned int sector_number, unsigned int blockSize, u8 addr4b, u8 progType);

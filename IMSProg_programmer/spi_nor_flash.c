@@ -542,7 +542,7 @@ int snor_write_param(unsigned char *buf, unsigned long to, unsigned long len, un
     return retlen;
 }
 
-int snorUnprotect(u8 progType)
+void snorUnprotect(u8 progType)
 {
     int ret;
     uint8_t buf[2];
