@@ -669,6 +669,13 @@ QGroupBox::title {
             </widget>
            </item>
            <item>
+            <widget class="QCheckBox" name="checkBox_1">
+             <property name="text">
+              <string>Check erase</string>
+             </property>
+            </widget>
+           </item>
+           <item>
             <widget class="QCheckBox" name="checkBox_2">
              <property name="text">
               <string>Program</string>
@@ -1025,6 +1032,7 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
     </property>
     <addaction name="actionRead"/>
     <addaction name="actionErase"/>
+    <addaction name="actionCheck_erase"/>
     <addaction name="actionWrite"/>
     <addaction name="actionVerify"/>
     <addaction name="actionDetect"/>
@@ -1047,6 +1055,7 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
     <addaction name="actionChecksum_calculate"/>
     <addaction name="actionCompare_files"/>
     <addaction name="actionFill_test_image"/>
+    <addaction name="actionFill_with_code"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
@@ -1060,6 +1069,10 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
     </property>
     <addaction name="actionCH341A_B_v1_2"/>
     <addaction name="actionCH341A_v1_7"/>
+    <addaction name="actionCH347T"/>
+    <addaction name="actionCH347T_v1_1"/>
+    <addaction name="separator"/>
+    <addaction name="actionShow_programmer_version"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuProgrammer"/>
@@ -1439,6 +1452,38 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
     <string>Ctrl+B</string>
    </property>
   </action>
+  <action name="actionShow_programmer_version">
+   <property name="text">
+    <string>Show programmer version</string>
+   </property>
+  </action>
+  <action name="actionCheck_erase">
+   <property name="icon">
+    <iconset resource="recource.qrc">
+     <normaloff>:/res/img/checkErase64.png</normaloff>:/res/img/checkErase64.png</iconset>
+   </property>
+   <property name="text">
+    <string>Check erase</string>
+   </property>
+   <property name="toolTip">
+    <string>Check erase chip</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+J</string>
+   </property>
+  </action>
+  <action name="actionFill_with_code">
+   <property name="icon">
+    <iconset resource="recource.qrc">
+     <normaloff>:/res/img/fill64.png</normaloff>:/res/img/fill64.png</iconset>
+   </property>
+   <property name="text">
+    <string>Filling with code</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+K</string>
+   </property>
+  </action>
   <actiongroup name="actionSetProgrammerType">
    <action name="actionCH341A_B_v1_2">
     <property name="checkable">
@@ -1457,6 +1502,22 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
     </property>
     <property name="text">
      <string>CH341A v1.7</string>
+    </property>
+   </action>
+   <action name="actionCH347T">
+    <property name="checkable">
+     <bool>true</bool>
+    </property>
+    <property name="text">
+     <string>CH347T v1.0</string>
+    </property>
+   </action>
+   <action name="actionCH347T_v1_1">
+    <property name="checkable">
+     <bool>true</bool>
+    </property>
+    <property name="text">
+     <string>CH347T v1.1</string>
     </property>
    </action>
   </actiongroup>

@@ -44,14 +44,34 @@ private:
     QPixmap *pix45;
     QPixmap *pix2518;
     QPixmap *pix3518;
-    QPixmap *pixnone;
+
     QPixmap *pix24v7;
     QPixmap *pix25v718;
+    QPixmap *pix25v725;
     QPixmap *pix25v733;
     QPixmap *pix93v17;
     QPixmap *pix45v17;
     QPixmap *pix35v718;
     QPixmap *pix35v733;
+
+    QPixmap *pix24x347_3v3_0;
+    QPixmap *pix25x347_1v8_0;
+    QPixmap *pix25x347_3v3_0;
+    QPixmap *pix93x347_3v3_0;
+    QPixmap *pix45x347_3v3_0;
+    QPixmap *pix35x347_1v8_0;
+    QPixmap *pix35x347_3v3_0;
+
+    QPixmap *pix24x347_3v3_1;
+    QPixmap *pix25x347_1v8_1;
+    QPixmap *pix25x347_2v5_1;
+    QPixmap *pix25x347_3v3_1;
+    QPixmap *pix93x347_3v3_1;
+    QPixmap *pix45x347_3v3_1;
+    QPixmap *pix35x347_1v8_1;
+    QPixmap *pix35x347_3v3_1;
+
+    QPixmap *pixnone;
 
     uint8_t currentProg;
 

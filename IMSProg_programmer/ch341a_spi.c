@@ -721,3 +721,11 @@ close_handle:
     handle = NULL;
     return -1;
 }
+
+int ch341GetDescriptor(uint8_t *buf)
+{
+    int ret;
+    ret = libusb_get_descriptor(handle, LIBUSB_DT_DEVICE, 0x00, buf, 0x12);
+    if(ret < 0) printf("Failed to get device descriptor: '%x'\n", ret);
+    return ret;
+}

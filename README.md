@@ -15,10 +15,11 @@
 
 **IMSProg** - **I**2C, **M**icroWire and **S**PI EEPROM/Flash chip 
 **Prog**rammer - is a program to read, write EEPROM chips use the 
-`CH341A programmer` device.
+`CH341A programmer` device and `CH347T programmer` device.
 
-![CH341A black](img/ch341_black150.png)  ![CH341A green](img/ch341_green150.png) 
-![CH341A green](img/ch341v1_7.png)
+| CH341A/B v1.2 | CH341A v1.7| CH347T v1.0| CH347T v1.1|
+| :---:         | :---:      | :---:      | :---:      |
+| ![CH341A black](img/ch341_black150.png)  ![CH341A green](img/ch341_green150.png) | ![CH341A green](img/ch341v1_7.png) |![CH347T v1.0](img/ch347_150.png) |![CH347T v1.1](img/ch347_v1_1_150.png) |
 
 The IMSProg makes respect to [QHexEdit2](https://github.com/Simsys/qhexedit2) 
 hex editor and [SNANDer programmer](https://github.com/McMCCRU/SNANDer). The 
@@ -38,26 +39,11 @@ web-server.
 
 ![CH341A EEPROM programmer](img/IMSProg.png) 
 
-## Compiling programmer
+## Compiling project
 ```
 git clone https://github.com/bigbigmdm/IMSProg.git && cd IMSProg
-cd IMSProg_programmer
-mkdir build
-cd build
-cmake ..
-make -j`nproc`
-sudo make install
+sudo ./build_all.sh
 ```
-## Compiling editor
-```
-cd IMSProg_editor
-mkdir build
-cd build
-cmake ..
-make -j`nproc`
-sudo make install
-```
-These commands are included in the `build_all.sh` file.
 
 ## System software requirements
 
@@ -144,6 +130,12 @@ The `45xxx` adapter must be installed in the programmer slot marked `25xxx`.
 The SPI NAND Flash chips must be mounted in a `WSON-8 DIP-8` adapter. This 
 adapter must be installed in the programmer slot marked `25xxx`.
 
+> [!NOTE] 
+> *In the current version, the MicroWire (93Cxx) protocol is 
+not supported by the CH347 programming device.*
+>
+> *CH347T V1.1 — a device with a lower speed than the CH347T V1.0.*
+
 ![Adapter](img/93xxx_adapter.png)
  
 - If the chip supply voltage is 1.8 volt he must be inserted in 
@@ -215,14 +207,17 @@ computer buffer into the chip.
 - Pressing ![Erase](img/erase64.png) or `<Ctrl+E>` will erase all data in the 
 chip.
 
+- By selecting ‘Main Menu -> Chip -> Check erase’ or pressing `<Ctrl+J>`, you
+ can check whether all data has been correctly deleted from the chip.
+
 - Pressing the ![Verify](img/verify64.png) or `<Ctrl+T>` button causes the 
 data in the chip and in the computer buffer to be compared.
 
 The progress bar shows the progress of the read, erase, and verify operations.
 
-- The `Auto` button is used to perform erase, write and verify operations in 
-sequence. If one of these operations is not needed, you can uncheck the 
-checkbox for that operation.
+- The `Auto` button is used to perform erase, check erase, write and verify 
+operations in sequence. If one of these operations is not needed, you can 
+uncheck the checkbox for that operation.
 
 - The ![Stop](img/stop64.png) or `<Ctrl+I>` key is used to force interruption 
 of chip read/write/erase/verify operations.
@@ -282,6 +277,11 @@ this menu.
 
 ![Bad block scan](img/bbm_settings_en.png)
 
+> [!NOTE] 
+> *In this version of IMSProg, damaged blocks are not skipped when executing the 
+> `Verify` and `Check erase` functions for NAND Flash chips. If your chip 
+> contains damaged blocks, please do not use these functions.*
+
 ### Buffer (Hex editor) operations
 The hexadecimal chip editor (right side of the screen) is used to display and 
 modify buffer data.
@@ -291,6 +291,7 @@ It contains the following controls: ![Undo](img/undo.png) undo,
 search/replace. The `[Ctrl+A]` key used to update the CRC24 checksum. The 
 `[Ctrl+G]` key used to move the cursor to the entered address. The `[Ctrl+L]` 
 key is used to fill the hex editor buffer with a special test array. The 
+`[Ctrl+K]` key is used to fill the hex editor buffer with a user code. The 
 `[Ctrl+M]` key used for compares the results of the last and penultimate chip 
 read or file open operation.
 
@@ -312,7 +313,9 @@ The `Main menu -> Programmer`  item is used to change the programmer type.
 | Ctrl+G | Goto address (Hex editor)                     |
 | Chrl+H | About IMSProg                                 |
 | Ctrl+I | Force stop chip operation                     |
+| Ctrl+J | Check erase chip                              |
 | Ctrl+L | Fill the test array (Hex editor)              |
+| Ctrl+K | Fill the user code (Hex editor)               |
 | Ctrl+M | Compare files (Hex editor)                    |
 | Ctrl+O | Open file                                     |
 | Ctrl+P | Chip info (SFDP + status registers)           |
@@ -380,9 +383,9 @@ page in both .Dat and .csv formats.
 
 ### I2C EEPROM
 24C01, 24C02, 24C04, 24C08, 24C16, 24C32, 24C64, 24C128, 24C256, 24C512, 
-24C1024
+24C1024, 24M02
 
-### MicroWire EEPROM
+### MicroWire EEPROM (only for CH341A programmer)
 93C46, 93C56, 93C66, 93C76, 93C86
 
 ### Serial SPI Bus EEPROM
@@ -809,7 +812,8 @@ Copyright (C) 2023 - 2026 Mikhail Medvedev.
 This project use [GPL-3+ License](https://www.gnu.org/licenses/gpl-3.0.html), 
 some parts taken from project [SNANDer](https://github.com/McMCCRU/SNANDer/commits?author=McMCCRU) 
 are [GPL-2+](https://www.gnu.org/licenses/old-licenses/gpl-2.0.html) and from 
-[QHexEdit2](https://github.com/Simsys/qhexedit2) is [LGPL-2.1](https://www.gnu.org/licenses/old-licenses/lgpl-2.1.html). 
+[QHexEdit2](https://github.com/Simsys/qhexedit2) is [LGPL-2.1](https://www.gnu.org/licenses/old-licenses/lgpl-2.1.html)
+and [CH347](https://github.com/981213/ch347-nor-prog/tree/master) parts is [BSD-1-Clause](https://github.com/spdx/license-list-data/blob/main/text/BSD-1-Clause.txt). 
 
 ## Translations
 

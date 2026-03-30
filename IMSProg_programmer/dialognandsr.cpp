@@ -33,6 +33,7 @@ DialogNANDSr::DialogNANDSr(QWidget *parent) :
 {
     ui->setupUi(this);
     setWindowFlags(Qt::Window | Qt::WindowMinimizeButtonHint | Qt::WindowCloseButtonHint);
+    programmerType = 0;
     setLineEditFilter();
     regReaded = false;
     QFontMetrics fm(ui->textEdit_buf->fontMetrics());
@@ -83,18 +84,18 @@ void DialogNANDSr::on_pushButton_read_clicked()
         uint8_t  currBit, currByte, idBlockAddr;
         int stCH341 = 0;
         idBlockAddr = 0x00;
-        stCH341 = ch341a_spi_init();
+        stCH341 = ProgDeviceInit( programmerType, 6, 1 );
         if (stCH341 == 0)
             {
             for (currRegister = 0; currRegister < 5; currRegister++)
             {
                 if (RegNumbers[currRegister] != 0xff)
                 {
-                    SPI_CONTROLLER_Chip_Select_Low();
-                    SPI_CONTROLLER_Write_One_Byte(0x0f);
-                    SPI_CONTROLLER_Write_One_Byte(RegNumbers[currRegister]);
-                    retval = SPI_CONTROLLER_Read_NByte(buf.get(),1,SPI_CONTROLLER_SPEED_SINGLE);
-                    SPI_CONTROLLER_Chip_Select_High();
+                    SPI_CONTROLLER_Chip_Select_Low(programmerType);
+                    SPI_CONTROLLER_Write_One_Byte(0x0f, programmerType);
+                    SPI_CONTROLLER_Write_One_Byte(RegNumbers[currRegister], programmerType);
+                    retval = SPI_CONTROLLER_Read_NByte(buf.get(),1,SPI_CONTROLLER_SPEED_SINGLE, programmerType);
+                    SPI_CONTROLLER_Chip_Select_High(programmerType);
                     usleep(1);
                     if (retval)
                        {
@@ -121,45 +122,45 @@ void DialogNANDSr::on_pushButton_read_clicked()
                 regReaded = true;
                 //READING PARAMETER PAGE
                 usleep(100);
-                SPI_CONTROLLER_Chip_Select_Low(); //Reading status
-                SPI_CONTROLLER_Write_One_Byte(0x0f);
-                SPI_CONTROLLER_Write_One_Byte(0xb0);
-                retval = SPI_CONTROLLER_Read_NByte(buf.get(),1,SPI_CONTROLLER_SPEED_SINGLE);
-                SPI_CONTROLLER_Chip_Select_High();
+                SPI_CONTROLLER_Chip_Select_Low(programmerType); //Reading status
+                SPI_CONTROLLER_Write_One_Byte(0x0f, programmerType);
+                SPI_CONTROLLER_Write_One_Byte(0xb0, programmerType);
+                retval = SPI_CONTROLLER_Read_NByte(buf.get(),1,SPI_CONTROLLER_SPEED_SINGLE, programmerType);
+                SPI_CONTROLLER_Chip_Select_High(programmerType);
                 usleep(1);
                 if ((buf[0] & 0x40) == 0) //OPT Disabled ?
                 {
                     otp = false;
                     // Enable OTP MODE
 
-                    SPI_CONTROLLER_Chip_Select_Low();  //Write enable
-                    SPI_CONTROLLER_Write_One_Byte(0x06);
-                    SPI_CONTROLLER_Chip_Select_High();
+                    SPI_CONTROLLER_Chip_Select_Low(programmerType);  //Write enable
+                    SPI_CONTROLLER_Write_One_Byte(0x06, programmerType);
+                    SPI_CONTROLLER_Chip_Select_High(programmerType);
                     usleep(1);
 
-                    SPI_CONTROLLER_Chip_Select_Low();
-                    SPI_CONTROLLER_Write_One_Byte(0x1f);
-                    SPI_CONTROLLER_Write_One_Byte(0xb0);
-                    SPI_CONTROLLER_Write_One_Byte(buf[0] | 0x40); //&bf to clear
-                    SPI_CONTROLLER_Chip_Select_High();
+                    SPI_CONTROLLER_Chip_Select_Low(programmerType);
+                    SPI_CONTROLLER_Write_One_Byte(0x1f, programmerType);
+                    SPI_CONTROLLER_Write_One_Byte(0xb0, programmerType);
+                    SPI_CONTROLLER_Write_One_Byte(buf[0] | 0x40, programmerType); //&bf to clear
+                    SPI_CONTROLLER_Chip_Select_High(programmerType);
                     usleep(1);
                 }
                 else otp = true;
 
-                SPI_CONTROLLER_Chip_Select_Low();
-                SPI_CONTROLLER_Write_One_Byte(0x13);
-                SPI_CONTROLLER_Write_One_Byte(0x00);
-                SPI_CONTROLLER_Write_One_Byte(0x00);
-                SPI_CONTROLLER_Write_One_Byte(0x01);
-                SPI_CONTROLLER_Chip_Select_High();
+                SPI_CONTROLLER_Chip_Select_Low(programmerType);
+                SPI_CONTROLLER_Write_One_Byte(0x13, programmerType);
+                SPI_CONTROLLER_Write_One_Byte(0x00, programmerType);
+                SPI_CONTROLLER_Write_One_Byte(0x00, programmerType);
+                SPI_CONTROLLER_Write_One_Byte(0x01, programmerType);
+                SPI_CONTROLLER_Chip_Select_High(programmerType);
                 usleep(1000);
-                SPI_CONTROLLER_Chip_Select_Low();
-                SPI_CONTROLLER_Write_One_Byte(0x03);
-                SPI_CONTROLLER_Write_One_Byte(0x00);
-                SPI_CONTROLLER_Write_One_Byte(0x00);
-                SPI_CONTROLLER_Write_One_Byte(0x00);
-                retval = SPI_CONTROLLER_Read_NByte(buf.get(),256,SPI_CONTROLLER_SPEED_SINGLE);
-                SPI_CONTROLLER_Chip_Select_High();
+                SPI_CONTROLLER_Chip_Select_Low(programmerType);
+                SPI_CONTROLLER_Write_One_Byte(0x03, programmerType);
+                SPI_CONTROLLER_Write_One_Byte(0x00, programmerType);
+                SPI_CONTROLLER_Write_One_Byte(0x00, programmerType);
+                SPI_CONTROLLER_Write_One_Byte(0x00, programmerType);
+                retval = SPI_CONTROLLER_Read_NByte(buf.get(),256,SPI_CONTROLLER_SPEED_SINGLE, programmerType);
+                SPI_CONTROLLER_Chip_Select_High(programmerType);
                 if (retval)
                    {
                       QMessageBox::about(this, tr("Error"), tr("Error reading Parameter Page!"));
@@ -169,20 +170,20 @@ void DialogNANDSr::on_pushButton_read_clicked()
                 if (!((buf[0] == 0x4f) && (buf[1] == 0x4e) && (buf[2] == 0x46) && (buf[3] == 0x49)))
                 {
                     //Non standard parameter page placed
-                    SPI_CONTROLLER_Chip_Select_Low();
-                    SPI_CONTROLLER_Write_One_Byte(0x13);
-                    SPI_CONTROLLER_Write_One_Byte(0x00);
-                    SPI_CONTROLLER_Write_One_Byte(0x00);
-                    SPI_CONTROLLER_Write_One_Byte(0x04);
-                    SPI_CONTROLLER_Chip_Select_High();
+                    SPI_CONTROLLER_Chip_Select_Low(programmerType);
+                    SPI_CONTROLLER_Write_One_Byte(0x13, programmerType);
+                    SPI_CONTROLLER_Write_One_Byte(0x00, programmerType);
+                    SPI_CONTROLLER_Write_One_Byte(0x00, programmerType);
+                    SPI_CONTROLLER_Write_One_Byte(0x04, programmerType);
+                    SPI_CONTROLLER_Chip_Select_High(programmerType);
                     usleep(1000);
-                    SPI_CONTROLLER_Chip_Select_Low();
-                    SPI_CONTROLLER_Write_One_Byte(0x03);
-                    SPI_CONTROLLER_Write_One_Byte(0x00);
-                    SPI_CONTROLLER_Write_One_Byte(0x00);
-                    SPI_CONTROLLER_Write_One_Byte(0x00);
-                    retval = SPI_CONTROLLER_Read_NByte(buf.get(),256,SPI_CONTROLLER_SPEED_SINGLE);
-                    SPI_CONTROLLER_Chip_Select_High();
+                    SPI_CONTROLLER_Chip_Select_Low(programmerType);
+                    SPI_CONTROLLER_Write_One_Byte(0x03, programmerType);
+                    SPI_CONTROLLER_Write_One_Byte(0x00, programmerType);
+                    SPI_CONTROLLER_Write_One_Byte(0x00, programmerType);
+                    SPI_CONTROLLER_Write_One_Byte(0x00, programmerType);
+                    retval = SPI_CONTROLLER_Read_NByte(buf.get(),256,SPI_CONTROLLER_SPEED_SINGLE, programmerType);
+                    SPI_CONTROLLER_Chip_Select_High(programmerType);
                     idBlockAddr = 0x06;
                 }
 
@@ -246,20 +247,20 @@ void DialogNANDSr::on_pushButton_read_clicked()
                 }
                 else ui->textEdit_buf->setText(tr("The Parameter Page is not supported."));
                 //Get unique ID
-                SPI_CONTROLLER_Chip_Select_Low();
-                SPI_CONTROLLER_Write_One_Byte(0x13);
-                SPI_CONTROLLER_Write_One_Byte(0x00);
-                SPI_CONTROLLER_Write_One_Byte(0x00);
-                SPI_CONTROLLER_Write_One_Byte(idBlockAddr);
-                SPI_CONTROLLER_Chip_Select_High();
+                SPI_CONTROLLER_Chip_Select_Low(programmerType);
+                SPI_CONTROLLER_Write_One_Byte(0x13, programmerType);
+                SPI_CONTROLLER_Write_One_Byte(0x00, programmerType);
+                SPI_CONTROLLER_Write_One_Byte(0x00, programmerType);
+                SPI_CONTROLLER_Write_One_Byte(idBlockAddr, programmerType);
+                SPI_CONTROLLER_Chip_Select_High(programmerType);
                 usleep(1000);
-                SPI_CONTROLLER_Chip_Select_Low();
-                SPI_CONTROLLER_Write_One_Byte(0x03);
-                SPI_CONTROLLER_Write_One_Byte(0x00);
-                SPI_CONTROLLER_Write_One_Byte(0x00);
-                SPI_CONTROLLER_Write_One_Byte(0x00);
-                retval = SPI_CONTROLLER_Read_NByte(buf.get(),256,SPI_CONTROLLER_SPEED_SINGLE);
-                SPI_CONTROLLER_Chip_Select_High();
+                SPI_CONTROLLER_Chip_Select_Low(programmerType);
+                SPI_CONTROLLER_Write_One_Byte(0x03, programmerType);
+                SPI_CONTROLLER_Write_One_Byte(0x00, programmerType);
+                SPI_CONTROLLER_Write_One_Byte(0x00, programmerType);
+                SPI_CONTROLLER_Write_One_Byte(0x00, programmerType);
+                retval = SPI_CONTROLLER_Read_NByte(buf.get(),256,SPI_CONTROLLER_SPEED_SINGLE, programmerType);
+                SPI_CONTROLLER_Chip_Select_High(programmerType);
                 if (retval)
                    {
                       QMessageBox::about(this, tr("Error"), tr("Error reading ID!"));
@@ -280,36 +281,36 @@ void DialogNANDSr::on_pushButton_read_clicked()
                 if (otp == false) //OPT Disabled
                 {
                     // Disable OTP MODE
-                    SPI_CONTROLLER_Chip_Select_Low(); //Reading status
-                    SPI_CONTROLLER_Write_One_Byte(0x0f);
-                    SPI_CONTROLLER_Write_One_Byte(0xb0);
-                    retval = SPI_CONTROLLER_Read_NByte(buf.get(),1,SPI_CONTROLLER_SPEED_SINGLE);
-                    SPI_CONTROLLER_Chip_Select_High();
+                    SPI_CONTROLLER_Chip_Select_Low(programmerType); //Reading status
+                    SPI_CONTROLLER_Write_One_Byte(0x0f, programmerType);
+                    SPI_CONTROLLER_Write_One_Byte(0xb0, programmerType);
+                    retval = SPI_CONTROLLER_Read_NByte(buf.get(),1,SPI_CONTROLLER_SPEED_SINGLE, programmerType);
+                    SPI_CONTROLLER_Chip_Select_High(programmerType);
                     usleep(1);
 
-                    SPI_CONTROLLER_Chip_Select_Low();  //Write enable
-                    SPI_CONTROLLER_Write_One_Byte(0x06);
-                    SPI_CONTROLLER_Chip_Select_High();
+                    SPI_CONTROLLER_Chip_Select_Low(programmerType);  //Write enable
+                    SPI_CONTROLLER_Write_One_Byte(0x06, programmerType);
+                    SPI_CONTROLLER_Chip_Select_High(programmerType);
                     usleep(1);
 
-                    SPI_CONTROLLER_Chip_Select_Low();
-                    SPI_CONTROLLER_Write_One_Byte(0x1f);
-                    SPI_CONTROLLER_Write_One_Byte(0xb0);
-                    SPI_CONTROLLER_Write_One_Byte(buf[0] & 0xbf);
-                    SPI_CONTROLLER_Chip_Select_High();
+                    SPI_CONTROLLER_Chip_Select_Low(programmerType);
+                    SPI_CONTROLLER_Write_One_Byte(0x1f, programmerType);
+                    SPI_CONTROLLER_Write_One_Byte(0xb0, programmerType);
+                    SPI_CONTROLLER_Write_One_Byte(buf[0] & 0xbf, programmerType);
+                    SPI_CONTROLLER_Chip_Select_High(programmerType);
                     usleep(1);
                 }
-                SPI_CONTROLLER_Chip_Select_Low();  //Write disable
-                SPI_CONTROLLER_Write_One_Byte(0x04);
-                SPI_CONTROLLER_Chip_Select_High();
+                SPI_CONTROLLER_Chip_Select_Low(programmerType);  //Write disable
+                SPI_CONTROLLER_Write_One_Byte(0x04, programmerType);
+                SPI_CONTROLLER_Chip_Select_High(programmerType);
                 usleep(1);
 
 
 
 
-                ch341a_spi_shutdown();
+                ProgDeviceClose( programmerType );
           }
-        else QMessageBox::about(this, tr("Error"), tr("Programmer CH341a is not connected!"));
+        else QMessageBox::about(this, tr("Error"), tr("Programmer ") + programmerName + tr(" is not connected!"));
 }
 
 void DialogNANDSr::on_pushButton_write_clicked()
@@ -318,7 +319,7 @@ void DialogNANDSr::on_pushButton_write_clicked()
     int stCH341 = 0;
     uint8_t currRegister, currBit, currByte;
     QString currRegName, currValue;
-    stCH341 = ch341a_spi_init();
+    stCH341 = ProgDeviceInit( programmerType, 6, 1 );
     if (stCH341 == 0)
     {
         for (currRegister = 0; currRegister < 6; currRegister++)
@@ -345,28 +346,28 @@ void DialogNANDSr::on_pushButton_write_clicked()
 
             //Writing status registers
 
-            SPI_CONTROLLER_Chip_Select_Low();
-            SPI_CONTROLLER_Write_One_Byte(0x06);
-            SPI_CONTROLLER_Chip_Select_High();
+            SPI_CONTROLLER_Chip_Select_Low(programmerType);
+            SPI_CONTROLLER_Write_One_Byte(0x06, programmerType);
+            SPI_CONTROLLER_Chip_Select_High(programmerType);
             usleep(1);
 
-            SPI_CONTROLLER_Chip_Select_Low();
-            SPI_CONTROLLER_Write_One_Byte(0x1f);
-            SPI_CONTROLLER_Write_One_Byte(RegNumbers[currRegister]);
-            SPI_CONTROLLER_Write_One_Byte(regData);
-            SPI_CONTROLLER_Chip_Select_High();
+            SPI_CONTROLLER_Chip_Select_Low(programmerType);
+            SPI_CONTROLLER_Write_One_Byte(0x1f, programmerType);
+            SPI_CONTROLLER_Write_One_Byte(RegNumbers[currRegister], programmerType);
+            SPI_CONTROLLER_Write_One_Byte(regData, programmerType);
+            SPI_CONTROLLER_Chip_Select_High(programmerType);
             usleep(1);
 
-            SPI_CONTROLLER_Chip_Select_Low();
-            SPI_CONTROLLER_Write_One_Byte(0x04);
-            SPI_CONTROLLER_Chip_Select_High();
+            SPI_CONTROLLER_Chip_Select_Low(programmerType);
+            SPI_CONTROLLER_Write_One_Byte(0x04, programmerType);
+            SPI_CONTROLLER_Chip_Select_High(programmerType);
             usleep(1);
         }
 
        //Close the CH341a device
-       ch341a_spi_shutdown();
+       ProgDeviceClose( programmerType );
     }
-    else QMessageBox::about(this, tr("Error"), tr("Programmer CH341a is not connected!"));
+    else QMessageBox::about(this, tr("Error"), tr("Programmer ") + programmerName + tr(" is not connected!"));
 }
 
 void DialogNANDSr::closeEvent(QCloseEvent* event)
@@ -708,4 +709,11 @@ QString DialogNANDSr::strtrip(const QString& str)
     }
   }
   return "";
+}
+
+void DialogNANDSr::setDeviceType(const uint8_t pType)
+{
+    programmerType = pType;
+    if (programmerType < 2)  programmerName ="CH341A";
+    if (programmerType == 2) programmerName ="CH347T";
 }

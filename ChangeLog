@@ -1,3 +1,11 @@
+- Ver. 1.8.2 - Fix: Error reading/writing data from I2C chips on the CH347T 
+version 5.44, bit error during NOR/NAND operations in the CH347 V1.1 programmer.
+Added: showing the programmer revision function, erase check function, filling 
+code function.
+- Ver. 1.8.1 - Added support for the CH347T programmer. Increased interface 
+speed, and SPI NOR Flash erase speed. SPI NOR Flash write speed increased by 
+30%. Incorrect chip page sizes values removed. Unused files removed. 
+Translations updated.
 - Ver. 1.7.3 — When closing the program, the programmer type, chip image 
 directory, and main window size are saved in the 
 ~/.local/share/imsprog/settings.ini file. Fix: Incorrect HexEdit size when 

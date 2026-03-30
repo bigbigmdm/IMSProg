@@ -34,5 +34,6 @@ int enable_pins(bool enable);
 int config_stream(unsigned int speed);
 int ch341a_init_i2c(void);
 int ch341a_init(uint8_t chipType, uint8_t i2cSpeed);
+int ch341GetDescriptor(uint8_t *buf);
 #endif /* __CH341_SPI_H__ */
 /* End of [ch341a_spi.h] package */

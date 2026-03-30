@@ -35,14 +35,10 @@ SOURCES += \
        searchdialog.cpp \
        bitbang_microwire.c \
        ch341a_gpio.c \
-       ch341a_i2c.c \
        ch341a_spi.c \
        flashcmd_api.c \
-       i2c_eeprom.c \
        mw_eeprom.c \
        spi_controller.c \
-       spi_eeprom.c \
-       spi_nand_flash.c \
        spi_nor_flash.c \
        timer.c \
        dialogabout.cpp \
@@ -56,7 +52,10 @@ SOURCES += \
     dialogcompare.cpp \
     dialognandsr.cpp \
     dialognandsecurity.cpp \
-    dialogbbm.cpp
+    dialogbbm.cpp \
+    ch347.c \
+    ch34x_i2c.c \
+    dialogfill.cpp
 
 HEADERS += \
        mainwindow.h \
@@ -68,18 +67,14 @@ HEADERS += \
        searchdialog.h \
        bitbang_microwire.h \
        ch341a_gpio.h \
-       ch341a_i2c.h \
        ch341a_spi.h \
        flashcmd_api.h \
-       i2c_eeprom_api.h \
        mw_eeprom_api.h \
        nandcmd_api.h \
        res.h \
        snorcmd_api.h \
        spi_controller.h \
-       spi_eeprom.h \
        spi_eeprom_api.h \
-       spi_nand_flash.h \
        timer.h \
        types.h \
        dialogabout.h \
@@ -93,7 +88,10 @@ HEADERS += \
     dialogcompare.h \
     dialognandsr.h \
     dialognandsecurity.h \
-    dialogbbm.h
+    dialogbbm.h \
+    ch347.h \
+    ch34x_i2c.h \
+    dialogfill.h
 
 FORMS += \
         mainwindow.ui \
@@ -109,7 +107,8 @@ FORMS += \
     dialogcompare.ui \
     dialognandsr.ui \
     dialognandsecurity.ui \
-    dialogbbm.ui
+    dialogbbm.ui \
+    dialogfill.ui
 
 TRANSLATIONS += language/chipProgrammer_ru_RU.ts \
          language/chipProgrammer_es_ES.ts \

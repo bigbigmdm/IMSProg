@@ -30,6 +30,7 @@ DialogSFDP::DialogSFDP(QWidget *parent) :
     setLineEditFilter();
     setRegStatus(1, true);
     numOfRegisters = 3; // 3-not reading, 2 - three registers, 1 - two registers, 0 - one register
+    programmerType = 0;
 }
 
 DialogSFDP::~DialogSFDP()
@@ -63,7 +64,7 @@ void DialogSFDP::on_pushButton_clicked()
     std::shared_ptr<uint8_t[]> sfdpBuf(new uint8_t[256]);
     QString regData = "", VCCmin = "", VCCmax = "", speeds = "Single", addrTxt="";
     int retval = 0;
-    stCH341 = ch341a_spi_init();
+    stCH341 = ProgDeviceInit( programmerType, 0, 1 );
     ui->lineEdit_vcc_max->setText("");
     ui->lineEdit_vcc_min->setText("");
     ui->lineEdit_block->setText("");
@@ -74,10 +75,10 @@ void DialogSFDP::on_pushButton_clicked()
     if (stCH341 == 0)
     {
         //Reading JEDEC ID
-        SPI_CONTROLLER_Chip_Select_Low();
-        SPI_CONTROLLER_Write_One_Byte(0x9f);
-        retval = SPI_CONTROLLER_Read_NByte(sfdpBuf.get(),3,SPI_CONTROLLER_SPEED_SINGLE);
-        SPI_CONTROLLER_Chip_Select_High();
+        SPI_CONTROLLER_Chip_Select_Low(programmerType);
+        SPI_CONTROLLER_Write_One_Byte(0x9f, programmerType);
+        retval = SPI_CONTROLLER_Read_NByte(sfdpBuf.get(),3,SPI_CONTROLLER_SPEED_SINGLE, programmerType);
+        SPI_CONTROLLER_Chip_Select_High(programmerType);
         if (retval)
         {
            QMessageBox::about(this, tr("Error"), tr("Error reading JEDEC ID!"));
@@ -90,14 +91,14 @@ void DialogSFDP::on_pushButton_clicked()
 
 
         // Reading SFDP. Transfer to ch341 0x5a
-        SPI_CONTROLLER_Chip_Select_Low();
-        SPI_CONTROLLER_Write_One_Byte(0x5a);
-        SPI_CONTROLLER_Write_One_Byte(0x00);
-        SPI_CONTROLLER_Write_One_Byte(0x00);
-        SPI_CONTROLLER_Write_One_Byte(0x00);
-        SPI_CONTROLLER_Write_One_Byte(0x00);
-        retval = SPI_CONTROLLER_Read_NByte(sfdpBuf.get(),256,SPI_CONTROLLER_SPEED_SINGLE);
-        SPI_CONTROLLER_Chip_Select_High();
+        SPI_CONTROLLER_Chip_Select_Low(programmerType);
+        SPI_CONTROLLER_Write_One_Byte(0x5a, programmerType);
+        SPI_CONTROLLER_Write_One_Byte(0x00, programmerType);
+        SPI_CONTROLLER_Write_One_Byte(0x00, programmerType);
+        SPI_CONTROLLER_Write_One_Byte(0x00, programmerType);
+        SPI_CONTROLLER_Write_One_Byte(0x00, programmerType);
+        retval = SPI_CONTROLLER_Read_NByte(sfdpBuf.get(),256,SPI_CONTROLLER_SPEED_SINGLE, programmerType);
+        SPI_CONTROLLER_Chip_Select_High(programmerType);
         if (retval)
         {
            QMessageBox::about(this, tr("Error"), tr("Error reading register!"));
@@ -202,10 +203,10 @@ void DialogSFDP::on_pushButton_clicked()
 
         }
         //READING STATUS REGISTER 0
-        SPI_CONTROLLER_Chip_Select_Low();
-        SPI_CONTROLLER_Write_One_Byte(0x05);
-        retval = SPI_CONTROLLER_Read_NByte(sfdpBuf.get(),2,SPI_CONTROLLER_SPEED_SINGLE);
-        SPI_CONTROLLER_Chip_Select_High();
+        SPI_CONTROLLER_Chip_Select_Low(programmerType);
+        SPI_CONTROLLER_Write_One_Byte(0x05, programmerType);
+        retval = SPI_CONTROLLER_Read_NByte(sfdpBuf.get(),2,SPI_CONTROLLER_SPEED_SINGLE, programmerType);
+        SPI_CONTROLLER_Chip_Select_High(programmerType);
         usleep(1);
         if (retval)
         {
@@ -215,10 +216,10 @@ void DialogSFDP::on_pushButton_clicked()
         printRegData(0, sfdpBuf[0]);
         //READING STATUS REGISTER 1
         numOfRegisters = 0;
-        SPI_CONTROLLER_Chip_Select_Low();
-        SPI_CONTROLLER_Write_One_Byte(0x35);
-        retval = SPI_CONTROLLER_Read_NByte(sfdpBuf.get(),2,SPI_CONTROLLER_SPEED_SINGLE);
-        SPI_CONTROLLER_Chip_Select_High();
+        SPI_CONTROLLER_Chip_Select_Low(programmerType);
+        SPI_CONTROLLER_Write_One_Byte(0x35, programmerType);
+        retval = SPI_CONTROLLER_Read_NByte(sfdpBuf.get(),2,SPI_CONTROLLER_SPEED_SINGLE, programmerType);
+        SPI_CONTROLLER_Chip_Select_High(programmerType);
         usleep(1);
         if (retval)
         {
@@ -234,10 +235,10 @@ void DialogSFDP::on_pushButton_clicked()
         else setRegStatus(1, false);
 
         //READING STATUS REGISTER 2
-        SPI_CONTROLLER_Chip_Select_Low();
-        SPI_CONTROLLER_Write_One_Byte(0x15);
-        retval = SPI_CONTROLLER_Read_NByte(sfdpBuf.get(),2,SPI_CONTROLLER_SPEED_SINGLE);
-        SPI_CONTROLLER_Chip_Select_High();
+        SPI_CONTROLLER_Chip_Select_Low(programmerType);
+        SPI_CONTROLLER_Write_One_Byte(0x15, programmerType);
+        retval = SPI_CONTROLLER_Read_NByte(sfdpBuf.get(),2,SPI_CONTROLLER_SPEED_SINGLE, programmerType);
+        SPI_CONTROLLER_Chip_Select_High(programmerType);
         usleep(1);
         if (retval)
         {
@@ -253,14 +254,14 @@ void DialogSFDP::on_pushButton_clicked()
         else setRegStatus(2, false);
 
         //Reading Unique ID
-        SPI_CONTROLLER_Chip_Select_Low();
-        SPI_CONTROLLER_Write_One_Byte(0x4b);
-        SPI_CONTROLLER_Write_One_Byte(0x00);
-        SPI_CONTROLLER_Write_One_Byte(0x00);
-        SPI_CONTROLLER_Write_One_Byte(0x00);
-        SPI_CONTROLLER_Write_One_Byte(0x00);
-        retval = SPI_CONTROLLER_Read_NByte(sfdpBuf.get(),16,SPI_CONTROLLER_SPEED_SINGLE);
-        SPI_CONTROLLER_Chip_Select_High();
+        SPI_CONTROLLER_Chip_Select_Low(programmerType);
+        SPI_CONTROLLER_Write_One_Byte(0x4b, programmerType);
+        SPI_CONTROLLER_Write_One_Byte(0x00, programmerType);
+        SPI_CONTROLLER_Write_One_Byte(0x00, programmerType);
+        SPI_CONTROLLER_Write_One_Byte(0x00, programmerType);
+        SPI_CONTROLLER_Write_One_Byte(0x00, programmerType);
+        retval = SPI_CONTROLLER_Read_NByte(sfdpBuf.get(),16,SPI_CONTROLLER_SPEED_SINGLE, programmerType);
+        SPI_CONTROLLER_Chip_Select_High(programmerType);
         if (retval)
         {
            QMessageBox::about(this, tr("Error"), tr("Error reading unique ID!"));
@@ -276,9 +277,9 @@ void DialogSFDP::on_pushButton_clicked()
         ui->lineEdit_chipid->setText(regData);
 
         //Close the CH341a device
-        ch341a_spi_shutdown();
+        ProgDeviceClose( programmerType );
     }
-    else QMessageBox::about(this, tr("Error"), tr("Programmer CH341a is not connected!"));
+    else QMessageBox::about(this, tr("Error"), tr("Programmer ") + programmerName + tr(" is not connected!"));
 
 }
 
@@ -292,7 +293,7 @@ void DialogSFDP::on_pushButton_3_clicked()
    if (numOfRegisters < 3)
    {
     int stCH341 = 0;
-    stCH341 = ch341a_spi_init();
+    stCH341 = ProgDeviceInit( programmerType, 0, 1 );
     if (stCH341 == 0)
     {
        //scanning data from the form
@@ -320,118 +321,120 @@ void DialogSFDP::on_pushButton_3_clicked()
 
        //Writing status registers 0,1 for Winbond
 
-       SPI_CONTROLLER_Chip_Select_Low();
-       SPI_CONTROLLER_Write_One_Byte(0x06);
-       SPI_CONTROLLER_Chip_Select_High();
+       SPI_CONTROLLER_Chip_Select_Low(programmerType);
+       SPI_CONTROLLER_Write_One_Byte(0x06, programmerType);
+       SPI_CONTROLLER_Chip_Select_High(programmerType);
        usleep(1);
 
-       SPI_CONTROLLER_Chip_Select_Low();
-       SPI_CONTROLLER_Write_One_Byte(0x50);
-       SPI_CONTROLLER_Chip_Select_High();
+       SPI_CONTROLLER_Chip_Select_Low(programmerType);
+       SPI_CONTROLLER_Write_One_Byte(0x50, programmerType);
+       SPI_CONTROLLER_Chip_Select_High(programmerType);
        usleep(1);
 
-       SPI_CONTROLLER_Chip_Select_Low();
-       SPI_CONTROLLER_Write_One_Byte(0x01);
-       SPI_CONTROLLER_Write_One_Byte(r[0]);
-       if (numOfRegisters > 0) SPI_CONTROLLER_Write_One_Byte(r[1]);
-       SPI_CONTROLLER_Chip_Select_High();
+       SPI_CONTROLLER_Chip_Select_Low(programmerType);
+       SPI_CONTROLLER_Write_One_Byte(0x01, programmerType);
+       SPI_CONTROLLER_Write_One_Byte(r[0], programmerType);
+       if (numOfRegisters > 0) SPI_CONTROLLER_Write_One_Byte(r[1], programmerType);
+       SPI_CONTROLLER_Chip_Select_High(programmerType);
        usleep(1);
 
-       SPI_CONTROLLER_Chip_Select_Low();
-       SPI_CONTROLLER_Write_One_Byte(0x04);
-       SPI_CONTROLLER_Chip_Select_High();
+       SPI_CONTROLLER_Chip_Select_Low(programmerType);
+       SPI_CONTROLLER_Write_One_Byte(0x04, programmerType);
+       SPI_CONTROLLER_Chip_Select_High(programmerType);
        usleep(1);
 
        //Close the CH341a device
-       ch341a_spi_shutdown();
+       ProgDeviceClose( programmerType );
 
        //Writing status registers 0,1 for not Winbond
        if (numOfRegisters > 0)
        {
-           stCH341 = ch341a_spi_init();
+           stCH341 = ProgDeviceInit( programmerType, 0, 1 );
 
-           SPI_CONTROLLER_Chip_Select_Low();
-           SPI_CONTROLLER_Write_One_Byte(0x06);
-           SPI_CONTROLLER_Chip_Select_High();
+           SPI_CONTROLLER_Chip_Select_Low(programmerType);
+           SPI_CONTROLLER_Write_One_Byte(0x06, programmerType);
+           SPI_CONTROLLER_Chip_Select_High(programmerType);
            usleep(1);
 
-           SPI_CONTROLLER_Chip_Select_Low();
-           SPI_CONTROLLER_Write_One_Byte(0x50);
-           SPI_CONTROLLER_Chip_Select_High();
+           SPI_CONTROLLER_Chip_Select_Low(programmerType);
+           SPI_CONTROLLER_Write_One_Byte(0x50, programmerType);
+           SPI_CONTROLLER_Chip_Select_High(programmerType);
            usleep(1);
 
-           SPI_CONTROLLER_Chip_Select_Low();
-           SPI_CONTROLLER_Write_One_Byte(0x01);
-           SPI_CONTROLLER_Write_One_Byte(r[0]);
-           SPI_CONTROLLER_Chip_Select_High();
+           SPI_CONTROLLER_Chip_Select_Low(programmerType);
+           SPI_CONTROLLER_Write_One_Byte(0x01, programmerType);
+           SPI_CONTROLLER_Write_One_Byte(r[0], programmerType);
+           SPI_CONTROLLER_Chip_Select_High(programmerType);
            usleep(1);
 
-           SPI_CONTROLLER_Chip_Select_Low();
-           SPI_CONTROLLER_Write_One_Byte(0x04);
-           SPI_CONTROLLER_Chip_Select_High();
-           usleep(1);
-
-           //Close the CH341a device
-           ch341a_spi_shutdown();
-           usleep(1);
-
-           stCH341 = ch341a_spi_init();
-           SPI_CONTROLLER_Chip_Select_Low();
-           SPI_CONTROLLER_Write_One_Byte(0x06);
-           SPI_CONTROLLER_Chip_Select_High();
-           usleep(1);
-
-           SPI_CONTROLLER_Chip_Select_Low();
-           SPI_CONTROLLER_Write_One_Byte(0x50);
-           SPI_CONTROLLER_Chip_Select_High();
-           usleep(1);
-
-           SPI_CONTROLLER_Chip_Select_Low();
-           SPI_CONTROLLER_Write_One_Byte(0x31);
-           SPI_CONTROLLER_Write_One_Byte(r[1]);
-           SPI_CONTROLLER_Chip_Select_High();
-           usleep(1);
-
-           SPI_CONTROLLER_Chip_Select_Low();
-           SPI_CONTROLLER_Write_One_Byte(0x04);
-           SPI_CONTROLLER_Chip_Select_High();
+           SPI_CONTROLLER_Chip_Select_Low(programmerType);
+           SPI_CONTROLLER_Write_One_Byte(0x04, programmerType);
+           SPI_CONTROLLER_Chip_Select_High(programmerType);
            usleep(1);
 
            //Close the CH341a device
-           ch341a_spi_shutdown();
+           ProgDeviceClose( programmerType );
+           usleep(1);
+
+           stCH341 = ProgDeviceInit( programmerType, 0, 1 );
+           SPI_CONTROLLER_Chip_Select_Low(programmerType);
+           SPI_CONTROLLER_Write_One_Byte(0x06, programmerType);
+           SPI_CONTROLLER_Chip_Select_High(programmerType);
+           usleep(1);
+
+           SPI_CONTROLLER_Chip_Select_Low(programmerType);
+           SPI_CONTROLLER_Write_One_Byte(0x50, programmerType);
+           SPI_CONTROLLER_Chip_Select_High(programmerType);
+           usleep(1);
+
+           SPI_CONTROLLER_Chip_Select_Low(programmerType);
+           SPI_CONTROLLER_Write_One_Byte(0x31, programmerType);
+           SPI_CONTROLLER_Write_One_Byte(r[1], programmerType);
+           SPI_CONTROLLER_Chip_Select_High(programmerType);
+           usleep(1);
+
+           SPI_CONTROLLER_Chip_Select_Low(programmerType);
+           SPI_CONTROLLER_Write_One_Byte(0x04, programmerType);
+           SPI_CONTROLLER_Chip_Select_High(programmerType);
+           usleep(1);
+
+           //Close the CH341a device
+           ProgDeviceClose( programmerType );
        }
 
        //Writing status register 2
        if (numOfRegisters > 1)
        {
-           stCH341 = ch341a_spi_init();
+           stCH341 = ProgDeviceInit( programmerType, 0, 1 );
 
-           SPI_CONTROLLER_Chip_Select_Low();
-           SPI_CONTROLLER_Write_One_Byte(0x06);
-           SPI_CONTROLLER_Chip_Select_High();
+           SPI_CONTROLLER_Chip_Select_Low(programmerType);
+           SPI_CONTROLLER_Write_One_Byte(0x06, programmerType);
+           SPI_CONTROLLER_Chip_Select_High(programmerType);
            usleep(1);
 
-           SPI_CONTROLLER_Chip_Select_Low();
-           SPI_CONTROLLER_Write_One_Byte(0x50);
-           SPI_CONTROLLER_Chip_Select_High();
+           SPI_CONTROLLER_Chip_Select_Low(programmerType);
+           SPI_CONTROLLER_Write_One_Byte(0x50, programmerType);
+           SPI_CONTROLLER_Chip_Select_High(programmerType);
            usleep(1);
 
-           SPI_CONTROLLER_Chip_Select_Low();
-           SPI_CONTROLLER_Write_One_Byte(0x11);
-           SPI_CONTROLLER_Write_One_Byte(r[2]);
-           SPI_CONTROLLER_Chip_Select_High();
+           SPI_CONTROLLER_Chip_Select_Low(programmerType);
+           SPI_CONTROLLER_Write_One_Byte(0x11, programmerType);
+           SPI_CONTROLLER_Write_One_Byte(r[2], programmerType);
+           SPI_CONTROLLER_Chip_Select_High(programmerType);
            usleep(1);
 
-           SPI_CONTROLLER_Chip_Select_Low();
-           SPI_CONTROLLER_Write_One_Byte(0x04);
-           SPI_CONTROLLER_Chip_Select_High();
+           SPI_CONTROLLER_Chip_Select_Low(programmerType);
+           SPI_CONTROLLER_Write_One_Byte(0x04, programmerType);
+           SPI_CONTROLLER_Chip_Select_High(programmerType);
            usleep(1);
 
            //Close the CH341a device
-           ch341a_spi_shutdown();
+           ProgDeviceClose( programmerType );
        }
    }
-   else QMessageBox::about(this, tr("Error"), tr("Programmer CH341a is not connected!"));
+   else QMessageBox::about(this, tr("Error"), tr("Programmer ") + programmerName + tr(" is not connected!"));
+
+
   }
   else QMessageBox::about(this, tr("Error"), tr("Before writing the registers, please press the `Read` button!"));
 }
@@ -509,4 +512,11 @@ void DialogSFDP::printRegData(uint8_t regNumber, uint8_t regData)
         }
         i = i / 2;
     }
+}
+
+void DialogSFDP::setDeviceType(const uint8_t pType)
+{
+    programmerType = pType;
+    if (programmerType < 2)  programmerName ="CH341A";
+    if (programmerType == 2) programmerName ="CH347T";
 }

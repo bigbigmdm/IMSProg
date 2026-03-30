@@ -35,6 +35,7 @@ public:
     ~DialogNANDSr();
     void setPattern(const uint pattern);
     void closeEvent(QCloseEvent* event);
+    void setDeviceType(const uint8_t pType);
 
 signals:
     void closeRequestHasArrived();
@@ -54,6 +55,8 @@ private:
     QString strtrip(const QString& str);
     uint8_t RegNumbers[5];
     bool regReaded;
+    uint8_t programmerType;
+    QString programmerName;
 };
 
 #endif // DIALOGNANDSR_H
