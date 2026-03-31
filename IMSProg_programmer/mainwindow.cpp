@@ -223,7 +223,7 @@ void MainWindow::on_pushButton_clicked()
        }
        uint32_t addr = 0;
        uint32_t curBlock = 0;
-       uint32_t j, k;
+       uint32_t k;
        switch (currentChipType)
           {
           case 0:             //SPI
@@ -2806,7 +2806,7 @@ void MainWindow::receiveAddr4(QString addressData)
     QStringList resultOfForm;
 
     resultOfForm = addressData.split("-");
-    uint32_t startAddr, endAddr, lenght, fillingCode, typeOfEnd, i;
+    uint32_t startAddr, endAddr, lenght, fillingCode, typeOfEnd;
     startAddr =   hexToInt(resultOfForm[0]);
     endAddr =     hexToInt(resultOfForm[1]);
     fillingCode = hexToInt(resultOfForm[2]);
