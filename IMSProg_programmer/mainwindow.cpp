@@ -2102,6 +2102,7 @@ void MainWindow::progInit()
              if (tmpBuf == 0x00) chips[recNo].chipVCC = "3.3 V";
              if (tmpBuf == 0x01) chips[recNo].chipVCC = "1.8 V";
              if (tmpBuf == 0x02) chips[recNo].chipVCC = "5.0 V";
+             if (tmpBuf == 0x03) chips[recNo].chipVCC = "2.5 V";
              dataPoz = dataPoz + 0x44; //next record
              verticalHeader.append(QString::number(recNo));
              recNo++;
