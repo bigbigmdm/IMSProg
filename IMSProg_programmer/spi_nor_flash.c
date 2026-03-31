@@ -547,7 +547,7 @@ int snorUnprotect(u8 progType)
     int ret;
     uint8_t buf[2];
 
-
+    programmerType = progType;
 
     SPI_CONTROLLER_Chip_Select_Low(programmerType);
     SPI_CONTROLLER_Write_One_Byte(0x05, programmerType);
@@ -568,6 +568,7 @@ int snorUnprotect(u8 progType)
     SPI_CONTROLLER_Chip_Select_High(programmerType);
     usleep(1);
 
+    return ret;
 }
 
 int s95_read_param(unsigned char *buf, unsigned long from, unsigned long len, unsigned int sector_size, unsigned char currentAlgorithm, u8 progType)
