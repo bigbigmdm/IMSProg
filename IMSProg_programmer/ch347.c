@@ -295,7 +295,9 @@ struct ch347_priv *ch347_open() {
         goto ERR_0;
     }
 
+#if LIBUSBX_API_VERSION >= 0x01000106
     libusb_set_option(priv->ctx, LIBUSB_OPTION_LOG_LEVEL, LIBUSB_LOG_LEVEL_INFO);
+#endif
     priv->handle = libusb_open_device_with_vid_pid(priv->ctx, CH347_SPI_VID, CH347_SPI_PID);
     if (!priv->handle) {
         perror("ch347: libusb: open");
