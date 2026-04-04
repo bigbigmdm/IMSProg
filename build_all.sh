@@ -4,7 +4,9 @@ if [[ "$EUID" -ne 0 ]] && [[ "$OSTYPE" != "darwin"* ]]
   then echo "Please run as root! (sudo ./build_all.sh)"
   exit
 fi
-[[ "$OSTYPE" == "darwin"* ]] && export C_INCLUDE_PATH=/usr/local/opt/libusb/include
+[[ "$OSTYPE" == "darwin"* ]] && \
+  export C_INCLUDE_PATH=$C_INCLUDE_PATH:$(brew --prefix libusb)/include && \
+  export LIBRARY_PATH=$LIBRARY_PATH:$(brew --prefix libusb)/lib
 (
 cd IMSProg_programmer
 rm -rf build/
