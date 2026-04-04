@@ -6,7 +6,8 @@ if [[ "$EUID" -ne 0 ]] && [[ "$OSTYPE" != "darwin"* ]]
 fi
 [[ "$OSTYPE" == "darwin"* ]] && \
   export C_INCLUDE_PATH=$C_INCLUDE_PATH:$(brew --prefix libusb)/include && \
-  export LIBRARY_PATH=$LIBRARY_PATH:$(brew --prefix libusb)/lib
+  export LIBRARY_PATH=$LIBRARY_PATH:$(brew --prefix libusb)/lib && \
+  export CMAKE_PREFIX_PATH=$(brew --prefix qt@5)
 (
 cd IMSProg_programmer
 rm -rf build/
