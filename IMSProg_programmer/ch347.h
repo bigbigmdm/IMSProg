@@ -14,7 +14,9 @@
 extern "C" {
 #endif
 
+#ifndef __BYTE_ORDER__
 #include <endian.h>
+#endif
 #include <stdint.h>
 #include <stdbool.h>
 #include <libusb.h>
