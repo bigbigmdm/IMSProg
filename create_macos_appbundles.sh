@@ -6,6 +6,7 @@ CONTENTSDIR3='IMSProg Database Update.app/Contents'
 
 create_directories() {
     local CONTENTSDIR=$1
+    rm -rf "$CONTENTSDIR"
     mkdir -p "$CONTENTSDIR/MacOS"
     mkdir -p "$CONTENTSDIR/Resources"
 }
@@ -54,16 +55,16 @@ create_launch_script() {
     cat << ENDOFSCRIPT > "$CONTENTSDIR/MacOS/$EXECUTABLE_NAME"
 #!/usr/bin/env bash
 
-export PATH=$PATH:/usr/local/bin/IMSProg_editor
-bash -c "$COMMAND > /dev/null 2>&1 &"
+export PATH="$PATH":/usr/local/bin
+exec $COMMAND "\$@"
 ENDOFSCRIPT
 
-    chmod u+x "$CONTENTSDIR/MacOS/$EXECUTABLE_NAME"
+    chmod +x "$CONTENTSDIR/MacOS/$EXECUTABLE_NAME"
 }
 
 move_app() {
     local APP_NAME=$1
-    mv "$APP_NAME" /Applications/"$APP_NAME"
+    mv "$APP_NAME" /Applications/
 }
 
 create_imsprog_app() {
