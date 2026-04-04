@@ -5,6 +5,8 @@
 #-------------------------------------------------
 
 QT       += core gui
+CONFIG += link_pkgconfig
+PKGCONFIG += libusb-1.0
 LIBS += -lusb-1.0
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
