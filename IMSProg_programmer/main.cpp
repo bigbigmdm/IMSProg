@@ -14,6 +14,8 @@
  */
 #include "mainwindow.h"
 #include <QApplication>
+#include <QFileInfo>
+#include <QStandardPaths>
 
 int main(int argc, char *argv[])
 {
@@ -23,9 +25,22 @@ int main(int argc, char *argv[])
     font.setPointSize(12);
     QApplication::setFont(font);
     QApplication a(argc, argv);
+    QCoreApplication::setApplicationName("imsprog");
+    QStringList allPaths = QStandardPaths::standardLocations(QStandardPaths::AppDataLocation);
+    QStringList foundPaths;
+
+    foreach (const QString &path, allPaths)
+    {
+        QString fullPath = path + "/chipProgrammer_de_DE.qm";
+        QFile datfile(fullPath);
+        if (QFileInfo(datfile).exists()) foundPaths << path;
+    }
+
+     // translation path is foundPaths.first();
+    QCoreApplication::setApplicationName("IMSProg");
     QTranslator translator;
         QString translateName = "chipProgrammer_" + QLocale::system().name();
-        if(translator.load(translateName, "/usr/share/imsprog/")) a.installTranslator(&translator);
+        if(translator.load(translateName, foundPaths.first())) a.installTranslator(&translator);
         a.installTranslator(&translator);
     QStringList cmdline_args = QCoreApplication::arguments();
     MainWindow w;

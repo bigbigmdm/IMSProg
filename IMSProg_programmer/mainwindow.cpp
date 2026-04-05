@@ -2008,7 +2008,8 @@ void MainWindow::progInit()
         if (QFileInfo(datfile).exists()) foundPaths << fullPath;
     }
 
-    if (foundPaths.isEmpty()) {
+    if (foundPaths.isEmpty())
+    {
         QMessageBox::about(this, tr("Error"), tr("The chip database file was not found!"));
         return;
     }
