@@ -37,7 +37,6 @@ int main(int argc, char *argv[])
     }
 
      // translation path is foundPaths.first();
-    QCoreApplication::setApplicationName("IMSProg");
     QTranslator translator;
         QString translateName = "chipProgrammer_" + QLocale::system().name();
         if(translator.load(translateName, foundPaths.first())) a.installTranslator(&translator);

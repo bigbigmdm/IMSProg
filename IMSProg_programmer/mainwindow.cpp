@@ -2016,7 +2016,6 @@ void MainWindow::progInit()
      // local path is foundPaths.first();
      // system path is foundPaths.last();
      // if local path was not found foundPaths.first() is system path
-    QCoreApplication::setApplicationName("IMSProg");
 
     QFile datfile(foundPaths.first());
     QByteArray dataChips;
