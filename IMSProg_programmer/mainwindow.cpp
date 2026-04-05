@@ -22,6 +22,7 @@
 #include <QComboBox>
 #include <QStandardItemModel>
 #include <QFileInfo>
+#include <QStandardPaths>
 #include <QInputMethod>
 #include <QKeyEvent>
 #include <QInputMethod>
@@ -1994,16 +1995,29 @@ void MainWindow::on_actionChip_info_triggered()
 void MainWindow::progInit()
 {
     int index2;
-    QString datFileNameMain = QDir::homePath() + "/.local/share/imsprog/IMSProg.Dat";
-    QString datFileNameReserve = "/usr/share/imsprog/IMSProg.Dat";
-    QString currentDatFilePath = "";
-    //opening chip database file
     ui->statusMessage->setText(tr("Opening DAT file"));
 
-    if (QFileInfo(datFileNameMain).exists()) currentDatFilePath = datFileNameMain;
-    else if (QFileInfo(datFileNameReserve).exists()) currentDatFilePath = datFileNameReserve;
+    QCoreApplication::setApplicationName("imsprog");
+    QStringList allPaths = QStandardPaths::standardLocations(QStandardPaths::AppDataLocation);
+    QStringList foundPaths;
 
-    QFile datfile(currentDatFilePath);
+    foreach (const QString &path, allPaths)
+    {
+        QString fullPath = path + "/IMSProg.Dat";
+        QFile datfile(fullPath);
+        if (QFileInfo(datfile).exists()) foundPaths << fullPath;
+    }
+
+    if (foundPaths.isEmpty()) {
+        QMessageBox::about(this, tr("Error"), tr("The chip database file was not found!"));
+        return;
+    }
+     // local path is foundPaths.first();
+     // system path is foundPaths.last();
+     // if local path was not found foundPaths.first() is system path
+    QCoreApplication::setApplicationName("IMSProg");
+
+    QFile datfile(foundPaths.first());
     QByteArray dataChips;
     if (!datfile.open(QIODevice::ReadOnly))
     {
