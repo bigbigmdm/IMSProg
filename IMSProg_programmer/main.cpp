@@ -27,7 +27,8 @@ int main(int argc, char *argv[])
     font.setPointSize(12);
     QApplication::setFont(font);
     QStringList allPaths = QStandardPaths::standardLocations(QStandardPaths::AppDataLocation);
-    QString binRelPath = QCoreApplication::applicationDirPath() + "/../share/" + QCoreApplication::applicationName();
+    QDir binDir(QCoreApplication::applicationDirPath());
+    QString binRelPath = QDir::cleanPath(binDir.absoluteFilePath("../share/" + QCoreApplication::applicationName()));
     allPaths.insert(1, QDir::cleanPath(binRelPath));
 
     QString localeName = QLocale::system().name();

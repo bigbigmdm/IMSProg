@@ -1997,10 +1997,10 @@ void MainWindow::progInit()
     int index2;
     ui->statusMessage->setText(tr("Opening DAT file"));
 
-    QCoreApplication::setApplicationName("imsprog");
     QStringList allPaths = QStandardPaths::standardLocations(QStandardPaths::AppDataLocation);
-    QString binRelPath = QCoreApplication::applicationDirPath() + "/../share/" + QCoreApplication::applicationName();
-    allPaths.insert(1, QDir::cleanPath(binRelPath));
+    QDir binDir(QCoreApplication::applicationDirPath());
+    QString binRelPath = QDir::cleanPath(binDir.absoluteFilePath("../share/" + QCoreApplication::applicationName()));
+    allPaths.insert(1, binRelPath);
     // allPaths is now
     // - user-specific directory
     // - share directory relative to IMSProg executable
@@ -2010,13 +2010,14 @@ void MainWindow::progInit()
     QFile datfile;
     foreach (const QString &dir, allPaths)
     {
-        datfile.setFileName(dir + "/IMSProg.Dat");
-        if (QFileInfo(datfile).exists()) {
+        QString fullPath = QDir(dir).filePath("IMSProg.Dat");
+        if (QFile::exists(fullPath)) {
+            datfile.setFileName(fullPath);
             break;
         }
     }
 
-    if (datfile.fileName().isEmpty() || !QFileInfo(datfile).exists()) {
+    if (datfile.fileName().isEmpty()) {
         QMessageBox::about(this, tr("Error"), tr("The chip database file was not found!"));
         return;
     }
