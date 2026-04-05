@@ -12,6 +12,10 @@ project(IMSProg LANGUAGES C CXX)
 include(FindPkgConfig)
 pkg_check_modules(LIBUSB REQUIRED libusb-1.0)
 
+if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+  set(CMAKE_INSTALL_DO_STRIP FALSE)
+endif()
+
 # Set the CMAKE_INSTALL_PREFIX to /usr if not specified
 if (CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
   if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")

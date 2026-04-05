@@ -1999,29 +1999,37 @@ void MainWindow::progInit()
 
     QCoreApplication::setApplicationName("imsprog");
     QStringList allPaths = QStandardPaths::standardLocations(QStandardPaths::AppDataLocation);
-    QStringList foundPaths;
+    QString binRelPath = QCoreApplication::applicationDirPath() + "/../share/" + QCoreApplication::applicationName();
+    allPaths.insert(1, QDir::cleanPath(binRelPath));
+    // allPaths is now
+    // - user-specific directory
+    // - share directory relative to IMSProg executable
+    // - standard locations
 
-    foreach (const QString &path, allPaths)
+    // use the first chip database file found
+    QFile datfile;
+    foreach (const QString &dir, allPaths)
     {
-        QString fullPath = path + "/IMSProg.Dat";
-        QFile datfile(fullPath);
-        if (QFileInfo(datfile).exists()) foundPaths << fullPath;
+        datfile.setFileName(dir + "/IMSProg.Dat");
+        if (QFileInfo(datfile).exists()) {
+            break;
+        }
     }
 
-    if (foundPaths.isEmpty())
-    {
+    if (datfile.fileName().isEmpty() || !QFileInfo(datfile).exists()) {
         QMessageBox::about(this, tr("Error"), tr("The chip database file was not found!"));
         return;
     }
-     // local path is foundPaths.first();
-     // system path is foundPaths.last();
-     // if local path was not found foundPaths.first() is system path
 
-    QFile datfile(foundPaths.first());
+    qDebug() << "Using chip database file " << datfile.fileName();
     QByteArray dataChips;
     if (!datfile.open(QIODevice::ReadOnly))
     {
-        QMessageBox::about(this, tr("Error"), tr("Error loading chip database file!"));
+        QString msg = tr("Error loading chip database file!\nFile: %1\nError Code: %2\nReason: %3")
+                      .arg(datfile.fileName())
+                      .arg(static_cast<int>(datfile.error()))
+                      .arg(datfile.errorString());
+        QMessageBox::about(this, tr("Error"), msg);
         return;
     }
     dataChips = datfile.readAll();
