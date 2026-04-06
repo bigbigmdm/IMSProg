@@ -344,10 +344,10 @@ void MainWindow::on_pushButton_clicked()
     else
     {
        //Not correct Number found size of blocks
-       if (currentChipType == 0) QMessageBox::about(this, tr("Error"), tr("Before reading from chip please press 'Detect' button."));
-       if (currentChipType  > 0 ) QMessageBox::about(this, tr("Error"), tr("Please select the chip parameters - manufacture and chip name"));
        ProgDeviceClose(current_programmer);
-       doNotDisturbCancel();
+       if ((currentChipType == 0) || (currentChipType > 4))
+            QMessageBox::about(this, tr("Error"), tr("Before reading from chip please press 'Detect' button."));
+       else QMessageBox::about(this, tr("Error"), tr("Please select the chip parameters - manufacture and chip name"));
        return;
     }
     hexEdit->setData(chipData);
