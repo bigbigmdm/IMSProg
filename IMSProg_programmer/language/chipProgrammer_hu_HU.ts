@@ -287,12 +287,12 @@
         <translation>Töltés</translation>
     </message>
     <message>
-        <location filename="../dialogfill.cpp" line="22"/>
+        <location filename="../dialogfill.cpp" line="36"/>
         <source>End address</source>
         <translation>Végcím</translation>
     </message>
     <message>
-        <location filename="../dialogfill.cpp" line="23"/>
+        <location filename="../dialogfill.cpp" line="37"/>
         <source>Length</source>
         <translation>Hosszúság</translation>
     </message>
@@ -1562,7 +1562,7 @@
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1317"/>
-        <location filename="../mainwindow.cpp" line="1930"/>
+        <location filename="../mainwindow.cpp" line="1934"/>
         <source>Stop</source>
         <translation>Megállítás</translation>
     </message>
@@ -1731,11 +1731,11 @@
         <translation type="vanished">CH347T</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="918"/>
-        <location filename="../mainwindow.cpp" line="961"/>
-        <location filename="../mainwindow.cpp" line="1504"/>
-        <location filename="../mainwindow.cpp" line="2218"/>
-        <location filename="../mainwindow.cpp" line="2294"/>
+        <location filename="../mainwindow.cpp" line="922"/>
+        <location filename="../mainwindow.cpp" line="965"/>
+        <location filename="../mainwindow.cpp" line="1508"/>
+        <location filename="../mainwindow.cpp" line="2246"/>
+        <location filename="../mainwindow.cpp" line="2322"/>
         <source>Current file: </source>
         <translation>Jelenlegi fájl: </translation>
     </message>
@@ -1755,104 +1755,104 @@
         <translation>Méret</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2000"/>
+        <location filename="../mainwindow.cpp" line="2001"/>
         <source>Opening DAT file</source>
         <translation>DAT fájl megnyitása</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="253"/>
-        <location filename="../mainwindow.cpp" line="301"/>
-        <location filename="../mainwindow.cpp" line="309"/>
-        <location filename="../mainwindow.cpp" line="315"/>
-        <location filename="../mainwindow.cpp" line="345"/>
-        <location filename="../mainwindow.cpp" line="346"/>
-        <location filename="../mainwindow.cpp" line="358"/>
-        <location filename="../mainwindow.cpp" line="375"/>
-        <location filename="../mainwindow.cpp" line="397"/>
-        <location filename="../mainwindow.cpp" line="668"/>
-        <location filename="../mainwindow.cpp" line="685"/>
-        <location filename="../mainwindow.cpp" line="705"/>
-        <location filename="../mainwindow.cpp" line="750"/>
-        <location filename="../mainwindow.cpp" line="801"/>
-        <location filename="../mainwindow.cpp" line="848"/>
-        <location filename="../mainwindow.cpp" line="911"/>
-        <location filename="../mainwindow.cpp" line="951"/>
-        <location filename="../mainwindow.cpp" line="1025"/>
-        <location filename="../mainwindow.cpp" line="1088"/>
-        <location filename="../mainwindow.cpp" line="1097"/>
-        <location filename="../mainwindow.cpp" line="1104"/>
-        <location filename="../mainwindow.cpp" line="1130"/>
-        <location filename="../mainwindow.cpp" line="1140"/>
-        <location filename="../mainwindow.cpp" line="1302"/>
-        <location filename="../mainwindow.cpp" line="1355"/>
-        <location filename="../mainwindow.cpp" line="1364"/>
-        <location filename="../mainwindow.cpp" line="1370"/>
-        <location filename="../mainwindow.cpp" line="1381"/>
-        <location filename="../mainwindow.cpp" line="1410"/>
-        <location filename="../mainwindow.cpp" line="1411"/>
-        <location filename="../mainwindow.cpp" line="1425"/>
-        <location filename="../mainwindow.cpp" line="1455"/>
-        <location filename="../mainwindow.cpp" line="1460"/>
-        <location filename="../mainwindow.cpp" line="1484"/>
-        <location filename="../mainwindow.cpp" line="1518"/>
-        <location filename="../mainwindow.cpp" line="1820"/>
-        <location filename="../mainwindow.cpp" line="2009"/>
-        <location filename="../mainwindow.cpp" line="2168"/>
-        <location filename="../mainwindow.cpp" line="2184"/>
-        <location filename="../mainwindow.cpp" line="2308"/>
-        <location filename="../mainwindow.cpp" line="2340"/>
-        <location filename="../mainwindow.cpp" line="2358"/>
-        <location filename="../mainwindow.cpp" line="2378"/>
-        <location filename="../mainwindow.cpp" line="2510"/>
-        <location filename="../mainwindow.cpp" line="2620"/>
-        <location filename="../mainwindow.cpp" line="2666"/>
-        <location filename="../mainwindow.cpp" line="2718"/>
-        <location filename="../mainwindow.cpp" line="2727"/>
-        <location filename="../mainwindow.cpp" line="2733"/>
-        <location filename="../mainwindow.cpp" line="2744"/>
-        <location filename="../mainwindow.cpp" line="2773"/>
-        <location filename="../mainwindow.cpp" line="2774"/>
-        <location filename="../mainwindow.cpp" line="2787"/>
-        <location filename="../mainwindow.cpp" line="2812"/>
-        <location filename="../mainwindow.cpp" line="2817"/>
+        <location filename="../mainwindow.cpp" line="255"/>
+        <location filename="../mainwindow.cpp" line="303"/>
+        <location filename="../mainwindow.cpp" line="311"/>
+        <location filename="../mainwindow.cpp" line="317"/>
+        <location filename="../mainwindow.cpp" line="349"/>
+        <location filename="../mainwindow.cpp" line="350"/>
+        <location filename="../mainwindow.cpp" line="363"/>
+        <location filename="../mainwindow.cpp" line="380"/>
+        <location filename="../mainwindow.cpp" line="401"/>
+        <location filename="../mainwindow.cpp" line="672"/>
+        <location filename="../mainwindow.cpp" line="689"/>
+        <location filename="../mainwindow.cpp" line="709"/>
+        <location filename="../mainwindow.cpp" line="754"/>
+        <location filename="../mainwindow.cpp" line="805"/>
+        <location filename="../mainwindow.cpp" line="852"/>
+        <location filename="../mainwindow.cpp" line="915"/>
+        <location filename="../mainwindow.cpp" line="955"/>
+        <location filename="../mainwindow.cpp" line="1029"/>
+        <location filename="../mainwindow.cpp" line="1092"/>
+        <location filename="../mainwindow.cpp" line="1101"/>
+        <location filename="../mainwindow.cpp" line="1108"/>
+        <location filename="../mainwindow.cpp" line="1134"/>
+        <location filename="../mainwindow.cpp" line="1144"/>
+        <location filename="../mainwindow.cpp" line="1306"/>
+        <location filename="../mainwindow.cpp" line="1359"/>
+        <location filename="../mainwindow.cpp" line="1368"/>
+        <location filename="../mainwindow.cpp" line="1374"/>
+        <location filename="../mainwindow.cpp" line="1385"/>
+        <location filename="../mainwindow.cpp" line="1414"/>
+        <location filename="../mainwindow.cpp" line="1415"/>
+        <location filename="../mainwindow.cpp" line="1429"/>
+        <location filename="../mainwindow.cpp" line="1459"/>
+        <location filename="../mainwindow.cpp" line="1464"/>
+        <location filename="../mainwindow.cpp" line="1488"/>
+        <location filename="../mainwindow.cpp" line="1522"/>
+        <location filename="../mainwindow.cpp" line="1824"/>
+        <location filename="../mainwindow.cpp" line="2024"/>
+        <location filename="../mainwindow.cpp" line="2036"/>
+        <location filename="../mainwindow.cpp" line="2196"/>
+        <location filename="../mainwindow.cpp" line="2212"/>
+        <location filename="../mainwindow.cpp" line="2336"/>
+        <location filename="../mainwindow.cpp" line="2368"/>
+        <location filename="../mainwindow.cpp" line="2386"/>
+        <location filename="../mainwindow.cpp" line="2406"/>
+        <location filename="../mainwindow.cpp" line="2538"/>
+        <location filename="../mainwindow.cpp" line="2653"/>
+        <location filename="../mainwindow.cpp" line="2699"/>
+        <location filename="../mainwindow.cpp" line="2751"/>
+        <location filename="../mainwindow.cpp" line="2760"/>
+        <location filename="../mainwindow.cpp" line="2766"/>
+        <location filename="../mainwindow.cpp" line="2777"/>
+        <location filename="../mainwindow.cpp" line="2806"/>
+        <location filename="../mainwindow.cpp" line="2807"/>
+        <location filename="../mainwindow.cpp" line="2820"/>
+        <location filename="../mainwindow.cpp" line="2846"/>
+        <location filename="../mainwindow.cpp" line="2851"/>
         <source>Error</source>
         <translation>Hiba</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1455"/>
-        <location filename="../mainwindow.cpp" line="2812"/>
+        <location filename="../mainwindow.cpp" line="1459"/>
+        <location filename="../mainwindow.cpp" line="2846"/>
         <source>The end address must be greater than the starting address.</source>
         <translation>A zárócímnek nagyobbnak kell lennie, mint a kezdőcím.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1820"/>
+        <location filename="../mainwindow.cpp" line="1824"/>
         <source>File &apos;IMSProg_editor&apos; not found!</source>
         <translation>Nem található `IMSProg_editor` fájl!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2009"/>
         <source>Error loading chip database file!</source>
-        <translation>Hiba a chip adatbázis fájl betöltésekor!</translation>
+        <translation type="vanished">Hiba a chip adatbázis fájl betöltésekor!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2015"/>
+        <location filename="../mainwindow.cpp" line="2042"/>
         <source>Parsing DAT file</source>
         <translation>DAT fájl feldolgozása</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="267"/>
+        <location filename="../mainwindow.cpp" line="269"/>
         <source>Reading data from </source>
         <translation>Adat olvasása innen </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="253"/>
-        <location filename="../mainwindow.cpp" line="301"/>
-        <location filename="../mainwindow.cpp" line="1025"/>
-        <location filename="../mainwindow.cpp" line="1088"/>
-        <location filename="../mainwindow.cpp" line="1302"/>
-        <location filename="../mainwindow.cpp" line="1355"/>
-        <location filename="../mainwindow.cpp" line="2666"/>
-        <location filename="../mainwindow.cpp" line="2718"/>
+        <location filename="../mainwindow.cpp" line="255"/>
+        <location filename="../mainwindow.cpp" line="303"/>
+        <location filename="../mainwindow.cpp" line="1029"/>
+        <location filename="../mainwindow.cpp" line="1092"/>
+        <location filename="../mainwindow.cpp" line="1306"/>
+        <location filename="../mainwindow.cpp" line="1359"/>
+        <location filename="../mainwindow.cpp" line="2699"/>
+        <location filename="../mainwindow.cpp" line="2751"/>
         <source>Unsupported chip type!</source>
         <translation>Nem támogatott chip típus!</translation>
     </message>
@@ -1861,259 +1861,275 @@
         <translation type="vanished">A CH341a programozó nincs csatlakoztatva!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="315"/>
-        <location filename="../mainwindow.cpp" line="1370"/>
-        <location filename="../mainwindow.cpp" line="2733"/>
+        <location filename="../mainwindow.cpp" line="317"/>
+        <location filename="../mainwindow.cpp" line="1374"/>
+        <location filename="../mainwindow.cpp" line="2766"/>
         <source>Error reading block </source>
         <translation>Blokk olvasási hiba </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="345"/>
-        <location filename="../mainwindow.cpp" line="1130"/>
-        <location filename="../mainwindow.cpp" line="1410"/>
-        <location filename="../mainwindow.cpp" line="2773"/>
+        <location filename="../mainwindow.cpp" line="349"/>
+        <location filename="../mainwindow.cpp" line="1134"/>
+        <location filename="../mainwindow.cpp" line="1414"/>
+        <location filename="../mainwindow.cpp" line="2806"/>
         <source>Before reading from chip please press &apos;Detect&apos; button.</source>
         <translation>A chipről történő olvasás előtt nyomja meg az „Felismerés” gombot.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="346"/>
+        <location filename="../mainwindow.cpp" line="350"/>
         <source>Please select the chip parameters - manufacture and chip name</source>
         <translation>Kérjük, válassza ki a chip paramétereit - a gyártást és a chip nevét</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="397"/>
+        <location filename="../mainwindow.cpp" line="401"/>
         <source>The chip is not connect or missing!</source>
         <translation>A chip nincs csatlakoztatva vagy hiányzik!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="655"/>
-        <location filename="../mainwindow.cpp" line="2209"/>
+        <location filename="../mainwindow.cpp" line="659"/>
+        <location filename="../mainwindow.cpp" line="2237"/>
         <source>Saving file</source>
         <translation>Fájl mentése</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="657"/>
-        <location filename="../mainwindow.cpp" line="2211"/>
+        <location filename="../mainwindow.cpp" line="661"/>
+        <location filename="../mainwindow.cpp" line="2239"/>
         <source>Save file</source>
         <translation>Fájl mentése</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="668"/>
-        <location filename="../mainwindow.cpp" line="1484"/>
+        <location filename="../mainwindow.cpp" line="672"/>
+        <location filename="../mainwindow.cpp" line="1488"/>
         <source>Error saving file!</source>
         <translation>Hiba a fájl mentésekor!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="688"/>
+        <location filename="../mainwindow.cpp" line="692"/>
         <source>Erasing the </source>
         <translation>Törlése a(z) </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="705"/>
-        <location filename="../mainwindow.cpp" line="750"/>
-        <location filename="../mainwindow.cpp" line="801"/>
-        <location filename="../mainwindow.cpp" line="848"/>
+        <location filename="../mainwindow.cpp" line="709"/>
+        <location filename="../mainwindow.cpp" line="754"/>
+        <location filename="../mainwindow.cpp" line="805"/>
+        <location filename="../mainwindow.cpp" line="852"/>
         <source>Error erasing sector </source>
         <translation>Hiba a szektor törlésekor </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="889"/>
-        <location filename="../mainwindow.cpp" line="939"/>
-        <location filename="../mainwindow.cpp" line="2280"/>
+        <location filename="../mainwindow.cpp" line="893"/>
+        <location filename="../mainwindow.cpp" line="943"/>
+        <location filename="../mainwindow.cpp" line="2308"/>
         <source>Opening file</source>
         <translation>Fájl megnyitása</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="895"/>
-        <location filename="../mainwindow.cpp" line="943"/>
-        <location filename="../mainwindow.cpp" line="2284"/>
+        <location filename="../mainwindow.cpp" line="899"/>
+        <location filename="../mainwindow.cpp" line="947"/>
+        <location filename="../mainwindow.cpp" line="2312"/>
         <source>Open file</source>
         <translation>Fájlmegnyitás</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="911"/>
-        <location filename="../mainwindow.cpp" line="951"/>
+        <location filename="../mainwindow.cpp" line="915"/>
+        <location filename="../mainwindow.cpp" line="955"/>
         <source>The file size exceeds the chip size. Please select another chip or file or use `Save part` to split the file.</source>
         <translation>A fájl mérete meghaladja a chip méretét. Kérjük, válasszon egy másik chipet vagy fájlt, vagy használja a `Részlet mentése` lehetőséget a fájl felosztásához.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1460"/>
-        <location filename="../mainwindow.cpp" line="2817"/>
+        <location filename="../mainwindow.cpp" line="1464"/>
+        <location filename="../mainwindow.cpp" line="2851"/>
         <source>The ending address must not exceed the buffer size.</source>
         <translation>A végcím nem haladhatja meg a puffer méretét.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2168"/>
+        <location filename="../mainwindow.cpp" line="2196"/>
         <source>Before working with the security registers, click the &apos;Detect&apos; button</source>
         <translation>A biztonsági regiszterekkel való munka előtt kattintson az „Felismerés” gombra</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2184"/>
+        <location filename="../mainwindow.cpp" line="2212"/>
         <source>There are no security registers in this chip or the current version of IMSProg does not support this algorithm.</source>
         <translation>Ebben a chipben nincsenek biztonsági regiszterek, vagy az IMSProg jelenlegi verziója nem támogatja ezt az algoritmust.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2308"/>
+        <location filename="../mainwindow.cpp" line="2336"/>
         <source>Not valid HEX format!</source>
         <translation>Nem érvényes HEX formátum!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2340"/>
+        <location filename="../mainwindow.cpp" line="2368"/>
         <source>The address is larger than the size of the chip!</source>
         <translation>A cím nagyobb, mint a chip mérete!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2358"/>
-        <location filename="../mainwindow.cpp" line="2378"/>
+        <location filename="../mainwindow.cpp" line="2386"/>
+        <location filename="../mainwindow.cpp" line="2406"/>
         <source>Checksum error!</source>
         <translation>Checksum hiba!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1035"/>
+        <location filename="../mainwindow.cpp" line="1039"/>
         <source>Writing data to </source>
         <translation>Adat írása ide </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="309"/>
-        <location filename="../mainwindow.cpp" line="358"/>
-        <location filename="../mainwindow.cpp" line="375"/>
-        <location filename="../mainwindow.cpp" line="685"/>
-        <location filename="../mainwindow.cpp" line="1097"/>
-        <location filename="../mainwindow.cpp" line="1140"/>
-        <location filename="../mainwindow.cpp" line="1364"/>
-        <location filename="../mainwindow.cpp" line="1425"/>
-        <location filename="../mainwindow.cpp" line="2620"/>
-        <location filename="../mainwindow.cpp" line="2727"/>
-        <location filename="../mainwindow.cpp" line="2787"/>
+        <location filename="../mainwindow.cpp" line="311"/>
+        <location filename="../mainwindow.cpp" line="363"/>
+        <location filename="../mainwindow.cpp" line="380"/>
+        <location filename="../mainwindow.cpp" line="689"/>
+        <location filename="../mainwindow.cpp" line="1101"/>
+        <location filename="../mainwindow.cpp" line="1144"/>
+        <location filename="../mainwindow.cpp" line="1368"/>
+        <location filename="../mainwindow.cpp" line="1429"/>
+        <location filename="../mainwindow.cpp" line="2653"/>
+        <location filename="../mainwindow.cpp" line="2760"/>
+        <location filename="../mainwindow.cpp" line="2820"/>
         <source>Programmer </source>
         <translation>A </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="309"/>
-        <location filename="../mainwindow.cpp" line="358"/>
-        <location filename="../mainwindow.cpp" line="375"/>
-        <location filename="../mainwindow.cpp" line="685"/>
-        <location filename="../mainwindow.cpp" line="1097"/>
-        <location filename="../mainwindow.cpp" line="1140"/>
-        <location filename="../mainwindow.cpp" line="1364"/>
-        <location filename="../mainwindow.cpp" line="1425"/>
-        <location filename="../mainwindow.cpp" line="2620"/>
-        <location filename="../mainwindow.cpp" line="2727"/>
-        <location filename="../mainwindow.cpp" line="2787"/>
+        <location filename="../mainwindow.cpp" line="311"/>
+        <location filename="../mainwindow.cpp" line="363"/>
+        <location filename="../mainwindow.cpp" line="380"/>
+        <location filename="../mainwindow.cpp" line="689"/>
+        <location filename="../mainwindow.cpp" line="1101"/>
+        <location filename="../mainwindow.cpp" line="1144"/>
+        <location filename="../mainwindow.cpp" line="1368"/>
+        <location filename="../mainwindow.cpp" line="1429"/>
+        <location filename="../mainwindow.cpp" line="2653"/>
+        <location filename="../mainwindow.cpp" line="2760"/>
+        <location filename="../mainwindow.cpp" line="2820"/>
         <source> is not connected!</source>
         <translation> programozó nincs csatlakoztatva!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1104"/>
+        <location filename="../mainwindow.cpp" line="1108"/>
         <source>Error writing sector </source>
         <translation>Hiba a szektor írásakor </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1320"/>
+        <location filename="../mainwindow.cpp" line="1324"/>
         <source>Veryfing data from </source>
         <translation>Adatok ellenőrzése innen </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1381"/>
+        <location filename="../mainwindow.cpp" line="1385"/>
         <source>Error comparing data!
 Address:   </source>
         <translation>Hiba az adatok összehasonlításakor!
 Cím:   </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1381"/>
+        <location filename="../mainwindow.cpp" line="1385"/>
         <source>
 Buffer: </source>
         <translation>
 Puffer: </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1381"/>
-        <location filename="../mainwindow.cpp" line="2744"/>
+        <location filename="../mainwindow.cpp" line="1385"/>
+        <location filename="../mainwindow.cpp" line="2777"/>
         <source>    Chip: </source>
         <translation>    Chip: </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1411"/>
-        <location filename="../mainwindow.cpp" line="2510"/>
-        <location filename="../mainwindow.cpp" line="2774"/>
+        <location filename="../mainwindow.cpp" line="1415"/>
+        <location filename="../mainwindow.cpp" line="2538"/>
+        <location filename="../mainwindow.cpp" line="2807"/>
         <source>Please select the chip parameters - manufacture and chip name.</source>
         <translation>Kérjük, válassza ki a chip paramétereit - a gyártót és a chip nevét.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1420"/>
+        <location filename="../mainwindow.cpp" line="1424"/>
         <source>Ok!</source>
         <translation>Ok!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1420"/>
+        <location filename="../mainwindow.cpp" line="1424"/>
         <source>The operation was successful!</source>
         <translation>A művelet sikeres volt!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1472"/>
+        <location filename="../mainwindow.cpp" line="1476"/>
         <source>Saving block</source>
         <translation>Blokk mentése</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1474"/>
+        <location filename="../mainwindow.cpp" line="1478"/>
         <source>Save block</source>
         <translation>Blokk mentése</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1499"/>
+        <location filename="../mainwindow.cpp" line="1503"/>
         <source>Opening block</source>
         <translation>Blokk megnyitása</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1501"/>
+        <location filename="../mainwindow.cpp" line="1505"/>
         <source>Open block</source>
         <translation>Blokkmegnyitás</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1518"/>
+        <location filename="../mainwindow.cpp" line="1522"/>
         <source>The end address out of image size!</source>
         <translation>A zárócím túllépi a kép méretét!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1556"/>
+        <location filename="../mainwindow.cpp" line="1560"/>
         <source>Connected</source>
         <translation>Csatlakozva</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1561"/>
+        <location filename="../mainwindow.cpp" line="1565"/>
         <source>Not connected</source>
         <translation>Nincs kapcs</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1930"/>
+        <location filename="../mainwindow.cpp" line="1934"/>
         <source>Operation aborted!</source>
         <translation>Művelet megszakítva!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2618"/>
+        <location filename="../mainwindow.cpp" line="2024"/>
+        <source>The chip database file was not found!</source>
+        <translation>A chip-adatbázis fájl nem található!</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="2032"/>
+        <source>Error loading chip database file!
+File: %1
+Error Code: %2
+Reason: %3</source>
+        <translation>Hiba a chip-adatbázis fájl betöltése közben!
+Fájl: %1
+Hibakód: %2
+Ok: %3</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="2651"/>
         <source>Info:</source>
         <translation>Információ:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2618"/>
+        <location filename="../mainwindow.cpp" line="2651"/>
         <source>Device revision: </source>
         <translation>Eszköz verziószáma: </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2683"/>
+        <location filename="../mainwindow.cpp" line="2716"/>
         <source>Erase checking in </source>
         <translation>Ellenőrzés törlése </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2744"/>
+        <location filename="../mainwindow.cpp" line="2777"/>
         <source>Error erasing chip!
 Address:   </source>
         <translation>Hiba a chip törlése közben!
 Cím:   </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2744"/>
+        <location filename="../mainwindow.cpp" line="2777"/>
         <source>
 Need: FF</source>
         <translation>
