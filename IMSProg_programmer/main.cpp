@@ -20,27 +20,44 @@
 int main(int argc, char *argv[])
 {
     QApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+    QApplication a(argc, argv);
+    QCoreApplication::setApplicationName("imsprog");
     QFont font("Monospace");
     font.setStyleHint(QFont::TypeWriter);
     font.setPointSize(12);
     QApplication::setFont(font);
-    QApplication a(argc, argv);
-    QCoreApplication::setApplicationName("imsprog");
     QStringList allPaths = QStandardPaths::standardLocations(QStandardPaths::AppDataLocation);
-    QStringList foundPaths;
+    QDir binDir(QCoreApplication::applicationDirPath());
+    QString binRelPath = QDir::cleanPath(binDir.absoluteFilePath("../share/" + QCoreApplication::applicationName()));
+    allPaths.insert(1, QDir::cleanPath(binRelPath));
+
+    QString localeName = QLocale::system().name();
+    QString translateName = "chipProgrammer_" + localeName;
+    qDebug() << "localeName = " << localeName << ", translateName = " << translateName;
 
     foreach (const QString &path, allPaths)
     {
-        QString fullPath = path + "/chipProgrammer_de_DE.qm";
-        QFile datfile(fullPath);
-        if (QFileInfo(datfile).exists()) foundPaths << path;
+        QString fullPath = QDir(path).filePath(translateName + ".qm");
+        qDebug() << "Trying " << fullPath;
+
+        if (QFile::exists(fullPath))
+        {
+            qDebug() << "Found translation file:" << fullPath;
+            QTranslator *translator = new QTranslator(&a);
+
+            if (translator->load(translateName, path))
+            {
+                a.installTranslator(translator);
+                qDebug() << "Installed" << translateName << "from" << path;
+                break;
+            }
+            else
+            {
+                delete translator; 
+            }
+        }
     }
 
-     // translation path is foundPaths.first();
-    QTranslator translator;
-        QString translateName = "chipProgrammer_" + QLocale::system().name();
-        if(translator.load(translateName, foundPaths.first())) a.installTranslator(&translator);
-        a.installTranslator(&translator);
     QStringList cmdline_args = QCoreApplication::arguments();
     MainWindow w;
     w.show();
