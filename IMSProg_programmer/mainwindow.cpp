@@ -135,7 +135,8 @@ MainWindow::MainWindow(QWidget *parent) :
  oldChipData.fill(char(0xff));
 
  //Reading ini file
- QString iniPath = QDir::homePath() + "/.local/share/imsprog/config.ini";
+ QString iniPath = QDir(QStandardPaths::writableLocation(QStandardPaths::AppDataLocation)).filePath("config.ini");
+ qDebug() << "Using config file " << iniPath;
  if (QFileInfo(iniPath).exists())
  {
      QSettings settings(iniPath, QSettings::IniFormat);
@@ -2577,7 +2578,8 @@ void MainWindow::closeEvent(QCloseEvent( *event))
 {
     //Storing parameters in ini file
     if (lastDirectory == NULL) lastDirectory = QDir::homePath();
-    QSettings settings(QDir::homePath() + "/.local/share/imsprog/config.ini", QSettings::IniFormat);
+    QString iniPath = QDir(QStandardPaths::writableLocation(QStandardPaths::AppDataLocation)).filePath("config.ini");
+    QSettings settings(iniPath, QSettings::IniFormat);
     settings.beginGroup("Chip");
     settings.setValue("ChipDirectory", lastDirectory);
     settings.endGroup();
