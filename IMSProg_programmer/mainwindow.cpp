@@ -135,7 +135,7 @@ MainWindow::MainWindow(QWidget *parent) :
  oldChipData.fill(char(0xff));
 
  //Reading ini file
- QString iniPath = QDir(QStandardPaths::writableLocation(QStandardPaths::AppDataLocation)).filePath("config.ini");
+ QString iniPath = qApp->property("app/userConfigFile").toString();
  qDebug() << "Using config file " << iniPath;
  if (QFileInfo(iniPath).exists())
  {
@@ -1997,29 +1997,14 @@ void MainWindow::progInit()
 {
     int index2;
     ui->statusMessage->setText(tr("Opening DAT file"));
+    QFile datfile(qApp->property("app/userChipDatabaseFile").toString());
 
-    QStringList allPaths = QStandardPaths::standardLocations(QStandardPaths::AppDataLocation);
-    QDir binDir(QCoreApplication::applicationDirPath());
-    QString binRelPath = QDir::cleanPath(binDir.absoluteFilePath("../share/" + QCoreApplication::applicationName()));
-    allPaths.insert(1, binRelPath);
-    // allPaths is now
-    // - user-specific directory
-    // - share directory relative to IMSProg executable
-    // - standard locations
-
-    // use the first chip database file found
-    QFile datfile;
-    foreach (const QString &dir, allPaths)
-    {
-        QString fullPath = QDir(dir).filePath("IMSProg.Dat");
-        if (QFile::exists(fullPath)) {
-            datfile.setFileName(fullPath);
-            break;
-        }
+    if (!datfile.exists()) {
+        datfile.setFileName(qApp->property("app/systemChipDatabaseFile").toString());
     }
-
-    if (datfile.fileName().isEmpty()) {
-        QMessageBox::about(this, tr("Error"), tr("The chip database file was not found!"));
+    if (!datfile.exists()) {
+        QString msg = tr("Cannot find a chip database file.\nYou may want to run IMSProg_database_update");
+        QMessageBox::about(this, tr("Error"), msg);
         return;
     }
 
