@@ -346,6 +346,9 @@ void MainWindow::on_pushButton_clicked()
        //Not correct Number found size of blocks
        if (currentChipType == 0) QMessageBox::about(this, tr("Error"), tr("Before reading from chip please press 'Detect' button."));
        if (currentChipType  > 0 ) QMessageBox::about(this, tr("Error"), tr("Please select the chip parameters - manufacture and chip name"));
+       ProgDeviceClose(current_programmer);
+       doNotDisturbCancel();
+       return;
     }
     hexEdit->setData(chipData);
     ui->statusMessage->setText("");
@@ -387,7 +390,6 @@ void MainWindow::on_pushButton_2_clicked()
     if (currentChipType != 6)
     {
        snor_read_devid(bufid, 5, current_programmer);
-       qDebug()<<bufid[0]<<" "<<bufid[1]<<" "<<bufid[2]<<bufid[3];
     }
     else
     {
