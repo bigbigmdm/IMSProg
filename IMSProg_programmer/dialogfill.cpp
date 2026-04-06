@@ -48,9 +48,6 @@ void DialogFill::on_pushButton_clicked()
     if (ui->comboBox_end->currentData() == 0) typeOfEnd = "0";
     else typeOfEnd = "1";
     addrData = ui->lineEditStart->text() + "-" + ui->lineEditEnd->text() + "-" + ui->lineEditCode->text() + "-" + typeOfEnd;
-//    if (ui->comboBox_end->currentData() == 0) addrData = QString(ui->lineEditStart->text() + "-" + ui->lineEditEnd->text() + "*");  //+code
-//    else addrData = QString(ui->lineEditStart->text() + "-" + ui->lineEditEnd->text() + "#");
-
     emit sendAddr4(addrData);
     DialogFill::close();
 }
