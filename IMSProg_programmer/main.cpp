@@ -75,7 +75,7 @@ static void initPaths()
     qApp->setProperty("app/translationDirectory", setUpTranslation(allPaths));
     qApp->setProperty("app/systemChipDatabaseFile", findSystemChipDBFile(allPaths));
     qApp->setProperty("app/userChipDatabaseFile", userAppDataLocation.filePath("IMSProg.Dat"));
-    qApp->setProperty("app/userConfigFile", userAppDataLocation.filePath("IMSProg.Dat"));
+    qApp->setProperty("app/userConfigFile", userAppDataLocation.filePath("config.ini"));
 }
 
 
