@@ -611,7 +611,7 @@
     <message>
         <location filename="../dialognandsecurity.ui" line="64"/>
         <source>Operations:</source>
-        <translation>业务：</translation>
+        <translation>操作：</translation>
     </message>
     <message>
         <location filename="../dialognandsecurity.ui" line="93"/>
@@ -1600,7 +1600,7 @@
     <message>
         <location filename="../mainwindow.ui" line="1457"/>
         <source>Show programmer version</source>
-        <translation>显示程序员版本</translation>
+        <translation>显示编程器版本</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1469"/>
