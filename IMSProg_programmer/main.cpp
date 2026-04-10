@@ -86,8 +86,8 @@ int main(int argc, char *argv[])
 //    QFont font("Monospace");
 //    font.setStyleHint(QFont::TypeWriter);
 //    font.setPointSize(12);
-//    QApplication::setFont(font);
     QApplication a(argc, argv);
+//    QApplication::setFont(font);    
     initPaths();
 
     MainWindow w;
