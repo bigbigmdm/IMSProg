@@ -83,11 +83,11 @@ int main(int argc, char *argv[])
 {
     QApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
     QCoreApplication::setApplicationName("imsprog");
-//    QFont font("Monospace");
-//    font.setStyleHint(QFont::TypeWriter);
-//    font.setPointSize(12);
+    QFont font("Monospace");
+    font.setStyleHint(QFont::TypeWriter);
+    font.setPointSize(12);
+    QApplication::setFont(font);
     QApplication a(argc, argv);
-//    QApplication::setFont(font);    
     initPaths();
 
     MainWindow w;
