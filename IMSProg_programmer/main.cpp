@@ -82,12 +82,12 @@ static void initPaths()
 int main(int argc, char *argv[])
 {
     QApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
-    QApplication a(argc, argv);
     QCoreApplication::setApplicationName("imsprog");
-    QFont font("Monospace");
-    font.setStyleHint(QFont::TypeWriter);
-    font.setPointSize(12);
-    QApplication::setFont(font);
+//    QFont font("Monospace");
+//    font.setStyleHint(QFont::TypeWriter);
+//    font.setPointSize(12);
+    QApplication a(argc, argv);
+//    QApplication::setFont(font);    
     initPaths();
 
     MainWindow w;
