@@ -23,5 +23,14 @@ cmake --build build/ --parallel
 cmake --install build/
 rm -rf build/
 )
+(
+cd IMSProg_database_update
+rm -rf build/
+mkdir build/
+cmake -S . -B build/
+cmake --build build/ --parallel
+cmake --install build/
+rm -rf build/
+)
 # Reloading the USB rules or creating the app bundles for macOS
 [[ "$OSTYPE" != "darwin"* ]] && udevadm control --reload-rules || ./create_macos_appbundles.sh
