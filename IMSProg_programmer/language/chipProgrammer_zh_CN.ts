@@ -122,7 +122,7 @@
     <message>
         <location filename="../dialogbbm.ui" line="190"/>
         <source>Writing</source>
-        <translation>写作</translation>
+        <translation>写入中</translation>
     </message>
     <message>
         <location filename="../dialogbbm.ui" line="196"/>
