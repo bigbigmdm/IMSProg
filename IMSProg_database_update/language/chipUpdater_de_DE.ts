@@ -15,6 +15,7 @@
     </message>
     <message>
         <location filename="../mainwindow.ui" line="70"/>
+        <location filename="../mainwindow.cpp" line="149"/>
         <source>Ok</source>
         <translation>Ok</translation>
     </message>
@@ -24,17 +25,22 @@
         <translation>Beenden</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="100"/>
+        <location filename="../mainwindow.cpp" line="82"/>
         <source>Downloading file IMSProg.Dat</source>
         <translation>Datei IMSProg.Dat wird heruntergeladen</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="106"/>
+        <location filename="../mainwindow.cpp" line="88"/>
         <source>Invalid URL</source>
         <translation>Ungültige URL</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="176"/>
+        <location filename="../mainwindow.cpp" line="95"/>
+        <source>Cannot create temporary file for download</source>
+        <translation>Temporäre Datei für den Download kann nicht erstellt werden</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="147"/>
         <source>The database has been updated!
 
 The old database contained %1 chips,
@@ -45,12 +51,27 @@ Die alte Datenbank enthält %1 Chips,
 die neue Datenbank enthält %2 Chips.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="194"/>
+        <location filename="../mainwindow.cpp" line="151"/>
+        <source>Failed to replace the database file</source>
+        <translation>Das Ersetzen der Datenbankdatei ist fehlgeschlagen</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="154"/>
+        <source>Downloaded file is too small (corrupted?)</source>
+        <translation>Die heruntergeladene Datei ist zu klein (beschädigt?)</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="157"/>
+        <source>Download failed: </source>
+        <translation>Download fehlgeschlagen: </translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="182"/>
         <source>Error loading file: </source>
         <translation>Fehler beim Laden der Datei: </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="224"/>
+        <location filename="../mainwindow.cpp" line="200"/>
         <source>Error:</source>
         <translation>Fehler:</translation>
     </message>

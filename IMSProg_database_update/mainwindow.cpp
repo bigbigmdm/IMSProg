@@ -2,33 +2,29 @@
 #include "ui_mainwindow.h"
 #include <QMessageBox>
 #include <QUrl>
-#include <QMessageBox>
-#include <QErrorMessage>
 #include <QStatusBar>
-#include <QFile>
 #include <QFileInfo>
-#include <QThread>
-#include <QMainWindow>
 #include <QNetworkRequest>
+#include <QSaveFile>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
     , currentReply(nullptr)
-    , outputFile(nullptr)
+    , tempFile(nullptr)
     , lastBytesReceived(0)
     , totalBytesReceived(0)
+    , oldRecords(0)
 {
     ui->setupUi(this);
-    
+
     qDebug() << QSslSocket::sslLibraryBuildVersionString();
 
     manager = new QNetworkAccessManager(this);
     setupConnections();
-    
+
     fileUrl = qApp->property("app/urlDataFile").toString();
     fileName = qApp->property("app/userChipDatabaseFile").toString();
-    fileBackup = qApp->property("app/userChipBackupFile").toString();
 
     ui->progressBar->setRange(0, 100);
     ui->progressBar->setValue(0);
@@ -40,12 +36,12 @@ MainWindow::~MainWindow()
         currentReply->abort();
         currentReply->deleteLater();
     }
-    
-    if (outputFile) {
-        outputFile->close();
-        delete outputFile;
+
+    if (tempFile) {
+        tempFile->close();
+        delete tempFile;
     }
-    
+
     delete ui;
 }
 
@@ -61,35 +57,21 @@ void MainWindow::startDownload()
         currentReply->deleteLater();
         currentReply = nullptr;
     }
-    
-     chipData.clear();
 
-    if (outputFile) {
-        outputFile->close();
-        delete outputFile;
-        outputFile = nullptr;
+    if (tempFile) {
+        tempFile->close();
+        delete tempFile;
+        tempFile = nullptr;
     }
-    
 
+    totalBytesReceived = 0;
+    lastBytesReceived = 0;
 
+    // count of chips
     QFileInfo fileInfo(fileName);
-    fileInfo.refresh();
-    qint64 oldDatabaseSize;
-
-    if (fileInfo.exists())
-    {
-        if (QFile::exists(fileBackup))
-        {
-            QFile::remove(fileBackup);
-        }
-        //if ->return
-        QFile::copy(fileName,fileBackup);
-        oldDatabaseSize = fileInfo.size();
-        oldRecords = static_cast<int>(oldDatabaseSize / 0x44 -  1);
-    }
-    else
-    {
-        qDebug()<< "Not found old file";
+    if (fileInfo.exists() && fileInfo.size() > 0x44) {
+        oldRecords = static_cast<int>(fileInfo.size() / 0x44 - 1);
+    } else {
         oldRecords = 0;
     }
 
@@ -100,26 +82,24 @@ void MainWindow::startDownload()
     ui->statusbar->showMessage(tr("Downloading file IMSProg.Dat"));
     ui->startButton->setEnabled(false);
     ui->progressBar->setValue(0);
-    
+
     QUrl url(fileUrl);
     if (!url.isValid()) {
         showError(tr("Invalid URL"));
         ui->startButton->setEnabled(true);
         return;
     }
-    
-    QNetworkRequest request(url);
-    currentReply = manager->get(request);
-    
-    outputFile = new QFile(fileName);
-    if (!outputFile->open(QIODevice::WriteOnly)) {
-        showError("Can't create file: " + fileName);
-        currentReply->deleteLater();
-        currentReply = nullptr;
+
+    tempFile = new QTemporaryFile(this);
+    if (!tempFile->open()) {
+        showError(tr("Cannot create temporary file for download"));
         ui->startButton->setEnabled(true);
         return;
     }
-    
+
+    QNetworkRequest request(url);
+    currentReply = manager->get(request);
+
     connect(currentReply, &QNetworkReply::readyRead, this, &MainWindow::onReadyRead);
     connect(currentReply, &QNetworkReply::downloadProgress, this, &MainWindow::onDownloadProgress);
     connect(currentReply, &QNetworkReply::finished, this, &MainWindow::onFinished);
@@ -129,21 +109,18 @@ void MainWindow::startDownload()
     connect(currentReply, QOverload<QNetworkReply::NetworkError>::of(&QNetworkReply::error),
             this, &MainWindow::onError);
 #endif
-    
-    lastBytesReceived = 0;
-    totalBytesReceived = 0;
 }
 
 void MainWindow::onReadyRead()
 {
-    if (outputFile && currentReply) {
+    if (currentReply && tempFile) {
         QByteArray data = currentReply->readAll();
-        chipData.append(data);
-        //outputFile->write(data);
-        totalBytesReceived += data.size();
+        if (!data.isEmpty()) {
+            tempFile->write(data);
+            totalBytesReceived += data.size();
+        }
     }
 }
-
 
 void MainWindow::onDownloadProgress(qint64 bytesReceived, qint64 bytesTotal)
 {
@@ -153,38 +130,47 @@ void MainWindow::onDownloadProgress(qint64 bytesReceived, qint64 bytesTotal)
     }
 }
 
-
 void MainWindow::onFinished()
 {
-    int countNewChips = 0;
-    if (outputFile) {
-        countNewChips = chipData.size() / 0x44 -1;
-        if (chipData.size() > 0x44)
-        {
-            outputFile->write(chipData);
-            outputFile->flush();
-        }
+    bool success = false;
+    int newRecords = 0;
 
-        outputFile->close();
-        delete outputFile;
-        outputFile = nullptr;
-        ui->statusbar->clearMessage();
-    }
-    
     if (currentReply && currentReply->error() == QNetworkReply::NoError) {
-        ui->progressBar->setValue(100);
-        QString resultOfOperation = QString(tr("The database has been updated!\n\nThe old database contained %1 chips,\nThe new database contains %2 chips."))
-                    .arg(oldRecords)
-                    .arg(countNewChips);
-        QMessageBox::information(this, "Ok", resultOfOperation);
+        if (totalBytesReceived > 0x88) {
+            tempFile->close();
+
+            QFile::remove(fileName);
+            if (tempFile->copy(fileName)) {
+                success = true;
+                newRecords = static_cast<int>(totalBytesReceived / 0x44 - 1);
+                ui->progressBar->setValue(100);
+                QString msg = (tr("The database has been updated!\n\nThe old database contained %1 chips,\nThe new database contains %2 chips."))
+                              .arg(oldRecords).arg(newRecords);
+                QMessageBox::information(this, tr("Ok"), msg);
+            } else {
+                showError(tr("Failed to replace the database file"));
+            }
+        } else {
+            showError(tr("Downloaded file is too small (corrupted?)"));
+        }
     }
-    
+
+    if (tempFile) {
+        tempFile->close();
+        delete tempFile;
+        tempFile = nullptr;
+    }
+
     if (currentReply) {
         currentReply->deleteLater();
         currentReply = nullptr;
     }
-    
+
     ui->startButton->setEnabled(true);
+    if (!success) {
+        ui->progressBar->setValue(0);
+    }
+    ui->statusbar->clearMessage();
 }
 
 void MainWindow::onError(QNetworkReply::NetworkError code)
@@ -195,28 +181,16 @@ void MainWindow::onError(QNetworkReply::NetworkError code)
         currentReply->deleteLater();
         currentReply = nullptr;
     }
-    
-    if (outputFile) {
-        outputFile->close();
-        delete outputFile;
-        outputFile = nullptr;
+
+    if (tempFile) {
+        tempFile->close();
+        delete tempFile;
+        tempFile = nullptr;
     }
-    
+
     ui->startButton->setEnabled(true);
     ui->progressBar->setValue(0);
-   // copy .bak -> dat
-    QFileInfo fileInfo(fileName);
-    if (fileInfo.size() < 0x44)
-    {
-        if (QFile::exists(fileName) && QFile::exists(fileBackup))
-        {
-            QFile::remove(fileName);
-        }
-        //if ->return
-        QFile::copy(fileBackup, fileName);
-    }
-    fileInfo.refresh();
-
+    ui->statusbar->clearMessage();
 }
 
 void MainWindow::showError(const QString &message)
@@ -224,9 +198,8 @@ void MainWindow::showError(const QString &message)
     QMessageBox::critical(this, tr("Error:"), message);
 }
 
-
 void MainWindow::on_exitButton_clicked()
 {
-   MainWindow::close();
+    MainWindow::close();
 }
 

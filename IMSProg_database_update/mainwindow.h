@@ -4,7 +4,7 @@
 #include <QMainWindow>
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
-#include <QFile>
+#include <QTemporaryFile>
 #include <QElapsedTimer>
 
 QT_BEGIN_NAMESPACE
@@ -31,16 +31,14 @@ private:
     Ui::MainWindow *ui;
     QNetworkAccessManager *manager;
     QNetworkReply *currentReply;
-    QFile *outputFile;
+    QTemporaryFile *tempFile;
     QElapsedTimer speedTimer;
     qint64 lastBytesReceived;
     qint64 totalBytesReceived;
-    QByteArray chipData;
     int oldRecords;
     QString fileUrl;
     QString fileName;
-    QString fileBackup;
-    
+
     void showError(const QString &message);
     void setupConnections();
 };

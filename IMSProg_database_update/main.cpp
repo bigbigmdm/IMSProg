@@ -64,7 +64,6 @@ static void initPaths()
 
     qApp->setProperty("app/translationDirectory", setUpTranslation(allPaths));
     qApp->setProperty("app/userChipDatabaseFile", userAppDataLocation.filePath("IMSProg.Dat"));
-    qApp->setProperty("app/userChipBackupFile", userAppDataLocation.filePath("IMSProg.bak"));
     qApp->setProperty("app/userConfigFile", userAppDataLocation.filePath("config.ini"));
     qApp->setProperty("app/urlDataFile", "https://antenna-dvb-t2.ru/dl_all/IMSProg.Dat");
 
