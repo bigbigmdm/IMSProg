@@ -303,8 +303,8 @@ The `Main menu -> Programmer`  item is used to change the programmer type.
 | Chrl+H | About IMSProg                                 |
 | Ctrl+I | Force stop chip operation                     |
 | Ctrl+J | Check erase chip                              |
-| Ctrl+L | Fill the test array (Hex editor)              |
 | Ctrl+K | Fill the user code (Hex editor)               |
+| Ctrl+L | Fill the test array (Hex editor)              |
 | Ctrl+M | Compare files (Hex editor)                    |
 | Ctrl+O | Open file                                     |
 | Ctrl+P | Chip info (SFDP + status registers)           |
