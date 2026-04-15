@@ -6,7 +6,7 @@
     <message>
         <location filename="../mainwindow.ui" line="14"/>
         <source>IMSProg database updater</source>
-        <translation>IMSProg database updater</translation>
+        <translation>Aggiornamento del database di IMSProg</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="32"/>
