@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/res">
+        <file>img/IMSProg_database_update.png</file>
+    </qresource>
+</RCC>

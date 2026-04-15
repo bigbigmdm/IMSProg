@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2023 Mikhail Medvedev <e-ink-reader@yandex.ru>
+ * Copyright (C) 2026 Mikhail Medvedev <e-ink-reader@yandex.ru>
  *
  *
  * This program is free software; you can redistribute it and/or
@@ -12,17 +12,20 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  */
-#include "mainwindow.h"
 #include <QApplication>
+#include <QSslSocket>
+#include <QDebug>
 #include <QFile>
 #include <QDir>
 #include <QStandardPaths>
 #include <QTranslator>
+#include "mainwindow.h"
 
 static QString setUpTranslation(const QStringList &searchPaths)
 {
     QString localeName = QLocale::system().name();
-    QString translateName = "chipProgrammer_" + localeName;
+    //QString translateName = "chipProgrammer_" + localeName;
+    QString translateName = "chipUpdater_" + localeName;
 
     // skip user-specific dir for translations (first one); try the rest
     foreach (const QString &path, searchPaths.mid(1))
@@ -35,19 +38,6 @@ static QString setUpTranslation(const QStringList &searchPaths)
             return path;
         } else {
             delete translator;
-        }
-    }
-
-    return QString();
-}
-
-static QString findSystemChipDBFile(const QStringList &searchPaths)
-{
-    foreach (const QString &path, searchPaths.mid(1))
-    {
-        QString chipdbfile = QDir(path).filePath("IMSProg.Dat");
-        if (QFile::exists(chipdbfile)) {
-            return chipdbfile;
         }
     }
 
@@ -73,21 +63,27 @@ static void initPaths()
     }
 
     qApp->setProperty("app/translationDirectory", setUpTranslation(allPaths));
-    qApp->setProperty("app/systemChipDatabaseFile", findSystemChipDBFile(allPaths));
     qApp->setProperty("app/userChipDatabaseFile", userAppDataLocation.filePath("IMSProg.Dat"));
     qApp->setProperty("app/userConfigFile", userAppDataLocation.filePath("config.ini"));
-}
+    qApp->setProperty("app/urlDataFile", "https://antenna-dvb-t2.ru/dl_all/IMSProg.Dat");
 
+    qDebug() << "Ini path " << userAppDataLocation.filePath("config.ini");
+    qDebug() << "User database path " << userAppDataLocation.filePath("IMSProg.Dat");
+}
 
 int main(int argc, char *argv[])
 {
+    qDebug() << "SSL support:" << QSslSocket::supportsSsl();
+    qDebug() << "Build version:" << QSslSocket::sslLibraryBuildVersionString();
+    qDebug() << "Runtime version:" << QSslSocket::sslLibraryVersionString();
+
     QApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+    QApplication a(argc, argv);
     QCoreApplication::setApplicationName("imsprog");
     QFont font("Monospace");
     font.setStyleHint(QFont::TypeWriter);
     font.setPointSize(12);
     QApplication::setFont(font);
-    QApplication a(argc, argv);
     initPaths();
 
     MainWindow w;

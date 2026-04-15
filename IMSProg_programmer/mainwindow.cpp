@@ -134,6 +134,9 @@ MainWindow::MainWindow(QWidget *parent) :
  oldChipData.resize(256);
  oldChipData.fill(char(0xff));
 
+ // ActionExit - Ctrl+X (eXit) for Linux, Ctrl+Q (Quit) for MacOS
+ ui->actionExit->setShortcuts({QKeySequence::Quit, QKeySequence("Ctrl+X"), QKeySequence("Ctrl+Q")});
+
  //Reading ini file
  QString iniPath = qApp->property("app/userConfigFile").toString();
  qDebug() << "Using config file " << iniPath;
