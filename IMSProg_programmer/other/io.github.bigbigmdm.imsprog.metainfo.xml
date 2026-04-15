@@ -165,6 +165,19 @@
     </screenshot>
   </screenshots>
   <releases>
+  <release version="1.8.3" date="2026-04-15" urgency="medium">
+    <description>
+        <p>Fixed: If no chip is selected, the programmer was not detected.</p>
+        <p>Fixed: MACOS library compatibility.</p>
+        <p>Fixed: MACOS invalid pathes.</p>
+        <p>Fixed: libusb detection.</p>
+        <p>Fixed: udev rules install</p>
+        <p>Added: 2.5v VCC item</p>
+        <p>SPI NOR FLASH writing speed increased</p>
+        <p>Changed chip database update bash script to Qt app</p>
+        <p>The Zenity package is no longer used</p>
+    </description>
+  </release>
   <release version="1.8.2" date="2026-03-18" urgency="medium">	  
     <description>
         <p>Fixed: Error reading/writing data from I2C chips on the CH347T version 5.44.</p>

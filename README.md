@@ -800,7 +800,7 @@ offset	 Size   Value
 41        1     0x00
 42        1     - EEPROM pages 0x01 - 0x04
                 - For SPI NAND Flash - ECC Size / 64
-43        1     VCC 00=>3.3V 01=>1.8V 02=>5.0V
+43        1     VCC 00=>3.3V 01=>1.8V 02=>5.0V 03=>2.5V
 The end record is 0x44 (68) zero bytes.
 ```
 ## Licensing
