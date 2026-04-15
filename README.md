@@ -306,9 +306,10 @@ The `Main menu -> Programmer`  item is used to change the programmer type.
 | Ctrl+K | Fill the user code (Hex editor)               |
 | Ctrl+L | Fill the test array (Hex editor)              |
 | Ctrl+M | Compare files (Hex editor)                    |
+| Ctrl+N | Edit chip database                            |
 | Ctrl+O | Open file                                     |
 | Ctrl+P | Chip info (SFDP + status registers)           |
-| Ctrl+Q | Edit chip database                            |
+| Ctrl+Q | Exit                           |
 | Ctrl+R | Read chip                                     |
 | Ctrl+S | Save file                                     |
 | Ctrl+T | Verify chip                                   |
