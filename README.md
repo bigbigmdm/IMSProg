@@ -309,7 +309,7 @@ The `Main menu -> Programmer`  item is used to change the programmer type.
 | Ctrl+N | Edit chip database                            |
 | Ctrl+O | Open file                                     |
 | Ctrl+P | Chip info (SFDP + status registers)           |
-| Ctrl+Q | Exit                           |
+| Ctrl+Q | Exit                                          |
 | Ctrl+R | Read chip                                     |
 | Ctrl+S | Save file                                     |
 | Ctrl+T | Verify chip                                   |
