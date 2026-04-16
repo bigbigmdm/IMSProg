@@ -6,6 +6,7 @@
 #include <QFileInfo>
 #include <QNetworkRequest>
 #include <QSaveFile>
+#include <QDir>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -25,7 +26,6 @@ MainWindow::MainWindow(QWidget *parent)
 
     fileUrl = qApp->property("app/urlDataFile").toString();
     fileName = qApp->property("app/userChipDatabaseFile").toString();
-
     ui->progressBar->setRange(0, 100);
     ui->progressBar->setValue(0);
 }
@@ -91,6 +91,7 @@ void MainWindow::startDownload()
     }
 
     tempFile = new QTemporaryFile(this);
+    tempFile->setFileTemplate(QDir::tempPath() + "/IMSProg-XXXXXX.Dat");
     if (!tempFile->open()) {
         showError(tr("Cannot create temporary file for download"));
         ui->startButton->setEnabled(true);
