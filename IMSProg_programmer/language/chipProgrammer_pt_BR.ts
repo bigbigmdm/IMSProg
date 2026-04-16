@@ -2082,7 +2082,7 @@ Buffer: </translation>
     <message>
         <location filename="../mainwindow.cpp" line="1565"/>
         <source>Not connected</source>
-        <translation>Não conectado</translation>
+        <translation>Desconectado</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1934"/>
