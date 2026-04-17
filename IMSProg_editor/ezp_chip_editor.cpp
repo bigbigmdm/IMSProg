@@ -172,6 +172,7 @@ void MainWindow::on_actionOpen_triggered()
              if (tmpBuf == 0x00) chips[recNo].chipVCC = "3.3 V";
              if (tmpBuf == 0x01) chips[recNo].chipVCC = "1.8 V";
              if (tmpBuf == 0x02) chips[recNo].chipVCC = "5.0 V";
+             if (tmpBuf == 0x03) chips[recNo].chipVCC = "2.5 V";
              dataPoz = dataPoz + 0x44; //next record
              verticalHeader.append(QString::number(recNo));
              item = new QStandardItem(chips[recNo].chipTypeTxt);
@@ -470,6 +471,7 @@ void MainWindow::on_actionSave_triggered()
                if(tmpStr.compare("3.3 V")==0)  toSave[recNo * 0x44 + 0x43] = 0x00;
                if(tmpStr.compare("5.0 V")==0)  toSave[recNo * 0x44 + 0x43] = 0x02;
                if(tmpStr.compare("1.8 V")==0)  toSave[recNo * 0x44 + 0x43] = 0x01;
+               if(tmpStr.compare("2.5 V")==0)  toSave[recNo * 0x44 + 0x43] = 0x03;
            }
        }
        // 0x44 zero bytes

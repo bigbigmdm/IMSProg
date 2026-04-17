@@ -32,7 +32,7 @@ IMSProg is a collection of tools:
 
 2. IMSProg_editor - chip database editor.
 
-3. IMSProg_database_update - script to update chip database using external 
+3. IMSProg_database_update - update chip database using external 
 web-server.
 
 ![CH341A EEPROM programmer](img/IMSProg_1.png)
@@ -70,12 +70,6 @@ On older:
 
 `sudo apt-get install udev`
 
-Optionally if you want to use IMSProg_database_update script:
-- zenity
-- wget
-
-`sudo apt-get install zenity wget`
-
 :information_source: Debian < 11 and Ubuntu < 20.04 are not supported, you may 
 unable to have it working on them.
 
@@ -101,11 +95,6 @@ in your `C_INCLUDE_PATH`
 ```
 export C_INCLUDE_PATH=/usr/local/opt/libusb/include
 ```
-Optionally if you want to use IMSProg_database_update script:
-```
-brew install wget zenity
-```
-
 
 ## How to use:
 
@@ -314,12 +303,13 @@ The `Main menu -> Programmer`  item is used to change the programmer type.
 | Chrl+H | About IMSProg                                 |
 | Ctrl+I | Force stop chip operation                     |
 | Ctrl+J | Check erase chip                              |
-| Ctrl+L | Fill the test array (Hex editor)              |
 | Ctrl+K | Fill the user code (Hex editor)               |
+| Ctrl+L | Fill the test array (Hex editor)              |
 | Ctrl+M | Compare files (Hex editor)                    |
+| Ctrl+N | Edit chip database                            |
 | Ctrl+O | Open file                                     |
 | Ctrl+P | Chip info (SFDP + status registers)           |
-| Ctrl+Q | Edit chip database                            |
+| Ctrl+Q | Exit                                          |
 | Ctrl+R | Read chip                                     |
 | Ctrl+S | Save file                                     |
 | Ctrl+T | Verify chip                                   |
@@ -374,10 +364,9 @@ page in both .Dat and .csv formats.
 
 ## Chip updater
 
- IMSProg_database_update uses the zenity graphical Gnome utility.  Once started, 
- it copies the downloaded database to the ~/.local/share/imsprog folder. The script 
- then displays the number of of chips in the database before and after the 
- upgrade.
+Once IMSProg_database_update app has been run, the downloaded database is copied
+ to the ~/.local/share/imsprog folder. The script then displays the number of
+ chips in the database before and after the update.
 
 ## List of supported chips
 
@@ -691,7 +680,7 @@ IMSProg _files_							          _folder_
 ================================================================================
 IMSProg                                                  /usr/bin
 IMSProg_editor                                           /usr/bin
-IMSProg_programmer/other/IMSProg_database_update         /usr/bin
+IMSProg_database_update                                  /usr/bin
 
 IMSProg_programmer/database/IMSProg.Dat                  /usr/share/imsprog
                                                          ~/.local/share/imsprog
@@ -716,21 +705,29 @@ IMSProg_editor/language/chipEditor_uk_UA.qm              /usr/share/imsprog
 IMSProg_editor/language/chipEditor_hu_HU.qm              /usr/share/imsprog
 IMSProg_editor/language/chipEditor_pt_BR.qm              /usr/share/imsprog
 
+IMSProg_database_update/language/chipUpdater_ru_RU.qm    /usr/share/imsprog
+IMSProg_database_update/language/chipUpdater_de_DE.qm    /usr/share/imsprog
+IMSProg_database_update/language/chipUpdater_es_ES.qm    /usr/share/imsprog
+IMSProg_database_update/language/chipUpdater_zh_CN.qm    /usr/share/imsprog
+IMSProg_database_update/language/chipUpdater_uk_UA.qm    /usr/share/imsprog
+IMSProg_database_update/language/chipUpdater_hu_HU.qm    /usr/share/imsprog
+IMSProg_database_update/language/chipUpdater_pt_BR.qm    /usr/share/imsprog
+
 IMSProg_programmer/other/IMSProg.desktop                 /usr/share/applications
 IMSProg_programmer/other/IMSProg_editor.desktop          /usr/share/applications
-IMSProg_programmer/other/IMSProg_database_update.desktop /usr/share/applications
+IMSProg_database_update/other/IMSProg_database_update.desktop /usr/share/applications
 
-IMSProg_editor/other/IMSProg_editor.1.gz                 /usr/share/man/man1
-IMSProg_programmer/other/IMSProg.1.gz                    /usr/share/man/man1
-IMSProg_programmer/other/IMSProg_database_update.1.gz    /usr/share/man/man1
+IMSProg_editor/other/IMSProg_editor.1.gz                   /usr/share/man/man1
+IMSProg_programmer/other/IMSProg.1.gz                      /usr/share/man/man1
+IMSProg_database_update/other/IMSProg_database_update.1.gz /usr/share/man/man1
 
 IMSProg_programmer/img/IMSProg64.png                     /usr/share/pixmaps
-IMSProg_programmer/img/IMSProg_database_update.png       /usr/share/pixmaps
+IMSProg_database_update/img/IMSProg_database_update.png  /usr/share/pixmaps
 IMSProg_editor/img/chipEdit64.png                        /usr/share/pixmaps
 
 IMSProg_programmer/other/other/io.github.bigbigmdm.imsprog.metainfo.xml /usr/share/metainfo
 IMSProg_editor/other/other/io.github.bigbigmdm.imsprog_editor.metainfo.xml /usr/share/metainfo
-IMSProg_programmer/other/other/io.github.bigbigmdm.imsprog_database_update.metainfo.xml /usr/share/metainfo
+IMSProg_database_update/other/io.github.bigbigmdm.imsprog_database_update.metainfo.xml /usr/share/metainfo
 
 ```
 ## Chip database format
@@ -803,7 +800,7 @@ offset	 Size   Value
 41        1     0x00
 42        1     - EEPROM pages 0x01 - 0x04
                 - For SPI NAND Flash - ECC Size / 64
-43        1     VCC 00=>3.3V 01=>1.8V 02=>5.0V
+43        1     VCC 00=>3.3V 01=>1.8V 02=>5.0V 03=>2.5V
 The end record is 0x44 (68) zero bytes.
 ```
 ## Licensing
@@ -827,11 +824,12 @@ and [CH347](https://github.com/981213/ch347-nor-prog/tree/master) parts is [BSD-
 
 Anyone can add or improve a translation by making a pull request.
 Translations files are located in: [IMSProg_programmer/language/](https://github.com/bigbigmdm/IMSProg/tree/main/IMSProg_programmer/language) and [IMSProg_editor/language/](https://github.com/bigbigmdm/IMSProg/tree/main/IMSProg_editor/language)
+and [IMSProg_database_update/language/](https://github.com/bigbigmdm/IMSProg/tree/main/IMSProg_database_update/language)
 
 You can also add translation to the desktop files ([IMSProg.desktop](https://github.com/bigbigmdm/IMSProg/blob/main/IMSProg_programmer/other/IMSProg.desktop),
  [IMSProg_database_update.desktop](https://github.com/bigbigmdm/IMSProg/blob/main/IMSProg_programmer/other/IMSProg_database_update.desktop), 
   [IMSProg_editor.desktop](https://github.com/bigbigmdm/IMSProg/blob/main/IMSProg_editor/other/IMSProg_editor.desktop)),
- to the update script ([IMSProg_database_update](https://github.com/bigbigmdm/IMSProg/blob/main/IMSProg_programmer/other/IMSProg_database_update)) 
+ 
  and to the appstream metadata files ([io.github.bigbigmdm.imsprog_editor.metainfo.xml](https://github.com/bigbigmdm/IMSProg/blob/main/IMSProg_editor/other/io.github.bigbigmdm.imsprog_editor.metainfo.xml), 
 [io.github.bigbigmdm.imsprog_database_update.metainfo.xml](https://github.com/bigbigmdm/IMSProg/blob/main/IMSProg_programmer/other/io.github.bigbigmdm.imsprog_database_update.metainfo.xml), 
 [io.github.bigbigmdm.imsprog.metainfo.xml](https://github.com/bigbigmdm/IMSProg/blob/main/IMSProg_programmer/other/io.github.bigbigmdm.imsprog.metainfo.xml)).

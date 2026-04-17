@@ -1,3 +1,8 @@
+- Ver. 1.8.3 - Fix: If no chip is selected, the programmer was not detected, 
+MACOS library compatibility, MACOS invalid pathes, libusb detection, udev 
+rules install. Added: 2.5v VCC item, SPI NOR FLASH writing speed increased. The 
+chip database update script, written in Bash, has been replaced with a Qt 
+application so the Zenity package is no longer used.
 - Ver. 1.8.2 - Fix: Error reading/writing data from I2C chips on the CH347T 
 version 5.44, bit error during NOR/NAND operations in the CH347 V1.1 programmer.
 Added: showing the programmer revision function, erase check function, filling 

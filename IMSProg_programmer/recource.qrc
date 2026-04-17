@@ -57,5 +57,7 @@
         <file>img/v1_1_spi_1v8.png</file>
         <file>img/v1_1_spi_3v3.png</file>
         <file>img/checkErase64.png</file>
+        <file>img/v1_1_spi_2v5.png</file>
+        <file>img/v1_7_spi_2v5.png</file>
     </qresource>
 </RCC>

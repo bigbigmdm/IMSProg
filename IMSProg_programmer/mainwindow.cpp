@@ -22,6 +22,7 @@
 #include <QComboBox>
 #include <QStandardItemModel>
 #include <QFileInfo>
+#include <QStandardPaths>
 #include <QInputMethod>
 #include <QKeyEvent>
 #include <QInputMethod>
@@ -74,7 +75,8 @@ MainWindow::MainWindow(QWidget *parent) :
  ui->comboBox_vcc->addItem(" ", 0);
  ui->comboBox_vcc->addItem("3.3 V", 1);
  ui->comboBox_vcc->addItem("1.8 V", 2);
- ui->comboBox_vcc->addItem("5.0 V", 3);
+ ui->comboBox_vcc->addItem("2.5 V", 3);
+ ui->comboBox_vcc->addItem("5.0 V", 4);
 
  ui->comboBox_type->addItem("SPI_FLASH", 0);
  ui->comboBox_type->addItem("24_EEPROM", 1);
@@ -132,8 +134,12 @@ MainWindow::MainWindow(QWidget *parent) :
  oldChipData.resize(256);
  oldChipData.fill(char(0xff));
 
+ // ActionExit - Ctrl+X (eXit) for Linux, Ctrl+Q (Quit) for MacOS
+ ui->actionExit->setShortcuts({QKeySequence::Quit, QKeySequence("Ctrl+X"), QKeySequence("Ctrl+Q")});
+
  //Reading ini file
- QString iniPath = QDir::homePath() + "/.local/share/imsprog/config.ini";
+ QString iniPath = qApp->property("app/userConfigFile").toString();
+ qDebug() << "Using config file " << iniPath;
  if (QFileInfo(iniPath).exists())
  {
      QSettings settings(iniPath, QSettings::IniFormat);
@@ -222,7 +228,7 @@ void MainWindow::on_pushButton_clicked()
        }
        uint32_t addr = 0;
        uint32_t curBlock = 0;
-       uint32_t j, k;
+       uint32_t k;
        switch (currentChipType)
           {
           case 0:             //SPI
@@ -341,8 +347,11 @@ void MainWindow::on_pushButton_clicked()
     else
     {
        //Not correct Number found size of blocks
-       if (currentChipType == 0) QMessageBox::about(this, tr("Error"), tr("Before reading from chip please press 'Detect' button."));
-       if (currentChipType  > 0 ) QMessageBox::about(this, tr("Error"), tr("Please select the chip parameters - manufacture and chip name"));
+       ProgDeviceClose(current_programmer);
+       if ((currentChipType == 0) || (currentChipType > 4))
+            QMessageBox::about(this, tr("Error"), tr("Before reading from chip please press 'Detect' button."));
+       else QMessageBox::about(this, tr("Error"), tr("Please select the chip parameters - manufacture and chip name"));
+       return;
     }
     hexEdit->setData(chipData);
     ui->statusMessage->setText("");
@@ -384,7 +393,6 @@ void MainWindow::on_pushButton_2_clicked()
     if (currentChipType != 6)
     {
        snor_read_devid(bufid, 5, current_programmer);
-       qDebug()<<bufid[0]<<" "<<bufid[1]<<" "<<bufid[2]<<bufid[3];
     }
     else
     {
@@ -1949,6 +1957,7 @@ void MainWindow::on_pushButton_4_clicked()
     infoDialog->setProgrammer(current_programmer);
     if ((currentChipType == 0) && (ui->comboBox_vcc->currentIndex() == 1)) infoDialog->setChip(2); //NOR_FLASH 1.8
     if ((currentChipType == 0) && (ui->comboBox_vcc->currentIndex() == 2)) infoDialog->setChip(3); //NOR FLASH 3.3
+    if ((currentChipType == 0) && (ui->comboBox_vcc->currentIndex() == 3)) infoDialog->setChip(8); //NOR FLASH 2.5
     if ((currentChipType == 1) && (ui->comboBox_vcc->currentIndex() == 1)) infoDialog->setChip(1); //24xxx 3.3
     if ((currentChipType == 2) && (ui->comboBox_vcc->currentIndex() == 1)) infoDialog->setChip(4); //93xxx 3.3
     if ((currentChipType == 3) && (ui->comboBox_vcc->currentIndex() == 1)) infoDialog->setChip(2); //25xxx 3.3
@@ -1992,20 +2001,27 @@ void MainWindow::on_actionChip_info_triggered()
 void MainWindow::progInit()
 {
     int index2;
-    QString datFileNameMain = QDir::homePath() + "/.local/share/imsprog/IMSProg.Dat";
-    QString datFileNameReserve = "/usr/share/imsprog/IMSProg.Dat";
-    QString currentDatFilePath = "";
-    //opening chip database file
     ui->statusMessage->setText(tr("Opening DAT file"));
+    QFile datfile(qApp->property("app/userChipDatabaseFile").toString());
 
-    if (QFileInfo(datFileNameMain).exists()) currentDatFilePath = datFileNameMain;
-    else if (QFileInfo(datFileNameReserve).exists()) currentDatFilePath = datFileNameReserve;
+    if (!datfile.exists()) {
+        datfile.setFileName(qApp->property("app/systemChipDatabaseFile").toString());
+    }
+    if (!datfile.exists()) {
+        QString msg = tr("Cannot find a chip database file.\nYou may want to run IMSProg_database_update");
+        QMessageBox::about(this, tr("Error"), msg);
+        return;
+    }
 
-    QFile datfile(currentDatFilePath);
+    qDebug() << "Using chip database file " << datfile.fileName();
     QByteArray dataChips;
     if (!datfile.open(QIODevice::ReadOnly))
     {
-        QMessageBox::about(this, tr("Error"), tr("Error loading chip database file!"));
+        QString msg = tr("Error loading chip database file!\nFile: %1\nError Code: %2\nReason: %3")
+                      .arg(datfile.fileName())
+                      .arg(static_cast<int>(datfile.error()))
+                      .arg(datfile.errorString());
+        QMessageBox::about(this, tr("Error"), msg);
         return;
     }
     dataChips = datfile.readAll();
@@ -2100,6 +2116,7 @@ void MainWindow::progInit()
              if (tmpBuf == 0x00) chips[recNo].chipVCC = "3.3 V";
              if (tmpBuf == 0x01) chips[recNo].chipVCC = "1.8 V";
              if (tmpBuf == 0x02) chips[recNo].chipVCC = "5.0 V";
+             if (tmpBuf == 0x03) chips[recNo].chipVCC = "2.5 V";
              dataPoz = dataPoz + 0x44; //next record
              verticalHeader.append(QString::number(recNo));
              recNo++;
@@ -2520,6 +2537,7 @@ void MainWindow::on_actionCH341A_B_v1_2_triggered()
     current_programmer = 0;
     ui->lStatus->setText("CH341A");
     SetItemStatus("comboBox_type", 2, false);
+    SetItemStatus("comboBox_vcc", 3, true);
 }
 
 void MainWindow::on_actionCH341A_v1_7_triggered()
@@ -2527,6 +2545,7 @@ void MainWindow::on_actionCH341A_v1_7_triggered()
     current_programmer = 1;
     ui->lStatus->setText("CH341A");
     SetItemStatus("comboBox_type", 2, false);
+    SetItemStatus("comboBox_vcc", 3, false);
 }
 
 void MainWindow::on_actionCH347T_triggered()
@@ -2534,6 +2553,7 @@ void MainWindow::on_actionCH347T_triggered()
     current_programmer = 2;
     ui->lStatus->setText("CH347T");
     SetItemStatus("comboBox_type", 2, true);
+    SetItemStatus("comboBox_vcc", 3, true);
 }
 
 void MainWindow::on_actionCH347T_v1_1_triggered()
@@ -2541,13 +2561,15 @@ void MainWindow::on_actionCH347T_v1_1_triggered()
     current_programmer = 3;
     ui->lStatus->setText("CH347T");
     SetItemStatus("comboBox_type", 2, true);
+    SetItemStatus("comboBox_vcc", 3, false);
 }
 
 void MainWindow::closeEvent(QCloseEvent( *event))
 {
     //Storing parameters in ini file
     if (lastDirectory == NULL) lastDirectory = QDir::homePath();
-    QSettings settings(QDir::homePath() + "/.local/share/imsprog/config.ini", QSettings::IniFormat);
+    QString iniPath = QDir(QStandardPaths::writableLocation(QStandardPaths::AppDataLocation)).filePath("config.ini");
+    QSettings settings(iniPath, QSettings::IniFormat);
     settings.beginGroup("Chip");
     settings.setValue("ChipDirectory", lastDirectory);
     settings.endGroup();
@@ -2799,7 +2821,7 @@ void MainWindow::receiveAddr4(QString addressData)
     QStringList resultOfForm;
 
     resultOfForm = addressData.split("-");
-    uint32_t startAddr, endAddr, lenght, fillingCode, typeOfEnd, i;
+    uint32_t startAddr, endAddr, lenght, fillingCode, typeOfEnd;
     startAddr =   hexToInt(resultOfForm[0]);
     endAddr =     hexToInt(resultOfForm[1]);
     fillingCode = hexToInt(resultOfForm[2]);

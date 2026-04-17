@@ -14,10 +14,14 @@
 extern "C" {
 #endif
 
-#include <endian.h>
 #include <stdint.h>
 #include <stdbool.h>
-#include <libusb-1.0/libusb.h>
+#include <libusb.h>
+#ifdef __APPLE__
+#include <machine/endian.h>
+#else
+#include <endian.h>
+#endif
 
 #define CH347_SPI_VID 0x1a86
 #define CH347_SPI_PID 0x55db

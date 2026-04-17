@@ -63,6 +63,7 @@
     {
         QComboBox *editor = new QComboBox(parent);
         editor->addItem("5.0 V");
+        editor->addItem("2.5 V");
         editor->addItem("3.3 V");
         editor->addItem("1.8 V");
         return editor;
