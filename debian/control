@@ -19,7 +19,6 @@ Rules-Requires-Root: no
 Package: imsprog
 Architecture: any
 Depends: ${misc:Depends}, ${shlibs:Depends}
-Suggests: wget, zenity
 Description: Linux chip programmer for CH341A/CH347T devices
  Linux IMSProg - I2C, SPI and MicroWire chip programmer for CH341/CH347 devices.
  The IMSProg is a free EEPROM programmer tool for CH341A device based on
