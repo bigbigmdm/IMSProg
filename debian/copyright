@@ -2,6 +2,9 @@ Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: imsprog
 Upstream-Contact: Mikhail Medvedev e-ink-reader@yandex.ru
 Source: https://github.com/bigbigmdm/IMSProg
+Files-Excluded:
+ /img/*.psd
+ /img/*.mp4
 
 Files: *
 Copyright: 2023-2026 Mikhail Medvedev <e-ink-reader@yandex.ru>
