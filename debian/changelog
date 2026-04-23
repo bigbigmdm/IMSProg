@@ -1,25 +1,8 @@
 imsprog (1.8.3-1) unstable; urgency=medium
 
   * New upstream version:
-    - copyright information changed
-    - debian/control changed
-    - unused files removed
-    - increased GUI interface speed
-    - increased SPI NOR Flash operations speed
-    - translations updated
-    - Fix: Incorrect chip page sizes values removed
-    - Fix: MACOS library compatibility
-    - Fix: MACOS invalid pathes
-    - Fix: libusb detection
-    - Fix: udev rules install
-    - Added: support for the CH347T programmer
-    - Added: showing the programmer revision function
-    - Added: erase check function
-    - Added: filling code function
-    - Added: 2.5v VCC item
-    - changed chip database update bash script to Qt app
-    - the zenity and wget packages is no longer used
- -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Fri, 17 Apr 2026 16:11:37 +0300
+
+ -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Fri, 23 Apr 2026 10:39:41 +0300
 
 imsprog (1.7.3-1) unstable; urgency=medium
 
