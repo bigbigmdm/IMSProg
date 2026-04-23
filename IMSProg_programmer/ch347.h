@@ -17,10 +17,21 @@ extern "C" {
 #include <stdint.h>
 #include <stdbool.h>
 #include <libusb.h>
-#ifdef __APPLE__
-#include <machine/endian.h>
+#if defined(_WIN32)
+    #include <winsock2.h>
+    #include <windows.h>
+    #define htobe16(x) htons(x)
+    #define be16toh(x) ntohs(x)
+    #define htobe32(x) htonl(x)
+    #define be32toh(x) ntohl(x)
+    #define htole16(x) (x)
+    #define le16toh(x) (x)
+    #define htole32(x) (x)
+    #define le32toh(x) (x)
+#elif defined(__APPLE__)
+    #include <machine/endian.h>
 #else
-#include <endian.h>
+    #include <endian.h>
 #endif
 
 #define CH347_SPI_VID 0x1a86
