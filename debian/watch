@@ -1,2 +1,3 @@
 version=4
 https://github.com/bigbigmdm/IMSProg/tags .*/v@ANY_VERSION@@ARCHIVE_EXT@
+opts="repacksuffix=+ds,dversionmangle=s/\+ds//,repack"
