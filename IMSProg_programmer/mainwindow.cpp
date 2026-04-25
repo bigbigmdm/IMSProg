@@ -1156,8 +1156,11 @@ void MainWindow::on_actionRead_triggered()
 
 void MainWindow::on_actionExit_triggered()
 {
-
+    #ifndef Q_OS_WIN
     ProgDeviceClose(current_programmer);
+    statusCH341 = -1;
+    #endif
+		
     MainWindow::close();
 }
 
