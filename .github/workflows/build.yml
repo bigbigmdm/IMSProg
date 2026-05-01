@@ -23,7 +23,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        name: [Ubuntu-20, Ubuntu-22, Debian-11, Debian-12, Debian-Testing, Debian-Experimental]
+        name: [Ubuntu-20, Ubuntu-22, Debian-11, Debian-12, Debian-Testing, Debian-Experimental, Fedora-Rawhide]
         cpp_compiler: [g++]
         include:
           - name: Ubuntu-20
@@ -60,6 +60,10 @@ jobs:
             image: "debian:experimental"
             c_compiler: clang
             cpp_compiler: clang++
+            - name: Fedora-Rawhide
+            image: "fedora:rawhide"
+            c_compiler: gcc
+            cpp_compiler: g++
     container:
       image: ${{ matrix.image }}
       env:
@@ -74,6 +78,7 @@ jobs:
       - name: Install packages required
         shell: bash
         run: |
+        if command -v apt-get > /dev/null; then
           apt-get update -qq
           apt-get install -yq \
             clang \
@@ -84,6 +89,17 @@ jobs:
             qttools5-dev \
             pkg-config
           apt-get satisfy "systemd-dev (>= 253-2~) | udev (<< 253-2~)" --yes
+          elif command -v dnf > /dev/null; then
+            dnf install -y \
+              gcc-c++ \
+              clang \
+              cmake \
+              libusb1-devel \
+              qt5-qtbase-devel \
+              qt5-qttools-devel \
+              pkg-config \
+              systemd-devel
+          fi
       - uses: actions/checkout@v6
       - name: Build
         working-directory: .
