@@ -663,7 +663,7 @@ void MainWindow::on_actionSave_triggered()
     fileName = QFileDialog::getSaveFileName(this,
                                 QString(tr("Save file")),
                                 lastDirectory,
-                                "Data Images (*.bin *.BIN);;All files (*.*)");
+                                tr("Data Images") + " (*.bin *.BIN);;" + tr("All files") + " (*.*)");
     if (fileName.isEmpty()) return;
     QFileInfo info(fileName);
     lastDirectory = info.filePath();
