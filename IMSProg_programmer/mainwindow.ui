@@ -978,18 +978,6 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
       </item>
       <item>
        <widget class="QProgressBar" name="progressBar">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="minimumSize">
-         <size>
-          <width>611</width>
-          <height>23</height>
-         </size>
-        </property>
         <property name="value">
          <number>24</number>
         </property>
@@ -1007,6 +995,9 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
      <width>950</width>
      <height>21</height>
     </rect>
+   </property>
+   <property name="nativeMenuBar">
+    <bool>false</bool>
    </property>
    <widget class="QMenu" name="menuFile">
     <property name="title">

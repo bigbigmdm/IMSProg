@@ -28,6 +28,7 @@
 #include <QInputMethod>
 #include <QActionGroup>
 #include <QCloseEvent>
+#include <QStyleFactory>
 #include <QSettings>
 #include "qhexedit.h"
 #include "dialogsp.h"
@@ -68,6 +69,7 @@ MainWindow::MainWindow(QWidget *parent) :
  ui->statusBar->addPermanentWidget(ui->jedecEdit,0);
  ui->statusBar->addPermanentWidget(ui->cLabel,0);
  ui->statusBar->addPermanentWidget(ui->crcEdit,0);
+ ui->progressBar->setStyle(QStyleFactory::create("Fusion"));
  ui->progressBar->setValue(0);
  ui->comboBox_name->addItems({""});
  ui->comboBox_man->addItems({""});
@@ -134,11 +136,8 @@ MainWindow::MainWindow(QWidget *parent) :
  oldChipData.resize(256);
  oldChipData.fill(char(0xff));
 
- // ActionExit - Ctrl+X (eXit) for Linux, Ctrl+Q (Quit) for MacOS
- ui->actionExit->setShortcuts({QKeySequence::Quit, QKeySequence("Ctrl+X"), QKeySequence("Ctrl+Q")});
-
  //Reading ini file
- QString iniPath = qApp->property("app/userConfigFile").toString();
+ QString iniPath = QDir(QStandardPaths::writableLocation(QStandardPaths::AppDataLocation)).filePath("config.ini");
  qDebug() << "Using config file " << iniPath;
  if (QFileInfo(iniPath).exists())
  {
@@ -1156,11 +1155,8 @@ void MainWindow::on_actionRead_triggered()
 
 void MainWindow::on_actionExit_triggered()
 {
-    #ifndef Q_OS_WIN
+
     ProgDeviceClose(current_programmer);
-    statusCH341 = -1;
-    #endif
-		
     MainWindow::close();
 }
 
@@ -2005,14 +2001,29 @@ void MainWindow::progInit()
 {
     int index2;
     ui->statusMessage->setText(tr("Opening DAT file"));
-    QFile datfile(qApp->property("app/userChipDatabaseFile").toString());
 
-    if (!datfile.exists()) {
-        datfile.setFileName(qApp->property("app/systemChipDatabaseFile").toString());
+    QStringList allPaths = QStandardPaths::standardLocations(QStandardPaths::AppDataLocation);
+    QDir binDir(QCoreApplication::applicationDirPath());
+    QString binRelPath = QDir::cleanPath(binDir.absoluteFilePath("../share/" + QCoreApplication::applicationName()));
+    allPaths.insert(1, binRelPath);
+    // allPaths is now
+    // - user-specific directory
+    // - share directory relative to IMSProg executable
+    // - standard locations
+
+    // use the first chip database file found
+    QFile datfile;
+    foreach (const QString &dir, allPaths)
+    {
+        QString fullPath = QDir(dir).filePath("IMSProg.Dat");
+        if (QFile::exists(fullPath)) {
+            datfile.setFileName(fullPath);
+            break;
+        }
     }
-    if (!datfile.exists()) {
-        QString msg = tr("Cannot find a chip database file.\nYou may want to run IMSProg_database_update");
-        QMessageBox::about(this, tr("Error"), msg);
+
+    if (datfile.fileName().isEmpty()) {
+        QMessageBox::about(this, tr("Error"), tr("The chip database file was not found!"));
         return;
     }
 
