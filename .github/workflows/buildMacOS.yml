@@ -1,0 +1,59 @@
+name: Build macOS Qt5 (CMake)
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build-macos:
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Install Dependencies
+        run: |
+          brew install libusb cmake
+          # Set PKG_CONFIG_PATH so CMake can find libusb via pkg-config
+          echo "PKG_CONFIG_PATH=$(brew --prefix libusb)/lib/pkgconfig" >> $GITHUB_ENV
+
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v3
+        with:
+          version: '5.15.2'
+          arch: 'clang_64'
+
+      - name: Run Build Script
+        run: |
+          # Ensure the script is executable
+          chmod +x build_all.sh
+          # Execute the custom build script
+          ./build_all.sh
+        env:
+          # Provide Qt path to CMake for find_package(Qt5)
+          Qt5_DIR: ${{ env.Qt5_Path }}/lib/cmake/Qt5
+
+      - name: Bundle and Fix Dependencies
+        run: |
+          # 1. Locate the compiled .app bundle (path depends on your CMake setup)
+          APP_PATH=$(find . -name "*.app" -type d -maxdepth 3 | head -n 1)
+          echo "Found app bundle at: $APP_PATH"
+          
+          # 2. Generate binary translation files (.qm) if not handled by the script
+          find . -name "*.ts" -exec lrelease {} \;
+          
+          # 3. Deploy dependencies and create a disk image (.dmg)
+          # macdeployqt handles Qt frameworks, -dmg bundles it into a disk image
+          macdeployqt "$APP_PATH" -dmg -verbose=1
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: macOS-Application-DMG
+          path: ./*.dmg
+          
