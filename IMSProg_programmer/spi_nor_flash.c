@@ -461,8 +461,8 @@ int snor_read_param(unsigned char *buf, unsigned long from, unsigned long len, u
 
 int snor_write_param(unsigned char *buf, unsigned long to, unsigned long len, unsigned int sector_size, unsigned int addr4b, u8 progType)
 {
-    u32 page_offset, page_size;
-    int rc = 0, retlen = 0;
+    u32 page_size;
+    int ret =0;
 
     programmerType = progType;
 
@@ -473,28 +473,19 @@ int snor_write_param(unsigned char *buf, unsigned long to, unsigned long len, un
     snor_dbg("%s: to:%x len:%x \n", __func__, to, len);
 
     /* sanity checks */
-    if (len == 0)
-        return 0;
-
-    if (to + len > len * sector_size )
-        return -1;
+    if (len == 0) return 0;
 
     /* Wait until finished previous write command. */
     if (snor_wait_ready(2)) {
         return -1;
     }
 
-
-    /* what page do we start with? */
-    page_offset = to % FLASH_PAGESIZE;
-
     if (addr4b) snor_4byte_mode(1);
 
     /* write everything in PAGESIZE chunks */
     while (len > 0) {
         uint8_t *ptr = spi_buf.obuf;
-        page_size = min(len, FLASH_PAGESIZE - page_offset);
-        page_offset = 0;
+        page_size = min(len, FLASH_PAGESIZE);
         /* write the next page to flash */
 
         snor_wait_ready(3);
@@ -508,38 +499,23 @@ int snor_write_param(unsigned char *buf, unsigned long to, unsigned long len, un
         *ptr++ = (to >> 16) & 0xff;
         *ptr++ = (to >> 8) & 0xff;
         *ptr++ = to & 0xff;
-        memcpy(ptr,buf,page_size);
-        if (addr4b) rc = SPI_CONTROLLER_Write_NByte(spi_buf.obuf, 5 + page_size, SPI_CONTROLLER_SPEED_SINGLE, programmerType);
-        else rc = SPI_CONTROLLER_Write_NByte(spi_buf.obuf, 4 + page_size, SPI_CONTROLLER_SPEED_SINGLE, programmerType);
-
-        if (!rc) rc = page_size;
-        else rc = 1;
-
+        memcpy(ptr, buf, page_size);
+        if (addr4b) ret = SPI_CONTROLLER_Write_NByte(spi_buf.obuf, 5 + page_size, SPI_CONTROLLER_SPEED_SINGLE, programmerType);
+        else ret = SPI_CONTROLLER_Write_NByte(spi_buf.obuf, 4 + page_size, SPI_CONTROLLER_SPEED_SINGLE, programmerType);
         SPI_CONTROLLER_Chip_Select_High(programmerType);
-
+        if (ret != 0) return -1;
         snor_dbg("%s: to:%x page_size:%x ret:%x\n", __func__, to, page_size, rc);
-
-        if (rc > 0) {
-            retlen += rc;
-            if (rc < page_size) {
-                printf("%s: rc:%x page_size:%x\n",
-                        __func__, rc, page_size);
-                snor_write_disable();
-                return retlen - rc;
-            }
-        }
 
         len -= page_size;
         to += page_size;
         buf += page_size;
     }
 
-    if (addr4b)
-        snor_4byte_mode(0);
+    if (addr4b) snor_4byte_mode(0);
 
     snor_write_disable();
 
-    return retlen;
+    return 1;
 }
 
 int snorUnprotect(u8 progType)
