@@ -80,6 +80,12 @@ sudo dnf install cmake libusb libusb1 libusb1-devel qt5-qtbase-devel
 sudo dnf install pkgconf-pkg-config qt5-linguist
 ```
 
+On OpenSUSE and derivatiles:
+```
+sudo zypper install cmake gcc-c++ libqt5-qtbase-devel
+sudo zypper install libqt5-linguist-devel libusb-1_0-devel
+```
+
 ### macOS
 if using Homebrew then Xcode Command Line Tools will install by default, if not 
 then install manually from terminal:   
