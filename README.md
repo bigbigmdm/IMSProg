@@ -73,6 +73,13 @@ On older:
 :information_source: Debian < 11 and Ubuntu < 20.04 are not supported, you may 
 unable to have it working on them.
 
+On Fedora and derivatives:
+
+```
+sudo dnf install cmake libusb libusb1 libusb1-devel qt5-qtbase-devel 
+sudo dnf install pkgconf-pkg-config qt5-linguist
+```
+
 ### macOS
 if using Homebrew then Xcode Command Line Tools will install by default, if not 
 then install manually from terminal:   
