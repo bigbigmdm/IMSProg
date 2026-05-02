@@ -346,30 +346,30 @@ file with .Dat extension.
 
 Menu `File`.
 
-- `Open` or `[Ctrl+O]` or ![open](IMSProg_editor/img/open.png) allows you to 
+- `Open` or `[Ctrl+O]` or ![open](img/open.png) allows you to 
 load the data file.
-- `Save` or `[Ctrl+S]` or ![save](IMSProg_editor/img/save.png) saves the chip 
+- `Save` or `[Ctrl+S]` or ![save](img/save.png) saves the chip 
 parameter table to a database file.
-- `Exit` or `[Ctrl+X]` or ![exit](IMSProg_editor/img/exit.png) - exits the 
+- `Exit` or `[Ctrl+X]` or ![exit](img/exit.png) - exits the 
 editor.
-- `Export to CSV format` or `[Ctrl+X]` or ![export](IMSProg_editor/img/tocsv.png) 
+- `Export to CSV format` or `[Ctrl+X]` or ![export](img/tocsv.png) 
 allows to unload data about chips in CSV format for further processing by 
 spreadsheet software - LibreOffice Calc, OpenOffice Calc, Google Tables, etc.
 - `Import from CSV file` or `[Ctrl+Shift+X]` or 
-![import](IMSProg_editor/img/import.png) - loads a table in CSV format and adds 
+![import](img/import.png) - loads a table in CSV format and adds 
 data from it to the existing data in the table.
 
 Menu `Edit`.
 
-- `Delete Rows` or `Del` or ![delete](IMSProg_editor/img/del.png) - deletes one 
+- `Delete Rows` or `Del` or ![delete](img/del.png) - deletes one 
 or more rows.
-- `Add Row` or `Ins` or ![add](IMSProg_editor/img/plus.png) - adds a row below 
+- `Add Row` or `Ins` or ![add](img/plus.png) - adds a row below 
 the selected row and copies all data from the selected row to the new row.
-- `Move Up` or '[Ctrl+Up]` or ![up](IMSProg_editor/img/undo.png) - moves the 
+- `Move Up` or '[Ctrl+Up]` or ![up](img/undo.png) - moves the 
 selected line up.
-- `Move Down' or `[Ctrl+Down]` or ![down](IMSProg_editor/img/redo.png) - moves 
+- `Move Down' or `[Ctrl+Down]` or ![down](img/redo.png) - moves 
 the selected row down.
-- `Import selected rows to CSV format` or ![import](IMSProg_editor/img/import.png) 
+- `Import selected rows to CSV format` or ![import](img/import.png) 
 - saves selected rows to CSV file.
 
 The most recent version of the chip database file can be downloaded from this 
@@ -734,7 +734,7 @@ IMSProg_database_update/other/IMSProg_database_update.1.gz /usr/share/man/man1
 
 IMSProg_programmer/img/IMSProg64.png                     /usr/share/pixmaps
 IMSProg_database_update/img/IMSProg_database_update.png  /usr/share/pixmaps
-IMSProg_editor/img/chipEdit64.png                        /usr/share/pixmaps
+img/chipEdit64.png                        /usr/share/pixmaps
 
 IMSProg_programmer/other/other/io.github.bigbigmdm.imsprog.metainfo.xml /usr/share/metainfo
 IMSProg_editor/other/other/io.github.bigbigmdm.imsprog_editor.metainfo.xml /usr/share/metainfo
