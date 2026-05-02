@@ -652,8 +652,6 @@ You can download it and copy it to the ~/.local/share/imsprog folder:
 
 `cp IMSProg.Dat ~/.local/share/imsprog`
 
-[![Watch the video](img/IMSProg_1_0_24.mp4)](img/IMSProg_1_0_24.mp4)
-
 ## Packages
 - There is a work in progress for add IMSProg to official `Debian` (and 
 derivatives repositories)
