@@ -288,7 +288,7 @@ this menu.
 The hexadecimal chip editor (right side of the screen) is used to display and 
 modify buffer data.
 
-It contains the following controls: ![Undo](img/undo.png) undo, 
+It contains the following controls: ![Undo](img/undo64.png) undo, 
 ![Redo](img/redo64.png) redo, and the ![Search](img/hexsearch64.png) 
 search/replace. The `[Ctrl+A]` key used to update the CRC24 checksum. The 
 `[Ctrl+G]` key used to move the cursor to the entered address. The `[Ctrl+L]` 
