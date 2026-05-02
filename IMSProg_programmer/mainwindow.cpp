@@ -1800,7 +1800,11 @@ void MainWindow::on_actionChecksum_calculate_triggered()
 
 void MainWindow::on_actionEdit_chips_Database_triggered()
 {
+    #ifdef _WIN32
+        QString programPath = "./IMSProg_editor.exe";
+    #else
     QString programPath = "./IMSProg_editor";
+    #endif
     bool programExists = QFileInfo::exists(programPath) && !QDir(programPath).exists();
 
     if (!programExists)
