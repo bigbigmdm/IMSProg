@@ -16,7 +16,7 @@
 #include "ui_dialogfill.h"
 #include "mainwindow.h"
 #include <QValidator>
-#include <QRegExp>
+#include <QRegularExpression>
 #include <QDebug>
 #include <QString>
 
@@ -26,10 +26,10 @@ DialogFill::DialogFill(QWidget *parent) :
 {
     ui->setupUi(this);
     setWindowFlags(Qt::Window| Qt::WindowMinimizeButtonHint | Qt::WindowCloseButtonHint);
-    QRegExp reHex( "[A-Fa-f0-9]{1,8}" );
-    QRegExp codeHex( "[A-Fa-f0-9]{1,2}" );
-    QRegExpValidator *validator = new QRegExpValidator(reHex, this);
-    QRegExpValidator *valCode = new QRegExpValidator(codeHex, this);
+    QRegularExpression reHex( "[A-Fa-f0-9]{1,8}" );
+    QRegularExpression codeHex( "[A-Fa-f0-9]{1,2}" );
+    QRegularExpressionValidator *validator = new QRegularExpressionValidator(reHex, this);
+    QRegularExpressionValidator *valCode = new QRegularExpressionValidator(codeHex, this);
     ui->lineEditStart->setValidator(validator);
     ui->lineEditEnd->setValidator(validator);
     ui->lineEditCode->setValidator(valCode);
