@@ -2585,7 +2585,7 @@ void MainWindow::on_actionCH347T_v1_1_triggered()
 void MainWindow::closeEvent(QCloseEvent( *event))
 {
     //Storing parameters in ini file
-    if (lastDirectory == NULL) lastDirectory = QDir::homePath();
+ if (lastDirectory.isEmpty()) lastDirectory = QDir::homePath();
     QString iniPath = QDir(QStandardPaths::writableLocation(QStandardPaths::AppDataLocation)).filePath("config.ini");
     QSettings settings(iniPath, QSettings::IniFormat);
     settings.beginGroup("Chip");
