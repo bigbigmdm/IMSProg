@@ -31,11 +31,7 @@ endif()
 
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 
-find_package(Qt5 REQUIRED COMPONENTS Core Widgets)
-find_package(Qt5Widgets REQUIRED)
-
-# Qt5LinguistTools
-find_package(Qt5 REQUIRED COMPONENTS LinguistTools)
+find_package(Qt5 REQUIRED COMPONENTS Core Widgets LinguistTools)
 
 # Translation files
 set(TS_FILES

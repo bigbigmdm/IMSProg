@@ -46,8 +46,7 @@ endif()
 
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 
-find_package(Qt5 REQUIRED COMPONENTS Core Widgets)
-find_package(Qt5Widgets REQUIRED)
+find_package(Qt5 REQUIRED COMPONENTS Core Widgets LinguistTools)
 
 if(NOT ${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 set(UDEVDIR "/usr/lib/udev")
@@ -72,8 +71,6 @@ find_package(PkgConfig)
   endif()
 endif()
 endif()
-# Qt5LinguistTools
-find_package(Qt5 REQUIRED COMPONENTS LinguistTools)
 
 # Translation files
 set(TS_FILES

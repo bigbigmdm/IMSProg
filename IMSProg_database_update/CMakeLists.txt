@@ -35,9 +35,7 @@ list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 #set(OPENSSL_USE_STATIC_LIBS OFF CACHE BOOL "" FORCE)
 #set(OPENSSL_ROOT_DIR "/usr/include")
 
-find_package(Qt5 REQUIRED COMPONENTS Core Widgets LinguistTools)
-find_package(Qt5Widgets REQUIRED)
-find_package(Qt5Network REQUIRED)
+find_package(Qt5 REQUIRED COMPONENTS Core Widgets LinguistTools Network)
 
 # Translation files
 set(TS_FILES
