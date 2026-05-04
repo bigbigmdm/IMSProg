@@ -56,7 +56,7 @@
 <p>The IMSProg makes respect to <a href="https://github.com/Simsys/qhexedit2">QHexEdit2</a> hex editor and <a href="https://github.com/McMCCRU/SNANDer">SNANDer programmer</a>. The format of the chip database is based on the format used in EZP2019, EZP2020, EZP2023, Minpro I, XP866+ programmers. Warning, format is not the same!</p>
 <p>IMSProg is a collection of tools:</p>
 <ol type="1">
-<li><p>IMSProg - the chip programmer (it’s the main part).</p></li>
+<li><p>IMSProg - the chip programmer (it's the main part).</p></li>
 <li><p>IMSProg_editor - chip database editor.</p></li>
 <li><p>IMSProg_database_update - update chip database using external web-server.</p></li>
 </ol>
@@ -105,7 +105,7 @@ sudo zypper install libqt5-linguist-devel libusb-1_0-devel</code></pre>
 </ul>
 <blockquote>
 <p>[!NOTE] <em>In the current version, the MicroWire (93Cxx) protocol is not supported by the CH347 programming device.</em></p>
-<p><em>CH347T V1.1 — a device with a lower speed than the CH347T V1.0.</em></p>
+<p><em>CH347T V1.1 - a device with a lower speed than the CH347T V1.0.</em></p>
 </blockquote>
 <figure>
 <img src="93xxx_adapter.png" alt="" /><figcaption>Adapter</figcaption>
@@ -138,7 +138,7 @@ sudo zypper install libqt5-linguist-devel libusb-1_0-devel</code></pre>
 <li><p>Pressing <code>Read</code> or <img src="read64.png" alt="Read" /> or <code>&lt;Ctrl+R&gt;</code> to read data from the chip into the computer buffer.</p></li>
 <li><p>Pressing <img src="write64.png" alt="Write" /> or <code>&lt;Ctrl+W&gt;</code> to write data from the computer buffer into the chip.</p></li>
 <li><p>Pressing <img src="erase64.png" alt="Erase" /> or <code>&lt;Ctrl+E&gt;</code> will erase all data in the chip.</p></li>
-<li><p>By selecting ‘Main Menu -&gt; Chip -&gt; Check erase’ or pressing <code>&lt;Ctrl+J&gt;</code>, you can check whether all data has been correctly deleted from the chip.</p></li>
+<li><p>By selecting <code>Main Menu -&gt; Chip -&gt; Check erase</code> or pressing <code>&lt;Ctrl+J&gt;</code>, you can check whether all data has been correctly deleted from the chip.</p></li>
 <li><p>Pressing the <img src="verify64.png" alt="Verify" /> or <code>&lt;Ctrl+T&gt;</code> button causes the data in the chip and in the computer buffer to be compared.</p></li>
 </ul>
 <p>The progress bar shows the progress of the read, erase, and verify operations.</p>
@@ -322,8 +322,8 @@ sudo zypper install libqt5-linguist-devel libusb-1_0-devel</code></pre>
 <ul>
 <li><code>Delete Rows</code> or <code>Del</code> or <img src="del.png" alt="delete" /> - deletes one or more rows.</li>
 <li><code>Add Row</code> or <code>Ins</code> or <img src="plus.png" alt="add" /> - adds a row below the selected row and copies all data from the selected row to the new row.</li>
-<li><code>Move Up</code> or ’[Ctrl+Up]` or <img src="undo.png" alt="up" /> - moves the selected line up.</li>
-<li><code>Move Down' or</code>[Ctrl+Down]` or <img src="redo.png" alt="down" /> - moves the selected row down.</li>
+<li><code>Move Up</code> or `[Ctrl+Up]` or <img src="undo.png" alt="up" /> - moves the selected line up.</li>
+<li><code>Move Down</code> or `[Ctrl+Down]` or <img src="redo.png" alt="down" /> - moves the selected row down.</li>
 <li><code>Import selected rows to CSV format</code> or <img src="import.png" alt="import" /></li>
 <li>saves selected rows to CSV file.</li>
 </ul>
@@ -520,7 +520,7 @@ sudo zypper install libqt5-linguist-devel libusb-1_0-devel</code></pre>
 <h2 id="packages">Packages</h2>
 <ul>
 <li><p>There is a work in progress for add IMSProg to official <code>Debian</code> (and derivatives repositories)</p>
-<p>For some Ubuntu versions you can use this PPA by adding <code>ppa:bigmdm/imsprog</code> to your system’s Software Sources.</p>
+<p>For some Ubuntu versions you can use this PPA by adding <code>ppa:bigmdm/imsprog</code> to your system's Software Sources.</p>
 <pre><code>sudo add-apt-repository ppa:bigmdm/imsprog
 sudo apt update
 sudo apt install imsprog</code></pre>

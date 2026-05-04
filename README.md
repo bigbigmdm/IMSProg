@@ -136,7 +136,7 @@ adapter must be installed in the programmer slot marked `25xxx`.
 > *In the current version, the MicroWire (93Cxx) protocol is 
 not supported by the CH347 programming device.*
 >
-> *CH347T V1.1 — a device with a lower speed than the CH347T V1.0.*
+> *CH347T V1.1 - a device with a lower speed than the CH347T V1.0.*
 
 ![Adapter](img/93xxx_adapter.png)
  
@@ -209,7 +209,7 @@ computer buffer into the chip.
 - Pressing ![Erase](img/erase64.png) or `<Ctrl+E>` will erase all data in the 
 chip.
 
-- By selecting ‘Main Menu -> Chip -> Check erase’ or pressing `<Ctrl+J>`, you
+- By selecting `Main Menu -> Chip -> Check erase` or pressing `<Ctrl+J>`, you
  can check whether all data has been correctly deleted from the chip.
 
 - Pressing the ![Verify](img/verify64.png) or `<Ctrl+T>` button causes the 

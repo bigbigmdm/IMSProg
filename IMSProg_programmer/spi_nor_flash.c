@@ -1096,7 +1096,7 @@ int nand_page_write(unsigned char *buf, unsigned int page_size, uint32_t sector_
     SPI_CONTROLLER_Chip_Select_Low(programmerType);
     retval = SPI_CONTROLLER_Write_NByte(cmdbuf, 3, SPI_CONTROLLER_SPEED_SINGLE, programmerType);
     if (retval == -1) return retval;
-    retval = SPI_CONTROLLER_Write_NByte(buf, page_size, SPI_CONTROLLER_SPEED_SINGLE, programmerType); //1010 page_size УБРАТЬ /8 !!!!
+    retval = SPI_CONTROLLER_Write_NByte(buf, page_size, SPI_CONTROLLER_SPEED_SINGLE, programmerType);
     if (retval == -1) return retval;
     SPI_CONTROLLER_Chip_Select_High(programmerType);
     nand_wait_ready(200);

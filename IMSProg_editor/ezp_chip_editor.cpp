@@ -74,7 +74,7 @@ void MainWindow::on_actionOpen_triggered()
 
     dataSize = data.length();
     ui->tableView->setShowGrid(true);
-    //Заголовки столбцов
+    //Column headings
     QStringList horizontalHeader;
     //horizontalHeader.append("No");
     horizontalHeader.append(tr("Type"));
