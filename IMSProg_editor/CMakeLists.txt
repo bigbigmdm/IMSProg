@@ -50,7 +50,7 @@ set(TS_FILES
     language/chipEditor_it_IT.ts
 )
 
-qt5_add_translation(QM_FILES ${TS_FILES})
+qt_add_translation(QM_FILES ${TS_FILES})
 add_custom_target(translations1 DEPENDS ${QM_FILES})
 
 add_executable(${PROJECT_NAME}
