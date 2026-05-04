@@ -1190,7 +1190,7 @@ void MainWindow::on_comboBox_man_currentIndexChanged(int index)
  index = index + 0;
 }
 
-void MainWindow::on_comboBox_name_currentIndexChanged(const QString &arg1)
+void MainWindow::on_comboBox_name_currentTextChanged(const QString &arg1)
 {
     int i, index;
     oldFileName = fileName;

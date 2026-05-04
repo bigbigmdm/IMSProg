@@ -92,7 +92,7 @@ private slots:
     void on_actionRead_triggered();
     void on_actionExit_triggered();
     void on_comboBox_man_currentIndexChanged(int index);
-    void on_comboBox_name_currentIndexChanged(const QString &arg1);
+    void on_comboBox_name_currentTextChanged(const QString &arg1);
     void on_actionVerify_triggered();
     void on_pushButton_3_clicked();
     void on_actionSave_Part_triggered();
