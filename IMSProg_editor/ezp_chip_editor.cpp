@@ -107,7 +107,7 @@ void MainWindow::on_actionOpen_triggered()
                  j++;
              }
              if (txtBuf[1] == 0x00) break;
-             chips[recNo].chipTypeTxt = QByteArray::fromRawData(txtBuf, 0x30);
+             chips[recNo].chipTypeTxt = QByteArray::fromRawData(txtBuf, j);
          for (i=0; i<0x30; i++)
              {
                  txtBuf[i] = 0;
@@ -120,7 +120,7 @@ void MainWindow::on_actionOpen_triggered()
              j++;
              i++;
          }
-             chips[recNo].chipManuf = QByteArray::fromRawData(txtBuf, 0x30);
+             chips[recNo].chipManuf = QByteArray::fromRawData(txtBuf, i);
 
              for (i=0; i<0x30; i++)
                  {
@@ -134,7 +134,7 @@ void MainWindow::on_actionOpen_triggered()
                  j++;
                  i++;
              }
-             chips[recNo].chipName = QByteArray::fromRawData(txtBuf, 0x30);
+             chips[recNo].chipName = QByteArray::fromRawData(txtBuf, i);
              chipSizeCode = data[recNo * 0x44 + 0x30];
              chipID = data[recNo * 0x44 + 0x31];;
              manCode = data[recNo * 0x44 + 0x32];
