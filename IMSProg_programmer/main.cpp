@@ -66,7 +66,7 @@ static void initPaths()
     QString binRelPath = QDir::cleanPath(binDir.absoluteFilePath("../share/" + QCoreApplication::applicationName()));
     allPaths.insert(1, binRelPath);
 
-    QDir userAppDataLocation(allPaths.value(0));
+    QDir userAppDataLocation(allPaths.at(0));
     if (!userAppDataLocation.exists()) {
         userAppDataLocation.mkpath(".");
         // XXX some sort of error handling that befits the application
