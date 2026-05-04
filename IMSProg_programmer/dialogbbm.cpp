@@ -61,7 +61,7 @@ void DialogBBM::on_pushButton_clicked()
         {
             retval = nand_checkBadBlock(static_cast<uint32_t>(i), static_cast<uint32_t>(sectSize), static_cast<uint32_t>(sectInBlock), programmerType);
             if (retval == 1)//(buf[0] != 0xff)
-            {                
+            {
                 scanResult = true;
                 tmp_hi = static_cast<uint8_t>( i >> 8 );
                 tmp_lo = i & 0xff;

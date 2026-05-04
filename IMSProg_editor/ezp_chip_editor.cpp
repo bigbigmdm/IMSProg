@@ -62,7 +62,7 @@ void MainWindow::on_actionOpen_triggered()
     dataPoz = 0;
     recNo = 0;
     if(ui->tableView->model() != nullptr)
-    {     
+    {
        rowCount = ui->tableView->model()->rowCount();
        for (i=0; i<rowCount;i++)
        {
@@ -73,7 +73,7 @@ void MainWindow::on_actionOpen_triggered()
     }
 
     dataSize = data.length();
-    ui->tableView->setShowGrid(true);   
+    ui->tableView->setShowGrid(true);
     //Заголовки столбцов
     QStringList horizontalHeader;
     //horizontalHeader.append("No");
@@ -601,7 +601,7 @@ void MainWindow::on_actionMove_up_triggered()
     }
     for(int i=0; i< selection.count(); i++)
     {
-        QModelIndex index = selection.at(i);       
+        QModelIndex index = selection.at(i);
         sel = index.row();
         decsel = sel -1;
         if (index.row() > 0)
@@ -655,7 +655,7 @@ void MainWindow::on_actionMove_down_triggered()
               ui->tableView->model()->setData(indTo, ui->tableView->model()->data(indFrom).toString());
               ui->tableView->model()->setData(indFrom, tmpStr);
               ui->tableView->selectRow(incsel);
-          }          
+          }
         }
 
     }
