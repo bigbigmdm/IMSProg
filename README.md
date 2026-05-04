@@ -789,7 +789,7 @@ offset	 Size   Value
                 - 25xxx SPI EEPROM  - 0x1? - The third bit of the command is used for the high bit of the address
                 - 25xxx SPI EEPROM  - 0x2? - erasing with use CHIP  FULL ERASE command
                 - 45xxx SPI EEPROM  - 0x0? - ATMEL command pattern
-                - 45xxx SPI EEPROM  - 0x1? - ADESTO commant pattern
+                - 45xxx SPI EEPROM  - 0x1? - ADESTO command pattern
                 - 45xxx SPI EEPROM  - 0x?9 -  9 bit sector address number
                 - 45xxx SPI EEPROM  - 0x?A - 10 bit sector address number
                 - 45xxx SPI EEPROM  - 0x?B - 11 bit sector address number
