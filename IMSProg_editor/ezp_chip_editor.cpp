@@ -836,15 +836,8 @@ void MainWindow::on_actionImport_from_CSV_triggered()
 }
 bool MainWindow::correctChipTyte(QString str)
 {
-    bool ansver = false;
-    for (QString elem : chType)
-    {
-      if(str.compare(elem)==0)
-          {
-          ansver = true;
-          return ansver;
-          }
+    for (const QString &elem : std::as_const(chType)) {
+        if (str == elem) return true;
     }
-    return ansver;
-
+    return false;
 }
