@@ -38,7 +38,7 @@ MainWindow::~MainWindow()
 void MainWindow::on_actionOpen_triggered()
 {
     QString fileName, benchmarkDataFile, currentPath;
-    char txtBuf[0x30];
+    char txtBuf[0x30]{};
     benchmarkDataFile = "/usr/share/imsprog/IMSProg.Dat";
     QFileInfo check_benchmarkDataFile(benchmarkDataFile);
     int i, j, recNo, dataPoz, dataSize, chipSize, blockSize, delay, rowCount;
@@ -95,7 +95,6 @@ void MainWindow::on_actionOpen_triggered()
     //parsing qbytearray
     QStringList verticalHeader;
     while (dataPoz < dataSize) {
-        for (j=0; j<0x30; j++) txtBuf[j] = 0;
         j = 0;
         while ((j < 0x10) && (data[recNo * 0x44 + j] != ',')) {// ASCII data reading
             txtBuf[j] = data[recNo * 0x44 + j];
