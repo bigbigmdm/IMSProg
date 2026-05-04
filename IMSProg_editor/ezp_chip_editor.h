@@ -28,7 +28,7 @@
 #include <QFileDialog>
 #include <QByteArray>
 #include <QString>
-#include <QStringRef>
+#include <QStringView>
 #include <QDebug>
 #include <QTableView>
 #include <QStandardItemModel>
