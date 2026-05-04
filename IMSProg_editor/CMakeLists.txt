@@ -13,7 +13,7 @@ if (CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
   if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
       set(CMAKE_INSTALL_PREFIX "/usr/local" CACHE PATH "The default install prefix on macOS" FORCE)
   # Set Qt5 path for macOS
-  	set(CMAKE_PREFIX_PATH "${CMAKE_INSTALL_PREFIX}/opt/qt@5" CACHE PATH "Path to Qt5 on macOS" FORCE)
+        set(CMAKE_PREFIX_PATH "${CMAKE_INSTALL_PREFIX}/opt/qt@5" CACHE PATH "Path to Qt5 on macOS" FORCE)
   else()
       set(CMAKE_INSTALL_PREFIX "/usr" CACHE PATH "The default install prefix" FORCE)
   endif()
@@ -54,15 +54,15 @@ qt5_add_translation(QM_FILES ${TS_FILES})
 add_custom_target(translations1 DEPENDS ${QM_FILES})
 
 add_executable(${PROJECT_NAME}
-	ezp_chip_editor.h
-	ezp_chip_editor.cpp
-	ezp_chip_editor.ui
-	main.cpp
-	delegates.h
-	delegates.cpp
-	resources.qrc
-	${QM_FILES}
-	)
+        ezp_chip_editor.h
+        ezp_chip_editor.cpp
+        ezp_chip_editor.ui
+        main.cpp
+        delegates.h
+        delegates.cpp
+        resources.qrc
+        ${QM_FILES}
+        )
 
 
 target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
@@ -72,7 +72,7 @@ target_link_libraries(${PROJECT_NAME} Qt5::Widgets)
 install(TARGETS ${PROJECT_NAME} DESTINATION ${CMAKE_INSTALL_BINDIR})
 
 if(NOT ${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
-	install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/other/IMSProg_editor.desktop" DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/applications")
+        install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/other/IMSProg_editor.desktop" DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/applications")
 endif()
 
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/img/chipEdit64.png" DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/pixmaps")
