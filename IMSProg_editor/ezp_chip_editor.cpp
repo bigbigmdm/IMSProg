@@ -96,106 +96,114 @@ void MainWindow::on_actionOpen_triggered()
     QStringList verticalHeader;
     while (dataPoz < dataSize) {
         j = 0;
-        while ((j < 0x10) && (data[recNo * 0x44 + j] != ',')) {// ASCII data reading
-            txtBuf[j] = data[recNo * 0x44 + j];
-            j++;
-        }
-        if (txtBuf[1] == 0x00) break;
-        chips[recNo].chipTypeTxt = QByteArray::fromRawData(txtBuf, 0x30);
-        for (i=0; i<0x30; i++) txtBuf[i] = 0;
-        j++;
-        i = 0;
-        while ((i < 0x20) && (data[recNo * 0x44 + j] != ',')) {// ASCII data reading
-        txtBuf[i] = data[recNo * 0x44 + j];
-        j++;
-        i++;
-        }
-        chips[recNo].chipManuf = QByteArray::fromRawData(txtBuf, 0x30);
+             while ((j < 0x10) && (data[recNo * 0x44 + j] != ',')) // ASCII data reading
+             {
+                 txtBuf[j] = data[recNo * 0x44 + j];
+                 j++;
+             }
+             if (txtBuf[1] == 0x00) break;
+             chips[recNo].chipTypeTxt = QByteArray::fromRawData(txtBuf, j);
+         for (i=0; i<0x30; i++)
+             {
+                 txtBuf[i] = 0;
+             }
+         j++;
+         i = 0;
+         while ((i < 0x20) && (data[recNo * 0x44 + j] != ',')) // ASCII data reading
+         {
+             txtBuf[i] = data[recNo * 0x44 + j];
+             j++;
+             i++;
+         }
+             chips[recNo].chipManuf = QByteArray::fromRawData(txtBuf, i);
 
-        for (i=0; i<0x30; i++) txtBuf[i] = 0;
-        j++;
-        i = 0;
-        while ((i < 0x30) && (data[recNo * 0x44 + j] != '\0')) // ASCII data reading
-        {
-        txtBuf[i] = data[recNo * 0x44 + j];
-        j++;
-        i++;
-        }
-        chips[recNo].chipName = QByteArray::fromRawData(txtBuf, 0x30);
-        chipSizeCode = data[recNo * 0x44 + 0x30];
-        chipID = data[recNo * 0x44 + 0x31];;
-        manCode = data[recNo * 0x44 + 0x32];
-        chips[recNo].chipJedecID = "0x" + bytePrint(manCode) + bytePrint(chipID) + bytePrint(chipSizeCode);
-        tmpBuf = data[recNo * 0x44 + 0x34];
-        chipSize = tmpBuf;
-        tmpBuf = data[recNo * 0x44 + 0x35];
-        chipSize = chipSize + tmpBuf * 256;
-        tmpBuf = data[recNo * 0x44 + 0x36];
-        chipSize = chipSize + tmpBuf * 256 * 256;
-        tmpBuf = data[recNo * 0x44 + 0x37];
-        chipSize = chipSize + tmpBuf * 256 * 256 * 256;
-        chips[recNo].chipSize = sizeConvert(chipSize);
-        tmpBuf = data[recNo * 0x44 + 0x38];
-        blockSize = tmpBuf;
-        tmpBuf = data[recNo * 0x44 + 0x39];
-        blockSize = blockSize + tmpBuf * 256;
-        chips[recNo].blockSize = QString::number(blockSize);
-        tmpBuf = data[recNo * 0x44 + 0x3a];
-        chips[recNo].chipTypeHex = "0x" + bytePrint(tmpBuf);
-        tmpBuf = data[recNo * 0x44 + 0x3b];
-        chips[recNo].algorithmCode = "0x" + bytePrint(tmpBuf);
-        tmpBuf = data[recNo * 0x44 + 0x3c];
-        delay = tmpBuf;
-        tmpBuf = data[recNo * 0x44 + 0x3d];
-        delay = delay + tmpBuf * 256;
-        chips[recNo].delay = QString::number(delay);
-        tmpBuf = data[recNo * 0x44 + 0x3e];
-        chips[recNo].extend = "0x" + bytePrint(tmpBuf);
-        tmpBuf = data[recNo * 0x44 + 0x40];
-        chips[recNo].eeprom = "0x" + bytePrint(tmpBuf);
-        tmpBuf = data[recNo * 0x44 + 0x42];
-        chips[recNo].eepromPages = "0x" + bytePrint(tmpBuf);
-        tmpBuf = data[recNo * 0x44 + 0x43];
-        if (tmpBuf == 0x00) chips[recNo].chipVCC = "3.3 V";
-        if (tmpBuf == 0x01) chips[recNo].chipVCC = "1.8 V";
-        if (tmpBuf == 0x02) chips[recNo].chipVCC = "5.0 V";
-        if (tmpBuf == 0x03) chips[recNo].chipVCC = "2.5 V";
-        dataPoz = dataPoz + 0x44; //next record
-        verticalHeader.append(QString::number(recNo));
-        item = new QStandardItem(chips[recNo].chipTypeTxt);
-        model->setItem(recNo, 0, item);
-        if(chips[recNo].chipTypeTxt.compare("SPI_FLASH")==0) model->item(recNo, 0)->setBackground(QBrush(QColor(0xcc, 0xff, 0xff)));
-        else if(chips[recNo].chipTypeTxt.compare("24_EEPROM")==0) model->item(recNo, 0)->setBackground(QBrush(QColor(0xff, 0xff, 0xcc)));
-        else if(chips[recNo].chipTypeTxt.compare("93_EEPROM")==0) model->item(recNo, 0)->setBackground(QBrush(QColor(0xff, 0xcc, 0xcc)));
-        else if(chips[recNo].chipTypeTxt.compare("95_EEPROM")==0) model->item(recNo, 0)->setBackground(QBrush(QColor(0xcc, 0xff, 0xcc)));
-        else if(chips[recNo].chipTypeTxt.compare("25_EEPROM")==0) model->item(recNo, 0)->setBackground(QBrush(QColor(0xff, 0xcc, 0xff)));
-        else if(chips[recNo].chipTypeTxt.compare("45_EEPROM")==0) model->item(recNo, 0)->setBackground(QBrush(QColor(0xcc, 0xcc, 0xff)));
-        else if(chips[recNo].chipTypeTxt.compare("SPI_NAND")==0) model->item(recNo, 0)->setBackground(QBrush(QColor(0xcc, 0xcc, 0xcc)));
-        item = new QStandardItem(chips[recNo].chipManuf);
-        model->setItem(recNo, 1, item);
-        item = new QStandardItem(chips[recNo].chipName);
-        model->setItem(recNo, 2, item);
-        item = new QStandardItem(chips[recNo].chipJedecID);
-        model->setItem(recNo, 3, item);
-        item = new QStandardItem(chips[recNo].chipSize);
-        model->setItem(recNo, 4, item);
-        item = new QStandardItem(chips[recNo].blockSize);
-        model->setItem(recNo, 5, item);
-        item = new QStandardItem(chips[recNo].chipTypeHex);
-        model->setItem(recNo, 6, item);
-        item = new QStandardItem(chips[recNo].algorithmCode);
-        model->setItem(recNo, 7, item);
-        item = new QStandardItem(chips[recNo].delay);
-        model->setItem(recNo, 8, item);
-        item = new QStandardItem(chips[recNo].extend);
-        model->setItem(recNo, 9, item);
-        item = new QStandardItem(chips[recNo].eeprom);
-        model->setItem(recNo, 10, item);
-        item = new QStandardItem(chips[recNo].eepromPages);
-        model->setItem(recNo, 11, item);
-        item = new QStandardItem(chips[recNo].chipVCC);
-        model->setItem(recNo, 12, item);
-        recNo++;
+             for (i=0; i<0x30; i++)
+                 {
+                     txtBuf[i] = 0;
+                 }
+             j++;
+             i = 0;
+             while ((i < 0x30) && (data[recNo * 0x44 + j] != '\0')) // ASCII data reading
+             {
+                 txtBuf[i] = data[recNo * 0x44 + j];
+                 j++;
+                 i++;
+             }
+             chips[recNo].chipName = QByteArray::fromRawData(txtBuf, i);
+             chipSizeCode = data[recNo * 0x44 + 0x30];
+             chipID = data[recNo * 0x44 + 0x31];;
+             manCode = data[recNo * 0x44 + 0x32];
+             chips[recNo].chipJedecID = "0x" + bytePrint(manCode) + bytePrint(chipID) + bytePrint(chipSizeCode);
+             tmpBuf = data[recNo * 0x44 + 0x34];
+             chipSize = tmpBuf;
+             tmpBuf = data[recNo * 0x44 + 0x35];
+             chipSize = chipSize + tmpBuf * 256;
+             tmpBuf = data[recNo * 0x44 + 0x36];
+             chipSize = chipSize + tmpBuf * 256 * 256;
+             tmpBuf = data[recNo * 0x44 + 0x37];
+             chipSize = chipSize + tmpBuf * 256 * 256 * 256;
+             chips[recNo].chipSize = sizeConvert(chipSize);
+             tmpBuf = data[recNo * 0x44 + 0x38];
+             blockSize = tmpBuf;
+             tmpBuf = data[recNo * 0x44 + 0x39];
+             blockSize = blockSize + tmpBuf * 256;
+             chips[recNo].blockSize = QString::number(blockSize);
+             tmpBuf = data[recNo * 0x44 + 0x3a];
+             chips[recNo].chipTypeHex = "0x" + bytePrint(tmpBuf);
+             tmpBuf = data[recNo * 0x44 + 0x3b];
+             chips[recNo].algorithmCode = "0x" + bytePrint(tmpBuf);
+             tmpBuf = data[recNo * 0x44 + 0x3c];
+             delay = tmpBuf;
+             tmpBuf = data[recNo * 0x44 + 0x3d];
+             delay = delay + tmpBuf * 256;
+             chips[recNo].delay = QString::number(delay);
+             tmpBuf = data[recNo * 0x44 + 0x3e];
+             chips[recNo].extend = "0x" + bytePrint(tmpBuf);
+             tmpBuf = data[recNo * 0x44 + 0x40];
+             chips[recNo].eeprom = "0x" + bytePrint(tmpBuf);
+             tmpBuf = data[recNo * 0x44 + 0x42];
+             chips[recNo].eepromPages = "0x" + bytePrint(tmpBuf);
+             tmpBuf = data[recNo * 0x44 + 0x43];
+             if (tmpBuf == 0x00) chips[recNo].chipVCC = "3.3 V";
+             if (tmpBuf == 0x01) chips[recNo].chipVCC = "1.8 V";
+             if (tmpBuf == 0x02) chips[recNo].chipVCC = "5.0 V";
+             if (tmpBuf == 0x03) chips[recNo].chipVCC = "2.5 V";
+             dataPoz = dataPoz + 0x44; //next record
+             verticalHeader.append(QString::number(recNo));
+             item = new QStandardItem(chips[recNo].chipTypeTxt);
+             model->setItem(recNo, 0, item);
+             if(chips[recNo].chipTypeTxt.compare("SPI_FLASH")==0) model->item(recNo, 0)->setBackground(QBrush(QColor(0xcc, 0xff, 0xff)));
+             else if(chips[recNo].chipTypeTxt.compare("24_EEPROM")==0) model->item(recNo, 0)->setBackground(QBrush(QColor(0xff, 0xff, 0xcc)));
+             else if(chips[recNo].chipTypeTxt.compare("93_EEPROM")==0) model->item(recNo, 0)->setBackground(QBrush(QColor(0xff, 0xcc, 0xcc)));
+             else if(chips[recNo].chipTypeTxt.compare("95_EEPROM")==0) model->item(recNo, 0)->setBackground(QBrush(QColor(0xcc, 0xff, 0xcc)));
+             else if(chips[recNo].chipTypeTxt.compare("25_EEPROM")==0) model->item(recNo, 0)->setBackground(QBrush(QColor(0xff, 0xcc, 0xff)));
+             else if(chips[recNo].chipTypeTxt.compare("45_EEPROM")==0) model->item(recNo, 0)->setBackground(QBrush(QColor(0xcc, 0xcc, 0xff)));
+             else if(chips[recNo].chipTypeTxt.compare("SPI_NAND")==0) model->item(recNo, 0)->setBackground(QBrush(QColor(0xcc, 0xcc, 0xcc)));
+             item = new QStandardItem(chips[recNo].chipManuf);
+             model->setItem(recNo, 1, item);
+             item = new QStandardItem(chips[recNo].chipName);
+             model->setItem(recNo, 2, item);
+             item = new QStandardItem(chips[recNo].chipJedecID);
+             model->setItem(recNo, 3, item);
+             item = new QStandardItem(chips[recNo].chipSize);
+             model->setItem(recNo, 4, item);
+             item = new QStandardItem(chips[recNo].blockSize);
+             model->setItem(recNo, 5, item);
+             item = new QStandardItem(chips[recNo].chipTypeHex);
+             model->setItem(recNo, 6, item);
+             item = new QStandardItem(chips[recNo].algorithmCode);
+             model->setItem(recNo, 7, item);
+             item = new QStandardItem(chips[recNo].delay);
+             model->setItem(recNo, 8, item);
+             item = new QStandardItem(chips[recNo].extend);
+             model->setItem(recNo, 9, item);
+             item = new QStandardItem(chips[recNo].eeprom);
+             model->setItem(recNo, 10, item);
+             item = new QStandardItem(chips[recNo].eepromPages);
+             model->setItem(recNo, 11, item);
+             item = new QStandardItem(chips[recNo].chipVCC);
+             model->setItem(recNo, 12, item);
+             recNo++;
     }
     //String headers
     model->setVerticalHeaderLabels(verticalHeader);
@@ -234,7 +242,7 @@ QString MainWindow::bytePrint(unsigned char z)
     z = z % 16;
     if (z > 0x9) z = z + 0x37;
     else z = z + 0x30;
-    return QString(s) + QString(z);
+    return QString(static_cast<char>(s)) + QString(static_cast<char>(z));
 }
  QString MainWindow::sizeConvert(int a)
  {
