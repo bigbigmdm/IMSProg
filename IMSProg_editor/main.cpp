@@ -23,7 +23,6 @@ int main(int argc, char *argv[])
     QTranslator translator;
     QString translateName = "chipEditor_" + QLocale::system().name();
     if(translator.load(translateName, foundPaths.first())) a.installTranslator(&translator);
-    a.installTranslator(&translator);
     MainWindow w;
     w.show();
 
