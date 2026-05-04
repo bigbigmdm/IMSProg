@@ -1,66 +1,66 @@
-- Ver. 1.8.3 - Fix: If no chip is selected, the programmer was not detected, 
-MACOS library compatibility, MACOS invalid pathes, libusb detection, udev 
-rules install. Added: 2.5v VCC item, SPI NOR FLASH writing speed increased. The 
-chip database update script, written in Bash, has been replaced with a Qt 
+- Ver. 1.8.3 - Fix: If no chip is selected, the programmer was not detected,
+MACOS library compatibility, MACOS invalid pathes, libusb detection, udev
+rules install. Added: 2.5v VCC item, SPI NOR FLASH writing speed increased. The
+chip database update script, written in Bash, has been replaced with a Qt
 application so the Zenity package is no longer used.
-- Ver. 1.8.2 - Fix: Error reading/writing data from I2C chips on the CH347T 
+- Ver. 1.8.2 - Fix: Error reading/writing data from I2C chips on the CH347T
 version 5.44, bit error during NOR/NAND operations in the CH347 V1.1 programmer.
-Added: showing the programmer revision function, erase check function, filling 
+Added: showing the programmer revision function, erase check function, filling
 code function.
-- Ver. 1.8.1 - Added support for the CH347T programmer. Increased interface 
-speed, and SPI NOR Flash erase speed. SPI NOR Flash write speed increased by 
-30%. Incorrect chip page sizes values removed. Unused files removed. 
+- Ver. 1.8.1 - Added support for the CH347T programmer. Increased interface
+speed, and SPI NOR Flash erase speed. SPI NOR Flash write speed increased by
+30%. Incorrect chip page sizes values removed. Unused files removed.
 Translations updated.
-- Ver. 1.7.3 — When closing the program, the programmer type, chip image 
-directory, and main window size are saved in the 
-~/.local/share/imsprog/settings.ini file. Fix: Incorrect HexEdit size when 
+- Ver. 1.7.3 — When closing the program, the programmer type, chip image
+directory, and main window size are saved in the
+~/.local/share/imsprog/settings.ini file. Fix: Incorrect HexEdit size when
 starting the program.
-- Ver. 1.7.2 - Fix: NAND Flash information form freeze. Programmer type menu 
+- Ver. 1.7.2 - Fix: NAND Flash information form freeze. Programmer type menu
 added. New images added for CH341A v1.7. AT24CM02 support added.
-- Ver. 1.7.1 - Fix: pressing the Stop key did not stop auto operations. 
+- Ver. 1.7.1 - Fix: pressing the Stop key did not stop auto operations.
 New feature - added support for SPI NAND flash.
-- Ver. 1.6.2 - Fix: program crashed if security registers was less than 256 
-bytes. Fix: Information in the status bar disappears when hovering over a menu. 
-New chips added to database. Chip information form code optimized. Added 
-comparison of INTEL HEX and ASUS CAP with other files. Added close and minimise 
+- Ver. 1.6.2 - Fix: program crashed if security registers was less than 256
+bytes. Fix: Information in the status bar disappears when hovering over a menu.
+New chips added to database. Chip information form code optimized. Added
+comparison of INTEL HEX and ASUS CAP with other files. Added close and minimise
 buttons for subordinate forms.
-- Ver. 1.6.1 - New feature: compare files. New feature: fill test array. 
-Fix: when the page size is changed, the buffer is cleared. Fix: the code is 
+- Ver. 1.6.1 - New feature: compare files. New feature: fill test array.
+Fix: when the page size is changed, the buffer is cleared. Fix: the code is
 executed twice and the code slows down the display of the interface.
 - Ver. 1.5.3 - Copyright information updated, last version of QHexEdit used,
-hex-functions optimised, added support GIANTEC, DOSILICON NOR FLASH chips, Fix: 
-incorrect uninstall script, i2C 128K size is repeated twice, error calculating 
+hex-functions optimised, added support GIANTEC, DOSILICON NOR FLASH chips, Fix:
+incorrect uninstall script, i2C 128K size is repeated twice, error calculating
 file size.
 - Ver. 1.5.2 - Fix: Gigadevice status registers write error. Fix: memory leaks.
-New SPI chip sizes added. New Boya, Winbond chips added to database. Added 
+New SPI chip sizes added. New Boya, Winbond chips added to database. Added
 Fidelix, Zetta OTP algorithm.
 - Ver. 1.5.1 - Fix: Incorrect install dir for udev while cross compiling. Added:
 Form for working with security registers for SPI NOR flash memory chips.
 - Ver. 1.4.5 - Fixed: Incorrect block/page size after first read procedure.
-Fixed: Incorrect reading/writing I2C low speed chips. Added support for MXIC 
+Fixed: Incorrect reading/writing I2C low speed chips. Added support for MXIC
 MX25V8035F. Added I2C bus speed combobox to the main form.
-- Ver. 1.4.4 - Fixed: When writing firmware to disc, the `Cancel` key causes an 
-error message, wrong DataFlash chip names, wrong DataFlash chip status register 
-reading. Added: Uninstall script, instructions for building under macOS, 
+- Ver. 1.4.4 - Fixed: When writing firmware to disc, the `Cancel` key causes an
+error message, wrong DataFlash chip names, wrong DataFlash chip status register
+reading. Added: Uninstall script, instructions for building under macOS,
 installation in Fedora.
 - Ver. 1.4.3 - Fix: On the GNOME desktop, programm does not respond when erasing
- SPI NOR FLASH. Fix: When erasing SPI NOR Flash, the progress bar is now 
+ SPI NOR FLASH. Fix: When erasing SPI NOR Flash, the progress bar is now
  displayed correctly. Fix: When erasing SPI NOR Flash, the STOP button now works
  correctly.
 - Ver. 1.4.2 - Corrected German translation. German translator added to copyright
 Fixed metadata files. Corrected chip database.
 - Ver. 1.4.1 - Added support new chip type - AT45DBxx SPI Flash. Fixed appstream
- metadata errors and warnings. Renamed udev rule from 99-CH341.rules to 
+ metadata errors and warnings. Renamed udev rule from 99-CH341.rules to
  71-CH341.rules and removed deprecated MODE=660 and GROUP+=plugdev.
 - Ver. 1.3.9 - Translation files are now compiled at build time. Metadata files
  and build dependencies have been changed.
-- Ver. 1.3.8 - Added translation of update script. Appstream metadata files 
+- Ver. 1.3.8 - Added translation of update script. Appstream metadata files
  added. Fix: after installing the software it does not find the CH341A device,
  detecting it only after rebooting the computer. Fix: incorrect translation file
  names in Chinese locale. Updated the translations.
 - Ver. 1.3.7 - Small refinements (bugfix) to the interface. Updating the Italian
  translation. For 25xxx, 95xxx chips, writing to a status register is now only
- available after reading it. 
+ available after reading it.
 - Ver. 1.3.6 - Added a third status register to the SFDP form. Fix: after
  reading, the menu item go to address becomes inactive. Large size chip data in
  the database corrected.
@@ -84,12 +84,12 @@ Fixed metadata files. Corrected chip database.
 - Ver. 1.1.8 - Adding support the Intel HEX files format.
 - Ver. 1.1.7 - Fixed building errors.
 - Ver. 1.1.6 - SPI erase procedure fixed, deleted unused SPI procedures. Fixed
- program crash when reading/writing large size chips (25Q256/25Q512). 
- Fixed error diagnostics. 
+ program crash when reading/writing large size chips (25Q256/25Q512).
+ Fixed error diagnostics.
 - Ver. 1.1.5 - Detect udev path with pkg-config.
 - Ver. 1.1.4 - Removed debian packaging from upstream (moved to specific branch
  for official packages work).
-- Ver. 1.1.3 - Fixed an error when the file size exceeds the chip size. 
+- Ver. 1.1.3 - Fixed an error when the file size exceeds the chip size.
 - Ver. 1.1.2  - Added function for writing the Status Registers. Bugfix -
  Chip_Editor startup error when running IMSProg from command line. Added chips to
  the database. Added new language translation.
@@ -98,7 +98,7 @@ Fixed metadata files. Corrected chip database.
 - Ver. 1.1.12 - Minor changes to UDEV USB rules.
 - Ver. 1.1.11 - Added support for ASUS CAP files.
 - Ver. 1.1.10 - Fixed program crash on chip size mismatch with INTEL hex file
- size. 
+ size.
 - Ver. 1.0.29 - Added: Reloading the chip database after the `chipEditor` is
  finishes. Added chips to the database.
 - Ver. 1.0.28 - Bad display of qComboBoxes in UBUNTU, Manjaro linux fixed,
@@ -119,9 +119,9 @@ Fixed metadata files. Corrected chip database.
 - Ver. 1.0.21 - Working, unstable version.
 - Ver. 1.0.20 - Fixed incorrect byte sequence when reading/writing Microwire
  EEPROM in 16 bitmode (The SNANder program file "bitbang_microwire.c" bad
-  functions - Write_EEPROM_3wire, Read_EEPROM_3wine replaced to 
+  functions - Write_EEPROM_3wire, Read_EEPROM_3wine replaced to
   Write_EEPROM_3wire_param, Write_READ_3wire_param).
 - Ver. 1.0.19 - Fixed wrong level on SDA pin in I2C EEPROM. Removed old function
- "ch341a_spi_init" in file "ch341spi.c", replaced by "ch341a_init" (this is 
+ "ch341a_spi_init" in file "ch341spi.c", replaced by "ch341a_init" (this is
  SNANDer bug).
 - Ver. 1.0.0 - 1.0.18 - Partially working versions.
