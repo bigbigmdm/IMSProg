@@ -202,7 +202,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_pushButton_clicked()
 {
-  //Reading data from chip  
+  //Reading data from chip
   newFileName = ui->comboBox_name->currentText();
   int res = 0;
   uint32_t numBlocks, step, sectorsPerBlock;
@@ -418,7 +418,7 @@ void MainWindow::on_pushButton_2_clicked()
     for (i = 0; i< max_rec; i++)
     {
         if ((bufid[0] == chips[i].chipJedecIDMan) && (bufid[1] == chips[i].chipJedecIDDev) && (bufid[2] == chips[i].chipJedecIDCap))
-        {            
+        {
             index = ui->comboBox_type->findText(chips[i].chipTypeTxt);
             if ( index != -1 )
             { // -1 for not found
@@ -890,7 +890,7 @@ void MainWindow::on_actionRedo_triggered()
 }
 
 void MainWindow::on_actionOpen_triggered()
-{    
+{
     QByteArray buf;
     ui->statusMessage->setText(tr("Opening file"));
     if (numberOfReads == 0) oldFileName = fileName;
@@ -1036,7 +1036,7 @@ void MainWindow::on_actionWrite_triggered()
                       }
     ch341StatusFlashing();
     uint32_t addrSrc = 0, addrDest = 0;
-    uint32_t curBlock = 0;    
+    uint32_t curBlock = 0;
     uint32_t k;
     ui->statusMessage->setText(tr("Writing data to ") + ui->comboBox_name->currentText());
     //progerssbar settings
@@ -1104,7 +1104,7 @@ void MainWindow::on_actionWrite_triggered()
              doNotDisturbCancel();
              ProgDeviceClose(current_programmer);
              break;
-           }         
+           }
          if (res <= 0)
            {
              QMessageBox::about(this, tr("Error"), tr("Error writing sector ") + QString::number(curBlock));
@@ -1138,7 +1138,7 @@ void MainWindow::on_actionWrite_triggered()
     doNotDisturbCancel();
     ui->progressBar->setValue(0);
     ui->checkBox_2->setStyleSheet("");
-    ui->statusMessage->setText("");    
+    ui->statusMessage->setText("");
     }
     else
     {
@@ -1314,7 +1314,7 @@ void MainWindow::on_actionVerify_triggered()
                ch341StatusFlashing();
                uint32_t addr = 0;
                uint32_t curBlock = 0;
-               uint32_t j, k;               
+               uint32_t j, k;
                //progerssbar settings
                int currentPercent = 0;
                int lastPercent = -1;
@@ -1575,7 +1575,7 @@ void MainWindow::on_comboBox_type_currentIndexChanged(int index)
     ui->comboBox_man->clear();
     ui->comboBox_name->clear();
     ui->comboBox_man->addItem("");
-    ui->comboBox_name->addItem("");    
+    ui->comboBox_name->addItem("");
     ui->jedecEdit->setText("");
     currentChipType = static_cast<uint8_t>(ui->comboBox_type->itemData(index).toInt());
 
@@ -1631,7 +1631,7 @@ void MainWindow::on_comboBox_type_currentIndexChanged(int index)
           ui->comboBox_page->addItem("16", 16);
        break;
        case 3:
-          //25xxx          
+          //25xxx
        case 4:
           //95xxx
           ui->comboBox_size->addItem("128 B", 128);
@@ -2244,7 +2244,7 @@ void MainWindow::on_actionExport_to_Intel_HEX_triggered()
          fileName = QFileDialog::getSaveFileName(this,
                                      QString(tr("Save file")),
                                      lastDirectory,
-                                     "Intel HEX Images (*.hex *.HEX);;All files (*.*)");         
+                                     "Intel HEX Images (*.hex *.HEX);;All files (*.*)");
          QFileInfo info(fileName);
          ui->statusMessage->setText("");
          lastDirectory = info.filePath();

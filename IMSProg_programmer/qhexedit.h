@@ -218,14 +218,14 @@ public:
 
 
     // User marking areas
-    
+
     /*! Adds a user defined marking area
     \param posStart Index position, where the area starts (including)
     \param posEnd Index position where the area ends (exluding)
     \param fontColor Color of the font used in user marking area
     \param areaStyle Color of the background in user marking area
-    There is no limit to the number of user areas. The areas are 
-    prioritized in the event of overlaps. The areas defined first 
+    There is no limit to the number of user areas. The areas are
+    prioritized in the event of overlaps. The areas defined first
     have priority over areas that follow later.
     */
     void addUserArea(qint64 posStart, qint64 posEnd, QColor fontColor, QBrush areaStyle);

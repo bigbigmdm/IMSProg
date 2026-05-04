@@ -23,13 +23,13 @@
 
 /*! The ColorManager class is responsible for color management
  *
- * Color management is combined in this class. The definitions for pen and background colors 
+ * Color management is combined in this class. The definitions for pen and background colors
  * are stored here.
- * 
- * This includes the standard colors for the address, hex data and ASCII data areas as well as 
- * the colors for the marking information. The areas for selection and highlighting are defined 
- * in advance. In addition, any number of user areas can be defined. 
- * 
+ *
+ * This includes the standard colors for the address, hex data and ASCII data areas as well as
+ * the colors for the marking information. The areas for selection and highlighting are defined
+ * in advance. In addition, any number of user areas can be defined.
+ *
  * The colors for a single area are provided by the ColoredArea class.
  */
 

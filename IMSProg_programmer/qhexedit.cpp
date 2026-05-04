@@ -183,24 +183,24 @@ void QHexEdit::setCursorPosition(qint64 position)
     int pxOfsX = horizontalScrollBar()->value();
     if (_readOnly)
         _cursorRect = QRect(
-            _pxCursorX - pxOfsX, 
-            _pxCursorY - _pxCharHeight + _pxSelectionSub, 
-            _pxCharWidth, 
+            _pxCursorX - pxOfsX,
+            _pxCursorY - _pxCharHeight + _pxSelectionSub,
+            _pxCharWidth,
             _pxCharHeight
         );
-    else 
+    else
         if (_overwriteMode)
             _cursorRect = QRect(
-                _pxCursorX - pxOfsX, 
-                _pxCursorY + _pxCursorWidth, 
-                _pxCharWidth, 
+                _pxCursorX - pxOfsX,
+                _pxCursorY + _pxCursorWidth,
+                _pxCharWidth,
                 _pxCursorWidth
             );
         else
             _cursorRect = QRect(
-                _pxCursorX - pxOfsX, 
-                _pxCursorY - _pxCharHeight + _pxSelectionSub, 
-                _pxCursorWidth, 
+                _pxCursorX - pxOfsX,
+                _pxCursorY - _pxCharHeight + _pxSelectionSub,
+                _pxCursorWidth,
                 _pxCharHeight
             );
 
@@ -862,26 +862,26 @@ void QHexEdit::paintEvent(QPaintEvent *event)
 
         // *** prepare background
         painter.fillRect(
-            event->rect(), 
+            event->rect(),
             viewport()->palette().color(QPalette::Base)
         );
         if (_addressArea)
             painter.fillRect(
                 QRect(
-                    -pxOfsX, 
-                    event->rect().top(), 
-                    _pxCharWidth * (_addrDigits + 1), 
+                    -pxOfsX,
+                    event->rect().top(),
+                    _pxCharWidth * (_addrDigits + 1),
                     height()
-                ), 
+                ),
                 _colorManager->notMarked(Area::Address).areaStyle()
             );
         if (_asciiArea)
         {
             painter.fillRect(
                 QRect(
-                    pxPosAsciiX2 - _pxAreaMargin, 
-                    event->rect().top(),  
-                    _pxCharWidth * _bytesPerLine  + 2 * _pxAreaMargin, 
+                    pxPosAsciiX2 - _pxAreaMargin,
+                    event->rect().top(),
+                    _pxCharWidth * _bytesPerLine  + 2 * _pxAreaMargin,
                     height()
                 ),
                 _colorManager->notMarked(Area::Ascii).areaStyle()
@@ -897,7 +897,7 @@ void QHexEdit::paintEvent(QPaintEvent *event)
             int pxPosAsciiX2 = _pxPosAsciiX  - pxOfsX;
 
             // *** address info
-            if (_addressArea && row * _bytesPerLine < _dataShown.size()) 
+            if (_addressArea && row * _bytesPerLine < _dataShown.size())
             {
                 QString address = QString("%1").arg(_bPosFirst + row*_bytesPerLine + _addressOffset, _addrDigits, 16, QChar('0'));
                 ColoredArea addressArea = _colorManager->notMarked(Area::Address);
@@ -916,16 +916,16 @@ void QHexEdit::paintEvent(QPaintEvent *event)
                 QRect rect;
                 if (colIdx == 0)
                     rect = QRect(
-                        pxPosX, 
-                        pxPosY - _pxCharHeight + _pxSelectionSub, 
-                        2*_pxCharWidth, 
+                        pxPosX,
+                        pxPosY - _pxCharHeight + _pxSelectionSub,
+                        2*_pxCharWidth,
                         _pxCharHeight
                     );
                 else
                     rect = QRect(
-                        pxPosX - _pxCharWidth, 
-                        pxPosY - _pxCharHeight + _pxSelectionSub, 
-                        3*_pxCharWidth, 
+                        pxPosX - _pxCharWidth,
+                        pxPosY - _pxCharHeight + _pxSelectionSub,
+                        3*_pxCharWidth,
                         _pxCharHeight
                     );
                 painter.fillRect(rect, hexArea.areaStyle());
