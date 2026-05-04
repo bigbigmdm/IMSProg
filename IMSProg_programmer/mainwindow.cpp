@@ -2839,13 +2839,13 @@ void MainWindow::receiveAddr4(QString addressData)
     QStringList resultOfForm;
 
     resultOfForm = addressData.split("-");
-    uint32_t startAddr, endAddr, lenght, fillingCode, typeOfEnd;
+    uint32_t startAddr, endAddr, length, fillingCode, typeOfEnd;
     startAddr =   hexToInt(resultOfForm[0]);
     endAddr =     hexToInt(resultOfForm[1]);
     fillingCode = hexToInt(resultOfForm[2]);
     typeOfEnd =   hexToInt(resultOfForm[3]);
     if (typeOfEnd == 1) endAddr = endAddr + startAddr;
-    lenght = endAddr - startAddr;
+    length = endAddr - startAddr;
 
     if (endAddr < startAddr)
     {

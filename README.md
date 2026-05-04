@@ -745,7 +745,7 @@ IMSProg_database_update/other/io.github.bigbigmdm.imsprog_database_update.metain
 
 IMSProg.Dat file structure:
 
-Chip string lenght: 0x44 (68) bytes;
+Chip string length: 0x44 (68) bytes;
 
 ```
 offset	 Size   Value
