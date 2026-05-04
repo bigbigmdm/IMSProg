@@ -1,5 +1,5 @@
 - Ver. 1.8.3 - Fix: If no chip is selected, the programmer was not detected,
-MACOS library compatibility, MACOS invalid pathes, libusb detection, udev
+MACOS library compatibility, MACOS invalid patches, libusb detection, udev
 rules install. Added: 2.5v VCC item, SPI NOR FLASH writing speed increased. The
 chip database update script, written in Bash, has been replaced with a Qt
 application so the Zenity package is no longer used.
@@ -43,7 +43,7 @@ MX25V8035F. Added I2C bus speed combobox to the main form.
 error message, wrong DataFlash chip names, wrong DataFlash chip status register
 reading. Added: Uninstall script, instructions for building under macOS,
 installation in Fedora.
-- Ver. 1.4.3 - Fix: On the GNOME desktop, programm does not respond when erasing
+- Ver. 1.4.3 - Fix: On the GNOME desktop, program does not respond when erasing
  SPI NOR FLASH. Fix: When erasing SPI NOR Flash, the progress bar is now
  displayed correctly. Fix: When erasing SPI NOR Flash, the STOP button now works
  correctly.
