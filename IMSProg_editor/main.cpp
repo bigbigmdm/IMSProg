@@ -9,20 +9,18 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     QCoreApplication::setApplicationName("imsprog");
-    QStringList allPaths = QStandardPaths::standardLocations(QStandardPaths::AppDataLocation);
-    QStringList foundPaths;
-
-    foreach (const QString &path, allPaths)
-    {
-        QString fullPath = path + "/chipProgrammer_de_DE.qm";
-        QFile datfile(fullPath);
-        if (QFileInfo(datfile).exists()) foundPaths << path;
-    }
-     // translation path is foundPaths.first();
-
     QTranslator translator;
     QString translateName = "chipEditor_" + QLocale::system().name();
-    if(translator.load(translateName, foundPaths.first())) a.installTranslator(&translator);
+    QStringList allPaths = QStandardPaths::standardLocations(QStandardPaths::AppDataLocation);
+
+    foreach (const QString &path, allPaths) {
+        //Instead of de_DE can be used any other. Idea is to check that the file is exists somewhere
+        //in QStandardPaths::standardLocations. All others can be find in the same folder
+        if (QFile::exists(path + "/chipProgrammer_de_DE.qm")) {
+            if(translator.load(translateName, path)) a.installTranslator(&translator);
+            break;
+        }
+    }
     MainWindow w;
     w.show();
 
