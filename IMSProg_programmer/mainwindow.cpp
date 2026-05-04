@@ -2009,11 +2009,11 @@ void MainWindow::progInit()
     QStringList allPaths = QStandardPaths::standardLocations(QStandardPaths::AppDataLocation);
     QDir binDir(QCoreApplication::applicationDirPath());
     QString binRelPath = QDir::cleanPath(binDir.absoluteFilePath("../share/" + QCoreApplication::applicationName()));
-    allPaths.insert(1, binRelPath);
+    allPaths.append(binRelPath);
     // allPaths is now
     // - user-specific directory
-    // - share directory relative to IMSProg executable
     // - standard locations
+    // - share directory relative to IMSProg executable
 
     // use the first chip database file found
     QFile datfile;
