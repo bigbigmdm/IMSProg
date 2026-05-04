@@ -64,7 +64,7 @@ static void initPaths()
 
     QDir binDir(QCoreApplication::applicationDirPath());
     QString binRelPath = QDir::cleanPath(binDir.absoluteFilePath("../share/" + QCoreApplication::applicationName()));
-    allPaths.insert(1, binRelPath);
+    allPaths.append(binRelPath);
 
     QDir userAppDataLocation(allPaths.at(0));
     if (!userAppDataLocation.exists()) {
