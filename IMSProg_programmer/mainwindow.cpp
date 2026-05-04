@@ -2069,7 +2069,7 @@ void MainWindow::progInit()
                  j++;
              }
              if (txtBuf[1] == 0x00) break;
-             chips[recNo].chipTypeTxt = QByteArray::fromRawData(txtBuf, 0x30);
+             chips[recNo].chipTypeTxt = QByteArray::fromRawData(txtBuf, j);
          for (i=0; i<0x30; i++)
              {
                  txtBuf[i] = 0;
@@ -2082,7 +2082,7 @@ void MainWindow::progInit()
              j++;
              i++;
          }
-             chips[recNo].chipManuf = QByteArray::fromRawData(txtBuf, 0x30);
+             chips[recNo].chipManuf = QByteArray::fromRawData(txtBuf, i);
              for (i=0; i<0x30; i++)
                  {
                      txtBuf[i] = 0;
@@ -2095,7 +2095,7 @@ void MainWindow::progInit()
                  j++;
                  i++;
              }
-             chips[recNo].chipName = QByteArray::fromRawData(txtBuf, 0x30);
+             chips[recNo].chipName = QByteArray::fromRawData(txtBuf, i);
              chips[recNo].chipJedecIDMan = static_cast<uint8_t>(dataChips[recNo * 0x44 + 0x32]);
              chips[recNo].chipJedecIDDev = static_cast<uint8_t>(dataChips[recNo * 0x44 + 0x31]);
              chips[recNo].chipJedecIDCap = static_cast<uint8_t>(dataChips[recNo * 0x44 + 0x30]);
