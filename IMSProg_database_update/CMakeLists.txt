@@ -35,7 +35,10 @@ list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 #set(OPENSSL_USE_STATIC_LIBS OFF CACHE BOOL "" FORCE)
 #set(OPENSSL_ROOT_DIR "/usr/include")
 
-find_package(Qt5 REQUIRED COMPONENTS Core Widgets LinguistTools Network)
+find_package(Qt6 REQUIRED COMPONENTS Core Widgets Linguist Network)
+
+qt_standard_project_setup(REQUIRES 6.8
+    I18N_TRANSLATED_LANGUAGES ru de es cn tw ua hu br it)
 
 # Translation files
 set(TS_FILES
@@ -50,22 +53,22 @@ set(TS_FILES
     language/chipUpdater_it_IT.ts
 )
 
+qt_add_executable(${PROJECT_NAME}
+    main.cpp
+    mainwindow.cpp
+    mainwindow.h
+    mainwindow.ui
+    resource.qrc
+    ${QM_FILES}
+)
+
 qt_add_translation(QM_FILES ${TS_FILES})
 add_custom_target(translations2 DEPENDS ${QM_FILES})
 
-add_executable(${PROJECT_NAME}
-main.cpp
-mainwindow.cpp
-mainwindow.h
-mainwindow.ui
-resource.qrc
-${QM_FILES}
-        )
-
 target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
-target_link_libraries(${PROJECT_NAME} Qt::Core)
-target_link_libraries(${PROJECT_NAME} Qt::Widgets)
-target_link_libraries(${PROJECT_NAME} Qt::Network)
+target_link_libraries(${PROJECT_NAME} PRIVATE Qt::Core)
+target_link_libraries(${PROJECT_NAME} PRIVATE Qt::Widgets)
+target_link_libraries(${PROJECT_NAME} PRIVATE Qt::Network)
 
 install(TARGETS ${PROJECT_NAME} DESTINATION ${CMAKE_INSTALL_BINDIR})
 

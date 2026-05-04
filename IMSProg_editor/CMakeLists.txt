@@ -11,11 +11,11 @@ project(IMSProg_editor LANGUAGES CXX)
 # Set the CMAKE_INSTALL_PREFIX to /usr if not specified and /usr/local for macOS
 if (CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
   if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
-      set(CMAKE_INSTALL_PREFIX "/usr/local" CACHE PATH "The default install prefix on macOS" FORCE)
+    set(CMAKE_INSTALL_PREFIX "/usr/local" CACHE PATH "The default install prefix on macOS" FORCE)
   # Set Qt5 path for macOS
-        set(CMAKE_PREFIX_PATH "${CMAKE_INSTALL_PREFIX}/opt/qt@5" CACHE PATH "Path to Qt5 on macOS" FORCE)
+    set(CMAKE_PREFIX_PATH "${CMAKE_INSTALL_PREFIX}/opt/qt@5" CACHE PATH "Path to Qt5 on macOS" FORCE)
   else()
-      set(CMAKE_INSTALL_PREFIX "/usr" CACHE PATH "The default install prefix" FORCE)
+    set(CMAKE_INSTALL_PREFIX "/usr" CACHE PATH "The default install prefix" FORCE)
   endif()
 endif()
 
@@ -31,44 +31,46 @@ endif()
 
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 
-find_package(Qt5 REQUIRED COMPONENTS Core Widgets LinguistTools)
+find_package(Qt6 REQUIRED COMPONENTS Core Widgets Linguist)
+
+qt_standard_project_setup(REQUIRES 6.8
+  I18N_TRANSLATED_LANGUAGES ru de es cn tw ua hu br it)
 
 # Translation files
 set(TS_FILES
-    language/chipEditor_ru_RU.ts
-    language/chipEditor_de_DE.ts
-    language/chipEditor_es_ES.ts
-    language/chipEditor_zh_CN.ts
-    language/chipEditor_zh_TW.ts
-    language/chipEditor_uk_UA.ts
-    language/chipEditor_hu_HU.ts
-    language/chipEditor_pt_BR.ts
-    language/chipEditor_it_IT.ts
+  language/chipEditor_ru_RU.ts
+  language/chipEditor_de_DE.ts
+  language/chipEditor_es_ES.ts
+  language/chipEditor_zh_CN.ts
+  language/chipEditor_zh_TW.ts
+  language/chipEditor_uk_UA.ts
+  language/chipEditor_hu_HU.ts
+  language/chipEditor_pt_BR.ts
+  language/chipEditor_it_IT.ts
+)
+
+qt_add_executable(${PROJECT_NAME}
+  ezp_chip_editor.h
+  ezp_chip_editor.cpp
+  ezp_chip_editor.ui
+  main.cpp
+  delegates.h
+  delegates.cpp
+  resources.qrc
+  ${QM_FILES}
 )
 
 qt_add_translation(QM_FILES ${TS_FILES})
 add_custom_target(translations1 DEPENDS ${QM_FILES})
 
-add_executable(${PROJECT_NAME}
-        ezp_chip_editor.h
-        ezp_chip_editor.cpp
-        ezp_chip_editor.ui
-        main.cpp
-        delegates.h
-        delegates.cpp
-        resources.qrc
-        ${QM_FILES}
-        )
-
-
 target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
-target_link_libraries(${PROJECT_NAME} Qt::Core)
-target_link_libraries(${PROJECT_NAME} Qt::Widgets)
+target_link_libraries(${PROJECT_NAME} PRIVATE Qt::Core)
+target_link_libraries(${PROJECT_NAME} PRIVATE Qt::Widgets)
 
 install(TARGETS ${PROJECT_NAME} DESTINATION ${CMAKE_INSTALL_BINDIR})
 
 if(NOT ${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
-        install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/other/IMSProg_editor.desktop" DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/applications")
+  install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/other/IMSProg_editor.desktop" DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/applications")
 endif()
 
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/img/chipEdit64.png" DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/pixmaps")

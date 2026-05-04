@@ -21,11 +21,11 @@ get_filename_component(PROJECT_ROOT "${CMAKE_CURRENT_SOURCE_DIR}/.." ABSOLUTE)
 # Set the CMAKE_INSTALL_PREFIX to /usr if not specified
 if (CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
   if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
-      set(CMAKE_INSTALL_PREFIX "/usr/local" CACHE PATH "The default install prefix on macOS" FORCE)
+    set(CMAKE_INSTALL_PREFIX "/usr/local" CACHE PATH "The default install prefix on macOS" FORCE)
   # Set Qt5 path for macOS
-        set(CMAKE_PREFIX_PATH "${CMAKE_INSTALL_PREFIX}/opt/qt@5" CACHE PATH "Path to Qt5 on macOS" FORCE)
+      set(CMAKE_PREFIX_PATH "${CMAKE_INSTALL_PREFIX}/opt/qt@5" CACHE PATH "Path to Qt5 on macOS" FORCE)
   else()
-      set(CMAKE_INSTALL_PREFIX "/usr" CACHE PATH "The default install prefix" FORCE)
+    set(CMAKE_INSTALL_PREFIX "/usr" CACHE PATH "The default install prefix" FORCE)
   endif()
 endif()
 
@@ -46,7 +46,10 @@ endif()
 
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 
-find_package(Qt5 REQUIRED COMPONENTS Core Widgets LinguistTools)
+find_package(Qt6 REQUIRED COMPONENTS Core Widgets Linguist)
+
+qt_standard_project_setup(REQUIRES 6.8
+    I18N_TRANSLATED_LANGUAGES ru de es cn tw ua hu br it)
 
 if(NOT ${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 set(UDEVDIR "/usr/lib/udev")
@@ -71,114 +74,112 @@ find_package(PkgConfig)
   endif()
 endif()
 endif()
-
 # Translation files
 set(TS_FILES
-    language/chipProgrammer_ru_RU.ts
-    language/chipProgrammer_de_DE.ts
-    language/chipProgrammer_es_ES.ts
-    language/chipProgrammer_zh_CN.ts
-    language/chipProgrammer_zh_TW.ts
-    language/chipProgrammer_uk_UA.ts
-    language/chipProgrammer_hu_HU.ts
-    language/chipProgrammer_pt_BR.ts
-    language/chipProgrammer_it_IT.ts
+  language/chipProgrammer_ru_RU.ts
+  language/chipProgrammer_de_DE.ts
+  language/chipProgrammer_es_ES.ts
+  language/chipProgrammer_zh_CN.ts
+  language/chipProgrammer_zh_TW.ts
+  language/chipProgrammer_uk_UA.ts
+  language/chipProgrammer_hu_HU.ts
+  language/chipProgrammer_pt_BR.ts
+  language/chipProgrammer_it_IT.ts
+)
+
+qt_add_executable(${PROJECT_NAME}
+  main.cpp
+  mainwindow.cpp
+  qhexedit.cpp
+  chunks.cpp
+  commands.cpp
+  dialogbbm.cpp
+  dialogsp.cpp
+  dialogrp.cpp
+  dialogsfdp.cpp
+  dialognandsr.cpp
+  dialogsecurity.cpp
+  dialognandsecurity.cpp
+  dialogcompare.cpp
+  dialogsr.cpp
+  dialogsetaddr.cpp
+  dialogfill.cpp
+  hexutility.cpp
+  searchdialog.cpp
+  dialoginfo.cpp
+  bitbang_microwire.c
+  ch341a_gpio.c
+  ch341a_spi.c
+  ch34x_i2c.c
+  ch347.c
+  color_manager.cpp
+  flashcmd_api.c
+  mw_eeprom.c
+  spi_controller.c
+  spi_nor_flash.c
+  timer.c
+  dialogabout.cpp
+  mainwindow.h
+  qhexedit.h
+  chunks.h
+  commands.h
+  color_manager.h
+  dialogbbm.h
+  dialogsp.h
+  dialogrp.h
+  dialogsfdp.h
+  dialogsecurity.h
+  dialognandsecurity.h
+  dialognandsr.h
+  dialogcompare.h
+  dialogsr.h
+  dialoginfo.h
+  dialogsetaddr.h
+  dialogfill.h
+  hexutility.h
+  searchdialog.h
+  bitbang_microwire.h
+  ch341a_gpio.h
+  ch341a_spi.h
+  ch34x_i2c.h
+  ch347.h
+  flashcmd_api.h
+  mw_eeprom_api.h
+  nandcmd_api.h
+  res.h
+  snorcmd_api.h
+  spi_controller.h
+  spi_eeprom_api.h
+  timer.h
+  types.h
+  dialogabout.h
+  mainwindow.ui
+  dialogbbm.ui
+  dialogsp.ui
+  dialogrp.ui
+  dialogsfdp.ui
+  dialognandsr.ui
+  dialogsecurity.ui
+  dialognandsecurity.ui
+  dialogcompare.ui
+  dialogsr.ui
+  dialogsetaddr.ui
+  dialoginfo.ui
+  dialogfill.ui
+  searchdialog.ui
+  dialogabout.ui
+  recource.qrc
+  ${QM_FILES}
 )
 
 qt_add_translation(QM_FILES ${TS_FILES})
 add_custom_target(translations DEPENDS ${QM_FILES})
 
-add_executable(${PROJECT_NAME}
-
-main.cpp
-mainwindow.cpp
-qhexedit.cpp
-chunks.cpp
-commands.cpp
-dialogbbm.cpp
-dialogsp.cpp
-dialogrp.cpp
-dialogsfdp.cpp
-dialognandsr.cpp
-dialogsecurity.cpp
-dialognandsecurity.cpp
-dialogcompare.cpp
-dialogsr.cpp
-dialogsetaddr.cpp
-dialogfill.cpp
-hexutility.cpp
-searchdialog.cpp
-dialoginfo.cpp
-bitbang_microwire.c
-ch341a_gpio.c
-ch341a_spi.c
-ch34x_i2c.c
-ch347.c
-color_manager.cpp
-flashcmd_api.c
-mw_eeprom.c
-spi_controller.c
-spi_nor_flash.c
-timer.c
-dialogabout.cpp
-mainwindow.h
-qhexedit.h
-chunks.h
-commands.h
-color_manager.h
-dialogbbm.h
-dialogsp.h
-dialogrp.h
-dialogsfdp.h
-dialogsecurity.h
-dialognandsecurity.h
-dialognandsr.h
-dialogcompare.h
-dialogsr.h
-dialoginfo.h
-dialogsetaddr.h
-dialogfill.h
-hexutility.h
-searchdialog.h
-bitbang_microwire.h
-ch341a_gpio.h
-ch341a_spi.h
-ch34x_i2c.h
-ch347.h
-flashcmd_api.h
-mw_eeprom_api.h
-nandcmd_api.h
-res.h
-snorcmd_api.h
-spi_controller.h
-spi_eeprom_api.h
-timer.h
-types.h
-dialogabout.h
-mainwindow.ui
-dialogbbm.ui
-dialogsp.ui
-dialogrp.ui
-dialogsfdp.ui
-dialognandsr.ui
-dialogsecurity.ui
-dialognandsecurity.ui
-dialogcompare.ui
-dialogsr.ui
-dialogsetaddr.ui
-dialoginfo.ui
-dialogfill.ui
-searchdialog.ui
-dialogabout.ui
-recource.qrc
-${QM_FILES}
-)
-
 target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 target_include_directories(${PROJECT_NAME} PRIVATE ${LIBUSB_INCLUDE_DIRS})
-target_link_libraries(${PROJECT_NAME} Qt::Core)
-target_link_libraries(${PROJECT_NAME} Qt::Widgets)
-target_link_libraries(${PROJECT_NAME} ${LIBUSB_LIBRARIES})
+target_link_libraries(${PROJECT_NAME} PRIVATE Qt6::Core)
+target_link_libraries(${PROJECT_NAME} PRIVATE Qt6::Widgets)
+target_link_libraries(${PROJECT_NAME} PRIVATE ${LIBUSB_LIBRARIES})
 
 install(TARGETS ${PROJECT_NAME} DESTINATION ${CMAKE_INSTALL_BINDIR})
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/img/IMSProg64.png" DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/pixmaps")
