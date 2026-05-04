@@ -47,10 +47,6 @@ static QString setUpTranslation(const QStringList &searchPaths)
 static void initPaths()
 {
     QStringList allPaths = QStandardPaths::standardLocations(QStandardPaths::AppDataLocation);
-    if (allPaths.isEmpty()) {
-        // do not translate
-        qFatal("Critical error: QStandardPaths::standardLocations(QStandardPaths::AppDataLocation): empty list");
-    }
 
     QDir binDir(QCoreApplication::applicationDirPath());
     QString binRelPath = QDir::cleanPath(binDir.absoluteFilePath("../share/" + QCoreApplication::applicationName()));
