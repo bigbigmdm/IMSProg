@@ -9,17 +9,16 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     QCoreApplication::setApplicationName("imsprog");
-        QStringList allPaths = QStandardPaths::standardLocations(QStandardPaths::AppDataLocation);
-        QStringList foundPaths;
+    QStringList allPaths = QStandardPaths::standardLocations(QStandardPaths::AppDataLocation);
+    QStringList foundPaths;
 
-        foreach (const QString &path, allPaths)
-        {
-            QString fullPath = path + "/chipProgrammer_de_DE.qm";
-            QFile datfile(fullPath);
-            if (QFileInfo(datfile).exists()) foundPaths << path;
-        }
-
-         // translation path is foundPaths.first();
+    foreach (const QString &path, allPaths)
+    {
+        QString fullPath = path + "/chipProgrammer_de_DE.qm";
+        QFile datfile(fullPath);
+        if (QFileInfo(datfile).exists()) foundPaths << path;
+    }
+     // translation path is foundPaths.first();
 
     QTranslator translator;
     QString translateName = "chipEditor_" + QLocale::system().name();
