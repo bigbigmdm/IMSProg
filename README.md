@@ -745,7 +745,7 @@ IMSProg_database_update/other/io.github.bigbigmdm.imsprog_database_update.metain
 
 IMSProg.Dat file structure:
 
-Chip string lenght: 0x44 (68) bytes;
+Chip string length: 0x44 (68) bytes;
 
 ```
 offset	 Size   Value
@@ -767,7 +767,7 @@ offset	 Size   Value
                 - 0x03 - 25xxx SPI EEPROM
                 - 0x04 - 95xxx ST SPI EEPROM
                 - 0x05 - AT45DBxxx SPI EEPROM
-3B        1     Algoritm code number:
+3B        1     Algorithm code number:
                 - SPI NOR Flash always 0x00
                 - I2C (24xxx) 0x?1 - address size 1 byte 
                 - I2C (24xxx) 0x?2 - address size 2 bytes 
