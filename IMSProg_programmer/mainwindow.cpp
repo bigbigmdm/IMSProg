@@ -2003,10 +2003,17 @@ void MainWindow::on_actionChip_info_triggered()
 
 void MainWindow::progInit()
 {
-    int index2;
+int index2;
     ui->statusMessage->setText(tr("Opening DAT file"));
 
     QStringList allPaths = QStandardPaths::standardLocations(QStandardPaths::AppDataLocation);
+    QDir binDir(QCoreApplication::applicationDirPath());
+    QString binRelPath = QDir::cleanPath(binDir.absoluteFilePath("../share/" + QCoreApplication::applicationName()));
+    allPaths.insert(1, binRelPath);
+    // allPaths is now
+    // - user-specific directory
+    // - share directory relative to IMSProg executable
+    // - standard locations
 
     // use the first chip database file found
     QFile datfile;
