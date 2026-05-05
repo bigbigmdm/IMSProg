@@ -164,8 +164,10 @@ void MainWindow::on_actionOpen_triggered()
              chips[recNo].delay = QString::number(delay);
              tmpBuf = data[recNo * 0x44 + 0x3e];
              chips[recNo].extend = "0x" + bytePrint(tmpBuf);
-             tmpBuf = data[recNo * 0x44 + 0x40];
+             tmpBuf = data[recNo * 0x44 + 0x3f];
              chips[recNo].eeprom = "0x" + bytePrint(tmpBuf);
+             tmpBuf = data[recNo * 0x44 + 0x40];
+             chips[recNo].eeprom =chips[recNo].eeprom + bytePrint(tmpBuf);
              tmpBuf = data[recNo * 0x44 + 0x42];
              chips[recNo].eepromPages = "0x" + bytePrint(tmpBuf);
              tmpBuf = data[recNo * 0x44 + 0x43];
@@ -300,7 +302,7 @@ void MainWindow::on_actionSave_triggered()
     {
        ui->tableView->update();
        rowCount = ui->tableView->model()->rowCount();
-       toSave.resize(0x44 * rowCount);
+       toSave.resize(0x44 * (rowCount + 1));
        toSave.fill(0x00);
        for (recNo = 0; recNo < rowCount; recNo++)
        {
@@ -379,30 +381,35 @@ void MainWindow::on_actionSave_triggered()
        }
       }
 
-       for (recNo = 0; recNo < rowCount; recNo++)
+       //for (recNo = 0; recNo < rowCount-1; recNo++)
+      recNo = 0;
+      while (recNo < rowCount)
        {
-           QByteArray ba = chips[recNo].chipTypeTxt.toLocal8Bit();
+           QByteArray ba = chips[recNo].chipTypeTxt.toUtf8();
            for (i = 0; i < ba.size(); i++)
            {
                toSave[recNo * 0x44 + i] = ba[i];
            }
+qDebug()<<"Type";
            toSave[recNo * 0x44 + i] = ',';
            i++;
            j = i;
-           ba = chips[recNo].chipManuf.toLocal8Bit();
-           for (i = 0; i < ba.size(); i++)
+           QByteArray bb = chips[recNo].chipManuf.toUtf8();
+           for (i = 0; i < bb.size(); i++)
            {
-               toSave[recNo * 0x44 + j] = ba[i];
+               toSave[recNo * 0x44 + j] = bb[i];
                j++;
            }
+qDebug()<<"Manuf";
            toSave[recNo * 0x44 + j] = ',';
            j++;
-           ba = chips[recNo].chipName.toLocal8Bit();
-           for (i = 0; i < ba.size(); i++)
+           QByteArray bc = chips[recNo].chipName.toUtf8();
+           for (i = 0; i < bc.size(); i++)
            {
-               toSave[recNo * 0x44 + j] = ba[i];
+               toSave[recNo * 0x44 + j] = bc[i];
                j++;
            }
+qDebug()<<"Name"<<recNo;
            //next bytes
            tmpStr = chips[recNo].chipJedecID;
            if ((tmpStr[0] == '0') && (tmpStr[1] == 'x'))
@@ -451,13 +458,14 @@ void MainWindow::on_actionSave_triggered()
            tmpStr = chips[recNo].extend;
            if ((tmpStr[0] == '0') && (tmpStr[1] == 'x'))
            {
-           toSave[recNo * 0x44 + 0x3E] = dualDigitToByte(tmpStr, 0);
+           toSave[recNo * 0x44 + 0x3e] = dualDigitToByte(tmpStr, 0);
            }
-           toSave[recNo * 0x44 + 0x3f] = 0x00;
+
            tmpStr = chips[recNo].eeprom;
            if ((tmpStr[0] == '0') && (tmpStr[1] == 'x'))
            {
-           toSave[recNo * 0x44 + 0x40] = dualDigitToByte(tmpStr, 0);
+           toSave[recNo * 0x44 + 0x3f] = dualDigitToByte(tmpStr, 0);
+           toSave[recNo * 0x44 + 0x40] = dualDigitToByte(tmpStr, 1);
            }
            toSave[recNo * 0x44 + 0x41] = 0x00;
            tmpStr = chips[recNo].eepromPages;
@@ -473,6 +481,7 @@ void MainWindow::on_actionSave_triggered()
                if(tmpStr.compare("1.8 V")==0)  toSave[recNo * 0x44 + 0x43] = 0x01;
                if(tmpStr.compare("2.5 V")==0)  toSave[recNo * 0x44 + 0x43] = 0x03;
            }
+           recNo++;
        }
        // 0x44 zero bytes
           for (i = 0; i < 0x44; i++ )
