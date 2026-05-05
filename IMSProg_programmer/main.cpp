@@ -57,14 +57,19 @@ static QString findSystemChipDBFile(const QStringList &searchPaths)
 static void initPaths()
 {
     QStringList allPaths = QStandardPaths::standardLocations(QStandardPaths::AppDataLocation);
+    if (allPaths.isEmpty()) {
+        // do not translate
+        qFatal("Critical error: QStandardPaths::standardLocations(QStandardPaths::AppDataLocation): empty list");
+    }
 
-    QDir userAppDataLocation(allPaths.at(0));
+    QDir binDir(QCoreApplication::applicationDirPath());
+    QString binRelPath = QDir::cleanPath(binDir.absoluteFilePath("../share/" + QCoreApplication::applicationName()));
+    allPaths.insert(1, binRelPath);
+
+    QDir userAppDataLocation(allPaths.value(0));
     if (!userAppDataLocation.exists()) {
-        if (!userAppDataLocation.mkpath(".")) qDebug() << "Can't make " << userAppDataLocation.absolutePath();
-        else {
-            qDebug() << "Ini path " << userAppDataLocation.filePath("config.ini");
-            qDebug() << "User database path " << userAppDataLocation.filePath("IMSProg.Dat");
-        }
+        userAppDataLocation.mkpath(".");
+        // XXX some sort of error handling that befits the application
     }
 
     qApp->setProperty("app/translationDirectory", setUpTranslation(allPaths));

@@ -46,20 +46,24 @@ static QString setUpTranslation(const QStringList &searchPaths)
 
 static void initPaths()
 {
-    QStringList allPaths = QStandardPaths::standardLocations(QStandardPaths::AppDataLocation);
+    QStringList allPaths = QStandardPaths::standardLocations(QStandardPaths::AppDataLocation);    
+    QDir binDir(QCoreApplication::applicationDirPath());
+    QString binRelPath = QDir::cleanPath(binDir.absoluteFilePath("../share/" + QCoreApplication::applicationName()));
+    allPaths.append(binRelPath);
+
     QDir userAppDataLocation(allPaths.at(0));
     if (!userAppDataLocation.exists()) {
-        if (!userAppDataLocation.mkpath(".")) qDebug() << "Can't make " << userAppDataLocation.absolutePath();
-        else {
-            qDebug() << "Ini path " << userAppDataLocation.filePath("config.ini");
-            qDebug() << "User database path " << userAppDataLocation.filePath("IMSProg.Dat");
+		userAppDataLocation.mkpath(".");
+        // XXX some sort of error handling that befits the application
         }
-    }
 
     qApp->setProperty("app/translationDirectory", setUpTranslation(allPaths));
     qApp->setProperty("app/userChipDatabaseFile", userAppDataLocation.filePath("IMSProg.Dat"));
     qApp->setProperty("app/userConfigFile", userAppDataLocation.filePath("config.ini"));
     qApp->setProperty("app/urlDataFile", "https://antenna-dvb-t2.ru/dl_all/IMSProg.Dat");
+
+    qDebug() << "Ini path " << userAppDataLocation.filePath("config.ini");
+    qDebug() << "User database path " << userAppDataLocation.filePath("IMSProg.Dat");
 }
 
 int main(int argc, char *argv[])
