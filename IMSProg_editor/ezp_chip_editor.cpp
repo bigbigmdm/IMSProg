@@ -1,7 +1,7 @@
 /*
  * This file is part of the IMSProg_Editor project.
  *
- * Copyright (C) 2023-2025 Mikhail Medvedev (e-ink-reader@yandex.ru)
+ * Copyright (C) 2023-2026 Mikhail Medvedev (e-ink-reader@yandex.ru)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -390,7 +390,6 @@ void MainWindow::on_actionSave_triggered()
            {
                toSave[recNo * 0x44 + i] = ba[i];
            }
-qDebug()<<"Type";
            toSave[recNo * 0x44 + i] = ',';
            i++;
            j = i;
@@ -400,7 +399,6 @@ qDebug()<<"Type";
                toSave[recNo * 0x44 + j] = bb[i];
                j++;
            }
-qDebug()<<"Manuf";
            toSave[recNo * 0x44 + j] = ',';
            j++;
            QByteArray bc = chips[recNo].chipName.toUtf8();
@@ -409,7 +407,6 @@ qDebug()<<"Manuf";
                toSave[recNo * 0x44 + j] = bc[i];
                j++;
            }
-qDebug()<<"Name"<<recNo;
            //next bytes
            tmpStr = chips[recNo].chipJedecID;
            if ((tmpStr[0] == '0') && (tmpStr[1] == 'x'))
