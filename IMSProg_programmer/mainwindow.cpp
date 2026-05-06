@@ -2485,8 +2485,8 @@ void MainWindow::on_actionFill_test_image_triggered()
 void MainWindow::on_actionCompare_files_triggered()
 {
     DialogCompare* compDialog = new DialogCompare(this);
-    compDialog->show();
     compDialog->showArrays(&chipData, &oldChipData, &newFileName, &oldFileName);
+    compDialog->show();
 }
 
 void MainWindow::preparingToCompare(bool type)
