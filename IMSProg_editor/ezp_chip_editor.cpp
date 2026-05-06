@@ -37,17 +37,19 @@ MainWindow::~MainWindow()
 }
 void MainWindow::on_actionOpen_triggered()
 {
-    QString fileName, benchmarkDataFile, currentPath;
+    QString fileName, currentPath, userPath, systemPath;
     char txtBuf[0x30];
-    benchmarkDataFile = "/usr/share/imsprog/IMSProg.Dat";
-    QFileInfo check_benchmarkDataFile(benchmarkDataFile);
+    userPath = qApp->property("app/userChipDatabaseFile").toString();
+    systemPath = qApp->property("app/systemChipDatabaseFile").toString();
+    defaultPath = QDir::homePath();
+   // QFileInfo check_benchmarkDataFile(benchmarkDataFile);
     int i, j, recNo, dataPoz, dataSize, chipSize, blockSize, delay, rowCount;
     unsigned char chipSizeCode, chipID, manCode, tmpBuf;
-    defaultPath = QDir::homePath() + "/.local/share/imsprog/";
     // if ~//.local/share/imsprog/ is not exists opening file from /usr/share/imsprog/
-    if (!QDir(defaultPath).exists())  currentPath = benchmarkDataFile;
+    if (QFile::exists(userPath))  currentPath = userPath;
+    else if (QFile::exists(systemPath)) currentPath = systemPath;
     else currentPath = defaultPath;
-
+    defaultPath = currentPath;
     ui->statusBar->showMessage(tr("Open the file"));
     fileName = QFileDialog::getOpenFileName(this,
                                 QString(tr("Open the file")),
