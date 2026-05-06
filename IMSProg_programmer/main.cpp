@@ -16,6 +16,7 @@
 #include <QApplication>
 #include <QFile>
 #include <QDir>
+#include <QDebug>
 #include <QStandardPaths>
 #include <QTranslator>
 
@@ -87,6 +88,7 @@ int main(int argc, char *argv[])
     font.setStyleHint(QFont::TypeWriter);
     font.setPointSize(12);
     QApplication::setFont(font);
+    qDebug() << "Used Qt version:" << QT_VERSION_STR;
     QApplication a(argc, argv);
     initPaths();
 

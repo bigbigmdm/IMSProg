@@ -2,6 +2,7 @@
 #include <QApplication>
 #include <QTranslator>
 #include <QLocale>
+#include <QDebug>
 #include <QFileInfo>
 #include <QStandardPaths>
 
@@ -17,10 +18,15 @@ int main(int argc, char *argv[])
         //Instead of de_DE can be used any other. Idea is to check that the file is exists somewhere
         //in QStandardPaths::standardLocations. All others can be find in the same folder
         if (QFile::exists(path + "/chipProgrammer_de_DE.qm")) {
-            if(translator.load(translateName, path)) a.installTranslator(&translator);
+            if(translator.load(translateName, path)) 
+            {
+                a.installTranslator(&translator);
+                qDebug() << "Installed" << translateName << "from" << path;
+            }
             break;
         }
     }
+    qDebug() << "Used Qt version:" << QT_VERSION_STR;
     MainWindow w;
     w.show();
 

@@ -68,11 +68,11 @@ static void initPaths()
 
 int main(int argc, char *argv[])
 {
+	qDebug() << "Used Qt version:" << QT_VERSION_STR;
     qDebug() << "SSL support:" << QSslSocket::supportsSsl();
     qDebug() << "Build version:" << QSslSocket::sslLibraryBuildVersionString();
     qDebug() << "Runtime version:" << QSslSocket::sslLibraryVersionString();
 
-    QApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
     QApplication a(argc, argv);
     QCoreApplication::setApplicationName("imsprog");
     QFont font("Monospace");
