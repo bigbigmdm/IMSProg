@@ -42,7 +42,7 @@ void DialogSR::on_pushButton_read_clicked()
     int retval;
     int stCH341 = 0;
     buf = (uint8_t *)malloc(2);
-    stCH341 = ProgDeviceInit( programmerType, 3, 1 );
+    stCH341 = ProgDeviceInit(programmerType, 3, 1);
     if (stCH341 == 0)
         {
            SPI_CONTROLLER_Chip_Select_Low(programmerType);
@@ -65,7 +65,7 @@ void DialogSR::on_pushButton_read_clicked()
             ui->lineEdit_sr02->setText(QString::number(((buf[0] & 4) >> 2)));
             ui->lineEdit_sr01->setText(QString::number(((buf[0] & 2) >> 1)));
             ui->lineEdit_sr00->setText(QString::number((buf[0] & 1)));
-            ProgDeviceClose( programmerType );
+            ProgDeviceClose(programmerType);
             regReaded = true;
        }
     else QMessageBox::about(this, tr("Error"), tr("Programmer ") + programmerName + tr(" is not connected!"));
@@ -76,7 +76,7 @@ void DialogSR::on_pushButton_write_clicked()
     //WRITING STATUS REGISTER
     uint8_t r0 = 0;
     int stCH341 = 0;
-    stCH341 = ProgDeviceInit( programmerType, 3, 1 );
+    stCH341 = ProgDeviceInit(programmerType, 3, 1);
     if (stCH341 == 0)
         {
            if (regReaded)
@@ -111,12 +111,12 @@ void DialogSR::on_pushButton_write_clicked()
          }
 
     else QMessageBox::about(this, tr("Error"), tr("Programmer ") + programmerName + tr(" is not connected!"));
-    ProgDeviceClose( programmerType );
+    ProgDeviceClose(programmerType);
 }
 
 void DialogSR::setLineEditFilter()
 {
-    QRegularExpression reHex( "[0-1]{1}" );
+    QRegularExpression reHex("[0-1]{1}");
     QRegularExpressionValidator *validator = new QRegularExpressionValidator(reHex, this);
     ui->lineEdit_sr00->setValidator(validator);
     ui->lineEdit_sr01->setValidator(validator);

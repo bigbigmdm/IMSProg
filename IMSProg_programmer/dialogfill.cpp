@@ -26,8 +26,8 @@ DialogFill::DialogFill(QWidget *parent) :
 {
     ui->setupUi(this);
     setWindowFlags(Qt::Window| Qt::WindowMinimizeButtonHint | Qt::WindowCloseButtonHint);
-    QRegularExpression reHex( "[A-Fa-f0-9]{1,8}" );
-    QRegularExpression codeHex( "[A-Fa-f0-9]{1,2}" );
+    QRegularExpression reHex("[A-Fa-f0-9]{1,8}");
+    QRegularExpression codeHex("[A-Fa-f0-9]{1,2}");
     QRegularExpressionValidator *validator = new QRegularExpressionValidator(reHex, this);
     QRegularExpressionValidator *valCode = new QRegularExpressionValidator(codeHex, this);
     ui->lineEditStart->setValidator(validator);

@@ -121,7 +121,7 @@ void DialogSecurity::on_toolButton_read_clicked()
         int stCH341 = 0;
         uint8_t curRegister = static_cast<uint8_t>(ui->comboBox_regnum->currentData().toUInt());
         curRegister--;
-        stCH341 = ProgDeviceInit( programmerType, 0, 1 );
+        stCH341 = ProgDeviceInit(programmerType, 0, 1);
         if (stCH341 == 0)
         {
            if (curRegister == 0) curRgAddr = curSettings.rg0addr;
@@ -181,7 +181,7 @@ void DialogSecurity::on_toolButton_read_clicked()
 
         }
         else QMessageBox::about(this, tr("Error"), tr("Programmer ") + programmerName + tr(" is not connected!"));
-       ProgDeviceClose( programmerType );
+       ProgDeviceClose(programmerType);
     }
 }
 
@@ -197,7 +197,7 @@ void DialogSecurity::on_toolButton_write_clicked()
         int stCH341 = 0;
         uint8_t curRegister = static_cast<uint8_t>(ui->comboBox_regnum->currentData().toUInt());
         curRegister--;
-        stCH341 = ProgDeviceInit( programmerType, 0, 1 );
+        stCH341 = ProgDeviceInit(programmerType, 0, 1);
         if (stCH341 == 0)
         {
            if (curRegister == 0) curRgAddr = curSettings.rg0addr;
@@ -292,7 +292,7 @@ void DialogSecurity::on_toolButton_write_clicked()
 
         }
         else QMessageBox::about(this, tr("Error"), tr("Programmer ") + programmerName + tr(" is not connected!"));
-         ProgDeviceClose( programmerType );
+         ProgDeviceClose(programmerType);
     }
 }
 
@@ -303,7 +303,7 @@ void DialogSecurity::on_toolButton_erase_clicked()
     curRegister--;
     uint8_t a23a16 = 0, a15a08 = 0;
     uint16_t curRgAddr = 0;
-    stCH341 = ProgDeviceInit( programmerType, 0, 1 );
+    stCH341 = ProgDeviceInit(programmerType, 0, 1);
     if (stCH341 == 0)
     {
        if (curRegister == 0) curRgAddr = curSettings.rg0addr;
@@ -363,7 +363,7 @@ void DialogSecurity::on_toolButton_erase_clicked()
            usleep(1);
     }
        else QMessageBox::about(this, tr("Error"), tr("Programmer ") + programmerName + tr(" is not connected!"));
-        ProgDeviceClose( programmerType );
+        ProgDeviceClose(programmerType);
 
 }
 

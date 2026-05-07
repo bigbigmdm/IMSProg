@@ -27,7 +27,7 @@ DialogSP::DialogSP(QWidget *parent) :
     setWindowFlags(Qt::Window | Qt::WindowMinimizeButtonHint | Qt::WindowCloseButtonHint);
     ui->comboBox_end->addItem(tr("End address"), 0);
     ui->comboBox_end->addItem(tr("Length"), 1);
-    QRegularExpression reHex( "[A-Fa-f0-9]{1,8}" );
+    QRegularExpression reHex("[A-Fa-f0-9]{1,8}");
     QRegularExpressionValidator *validator = new QRegularExpressionValidator(reHex, this);
     ui->lineEditStart->setValidator(validator);
     ui->lineEditEnd->setValidator(validator);
