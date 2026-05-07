@@ -1,5 +1,5 @@
 Name: imsprog
-Version: 1.8.3
+Version: 1.8.4
 Release: 1%dist
 
 Summary: I2C, SPI and MicroWire EEPROM/Flash chip programmer for CH341a/CH347t devices
@@ -21,9 +21,9 @@ Url: https://github.com/bigbigmdm/IMSProg
 Source: https://github.com/bigbigmdm/IMSProg/archive/refs/tags/v%{version}.tar.gz
 
 BuildRequires: gcc-c++
-BuildRequires: pkgconfig(Qt5Core)
-BuildRequires: pkgconfig(Qt5Widgets)
-BuildRequires: cmake(Qt5LinguistTools)
+BuildRequires: pkgconfig(Qt6Core)
+BuildRequires: pkgconfig(Qt6Widgets)
+BuildRequires: cmake(Qt6LinguistTools)
 BuildRequires: pkgconfig(libusb-1.0)
 BuildRequires: cmake
 BuildRequires: desktop-file-utils
@@ -140,8 +140,9 @@ IMSProg_database_update - 使用外部Web服务器更新芯片数据库的脚本
 
 %build
 # update translations
-lrelease-qt5 IMSProg_editor/language/*.ts
-lrelease-qt5 IMSProg_programmer/language/*.ts
+lrelease-qt6 IMSProg_editor/language/*.ts
+lrelease-qt6 IMSProg_programmer/language/*.ts
+lrelease-qt6 IMSProg_database_update/language/*.ts
 
 pushd IMSProg_editor
 %cmake -DCMAKE_INSTALL_SYSCONFDIR=%_sysconfdir
@@ -198,6 +199,15 @@ appstream-util validate-relax --nonet %{buildroot}%{_datadir}/metainfo/*.xml
 %license LICENSE
 
 %changelog
+* Thu May 07 2026 Mikhail Medvedev 1.8.4-1
+- Fixed: segmentation fault in Qt6
+- Fixed: incorrect interface display on macOS
+- Fixed: write error to sector 0 in Windows
+- Fixed: incorrect saving of the database file in the chip editor
+- Added: migration to Qt6
+- Added: specification file for Fedora
+- Added: universal Qt5/Qt6 CmakeLists.txt
+
 * Tue Apr 21 2026 Mikhail Medvedev 1.8.3-1
 - Fixed: If no chip is selected, the programmer was not detected
 - Fixed: MACOS library compatibility
