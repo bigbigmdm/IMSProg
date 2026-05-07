@@ -4,21 +4,15 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>IMSProg</title>
+  <title>"IMSProg"</title>
   <style>
-   body {max-width:1000px;}
-   table {width: 95%;border-collapse: collapse;}
-   th, td {border: 1px solid black;padding: 8px;text-align: left;}
-   p {line-height: 1.5;}
-   th {background-color: #f2f2f2;}
-   code{border-radius:5px;bordewr: 1px #ddd;background:#ddd;padding:2px;}
-   code{white-space: pre-wrap;}
-   span.smallcaps{font-variant: small-caps;}
-   span.underline{text-decoration: underline;}
-   div.column{display: inline-block; vertical-align: top; width: 50%;}
-   div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-   ul.task-list{list-style: none;}
-  </style>
+body {max-width:1000px;}
+table {width: 95%;border-collapse: collapse;}
+th, td {border: 1px solid black;padding: 8px;text-align: left;}
+p {line-height: 1.5;}
+th {background-color: #f2f2f2;}
+code{border-radius:5px;border: 1px #ddd;background:#ddd;padding:2px;}
+</style>
 </head>
 <body>
 <h2 id="imsprog">IMSProg</h2>
@@ -56,7 +50,7 @@
 <p>The IMSProg makes respect to <a href="https://github.com/Simsys/qhexedit2">QHexEdit2</a> hex editor and <a href="https://github.com/McMCCRU/SNANDer">SNANDer programmer</a>. The format of the chip database is based on the format used in EZP2019, EZP2020, EZP2023, Minpro I, XP866+ programmers. Warning, format is not the same!</p>
 <p>IMSProg is a collection of tools:</p>
 <ol type="1">
-<li><p>IMSProg - the chip programmer (it's the main part).</p></li>
+<li><p>IMSProg - the chip programmer (it’s the main part).</p></li>
 <li><p>IMSProg_editor - chip database editor.</p></li>
 <li><p>IMSProg_database_update - update chip database using external web-server.</p></li>
 </ol>
@@ -71,20 +65,43 @@
 sudo ./build_all.sh</code></pre>
 <h2 id="system-software-requirements">System software requirements</h2>
 <h3 id="linux">Linux</h3>
-<p>For build are needed: - g++ or clang - CMake - libusb 1.0 - Qt5 - Qt5 Qt5LinguistTools - pkgconf or pkg-config - udev</p>
+<p>For build are needed: - g++ or clang - CMake - libusb 1.0 - Qt5 or Qt6 - Qt5LinguistTools or Qt6LinguistTools - pkgconf or pkg-config - udev</p>
 <p>On Debian and derivatives:</p>
+<ul>
+<li>for Qt5:</li>
+</ul>
 <p><code>sudo apt-get install cmake g++ libusb-1.0-0-dev qtbase5-dev qttools5-dev pkgconf</code></p>
+<ul>
+<li>for Qt6:</li>
+</ul>
+<p><code>sudo apt-get install cmake g++ libusb-1.0-0-dev pkgconf qt6-base-dev qt6-tools-dev  linguist-qt6 qt6-l10n-tools qt6-base-dev-tools qt6-tools-dev-tools</code></p>
 <p>On Debian &gt;=13 and Ubuntu &gt;=23.10:</p>
 <p><code>sudo apt-get install systemd-dev</code></p>
 <p>On older:</p>
 <p><code>sudo apt-get install udev</code></p>
 <p>:information_source: Debian &lt; 11 and Ubuntu &lt; 20.04 are not supported, you may unable to have it working on them.</p>
 <p>On Fedora and derivatives:</p>
-<pre><code>sudo dnf install cmake libusb libusb1 libusb1-devel qt5-qtbase-devel
+<ul>
+<li>for Qt5:</li>
+</ul>
+<pre><code>sudo dnf install cmake libusb libusb1 libusb1-devel qt5-qtbase-devel 
 sudo dnf install pkgconf-pkg-config qt5-linguist</code></pre>
+<ul>
+<li>for Qt6:</li>
+</ul>
+<pre><code>sudo dnf install cmake gcc-c++ libusb1-devel pkgconf-pkg-config qt6-qtbase-devel
+sudo dnf install qt6-qttools-devel qt6-linguist</code></pre>
 <p>On OpenSUSE and derivatiles:</p>
+<ul>
+<li>for Qt5:</li>
+</ul>
 <pre><code>sudo zypper install cmake gcc-c++ libqt5-qtbase-devel
 sudo zypper install libqt5-linguist-devel libusb-1_0-devel</code></pre>
+<ul>
+<li>for Qt6:</li>
+</ul>
+<pre><code>sudo zypper install cmake gcc-c++ libqt6-qtbase-devel
+sudo zypper install libqt6-linguist-devel libusb-1_0-devel</code></pre>
 <h3 id="macos">macOS</h3>
 <p>if using Homebrew then Xcode Command Line Tools will install by default, if not then install manually from terminal:</p>
 <pre><code>xcode-select --install</code></pre>
@@ -322,8 +339,8 @@ sudo zypper install libqt5-linguist-devel libusb-1_0-devel</code></pre>
 <ul>
 <li><code>Delete Rows</code> or <code>Del</code> or <img src="del.png" alt="delete" /> - deletes one or more rows.</li>
 <li><code>Add Row</code> or <code>Ins</code> or <img src="plus.png" alt="add" /> - adds a row below the selected row and copies all data from the selected row to the new row.</li>
-<li><code>Move Up</code> or `[Ctrl+Up]` or <img src="undo.png" alt="up" /> - moves the selected line up.</li>
-<li><code>Move Down</code> or `[Ctrl+Down]` or <img src="redo.png" alt="down" /> - moves the selected row down.</li>
+<li><code>Move Up</code> or ’[Ctrl+Up]` or <img src="undo.png" alt="up" /> - moves the selected line up.</li>
+<li><code>Move Down' or</code>[Ctrl+Down]` or <img src="redo.png" alt="down" /> - moves the selected row down.</li>
 <li><code>Import selected rows to CSV format</code> or <img src="import.png" alt="import" /></li>
 <li>saves selected rows to CSV file.</li>
 </ul>
@@ -520,7 +537,7 @@ sudo zypper install libqt5-linguist-devel libusb-1_0-devel</code></pre>
 <h2 id="packages">Packages</h2>
 <ul>
 <li><p>There is a work in progress for add IMSProg to official <code>Debian</code> (and derivatives repositories)</p>
-<p>For some Ubuntu versions you can use this PPA by adding <code>ppa:bigmdm/imsprog</code> to your system's Software Sources.</p>
+<p>For some Ubuntu versions you can use this PPA by adding <code>ppa:bigmdm/imsprog</code> to your system’s Software Sources.</p>
 <pre><code>sudo add-apt-repository ppa:bigmdm/imsprog
 sudo apt update
 sudo apt install imsprog</code></pre>
@@ -528,6 +545,7 @@ sudo apt install imsprog</code></pre>
 <li><p>For some versions of Fedora, you can use the official repositories.</p></li>
 </ul>
 <pre><code>sudo dnf install imsprog</code></pre>
+<p><a href="https://repology.org/project/imsprog/versions"> <img src="https://repology.org/badge/vertical-allrepos/imsprog.svg" alt="Packaging status" align="right"> </a></p>
 <ul>
 <li>The <code>RPM package</code> by <a href="https://redos.red-soft.ru/">Red Soft</a> can be downloaded<br />
 <a href="http://repo.red-soft.ru/redos/7.3/x86_64/updates/">here</a></li>
@@ -602,13 +620,13 @@ IMSProg_database_update/other/io.github.bigbigmdm.imsprog_database_update.metain
 32        1     NOR FLASH Manufacture code / 0x00 - other chips
 33              0x00
 34        4     Chip Size
-35
-36
-37
+35  
+36    
+37 
 38        2     Sector size
-39
+39 
 3A        1     Binary chip type:
-                - 0x00 - SPI NOR FLASH
+                - 0x00 - SPI NOR FLASH 
                 - 0x01 - 24xxx I2C
                 - 0x02 - 93xxx MicroWire
                 - 0x03 - 25xxx SPI EEPROM
@@ -616,8 +634,8 @@ IMSProg_database_update/other/io.github.bigbigmdm.imsprog_database_update.metain
                 - 0x05 - AT45DBxxx SPI EEPROM
 3B        1     Algorithm code number:
                 - SPI NOR Flash always 0x00
-                - I2C (24xxx) 0x?1 - address size 1 byte
-                - I2C (24xxx) 0x?2 - address size 2 bytes
+                - I2C (24xxx) 0x?1 - address size 1 byte 
+                - I2C (24xxx) 0x?2 - address size 2 bytes 
                 - I2C (24xxx) 0x1? - address mask 1
                 - I2C (24xxx) 0x3? - address mask 3
                 - I2C (24xxx) 0x7? - address mask 7
