@@ -53,14 +53,21 @@ For build are needed:
 - g++ or clang
 - CMake
 - libusb 1.0
-- Qt5
-- Qt5 Qt5LinguistTools
+- Qt5 or Qt6
+- Qt5LinguistTools or Qt6LinguistTools
 - pkgconf or pkg-config
 - udev
 
 On Debian and derivatives:
 
+- for Qt5:
+
 `sudo apt-get install cmake g++ libusb-1.0-0-dev qtbase5-dev qttools5-dev pkgconf`
+
+- for Qt6:
+
+`sudo apt-get install cmake g++ libusb-1.0-0-dev pkgconf qt6-base-dev qt6-tools-dev
+ linguist-qt6 qt6-l10n-tools qt6-base-dev-tools qt6-tools-dev-tools`
 
 On Debian >=13 and Ubuntu >=23.10:
 
@@ -75,15 +82,34 @@ unable to have it working on them.
 
 On Fedora and derivatives:
 
+- for Qt5:
+
 ```
 sudo dnf install cmake libusb libusb1 libusb1-devel qt5-qtbase-devel 
 sudo dnf install pkgconf-pkg-config qt5-linguist
 ```
 
+- for Qt6:
+
+```
+sudo dnf install cmake gcc-c++ libusb1-devel pkgconf-pkg-config qt6-qtbase-devel
+sudo dnf install qt6-qttools-devel qt6-linguist
+```
+
 On OpenSUSE and derivatiles:
+
+- for Qt5:
+
 ```
 sudo zypper install cmake gcc-c++ libqt5-qtbase-devel
 sudo zypper install libqt5-linguist-devel libusb-1_0-devel
+```
+
+- for Qt6:
+
+```
+sudo zypper install cmake gcc-c++ libqt6-qtbase-devel
+sudo zypper install libqt6-linguist-devel libusb-1_0-devel
 ```
 
 ### macOS
