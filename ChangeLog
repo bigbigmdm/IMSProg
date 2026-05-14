@@ -1,7 +1,8 @@
 - Ver. 1.8.4 - Fix: segmentation fault in Qt6, incorrect interface display on 
 macOS, write error to sector 0 in Windows, incorrect saving of the database file
- in the chip editor. Added: migration to Qt6, specification file for Fedora, 
- universal Qt5/Qt6 CmakeLists.txt.
+ in the chip editor, unable to erase the 93C66, 93C76 and 93C86 chips. Added: 
+migration to Qt6, specification file for Fedora, universal Qt5/Qt6 
+CmakeLists.txt.
 - Ver. 1.8.3 - Fix: If no chip is selected, the programmer was not detected,
 MACOS library compatibility, MACOS invalid patches, libusb detection, udev
 rules install. Added: 2.5v VCC item, SPI NOR FLASH writing speed increased. The
