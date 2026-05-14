@@ -24,7 +24,7 @@ DialogSetAddr::DialogSetAddr(QWidget *parent) :
 {
     ui->setupUi(this);
     setWindowFlags(Qt::Window | Qt::WindowMinimizeButtonHint | Qt::WindowCloseButtonHint);
-    QRegularExpression reHex( "[A-Fa-f0-9]{1,8}" );
+    QRegularExpression reHex("[A-Fa-f0-9]{1,8}");
     QRegularExpressionValidator *validator = new QRegularExpressionValidator(reHex, this);
     ui->lineEditStart->setValidator(validator);
 }

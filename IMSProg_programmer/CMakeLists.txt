@@ -22,7 +22,7 @@ get_filename_component(PROJECT_ROOT "${CMAKE_CURRENT_SOURCE_DIR}/.." ABSOLUTE)
 if (CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
   if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
       set(CMAKE_INSTALL_PREFIX "/usr/local" CACHE PATH "The default install prefix on macOS" FORCE)
-      
+
       # Set up Qt paths on macOS
       # If user hasn't set CMAKE_PREFIX_PATH, try to find Qt automatically
       if(NOT CMAKE_PREFIX_PATH)
@@ -67,7 +67,7 @@ option(FORCE_QT5 "Force using Qt5 instead of Qt6" OFF)
 
 if(FORCE_QT5)
     message(STATUS "Forced Qt5 mode for IMSProg")
-    
+
     # On macOS, additionally check the path to Qt5
     if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin" AND NOT CMAKE_PREFIX_PATH)
         if(EXISTS "/usr/local/opt/qt@5")
@@ -78,7 +78,7 @@ if(FORCE_QT5)
             message(STATUS "Setting CMAKE_PREFIX_PATH to /usr/local/opt/qt for Qt5")
         endif()
     endif()
-    
+
     find_package(Qt5 REQUIRED COMPONENTS Core Widgets LinguistTools)
     set(QT_VERSION_MAJOR 5)
 else()
@@ -90,7 +90,7 @@ else()
         find_package(Qt6LinguistTools REQUIRED)
     else()
         message(STATUS "Qt6 not found, using Qt5 for IMSProg")
-        
+
         # On macOS, additionally check the path to Qt5
         if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin" AND NOT CMAKE_PREFIX_PATH)
             if(EXISTS "/usr/local/opt/qt@5")
@@ -101,7 +101,7 @@ else()
                 message(STATUS "Setting CMAKE_PREFIX_PATH to /usr/local/opt/qt for Qt5")
             endif()
         endif()
-        
+
         find_package(Qt5 REQUIRED COMPONENTS Core Widgets LinguistTools)
         set(QT_VERSION_MAJOR 5)
     endif()
@@ -116,7 +116,7 @@ if (CMAKE_INSTALL_PREFIX STREQUAL "/usr" OR CMAKE_INSTALL_PREFIX STREQUAL "/" AN
 # See: https://cmake.org/cmake/help/latest/module/GNUInstallDirs.html#special-cases
 find_package(PkgConfig)
   if (PKG_CONFIG_FOUND)
-    pkg_check_modules( PKGCONFIG_UDEV udev)
+    pkg_check_modules(PKGCONFIG_UDEV udev)
     if (PKGCONFIG_UDEV_FOUND)
       execute_process(
         COMMAND ${PKG_CONFIG_EXECUTABLE} --variable=udevdir udev
@@ -153,7 +153,6 @@ endif()
 add_custom_target(translations DEPENDS ${QM_FILES})
 
 add_executable(${PROJECT_NAME}
-
 main.cpp
 mainwindow.cpp
 qhexedit.cpp

@@ -87,12 +87,12 @@ struct xxx {
 u8 programmerType = 0;
 /*
 struct chip_info {
-	char		*name;
-	u8		id;
-	u32		jedec_id;
-	unsigned long	sector_size;
-	unsigned int	n_sectors;
-	char		addr4b;
+        char		*name;
+        u8		id;
+        u32		jedec_id;
+        unsigned long	sector_size;
+        unsigned int	n_sectors;
+        char		addr4b;
 };
 */
 unsigned char algType = 0;
@@ -143,18 +143,18 @@ static inline void s95_write_disable(void)
  */
 static inline int snor_unprotect(void)
 {
-	u8 sr = 0;
+        u8 sr = 0;
 
-	if (snor_read_sr(&sr) < 0) {
-		printf("%s: read_sr fail: %x\n", __func__, sr);
-		return -1;
-	}
+        if (snor_read_sr(&sr) < 0) {
+                printf("%s: read_sr fail: %x\n", __func__, sr);
+                return -1;
+        }
 
-	if ((sr & (SR_BP0 | SR_BP1 | SR_BP2)) != 0) {
-		sr = 0;
-		snor_write_sr(&sr);
-	}
-	return 0;
+        if ((sr & (SR_BP0 | SR_BP1 | SR_BP2)) != 0) {
+                sr = 0;
+                snor_write_sr(&sr);
+        }
+        return 0;
 }
 
 /*
@@ -163,22 +163,22 @@ static inline int snor_unprotect(void)
  */
 int snor_wait_ready(int sleep_ms)
 {
-	int count;
-	int sr = 0;
+        int count;
+        int sr = 0;
 
-	/* one chip guarantees max 5 msec wait here after page writes,
-	 * but potentially three seconds (!) after page erase.
-	 */
-	for (count = 0; count < ((sleep_ms + 1) * 1000); count++) {
-		if ((snor_read_sr((u8 *)&sr)) < 0)
-			break;
-		else if (!(sr & (SR_WIP | SR_EPE | SR_WEL))) {
-			return 0;
-		}
-		udelay(500);
-		/* REVISIT sometimes sleeping would be best */
-	}
-	printf("%s: read_sr fail: %x\n", __func__, sr);
+        /* one chip guarantees max 5 msec wait here after page writes,
+         * but potentially three seconds (!) after page erase.
+         */
+        for (count = 0; count < ((sleep_ms + 1) * 1000); count++) {
+                if ((snor_read_sr((u8 *)&sr)) < 0)
+                        break;
+                else if (!(sr & (SR_WIP | SR_EPE | SR_WEL))) {
+                        return 0;
+                }
+                udelay(500);
+                /* REVISIT sometimes sleeping would be best */
+        }
+        printf("%s: read_sr fail: %x\n", __func__, sr);
     return -1;
 }
 
@@ -187,18 +187,18 @@ int snor_wait_ready(int sleep_ms)
  */
 static int snor_read_rg(u8 code, u8 *val)
 {
-	int retval;
+        int retval;
 
     SPI_CONTROLLER_Chip_Select_Low(programmerType);
     SPI_CONTROLLER_Write_One_Byte(code, programmerType);
     retval = SPI_CONTROLLER_Read_NByte(val, 1, SPI_CONTROLLER_SPEED_SINGLE, programmerType);
     SPI_CONTROLLER_Chip_Select_High(programmerType);
-	if (retval) {
-		printf("%s: ret: %x\n", __func__, retval);
-		return -1;
-	}
+        if (retval) {
+                printf("%s: ret: %x\n", __func__, retval);
+                return -1;
+        }
 
-	return 0;
+        return 0;
 }
 
 /*
@@ -206,81 +206,81 @@ static int snor_read_rg(u8 code, u8 *val)
  */
 static int snor_write_rg(u8 code, u8 *val)
 {
-	int retval;
+        int retval;
 
     SPI_CONTROLLER_Chip_Select_Low(programmerType);
     SPI_CONTROLLER_Write_One_Byte(code, programmerType);
     retval = SPI_CONTROLLER_Write_NByte(val, 1, SPI_CONTROLLER_SPEED_SINGLE, programmerType);
     SPI_CONTROLLER_Chip_Select_High(programmerType);
-	if (retval) {
-		printf("%s: ret: %x\n", __func__, retval);
-		return -1;
-	}
+        if (retval) {
+                printf("%s: ret: %x\n", __func__, retval);
+                return -1;
+        }
 
-	return 0;
+        return 0;
 }
 
 static int snor_4byte_mode(int enable)
 {
-	int retval;
+        int retval;
 
-	if (snor_wait_ready(1))
-		return -1;
+        if (snor_wait_ready(1))
+                return -1;
 
     //if (spi_chip_info->id == 0x1) /* Spansion */
     if (algType == 0x02) /* Spansion */
-	{
-		u8 br_cfn;
-		u8 br = enable ? 0x81 : 0;
+        {
+                u8 br_cfn;
+                u8 br = enable ? 0x81 : 0;
 
-		snor_write_rg(OPCODE_BRWR, &br);
-		snor_read_rg(OPCODE_BRRD, &br_cfn);
-		if (br_cfn != br) {
-			printf("4B mode switch failed %s, 0x%02x, 0x%02x\n", enable ? "enable" : "disable" , br_cfn, br);
-			return -1;
-		}
-	} else {
-		u8 code = enable ? 0xb7 : 0xe9; /* B7: enter 4B, E9: exit 4B */
+                snor_write_rg(OPCODE_BRWR, &br);
+                snor_read_rg(OPCODE_BRRD, &br_cfn);
+                if (br_cfn != br) {
+                        printf("4B mode switch failed %s, 0x%02x, 0x%02x\n", enable ? "enable" : "disable" , br_cfn, br);
+                        return -1;
+                }
+        } else {
+                u8 code = enable ? 0xb7 : 0xe9; /* B7: enter 4B, E9: exit 4B */
 
         SPI_CONTROLLER_Chip_Select_Low(programmerType);
         retval = SPI_CONTROLLER_Write_One_Byte(code, programmerType);
         SPI_CONTROLLER_Chip_Select_High(programmerType);
-		if (retval) {
-			printf("%s: ret: %x\n", __func__, retval);
-			return -1;
-		}
+                if (retval) {
+                        printf("%s: ret: %x\n", __func__, retval);
+                        return -1;
+                }
         //if ((!enable) && (spi_chip_info->id == 0xef)) /* Winbond */
         if ((!enable) && (algType == 0x01)) /* Winbond */
-		{
-			code = 0;
-			snor_write_enable();
-			snor_write_rg(0xc5, &code);
-		}
-	}
-	return 0;
+                {
+                        code = 0;
+                        snor_write_enable();
+                        snor_write_rg(0xc5, &code);
+                }
+        }
+        return 0;
 }
 
 
 int full_erase_chip(void)
 {
-	timer_start();
-	/* Wait until finished previous write command. */
-	if (snor_wait_ready(3))
-		return -1;
+        timer_start();
+        /* Wait until finished previous write command. */
+        if (snor_wait_ready(3))
+                return -1;
 
-	/* Send write enable, then erase commands. */
-	snor_write_enable();
-	snor_unprotect();
+        /* Send write enable, then erase commands. */
+        snor_write_enable();
+        snor_unprotect();
 
     SPI_CONTROLLER_Chip_Select_Low(programmerType);
     SPI_CONTROLLER_Write_One_Byte(OPCODE_BE1, programmerType);
     SPI_CONTROLLER_Chip_Select_High(programmerType);
 
-	snor_wait_ready(950);
-	snor_write_disable();
-	timer_end();
+        snor_wait_ready(950);
+        snor_write_disable();
+        timer_end();
 
-	return 0;
+        return 0;
 }
 
 int snor_block_erase(unsigned int sector_number, unsigned int blockSize, u8 addr4b, u8 progType)
@@ -320,7 +320,7 @@ int snor_block_erase(unsigned int sector_number, unsigned int blockSize, u8 addr
  */
 int snor_read_devid(u8 *rxbuf, int n_rx, uint8_t progType)
 {
-	int retval = 0;
+        int retval = 0;
     programmerType = progType;
 
     SPI_CONTROLLER_Chip_Select_Low(programmerType);
@@ -329,10 +329,10 @@ int snor_read_devid(u8 *rxbuf, int n_rx, uint8_t progType)
     retval = SPI_CONTROLLER_Read_NByte(rxbuf, n_rx, SPI_CONTROLLER_SPEED_SINGLE, programmerType);
     SPI_CONTROLLER_Chip_Select_High(programmerType);
 
-	if (retval) {
-		printf("%s: ret: %x\n", __func__, retval);
-		return retval;
-	}
+        if (retval) {
+                printf("%s: ret: %x\n", __func__, retval);
+                return retval;
+        }
 
     if ((rxbuf[0] == 0) && (rxbuf[1] == 0) && (rxbuf[2] == 0))
     {
@@ -341,7 +341,7 @@ int snor_read_devid(u8 *rxbuf, int n_rx, uint8_t progType)
         rxbuf[2] = 0xff;
     }
 
-	return 0;
+        return 0;
 }
 
 /*
@@ -349,19 +349,19 @@ int snor_read_devid(u8 *rxbuf, int n_rx, uint8_t progType)
  */
 static int snor_read_sr(u8 *val)
 {
-	int retval = 0;
+        int retval = 0;
 
     SPI_CONTROLLER_Chip_Select_Low(programmerType);
     SPI_CONTROLLER_Write_One_Byte(OPCODE_RDSR, programmerType);
 
     retval = SPI_CONTROLLER_Read_NByte(val, 1, SPI_CONTROLLER_SPEED_SINGLE, programmerType);
     SPI_CONTROLLER_Chip_Select_High(programmerType);
-	if (retval) {
-		printf("%s: ret: %x\n", __func__, retval);
-		return retval;
-	}
+        if (retval) {
+                printf("%s: ret: %x\n", __func__, retval);
+                return retval;
+        }
 
-	return 0;
+        return 0;
 }
 
 /*
@@ -369,18 +369,18 @@ static int snor_read_sr(u8 *val)
  */
 static int snor_write_sr(u8 *val)
 {
-	int retval = 0;
+        int retval = 0;
 
     SPI_CONTROLLER_Chip_Select_Low(programmerType);
     SPI_CONTROLLER_Write_One_Byte(OPCODE_WRSR, programmerType);
 
     retval = SPI_CONTROLLER_Write_NByte(val, 1, SPI_CONTROLLER_SPEED_SINGLE, programmerType);
     SPI_CONTROLLER_Chip_Select_High(programmerType);
-	if (retval) {
-		printf("%s: ret: %x\n", __func__, retval);
-		return retval;
-	}
-	return 0;
+        if (retval) {
+                printf("%s: ret: %x\n", __func__, retval);
+                return retval;
+        }
+        return 0;
 }
 
 
@@ -1014,7 +1014,7 @@ int nand_page_read(unsigned char *buf, unsigned int page_size, uint32_t sector_n
     cmdbuf[3] = sector_number & 0xff;
     nand_wait_ready(100);
     SPI_CONTROLLER_Chip_Select_Low(programmerType);
-    SPI_CONTROLLER_Write_NByte( cmdbuf, 4, SPI_CONTROLLER_SPEED_SINGLE, programmerType);
+    SPI_CONTROLLER_Write_NByte(cmdbuf, 4, SPI_CONTROLLER_SPEED_SINGLE, programmerType);
     SPI_CONTROLLER_Chip_Select_High(programmerType);
     nand_wait_ready(100);
     cmdbuf[0] = 0x03;//Reading from buffer
@@ -1022,7 +1022,7 @@ int nand_page_read(unsigned char *buf, unsigned int page_size, uint32_t sector_n
     cmdbuf[2] = 0x00;
     cmdbuf[3] = 0x00;
     SPI_CONTROLLER_Chip_Select_Low(programmerType);
-    SPI_CONTROLLER_Write_NByte( cmdbuf, 4, SPI_CONTROLLER_SPEED_SINGLE, programmerType);
+    SPI_CONTROLLER_Write_NByte(cmdbuf, 4, SPI_CONTROLLER_SPEED_SINGLE, programmerType);
     retval = SPI_CONTROLLER_Read_NByte(buf, page_size, SPI_CONTROLLER_SPEED_SINGLE, programmerType);
     SPI_CONTROLLER_Chip_Select_High(programmerType);
     return retval;

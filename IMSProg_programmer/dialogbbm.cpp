@@ -49,7 +49,7 @@ void DialogBBM::on_pushButton_clicked()
     uint32_t sectInBlock;
     uint8_t tmp_hi, tmp_lo;
     QString col_block, col_start, col_end;
-    stCH341 = ProgDeviceInit( programmerType, 6, 1 );
+    stCH341 = ProgDeviceInit(programmerType, 6, 1);
     bbmCount = 0;
     sectInBlock = blSize / sectSize;
     ui->label_scan->clear();
@@ -63,10 +63,10 @@ void DialogBBM::on_pushButton_clicked()
             if (retval == 1)//(buf[0] != 0xff)
             {
                 scanResult = true;
-                tmp_hi = static_cast<uint8_t>( i >> 8 );
+                tmp_hi = static_cast<uint8_t>(i >> 8);
                 tmp_lo = i & 0xff;
                 col_block = bytePrint(tmp_hi) + bytePrint(tmp_lo);
-                col_start = hexiAddr( static_cast<uint32_t>(i) * sectInBlock * sectSize);
+                col_start = hexiAddr(static_cast<uint32_t>(i) * sectInBlock * sectSize);
                 col_end = hexiAddr(static_cast<uint32_t>(i + 1) * sectInBlock * sectSize - 1);
                 ui->tableWidgetScan->insertRow(bbmCount);
                 ui->tableWidgetScan->setItem(bbmCount, 0, new QTableWidgetItem(QString::number(bbmCount + 1)));
@@ -88,7 +88,7 @@ void DialogBBM::on_pushButton_clicked()
         ui->tableWidgetScan->removeRow(bbmCount);
         ui->progressBar->setValue(0);
         scanResult = false;
-        ProgDeviceClose( programmerType );
+        ProgDeviceClose(programmerType);
     }
     else QMessageBox::about(this, tr("Error"), tr("Programmer ") + programmerName + tr(" is not connected!"));
 }
@@ -124,7 +124,7 @@ void DialogBBM::on_pushButton_2_clicked()
     uint8_t stringResult;
     QString numBlock;
     std::shared_ptr<uint8_t[]> buf(new uint8_t[256]);
-    stCH341 = ProgDeviceInit( programmerType, 6, 1 );
+    stCH341 = ProgDeviceInit(programmerType, 6, 1);
     if (stCH341 == 0)
     {
         SPI_CONTROLLER_Chip_Select_Low(programmerType);
@@ -159,7 +159,7 @@ void DialogBBM::on_pushButton_2_clicked()
             ui->tableWidgetBBM->resizeColumnsToContents();
         }
         else ui->label_bbm_result->setText(tr("BBM table is not used in this chip."));
-        ProgDeviceClose( programmerType );
+        ProgDeviceClose(programmerType);
     }
     else QMessageBox::about(this, tr("Error"), tr("Programmer ") + programmerName + tr(" is not connected!"));
 }
