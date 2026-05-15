@@ -199,12 +199,13 @@ appstream-util validate-relax --nonet %{buildroot}%{_datadir}/metainfo/*.xml
 %license LICENSE
 
 %changelog
-* Thu May 14 2026 Mikhail Medvedev 1.8.4-1
+* Fri May 15 2026 Mikhail Medvedev 1.8.4-1
 - Fixed: segmentation fault in Qt6
 - Fixed: incorrect interface display on macOS
 - Fixed: write error to sector 0 in Windows
 - Fixed: incorrect saving of the database file in the chip editor
 - Fixed: Unable to erase the 93C66, 93C76 and 93C86 chips
+- Fixed: the font is too large in Qt6
 - Added: migration to Qt6
 - Added: specification file for Fedora
 - Added: universal Qt5/Qt6 CmakeLists.txt

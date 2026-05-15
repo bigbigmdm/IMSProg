@@ -81,13 +81,14 @@
      <name>Mikhail Medvedev</name>
   </developer>
   <releases>
-  <release version="1.8.4" date="2026-05-07" urgency="medium">
+  <release version="1.8.4" date="2026-05-15" urgency="medium">
     <description>
         <p>Fixed: segmentation fault in Qt6.</p>
         <p>Fixed: incorrect interface display on macOS.</p>
         <p>Fixed: write error to sector 0 in Windows.</p>
         <p>Fixed: incorrect saving of the database file in the chip editor.</p>
-        <p>Fixed: Unable to erase the 93C66, 93C76 and 93C86 chips.</p>
+        <p>Fixed: unable to erase the 93C66, 93C76 and 93C86 chips.</p>
+        <p>Fixed: the font is too large in Qt6.</p>
         <p>Added: migration to Qt6.</p>
         <p>Added: universal Qt5/Qt6 CmakeLists.txt.</p>
         <p>Added: specification file for Fedora.</p>
