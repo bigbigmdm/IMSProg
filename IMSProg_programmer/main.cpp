@@ -83,10 +83,6 @@ static void initPaths()
 int main(int argc, char *argv[])
 {
     QCoreApplication::setApplicationName("imsprog");
-    QFont font("Monospace");
-    font.setStyleHint(QFont::TypeWriter);
-    font.setPointSize(12);
-    QApplication::setFont(font);
     qDebug() << "Used Qt version:" << QT_VERSION_STR;
     QApplication a(argc, argv);
     initPaths();
