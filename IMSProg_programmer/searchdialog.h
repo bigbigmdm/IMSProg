@@ -18,12 +18,12 @@
 #ifndef SEARCHDIALOG_H
 #define SEARCHDIALOG_H
 
+#include "qhexedit.h"
 #include <QDialog>
 #include <QtCore>
-#include "qhexedit.h"
 
 namespace Ui {
-    class SearchDialog;
+class SearchDialog;
 }
 
 class SearchDialog : public QDialog

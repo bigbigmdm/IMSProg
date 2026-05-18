@@ -14,33 +14,34 @@
  */
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
-#include <QMainWindow>
+#include "dialogabout.h"
+#include "dialogcompare.h"
+#include "dialoginfo.h"
+#include "dialognandsr.h"
+#include "dialogsfdp.h"
+#include "dialogsp.h"
+#include "dialogsr.h"
+#include "hexutility.h"
+#include "qhexedit.h"
+#include "searchdialog.h"
+#include <unistd.h>
+#include <QComboBox>
 #include <QDebug>
-#include <QMessageBox>
 #include <QFile>
 #include <QFileDialog>
+#include <QMainWindow>
+#include <QMessageBox>
+#include <QResizeEvent>
+#include <QSettings>
+#include <QStandardItemModel>
 #include <QTime>
 #include <QTimer>
-#include <QSettings>
-#include <QResizeEvent>
-#include <QComboBox>
-#include <QStandardItemModel>
-#include <unistd.h>
-#include "qhexedit.h"
-#include "dialogsp.h"
-#include "dialogabout.h"
-#include "dialoginfo.h"
-#include "dialogsfdp.h"
-#include "dialognandsr.h"
-#include "dialogsr.h"
-#include "dialogcompare.h"
-#include "searchdialog.h"
-#include "hexutility.h"
 extern "C" {
 #include "bitbang_microwire.h"
 #include "ch341a_gpio.h"
 #include "ch341a_spi.h"
 #include "ch347.h"
+#include "ch34x_i2c.h"
 #include "flashcmd_api.h"
 #include "mw_eeprom_api.h"
 #include "res.h"
@@ -49,9 +50,7 @@ extern "C" {
 #include "spi_eeprom_api.h"
 #include "timer.h"
 #include "types.h"
-#include "ch34x_i2c.h"
 }
-
 
 namespace Ui {
 class MainWindow;
@@ -111,7 +110,7 @@ private slots:
     void on_actionExport_to_Intel_HEX_triggered();
     void on_actionImport_from_Intel_HEX_triggered();
     void on_actionExtract_from_ASUS_CAP_triggered();
-    void resizeEvent(QResizeEvent* event);
+    void resizeEvent(QResizeEvent *event);
     void slotTimerAlarm();
     void on_actionGoto_address_triggered();
     void on_comboBox_i2cSpeed_currentIndexChanged(int index);
@@ -126,7 +125,7 @@ private slots:
     void on_actionCH341A_B_v1_2_triggered();
     void on_actionCH341A_v1_7_triggered();
     void closeEvent(QCloseEvent *event);
-    void showEvent(QShowEvent* event);
+    void showEvent(QShowEvent *event);
     void on_actionCH347T_triggered();
     void SetItemStatus(QString comboboxName, int itemNumber, bool setDisable);
     void on_actionCH347T_v1_1_triggered();
@@ -147,8 +146,9 @@ private:
     bool filled;
     uint8_t numberOfReads;
     QTimer *timer;
-    QVector <QString> chType = {"SPI_FLASH","25_EEPROM","93_EEPROM","24_EEPROM","95_EEPROM"};
-    struct chip_data {
+    QVector<QString> chType = {"SPI_FLASH", "25_EEPROM", "93_EEPROM", "24_EEPROM", "95_EEPROM"};
+    struct chip_data
+    {
         QString chipManuf;
         QString chipTypeTxt;
         QString chipName;

@@ -1,1 +1,1 @@
-#define snander		128
+#define snander 128

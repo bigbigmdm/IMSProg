@@ -12,14 +12,14 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  */
+#include "mainwindow.h"
 #include <QApplication>
-#include <QSslSocket>
 #include <QDebug>
-#include <QFile>
 #include <QDir>
+#include <QFile>
+#include <QSslSocket>
 #include <QStandardPaths>
 #include <QTranslator>
-#include "mainwindow.h"
 
 static QString setUpTranslation(const QStringList &searchPaths)
 {
@@ -28,11 +28,9 @@ static QString setUpTranslation(const QStringList &searchPaths)
     QString translateName = "chipUpdater_" + localeName;
 
     // skip user-specific dir for translations (first one); try the rest
-    foreach (const QString &path, searchPaths.mid(1))
-    {
+    foreach (const QString &path, searchPaths.mid(1)) {
         QTranslator *translator = new QTranslator(qApp);
-        if (translator->load(translateName, path))
-        {
+        if (translator->load(translateName, path)) {
             qApp->installTranslator(translator);
             qDebug() << "Installed" << translateName << "from" << path;
             return path;
@@ -46,16 +44,17 @@ static QString setUpTranslation(const QStringList &searchPaths)
 
 static void initPaths()
 {
-    QStringList allPaths = QStandardPaths::standardLocations(QStandardPaths::AppDataLocation);    
+    QStringList allPaths = QStandardPaths::standardLocations(QStandardPaths::AppDataLocation);
     QDir binDir(QCoreApplication::applicationDirPath());
-    QString binRelPath = QDir::cleanPath(binDir.absoluteFilePath("../share/" + QCoreApplication::applicationName()));
+    QString binRelPath = QDir::cleanPath(
+        binDir.absoluteFilePath("../share/" + QCoreApplication::applicationName()));
     allPaths.append(binRelPath);
 
     QDir userAppDataLocation(allPaths.at(0));
     if (!userAppDataLocation.exists()) {
-		userAppDataLocation.mkpath(".");
+        userAppDataLocation.mkpath(".");
         // XXX some sort of error handling that befits the application
-        }
+    }
 
     qApp->setProperty("app/translationDirectory", setUpTranslation(allPaths));
     qApp->setProperty("app/userChipDatabaseFile", userAppDataLocation.filePath("IMSProg.Dat"));
@@ -68,7 +67,7 @@ static void initPaths()
 
 int main(int argc, char *argv[])
 {
-	qDebug() << "Used Qt version:" << QT_VERSION_STR;
+    qDebug() << "Used Qt version:" << QT_VERSION_STR;
     qDebug() << "SSL support:" << QSslSocket::supportsSsl();
     qDebug() << "Build version:" << QSslSocket::sslLibraryBuildVersionString();
     qDebug() << "Runtime version:" << QSslSocket::sslLibraryVersionString();

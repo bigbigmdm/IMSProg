@@ -23,19 +23,19 @@
 #ifndef EZP_CHIP_EDITOR_H
 #define EZP_CHIP_EDITOR_H
 
-#include <QMainWindow>
+#include <QByteArray>
+#include <QDebug>
 #include <QFile>
 #include <QFileDialog>
-#include <QByteArray>
+#include <QMainWindow>
+#include <QMessageBox>
+#include <QStandardItem>
+#include <QStandardItemModel>
 #include <QString>
 #include <QStringView>
-#include <QDebug>
 #include <QTableView>
-#include <QStandardItemModel>
-#include <QStandardItem>
-#include <QMessageBox>
-#include <QVector>
 #include <QThread>
+#include <QVector>
 namespace Ui {
 class MainWindow;
 }
@@ -49,10 +49,14 @@ public:
     ~MainWindow();
     QStandardItemModel *model = new QStandardItemModel;
     QStandardItem *item;
-    const QString csvHeader =  "Type;Manufacture;IC Name;JEDEC ID;SIZE;Block size;Type HEX;Algorithm;Delay;Extend;EEPROM;EEPROM pages;VCC\n";
-    const QString csvHeader2 = "Type,Manufacture,IC Name,JEDEC ID,SIZE,Block size,Type HEX,Algorithm,Delay,Extend,EEPROM,EEPROM pages,VCC\n";
-    QVector <QString> chType = {"SPI_FLASH","25_EEPROM","93_EEPROM","24_EEPROM","95_EEPROM", "45_EEPROM","SPI_NAND"};
-    struct chip_data {
+    const QString csvHeader = "Type;Manufacture;IC Name;JEDEC ID;SIZE;Block size;Type "
+                              "HEX;Algorithm;Delay;Extend;EEPROM;EEPROM pages;VCC\n";
+    const QString csvHeader2 = "Type,Manufacture,IC Name,JEDEC ID,SIZE,Block size,Type "
+                               "HEX,Algorithm,Delay,Extend,EEPROM,EEPROM pages,VCC\n";
+    QVector<QString> chType
+        = {"SPI_FLASH", "25_EEPROM", "93_EEPROM", "24_EEPROM", "95_EEPROM", "45_EEPROM", "SPI_NAND"};
+    struct chip_data
+    {
         QString chipManuf;
         QString chipTypeTxt;
         QString chipName;
@@ -82,7 +86,7 @@ signals:
 private slots:
     void on_actionOpen_triggered();
     void on_actionExit_triggered();
-    void onDataChanged(const QModelIndex& topLeft, const QModelIndex& bottomRight);
+    void onDataChanged(const QModelIndex &topLeft, const QModelIndex &bottomRight);
     void on_actionDelete_string_triggered();
     void on_actionSave_triggered();
     void on_actionAdd_string_triggered();

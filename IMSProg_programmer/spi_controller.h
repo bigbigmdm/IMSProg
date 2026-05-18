@@ -30,30 +30,29 @@
 /* MACRO DECLARATIONS ---------------------------------------------------------------- */
 
 /* TYPE DECLARATIONS ----------------------------------------------------------------- */
-typedef enum{
-	SPI_CONTROLLER_SPEED_SINGLE = 0,
-	SPI_CONTROLLER_SPEED_DUAL,
-	SPI_CONTROLLER_SPEED_QUAD
+typedef enum {
+    SPI_CONTROLLER_SPEED_SINGLE = 0,
+    SPI_CONTROLLER_SPEED_DUAL,
+    SPI_CONTROLLER_SPEED_QUAD
 
 } SPI_CONTROLLER_SPEED_T;
 
-typedef enum{
-	SPI_CONTROLLER_RTN_NO_ERROR = 0,
-	SPI_CONTROLLER_RTN_SET_OPFIFO_ERROR,
-	SPI_CONTROLLER_RTN_READ_DATAPFIFO_ERROR,
-	SPI_CONTROLLER_RTN_WRITE_DATAPFIFO_ERROR,
-	SPI_CONTROLLER_RTN_DEF_NO
+typedef enum {
+    SPI_CONTROLLER_RTN_NO_ERROR = 0,
+    SPI_CONTROLLER_RTN_SET_OPFIFO_ERROR,
+    SPI_CONTROLLER_RTN_READ_DATAPFIFO_ERROR,
+    SPI_CONTROLLER_RTN_WRITE_DATAPFIFO_ERROR,
+    SPI_CONTROLLER_RTN_DEF_NO
 } SPI_CONTROLLER_RTN_T;
 
-
-typedef enum{
-	SPI_CONTROLLER_MODE_AUTO = 0,
-	SPI_CONTROLLER_MODE_MANUAL,
-	SPI_CONTROLLER_MODE_NO
+typedef enum {
+    SPI_CONTROLLER_MODE_AUTO = 0,
+    SPI_CONTROLLER_MODE_MANUAL,
+    SPI_CONTROLLER_MODE_NO
 } SPI_CONTROLLER_MODE_T;
 
-int ProgDeviceInit( u8 deviceType, u8 chipType, u8 i2cSpeed );
-int ProgDeviceClose( u8 deviceType );
+int ProgDeviceInit(u8 deviceType, u8 chipType, u8 i2cSpeed);
+int ProgDeviceClose(u8 deviceType);
 int getDeviceDescriptor(u8 *data, u8 deviceType);
 
 /*------------------------------------------------------------------------------------
@@ -72,7 +71,7 @@ int getDeviceDescriptor(u8 *data, u8 deviceType);
  * MODIFICTION HISTORY:
  *------------------------------------------------------------------------------------
  */
-SPI_CONTROLLER_RTN_T SPI_CONTROLLER_Enable_Manual_Mode( void );
+SPI_CONTROLLER_RTN_T SPI_CONTROLLER_Enable_Manual_Mode(void);
 
 /*------------------------------------------------------------------------------------
  * FUNCTION: SPI_CONTROLLER_RTN_T SPI_CONTROLLER_Write_One_Byte( u8  data )
@@ -90,7 +89,7 @@ SPI_CONTROLLER_RTN_T SPI_CONTROLLER_Enable_Manual_Mode( void );
  * MODIFICTION HISTORY:
  *------------------------------------------------------------------------------------
  */
-SPI_CONTROLLER_RTN_T SPI_CONTROLLER_Write_One_Byte( u8  data, u8 deviceType );
+SPI_CONTROLLER_RTN_T SPI_CONTROLLER_Write_One_Byte(u8 data, u8 deviceType);
 
 /*------------------------------------------------------------------------------------
  * FUNCTION: SPI_CONTROLLER_RTN_T SPI_CONTROLLER_WRITE_NBYTES( u8                        *ptr_data,
@@ -112,7 +111,10 @@ SPI_CONTROLLER_RTN_T SPI_CONTROLLER_Write_One_Byte( u8  data, u8 deviceType );
  * MODIFICTION HISTORY:
  *------------------------------------------------------------------------------------
  */
-SPI_CONTROLLER_RTN_T SPI_CONTROLLER_Write_NByte( u8 *ptr_data, u32 len, SPI_CONTROLLER_SPEED_T speed, u8 deviceType );
+SPI_CONTROLLER_RTN_T SPI_CONTROLLER_Write_NByte(u8 *ptr_data,
+                                                u32 len,
+                                                SPI_CONTROLLER_SPEED_T speed,
+                                                u8 deviceType);
 
 /*------------------------------------------------------------------------------------
  * FUNCTION: SPI_CONTROLLER_RTN_T SPI_CONTROLLER_READ_NBYTES( u8                         *ptr_rtn_data,
@@ -133,7 +135,10 @@ SPI_CONTROLLER_RTN_T SPI_CONTROLLER_Write_NByte( u8 *ptr_data, u32 len, SPI_CONT
  * MODIFICTION HISTORY:
  *------------------------------------------------------------------------------------
  */
-SPI_CONTROLLER_RTN_T SPI_CONTROLLER_Read_NByte( u8 *ptr_rtn_data, u32 len, SPI_CONTROLLER_SPEED_T speed, u8 deviceType );
+SPI_CONTROLLER_RTN_T SPI_CONTROLLER_Read_NByte(u8 *ptr_rtn_data,
+                                               u32 len,
+                                               SPI_CONTROLLER_SPEED_T speed,
+                                               u8 deviceType);
 
 /*------------------------------------------------------------------------------------
  * FUNCTION: SPI_CONTROLLER_RTN_T SPI_CONTROLLER_Chip_Select_Low( void )
@@ -151,7 +156,7 @@ SPI_CONTROLLER_RTN_T SPI_CONTROLLER_Read_NByte( u8 *ptr_rtn_data, u32 len, SPI_C
  * MODIFICTION HISTORY:
  *------------------------------------------------------------------------------------
  */
-SPI_CONTROLLER_RTN_T SPI_CONTROLLER_Chip_Select_Low( u8 deviceType );
+SPI_CONTROLLER_RTN_T SPI_CONTROLLER_Chip_Select_Low(u8 deviceType);
 
 /*------------------------------------------------------------------------------------
  * FUNCTION: SPI_CONTROLLER_RTN_T SPI_CONTROLLER_Chip_Select_High( void )
@@ -169,7 +174,7 @@ SPI_CONTROLLER_RTN_T SPI_CONTROLLER_Chip_Select_Low( u8 deviceType );
  * MODIFICTION HISTORY:
  *------------------------------------------------------------------------------------
  */
-SPI_CONTROLLER_RTN_T SPI_CONTROLLER_Chip_Select_High( u8 deviceType );
+SPI_CONTROLLER_RTN_T SPI_CONTROLLER_Chip_Select_High(u8 deviceType);
 
 #if 0
 SPI_CONTROLLER_RTN_T SPI_CONTROLLER_Xfer_NByte( u8 *ptr_data_in, u32 len_in, u8 *ptr_data_out, u32 len_out, SPI_CONTROLLER_SPEED_T speed );

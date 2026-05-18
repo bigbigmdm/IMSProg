@@ -20,8 +20,8 @@
 
 #include <QApplication>
 #include <QStyleFactory>
-#include <QtGui>
 #include <QtCore>
+#include <QtGui>
 
 ColoredArea::ColoredArea()
 {
@@ -104,7 +104,6 @@ void ColoredArea::clear()
     _posEnd = 0;
 }
 
-
 /********************************************* */
 
 ColorManager::ColorManager()
@@ -113,7 +112,7 @@ ColorManager::ColorManager()
     setPalette(palette);
 };
 
-void ColorManager::setPalette(const QPalette &palette)
+void ColorManager::setPalette(const QPalette& palette)
 {
     _selection = ColoredArea(palette.highlightedText().color(), palette.highlight());
     _highlighting = ColoredArea(QColor::fromRgb(0, 0, 0), QColor(0xff, 0xff, 0x99));
@@ -123,23 +122,19 @@ void ColorManager::setPalette(const QPalette &palette)
 }
 
 // read only, copy of relevant ColoredArea is returned: you can't change anything
-ColoredArea ColorManager::markedArea(qint64 pos, Area area, Chunks *chunks)
+ColoredArea ColorManager::markedArea(qint64 pos, Area area, Chunks* chunks)
 {
     // prio 1 selection
-    if (pos >= _selection.posStart() && pos < _selection.posEnd())
-    {
+    if (pos >= _selection.posStart() && pos < _selection.posEnd()) {
         return _selection;
     }
     // prio 2 highlighting (changed data)
-    if (chunks->dataChanged(pos))
-    {
+    if (chunks->dataChanged(pos)) {
         return _highlighting;
     }
     // prio 3 user defined areas
-    foreach (ColoredArea area, _userAreas)
-    {
-        if (pos >= area.posStart() && pos < area.posEnd())
-        {
+    foreach (ColoredArea area, _userAreas) {
+        if (pos >= area.posStart() && pos < area.posEnd()) {
             return area;
         }
     }
@@ -150,15 +145,15 @@ ColoredArea ColorManager::markedArea(qint64 pos, Area area, Chunks *chunks)
 ColoredArea& ColorManager::notMarked(Area area)
 {
     switch (area) {
-        case Area::Address:
-            return _address;
-            break;
-        case Area::Ascii:
-            return _ascii;
-            break;
-        case Area::Hex:
-            return _hex;
-            break;
+    case Area::Address:
+        return _address;
+        break;
+    case Area::Ascii:
+        return _ascii;
+        break;
+    case Area::Hex:
+        return _hex;
+        break;
     }
     return _hex; // should never happen
 }

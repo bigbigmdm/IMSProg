@@ -74,7 +74,6 @@ private:
     QPixmap *pixnone;
 
     uint8_t currentProg;
-
 };
 
 #endif // DIALOGINFO_H

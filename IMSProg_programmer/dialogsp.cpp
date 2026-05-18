@@ -13,15 +13,15 @@
  * GNU General Public License for more details.
  */
 #include "dialogsp.h"
-#include "ui_dialogsp.h"
 #include "mainwindow.h"
-#include <QValidator>
-#include <QRegularExpression>
+#include "ui_dialogsp.h"
 #include <QDebug>
+#include <QRegularExpression>
 #include <QString>
-DialogSP::DialogSP(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::DialogSP)
+#include <QValidator>
+DialogSP::DialogSP(QWidget *parent)
+    : QDialog(parent)
+    , ui(new Ui::DialogSP)
 {
     ui->setupUi(this);
     setWindowFlags(Qt::Window | Qt::WindowMinimizeButtonHint | Qt::WindowCloseButtonHint);
@@ -40,9 +40,10 @@ DialogSP::~DialogSP()
 
 void DialogSP::on_pushButton_clicked()
 {
-
-    if (ui->comboBox_end->currentData() == 0) addrData = QString(ui->lineEditStart->text() + "-" + ui->lineEditEnd->text() + "*");
-    else addrData = QString(ui->lineEditStart->text() + "-" + ui->lineEditEnd->text() + "#");
+    if (ui->comboBox_end->currentData() == 0)
+        addrData = QString(ui->lineEditStart->text() + "-" + ui->lineEditEnd->text() + "*");
+    else
+        addrData = QString(ui->lineEditStart->text() + "-" + ui->lineEditEnd->text() + "#");
     emit sendAddr(addrData);
     DialogSP::close();
 }

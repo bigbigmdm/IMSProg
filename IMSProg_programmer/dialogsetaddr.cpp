@@ -14,13 +14,13 @@
  */
 #include "dialogsetaddr.h"
 #include "ui_dialogsetaddr.h"
-#include <QValidator>
 #include <QRegularExpression>
 #include <QString>
+#include <QValidator>
 
-DialogSetAddr::DialogSetAddr(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::DialogSetAddr)
+DialogSetAddr::DialogSetAddr(QWidget *parent)
+    : QDialog(parent)
+    , ui(new Ui::DialogSetAddr)
 {
     ui->setupUi(this);
     setWindowFlags(Qt::Window | Qt::WindowMinimizeButtonHint | Qt::WindowCloseButtonHint);
@@ -36,10 +36,10 @@ DialogSetAddr::~DialogSetAddr()
 
 void DialogSetAddr::on_pushButton_clicked()
 {
-   bool ok;
-   QString str = ui->lineEditStart->text();
-   qint64 inputAddr = str.toUInt(&ok, 16);
-   emit sendAddr3(inputAddr);
-   DialogSetAddr::close();
-   //return inputAddr;
+    bool ok;
+    QString str = ui->lineEditStart->text();
+    qint64 inputAddr = str.toUInt(&ok, 16);
+    emit sendAddr3(inputAddr);
+    DialogSetAddr::close();
+    //return inputAddr;
 }

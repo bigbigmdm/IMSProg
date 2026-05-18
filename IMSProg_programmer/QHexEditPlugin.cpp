@@ -3,11 +3,11 @@
 
 #include <QtPlugin>
 
-QHexEditPlugin::QHexEditPlugin(QObject * parent) : QObject(parent)
+QHexEditPlugin::QHexEditPlugin(QObject *parent)
+    : QObject(parent)
 {
     initialized = false;
 }
-
 
 bool QHexEditPlugin::isContainer() const
 {
@@ -27,23 +27,23 @@ QIcon QHexEditPlugin::icon() const
 QString QHexEditPlugin::domXml() const
 {
     return "<ui language=\"c++\">\n"
-        " <widget class=\"QHexEdit\" name=\"hexEdit\">\n"
-        "  <property name=\"geometry\">\n"
-        "   <rect>\n"
-        "    <x>0</x>\n"
-        "    <y>0</y>\n"
-        "    <width>100</width>\n"
-        "    <height>100</height>\n"
-        "   </rect>\n"
-        "  </property>\n"
-        "  <property name=\"toolTip\" >\n"
-        "   <string>QHexEditWidget</string>\n"
-        "  </property>\n"
-        "  <property name=\"whatsThis\" >\n"
-        "   <string>QHexEdit widget allow to edit the data in hex view.</string>\n"
-        "  </property>\n"
-        " </widget>\n"
-        "</ui>\n";
+           " <widget class=\"QHexEdit\" name=\"hexEdit\">\n"
+           "  <property name=\"geometry\">\n"
+           "   <rect>\n"
+           "    <x>0</x>\n"
+           "    <y>0</y>\n"
+           "    <width>100</width>\n"
+           "    <height>100</height>\n"
+           "   </rect>\n"
+           "  </property>\n"
+           "  <property name=\"toolTip\" >\n"
+           "   <string>QHexEditWidget</string>\n"
+           "  </property>\n"
+           "  <property name=\"whatsThis\" >\n"
+           "   <string>QHexEdit widget allow to edit the data in hex view.</string>\n"
+           "  </property>\n"
+           " </widget>\n"
+           "</ui>\n";
 }
 
 QString QHexEditPlugin::group() const
@@ -71,7 +71,7 @@ QString QHexEditPlugin::whatsThis() const
     return "";
 }
 
-QWidget * QHexEditPlugin::createWidget(QWidget *parent)
+QWidget *QHexEditPlugin::createWidget(QWidget *parent)
 {
     return new QHexEdit(parent);
 }
@@ -84,6 +84,6 @@ void QHexEditPlugin::initialize(QDesignerFormEditorInterface * /*core*/)
     initialized = true;
 }
 
-#if QT_VERSION < QT_VERSION_CHECK(5,0,0)
+#if QT_VERSION < QT_VERSION_CHECK(5, 0, 0)
 Q_EXPORT_PLUGIN2(QHexEditPlugin, QHexEditPlugin)
 #endif

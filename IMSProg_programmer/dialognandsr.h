@@ -34,7 +34,7 @@ public:
     explicit DialogNANDSr(QWidget *parent = nullptr);
     ~DialogNANDSr();
     void setPattern(const uint pattern);
-    void closeEvent(QCloseEvent* event);
+    void closeEvent(QCloseEvent *event);
     void setDeviceType(const uint8_t pType);
 
 signals:
@@ -52,7 +52,7 @@ private:
     void setRegDisabled(uint8_t regNumber);
     void clearAllFields();
     void setRegLabels(uint8_t regNumber, QString lt);
-    QString strtrip(const QString& str);
+    QString strtrip(const QString &str);
     uint8_t RegNumbers[5];
     bool regReaded;
     uint8_t programmerType;
