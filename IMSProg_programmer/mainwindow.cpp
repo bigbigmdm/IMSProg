@@ -1843,24 +1843,34 @@ void MainWindow::doNotDisturb()
    ui->actionExtract_from_ASUS_CAP->setDisabled(true);
    ui->actionEdit_chips_Database->setDisabled(true);
    ui->actionExit->setDisabled(true);
+
    ui->actionRead->setDisabled(true);
    ui->actionWrite->setDisabled(true);
    ui->actionErase->setDisabled(true);
    ui->actionCheck_erase->setDisabled(true);
    ui->actionVerify->setDisabled(true);
+
    ui->actionFind_Replace->setDisabled(true);
    ui->actionUndo->setDisabled(true);
    ui->actionRedo->setDisabled(true);
+   ui->actionCopy->setDisabled(true);
+   ui->actionPaste->setDisabled(true);
    ui->actionChecksum_calculate->setDisabled(true);
    ui->actionGoto_address->setDisabled(true);
    ui->actionCompare_files->setDisabled(true);
    ui->actionFill_with_code->setDisabled(true);
+   ui->actionFill_test_image->setDisabled(true);
+
    ui->actionChip_info->setDisabled(true);
    ui->actionSecurity_registers->setDisabled(true);
    ui->actionBad_block_management->setDisabled(true);
    ui->actionStop->setDisabled(false);
+
    ui->actionCH341A_B_v1_2->setDisabled(true);
    ui->actionCH341A_v1_7->setDisabled(true);
+   ui->actionCH347T->setDisabled(true);
+   ui->actionCH347T_v1_1->setDisabled(true);
+   ui->actionShow_programmer_version->setDisabled(true);
 
    ui->pushButton->blockSignals(true);
    ui->pushButton_2->blockSignals(true);
@@ -1883,52 +1893,61 @@ void MainWindow::doNotDisturb()
 
 void MainWindow::doNotDisturbCancel()
 {
-      if ((currentChipType == 0) || (currentChipType == 5) || (currentChipType == 6)) ui->actionDetect->setDisabled(false);
-      ui->actionOpen->setDisabled(false);
-      ui->actionSave->setDisabled(false);
-      ui->actionLoad_Part->setDisabled(false);
-      ui->actionSave_Part->setDisabled(false);
-      ui->actionExport_to_Intel_HEX->setDisabled(false);
-      ui->actionImport_from_Intel_HEX->setDisabled(false);
-      ui->actionExtract_from_ASUS_CAP->setDisabled(false);
-      ui->actionEdit_chips_Database->setDisabled(false);
-      ui->actionExit->setDisabled(false);
-      ui->actionRead->setDisabled(false);
-      ui->actionWrite->setDisabled(false);
-      ui->actionErase->setDisabled(false);
-      ui->actionCheck_erase->setDisabled(false);
-      ui->actionVerify->setDisabled(false);
-      ui->actionFind_Replace->setDisabled(false);
-      ui->actionUndo->setDisabled(false);
-      ui->actionRedo->setDisabled(false);
-      ui->actionChecksum_calculate->setDisabled(false);
-      ui->actionGoto_address->setDisabled(false);
-      ui->actionCompare_files->setDisabled(false);
-      ui->actionFill_with_code->setDisabled(false);
-      ui->actionCH341A_B_v1_2->setDisabled(false);
-      ui->actionCH341A_v1_7->setDisabled(false);
-      if ((currentChipType == 0) || (currentChipType == 6) || (currentChipType > 2)) ui->actionChip_info->setDisabled(false);
-      if ((currentChipType == 0) || (currentChipType == 6)) ui->actionSecurity_registers->setDisabled(false);
-      if (currentChipType == 6) ui->actionBad_block_management->setDisabled(false);
-      ui->actionStop->setDisabled(true);
+   if ((currentChipType == 0) || (currentChipType == 5) || (currentChipType == 6)) ui->actionDetect->setDisabled(false);
+   ui->actionOpen->setDisabled(false);
+   ui->actionSave->setDisabled(false);
+   ui->actionLoad_Part->setDisabled(false);
+   ui->actionSave_Part->setDisabled(false);
+   ui->actionExport_to_Intel_HEX->setDisabled(false);
+   ui->actionImport_from_Intel_HEX->setDisabled(false);
+   ui->actionExtract_from_ASUS_CAP->setDisabled(false);
+   ui->actionEdit_chips_Database->setDisabled(false);
+   ui->actionExit->setDisabled(false);
 
-      ui->pushButton->blockSignals(false);
-      ui->pushButton_2->blockSignals(false);
-      ui->pushButton_3->blockSignals(false);
+   ui->actionRead->setDisabled(false);
+   ui->actionWrite->setDisabled(false);
+   ui->actionErase->setDisabled(false);
+   ui->actionCheck_erase->setDisabled(false);
+   ui->actionVerify->setDisabled(false);
 
-      ui->comboBox_type->setDisabled(false);
-      ui->comboBox_man->setDisabled(false);
-      ui->comboBox_name->setDisabled(false);
-      ui->comboBox_size->setDisabled(false);
-      ui->comboBox_page->setDisabled(false);
-      ui->comboBox_block->setDisabled(false);
-      ui->comboBox_vcc->setDisabled(false);
-      ui->comboBox_addr4bit->setDisabled(false);
-      ui->comboBox_i2cSpeed->setDisabled(false);
-      ui->comboBox_ECC->setDisabled(false);
+   ui->actionFind_Replace->setDisabled(false);
+   ui->actionUndo->setDisabled(false);
+   ui->actionRedo->setDisabled(false);
+   ui->actionCopy->setDisabled(false);
+   ui->actionPaste->setDisabled(false);
+   ui->actionChecksum_calculate->setDisabled(false);
+   ui->actionGoto_address->setDisabled(false);
+   ui->actionCompare_files->setDisabled(false);
+   ui->actionFill_with_code->setDisabled(false);
+   ui->actionFill_test_image->setDisabled(false);
 
-      hexEdit->blockSignals(false);
-      timer->start();
+   ui->actionCH341A_B_v1_2->setDisabled(false);
+   ui->actionCH341A_v1_7->setDisabled(false);
+   ui->actionCH347T->setDisabled(false);
+   ui->actionCH347T_v1_1->setDisabled(false);
+   ui->actionShow_programmer_version->setDisabled(true);
+   if ((currentChipType == 0) || (currentChipType == 6) || (currentChipType > 2)) ui->actionChip_info->setDisabled(false);
+   if ((currentChipType == 0) || (currentChipType == 6)) ui->actionSecurity_registers->setDisabled(false);
+   if (currentChipType == 6) ui->actionBad_block_management->setDisabled(false);
+   ui->actionStop->setDisabled(true);
+
+   ui->pushButton->blockSignals(false);
+   ui->pushButton_2->blockSignals(false);
+   ui->pushButton_3->blockSignals(false);
+
+   ui->comboBox_type->setDisabled(false);
+   ui->comboBox_man->setDisabled(false);
+   ui->comboBox_name->setDisabled(false);
+   ui->comboBox_size->setDisabled(false);
+   ui->comboBox_page->setDisabled(false);
+   ui->comboBox_block->setDisabled(false);
+   ui->comboBox_vcc->setDisabled(false);
+   ui->comboBox_addr4bit->setDisabled(false);
+   ui->comboBox_i2cSpeed->setDisabled(false);
+   ui->comboBox_ECC->setDisabled(false);
+
+   hexEdit->blockSignals(false);
+   timer->start();
 }
 
 void MainWindow::on_actionStop_triggered()
