@@ -25,6 +25,7 @@
 #include <QResizeEvent>
 #include <QComboBox>
 #include <QStandardItemModel>
+#include <QMetaObject>
 #include <unistd.h>
 #include "qhexedit.h"
 #include "dialogsp.h"
@@ -133,6 +134,8 @@ private slots:
     void on_actionShow_programmer_version_triggered();
     void on_actionCheck_erase_triggered();
     void on_actionFill_with_code_triggered();
+    void on_comboBox_raw_currentIndexChanged(int index);
+    void handleScroll();
 
 private:
     Ui::MainWindow *ui;
@@ -145,6 +148,7 @@ private:
     unsigned int currentAddr4bit;
     bool isHalted;
     bool filled;
+    bool nandRaw;
     uint8_t numberOfReads;
     QTimer *timer;
     QVector <QString> chType = {"SPI_FLASH","25_EEPROM","93_EEPROM","24_EEPROM","95_EEPROM"};
@@ -175,6 +179,7 @@ private:
     uint32_t blockStartAddr, blockLen;
     uint8_t nandSettings;
     uint8_t current_programmer;
+    QMetaObject::Connection scroll_connect;
 };
 
 #endif // MAINWINDOW_H

@@ -48,6 +48,7 @@ void nand_unprotect(u8 progType);
 int nand_page_write(unsigned char *buf, unsigned int page_size, u32 sector_number);
 int nand_block_write(unsigned char *buf, unsigned int page_size, u32 block_number, unsigned int pages_per_block, u8 progType);
 void nand_ECCEnable(u8 progType);
+void nand_ECCDisable(u8 progType);
 int nand_checkBadBlock(u32 blockNo, u32 sectSize, u32 blockPerSector, u8 progType);
 #endif /* __SNORCMD_API_H__ */
 /* End of [snorcmd_api.h] package */

@@ -1185,6 +1185,28 @@ void nand_ECCEnable(u8 progType)
     usleep(2);
 }
 
+void nand_ECCDisable(u8 progType)
+{
+    u8 val;
+
+    programmerType = progType;
+
+    SPI_CONTROLLER_Chip_Select_Low(programmerType);
+    SPI_CONTROLLER_Write_One_Byte(0x0f, programmerType);
+    SPI_CONTROLLER_Write_One_Byte(0xb0, programmerType);
+    SPI_CONTROLLER_Read_NByte(&val, 1, SPI_CONTROLLER_SPEED_SINGLE, programmerType);
+    SPI_CONTROLLER_Chip_Select_High(programmerType);
+    usleep(2);
+    nand_write_enable();
+    //val = val | 0x10;
+    SPI_CONTROLLER_Chip_Select_Low(programmerType);
+    SPI_CONTROLLER_Write_One_Byte(0x1f, programmerType);
+    SPI_CONTROLLER_Write_One_Byte(0xb0, programmerType);
+    SPI_CONTROLLER_Write_One_Byte(val & 0xef, programmerType);  //set to 1 byte 4
+    SPI_CONTROLLER_Chip_Select_High(programmerType);
+    usleep(2);
+}
+
 int nand_checkBadBlock(uint32_t blockNo, uint32_t sectSize, uint32_t blockPerSector, u8 progType)
 {
     int retval; // Return: -1 - error operation, 0 - good block, 1 - bad block
