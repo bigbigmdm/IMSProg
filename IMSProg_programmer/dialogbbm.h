@@ -15,11 +15,11 @@
 #ifndef DIALOGBBM_H
 #define DIALOGBBM_H
 
-#include <QDialog>
-#include <QTableView>
-#include <QStandardItemModel>
-#include <QStandardItem>
 #include "qhexedit.h"
+#include <QDialog>
+#include <QStandardItem>
+#include <QStandardItemModel>
+#include <QTableView>
 extern "C" {
 #include "ch341a_spi.h"
 #include "spi_controller.h"

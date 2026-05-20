@@ -32,7 +32,7 @@ class DialogSR : public QDialog
 public:
     explicit DialogSR(QWidget *parent = nullptr);
     void setChipType(const uint chipType);
-    void closeEvent(QCloseEvent* event);
+    void closeEvent(QCloseEvent *event);
     void setDeviceType(const uint8_t pType);
     uint currentChipType;
     ~DialogSR();

@@ -13,19 +13,19 @@
  * GNU General Public License for more details.
  */
 #include "dialogfill.h"
-#include "ui_dialogfill.h"
 #include "mainwindow.h"
-#include <QValidator>
-#include <QRegularExpression>
+#include "ui_dialogfill.h"
 #include <QDebug>
+#include <QRegularExpression>
 #include <QString>
+#include <QValidator>
 
-DialogFill::DialogFill(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::DialogFill)
+DialogFill::DialogFill(QWidget *parent)
+    : QDialog(parent)
+    , ui(new Ui::DialogFill)
 {
     ui->setupUi(this);
-    setWindowFlags(Qt::Window| Qt::WindowMinimizeButtonHint | Qt::WindowCloseButtonHint);
+    setWindowFlags(Qt::Window | Qt::WindowMinimizeButtonHint | Qt::WindowCloseButtonHint);
     QRegularExpression reHex("[A-Fa-f0-9]{1,8}");
     QRegularExpression codeHex("[A-Fa-f0-9]{1,2}");
     QRegularExpressionValidator *validator = new QRegularExpressionValidator(reHex, this);
@@ -45,9 +45,12 @@ DialogFill::~DialogFill()
 void DialogFill::on_pushButton_clicked()
 {
     QString typeOfEnd;
-    if (ui->comboBox_end->currentData() == 0) typeOfEnd = "0";
-    else typeOfEnd = "1";
-    addrData = ui->lineEditStart->text() + "-" + ui->lineEditEnd->text() + "-" + ui->lineEditCode->text() + "-" + typeOfEnd;
+    if (ui->comboBox_end->currentData() == 0)
+        typeOfEnd = "0";
+    else
+        typeOfEnd = "1";
+    addrData = ui->lineEditStart->text() + "-" + ui->lineEditEnd->text() + "-"
+               + ui->lineEditCode->text() + "-" + typeOfEnd;
     emit sendAddr4(addrData);
     DialogFill::close();
 }

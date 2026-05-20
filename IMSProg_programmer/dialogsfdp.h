@@ -15,9 +15,9 @@
 #ifndef DIALOGSFDP_H
 #define DIALOGSFDP_H
 
+#include "hexutility.h"
 #include <QDialog>
 #include <QMessageBox>
-#include "hexutility.h"
 extern "C" {
 #include "ch341a_spi.h"
 #include "ch347.h"
@@ -34,7 +34,7 @@ class DialogSFDP : public QDialog
 public:
     explicit DialogSFDP(QWidget *parent = nullptr);
     ~DialogSFDP();
-    void closeEvent(QCloseEvent* event);
+    void closeEvent(QCloseEvent *event);
     void setDeviceType(const uint8_t pType);
 
 private slots:

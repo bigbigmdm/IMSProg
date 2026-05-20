@@ -35,23 +35,33 @@ extern int org;
 extern int mw_eepromsize;
 extern int fix_addr_len;
 
-struct MW_EEPROM {
-	char *name;
-	unsigned int size;
+struct MW_EEPROM
+{
+    char *name;
+    unsigned int size;
 };
 
-struct gpio_cmd {
-	int (*gpio_setdir)(void);
-	int (*gpio_setbits)(unsigned char bit);
-	int (*gpio_getbits)(unsigned char *data);
+struct gpio_cmd
+{
+    int (*gpio_setdir)(void);
+    int (*gpio_setbits)(unsigned char bit);
+    int (*gpio_getbits)(unsigned char *data);
 };
 
 //void Erase_EEPROM_3wire(int size_eeprom);
 //int Read_EEPROM_3wire(unsigned char *buffer, int size_eeprom);
 //int Write_EEPROM_3wire(unsigned char *buffer, int size_eeprom);
 //int deviceSize_3wire(char *eepromname);
-int Read_EEPROM_3wire_param(unsigned char *buffer, int start_addr, int block_size, int size_eeprom, unsigned char algorithm);
-int Write_EEPROM_3wire_param(unsigned char *buffer, int start_addr, int block_size, int size_eeprom, unsigned char algorithm);
+int Read_EEPROM_3wire_param(unsigned char *buffer,
+                            int start_addr,
+                            int block_size,
+                            int size_eeprom,
+                            unsigned char algorithm);
+int Write_EEPROM_3wire_param(unsigned char *buffer,
+                             int start_addr,
+                             int block_size,
+                             int size_eeprom,
+                             unsigned char algorithm);
 void Erase_EEPROM_3wire_param(unsigned char algorithm);
 
 /*const static struct MW_EEPROM mw_eepromlist[] = {
@@ -66,7 +76,7 @@ void Erase_EEPROM_3wire_param(unsigned char algorithm);
 	{ 0, 0 }
 };
 */
-#define MAX_MW_EEPROM_SIZE	4096
+#define MAX_MW_EEPROM_SIZE 4096
 
 #endif /* _BITBANG_MICROWIRE_H */
 /* End of [bitbang_microwire.h] package */

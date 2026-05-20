@@ -15,10 +15,10 @@
 #ifndef DIALOGCOMPARE_H
 #define DIALOGCOMPARE_H
 
+#include "hexutility.h"
+#include "qhexedit.h"
 #include <QDialog>
 #include <QResizeEvent>
-#include "qhexedit.h"
-#include "hexutility.h"
 
 namespace Ui {
 class DialogCompare;
@@ -41,7 +41,7 @@ public:
 
 private:
     Ui::DialogCompare *ui;
-    void resizeEvent(QResizeEvent* event);
+    void resizeEvent(QResizeEvent *event);
     QHexEdit *hexEdit1, *hexEdit2;
     QByteArray data1, data2;
     //QByteArray arr1, arr2;

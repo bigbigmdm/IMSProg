@@ -1,12 +1,12 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include <QMessageBox>
-#include <QUrl>
-#include <QStatusBar>
+#include <QDir>
 #include <QFileInfo>
+#include <QMessageBox>
 #include <QNetworkRequest>
 #include <QSaveFile>
-#include <QDir>
+#include <QStatusBar>
+#include <QUrl>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -107,8 +107,10 @@ void MainWindow::startDownload()
 #if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
     connect(currentReply, &QNetworkReply::errorOccurred, this, &MainWindow::onError);
 #else
-    connect(currentReply, QOverload<QNetworkReply::NetworkError>::of(&QNetworkReply::error),
-            this, &MainWindow::onError);
+    connect(currentReply,
+            QOverload<QNetworkReply::NetworkError>::of(&QNetworkReply::error),
+            this,
+            &MainWindow::onError);
 #endif
 }
 
@@ -145,8 +147,10 @@ void MainWindow::onFinished()
                 success = true;
                 newRecords = static_cast<int>(totalBytesReceived / 0x44 - 1);
                 ui->progressBar->setValue(100);
-                QString msg = (tr("The database has been updated!\n\nThe old database contained %1 chips,\nThe new database contains %2 chips."))
-                              .arg(oldRecords).arg(newRecords);
+                QString msg = (tr("The database has been updated!\n\nThe old database contained %1 "
+                                  "chips,\nThe new database contains %2 chips."))
+                                  .arg(oldRecords)
+                                  .arg(newRecords);
                 QMessageBox::information(this, tr("Ok"), msg);
             } else {
                 showError(tr("Failed to replace the database file"));
@@ -203,4 +207,3 @@ void MainWindow::on_exitButton_clicked()
 {
     MainWindow::close();
 }
-

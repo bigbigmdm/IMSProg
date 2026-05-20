@@ -1,10 +1,10 @@
 #include "ezp_chip_editor.h"
 #include <QApplication>
-#include <QTranslator>
-#include <QLocale>
 #include <QDebug>
 #include <QFileInfo>
+#include <QLocale>
 #include <QStandardPaths>
+#include <QTranslator>
 
 static QString setUpTranslation(const QStringList &searchPaths)
 {
@@ -12,11 +12,9 @@ static QString setUpTranslation(const QStringList &searchPaths)
     QString translateName = "chipEditor_" + localeName;
 
     // skip user-specific dir for translations (first one); try the rest
-    foreach (const QString &path, searchPaths.mid(1))
-    {
+    foreach (const QString &path, searchPaths.mid(1)) {
         QTranslator *translator = new QTranslator(qApp);
-        if (translator->load(translateName, path))
-        {
+        if (translator->load(translateName, path)) {
             qApp->installTranslator(translator);
             qDebug() << "Installed" << translateName << "from" << path;
             return path;
@@ -30,8 +28,7 @@ static QString setUpTranslation(const QStringList &searchPaths)
 
 static QString findSystemChipDBFile(const QStringList &searchPaths)
 {
-    foreach (const QString &path, searchPaths.mid(1))
-    {
+    foreach (const QString &path, searchPaths.mid(1)) {
         QString chipdbfile = QDir(path).filePath("IMSProg.Dat");
         if (QFile::exists(chipdbfile)) {
             return chipdbfile;
@@ -46,11 +43,13 @@ static void initPaths()
     QStringList allPaths = QStandardPaths::standardLocations(QStandardPaths::AppDataLocation);
     if (allPaths.isEmpty()) {
         // do not translate
-        qFatal("Critical error: QStandardPaths::standardLocations(QStandardPaths::AppDataLocation): empty list");
+        qFatal("Critical error: "
+               "QStandardPaths::standardLocations(QStandardPaths::AppDataLocation): empty list");
     }
 
     QDir binDir(QCoreApplication::applicationDirPath());
-    QString binRelPath = QDir::cleanPath(binDir.absoluteFilePath("../share/" + QCoreApplication::applicationName()));
+    QString binRelPath = QDir::cleanPath(
+        binDir.absoluteFilePath("../share/" + QCoreApplication::applicationName()));
     allPaths.insert(1, binRelPath);
 
     QDir userAppDataLocation(allPaths.value(0));
@@ -63,7 +62,6 @@ static void initPaths()
     qApp->setProperty("app/systemChipDatabaseFile", findSystemChipDBFile(allPaths));
     qApp->setProperty("app/userChipDatabaseFile", userAppDataLocation.filePath("IMSProg.Dat"));
 }
-
 
 int main(int argc, char *argv[])
 {

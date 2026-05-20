@@ -14,24 +14,24 @@
 extern "C" {
 #endif
 
-#include <stdint.h>
-#include <stdbool.h>
 #include <libusb.h>
+#include <stdbool.h>
+#include <stdint.h>
 #if defined(_WIN32)
-    #include <winsock2.h>
-    #include <windows.h>
-    #define htobe16(x) htons(x)
-    #define be16toh(x) ntohs(x)
-    #define htobe32(x) htonl(x)
-    #define be32toh(x) ntohl(x)
-    #define htole16(x) (x)
-    #define le16toh(x) (x)
-    #define htole32(x) (x)
-    #define le32toh(x) (x)
+#include <windows.h>
+#include <winsock2.h>
+#define htobe16(x) htons(x)
+#define be16toh(x) ntohs(x)
+#define htobe32(x) htonl(x)
+#define be32toh(x) ntohl(x)
+#define htole16(x) (x)
+#define le16toh(x) (x)
+#define htole32(x) (x)
+#define le32toh(x) (x)
 #elif defined(__APPLE__)
-    #include <machine/endian.h>
+#include <machine/endian.h>
 #else
-    #include <endian.h>
+#include <endian.h>
 #endif
 
 #define CH347_SPI_VID 0x1a86
@@ -42,7 +42,7 @@ extern "C" {
 
 #define CH347_SPI_MAX_FREQ 60000
 #define CH347_SPI_MAX_PRESCALER 7
-#define CH347_SPI_MAX_TRX 507//4096- wrong data. 510 - 3 = 507 - correct value
+#define CH347_SPI_MAX_TRX 507 //4096- wrong data. 510 - 3 = 507 - correct value
 
 /* SPI_data_direction */
 #define SPI_Direction_2Lines_FullDuplex 0x0000
@@ -82,31 +82,34 @@ extern "C" {
 #define CH347_CMD_SPI_BLCK_WR 0xC4
 #define CH347_CMD_INFO_RD 0xCA
 
-#define	mch347A_CMD_I2C_STREAM		0xAA
-#define	mch347A_CMD_I2C_STM_STA		0x74
-#define	mch347A_CMD_I2C_STM_STO		0x75
-#define	mch347A_CMD_I2C_STM_OUT		0x80
-#define	mch347A_CMD_I2C_STM_IN		0xC0
-#define	mch347A_CMD_I2C_STM_SET		0x60
-#define	mch347A_CMD_I2C_STM_END		0x00
+#define mch347A_CMD_I2C_STREAM 0xAA
+#define mch347A_CMD_I2C_STM_STA 0x74
+#define mch347A_CMD_I2C_STM_STO 0x75
+#define mch347A_CMD_I2C_STM_OUT 0x80
+#define mch347A_CMD_I2C_STM_IN 0xC0
+#define mch347A_CMD_I2C_STM_SET 0x60
+#define mch347A_CMD_I2C_STM_END 0x00
 
-#define BULK_WRITE_ENDPOINT         0x06
+#define BULK_WRITE_ENDPOINT 0x06
 
-#define min(a,b) (((a)<(b))?(a):(b))
-#define max(a,b) (((a)>(b))?(a):(b))
+#define min(a, b) (((a) < (b)) ? (a) : (b))
+#define max(a, b) (((a) > (b)) ? (a) : (b))
 
-struct ch347_spi_hw_config {
+struct ch347_spi_hw_config
+{
     uint16_t SPI_Direction;
     uint16_t SPI_Mode;
     uint16_t SPI_DataSize;
     uint16_t SPI_CPOL;
     uint16_t SPI_CPHA;
     uint16_t SPI_NSS; /* hardware or software managed CS */
-    uint16_t SPI_BaudRatePrescaler; /* prescaler = x * 8. x: 0=60MHz, 1=30MHz, 2=15MHz, 3=7.5MHz, 4=3.75MHz, 5=1.875MHz, 6=937.5KHz, 7=468.75KHz */
-    uint16_t SPI_FirstBit; /* MSB or LSB first */
+    uint16_t
+        SPI_BaudRatePrescaler; /* prescaler = x * 8. x: 0=60MHz, 1=30MHz, 2=15MHz, 3=7.5MHz, 4=3.75MHz, 5=1.875MHz, 6=937.5KHz, 7=468.75KHz */
+    uint16_t SPI_FirstBit;     /* MSB or LSB first */
     uint16_t SPI_CRCPolynomial; /* polynomial used for the CRC calculation. */
-    uint16_t SPI_WriteReadInterval; /* No idea what this is... Original comment from WCH: SPI接口常规读取写入数据命令(DEF_CMD_SPI_RD_WR))，单位为uS */
-    uint8_t SPI_OutDefaultData;     /* Data to output on MOSI during SPI reading */
+    uint16_t
+        SPI_WriteReadInterval; /* No idea what this is... Original comment from WCH: SPI接口常规读取写入数据命令(DEF_CMD_SPI_RD_WR))，单位为uS */
+    uint8_t SPI_OutDefaultData; /* Data to output on MOSI during SPI reading */
     /*
      * Miscellaneous settings:
      * Bit 7: CS0 polarity
@@ -120,11 +123,12 @@ struct ch347_spi_hw_config {
     uint8_t Reserved[4];
 };
 
-struct ch347_priv {
+struct ch347_priv
+{
     struct ch347_spi_hw_config cfg;
     libusb_context *ctx;
     libusb_device_handle *handle;
-    uint8_t tmpbuf[510];//tmpbuf[509];//tmpbuf[8192];  // old - 512
+    uint8_t tmpbuf[510]; //tmpbuf[509];//tmpbuf[8192];  // old - 512
 };
 
 struct ch347_priv *ch347_open();
@@ -137,7 +141,11 @@ int ch347_set_cs(struct ch347_priv *priv, int cs, int val);
 
 int ch347_set_spi_freq(struct ch347_priv *priv, int *clk_khz);
 
-int ch347_setup_spi(struct ch347_priv *priv, int spi_mode, bool lsb_first, bool cs0_active_high, bool cs1_active_high);
+int ch347_setup_spi(struct ch347_priv *priv,
+                    int spi_mode,
+                    bool lsb_first,
+                    bool cs0_active_high,
+                    bool cs1_active_high);
 
 int ch347_spi_trx_full_duplex(struct ch347_priv *priv, void *buf, uint32_t len);
 

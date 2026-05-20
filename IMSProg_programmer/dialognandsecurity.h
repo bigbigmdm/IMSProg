@@ -17,7 +17,7 @@ public:
     void setSectorSize(uint32_t sectorSize);
     void setPath(QString lastPath);
     void setDeviceType(const uint8_t pType);
-    void closeEvent(QCloseEvent* event);
+    void closeEvent(QCloseEvent *event);
     ~DialogNandSecurity();
 
 private slots:
@@ -40,9 +40,9 @@ private:
     QString programmerName;
     struct algSettings
     {
-        uint8_t id;          // Algorithm number
-        uint8_t  secStart;  // Start security sector number
-        uint8_t  secEnd;    // End security sector number
+        uint8_t id;       // Algorithm number
+        uint8_t secStart; // Start security sector number
+        uint8_t secEnd;   // End security sector number
     };
 };
 

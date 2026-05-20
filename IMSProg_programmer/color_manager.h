@@ -76,7 +76,6 @@ private:
     QBrush _areaStyle;
 };
 
-
 class ColorManager
 {
 public:
@@ -84,10 +83,10 @@ public:
     ColorManager();
 
     // reload the palette and adapt the apeareance
-    void setPalette(const QPalette &palette);
+    void setPalette(const QPalette& palette);
 
     // Method returns color definitions for data at position pos in area area
-    ColoredArea markedArea(qint64 pos, Area area, Chunks *chunks);
+    ColoredArea markedArea(qint64 pos, Area area, Chunks* chunks);
 
     // Method returns standard collors (without marking)
     ColoredArea& notMarked(Area);

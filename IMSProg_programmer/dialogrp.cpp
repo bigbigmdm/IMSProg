@@ -13,19 +13,19 @@
  * GNU General Public License for more details.
  */
 #include "dialogrp.h"
-#include "ui_dialogrp.h"
 #include "mainwindow.h"
-#include <QValidator>
-#include <QRegularExpression>
+#include "ui_dialogrp.h"
 #include <QDebug>
+#include <QRegularExpression>
 #include <QString>
-DialogRP::DialogRP(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::DialogRP)
+#include <QValidator>
+DialogRP::DialogRP(QWidget *parent)
+    : QDialog(parent)
+    , ui(new Ui::DialogRP)
 {
     ui->setupUi(this);
-    setWindowFlags(Qt::Window| Qt::WindowMinimizeButtonHint | Qt::WindowCloseButtonHint);
-    QRegularExpression reHex( "[A-Fa-f0-9]{1,8}" );
+    setWindowFlags(Qt::Window | Qt::WindowMinimizeButtonHint | Qt::WindowCloseButtonHint);
+    QRegularExpression reHex("[A-Fa-f0-9]{1,8}");
     QRegularExpressionValidator *validator = new QRegularExpressionValidator(reHex, this);
     ui->lineEditStart->setValidator(validator);
 }
@@ -37,7 +37,6 @@ DialogRP::~DialogRP()
 
 void DialogRP::on_pushButton_clicked()
 {
-
     addrData = QString(ui->lineEditStart->text());
     emit sendAddr2(addrData);
     DialogRP::close();
