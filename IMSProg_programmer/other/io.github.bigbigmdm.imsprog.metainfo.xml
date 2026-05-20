@@ -165,7 +165,7 @@
     </screenshot>
   </screenshots>
   <releases>
-  <release version="1.8.4" date="2026-05-15" urgency="medium">
+  <release version="1.8.4" date="2026-05-20" urgency="medium">
     <description>
         <p>Fixed: segmentation fault in Qt6.</p>
         <p>Fixed: incorrect interface display on macOS.</p>
@@ -176,6 +176,7 @@
         <p>Added: migration to Qt6.</p>
         <p>Added: universal Qt5/Qt6 CmakeLists.txt.</p>
         <p>Added: specification file for Fedora.</p>
+        <p>Added: support for the spare area for NAND flash memory.</p>
     </description>
   </release>
   <release version="1.8.3" date="2026-04-15" urgency="medium">

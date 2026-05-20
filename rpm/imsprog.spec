@@ -199,7 +199,7 @@ appstream-util validate-relax --nonet %{buildroot}%{_datadir}/metainfo/*.xml
 %license LICENSE
 
 %changelog
-* Fri May 15 2026 Mikhail Medvedev 1.8.4-1
+* Wed May 20 2026 Mikhail Medvedev 1.8.4-1
 - Fixed: segmentation fault in Qt6
 - Fixed: incorrect interface display on macOS
 - Fixed: write error to sector 0 in Windows
@@ -209,6 +209,7 @@ appstream-util validate-relax --nonet %{buildroot}%{_datadir}/metainfo/*.xml
 - Added: migration to Qt6
 - Added: specification file for Fedora
 - Added: universal Qt5/Qt6 CmakeLists.txt
+- Added: support for the spare area for NAND flash memory.
 
 * Tue Apr 21 2026 Mikhail Medvedev 1.8.3-1
 - Fixed: If no chip is selected, the programmer was not detected
