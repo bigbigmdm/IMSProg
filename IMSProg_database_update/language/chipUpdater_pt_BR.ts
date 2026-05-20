@@ -15,7 +15,7 @@
     </message>
     <message>
         <location filename="../mainwindow.ui" line="70"/>
-        <location filename="../mainwindow.cpp" line="149"/>
+        <location filename="../mainwindow.cpp" line="150"/>
         <source>Ok</source>
         <translation>Ok</translation>
     </message>
@@ -35,12 +35,12 @@
         <translation>URL inválido</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="95"/>
+        <location filename="../mainwindow.cpp" line="96"/>
         <source>Cannot create temporary file for download</source>
         <translation>Não é possível criar o arquivo temporário para download</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="147"/>
+        <location filename="../mainwindow.cpp" line="148"/>
         <source>The database has been updated!
 
 The old database contained %1 chips,
@@ -51,27 +51,26 @@ O banco de dados antigo contém %1 chips,
 O novo banco de dados contém %2 chips.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="151"/>
+        <location filename="../mainwindow.cpp" line="152"/>
         <source>Failed to replace the database file</source>
         <translation>Falha ao substituir o arquivo do banco de dados</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="154"/>
+        <location filename="../mainwindow.cpp" line="155"/>
         <source>Downloaded file is too small (corrupted?)</source>
         <translation>O arquivo baixado é muito pequeno (estará corrompido?)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="157"/>
         <source>Download failed: </source>
-        <translation>Falha no download: </translation>
+        <translation type="vanished">Falha no download: </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="182"/>
+        <location filename="../mainwindow.cpp" line="181"/>
         <source>Error loading file: </source>
         <translation>Erro ao carregar o arquivo: </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="200"/>
+        <location filename="../mainwindow.cpp" line="199"/>
         <source>Error:</source>
         <translation>Erro:</translation>
     </message>

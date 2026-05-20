@@ -15,7 +15,7 @@
     </message>
     <message>
         <location filename="../mainwindow.ui" line="70"/>
-        <location filename="../mainwindow.cpp" line="149"/>
+        <location filename="../mainwindow.cpp" line="150"/>
         <source>Ok</source>
         <translation>Ok</translation>
     </message>
@@ -36,12 +36,12 @@
         <translation>URL 无效</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="95"/>
+        <location filename="../mainwindow.cpp" line="96"/>
         <source>Cannot create temporary file for download</source>
         <translation>无法创建下载所需的临时文件</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="147"/>
+        <location filename="../mainwindow.cpp" line="148"/>
         <source>The database has been updated!
 
 The old database contained %1 chips,
@@ -52,27 +52,26 @@ The new database contains %2 chips.</source>
 新数据库包含 %2 个芯片。</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="151"/>
+        <location filename="../mainwindow.cpp" line="152"/>
         <source>Failed to replace the database file</source>
         <translation>无法替换数据库文件</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="154"/>
+        <location filename="../mainwindow.cpp" line="155"/>
         <source>Downloaded file is too small (corrupted?)</source>
         <translation>下载的文件过小（可能已损坏？）</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="157"/>
         <source>Download failed: </source>
-        <translation>下载失败： </translation>
+        <translation type="vanished">下载失败： </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="182"/>
+        <location filename="../mainwindow.cpp" line="181"/>
         <source>Error loading file: </source>
         <translation>加载文件时出错： </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="200"/>
+        <location filename="../mainwindow.cpp" line="199"/>
         <source>Error:</source>
         <translation>错误：</translation>
     </message>

@@ -130,139 +130,139 @@
         <translation>, Ctrl+Shift+X</translation>
     </message>
     <message>
-        <location filename="../ezp_chip_editor.cpp" line="51"/>
         <location filename="../ezp_chip_editor.cpp" line="53"/>
-        <location filename="../ezp_chip_editor.cpp" line="736"/>
-        <location filename="../ezp_chip_editor.cpp" line="757"/>
+        <location filename="../ezp_chip_editor.cpp" line="55"/>
+        <location filename="../ezp_chip_editor.cpp" line="746"/>
+        <location filename="../ezp_chip_editor.cpp" line="767"/>
         <source>Open the file</source>
         <translation>開啟檔案</translation>
     </message>
     <message>
-        <location filename="../ezp_chip_editor.cpp" line="56"/>
-        <location filename="../ezp_chip_editor.cpp" line="701"/>
-        <location filename="../ezp_chip_editor.cpp" line="739"/>
-        <location filename="../ezp_chip_editor.cpp" line="760"/>
+        <location filename="../ezp_chip_editor.cpp" line="58"/>
+        <location filename="../ezp_chip_editor.cpp" line="711"/>
+        <location filename="../ezp_chip_editor.cpp" line="749"/>
+        <location filename="../ezp_chip_editor.cpp" line="770"/>
         <source>Current file: </source>
         <translation>目前檔案： </translation>
     </message>
     <message>
-        <location filename="../ezp_chip_editor.cpp" line="80"/>
+        <location filename="../ezp_chip_editor.cpp" line="82"/>
         <source>Type</source>
         <translation>類型</translation>
     </message>
     <message>
-        <location filename="../ezp_chip_editor.cpp" line="81"/>
+        <location filename="../ezp_chip_editor.cpp" line="83"/>
         <source>Manufacturer</source>
         <translation>製造商</translation>
     </message>
     <message>
-        <location filename="../ezp_chip_editor.cpp" line="82"/>
+        <location filename="../ezp_chip_editor.cpp" line="84"/>
         <source>IC Name</source>
         <translation>IC 名稱</translation>
     </message>
     <message>
-        <location filename="../ezp_chip_editor.cpp" line="83"/>
+        <location filename="../ezp_chip_editor.cpp" line="85"/>
         <source>JEDEC ID</source>
         <translation>JEDEC ID</translation>
     </message>
     <message>
-        <location filename="../ezp_chip_editor.cpp" line="84"/>
+        <location filename="../ezp_chip_editor.cpp" line="86"/>
         <source>Size</source>
         <translation>大小</translation>
     </message>
     <message>
-        <location filename="../ezp_chip_editor.cpp" line="85"/>
+        <location filename="../ezp_chip_editor.cpp" line="87"/>
         <source>Sector
 size</source>
         <translation>磁區
 大小</translation>
     </message>
     <message>
-        <location filename="../ezp_chip_editor.cpp" line="86"/>
+        <location filename="../ezp_chip_editor.cpp" line="88"/>
         <source>Type
 HEX</source>
         <translation>類型
 HEX</translation>
     </message>
     <message>
-        <location filename="../ezp_chip_editor.cpp" line="87"/>
+        <location filename="../ezp_chip_editor.cpp" line="89"/>
         <source>Algo-
 rithm</source>
         <translation>演算法</translation>
     </message>
     <message>
-        <location filename="../ezp_chip_editor.cpp" line="88"/>
+        <location filename="../ezp_chip_editor.cpp" line="90"/>
         <source>Delay</source>
         <translation>延遲</translation>
     </message>
     <message>
-        <location filename="../ezp_chip_editor.cpp" line="89"/>
+        <location filename="../ezp_chip_editor.cpp" line="91"/>
         <source>4 bit
 address</source>
         <translation>4 位元
 位址</translation>
     </message>
     <message>
-        <location filename="../ezp_chip_editor.cpp" line="90"/>
+        <location filename="../ezp_chip_editor.cpp" line="92"/>
         <source>Block
 size K</source>
         <translation>區塊
 大小 K</translation>
     </message>
     <message>
-        <location filename="../ezp_chip_editor.cpp" line="91"/>
+        <location filename="../ezp_chip_editor.cpp" line="93"/>
         <source>EEPROM
 pages</source>
         <translation>EEPROM
 頁數</translation>
     </message>
     <message>
-        <location filename="../ezp_chip_editor.cpp" line="92"/>
+        <location filename="../ezp_chip_editor.cpp" line="94"/>
         <source>VCC</source>
         <translation>VCC</translation>
     </message>
     <message>
-        <location filename="../ezp_chip_editor.cpp" line="532"/>
-        <location filename="../ezp_chip_editor.cpp" line="569"/>
-        <location filename="../ezp_chip_editor.cpp" line="597"/>
-        <location filename="../ezp_chip_editor.cpp" line="636"/>
-        <location filename="../ezp_chip_editor.cpp" line="676"/>
-        <location filename="../ezp_chip_editor.cpp" line="796"/>
-        <location filename="../ezp_chip_editor.cpp" line="830"/>
+        <location filename="../ezp_chip_editor.cpp" line="542"/>
+        <location filename="../ezp_chip_editor.cpp" line="579"/>
+        <location filename="../ezp_chip_editor.cpp" line="607"/>
+        <location filename="../ezp_chip_editor.cpp" line="646"/>
+        <location filename="../ezp_chip_editor.cpp" line="686"/>
+        <location filename="../ezp_chip_editor.cpp" line="806"/>
+        <location filename="../ezp_chip_editor.cpp" line="840"/>
         <source>Warning</source>
         <translation>警告</translation>
     </message>
     <message>
-        <location filename="../ezp_chip_editor.cpp" line="532"/>
-        <location filename="../ezp_chip_editor.cpp" line="569"/>
-        <location filename="../ezp_chip_editor.cpp" line="597"/>
-        <location filename="../ezp_chip_editor.cpp" line="636"/>
-        <location filename="../ezp_chip_editor.cpp" line="676"/>
+        <location filename="../ezp_chip_editor.cpp" line="542"/>
+        <location filename="../ezp_chip_editor.cpp" line="579"/>
+        <location filename="../ezp_chip_editor.cpp" line="607"/>
+        <location filename="../ezp_chip_editor.cpp" line="646"/>
+        <location filename="../ezp_chip_editor.cpp" line="686"/>
         <source>No string selected.</source>
         <translation>未選擇字串。</translation>
     </message>
     <message>
-        <location filename="../ezp_chip_editor.cpp" line="696"/>
+        <location filename="../ezp_chip_editor.cpp" line="706"/>
         <source>Saving file</source>
         <translation>儲存檔案</translation>
     </message>
     <message>
-        <location filename="../ezp_chip_editor.cpp" line="698"/>
+        <location filename="../ezp_chip_editor.cpp" line="708"/>
         <source>Save file</source>
         <translation>儲存檔案</translation>
     </message>
     <message>
-        <location filename="../ezp_chip_editor.cpp" line="755"/>
+        <location filename="../ezp_chip_editor.cpp" line="765"/>
         <source>Opening file</source>
         <translation>開啟檔案</translation>
     </message>
     <message>
-        <location filename="../ezp_chip_editor.cpp" line="796"/>
+        <location filename="../ezp_chip_editor.cpp" line="806"/>
         <source>Invalid CSV data file format.</source>
         <translation>CSV 資料檔案格式無效。</translation>
     </message>
     <message>
-        <location filename="../ezp_chip_editor.cpp" line="830"/>
+        <location filename="../ezp_chip_editor.cpp" line="840"/>
         <source>Invalid CSV header file format.</source>
         <translation>CSV 標頭檔案格式無效。</translation>
     </message>

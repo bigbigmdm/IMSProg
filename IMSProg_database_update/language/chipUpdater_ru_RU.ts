@@ -15,7 +15,7 @@
     </message>
     <message>
         <location filename="../mainwindow.ui" line="70"/>
-        <location filename="../mainwindow.cpp" line="149"/>
+        <location filename="../mainwindow.cpp" line="150"/>
         <source>Ok</source>
         <translation>Ok</translation>
     </message>
@@ -35,12 +35,12 @@
         <translation>Неверный URL-адрес</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="95"/>
+        <location filename="../mainwindow.cpp" line="96"/>
         <source>Cannot create temporary file for download</source>
         <translation>Не удается создать временный файл для загрузки</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="147"/>
+        <location filename="../mainwindow.cpp" line="148"/>
         <source>The database has been updated!
 
 The old database contained %1 chips,
@@ -51,19 +51,18 @@ The new database contains %2 chips.</source>
 в новой базе данных сейчас %2 микросхем.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="151"/>
+        <location filename="../mainwindow.cpp" line="152"/>
         <source>Failed to replace the database file</source>
         <translation>Не удалось заменить файл базы данных</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="154"/>
+        <location filename="../mainwindow.cpp" line="155"/>
         <source>Downloaded file is too small (corrupted?)</source>
         <translation>Загруженный файл слишком мал (возможно, поврежден?)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="157"/>
         <source>Download failed: </source>
-        <translation>Ошибка загрузки: </translation>
+        <translation type="vanished">Ошибка загрузки: </translation>
     </message>
     <message>
         <source>The database has been updated!
@@ -76,12 +75,12 @@ The new database contains %2 chips.</source>
 новая база данных содержит %2 микросхем.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="182"/>
+        <location filename="../mainwindow.cpp" line="181"/>
         <source>Error loading file: </source>
         <translation>Ошибка при загрузке файла: </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="200"/>
+        <location filename="../mainwindow.cpp" line="199"/>
         <source>Error:</source>
         <translation>Ошибка:</translation>
     </message>

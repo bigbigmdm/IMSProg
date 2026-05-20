@@ -670,7 +670,7 @@ void MainWindow::on_actionSave_triggered()
     fileName = QFileDialog::getSaveFileName(this,
                                 QString(tr("Save file")),
                                 lastDirectory,
-                                "Data Images (*.bin *.BIN);;All files (*.*)");
+                                tr("Data Images") + " (*.bin *.BIN);;" + tr("All files") + " (*.*)");
     if (fileName.isEmpty()) return;
     QFileInfo info(fileName);
     lastDirectory = info.filePath();
@@ -908,7 +908,7 @@ void MainWindow::on_actionOpen_triggered()
         fileName = QFileDialog::getOpenFileName(this,
                                     QString(tr("Open file")),
                                     lastDirectory,
-                                    "Data Images (*.bin *.BIN *.rom *.ROM);;All files (*.*)");
+                                    tr("Data Images") + " (*.bin *.BIN *.rom *.ROM);;" + tr("All files") + " (*.*)");
     }
    else fileName = lastDirectory;
    cmdStarted = false;
@@ -2285,7 +2285,7 @@ void MainWindow::on_actionExport_to_Intel_HEX_triggered()
          fileName = QFileDialog::getSaveFileName(this,
                                      QString(tr("Save file")),
                                      lastDirectory,
-                                     "Intel HEX Images (*.hex *.HEX);;All files (*.*)");
+                                     tr("Intel HEX Images") + " (*.hex *.HEX);;" + tr("All files") + " (*.*)");
          QFileInfo info(fileName);
          ui->statusMessage->setText("");
          lastDirectory = info.filePath();
@@ -2358,7 +2358,7 @@ void MainWindow::on_actionImport_from_Intel_HEX_triggered()
     fileName = QFileDialog::getOpenFileName(this,
                                 QString(tr("Open file")),
                                 lastDirectory,
-                                "Intel HEX Images (*.hex *.HEX);;All files (*.*)");
+                                tr("Intel HEX Images") + " (*.hex *.HEX);;" + tr("All files") + " (*.*)");
     QFileInfo info(fileName);
     QFile file(fileName);
 
