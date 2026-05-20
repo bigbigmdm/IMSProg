@@ -7,13 +7,17 @@ Build-Depends:
  debhelper-compat (= 13),
  libusb-1.0-0-dev,
  pkgconf,
- qtbase5-dev,
- qttools5-dev,
+ qt6-base-dev,
+ qt6-tools-dev,
+ linguist-qt6,
+ qt6-l10n-tools,
+ qt6-base-dev-tools,
+ qt6-tools-dev-tools,
  systemd-dev (>= 253-2~) | udev (<< 253-2~),
 Standards-Version: 4.7.4
 Homepage: https://github.com/bigbigmdm/IMSProg
 Vcs-Git: https://github.com/bigbigmdm/IMSProg.git -b debian/latest
-Vcs-Browser: https://github.com/bigbigmdm/IMSProg/
+Vcs-Browser: https://github.com/bigbigmdm/IMSProg/tree/debian/latest
 Rules-Requires-Root: no
 
 Package: imsprog
