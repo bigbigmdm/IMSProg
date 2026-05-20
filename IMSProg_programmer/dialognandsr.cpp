@@ -19,7 +19,7 @@
 #include <QWidget>
 #include <QApplication>
 #include <QValidator>
-#include <QRegExp>
+#include <QRegularExpression>
 #include <QString>
 #include <QStringList>
 #include "unistd.h"
@@ -52,8 +52,8 @@ DialogNANDSr::~DialogNANDSr()
 
 void DialogNANDSr::setLineEditFilter()
 {
-    QRegExp reHex( "[0-1]{1}" );
-    QRegExpValidator *validator = new QRegExpValidator(reHex, this);
+    QRegularExpression reHex("[0-1]{1}");
+    QRegularExpressionValidator *validator = new QRegularExpressionValidator(reHex, this);
     //searching all lineEdit_srXX, XX - numbers
     QString searchText = "lineEdit_sr\\d+";
         QRegularExpression regex(searchText);
@@ -84,7 +84,7 @@ void DialogNANDSr::on_pushButton_read_clicked()
         uint8_t  currBit, currByte, idBlockAddr;
         int stCH341 = 0;
         idBlockAddr = 0x00;
-        stCH341 = ProgDeviceInit( programmerType, 6, 1 );
+        stCH341 = ProgDeviceInit(programmerType, 6, 1);
         if (stCH341 == 0)
             {
             for (currRegister = 0; currRegister < 5; currRegister++)
@@ -304,11 +304,7 @@ void DialogNANDSr::on_pushButton_read_clicked()
                 SPI_CONTROLLER_Write_One_Byte(0x04, programmerType);
                 SPI_CONTROLLER_Chip_Select_High(programmerType);
                 usleep(1);
-
-
-
-
-                ProgDeviceClose( programmerType );
+                ProgDeviceClose(programmerType);
           }
         else QMessageBox::about(this, tr("Error"), tr("Programmer ") + programmerName + tr(" is not connected!"));
 }
@@ -319,7 +315,7 @@ void DialogNANDSr::on_pushButton_write_clicked()
     int stCH341 = 0;
     uint8_t currRegister, currBit, currByte;
     QString currRegName, currValue;
-    stCH341 = ProgDeviceInit( programmerType, 6, 1 );
+    stCH341 = ProgDeviceInit(programmerType, 6, 1);
     if (stCH341 == 0)
     {
         for (currRegister = 0; currRegister < 6; currRegister++)
@@ -363,9 +359,8 @@ void DialogNANDSr::on_pushButton_write_clicked()
             SPI_CONTROLLER_Chip_Select_High(programmerType);
             usleep(1);
         }
-
        //Close the CH341a device
-       ProgDeviceClose( programmerType );
+       ProgDeviceClose(programmerType);
     }
     else QMessageBox::about(this, tr("Error"), tr("Programmer ") + programmerName + tr(" is not connected!"));
 }
@@ -685,7 +680,7 @@ void DialogNANDSr::setRegDisabled(uint8_t regNumber)
 
 void DialogNANDSr::setRegLabels(uint8_t regNumber, QString lt)
 {
-  lt.replace( " ", "" );
+  lt.replace(" ", "");
   QStringList list = lt.split(",");
   int lastIndex = list.size() - 1;
 

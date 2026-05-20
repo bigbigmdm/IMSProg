@@ -23,7 +23,11 @@
 #include <stdint.h>
 #include <string.h>
 #include <assert.h>
-#include <sys/errno.h>
+#ifdef _WIN32
+  #include <errno.h>
+#else
+  #include <sys/errno.h>
+#endif
 #include <stdio.h>
 #include <stdbool.h>
 #include <time.h>

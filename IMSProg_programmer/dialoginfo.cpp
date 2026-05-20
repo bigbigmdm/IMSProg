@@ -38,7 +38,7 @@ DialogInfo::DialogInfo(QWidget *parent) :
     pix35v718 = new QPixmap(":/res/img/v1_7_NAND_1v8.png");
     pix35v733 = new QPixmap(":/res/img/v1_7_NAND_3v3.png");
 
-    pix24x347_3v3_0 = new QPixmap(":/res/img/ch347_i2c_3v3.png");    
+    pix24x347_3v3_0 = new QPixmap(":/res/img/ch347_i2c_3v3.png");
     pix25x347_1v8_0 = new QPixmap(":/res/img/ch347_spi_1v8.png");
     pix25x347_3v3_0 = new QPixmap(":/res/img/ch347_spi_3v3.png");
     pix93x347_3v3_0 = new QPixmap(":/res/img/ch347_mv_3v3.png");

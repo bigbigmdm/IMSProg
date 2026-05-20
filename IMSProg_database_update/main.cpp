@@ -46,21 +46,16 @@ static QString setUpTranslation(const QStringList &searchPaths)
 
 static void initPaths()
 {
-    QStringList allPaths = QStandardPaths::standardLocations(QStandardPaths::AppDataLocation);
-    if (allPaths.isEmpty()) {
-        // do not translate
-        qFatal("Critical error: QStandardPaths::standardLocations(QStandardPaths::AppDataLocation): empty list");
-    }
-
+    QStringList allPaths = QStandardPaths::standardLocations(QStandardPaths::AppDataLocation);    
     QDir binDir(QCoreApplication::applicationDirPath());
     QString binRelPath = QDir::cleanPath(binDir.absoluteFilePath("../share/" + QCoreApplication::applicationName()));
-    allPaths.insert(1, binRelPath);
+    allPaths.append(binRelPath);
 
-    QDir userAppDataLocation(allPaths.value(0));
+    QDir userAppDataLocation(allPaths.at(0));
     if (!userAppDataLocation.exists()) {
-        userAppDataLocation.mkpath(".");
+		userAppDataLocation.mkpath(".");
         // XXX some sort of error handling that befits the application
-    }
+        }
 
     qApp->setProperty("app/translationDirectory", setUpTranslation(allPaths));
     qApp->setProperty("app/userChipDatabaseFile", userAppDataLocation.filePath("IMSProg.Dat"));
@@ -73,11 +68,11 @@ static void initPaths()
 
 int main(int argc, char *argv[])
 {
+	qDebug() << "Used Qt version:" << QT_VERSION_STR;
     qDebug() << "SSL support:" << QSslSocket::supportsSsl();
     qDebug() << "Build version:" << QSslSocket::sslLibraryBuildVersionString();
     qDebug() << "Runtime version:" << QSslSocket::sslLibraryVersionString();
 
-    QApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
     QApplication a(argc, argv);
     QCoreApplication::setApplicationName("imsprog");
     QFont font("Monospace");

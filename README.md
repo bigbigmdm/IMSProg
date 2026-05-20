@@ -53,14 +53,21 @@ For build are needed:
 - g++ or clang
 - CMake
 - libusb 1.0
-- Qt5
-- Qt5 Qt5LinguistTools
+- Qt5 or Qt6
+- Qt5LinguistTools or Qt6LinguistTools
 - pkgconf or pkg-config
 - udev
 
 On Debian and derivatives:
 
+- for Qt5:
+
 `sudo apt-get install cmake g++ libusb-1.0-0-dev qtbase5-dev qttools5-dev pkgconf`
+
+- for Qt6:
+
+`sudo apt-get install cmake g++ libusb-1.0-0-dev pkgconf qt6-base-dev qt6-tools-dev
+ linguist-qt6 qt6-l10n-tools qt6-base-dev-tools qt6-tools-dev-tools`
 
 On Debian >=13 and Ubuntu >=23.10:
 
@@ -72,6 +79,38 @@ On older:
 
 :information_source: Debian < 11 and Ubuntu < 20.04 are not supported, you may 
 unable to have it working on them.
+
+On Fedora and derivatives:
+
+- for Qt5:
+
+```
+sudo dnf install cmake libusb libusb1 libusb1-devel qt5-qtbase-devel 
+sudo dnf install pkgconf-pkg-config qt5-linguist
+```
+
+- for Qt6:
+
+```
+sudo dnf install cmake gcc-c++ libusb1-devel pkgconf-pkg-config qt6-qtbase-devel
+sudo dnf install qt6-qttools-devel qt6-linguist
+```
+
+On OpenSUSE and derivatiles:
+
+- for Qt5:
+
+```
+sudo zypper install cmake gcc-c++ libqt5-qtbase-devel
+sudo zypper install libqt5-linguist-devel libusb-1_0-devel
+```
+
+- for Qt6:
+
+```
+sudo zypper install cmake gcc-c++ libqt6-qtbase-devel
+sudo zypper install libqt6-linguist-devel libusb-1_0-devel
+```
 
 ### macOS
 if using Homebrew then Xcode Command Line Tools will install by default, if not 
@@ -123,7 +162,7 @@ adapter must be installed in the programmer slot marked `25xxx`.
 > *In the current version, the MicroWire (93Cxx) protocol is 
 not supported by the CH347 programming device.*
 >
-> *CH347T V1.1 — a device with a lower speed than the CH347T V1.0.*
+> *CH347T V1.1 - a device with a lower speed than the CH347T V1.0.*
 
 ![Adapter](img/93xxx_adapter.png)
  
@@ -196,7 +235,7 @@ computer buffer into the chip.
 - Pressing ![Erase](img/erase64.png) or `<Ctrl+E>` will erase all data in the 
 chip.
 
-- By selecting ‘Main Menu -> Chip -> Check erase’ or pressing `<Ctrl+J>`, you
+- By selecting `Main Menu -> Chip -> Check erase` or pressing `<Ctrl+J>`, you
  can check whether all data has been correctly deleted from the chip.
 
 - Pressing the ![Verify](img/verify64.png) or `<Ctrl+T>` button causes the 
@@ -275,7 +314,7 @@ this menu.
 The hexadecimal chip editor (right side of the screen) is used to display and 
 modify buffer data.
 
-It contains the following controls: ![Undo](img/undo.png) undo, 
+It contains the following controls: ![Undo](img/undo64.png) undo, 
 ![Redo](img/redo64.png) redo, and the ![Search](img/hexsearch64.png) 
 search/replace. The `[Ctrl+A]` key used to update the CRC24 checksum. The 
 `[Ctrl+G]` key used to move the cursor to the entered address. The `[Ctrl+L]` 
@@ -333,30 +372,30 @@ file with .Dat extension.
 
 Menu `File`.
 
-- `Open` or `[Ctrl+O]` or ![open](IMSProg_editor/img/open.png) allows you to 
+- `Open` or `[Ctrl+O]` or ![open](img/open.png) allows you to 
 load the data file.
-- `Save` or `[Ctrl+S]` or ![save](IMSProg_editor/img/save.png) saves the chip 
+- `Save` or `[Ctrl+S]` or ![save](img/save.png) saves the chip 
 parameter table to a database file.
-- `Exit` or `[Ctrl+X]` or ![exit](IMSProg_editor/img/exit.png) - exits the 
+- `Exit` or `[Ctrl+X]` or ![exit](img/exit.png) - exits the 
 editor.
-- `Export to CSV format` or `[Ctrl+X]` or ![export](IMSProg_editor/img/tocsv.png) 
+- `Export to CSV format` or `[Ctrl+X]` or ![export](img/tocsv.png) 
 allows to unload data about chips in CSV format for further processing by 
 spreadsheet software - LibreOffice Calc, OpenOffice Calc, Google Tables, etc.
 - `Import from CSV file` or `[Ctrl+Shift+X]` or 
-![import](IMSProg_editor/img/import.png) - loads a table in CSV format and adds 
+![import](img/import.png) - loads a table in CSV format and adds 
 data from it to the existing data in the table.
 
 Menu `Edit`.
 
-- `Delete Rows` or `Del` or ![delete](IMSProg_editor/img/del.png) - deletes one 
+- `Delete Rows` or `Del` or ![delete](img/del.png) - deletes one 
 or more rows.
-- `Add Row` or `Ins` or ![add](IMSProg_editor/img/plus.png) - adds a row below 
+- `Add Row` or `Ins` or ![add](img/plus.png) - adds a row below 
 the selected row and copies all data from the selected row to the new row.
-- `Move Up` or '[Ctrl+Up]` or ![up](IMSProg_editor/img/undo.png) - moves the 
+- `Move Up` or '[Ctrl+Up]` or ![up](img/undo.png) - moves the 
 selected line up.
-- `Move Down' or `[Ctrl+Down]` or ![down](IMSProg_editor/img/redo.png) - moves 
+- `Move Down' or `[Ctrl+Down]` or ![down](img/redo.png) - moves 
 the selected row down.
-- `Import selected rows to CSV format` or ![import](IMSProg_editor/img/import.png) 
+- `Import selected rows to CSV format` or ![import](img/import.png) 
 - saves selected rows to CSV file.
 
 The most recent version of the chip database file can be downloaded from this 
@@ -639,8 +678,6 @@ You can download it and copy it to the ~/.local/share/imsprog folder:
 
 `cp IMSProg.Dat ~/.local/share/imsprog`
 
-[![Watch the video](img/IMSProg_1_0_24.mp4)](img/IMSProg_1_0_24.mp4)
-
 ## Packages
 - There is a work in progress for add IMSProg to official `Debian` (and 
 derivatives repositories)
@@ -723,7 +760,7 @@ IMSProg_database_update/other/IMSProg_database_update.1.gz /usr/share/man/man1
 
 IMSProg_programmer/img/IMSProg64.png                     /usr/share/pixmaps
 IMSProg_database_update/img/IMSProg_database_update.png  /usr/share/pixmaps
-IMSProg_editor/img/chipEdit64.png                        /usr/share/pixmaps
+img/chipEdit64.png                        /usr/share/pixmaps
 
 IMSProg_programmer/other/other/io.github.bigbigmdm.imsprog.metainfo.xml /usr/share/metainfo
 IMSProg_editor/other/other/io.github.bigbigmdm.imsprog_editor.metainfo.xml /usr/share/metainfo
@@ -734,7 +771,7 @@ IMSProg_database_update/other/io.github.bigbigmdm.imsprog_database_update.metain
 
 IMSProg.Dat file structure:
 
-Chip string lenght: 0x44 (68) bytes;
+Chip string length: 0x44 (68) bytes;
 
 ```
 offset	 Size   Value
@@ -756,7 +793,7 @@ offset	 Size   Value
                 - 0x03 - 25xxx SPI EEPROM
                 - 0x04 - 95xxx ST SPI EEPROM
                 - 0x05 - AT45DBxxx SPI EEPROM
-3B        1     Algoritm code number:
+3B        1     Algorithm code number:
                 - SPI NOR Flash always 0x00
                 - I2C (24xxx) 0x?1 - address size 1 byte 
                 - I2C (24xxx) 0x?2 - address size 2 bytes 
@@ -778,7 +815,7 @@ offset	 Size   Value
                 - 25xxx SPI EEPROM  - 0x1? - The third bit of the command is used for the high bit of the address
                 - 25xxx SPI EEPROM  - 0x2? - erasing with use CHIP  FULL ERASE command
                 - 45xxx SPI EEPROM  - 0x0? - ATMEL command pattern
-                - 45xxx SPI EEPROM  - 0x1? - ADESTO commant pattern
+                - 45xxx SPI EEPROM  - 0x1? - ADESTO command pattern
                 - 45xxx SPI EEPROM  - 0x?9 -  9 bit sector address number
                 - 45xxx SPI EEPROM  - 0x?A - 10 bit sector address number
                 - 45xxx SPI EEPROM  - 0x?B - 11 bit sector address number

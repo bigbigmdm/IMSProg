@@ -17,10 +17,21 @@ extern "C" {
 #include <stdint.h>
 #include <stdbool.h>
 #include <libusb.h>
-#ifdef __APPLE__
-#include <machine/endian.h>
+#if defined(_WIN32)
+    #include <winsock2.h>
+    #include <windows.h>
+    #define htobe16(x) htons(x)
+    #define be16toh(x) ntohs(x)
+    #define htobe32(x) htonl(x)
+    #define be32toh(x) ntohl(x)
+    #define htole16(x) (x)
+    #define le16toh(x) (x)
+    #define htole32(x) (x)
+    #define le32toh(x) (x)
+#elif defined(__APPLE__)
+    #include <machine/endian.h>
 #else
-#include <endian.h>
+    #include <endian.h>
 #endif
 
 #define CH347_SPI_VID 0x1a86
@@ -91,7 +102,7 @@ struct ch347_spi_hw_config {
     uint16_t SPI_CPOL;
     uint16_t SPI_CPHA;
     uint16_t SPI_NSS; /* hardware or software managed CS */
-    uint16_t SPI_BaudRatePrescaler; /* prescaler = x * 8. x: 0=60MHz, 1=30MHz, 2=15MHz, 3=7.5MHz, 4=3.75MHz, 5=1.875MHz, 6=937.5KHz，7=468.75KHz */
+    uint16_t SPI_BaudRatePrescaler; /* prescaler = x * 8. x: 0=60MHz, 1=30MHz, 2=15MHz, 3=7.5MHz, 4=3.75MHz, 5=1.875MHz, 6=937.5KHz, 7=468.75KHz */
     uint16_t SPI_FirstBit; /* MSB or LSB first */
     uint16_t SPI_CRCPolynomial; /* polynomial used for the CRC calculation. */
     uint16_t SPI_WriteReadInterval; /* No idea what this is... Original comment from WCH: SPI接口常规读取写入数据命令(DEF_CMD_SPI_RD_WR))，单位为uS */

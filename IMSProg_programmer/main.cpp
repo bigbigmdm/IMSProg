@@ -16,6 +16,7 @@
 #include <QApplication>
 #include <QFile>
 #include <QDir>
+#include <QDebug>
 #include <QStandardPaths>
 #include <QTranslator>
 
@@ -81,12 +82,8 @@ static void initPaths()
 
 int main(int argc, char *argv[])
 {
-    QApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
     QCoreApplication::setApplicationName("imsprog");
-    QFont font("Monospace");
-    font.setStyleHint(QFont::TypeWriter);
-    font.setPointSize(12);
-    QApplication::setFont(font);
+    qDebug() << "Used Qt version:" << QT_VERSION_STR;
     QApplication a(argc, argv);
     initPaths();
 

@@ -1,7 +1,7 @@
 /*
  * This file is part of the IMSProg_Editor project.
  *
- * Copyright (C) 2023-2025 Mikhail Medvedev (e-ink-reader@yandex.ru)
+ * Copyright (C) 2023-2026 Mikhail Medvedev (e-ink-reader@yandex.ru)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -37,17 +37,19 @@ MainWindow::~MainWindow()
 }
 void MainWindow::on_actionOpen_triggered()
 {
-    QString fileName, benchmarkDataFile, currentPath;
+    QString fileName, currentPath, userPath, systemPath;
     char txtBuf[0x30];
-    benchmarkDataFile = "/usr/share/imsprog/IMSProg.Dat";
-    QFileInfo check_benchmarkDataFile(benchmarkDataFile);
+    userPath = qApp->property("app/userChipDatabaseFile").toString();
+    systemPath = qApp->property("app/systemChipDatabaseFile").toString();
+    defaultPath = QDir::homePath();
+   // QFileInfo check_benchmarkDataFile(benchmarkDataFile);
     int i, j, recNo, dataPoz, dataSize, chipSize, blockSize, delay, rowCount;
     unsigned char chipSizeCode, chipID, manCode, tmpBuf;
-    defaultPath = QDir::homePath() + "/.local/share/imsprog/";
     // if ~//.local/share/imsprog/ is not exists opening file from /usr/share/imsprog/
-    if (!QDir(defaultPath).exists())  currentPath = benchmarkDataFile;
+    if (QFile::exists(userPath))  currentPath = userPath;
+    else if (QFile::exists(systemPath)) currentPath = systemPath;
     else currentPath = defaultPath;
-
+    defaultPath = currentPath;
     ui->statusBar->showMessage(tr("Open the file"));
     fileName = QFileDialog::getOpenFileName(this,
                                 QString(tr("Open the file")),
@@ -62,7 +64,7 @@ void MainWindow::on_actionOpen_triggered()
     dataPoz = 0;
     recNo = 0;
     if(ui->tableView->model() != nullptr)
-    {     
+    {
        rowCount = ui->tableView->model()->rowCount();
        for (i=0; i<rowCount;i++)
        {
@@ -73,8 +75,8 @@ void MainWindow::on_actionOpen_triggered()
     }
 
     dataSize = data.length();
-    ui->tableView->setShowGrid(true);   
-    //Заголовки столбцов
+    ui->tableView->setShowGrid(true);
+    //Column headings
     QStringList horizontalHeader;
     //horizontalHeader.append("No");
     horizontalHeader.append(tr("Type"));
@@ -107,7 +109,7 @@ void MainWindow::on_actionOpen_triggered()
                  j++;
              }
              if (txtBuf[1] == 0x00) break;
-             chips[recNo].chipTypeTxt = QByteArray::fromRawData(txtBuf, 0x30);
+             chips[recNo].chipTypeTxt = QByteArray::fromRawData(txtBuf, j);
          for (i=0; i<0x30; i++)
              {
                  txtBuf[i] = 0;
@@ -120,7 +122,7 @@ void MainWindow::on_actionOpen_triggered()
              j++;
              i++;
          }
-             chips[recNo].chipManuf = QByteArray::fromRawData(txtBuf, 0x30);
+             chips[recNo].chipManuf = QByteArray::fromRawData(txtBuf, i);
 
              for (i=0; i<0x30; i++)
                  {
@@ -134,7 +136,7 @@ void MainWindow::on_actionOpen_triggered()
                  j++;
                  i++;
              }
-             chips[recNo].chipName = QByteArray::fromRawData(txtBuf, 0x30);
+             chips[recNo].chipName = QByteArray::fromRawData(txtBuf, i);
              chipSizeCode = data[recNo * 0x44 + 0x30];
              chipID = data[recNo * 0x44 + 0x31];;
              manCode = data[recNo * 0x44 + 0x32];
@@ -164,8 +166,10 @@ void MainWindow::on_actionOpen_triggered()
              chips[recNo].delay = QString::number(delay);
              tmpBuf = data[recNo * 0x44 + 0x3e];
              chips[recNo].extend = "0x" + bytePrint(tmpBuf);
-             tmpBuf = data[recNo * 0x44 + 0x40];
+             tmpBuf = data[recNo * 0x44 + 0x3f];
              chips[recNo].eeprom = "0x" + bytePrint(tmpBuf);
+             tmpBuf = data[recNo * 0x44 + 0x40];
+             chips[recNo].eeprom =chips[recNo].eeprom + bytePrint(tmpBuf);
              tmpBuf = data[recNo * 0x44 + 0x42];
              chips[recNo].eepromPages = "0x" + bytePrint(tmpBuf);
              tmpBuf = data[recNo * 0x44 + 0x43];
@@ -249,7 +253,7 @@ QString MainWindow::bytePrint(unsigned char z)
     z = z % 16;
     if (z > 0x9) z = z + 0x37;
     else z = z + 0x30;
-    return QString(s) + QString(z);
+    return QString(static_cast<char>(s)) + QString(static_cast<char>(z));
 }
  QString MainWindow::sizeConvert(int a)
  {
@@ -300,7 +304,7 @@ void MainWindow::on_actionSave_triggered()
     {
        ui->tableView->update();
        rowCount = ui->tableView->model()->rowCount();
-       toSave.resize(0x44 * rowCount);
+       toSave.resize(0x44 * (rowCount + 1));
        toSave.fill(0x00);
        for (recNo = 0; recNo < rowCount; recNo++)
        {
@@ -379,9 +383,11 @@ void MainWindow::on_actionSave_triggered()
        }
       }
 
-       for (recNo = 0; recNo < rowCount; recNo++)
+       //for (recNo = 0; recNo < rowCount-1; recNo++)
+      recNo = 0;
+      while (recNo < rowCount)
        {
-           QByteArray ba = chips[recNo].chipTypeTxt.toLocal8Bit();
+           QByteArray ba = chips[recNo].chipTypeTxt.toUtf8();
            for (i = 0; i < ba.size(); i++)
            {
                toSave[recNo * 0x44 + i] = ba[i];
@@ -389,18 +395,18 @@ void MainWindow::on_actionSave_triggered()
            toSave[recNo * 0x44 + i] = ',';
            i++;
            j = i;
-           ba = chips[recNo].chipManuf.toLocal8Bit();
-           for (i = 0; i < ba.size(); i++)
+           QByteArray bb = chips[recNo].chipManuf.toUtf8();
+           for (i = 0; i < bb.size(); i++)
            {
-               toSave[recNo * 0x44 + j] = ba[i];
+               toSave[recNo * 0x44 + j] = bb[i];
                j++;
            }
            toSave[recNo * 0x44 + j] = ',';
            j++;
-           ba = chips[recNo].chipName.toLocal8Bit();
-           for (i = 0; i < ba.size(); i++)
+           QByteArray bc = chips[recNo].chipName.toUtf8();
+           for (i = 0; i < bc.size(); i++)
            {
-               toSave[recNo * 0x44 + j] = ba[i];
+               toSave[recNo * 0x44 + j] = bc[i];
                j++;
            }
            //next bytes
@@ -451,13 +457,14 @@ void MainWindow::on_actionSave_triggered()
            tmpStr = chips[recNo].extend;
            if ((tmpStr[0] == '0') && (tmpStr[1] == 'x'))
            {
-           toSave[recNo * 0x44 + 0x3E] = dualDigitToByte(tmpStr, 0);
+           toSave[recNo * 0x44 + 0x3e] = dualDigitToByte(tmpStr, 0);
            }
-           toSave[recNo * 0x44 + 0x3f] = 0x00;
+
            tmpStr = chips[recNo].eeprom;
            if ((tmpStr[0] == '0') && (tmpStr[1] == 'x'))
            {
-           toSave[recNo * 0x44 + 0x40] = dualDigitToByte(tmpStr, 0);
+           toSave[recNo * 0x44 + 0x3f] = dualDigitToByte(tmpStr, 0);
+           toSave[recNo * 0x44 + 0x40] = dualDigitToByte(tmpStr, 1);
            }
            toSave[recNo * 0x44 + 0x41] = 0x00;
            tmpStr = chips[recNo].eepromPages;
@@ -473,6 +480,7 @@ void MainWindow::on_actionSave_triggered()
                if(tmpStr.compare("1.8 V")==0)  toSave[recNo * 0x44 + 0x43] = 0x01;
                if(tmpStr.compare("2.5 V")==0)  toSave[recNo * 0x44 + 0x43] = 0x03;
            }
+           recNo++;
        }
        // 0x44 zero bytes
           for (i = 0; i < 0x44; i++ )
@@ -601,7 +609,7 @@ void MainWindow::on_actionMove_up_triggered()
     }
     for(int i=0; i< selection.count(); i++)
     {
-        QModelIndex index = selection.at(i);       
+        QModelIndex index = selection.at(i);
         sel = index.row();
         decsel = sel -1;
         if (index.row() > 0)
@@ -655,7 +663,7 @@ void MainWindow::on_actionMove_down_triggered()
               ui->tableView->model()->setData(indTo, ui->tableView->model()->data(indFrom).toString());
               ui->tableView->model()->setData(indFrom, tmpStr);
               ui->tableView->selectRow(incsel);
-          }          
+          }
         }
 
     }

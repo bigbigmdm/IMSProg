@@ -15,7 +15,7 @@
 #include "dialogsfdp.h"
 #include "ui_dialogsfdp.h"
 #include <QValidator>
-#include <QRegExp>
+#include <QRegularExpression>
 #include "unistd.h"
 #include "memory"
 #include <QDebug>
@@ -64,7 +64,7 @@ void DialogSFDP::on_pushButton_clicked()
     std::shared_ptr<uint8_t[]> sfdpBuf(new uint8_t[256]);
     QString regData = "", VCCmin = "", VCCmax = "", speeds = "Single", addrTxt="";
     int retval = 0;
-    stCH341 = ProgDeviceInit( programmerType, 0, 1 );
+    stCH341 = ProgDeviceInit(programmerType, 0, 1);
     ui->lineEdit_vcc_max->setText("");
     ui->lineEdit_vcc_min->setText("");
     ui->lineEdit_block->setText("");
@@ -157,7 +157,7 @@ void DialogSFDP::on_pushButton_clicked()
                ui->lineEdit_vcc_max->setText("");
                ui->lineEdit_vcc_min->setText("");
            }
-           sfdpSize =( sfdpBuf[twoAreaAddress + 4] + sfdpBuf [twoAreaAddress +5] * 256 + sfdpBuf[twoAreaAddress +6] * 256 * 256 + sfdpBuf[twoAreaAddress + 7] * 256 * 256 * 256 + 1) /8 /1024 ;
+           sfdpSize = (sfdpBuf[twoAreaAddress + 4] + sfdpBuf [twoAreaAddress +5] * 256 + sfdpBuf[twoAreaAddress +6] * 256 * 256 + sfdpBuf[twoAreaAddress + 7] * 256 * 256 * 256 + 1) /8 /1024 ;
            ui->lineEdit_size->setText(QString::number(sfdpSize) + " K");
            if (sfdpBuf[twoAreaAddress + 0x20] != 0xff)
            {
@@ -277,7 +277,7 @@ void DialogSFDP::on_pushButton_clicked()
         ui->lineEdit_chipid->setText(regData);
 
         //Close the CH341a device
-        ProgDeviceClose( programmerType );
+        ProgDeviceClose(programmerType);
     }
     else QMessageBox::about(this, tr("Error"), tr("Programmer ") + programmerName + tr(" is not connected!"));
 
@@ -293,7 +293,7 @@ void DialogSFDP::on_pushButton_3_clicked()
    if (numOfRegisters < 3)
    {
     int stCH341 = 0;
-    stCH341 = ProgDeviceInit( programmerType, 0, 1 );
+    stCH341 = ProgDeviceInit(programmerType, 0, 1);
     if (stCH341 == 0)
     {
        //scanning data from the form
@@ -344,12 +344,12 @@ void DialogSFDP::on_pushButton_3_clicked()
        usleep(1);
 
        //Close the CH341a device
-       ProgDeviceClose( programmerType );
+       ProgDeviceClose(programmerType);
 
        //Writing status registers 0,1 for not Winbond
        if (numOfRegisters > 0)
        {
-           stCH341 = ProgDeviceInit( programmerType, 0, 1 );
+           stCH341 = ProgDeviceInit(programmerType, 0, 1);
 
            SPI_CONTROLLER_Chip_Select_Low(programmerType);
            SPI_CONTROLLER_Write_One_Byte(0x06, programmerType);
@@ -373,10 +373,10 @@ void DialogSFDP::on_pushButton_3_clicked()
            usleep(1);
 
            //Close the CH341a device
-           ProgDeviceClose( programmerType );
+           ProgDeviceClose(programmerType);
            usleep(1);
 
-           stCH341 = ProgDeviceInit( programmerType, 0, 1 );
+           stCH341 = ProgDeviceInit(programmerType, 0, 1);
            SPI_CONTROLLER_Chip_Select_Low(programmerType);
            SPI_CONTROLLER_Write_One_Byte(0x06, programmerType);
            SPI_CONTROLLER_Chip_Select_High(programmerType);
@@ -399,13 +399,13 @@ void DialogSFDP::on_pushButton_3_clicked()
            usleep(1);
 
            //Close the CH341a device
-           ProgDeviceClose( programmerType );
+           ProgDeviceClose(programmerType);
        }
 
        //Writing status register 2
        if (numOfRegisters > 1)
        {
-           stCH341 = ProgDeviceInit( programmerType, 0, 1 );
+           stCH341 = ProgDeviceInit(programmerType, 0, 1);
 
            SPI_CONTROLLER_Chip_Select_Low(programmerType);
            SPI_CONTROLLER_Write_One_Byte(0x06, programmerType);
@@ -429,7 +429,7 @@ void DialogSFDP::on_pushButton_3_clicked()
            usleep(1);
 
            //Close the CH341a device
-           ProgDeviceClose( programmerType );
+           ProgDeviceClose(programmerType);
        }
    }
    else QMessageBox::about(this, tr("Error"), tr("Programmer ") + programmerName + tr(" is not connected!"));
@@ -441,8 +441,8 @@ void DialogSFDP::on_pushButton_3_clicked()
 
 void DialogSFDP::setLineEditFilter()
 {
-    QRegExp reHex( "[0-1]{1}" );
-    QRegExpValidator *validator = new QRegExpValidator(reHex, this);
+    QRegularExpression reHex( "[0-1]{1}");
+    QRegularExpressionValidator *validator = new QRegularExpressionValidator(reHex, this);
     //searching all lineEdit_srXX, XX - numbers
     QString searchText = "lineEdit_sr\\d+";
         QRegularExpression regex(searchText);

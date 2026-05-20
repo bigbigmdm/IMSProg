@@ -23,7 +23,7 @@
 #include <QtGui>
 #include <QtCore>
 
-ColoredArea::ColoredArea() 
+ColoredArea::ColoredArea()
 {
     _posStart = 0;
     _posEnd = 0;
@@ -98,7 +98,7 @@ void ColoredArea::setRange(qint64 posStart, qint64 posEnd)
     _posEnd = posEnd;
 };
 
-void ColoredArea::clear() 
+void ColoredArea::clear()
 {
     _posStart = 0;
     _posEnd = 0;

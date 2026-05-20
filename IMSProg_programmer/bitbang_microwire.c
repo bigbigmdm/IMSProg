@@ -184,7 +184,7 @@ static void enable_write_3wire(int num_bit)
 	delay_ms(1);
 
 	send_to_di(3, 4);
-	send_to_di(0, num_bit - 2);
+    send_to_di(0, num_bit - 2); //2
 
 	data_0();
 	delay_ms(1);
@@ -203,7 +203,7 @@ static void disable_write_3wire(int num_bit)
 	clock_1();
 	delay_ms(1);
 	send_to_di(0, 4);
-	send_to_di(0, num_bit - 2);
+    send_to_di(0, num_bit - 2); //2
 	csel_0();
 	delay_ms(1);
 }
@@ -231,7 +231,7 @@ void Erase_EEPROM_3wire_param(unsigned char algorithm)
     delay_ms(1);
 
     send_to_di(2, 4);
-    send_to_di(0, num_bit - 2);
+    send_to_di(0, num_bit - 3);
     clock_0();
     data_0();
     delay_ms(1);

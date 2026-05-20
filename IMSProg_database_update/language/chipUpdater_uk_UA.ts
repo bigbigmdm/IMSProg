@@ -15,7 +15,7 @@
     </message>
     <message>
         <location filename="../mainwindow.ui" line="70"/>
-        <location filename="../mainwindow.cpp" line="149"/>
+        <location filename="../mainwindow.cpp" line="150"/>
         <source>Ok</source>
         <translation>Ok</translation>
     </message>
@@ -35,12 +35,12 @@
         <translation>Неправильний URL</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="95"/>
+        <location filename="../mainwindow.cpp" line="96"/>
         <source>Cannot create temporary file for download</source>
         <translation>Не вдається створити тимчасовий файл для завантаження</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="147"/>
+        <location filename="../mainwindow.cpp" line="148"/>
         <source>The database has been updated!
 
 The old database contained %1 chips,
@@ -51,27 +51,26 @@ The new database contains %2 chips.</source>
 Нова база даних містить %2 мікросхем.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="151"/>
+        <location filename="../mainwindow.cpp" line="152"/>
         <source>Failed to replace the database file</source>
         <translation>Не вдалося замінити файл бази даних</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="154"/>
+        <location filename="../mainwindow.cpp" line="155"/>
         <source>Downloaded file is too small (corrupted?)</source>
         <translation>Завантажений файл занадто малий (можливо, пошкоджений?)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="157"/>
         <source>Download failed: </source>
-        <translation>Завантаження не вдалося: </translation>
+        <translation type="vanished">Завантаження не вдалося: </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="182"/>
+        <location filename="../mainwindow.cpp" line="181"/>
         <source>Error loading file: </source>
         <translation>Помилка під час завантаження файлу: </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="200"/>
+        <location filename="../mainwindow.cpp" line="199"/>
         <source>Error:</source>
         <translation>Помилка:</translation>
     </message>
