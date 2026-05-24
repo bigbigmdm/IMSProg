@@ -1177,7 +1177,9 @@ void MainWindow::on_actionRead_triggered()
 void MainWindow::on_actionExit_triggered()
 {
 
+#ifdef __linux__
     ProgDeviceClose(current_programmer);
+#endif
     MainWindow::close();
 }
 
