@@ -1786,6 +1786,7 @@ void MainWindow::on_comboBox_type_currentIndexChanged(int index)
          ui->label_8->hide();
          ui->label_9->show();
          ui->label_11->show();
+         ui->label_12->show();
          ui->comboBox_block->show();
          ui->comboBox_ECC->show();
          ui->comboBox_raw->show();
@@ -1799,6 +1800,7 @@ void MainWindow::on_comboBox_type_currentIndexChanged(int index)
          ui->label_11->hide();
          ui->comboBox_ECC->hide();
          ui->comboBox_raw->hide();
+         ui->label_12->hide();
          ui->actionBad_block_management->setEnabled(false);
      }
 }
