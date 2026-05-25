@@ -2924,17 +2924,19 @@ void MainWindow::on_comboBox_raw_currentIndexChanged(int index)
 
 void MainWindow::handleScroll()
 {
-    long posStart = 0, posEnd = 0, i;
-    posStart = hexEdit->_bPosFirst;
-    posEnd = hexEdit->_bPosLast + currentECCsize + 16;
-    hexEdit->clearUserAreas();
-    hexEdit->setCursorPosition(posStart *2);
-    if(posStart > 0x40)
+    if (currentChipSize > 0x3ffffff)
     {
-        for (i = posStart; i <= posEnd; i = i + 16)
+        long posStart = 0, posEnd = 0, i;
+        posStart = hexEdit->_bPosFirst;
+        posEnd = hexEdit->_bPosLast + currentECCsize + 16;
+        hexEdit->clearUserAreas();
+        hexEdit->setCursorPosition(posStart *2);
+        if(posStart > 0x40)
         {
-            if (i % (currentPageSize + currentECCsize) == 0) hexEdit->addUserArea(i - currentECCsize, i, QColor(0, 0, 0, 255), QColor(255, 0, 0, 60));
+            for (i = posStart; i <= posEnd; i = i + 16)
+            {
+                if (i % (currentPageSize + currentECCsize) == 0) hexEdit->addUserArea(i - currentECCsize, i, QColor(0, 0, 0, 255), QColor(255, 0, 0, 60));
+            }
         }
     }
-
 }
