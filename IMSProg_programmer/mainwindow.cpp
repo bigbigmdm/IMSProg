@@ -1802,6 +1802,7 @@ void MainWindow::on_comboBox_type_currentIndexChanged(int index)
          ui->comboBox_raw->hide();
          ui->label_12->hide();
          ui->actionBad_block_management->setEnabled(false);
+         ui->comboBox_raw->setCurrentIndex(0);
      }
 }
 
