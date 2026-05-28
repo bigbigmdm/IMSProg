@@ -2913,6 +2913,7 @@ void MainWindow::on_comboBox_raw_currentIndexChanged(int index)
     {
         nandRaw = false;
         if (scroll_connect) disconnect(scroll_connect);
+        if (hexEdit) hexEdit->clearUserAreas();
     }
     else
     {
