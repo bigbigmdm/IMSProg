@@ -104,8 +104,8 @@ jobs:
 
       - name: Install build dependencies
         run: |
-          # rpmdevtools contains 'spectool', rsync is used for safe directory wrapping
-          dnf install -y dnf-plugins-core rpm-build rpmlint rpmdevtools rsync
+          # rpmdevtools contains 'spectool' to download sources specified in the spec file
+          dnf install -y dnf-plugins-core rpm-build rpmlint rpmdevtools wget
           # Automatically install all BuildRequires listed in your spec file
           dnf builddep -y rpm/*.spec
 
@@ -114,29 +114,11 @@ jobs:
           # Create the required directory structure for rpmbuild
           mkdir -p ~/rpmbuild/{BUILD,RPMS,SOURCES,SPECS,SRPMS}
           
-          # Copy the spec file to the dedicated SPECS directory first
+          # Copy the spec file to the dedicated SPECS directory
           cp rpm/*.spec ~/rpmbuild/SPECS/
           
-          # Get the exact Source0 filename dynamically from the spec file
-          SOURCE_NAME=$(spectool -l ~/rpmbuild/SPECS/*.spec | awk '{print $2}' | xargs basename)
-          
-          # Extract Name and Version from spec to get the exact directory name expected in %prep
-          RPM_NAME=$(rpmspec -q --qf "%{NAME}" ~/rpmbuild/SPECS/*.spec)
-          RPM_VERSION=$(rpmspec -q --qf "%{VERSION}" ~/rpmbuild/SPECS/*.spec)
-          EXPECTED_DIR="${RPM_NAME}-${RPM_VERSION}"
-          
-          # Create a clean temporary directory with the exact expected name
-          TMP_DIR=$(mktemp -d)
-          mkdir -p "$TMP_DIR/$EXPECTED_DIR"
-          
-          # Copy all project files to the temporary directory (excluding .git)
-          rsync -a --exclude='.git' ./ "$TMP_DIR/$EXPECTED_DIR/"
-          
-          # Pack the archive from the temporary directory
-          tar -czf ~/rpmbuild/SOURCES/$SOURCE_NAME -C "$TMP_DIR" "$EXPECTED_DIR"
-          
-          # Clean up the temporary directory
-          rm -rf "$TMP_DIR"
+          # Download the actual source tarball from the URL specified in Source0 of the spec file
+          spectool -g -R ~/rpmbuild/SPECS/*.spec
 
       - name: Build RPM package
         run: |
