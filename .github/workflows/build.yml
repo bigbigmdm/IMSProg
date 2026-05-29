@@ -104,7 +104,8 @@ jobs:
 
       - name: Install build dependencies
         run: |
-          dnf install -y dnf-plugins-core rpm-build rpmlint
+          # rpmdevtools contains 'spectool' which is needed to parse the spec file
+          dnf install -y dnf-plugins-core rpm-build rpmlint rpmdevtools
           # Automatically install all BuildRequires listed in your spec file
           dnf builddep -y rpm/*.spec
 
@@ -116,7 +117,7 @@ jobs:
           # Copy the spec file to the dedicated SPECS directory first
           cp rpm/*.spec ~/rpmbuild/SPECS/
           
-          # Get the exact Source0 filename dynamicly from the spec file
+          # Get the exact Source0 filename dynamically from the spec file
           SOURCE_NAME=$(spectool -l ~/rpmbuild/SPECS/*.spec | awk '{print $2}' | xargs basename)
           
           # Pack the source code into the archive with the exact name rpmbuild expects
@@ -135,4 +136,3 @@ jobs:
         with:
           name: fedora-43-rpm
           path: ~/rpmbuild/RPMS/*/*.rpm
-          
