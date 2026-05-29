@@ -120,8 +120,17 @@ jobs:
           # Get the exact Source0 filename dynamically from the spec file
           SOURCE_NAME=$(spectool -l ~/rpmbuild/SPECS/*.spec | awk '{print $2}' | xargs basename)
           
-          # Pack the source code into the archive with the exact name rpmbuild expects
-          tar --exclude='.git' -czf ~/rpmbuild/SOURCES/$SOURCE_NAME -C .. $(basename $(pwd))
+          # Extract Name and Version from spec to know the exact directory name expected in %prep
+          RPM_NAME=$(rpmspec -q --qf "%{NAME}" ~/rpmbuild/SPECS/*.spec)
+          RPM_VERSION=$(rpmspec -q --qf "%{VERSION}" ~/rpmbuild/SPECS/*.spec)
+          EXPECTED_DIR="${RPM_NAME}-${RPM_VERSION}"
+          
+          # Pack the source code into the archive, transforming the root directory name
+          # to match what %setup expects (e.g., IMSProg-1.8.4)
+          CURRENT_DIR=$(basename $(pwd))
+          tar --exclude='.git' -czf ~/rpmbuild/SOURCES/$SOURCE_NAME \
+            --transform "s|^${CURRENT_DIR}|${EXPECTED_DIR}|" \
+            -C .. $CURRENT_DIR
 
       - name: Build RPM package
         run: |
