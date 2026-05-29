@@ -59,5 +59,7 @@
         <file>img/checkErase64.png</file>
         <file>img/v1_1_spi_2v5.png</file>
         <file>img/v1_7_spi_2v5.png</file>
+        <file>img/v1_7_i2c_5v0.png</file>
+        <file>img/v1_1_i2c_5v0.png</file>
     </qresource>
 </RCC>
