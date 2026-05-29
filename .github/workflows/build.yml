@@ -94,7 +94,7 @@ jobs:
 
 # ... (your existing amd64 job remains unchanged)
 
-fedora-rpm:
+  fedora-rpm:
     runs-on: ubuntu-latest
     container:
       image: fedora:43
