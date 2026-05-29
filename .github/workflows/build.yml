@@ -91,3 +91,45 @@ jobs:
           cmake .
           make
           make install
+
+# ... (your existing amd64 job remains unchanged)
+
+  fedora-rpm:
+    runs-on: ubuntu-latest
+    container:
+      image: fedora:43
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v6
+
+      - name: Install build dependencies
+        run: |
+          dnf install -y dnf-plugins-core rpm-build rpmlint
+          # Automatically install all BuildRequires listed in your spec file
+          dnf builddep -y rpm/*.spec
+
+      - name: Prepare build environment
+        run: |
+          # Create the required directory structure for rpmbuild
+          mkdir -p ~/rpmbuild/{BUILD,RPMS,SOURCES,SPECS,SRPMS}
+          
+          # Pack the source code into a tar.gz archive and place it in SOURCES
+          # (Replace 'imsprog' with your project name if it differs in the spec file)
+          tar --exclude='.git' -czf ~/rpmbuild/SOURCES/imsprog.tar.gz -C .. $(basename $(pwd))
+          
+          # Copy the spec file to the dedicated SPECS directory
+          cp rpm/*.spec ~/rpmbuild/SPECS/
+
+      - name: Build RPM package
+        run: |
+          rpmbuild -ba ~/rpmbuild/SPECS/*.spec
+
+      - name: Check RPM with rpmlint
+        run: |
+          rpmlint ~/rpmbuild/RPMS/*/*.rpm
+
+      - name: Upload RPM Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: fedora-43-rpm
+          path: ~/rpmbuild/RPMS/*/*.rpm
