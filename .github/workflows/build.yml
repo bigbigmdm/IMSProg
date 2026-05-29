@@ -104,9 +104,9 @@ jobs:
 
       - name: Install build dependencies
         run: |
-          # Install development tools, linters, and official Fedora build configs
+          # Install development tools, linters, and spellcheck dictionaries
           dnf install -y dnf-plugins-core rpm-build rpmlint rpmdevtools wget \
-                         fedora-rpmconfigs hunspell-es hunspell-it hunspell-pt
+                         hunspell-es hunspell-it hunspell-pt
           # Automatically install all BuildRequires listed in your spec file
           dnf builddep -y rpm/*.spec
 
