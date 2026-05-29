@@ -104,8 +104,8 @@ jobs:
 
       - name: Install build dependencies
         run: |
-          # rpmdevtools contains 'spectool' which is needed to parse the spec file
-          dnf install -y dnf-plugins-core rpm-build rpmlint rpmdevtools
+          # rpmdevtools contains 'spectool', rsync is used for safe directory wrapping
+          dnf install -y dnf-plugins-core rpm-build rpmlint rpmdevtools rsync
           # Automatically install all BuildRequires listed in your spec file
           dnf builddep -y rpm/*.spec
 
@@ -120,17 +120,23 @@ jobs:
           # Get the exact Source0 filename dynamically from the spec file
           SOURCE_NAME=$(spectool -l ~/rpmbuild/SPECS/*.spec | awk '{print $2}' | xargs basename)
           
-          # Extract Name and Version from spec to know the exact directory name expected in %prep
+          # Extract Name and Version from spec to get the exact directory name expected in %prep
           RPM_NAME=$(rpmspec -q --qf "%{NAME}" ~/rpmbuild/SPECS/*.spec)
           RPM_VERSION=$(rpmspec -q --qf "%{VERSION}" ~/rpmbuild/SPECS/*.spec)
           EXPECTED_DIR="${RPM_NAME}-${RPM_VERSION}"
           
-          # Pack the source code into the archive, transforming the root directory name
-          # to match what %setup expects (e.g., IMSProg-1.8.4)
-          CURRENT_DIR=$(basename $(pwd))
-          tar --exclude='.git' -czf ~/rpmbuild/SOURCES/$SOURCE_NAME \
-            --transform "s|^${CURRENT_DIR}|${EXPECTED_DIR}|" \
-            -C .. $CURRENT_DIR
+          # Create a clean temporary directory with the exact expected name
+          TMP_DIR=$(mktemp -d)
+          mkdir -p "$TMP_DIR/$EXPECTED_DIR"
+          
+          # Copy all project files to the temporary directory (excluding .git)
+          rsync -a --exclude='.git' ./ "$TMP_DIR/$EXPECTED_DIR/"
+          
+          # Pack the archive from the temporary directory
+          tar -czf ~/rpmbuild/SOURCES/$SOURCE_NAME -C "$TMP_DIR" "$EXPECTED_DIR"
+          
+          # Clean up the temporary directory
+          rm -rf "$TMP_DIR"
 
       - name: Build RPM package
         run: |
