@@ -94,7 +94,7 @@ jobs:
 
 # ... (your existing amd64 job remains unchanged)
 
-  fedora-rpm:
+fedora-rpm:
     runs-on: ubuntu-latest
     container:
       image: fedora:43
@@ -113,12 +113,14 @@ jobs:
           # Create the required directory structure for rpmbuild
           mkdir -p ~/rpmbuild/{BUILD,RPMS,SOURCES,SPECS,SRPMS}
           
-          # Pack the source code into a tar.gz archive and place it in SOURCES
-          # (Replace 'imsprog' with your project name if it differs in the spec file)
-          tar --exclude='.git' -czf ~/rpmbuild/SOURCES/imsprog.tar.gz -C .. $(basename $(pwd))
-          
-          # Copy the spec file to the dedicated SPECS directory
+          # Copy the spec file to the dedicated SPECS directory first
           cp rpm/*.spec ~/rpmbuild/SPECS/
+          
+          # Get the exact Source0 filename dynamicly from the spec file
+          SOURCE_NAME=$(spectool -l ~/rpmbuild/SPECS/*.spec | awk '{print $2}' | xargs basename)
+          
+          # Pack the source code into the archive with the exact name rpmbuild expects
+          tar --exclude='.git' -czf ~/rpmbuild/SOURCES/$SOURCE_NAME -C .. $(basename $(pwd))
 
       - name: Build RPM package
         run: |
@@ -133,3 +135,4 @@ jobs:
         with:
           name: fedora-43-rpm
           path: ~/rpmbuild/RPMS/*/*.rpm
+          
