@@ -246,7 +246,7 @@ appstream-util validate-relax --nonet %{buildroot}%{_datadir}/metainfo/*.xml
 - Added programmer type menu
 - Added support for the AT24CM02 chip
 
-* Wed Nov 06 2025 Mikhail Medvedev 1.7.1-1
+* Thu Nov 06 2025 Mikhail Medvedev 1.7.1-1
 - Fix: pressing the Stop key did not stop auto operations
 - Added support for SPI NAND flash
 - Added traditional chinese translation
