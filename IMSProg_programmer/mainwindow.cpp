@@ -1176,8 +1176,6 @@ void MainWindow::on_actionRead_triggered()
 
 void MainWindow::on_actionExit_triggered()
 {
-
-    ProgDeviceClose(current_programmer);
     MainWindow::close();
 }
 
