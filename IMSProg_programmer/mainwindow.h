@@ -139,6 +139,7 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
+    QHexEdit *hexEdit = nullptr;
     QString grnKeyStyle, redKeyStyle;
     QString lastDirectory;
     int statusCH341;
@@ -173,7 +174,6 @@ private:
     int max_rec;
     QString fileName, oldFileName, newFileName;
     bool cmdStarted;
-    QHexEdit *hexEdit;
     void ch341StatusFlashing();
     QByteArray block;
     uint32_t blockStartAddr, blockLen;
