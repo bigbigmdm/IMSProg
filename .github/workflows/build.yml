@@ -33,7 +33,7 @@ jobs:
             # Uses gcc 12.2.0, cmake 3.24.2
             image: "ubuntu:22.04"
             ubuntu: 22
-            deps: cmake g++ libusb-1.0-0-dev qtbase5-dev qttools5-dev pkgconf udev
+            deps: cmake g++ libusb-1.0-0-dev pkgconf qt6-base-dev qt6-tools-dev linguist-qt6 qt6-l10n-tools qt6-base-dev-tools qt6-tools-dev-tools libglu1-mesa-dev udev
           - name: Ubuntu-24
             image: "ubuntu:24.04"
             ubuntu: 24
