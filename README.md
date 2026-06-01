@@ -69,7 +69,7 @@ On Debian and derivatives:
 `sudo apt-get install cmake g++ libusb-1.0-0-dev pkgconf qt6-base-dev qt6-tools-dev
  linguist-qt6 qt6-l10n-tools qt6-base-dev-tools qt6-tools-dev-tools`
 
-On Debian >=13 and Ubuntu >=23.10:
+On Debian >=13 and Ubuntu >=24.04:
 
 `sudo apt-get install systemd-dev`
 
