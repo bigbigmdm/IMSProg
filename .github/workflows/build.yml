@@ -92,9 +92,9 @@ jobs:
       - name: Build
         working-directory: .
         run: |
-          cmake .
-          make
-          make install
+          cmake -S . -B build/
+          cmake --build build/ --parallel
+          cmake --install build/
 
 # ... (your existing amd64 job remains unchanged)
 
