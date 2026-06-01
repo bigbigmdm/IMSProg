@@ -23,22 +23,20 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        name: [Ubuntu-20, Ubuntu-22, Debian-11, Debian-12, Debian-Testing, Debian-Experimental]
+        name: [Ubuntu-24, Ubuntu-22, Debian-13, Debian-12, Debian-Testing, Debian-Experimental]
         cpp_compiler: [g++]
         include:
-          - name: Ubuntu-20
-            # Uses gcc 9.3.0, clang 10.0.0, cmake 3.16.3
-            image: "ubuntu:20.04"
-            ubuntu: 20
+          - name: Ubuntu-24
+            image: "ubuntu:24.04"
+            ubuntu: 24
           - name: Ubuntu-22
             # Uses gcc 12.2.0, clang 15.0.7, cmake 3.24.2
             image: "ubuntu:22.04"
             ubuntu: 22
-          - name: Debian-11
-            # Uses gcc 10.2.1, clang 11.0.1, cmake 3.18.4
-            image: "debian:bullseye"
-          - name: Debian-11
-            image: "debian:bullseye"
+          - name: Debian-13
+            image: "debian:trixie"
+          - name: Debian-13
+            image: "debian:trixie"
             c_compiler: clang
             cpp_compiler: clang++
           - name: Debian-12
