@@ -2015,13 +2015,14 @@ void MainWindow::on_pushButton_4_clicked()
     DialogInfo* infoDialog = new DialogInfo(this);
     infoDialog->show();
     infoDialog->setProgrammer(current_programmer);
-    if ((currentChipType == 0) && (ui->comboBox_vcc->currentIndex() == 1)) infoDialog->setChip(2); //NOR_FLASH 1.8
-    if ((currentChipType == 0) && (ui->comboBox_vcc->currentIndex() == 2)) infoDialog->setChip(3); //NOR FLASH 3.3
+    if ((currentChipType == 0) && (ui->comboBox_vcc->currentIndex() == 1)) infoDialog->setChip(2); //NOR_FLASH 3.3
+    if ((currentChipType == 0) && (ui->comboBox_vcc->currentIndex() == 2)) infoDialog->setChip(3); //NOR FLASH 1.8
     if ((currentChipType == 0) && (ui->comboBox_vcc->currentIndex() == 3)) infoDialog->setChip(8); //NOR FLASH 2.5
     if ((currentChipType == 1) && (ui->comboBox_vcc->currentIndex() == 1)) infoDialog->setChip(1); //24xxx 3.3
     if ((currentChipType == 1) && (ui->comboBox_vcc->currentIndex() == 4)) infoDialog->setChip(9); //24xxx 5.0
     if ((currentChipType == 2) && (ui->comboBox_vcc->currentIndex() == 1)) infoDialog->setChip(4); //93xxx 3.3
     if ((currentChipType == 3) && (ui->comboBox_vcc->currentIndex() == 1)) infoDialog->setChip(2); //25xxx 3.3
+    if ((currentChipType == 3) && (ui->comboBox_vcc->currentIndex() == 2)) infoDialog->setChip(3); //25xxx 1.8
     if ((currentChipType == 4) && (ui->comboBox_vcc->currentIndex() == 1)) infoDialog->setChip(2); //95xxx 3.3
     if ((currentChipType == 5) && (ui->comboBox_vcc->currentIndex() == 1)) infoDialog->setChip(5); //45xxx 3.3
     if ((currentChipType == 6) && (ui->comboBox_vcc->currentIndex() == 1)) infoDialog->setChip(6); //NAND_FLASH 3.3
