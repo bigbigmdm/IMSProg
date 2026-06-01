@@ -172,17 +172,9 @@ dialogfill.cpp
 hexutility.cpp
 searchdialog.cpp
 dialoginfo.cpp
-bitbang_microwire.c
-ch341a_gpio.c
-ch341a_spi.c
 ch34x_i2c.c
 ch347.c
 color_manager.cpp
-flashcmd_api.c
-mw_eeprom.c
-spi_controller.c
-spi_nor_flash.c
-timer.c
 dialogabout.cpp
 mainwindow.h
 qhexedit.h
@@ -203,20 +195,8 @@ dialogsetaddr.h
 dialogfill.h
 hexutility.h
 searchdialog.h
-bitbang_microwire.h
-ch341a_gpio.h
-ch341a_spi.h
 ch34x_i2c.h
 ch347.h
-flashcmd_api.h
-mw_eeprom_api.h
-nandcmd_api.h
-res.h
-snorcmd_api.h
-spi_controller.h
-spi_eeprom_api.h
-timer.h
-types.h
 dialogabout.h
 mainwindow.ui
 dialogbbm.ui
@@ -234,11 +214,32 @@ dialogfill.ui
 searchdialog.ui
 dialogabout.ui
 recource.qrc
+SNANDer/spi_controller.h
+SNANDer/ch341a_spi.h
+SNANDer/nandcmd_api.h
+SNANDer/types.h
+SNANDer/timer.h
+SNANDer/snorcmd_api.h
+SNANDer/flashcmd_api.h
+SNANDer/bitbang_microwire.h
+SNANDer/spi_nor_flash.c
+SNANDer/mw_eeprom.c
+SNANDer/ch341a_gpio.c
+SNANDer/spi_eeprom_api.h
+SNANDer/spi_controller.c
+SNANDer/res.h
+SNANDer/ch341a_spi.c
+SNANDer/timer.c
+SNANDer/mw_eeprom_api.h
+SNANDer/flashcmd_api.c
+SNANDer/ch341a_gpio.h
+SNANDer/bitbang_microwire.c
 ${QM_FILES}
 )
 
-target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
-target_include_directories(${PROJECT_NAME} PRIVATE ${LIBUSB_INCLUDE_DIRS})
+target_include_directories(${PROJECT_NAME} PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}")
+target_include_directories(${PROJECT_NAME} PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/SNANDer")
+target_include_directories(${PROJECT_NAME} PRIVATE "${LIBUSB_INCLUDE_DIRS}")
 
 if (QT_VERSION_MAJOR EQUAL 5)
     target_link_libraries(${PROJECT_NAME} Qt5::Core Qt5::Widgets ${LIBUSB_LIBRARIES})
