@@ -97,7 +97,7 @@ jobs:
   fedora-rpm:
     runs-on: ubuntu-latest
     container:
-      image: fedora:43
+      image: fedora:44
     steps:
       - name: Checkout source code
         uses: actions/checkout@v6
@@ -134,5 +134,5 @@ jobs:
       - name: Upload RPM Artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: fedora-43-rpm
+          name: fedora-44-rpm
           path: ~/rpmbuild/RPMS/*/*.rpm
