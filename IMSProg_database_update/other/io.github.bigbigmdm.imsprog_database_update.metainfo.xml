@@ -81,6 +81,16 @@
      <name>Mikhail Medvedev</name>
   </developer>
   <releases>
+  <release version="1.8.5" date="2026-06-02" urgency="medium">
+    <description>
+        <p>Fix: the first highlighted area in HexEdit was not being cleared.</p>
+        <p>Fix: combobox Operations was not reset if chip type changed.</p>
+        <p>Fix: program crashed if current chip is nothing and combobox Operation changed</p>
+        <p>Fix: Operations label showed for all chip types.</p>
+        <p>Added: Support for I2C and SPI FeRAM chips.</p>
+        <p>I2C 5v0 images on info form.</p>
+    </description>
+  </release>
   <release version="1.8.4" date="2026-05-20" urgency="medium">
     <description>
         <p>Fixed: segmentation fault in Qt6.</p>
