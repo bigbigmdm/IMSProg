@@ -118,12 +118,12 @@ endif()
 add_custom_target(translations2 DEPENDS ${QM_FILES})
 
 add_executable(${PROJECT_NAME}
-main.cpp
-mainwindow.cpp
-mainwindow.h
-mainwindow.ui
-resource.qrc
-${QM_FILES}
+    main.cpp
+    mainwindow.cpp
+    mainwindow.h
+    mainwindow.ui
+    resource.qrc
+    ${QM_FILES}
 )
 
 target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
