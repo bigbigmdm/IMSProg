@@ -117,7 +117,7 @@ endif()
 
 add_custom_target(translations2 DEPENDS ${QM_FILES})
 
-add_executable(${PROJECT_NAME}
+qt_add_executable(${PROJECT_NAME}
     main.cpp
     mainwindow.cpp
     mainwindow.h
@@ -131,7 +131,7 @@ target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 if (QT_VERSION_MAJOR EQUAL 5)
     target_link_libraries(${PROJECT_NAME} Qt5::Core Qt5::Widgets Qt5::Network)
 else()
-    target_link_libraries(${PROJECT_NAME} Qt::Core Qt::Widgets Qt::Network)
+    target_link_libraries(${PROJECT_NAME} PRIVATE Qt::Core Qt::Widgets Qt::Network)
 endif()
 
 install(TARGETS ${PROJECT_NAME} DESTINATION ${CMAKE_INSTALL_BINDIR})
