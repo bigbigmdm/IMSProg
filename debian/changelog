@@ -1,8 +1,8 @@
-imsprog (1.8.4-1) unstable; urgency=medium
+imsprog (1.8.5-1) unstable; urgency=medium
 
   * New upstream version:
 
- -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Wed, 20 May 2026 11:49:19 +0300
+ -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Fri, 05 Jun 2026 09:15:08 +0300
 
 imsprog (1.7.3-1) unstable; urgency=medium
 
