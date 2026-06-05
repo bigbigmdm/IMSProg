@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2023 - 2024 Mikhail Medvedev <e-ink-reader@yandex.ru>
+ * Copyright (C) 2023 - 2026 Mikhail Medvedev <e-ink-reader@yandex.ru>
  *
  *
  * This program is free software; you can redistribute it and/or
@@ -30,6 +30,7 @@ DialogInfo::DialogInfo(QWidget *parent) :
     pix3518 = new QPixmap(":/res/img/ch341_spi_18_wson.png");
 
     pix24v7 = new QPixmap(":/res/img/v1_7_i2c_3v3.png");
+    pix24v750 = new QPixmap(":/res/img/v1_7_i2c_5v0.png");
     pix25v718 = new QPixmap(":/res/img/v1_7_spi_1v8.png");
     pix25v725 = new QPixmap(":/res/img/v1_7_spi_2v5.png");
     pix25v733 = new QPixmap(":/res/img/v1_7_spi_3v3.png");
@@ -47,6 +48,7 @@ DialogInfo::DialogInfo(QWidget *parent) :
     pix35x347_3v3_0 = new QPixmap(":/res/img/ch347_NAND_3v3.png");
 
     pix24x347_3v3_1 = new QPixmap(":/res/img/v1_1_i2c_3v3.png");
+    pix24x347_5v0_1 = new QPixmap(":/res/img/v1_1_i2c_5v0.png");
     pix25x347_2v5_1 = new QPixmap(":/res/img/v1_1_spi_2v5.png");
     pix25x347_1v8_1 = new QPixmap(":/res/img/v1_1_spi_1v8.png");
     pix25x347_3v3_1 = new QPixmap(":/res/img/v1_1_spi_3v3.png");
@@ -69,6 +71,7 @@ DialogInfo::~DialogInfo()
     delete pix3518;
 
     delete pix24v7;
+    delete pix24v750;
     delete pix25v718;
     delete pix25v733;
     delete pix93v17;
@@ -86,6 +89,7 @@ DialogInfo::~DialogInfo()
     delete pix35x347_3v3_0;
 
     delete pix24x347_3v3_1;
+    delete pix24x347_5v0_1;
     delete pix25x347_2v5_1;
     delete pix25x347_1v8_1;
     delete pix25x347_3v3_1;
@@ -179,6 +183,14 @@ void DialogInfo::setChip(const uint chipType)
        if (currentProg == 3) ui->label->setPixmap(*pix25x347_2v5_1);
        ui->label_slot->setText("25xx");
      break;
+   case 9:
+      if (currentProg == 0) ui->label->setPixmap(*pix24);
+      if (currentProg == 1) ui->label->setPixmap(*pix24v750);
+      if (currentProg == 2) ui->label->setPixmap(*pix24x347_3v3_0);
+      if (currentProg == 3) ui->label->setPixmap(*pix24x347_5v0_1);
+      ui->label_slot->setText("24xx");
+      ui->label_adapter->setText("-");
+   break;
      default:
        ui->label_slot->setText("-");
        ui->label_adapter->setText("-");

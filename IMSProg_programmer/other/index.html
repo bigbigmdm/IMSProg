@@ -75,7 +75,7 @@ sudo ./build_all.sh</code></pre>
 <li>for Qt6:</li>
 </ul>
 <p><code>sudo apt-get install cmake g++ libusb-1.0-0-dev pkgconf qt6-base-dev qt6-tools-dev  linguist-qt6 qt6-l10n-tools qt6-base-dev-tools qt6-tools-dev-tools</code></p>
-<p>On Debian &gt;=13 and Ubuntu &gt;=23.10:</p>
+<p>On Debian &gt;=13 and Ubuntu &gt;=24.04:</p>
 <p><code>sudo apt-get install systemd-dev</code></p>
 <p>On older:</p>
 <p><code>sudo apt-get install udev</code></p>
@@ -350,6 +350,15 @@ sudo zypper install libqt6-linguist-devel libusb-1_0-devel</code></pre>
 <h2 id="list-of-supported-chips">List of supported chips</h2>
 <h3 id="i2c-eeprom">I2C EEPROM</h3>
 <p>24C01, 24C02, 24C04, 24C08, 24C16, 24C32, 24C64, 24C128, 24C256, 24C512, 24C1024, 24M02</p>
+<h3 id="i2c-feram">I2C FeRAM</h3>
+<ul>
+<li>RAMXEED</li>
+</ul>
+<p>MB85RC04, MB85RC16, MBRC64, MB85RC128, MB85RC256, MB85RC512, MB85RC1MT</p>
+<ul>
+<li>RAMTRON</li>
+</ul>
+<p>FM24C04A, FM24C16A, FM24C32A, FM24C64A, FM24C128, FM24C256, FM24C512, FM24CL04A, FM24CL16A, FM24CL32A, FM24CL64A</p>
 <h3 id="microwire-eeprom-only-for-ch341a-programmer">MicroWire EEPROM (only for CH341A programmer)</h3>
 <p>93C46, 93C56, 93C66, 93C76, 93C86</p>
 <h3 id="serial-spi-bus-eeprom">Serial SPI Bus EEPROM</h3>
@@ -369,6 +378,11 @@ sudo zypper install libqt6-linguist-devel libusb-1_0-devel</code></pre>
 <li>ONSEMI</li>
 </ul>
 <p>CAT25C01, CAT25C02, CAT25C04, CAT25C08, CAT25C16, CAT25C32, CAT25C64, CAT25C128, CAT25C256, CAT25C512</p>
+<h3 id="serial-spi-bus-feram">Serial SPI Bus FeRAM</h3>
+<ul>
+<li>RAMXEED</li>
+</ul>
+<p>MB85RS16N, MB85RD16LX, MB85RS64VY, MB85RS64V, MB85RS128TY, MB85RS128B, MB85RS256TY, MB85RS256LYA, MB85RS256B, MB85RS512TY, MB85RS512LY, MS85RS1MLY, MB85RS1MT, MB85RS2MTY, MB85RS2MLY, MB85RS4MTY, MB85RS4MLY</p>
 <h3 id="dataflash-45xx">DataFlash 45xx</h3>
 <ul>
 <li>ATMEL</li>
@@ -545,7 +559,7 @@ sudo apt install imsprog</code></pre>
 <li><p>For some versions of Fedora, you can use the official repositories.</p></li>
 </ul>
 <pre><code>sudo dnf install imsprog</code></pre>
-<p><a href="https://repology.org/project/imsprog/versions"> <img src="https://repology.org/badge/vertical-allrepos/imsprog.svg" alt="Packaging status" align="right"> </a></p>
+
 <ul>
 <li>The <code>RPM package</code> by <a href="https://redos.red-soft.ru/">Red Soft</a> can be downloaded<br />
 <a href="http://repo.red-soft.ru/redos/7.3/x86_64/updates/">here</a></li>

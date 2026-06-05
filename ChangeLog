@@ -1,3 +1,8 @@
+- Ver. 1.8.5 - Fix: the first highlighted area in HexEdit was not being cleared,
+combobox "Operations" was not reset if chip type changed, program crashed if 
+current chip is nothing and combobox "Operation" changed, "Operations" label 
+showing for all chip types. Added: Support for I2C and SPI FeRAM chips, I2C 5v0
+images on info form.
 - Ver. 1.8.4 - Fix: segmentation fault in Qt6, incorrect interface display on 
 macOS, write error to sector 0 in Windows, incorrect saving of the database file
 in the chip editor, unable to erase the 93C66, 93C76 and 93C86 chips, the font 
