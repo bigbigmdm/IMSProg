@@ -125,7 +125,7 @@ install the required packages
 using brew:  
 
 ```
-brew install qt@5 libusb cmake pkgconf
+brew install qt@6 libusb cmake pkgconf
 ```
 
 if not using the [build_all.sh](build_all.sh) script then make sure `libusb` is 
