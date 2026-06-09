@@ -96,6 +96,26 @@ int ch34xi2cBlockRead(uint8_t *buf, uint32_t address, uint32_t blockSize, uint8_
                 *ptr++ = wordAddressHi;
                 *ptr++ = wordAddressLo;
             }
+            if ((algorithm & 0x0f) == 0x0a) //2 byte address, swap bits for 24LC1025
+            {
+                *ptr++ = ch34x_CMD_I2C_STM_OUT | 3;
+                deviceAddress = (uint8_t) ( ((((address & 0x010000) >> 13) & ((algorithm & 0xf0) >> 4)) << 1) | 0xa0);
+                wordAddressLo = (uint8_t) (address & 0x00ff);
+                wordAddressHi = (uint8_t) ((address & 0xff00) >> 8);
+                *ptr++ = deviceAddress;
+                *ptr++ = wordAddressHi;
+                *ptr++ = wordAddressLo;
+            }
+            if ((algorithm & 0x0f) == 0x0e) //2 byte address, move high bit and swap bits for 24LC515
+            {
+                *ptr++ = ch34x_CMD_I2C_STM_OUT | 3;
+                deviceAddress = (uint8_t) ( ((((address & 0x008000) >> 12) & ((algorithm & 0xf0) >> 4)) << 1) | 0xa0);
+                wordAddressLo = (uint8_t) (address & 0x00ff);
+                wordAddressHi = (uint8_t) ((address & 0xff00) >> 8);
+                *ptr++ = deviceAddress;
+                *ptr++ = wordAddressHi;
+                *ptr++ = wordAddressLo;
+            }
                 //device addr + read bit
                 *ptr++ = ch34x_CMD_I2C_STM_STA;
                 *ptr++ = ch34x_CMD_I2C_STM_OUT | 1;
@@ -123,7 +143,7 @@ int ch34xi2cBlockRead(uint8_t *buf, uint32_t address, uint32_t blockSize, uint8_
 
             if (progDev > 1)
             {
-                if ((algorithm & 0x0f) == 0x02) memcpy(&buf[step * size], &i2c_buf.ibuf[4], size);
+                if ((algorithm & 0x0f) != 0x01) memcpy(&buf[step * size], &i2c_buf.ibuf[4], size);
                 else memcpy(&buf[step * size], &i2c_buf.ibuf[3], size);
             }
             else memcpy(&buf[step * size], &i2c_buf.ibuf[0], size);
@@ -172,6 +192,26 @@ int ch34xi2cBlockWrite(uint8_t *buf, uint32_t address, uint32_t blockSize, uint3
             {
                 *ptr++ = ch34x_CMD_I2C_STM_OUT | 3;
                 deviceAddress = (uint8_t) ( ((((address & 0xff0000) >> 16) & ((algorithm & 0xf0) >> 4)) << 1) | 0xa0);
+                wordAddressLo = (uint8_t) (address & 0x00ff);
+                wordAddressHi = (uint8_t) ((address & 0xff00) >> 8);
+                *ptr++ = deviceAddress;
+                *ptr++ = wordAddressHi;
+                *ptr++ = wordAddressLo;
+            }
+            if ((algorithm & 0x0f) == 0x0a) //2 byte address, swap bits for 24LC1025
+            {
+                *ptr++ = ch34x_CMD_I2C_STM_OUT | 3;
+                deviceAddress = (uint8_t) ( ((((address & 0x010000) >> 13) & ((algorithm & 0xf0) >> 4)) << 1) | 0xa0);
+                wordAddressLo = (uint8_t) (address & 0x00ff);
+                wordAddressHi = (uint8_t) ((address & 0xff00) >> 8);
+                *ptr++ = deviceAddress;
+                *ptr++ = wordAddressHi;
+                *ptr++ = wordAddressLo;
+            }
+            if ((algorithm & 0x0f) == 0x0e) //2 byte address, move high bit and swap bits for 24LC515
+            {
+                *ptr++ = ch34x_CMD_I2C_STM_OUT | 3;
+                deviceAddress = (uint8_t) ( ((((address & 0x008000) >> 12) & ((algorithm & 0xf0) >> 4)) << 1) | 0xa0);
                 wordAddressLo = (uint8_t) (address & 0x00ff);
                 wordAddressHi = (uint8_t) ((address & 0xff00) >> 8);
                 *ptr++ = deviceAddress;
