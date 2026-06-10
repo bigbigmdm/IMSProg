@@ -411,7 +411,7 @@ Once IMSProg_database_update app has been run, the downloaded database is copied
 
 ### I2C EEPROM
 24C01, 24C02, 24C04, 24C08, 24C16, 24C32, 24C64, 24C128, 24C256, 24C512,
-24C1024, 24M02
+24LC515, 24C1024, 24LC1025, 24M02
 
 ### I2C FeRAM
 - RAMXEED
