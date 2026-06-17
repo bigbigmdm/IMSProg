@@ -1,50 +1,50 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: imsprog
-Upstream-Contact: Mikhail Medvedev e-ink-reader@yandex.ru
+Upstream-Contact: Mikhail Medvedev <e-ink-reader@yandex.ru>
 Source: https://github.com/bigbigmdm/IMSProg
 
 Files: *
-Copyright: 2023-2026 Mikhail Medvedev <e-ink-reader@yandex.ru>
+Copyright: 2023-2026 Mikhail Medvedev
 License: GPL-3+
 
-Files:  */*metainfo.xml
-Copyright: 2024 Mikhail Medvedev <e-ink-reader@yandex.ru>
+Files: */*metainfo.xml
+Copyright: 2024 Mikhail Medvedev
 License: GFDL-1.3
 
 Files: IMSProg_programmer/language/chipProgrammer_uk_UA.ts
        IMSProg_editor/language/chipEditor_uk_UA.ts
-Copyright: 2023 Sergey Golovko <cappelikan@gmail.com>
+Copyright: 2023 Sergey Golovko
 License: GPL-3+
 
 Files: IMSProg_programmer/language/chipProgrammer_hu_HU.ts
        IMSProg_editor/language/chipEditor_hu_HU.ts
-Copyright: 2023 Charles K Barcza <https://github.com/blackPantherOS>
+Copyright: 2023 Charles K Barcza
 License: GPL-3+
 
 Files: IMSProg_programmer/language/chipProgrammer_it_IT.ts
        IMSProg_editor/language/chipEditor_it_IT.ts
-Copyright: 2023 Marino Pasquale <percoco2000@gmail.com>
-           2024 Giovanni Scafora <https://github.com/giovanni69>
+Copyright: 2023 Marino Pasquale
+           2024 Giovanni Scafora
 License: GPL-3+
 
 Files: IMSProg_programmer/language/chipProgrammer_zh_CN.ts
        IMSProg_editor/language/chipEditor_zh_CN.ts
-Copyright: 2024 Tian-HP <https://github.com/Tian-HP>
+Copyright: 2024 Tian-HP
 License: GPL-3+
 
 Files: IMSProg_programmer/language/chipProgrammer_zh_TW.ts
        IMSProg_editor/language/chipEditor_zh_TW.ts
-Copyright: 2025 ystartgo <https://github.com/ystartgo>
+Copyright: 2025 ystartgo
 License: GPL-3+
 
 Files: IMSProg_programmer/language/chipProgrammer_pt_BR.ts
        IMSProg_editor/language/chipEditor_pt_BR.ts
-Copyright: 2023 Alexandre C. Leite <pu2tki@gmail.com>
+Copyright: 2023 Alexandre C. Leite
 License: GPL-3+
 
 Files: IMSProg_programmer/language/chipProgrammer_de_DE.ts
        IMSProg_editor/language/chipEditor_de_DE.ts
-Copyright: 2024 wucke13 <https://github.com/wucke13>
+Copyright: 2024 wucke13
 License: GPL-3+
 
 Files: IMSProg_programmer/bitbang_microwire.c
@@ -68,12 +68,12 @@ Files: IMSProg_programmer/bitbang_microwire.c
        IMSProg_programmer/timer.c
        IMSProg_programmer/timer.h
        IMSProg_programmer/types.h
-Copyright: 2023-2025, Mikhail Medvedev <e-ink-reader@yandex.ru>
-           2005-2022, McMCC <mcmcc@mail.ru>
-           2014, Pluto Yang <yangyj.ee@gmail.com>
-           2015-2016, Stefan Tauner
-           2015, Urja Rannikko <urjaman@gmail.com>
-           2011, asbokid <ballymunboy@gmail.com>
+Copyright: 2023-2025 Mikhail Medvedev
+           2005-2022 McMCC
+           2014 Pluto Yang
+           2015-2016 Stefan Tauner
+           2015 Urja Rannikko
+           2011 asbokid
 License: GPL-2+
 
 Files: IMSProg_editor/IMSProg_editor.pro
@@ -81,12 +81,14 @@ Files: IMSProg_editor/IMSProg_editor.pro
        IMSProg_editor/delegates.h
        IMSProg_editor/ezp_chip_editor.cpp
        IMSProg_editor/ezp_chip_editor.h
-Copyright: 2023, Mikhail Medvedev <e-ink-reader@yandex.ru>
+Copyright: 2023 Mikhail Medvedev <e-ink-reader@yandex.ru>
 License: GPL-2+
 
-Files: IMSProg_programmer/ch341funcs.c
-Copyright: 2023, Mikhail Medvedev <e-ink-reader@yandex.ru>
-           2011, asbokid <ballymunboy@gmail.com>
+Files: IMSProg_programmer/ch34x_i2c.c
+       IMSProg_programmer/ch34x_i2c.h
+Copyright: 2026 Mikhail Medvedev
+           2023 aystarik
+           2011 asbokid
 License: GPL-3+
 
 Files: IMSProg_programmer/commands.h
@@ -108,8 +110,8 @@ License: LGPL-2.1+
 
 Files: IMSProg_programmer/ch347.c
        IMSProg_programmer/ch347.h
-Copyright: 2026, Mikhail Medvedev <e-ink-reader@yandex.ru>
-           2022, Chuanhong Guo <gch981213@gmail.com>
+Copyright: 2026 Mikhail Medvedev
+           2022 Chuanhong Guo
 License: BSD-1-Clause
 
 License: GPL-2+
@@ -176,8 +178,6 @@ License: GFDL-1.3
  `/usr/share/common-licenses/GFDL-1.3'.
 
 License: BSD-1-Clause
- Copyright (c) <year> <owner> All rights reserved.
- .
  Redistribution and use in source and binary forms, with or without 
  modification, are permitted provided that the following conditions are met:
  .
@@ -193,4 +193,4 @@ License: BSD-1-Clause
  SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, 
  OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE 
- OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
+ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
