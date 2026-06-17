@@ -76,14 +76,6 @@ Copyright: 2023-2025 Mikhail Medvedev
            2011 asbokid
 License: GPL-2+
 
-Files: IMSProg_editor/IMSProg_editor.pro
-       IMSProg_editor/delegates.cpp
-       IMSProg_editor/delegates.h
-       IMSProg_editor/ezp_chip_editor.cpp
-       IMSProg_editor/ezp_chip_editor.h
-Copyright: 2023 Mikhail Medvedev <e-ink-reader@yandex.ru>
-License: GPL-2+
-
 Files: IMSProg_programmer/ch34x_i2c.c
        IMSProg_programmer/ch34x_i2c.h
 Copyright: 2026 Mikhail Medvedev
