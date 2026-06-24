@@ -1,3 +1,21 @@
+imsprog (1.8.5-4) unstable; urgency=medium
+
+  * Update debian/control:
+    - Explicitly list supported Little-Endian architectures to prevent
+      FTBFS on s390x (Closes: #1140616).
+    - Move Priority field to the Source section.
+  * Update debian/copyright:
+    - Remove redundant separate entries for upstream LICENSE files
+      to fix Lintian information tags.
+
+ -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Wed, 24 Jun 2026 13:45:00 +0300
+
+imsprog (1.8.5-3) unstable; urgency=medium
+
+  * Bump revision due to mentors upload cache collision.
+
+ -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Wed, 24 Jun 2026 13:12:17 +0300
+
 imsprog (1.8.5-2) unstable; urgency=medium
 
   * QA Upload to fix FTBFS and packaging issues.
