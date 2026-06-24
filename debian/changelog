@@ -1,3 +1,21 @@
+imsprog (1.8.5-2) unstable; urgency=medium
+
+  * QA Upload to fix FTBFS and packaging issues.
+  * Fix FTBFS on Big Endian architectures (Closes: #1140616):
+    - Restrict architecture build to little-endian systems via d/control.
+  * Address feedback from lintian and sponsor (Hugh McMaster):
+    - Completely rewrite debian/copyright to match DEP-5 specification,
+      grouping files correctly by copyright holder.
+    - Add missing license definitions for ch34x_i2c and ch341funcs files.
+    - Remove invalid entries and fix incorrect authorship claims.
+    - Format Upstream-Contact email with angle brackets and drop redundant
+      emails from individual file stanzas.
+    - Drop obsolete Priority and Rules-Requires-Root fields from d/control.
+    - Upgrade debian/watch parser to format version 5.
+    - Remove unnecessary debian/NEWS and debian/*.maintscript files.
+
+ -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Wed, 24 Jun 2026 11:55:00 +0300
+
 imsprog (1.8.5-1) unstable; urgency=medium
 
   * New upstream version:

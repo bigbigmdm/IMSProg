@@ -4,84 +4,160 @@ Upstream-Contact: Mikhail Medvedev <e-ink-reader@yandex.ru>
 Source: https://github.com/bigbigmdm/IMSProg
 
 Files: *
-Copyright: 2023-2026 Mikhail Medvedev
+Copyright: 2023-2026, Mikhail Medvedev
 License: GPL-3+
 
-Files: */*metainfo.xml
-Copyright: 2024 Mikhail Medvedev
+Files: *metainfo.xml
+Copyright: 2024, Mikhail Medvedev
 License: GFDL-1.3
+
+Files: IMSProg_programmer/LICENSE
+       IMSProg_editor/LICENSE
+Copyright: 2007, Free Software Foundation, Inc. <https://fsf.org/>
+License: GPL-3+
 
 Files: IMSProg_programmer/language/chipProgrammer_uk_UA.ts
        IMSProg_editor/language/chipEditor_uk_UA.ts
-Copyright: 2023 Sergey Golovko
+Copyright: 2023, Sergey Golovko
 License: GPL-3+
 
 Files: IMSProg_programmer/language/chipProgrammer_hu_HU.ts
        IMSProg_editor/language/chipEditor_hu_HU.ts
-Copyright: 2023 Charles K Barcza
+Copyright: 2023, Charles K Barcza
 License: GPL-3+
 
 Files: IMSProg_programmer/language/chipProgrammer_it_IT.ts
        IMSProg_editor/language/chipEditor_it_IT.ts
-Copyright: 2023 Marino Pasquale
-           2024 Giovanni Scafora
+Copyright: 2023, Marino Pasquale
+           2024, Giovanni Scafora
 License: GPL-3+
 
 Files: IMSProg_programmer/language/chipProgrammer_zh_CN.ts
        IMSProg_editor/language/chipEditor_zh_CN.ts
-Copyright: 2024 Tian-HP
+Copyright: 2024, Tian-HP
 License: GPL-3+
 
 Files: IMSProg_programmer/language/chipProgrammer_zh_TW.ts
        IMSProg_editor/language/chipEditor_zh_TW.ts
-Copyright: 2025 ystartgo
+Copyright: 2025, ystartgo
 License: GPL-3+
 
 Files: IMSProg_programmer/language/chipProgrammer_pt_BR.ts
        IMSProg_editor/language/chipEditor_pt_BR.ts
-Copyright: 2023 Alexandre C. Leite
+Copyright: 2023, Alexandre C. Leite
 License: GPL-3+
 
 Files: IMSProg_programmer/language/chipProgrammer_de_DE.ts
        IMSProg_editor/language/chipEditor_de_DE.ts
-Copyright: 2024 wucke13
+Copyright: 2024, wucke13
 License: GPL-3+
+
+Files: IMSProg_programmer/dialogabout.h
+       IMSProg_programmer/dialoginfo.h
+       IMSProg_programmer/dialogsr.cpp
+       IMSProg_programmer/dialogsr.h
+Copyright: 2023-2024, Mikhail Medvedev <e-ink-reader@yandex.ru>
+License: GPL-3+
+
+Files: IMSProg_programmer/dialogcompare.cpp
+       IMSProg_programmer/dialogcompare.h
+       IMSProg_programmer/dialogbbm.cpp
+       IMSProg_programmer/dialogbbm.h
+       IMSProg_programmer/dialogsecurity.cpp
+       IMSProg_programmer/dialogsecurity.h
+       IMSProg_programmer/dialogsetaddr.cpp
+       IMSProg_programmer/dialogsetaddr.h
+Copyright: 2024-2025, Mikhail Medvedev <e-ink-reader@yandex.ru>
+License: GPL-3+
+
+Files: IMSProg_programmer/dialognandsr.h
+       IMSProg_programmer/dialogsfdp.cpp
+       IMSProg_programmer/dialogsfdp.h
+Copyright: 2023-2025, Mikhail Medvedev <e-ink-reader@yandex.ru>
+License: GPL-3+
+
+Files: IMSProg_programmer/dialogabout.cpp
+       IMSProg_programmer/dialogfill.cpp
+       IMSProg_programmer/dialogfill.h
+       IMSProg_programmer/dialoginfo.cpp
+       IMSProg_programmer/hexutility.cpp
+       IMSProg_programmer/hexutility.h
+       IMSProg_programmer/mainwindow.cpp
+       IMSProg_programmer/mainwindow.h
+Copyright: 2023-2026, Mikhail Medvedev <e-ink-reader@yandex.ru>
+License: GPL-3+
+
+Files: IMSProg_programmer/dialogrp.cpp
+Copyright: 2023, Mikhail Medvedev <e-ink-reader@yandex.ru>
+License: GPL-3+
+
+Files: IMSProg_programmer/ch341funcs.c
+       IMSProg_programmer/ch341funcs.h
+Copyright: 2011, asbokid <ballymunboy@gmail.com>
+License: GPL-3+
+
+Files: IMSProg_programmer/ch34x_i2c.c
+       IMSProg_programmer/ch34x_i2c.h
+Copyright: 2011, asbokid <ballymunboy@gmail.com>
+           2023, aystarik <aystarik@gmail.com>
+           2026, Mikhail Medvedev <e-ink-reader@yandex.ru>
+License: GPL-3+
+
+Files: IMSProg_programmer/dialogrp.h
+       IMSProg_programmer/dialogsp.cpp
+       IMSProg_programmer/dialogsp.h
+       IMSProg_programmer/main.cpp
+       IMSProg_editor/delegates.cpp
+       IMSProg_editor/delegates.h
+       IMSProg_editor/ezp_chip_editor.h
+Copyright: 2023, Mikhail Medvedev <e-ink-reader@yandex.ru>
+License: GPL-2+
+
+Files: IMSProg_programmer/dialognandsr.cpp
+Copyright: 2023-2025, Mikhail Medvedev <e-ink-reader@yandex.ru>
+License: GPL-2+
+
+Files: IMSProg_editor/ezp_chip_editor.cpp
+Copyright: 2023-2026, Mikhail Medvedev <e-ink-reader@yandex.ru>
+License: GPL-2+
+
+Files: IMSProg_database_update/main.cpp
+Copyright: 2026, Mikhail Medvedev <e-ink-reader@yandex.ru>
+License: GPL-2+
 
 Files: IMSProg_programmer/bitbang_microwire.c
        IMSProg_programmer/bitbang_microwire.h
-       IMSProg_programmer/ch341a_gpio.c
+Copyright: 2005-2021, Mokrushin I.V. aka McMCC <mcmcc@mail.ru>
+           2023, Mikhail Medvedev <e-ink-reader@yandex.ru>
+License: GPL-2+
+
+Files: IMSProg_programmer/ch341a_gpio.c
        IMSProg_programmer/ch341a_gpio.h
-       IMSProg_programmer/ch341a_spi.c
        IMSProg_programmer/ch341a_spi.h
-       IMSProg_programmer/dialogrp.h
-       IMSProg_programmer/dialogsp.cpp
-       IMSProg_programmer/dialogsp.h
        IMSProg_programmer/flashcmd_api.c
        IMSProg_programmer/flashcmd_api.h
-       IMSProg_programmer/main.cpp
        IMSProg_programmer/mw_eeprom.c
        IMSProg_programmer/mw_eeprom_api.h
        IMSProg_programmer/nandcmd_api.h
        IMSProg_programmer/snorcmd_api.h
-       IMSProg_programmer/spi_eeprom_api.h
        IMSProg_programmer/spi_nor_flash.c
        IMSProg_programmer/timer.c
        IMSProg_programmer/timer.h
        IMSProg_programmer/types.h
-Copyright: 2023-2025 Mikhail Medvedev
-           2005-2022 McMCC
-           2014 Pluto Yang
-           2015-2016 Stefan Tauner
-           2015 Urja Rannikko
-           2011 asbokid
+Copyright: 2018-2021, McMCC <mcmcc@mail.ru>
 License: GPL-2+
 
-Files: IMSProg_programmer/ch34x_i2c.c
-       IMSProg_programmer/ch34x_i2c.h
-Copyright: 2026 Mikhail Medvedev
-           2023 aystarik
-           2011 asbokid
-License: GPL-3+
+Files: IMSProg_programmer/spi_eeprom_api.h
+Copyright: 2022, McMCC <mcmcc@mail.ru>
+License: GPL-2+
+
+Files: IMSProg_programmer/ch341a_spi.c
+Copyright: 2011, asbokid <ballymunboy@gmail.com>
+           2014, Pluto Yang <yangyj.ee@gmail.com>
+           2015, Urja Rannikko <urjaman@gmail.com>
+           2015-2016, Stefan Tauner
+           2018-2021, McMCC <mcmcc@mail.ru>
+License: GPL-2+
 
 Files: IMSProg_programmer/commands.h
        IMSProg_programmer/commands.cpp
@@ -90,20 +166,22 @@ Files: IMSProg_programmer/commands.h
        IMSProg_programmer/qhexedit.sip
        IMSProg_programmer/chunks.cpp
        IMSProg_programmer/chunks.h
-       IMSProg_programmer/searchdialog.cpp
        IMSProg_programmer/searchdialog.h
-       IMSProg_programmer/QHexEditPlugin.cpp
-       IMSProg_programmer/QHexEditPlugin.h
        IMSProg_programmer/color_manager.h
        IMSProg_programmer/color_manager.cpp
-Copyright: 2010-2025 Winfried Simon
+Copyright: 2010-2025, Winfried Simon
 Comment: from https://github.com/Simsys/qhexedit2/
+License: LGPL-2.1+
+
+Files: IMSProg_programmer/searchdialog.cpp
+Copyright: 2015-2016, Winfried Simon
+           2023-2024, Mikhail Medvedev <e-ink-reader@yandex.ru>
 License: LGPL-2.1+
 
 Files: IMSProg_programmer/ch347.c
        IMSProg_programmer/ch347.h
-Copyright: 2026 Mikhail Medvedev
-           2022 Chuanhong Guo
+Copyright: 2022, Chuanhong Guo <gch981213@gmail.com>
+           2026, Mikhail Medvedev <e-ink-reader@yandex.ru>
 License: BSD-1-Clause
 
 License: GPL-2+
@@ -118,7 +196,7 @@ License: GPL-2+
  GNU General Public License for more details.
  .
  You should have received a copy of the GNU General Public License
- along with this program. If not, see <https://www.gnu.org/licenses/>
+ along with this program; if not, see <https://www.gnu.org/licenses/>
  .
  On Debian systems, the complete text of the GNU General
  Public License version 2 can be found in "/usr/share/common-licenses/GPL-2".
@@ -135,7 +213,7 @@ License: GPL-3+
  GNU General Public License for more details.
  .
  You should have received a copy of the GNU General Public License
- along with this program. If not, see <https://www.gnu.org/licenses/>
+ along with this program; if not, see <https://www.gnu.org/licenses/>
  .
  On Debian systems, the complete text of the GNU General
  Public License version 3 can be found in "/usr/share/common-licenses/GPL-3".
