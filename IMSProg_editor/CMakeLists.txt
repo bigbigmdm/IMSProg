@@ -114,7 +114,8 @@ endif()
 
 add_custom_target(translations1 DEPENDS ${QM_FILES})
 
-qt_add_executable(${PROJECT_NAME}
+if (QT_VERSION_MAJOR EQUAL 5)
+    add_executable(${PROJECT_NAME}
     ezp_chip_editor.h
     ezp_chip_editor.cpp
     ezp_chip_editor.ui
@@ -123,7 +124,19 @@ qt_add_executable(${PROJECT_NAME}
     delegates.cpp
     resources.qrc
     ${QM_FILES}
-)
+    )
+else()
+    qt_add_executable(${PROJECT_NAME}
+    ezp_chip_editor.h
+    ezp_chip_editor.cpp
+    ezp_chip_editor.ui
+    main.cpp
+    delegates.h
+    delegates.cpp
+    resources.qrc
+    ${QM_FILES}
+    )
+endif()
 
 target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 

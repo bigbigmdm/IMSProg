@@ -117,14 +117,25 @@ endif()
 
 add_custom_target(translations2 DEPENDS ${QM_FILES})
 
-qt_add_executable(${PROJECT_NAME}
-    main.cpp
-    mainwindow.cpp
-    mainwindow.h
-    mainwindow.ui
-    resource.qrc
-    ${QM_FILES}
-)
+if (QT_VERSION_MAJOR EQUAL 5)
+    add_executable(${PROJECT_NAME}
+        main.cpp
+        mainwindow.cpp
+        mainwindow.h
+        mainwindow.ui
+        resource.qrc
+        ${QM_FILES}
+    )
+else()
+    qt_add_executable(${PROJECT_NAME}
+        main.cpp
+        mainwindow.cpp
+        mainwindow.h
+        mainwindow.ui
+        resource.qrc
+        ${QM_FILES}
+    )
+endif()
 
 target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 
