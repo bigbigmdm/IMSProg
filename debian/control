@@ -20,7 +20,7 @@ Vcs-Git: https://github.com/bigbigmdm/IMSProg.git -b debian/latest
 Vcs-Browser: https://github.com/bigbigmdm/IMSProg/tree/debian/latest
 
 Package: imsprog
-Architecture: amd64 arm64 armel armhf i386 mips64el mipsel riscv64 ppc64el
+Architecture: any
 Depends: ${misc:Depends}, ${shlibs:Depends}
 Description: Linux chip programmer for CH341A/CH347T devices
  Linux IMSProg - I2C, SPI and MicroWire chip programmer for CH341/CH347 devices.
