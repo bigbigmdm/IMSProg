@@ -1,38 +1,29 @@
-imsprog (1.8.5-4) unstable; urgency=medium
-
-  * Update debian/control:
-    - Explicitly list supported Little-Endian architectures to prevent
-      FTBFS on s390x (Closes: #1140616).
-    - Move Priority field to the Source section.
-  * Update debian/copyright:
-    - Remove redundant separate entries for upstream LICENSE files
-      to fix Lintian information tags.
-
- -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Wed, 24 Jun 2026 13:45:00 +0300
-
-imsprog (1.8.5-3) unstable; urgency=medium
-
-  * Bump revision due to mentors upload cache collision.
-
- -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Wed, 24 Jun 2026 13:12:17 +0300
-
 imsprog (1.8.5-2) unstable; urgency=medium
 
-  * QA Upload to fix FTBFS and packaging issues.
-  * Fix FTBFS on Big Endian architectures (Closes: #1140616):
-    - Restrict architecture build to little-endian systems via d/control.
+  * Update debian/control:
+    - Use architecture-is-little-endian in Build-Depends and revert
+      Architecture to 'any' to prevent FTBFS on big-endian platforms
+      such as s390x (Closes: #1140616).
+    - Move Priority field to the Source section.
+  * Update debian/watch to format version 5.
+  * Update debian/copyright:
+    - Group files with identical authors and licenses.
+    - Remove redundant separate entries for upstream LICENSE files.
   * Address feedback from lintian and sponsor (Hugh McMaster):
-    - Completely rewrite debian/copyright to match DEP-5 specification,
-      grouping files correctly by copyright holder.
+    - Completely rewrite debian/copyright to match DEP-5 specification.
     - Add missing license definitions for ch34x_i2c and ch341funcs files.
-    - Remove invalid entries and fix incorrect authorship claims.
     - Format Upstream-Contact email with angle brackets and drop redundant
       emails from individual file stanzas.
-    - Drop obsolete Priority and Rules-Requires-Root fields from d/control.
-    - Upgrade debian/watch parser to format version 5.
+    - Drop obsolete Rules-Requires-Root field from d/control.
     - Remove unnecessary debian/NEWS and debian/*.maintscript files.
 
- -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Wed, 24 Jun 2026 11:55:00 +0300
+ -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Fri, 26 Jun 2026 10:00:00 +0300
+
+imsprog (1.8.5-1) unstable; urgency=medium
+
+  * New upstream version:
+
+ -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Fri, 05 Jun 2026 09:15:08 +0300
 
 imsprog (1.8.5-1) unstable; urgency=medium
 
