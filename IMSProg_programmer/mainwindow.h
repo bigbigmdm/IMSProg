@@ -42,7 +42,6 @@ extern "C" {
 #include "ch341a_gpio.h"
 #include "ch341a_spi.h"
 #include "ch347.h"
-#include "flashcmd_api.h"
 #include "mw_eeprom_api.h"
 #include "res.h"
 #include "snorcmd_api.h"
