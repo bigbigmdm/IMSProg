@@ -743,13 +743,6 @@ void MainWindow::on_actionErase_triggered()
         numBlocks = currentChipSize / step;
         std::shared_ptr<uint8_t[]> buf(new uint8_t[step]);
         config_stream(2);
-        if (isHalted)
-        {
-            isHalted = false;
-            ProgDeviceClose(current_programmer);
-            doNotDisturbCancel();
-            return;
-        }
         ui->progressBar->setRange(0, static_cast<int>(numBlocks));
         for (k = 0; k < step; k++)
         {
@@ -760,6 +753,13 @@ void MainWindow::on_actionErase_triggered()
             res =  s95_write_param(buf.get(), curBlock * step, step, step, currentAlgorithm, current_programmer);
             qApp->processEvents();
             ui->progressBar->setValue( static_cast<int>(curBlock));
+        if (isHalted)
+        {
+            isHalted = false;
+            ProgDeviceClose(current_programmer);
+            doNotDisturbCancel();
+            return;
+        }
             if (res <= 0)
               {
                 QMessageBox::about(this, tr("Error"), tr("Error erasing sector ") + QString::number(curBlock));
@@ -794,13 +794,6 @@ void MainWindow::on_actionErase_triggered()
         numBlocks = currentChipSize / step;
         std::shared_ptr<uint8_t[]> buf(new uint8_t[step]);
         config_stream(2);
-        if (isHalted)
-        {
-            isHalted = false;
-            ProgDeviceClose(current_programmer);
-            doNotDisturbCancel();
-            return;
-        }
         ui->progressBar->setRange(0, static_cast<int>(numBlocks));
         for (k = 0; k < step; k++)
         {
@@ -812,6 +805,13 @@ void MainWindow::on_actionErase_triggered()
             if (res==0) res = 1;
             qApp->processEvents();
             ui->progressBar->setValue( static_cast<int>(curBlock));
+        if (isHalted)
+        {
+            isHalted = false;
+            ProgDeviceClose(current_programmer);
+            doNotDisturbCancel();
+            return;
+        }
             if (res <= 0)
               {
                 QMessageBox::about(this, tr("Error"), tr("Error erasing sector ") + QString::number(curBlock));
@@ -837,7 +837,14 @@ void MainWindow::on_actionErase_triggered()
         for (curBlock = 0; curBlock < numBlocks; curBlock++)
         {
             at45_sector_erase(curBlock,  currentPageSize, current_programmer);
-             ui->progressBar->setValue(static_cast<int>(curBlock));
+            ui->progressBar->setValue(static_cast<int>(curBlock));
+            if (isHalted)
+            {
+               isHalted = false;
+               ProgDeviceClose(current_programmer);
+               doNotDisturbCancel();
+               return;
+            }
         }
     }
     if (currentChipType == 6)
