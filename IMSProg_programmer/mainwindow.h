@@ -46,7 +46,6 @@ extern "C" {
 #include "res.h"
 #include "snorcmd_api.h"
 #include "spi_controller.h"
-#include "spi_eeprom_api.h"
 #include "timer.h"
 #include "types.h"
 #include "ch34x_i2c.h"

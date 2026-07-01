@@ -207,7 +207,6 @@ add_executable(${PROJECT_NAME}
     res.h
     snorcmd_api.h
     spi_controller.h
-    spi_eeprom_api.h
     timer.h
     types.h
     dialogabout.h
