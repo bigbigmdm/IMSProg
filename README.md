@@ -411,7 +411,12 @@ Once IMSProg_database_update app has been run, the downloaded database is copied
 
 ### I2C EEPROM
 24C01, 24C02, 24C04, 24C08, 24C16, 24C32, 24C64, 24C128, 24C256, 24C512,
-24LC515, 24C1024, 24LC1025, 24M02
+24LC515*, 24C1024, 24LC1025*, 24M02
+
+> [!NOTE]
+> * For 24LC515 and 24LC1025: Pin 3 must be disconnected from the ground pin and 
+> connected to the VCC pin via a 4.7 kΩ resistor. *
+
 
 ### I2C FeRAM
 - RAMXEED
