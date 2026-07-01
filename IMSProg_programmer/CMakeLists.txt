@@ -183,6 +183,10 @@ add_executable(${PROJECT_NAME}
     spi_nor_flash.c
     timer.c
     dialogabout.cpp
+    qhexedit2/src/chunks.h
+    qhexedit2/src/color_manager.h
+    qhexedit2/src/commands.h
+    qhexedit2/src/qhexedit.h
     mainwindow.h
     dialogbbm.h
     dialogsp.h
