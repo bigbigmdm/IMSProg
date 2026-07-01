@@ -134,6 +134,7 @@ private slots:
     void on_actionFill_with_code_triggered();
     void on_comboBox_raw_currentIndexChanged(int index);
     void handleScroll();
+    void clearCheckboxes();
 
 private:
     Ui::MainWindow *ui;
