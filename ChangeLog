@@ -1,5 +1,6 @@
 - Ver. 1.8.6 - Unused files removed, copyright added/changed. Added support for 
-24LC515, 24LC1025.
+24LC515, 24LC1025. Fix: if an error was detected, the sequence of operations was
+not interrupted.
 - Ver. 1.8.5 - Fix: the first highlighted area in HexEdit was not being cleared,
 combobox "Operations" was not reset if chip type changed, program crashed if 
 current chip is nothing and combobox "Operation" changed, "Operations" label 
