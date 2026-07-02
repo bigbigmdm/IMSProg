@@ -240,7 +240,7 @@ target_include_directories(${PROJECT_NAME} PRIVATE "${LIBUSB_INCLUDE_DIRS}")
 if (QT_VERSION_MAJOR EQUAL 5)
     target_link_libraries(${PROJECT_NAME} Qt5::Core Qt5::Widgets ${LIBUSB_LIBRARIES})
 else()
-    target_link_libraries(${PROJECT_NAME} Qt::Core Qt::Widgets ${LIBUSB_LIBRARIES})
+    target_link_libraries(${PROJECT_NAME} PRIVATE Qt::Core Qt::Widgets ${LIBUSB_LIBRARIES})
 endif()
 
 install(TARGETS ${PROJECT_NAME} DESTINATION ${CMAKE_INSTALL_BINDIR})
