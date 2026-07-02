@@ -1480,10 +1480,10 @@ void MainWindow::on_actionVerify_triggered()
 void MainWindow::on_pushButton_3_clicked()
 {
     ui->pushButton_3->setStyleSheet(redKeyStyle);
-    if (ui->checkBox->isChecked()) MainWindow::on_actionErase_triggered();
-    if (ui->checkBox_1->isChecked()) MainWindow::on_actionCheck_erase_triggered();
-    if (ui->checkBox_2->isChecked()) MainWindow::on_actionWrite_triggered();
-    if (ui->checkBox_3->isChecked()) MainWindow::on_actionVerify_triggered();
+    if (ui->checkBox->isChecked())   on_actionErase_triggered();
+    if (ui->checkBox_1->isChecked()) on_actionCheck_erase_triggered();
+    if (ui->checkBox_2->isChecked()) on_actionWrite_triggered();
+    if (ui->checkBox_3->isChecked()) on_actionVerify_triggered();
     ui->pushButton_3->setStyleSheet(grnKeyStyle);
 }
 
@@ -1976,7 +1976,7 @@ void MainWindow::doNotDisturbCancel()
    ui->actionCH341A_v1_7->setDisabled(false);
    ui->actionCH347T->setDisabled(false);
    ui->actionCH347T_v1_1->setDisabled(false);
-   ui->actionShow_programmer_version->setDisabled(true);
+   ui->actionShow_programmer_version->setDisabled(false);
    if ((currentChipType == 0) || (currentChipType == 6) || (currentChipType > 2)) ui->actionChip_info->setDisabled(false);
    if ((currentChipType == 0) || (currentChipType == 6)) ui->actionSecurity_registers->setDisabled(false);
    if (currentChipType == 6) ui->actionBad_block_management->setDisabled(false);
