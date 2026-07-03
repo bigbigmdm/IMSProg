@@ -39,11 +39,19 @@ void MainWindow::on_actionOpen_triggered()
 {
     QString fileName, benchmarkDataFile, currentPath;
     char txtBuf[0x30];
+    #ifdef _WIN32
+    benchmarkDataFile = QCoreApplication::applicationDirPath() + "/IMSProg.Dat";
+    #else
     benchmarkDataFile = "/usr/share/imsprog/IMSProg.Dat";
+    #endif
     QFileInfo check_benchmarkDataFile(benchmarkDataFile);
     int i, j, recNo, dataPoz, dataSize, chipSize, blockSize, delay, rowCount;
     unsigned char chipSizeCode, chipID, manCode, tmpBuf;
+    #ifdef _WIN32
+    defaultPath = QCoreApplication::applicationDirPath();
+    #else
     defaultPath = QDir::homePath() + "/.local/share/imsprog/";
+    #endif
     // if ~//.local/share/imsprog/ is not exists opening file from /usr/share/imsprog/
     if (!QDir(defaultPath).exists())  currentPath = benchmarkDataFile;
     else currentPath = defaultPath;
