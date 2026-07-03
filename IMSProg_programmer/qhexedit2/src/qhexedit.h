@@ -354,7 +354,6 @@ public:
 
     qint64 _bPosFirst;                          // position of first byte shown
     qint64 _bPosLast;                           // position of last byte shown
-    qint64 _bPosCurrent;                        // current position
 
 protected:
     // Handle events
@@ -399,6 +398,7 @@ private:
     // Name convention: absolute byte positions in chunks start with _b
     qint64 _bSelectionBegin;                    // first position of Selection
     qint64 _bSelectionEnd;                      // end of Selection
+    qint64 _bPosCurrent;                        // current position
 
     // variables to store the property values
     bool _addressArea;                          // left area of QHexEdit
