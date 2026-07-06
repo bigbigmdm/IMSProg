@@ -819,6 +819,8 @@ offset	 Size   Value
                 - SPI NOR Flash always 0x00
                 - I2C (24xxx) 0x?1 - address size 1 byte
                 - I2C (24xxx) 0x?2 - address size 2 bytes
+                - I2C (24xxx) 0x?A - address size 2 bytes, for 24LC1025
+                - I2C (24xxx) 0x?E - address size 2 bytes, for 24LC515
                 - I2C (24xxx) 0x1? - address mask 1
                 - I2C (24xxx) 0x3? - address mask 3
                 - I2C (24xxx) 0x7? - address mask 7
