@@ -29,7 +29,7 @@
    <string>IMSProg - I2C/MicroWire/SPI CH341a Programmer</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="recource.qrc">
+   <iconset resource="resource.qrc">
     <normaloff>:/res/img/write64.png</normaloff>:/res/img/write64.png</iconset>
   </property>
   <property name="styleSheet">
@@ -1148,7 +1148,7 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionOpen">
    <property name="icon">
-    <iconset resource="recource.qrc">
+    <iconset resource="resource.qrc">
      <normaloff>:/res/img/open64.png</normaloff>:/res/img/open64.png</iconset>
    </property>
    <property name="text">
@@ -1160,7 +1160,7 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
   </action>
   <action name="actionSave">
    <property name="icon">
-    <iconset resource="recource.qrc">
+    <iconset resource="resource.qrc">
      <normaloff>:/res/img/save64.png</normaloff>:/res/img/save64.png</iconset>
    </property>
    <property name="text">
@@ -1172,7 +1172,7 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
   </action>
   <action name="actionExit">
    <property name="icon">
-    <iconset resource="recource.qrc">
+    <iconset resource="resource.qrc">
      <normaloff>:/res/img/exit64.png</normaloff>:/res/img/exit64.png</iconset>
    </property>
    <property name="text">
@@ -1184,7 +1184,7 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
   </action>
   <action name="actionDetect">
    <property name="icon">
-    <iconset resource="recource.qrc">
+    <iconset resource="resource.qrc">
      <normaloff>:/res/img/test64.png</normaloff>:/res/img/test64.png</iconset>
    </property>
    <property name="text">
@@ -1196,7 +1196,7 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
   </action>
   <action name="actionRead">
    <property name="icon">
-    <iconset resource="recource.qrc">
+    <iconset resource="resource.qrc">
      <normaloff>:/res/img/read64.png</normaloff>:/res/img/read64.png</iconset>
    </property>
    <property name="text">
@@ -1208,7 +1208,7 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
   </action>
   <action name="actionErase">
    <property name="icon">
-    <iconset resource="recource.qrc">
+    <iconset resource="resource.qrc">
      <normaloff>:/res/img/erase64.png</normaloff>:/res/img/erase64.png</iconset>
    </property>
    <property name="text">
@@ -1220,7 +1220,7 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
   </action>
   <action name="actionWrite">
    <property name="icon">
-    <iconset resource="recource.qrc">
+    <iconset resource="resource.qrc">
      <normaloff>:/res/img/write64.png</normaloff>:/res/img/write64.png</iconset>
    </property>
    <property name="text">
@@ -1232,7 +1232,7 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
   </action>
   <action name="actionVerify">
    <property name="icon">
-    <iconset resource="recource.qrc">
+    <iconset resource="resource.qrc">
      <normaloff>:/res/img/verify64.png</normaloff>:/res/img/verify64.png</iconset>
    </property>
    <property name="text">
@@ -1244,7 +1244,7 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
   </action>
   <action name="actionUndo">
    <property name="icon">
-    <iconset resource="recource.qrc">
+    <iconset resource="resource.qrc">
      <normaloff>:/res/img/undo.png</normaloff>:/res/img/undo.png</iconset>
    </property>
    <property name="text">
@@ -1256,7 +1256,7 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
   </action>
   <action name="actionRedo">
    <property name="icon">
-    <iconset resource="recource.qrc">
+    <iconset resource="resource.qrc">
      <normaloff>:/res/img/redo64.png</normaloff>:/res/img/redo64.png</iconset>
    </property>
    <property name="text">
@@ -1268,7 +1268,7 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
   </action>
   <action name="actionSave_Part">
    <property name="icon">
-    <iconset resource="recource.qrc">
+    <iconset resource="resource.qrc">
      <normaloff>:/res/img/saveBlock64.png</normaloff>:/res/img/saveBlock64.png</iconset>
    </property>
    <property name="text">
@@ -1280,7 +1280,7 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
   </action>
   <action name="actionLoad_Part">
    <property name="icon">
-    <iconset resource="recource.qrc">
+    <iconset resource="resource.qrc">
      <normaloff>:/res/img/loadBlock64.png</normaloff>:/res/img/loadBlock64.png</iconset>
    </property>
    <property name="text">
@@ -1292,7 +1292,7 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
   </action>
   <action name="actionFind_Replace">
    <property name="icon">
-    <iconset resource="recource.qrc">
+    <iconset resource="resource.qrc">
      <normaloff>:/res/img/hexsearch64.png</normaloff>:/res/img/hexsearch64.png</iconset>
    </property>
    <property name="text">
@@ -1315,7 +1315,7 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
   </action>
   <action name="actionChecksum_calculate">
    <property name="icon">
-    <iconset resource="recource.qrc">
+    <iconset resource="resource.qrc">
      <normaloff>:/res/img/checkSum64.png</normaloff>:/res/img/checkSum64.png</iconset>
    </property>
    <property name="text">
@@ -1327,7 +1327,7 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
   </action>
   <action name="actionEdit_chips_Database">
    <property name="icon">
-    <iconset resource="recource.qrc">
+    <iconset resource="resource.qrc">
      <normaloff>:/res/img/chipEdit64.png</normaloff>:/res/img/chipEdit64.png</iconset>
    </property>
    <property name="text">
@@ -1339,7 +1339,7 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
   </action>
   <action name="actionStop">
    <property name="icon">
-    <iconset resource="recource.qrc">
+    <iconset resource="resource.qrc">
      <normaloff>:/res/img/stop64.png</normaloff>:/res/img/stop64.png</iconset>
    </property>
    <property name="text">
@@ -1354,7 +1354,7 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
   </action>
   <action name="actionChip_info">
    <property name="icon">
-    <iconset resource="recource.qrc">
+    <iconset resource="resource.qrc">
      <normaloff>:/res/img/info64.png</normaloff>:/res/img/info64.png</iconset>
    </property>
    <property name="text">
@@ -1369,7 +1369,7 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
   </action>
   <action name="actionImport_from_Intel_HEX">
    <property name="icon">
-    <iconset resource="recource.qrc">
+    <iconset resource="resource.qrc">
      <normaloff>:/res/img/open64.png</normaloff>:/res/img/open64.png</iconset>
    </property>
    <property name="text">
@@ -1378,7 +1378,7 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
   </action>
   <action name="actionExport_to_Intel_HEX">
    <property name="icon">
-    <iconset resource="recource.qrc">
+    <iconset resource="resource.qrc">
      <normaloff>:/res/img/save64.png</normaloff>:/res/img/save64.png</iconset>
    </property>
    <property name="text">
@@ -1387,7 +1387,7 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
   </action>
   <action name="actionExtract_from_ASUS_CAP">
    <property name="icon">
-    <iconset resource="recource.qrc">
+    <iconset resource="resource.qrc">
      <normaloff>:/res/img/open64.png</normaloff>:/res/img/open64.png</iconset>
    </property>
    <property name="text">
@@ -1396,7 +1396,7 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
   </action>
   <action name="actionGoto_address">
    <property name="icon">
-    <iconset resource="recource.qrc">
+    <iconset resource="resource.qrc">
      <normaloff>:/res/img/goto64.png</normaloff>:/res/img/goto64.png</iconset>
    </property>
    <property name="text">
@@ -1411,7 +1411,7 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
   </action>
   <action name="actionSecurity_registers">
    <property name="icon">
-    <iconset resource="recource.qrc">
+    <iconset resource="resource.qrc">
      <normaloff>:/res/img/unprotect64.png</normaloff>:/res/img/unprotect64.png</iconset>
    </property>
    <property name="text">
@@ -1423,7 +1423,7 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
   </action>
   <action name="actionFill_test_image">
    <property name="icon">
-    <iconset resource="recource.qrc">
+    <iconset resource="resource.qrc">
      <normaloff>:/res/img/fill64.png</normaloff>:/res/img/fill64.png</iconset>
    </property>
    <property name="text">
@@ -1438,7 +1438,7 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
   </action>
   <action name="actionCompare_files">
    <property name="icon">
-    <iconset resource="recource.qrc">
+    <iconset resource="resource.qrc">
      <normaloff>:/res/img/compare64.png</normaloff>:/res/img/compare64.png</iconset>
    </property>
    <property name="text">
@@ -1453,7 +1453,7 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
   </action>
   <action name="actionCopy">
    <property name="icon">
-    <iconset resource="recource.qrc">
+    <iconset resource="resource.qrc">
      <normaloff>:/res/img/copy64.png</normaloff>:/res/img/copy64.png</iconset>
    </property>
    <property name="text">
@@ -1462,7 +1462,7 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
   </action>
   <action name="actionPaste">
    <property name="icon">
-    <iconset resource="recource.qrc">
+    <iconset resource="resource.qrc">
      <normaloff>:/res/img/paste64.png</normaloff>:/res/img/paste64.png</iconset>
    </property>
    <property name="text">
@@ -1471,7 +1471,7 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
   </action>
   <action name="actionBad_block_management">
    <property name="icon">
-    <iconset resource="recource.qrc">
+    <iconset resource="resource.qrc">
      <normaloff>:/res/img/info64.png</normaloff>:/res/img/info64.png</iconset>
    </property>
    <property name="text">
@@ -1488,7 +1488,7 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
   </action>
   <action name="actionCheck_erase">
    <property name="icon">
-    <iconset resource="recource.qrc">
+    <iconset resource="resource.qrc">
      <normaloff>:/res/img/checkErase64.png</normaloff>:/res/img/checkErase64.png</iconset>
    </property>
    <property name="text">
@@ -1503,7 +1503,7 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
   </action>
   <action name="actionFill_with_code">
    <property name="icon">
-    <iconset resource="recource.qrc">
+    <iconset resource="resource.qrc">
      <normaloff>:/res/img/fill64.png</normaloff>:/res/img/fill64.png</iconset>
    </property>
    <property name="text">
@@ -1553,7 +1553,7 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources>
-  <include location="recource.qrc"/>
+  <include location="resource.qrc"/>
  </resources>
  <connections/>
 </ui>

@@ -14,7 +14,7 @@
    <string>Security registers</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="recource.qrc">
+   <iconset resource="resource.qrc">
     <normaloff>:/res/img/write64.png</normaloff>:/res/img/write64.png</iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
@@ -96,7 +96,7 @@
            <string>...</string>
           </property>
           <property name="icon">
-           <iconset resource="recource.qrc">
+           <iconset resource="resource.qrc">
             <normaloff>:/res/img/read64.png</normaloff>:/res/img/read64.png</iconset>
           </property>
           <property name="iconSize">
@@ -128,7 +128,7 @@
            <string>...</string>
           </property>
           <property name="icon">
-           <iconset resource="recource.qrc">
+           <iconset resource="resource.qrc">
             <normaloff>:/res/img/erase64.png</normaloff>:/res/img/erase64.png</iconset>
           </property>
           <property name="iconSize">
@@ -160,7 +160,7 @@
            <string>...</string>
           </property>
           <property name="icon">
-           <iconset resource="recource.qrc">
+           <iconset resource="resource.qrc">
             <normaloff>:/res/img/write64.png</normaloff>:/res/img/write64.png</iconset>
           </property>
           <property name="iconSize">
@@ -199,7 +199,7 @@
            <string>...</string>
           </property>
           <property name="icon">
-           <iconset resource="recource.qrc">
+           <iconset resource="resource.qrc">
             <normaloff>:/res/img/open64.png</normaloff>:/res/img/open64.png</iconset>
           </property>
           <property name="iconSize">
@@ -231,7 +231,7 @@
            <string>...</string>
           </property>
           <property name="icon">
-           <iconset resource="recource.qrc">
+           <iconset resource="resource.qrc">
             <normaloff>:/res/img/save64.png</normaloff>:/res/img/save64.png</iconset>
           </property>
           <property name="iconSize">
@@ -271,7 +271,7 @@
   </layout>
  </widget>
  <resources>
-  <include location="recource.qrc"/>
+  <include location="resource.qrc"/>
  </resources>
  <connections/>
 </ui>
