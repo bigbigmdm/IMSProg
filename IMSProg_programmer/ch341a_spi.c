@@ -408,7 +408,7 @@ int ch341a_spi_init(void)
 
 	int32_t ret = libusb_init(NULL);
 	if (ret < 0) {
-		printf("Couldnt initialize libusb!\n");
+		printf("Couldn't initialize libusb!\n");
 		return -1;
 	}
 #if LIBUSB_API_VERSION < 0x01000106
@@ -516,7 +516,7 @@ if (i2cSpeed > 3) i2cSpeed = 3;
 
     int32_t ret = libusb_init(NULL);
     if (ret < 0) {
-        printf("Couldnt initialize libusb!\n");
+        printf("Couldn't initialize libusb!\n");
         return -1;
     }
 #if LIBUSB_API_VERSION < 0x01000106
@@ -628,7 +628,7 @@ int ch341a_init_i2c(void)
 
     int32_t ret = libusb_init(NULL);
     if (ret < 0) {
-        printf("Couldnt initialize libusb!\n");
+        printf("Couldn't initialize libusb!\n");
         return -1;
     }
 #if LIBUSB_API_VERSION < 0x01000106
