@@ -229,7 +229,7 @@ add_executable(${PROJECT_NAME}
     dialogfill.ui
     searchdialog.ui
     dialogabout.ui
-    recource.qrc
+    resource.qrc
     ${QM_FILES}
 )
 
