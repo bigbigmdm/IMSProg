@@ -82,6 +82,10 @@ static void initPaths()
 int main(int argc, char *argv[])
 {
     QCoreApplication::setApplicationName("imsprog");
+    #ifdef Q_OS_MACOS
+        //Using QT's built-in dialog boxes to work with files on macOS
+        QCoreApplication::setAttribute(Qt::AA_DontUseNativeDialogs); 
+    #endif
     QApplication a(argc, argv);
     qDebug() << "Used Qt version:" << QT_VERSION_STR;
     initPaths();
