@@ -142,10 +142,15 @@ jobs:
 
       - name: Configure CMake
         run: |
-          # 1. Задаем пути для pkg-config, чтобы CMake легко обнаружил libusb в недрах Homebrew
+          # 1. Настраиваем pkg-config
           export PKG_CONFIG_PATH="/opt/homebrew/lib/pkgconfig:$PKG_CONFIG_PATH"
           
-          # 2. Убираем "x86_64;arm64" во избежание конфликтов несовместимости ABI Qt и собираем чисто под ARM64 (нативный Apple Silicon)
+          # 2. Задаем системные переменные для Clang (macOS проверяет их намертво)
+          export LIBRARY_PATH="/opt/homebrew/lib:$LIBRARY_PATH"
+          export C_INCLUDE_PATH="/opt/homebrew/include:$C_INCLUDE_PATH"
+          export CXX_INCLUDE_PATH="/opt/homebrew/include:$CXX_INCLUDE_PATH"
+          
+          # 3. Запускаем чистую конфигурацию
           cmake -S . -B build \
             -DCMAKE_BUILD_TYPE=Release \
             -DCMAKE_PREFIX_PATH=$(brew --prefix qt@6) \
