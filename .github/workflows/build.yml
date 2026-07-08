@@ -145,21 +145,50 @@ jobs:
         run: |
           cmake --build build --config Release --parallel
 
-      - name: Prepare Deployment Artifacts
+      - name: Prepare Deployment Artifacts (Create Multi-App DMG)
         run: |
-          mkdir -p dist
-          find build -type f -perm +111 -not -path "*/CMakeFiles/*" -exec cp {} dist/ \; || true
-          find build -name "*.app" -type d -maxdepth 3 -exec cp -r {} dist/ \; || true
-          cd dist
-          if [ "$(ls -A)" ]; then
-              zip -r ../macos-arm64-build.zip .
-          else
-              echo "Error: No build artifacts found in dist/ directory!"
-              exit 1
-          fi
+          # 1. Create a clean staging layout for our final disk image
+          mkdir -p dmg_staging
+          
+          # 2. Find and copy ALL three compiled .app bundles into the staging directory
+          echo "Locating and copying all Qt .app bundles..."
+          find build -name "IMSProg.app" -type d -exec cp -r {} dmg_staging/ \; || true
+          find build -name "IMSProg_editor.app" -type d -exec cp -r {} dmg_staging/ \; || true
+          find build -name "IMSProg_database_update.app" -type d -exec cp -r {} dmg_staging/ \; || true
+
+          # 3. Handle icon integration for each separate app bundle
+          # macOS requires standard Apple icon resources (.icns). If your source tree contains them, 
+          # we map them directly into each application's internal bundle layout.
+          echo "Integrating custom application icons..."
+          mkdir -p dmg_staging/IMSProg.app/Contents/Resources
+          mkdir -p dmg_staging/IMSProg_editor.app/Contents/Resources
+          mkdir -p dmg_staging/IMSProg_database_update.app/Contents/Resources
+          
+          # Copy your existing icons into the bundles (adjust paths if they are located elsewhere)
+          cp IMSProg_programmer/IMSProg64.png dmg_staging/IMSProg.app/Contents/Resources/ || true
+          cp IMSProg_editor/chipEdit64.png dmg_staging/IMSProg_editor.app/Contents/Resources/ || true
+          cp IMSProg_database_update/IMSProg_database_update.png dmg_staging/IMSProg_database_update.app/Contents/Resources/ || true
+
+          # 4. Inject runtime environment overrides so deployment utilities find the dynamic libusb
+          export DYLD_LIBRARY_PATH="/opt/homebrew/lib:$DYLD_LIBRARY_PATH"
+
+          # 5. Run macdeployqt on every application sequentially to bundle dependencies standalone
+          echo "Processing standalone dependencies with macdeployqt..."
+          $(brew --prefix qt@6)/bin/macdeployqt dmg_staging/IMSProg.app
+          $(brew --prefix qt@6)/bin/macdeployqt dmg_staging/IMSProg_editor.app
+          $(brew --prefix qt@6)/bin/macdeployqt dmg_staging/IMSProg_database_update.app
+
+          # 6. Create the final unified graphical DMG image containing all three configured apps
+          # We use the built-in hdiutil tool to generate a professional distribution image
+          echo "Compiling the final unified multi-app DMG file..."
+          hdiutil create -volname "IMSProg Programmer Suite" -srcfolder dmg_staging -ov -format UDZO imsprog-macos-arm64.dmg
+          
+          # Move file to artifacts upload root
+          mkdir -p dist-dmg
+          mv imsprog-macos-arm64.dmg dist-dmg/
 
       - name: Upload macOS Artifacts
         uses: actions/upload-artifact@v4.6.1
         with:
-          name: macos-arm64-application
-          path: macos-arm64-build.zip
+          name: macos-arm64-dmg
+          path: dist-dmg/*.dmg
