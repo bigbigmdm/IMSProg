@@ -101,13 +101,22 @@ jobs:
           cmake --build build/ --parallel
           cmake --install build/
           
-          # 2. Package generation phase using CPack
+          # 2. Package generation phase using CPack with inline arguments.
+          # This injects metadata directly into CPack on-the-fly, keeping the
+          # root CMakeLists.txt 100% clean and compliant for upstream package maintainers.
           cd build
-          cpack -G DEB
+          cpack -G DEB \
+            -D CPACK_PACKAGE_NAME="imsprog" \
+            -D CPACK_PACKAGE_VENDOR="BigBigMDM" \
+            -D CPACK_PACKAGE_VERSION="1.2.0" \
+            -D CPACK_PACKAGE_DESCRIPTION_SUMMARY="IMSProg - I2C/SPI/MicroWire Flash Programmer Suite" \
+            -D CPACK_PACKAGE_CONTACT="Your Email <your.email@example.com>" \
+            -D CPACK_DEBIAN_PACKAGE_SHLIBDEPS=ON \
+            -D CPACK_DEBIAN_PACKAGE_ARCHITECTURE="amd64"
           
-          # 3. Restructure output to distinct folder and append target OS to filename
+          # 3. Create destination directory and safely migrate the package to prevent file loss
           mkdir -p ../dist-deb
-          mv *.deb ../dist-deb/imsprog-${{ matrix.name }}-amd64.deb
+          mv imsprog*.deb ../dist-deb/imsprog-${{ matrix.name }}-amd64.deb
 
       # 4. Upload DEB package to unique GitHub Action artifact block
       - name: Upload DEB Artifacts
