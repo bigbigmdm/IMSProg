@@ -101,14 +101,15 @@ jobs:
           cmake --build build/ --parallel
           cmake --install build/
           
-          # 2. Package generation phase using CPack with full metadata and explicit build tree links.
-          # We provide CPACK_PACKAGE_FILE_NAME so CPack knows what to name the raw output file.
+          # 2. Package generation phase using CPack with full metadata and strict Debian fields.
+          # We supply CPACK_PACKAGE_DESCRIPTION to satisfy the package control validator.
           cd build
           cpack -G DEB \
             -D CPACK_PACKAGE_NAME="imsprog" \
             -D CPACK_PACKAGE_VENDOR="BigBigMDM" \
             -D CPACK_PACKAGE_VERSION="1.2.0" \
             -D CPACK_PACKAGE_DESCRIPTION_SUMMARY="IMSProg - I2C/SPI/MicroWire Flash Programmer Suite" \
+            -D CPACK_PACKAGE_DESCRIPTION="IMSProg is a Linux/macOS programmer suite for I2C, SPI, and MicroWire EEPROM/Flash chips, featuring fully integrated database management, hardware controllers, and visual editor tools." \
             -D CPACK_PACKAGE_CONTACT="Your Email <your.email@example.com>" \
             -D CPACK_DEBIAN_PACKAGE_SHLIBDEPS=ON \
             -D CPACK_DEBIAN_PACKAGE_ARCHITECTURE="amd64" \
