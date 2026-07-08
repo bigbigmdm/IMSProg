@@ -101,8 +101,8 @@ jobs:
           cmake --build build/ --parallel
           cmake --install build/
           
-          # 2. Package generation phase using CPack with full metadata and strict Debian fields.
-          # We supply CPACK_PACKAGE_DESCRIPTION to satisfy the package control validator.
+          # 2. Package generation phase using CPack with full metadata and CMake layout mappings.
+          # We supply CPACK_CMAKE_GENERATOR to explicitly tell CPack that the project used Makefiles.
           cd build
           cpack -G DEB \
             -D CPACK_PACKAGE_NAME="imsprog" \
@@ -114,7 +114,8 @@ jobs:
             -D CPACK_DEBIAN_PACKAGE_SHLIBDEPS=ON \
             -D CPACK_DEBIAN_PACKAGE_ARCHITECTURE="amd64" \
             -D CPACK_INSTALL_CMAKE_PROJECTS=".;IMSProg;ALL;/" \
-            -D CPACK_PACKAGE_FILE_NAME="imsprog"
+            -D CPACK_PACKAGE_FILE_NAME="imsprog" \
+            -D CPACK_CMAKE_GENERATOR="Unix Makefiles"
           
           # 3. Create destination directory and safely migrate the package to prevent file loss
           mkdir -p ../dist-deb
