@@ -101,8 +101,8 @@ jobs:
           cmake --build build/ --parallel
           cmake --install build/
           
-          # 2. Package generation phase using CPack with complete runtime metadata.
-          # The CPACK_INSTALL_CMAKE_PROJECTS argument explicitly links CPack to the subprojects build tree.
+          # 2. Package generation phase using CPack with full metadata and explicit build tree links.
+          # We provide CPACK_PACKAGE_FILE_NAME so CPack knows what to name the raw output file.
           cd build
           cpack -G DEB \
             -D CPACK_PACKAGE_NAME="imsprog" \
@@ -112,12 +112,12 @@ jobs:
             -D CPACK_PACKAGE_CONTACT="Your Email <your.email@example.com>" \
             -D CPACK_DEBIAN_PACKAGE_SHLIBDEPS=ON \
             -D CPACK_DEBIAN_PACKAGE_ARCHITECTURE="amd64" \
-            -D CPACK_INSTALL_CMAKE_PROJECTS=".;IMSProg;ALL;/"
+            -D CPACK_INSTALL_CMAKE_PROJECTS=".;IMSProg;ALL;/" \
+            -D CPACK_PACKAGE_FILE_NAME="imsprog"
           
           # 3. Create destination directory and safely migrate the package to prevent file loss
           mkdir -p ../dist-deb
           mv imsprog*.deb ../dist-deb/imsprog-${{ matrix.name }}-amd64.deb
-
 
       # 4. Upload DEB package to unique GitHub Action artifact block
       - name: Upload DEB Artifacts
