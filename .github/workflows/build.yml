@@ -19,8 +19,6 @@ on:
 
 env:
   CMAKE_INSTALL_PARALLEL_LEVEL: 4
-  # Global override to completely suppress Node.js runtime deprecation warnings in logs
-  NODE_NO_WARNINGS: 1
 
 jobs:
   amd64:
@@ -138,15 +136,16 @@ jobs:
 
       - name: Install dependencies via Homebrew
         run: |
-          # Clean up pre-installed AWS taps to clear the Homebrew environment warnings
-          brew untap aws/tap || true
-          brew untap aws/aws || true
+          # Run update directly, ignoring the untrusted AWS tap warning to prevent build failures
           brew update
           brew install qt@6 libusb pkg-config
 
       - name: Configure CMake
         run: |
+          # Help pkg-config find libusb metadata files on ARM64 macOS
           export PKG_CONFIG_PATH="/opt/homebrew/lib/pkgconfig:$PKG_CONFIG_PATH"
+          
+          # Pass the -L flag to force the linker to search the Homebrew folder
           cmake -S . -B build \
             -DCMAKE_BUILD_TYPE=Release \
             -DCMAKE_PREFIX_PATH=$(brew --prefix qt@6) \
