@@ -26,7 +26,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        name: [Ubuntu-22, Ubuntu-24, Ubuntu-26, Debian-13, Debian-12, Debian-Testing, Debian-Experimental]
+        # Optimized layout: Keeping only target production Ubuntu systems
+        name: [Ubuntu-22, Ubuntu-24, Ubuntu-26]
         cpp_compiler: [g++]
         include:
           - name: Ubuntu-22
@@ -41,43 +42,10 @@ jobs:
             image: "ubuntu:26.04"
             ubuntu: 26
             deps: cmake g++ libusb-1.0-0-dev pkgconf qt6-base-dev qt6-tools-dev linguist-qt6 qt6-l10n-tools qt6-base-dev-tools qt6-tools-dev-tools systemd-dev file
-          - name: Debian-13
-            image: "debian:trixie"
-            deps: cmake g++ libusb-1.0-0-dev pkgconf qt6-base-dev qt6-tools-dev linguist-qt6 qt6-l10n-tools qt6-base-dev-tools qt6-tools-dev-tools systemd-dev file
-          - name: Debian-13
-            image: "debian:trixie"
-            c_compiler: clang
-            cpp_compiler: clang++
-            deps: cmake clang libusb-1.0-0-dev pkgconf qt6-base-dev qt6-tools-dev linguist-qt6 qt6-l10n-tools qt6-base-dev-tools qt6-tools-dev-tools systemd-dev file
-          - name: Debian-12
-            image: "debian:bookworm"
-            deps: cmake g++ libusb-1.0-0-dev pkgconf qt6-base-dev qt6-tools-dev linguist-qt6 qt6-l10n-tools qt6-base-dev-tools qt6-tools-dev-tools udev file
-          - name: Debian-12
-            image: "debian:bookworm"
-            c_compiler: clang
-            cpp_compiler: clang++
-            deps: cmake clang libusb-1.0-0-dev pkgconf qt6-base-dev qt6-tools-dev linguist-qt6 qt6-l10n-tools qt6-base-dev-tools qt6-tools-dev-tools udev file
-          - name: Debian-Testing
-            image: "debian:testing"
-            deps: cmake g++ libusb-1.0-0-dev pkgconf qt6-base-dev qt6-tools-dev linguist-qt6 qt6-l10n-tools qt6-base-dev-tools qt6-tools-dev-tools systemd-dev file
-          - name: Debian-Testing
-            image: "debian:testing"
-            c_compiler: clang
-            cpp_compiler: clang++
-            deps: cmake clang libusb-1.0-0-dev pkgconf qt6-base-dev qt6-tools-dev linguist-qt6 qt6-l10n-tools qt6-base-dev-tools qt6-tools-dev-tools systemd-dev file
-          - name: Debian-Experimental
-            image: "debian:experimental"
-            deps: cmake g++ libusb-1.0-0-dev pkgconf qt6-base-dev qt6-tools-dev linguist-qt6 qt6-l10n-tools qt6-base-dev-tools qt6-tools-dev-tools systemd-dev file
-          - name: Debian-Experimental
-            image: "debian:experimental"
-            c_compiler: clang
-            cpp_compiler: clang++
-            deps: cmake clang libusb-1.0-0-dev pkgconf qt6-base-dev qt6-tools-dev linguist-qt6 qt6-l10n-tools qt6-base-dev-tools qt6-tools-dev-tools systemd-dev file
     container:
       image: ${{ matrix.image }}
       env:
         LANG: en_US.UTF-8
-        BUILD_TYPE: ${{ matrix.build_type }}
         CC: ${{ matrix.c_compiler }}
         CXX: ${{ matrix.cpp_compiler }}
         WITH_PROJ: ON
@@ -96,13 +64,10 @@ jobs:
       - name: Build and Package DEB
         working-directory: .
         run: |
-          # 1. Standard build and staging phases
           cmake -S . -B build/ -DCMAKE_BUILD_TYPE=Release
           cmake --build build/ --parallel
           cmake --install build/
           
-          # 2. Package generation phase using CPack with full metadata and strict Debian fields.
-          # FIX: Version must be a pure number without a trailing colon to pass dpkg validation.
           cd build
           cpack -G DEB \
             -D CPACK_PACKAGE_NAME="imsprog" \
@@ -110,18 +75,16 @@ jobs:
             -D CPACK_PACKAGE_VERSION="1.8.6" \
             -D CPACK_PACKAGE_DESCRIPTION_SUMMARY="IMSProg - I2C/SPI/MicroWire Flash Programmer Suite" \
             -D CPACK_PACKAGE_DESCRIPTION="IMSProg is a Linux/macOS programmer suite for I2C, SPI, and MicroWire EEPROM/Flash chips, featuring fully integrated database management, hardware controllers, and visual editor tools." \
-            -D CPACK_PACKAGE_CONTACT="Mikhail Medvedev <https://github.com/bigbigmdm>" \
+            -D CPACK_PACKAGE_CONTACT="BigBigMDM <https://github.com>" \
             -D CPACK_DEBIAN_PACKAGE_SHLIBDEPS=ON \
             -D CPACK_DEBIAN_PACKAGE_ARCHITECTURE="amd64" \
             -D CPACK_INSTALL_CMAKE_PROJECTS=".;IMSProg;ALL;/" \
             -D CPACK_PACKAGE_FILE_NAME="imsprog" \
             -D CPACK_CMAKE_GENERATOR="Unix Makefiles"
-
-          # 3. Create destination directory and safely migrate the package
+          
           mkdir -p ../dist-deb
           mv imsprog*.deb ../dist-deb/imsprog-${{ matrix.name }}-amd64.deb
 
-      # 4. Upload DEB package to unique GitHub Action artifact block
       - name: Upload DEB Artifacts
         uses: actions/upload-artifact@v4.6.1
         with:
@@ -166,16 +129,12 @@ jobs:
 
       - name: Install dependencies via Homebrew
         run: |
-          # Run update with API bypass flag to prevent untrusted tap warnings
           HOMEBREW_NO_INSTALL_FROM_API=1 brew update
           brew install qt@6 libusb pkg-config
 
       - name: Configure CMake
         run: |
-          # Help pkg-config find libusb metadata files on ARM64 macOS
           export PKG_CONFIG_PATH="/opt/homebrew/lib/pkgconfig:$PKG_CONFIG_PATH"
-          
-          # Pass the -L flag to force the linker to search the Homebrew folder
           cmake -S . -B build \
             -DCMAKE_BUILD_TYPE=Release \
             -DCMAKE_PREFIX_PATH=$(brew --prefix qt@6) \
