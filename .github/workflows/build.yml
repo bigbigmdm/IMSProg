@@ -101,21 +101,22 @@ jobs:
           cmake --build build/ --parallel
           cmake --install build/
           
-          # 2. Package generation phase using CPack with full metadata and CMake layout mappings.
+          # 2. Package generation phase using CPack with full metadata and strict Debian fields.
+          # FIX: Version must be a pure number without a trailing colon to pass dpkg validation.
           cd build
           cpack -G DEB \
             -D CPACK_PACKAGE_NAME="imsprog" \
             -D CPACK_PACKAGE_VENDOR="BigBigMDM" \
-            -D CPACK_PACKAGE_VERSION="v1.8.6" \
+            -D CPACK_PACKAGE_VERSION="1.8.6" \
             -D CPACK_PACKAGE_DESCRIPTION_SUMMARY="IMSProg - I2C/SPI/MicroWire Flash Programmer Suite" \
             -D CPACK_PACKAGE_DESCRIPTION="IMSProg is a Linux/macOS programmer suite for I2C, SPI, and MicroWire EEPROM/Flash chips, featuring fully integrated database management, hardware controllers, and visual editor tools." \
-            -D CPACK_PACKAGE_CONTACT="Your Email <your.email@example.com>" \
+            -D CPACK_PACKAGE_CONTACT="Mikhail Medvedev <https://github.com/bigbigmdm>" \
             -D CPACK_DEBIAN_PACKAGE_SHLIBDEPS=ON \
             -D CPACK_DEBIAN_PACKAGE_ARCHITECTURE="amd64" \
             -D CPACK_INSTALL_CMAKE_PROJECTS=".;IMSProg;ALL;/" \
             -D CPACK_PACKAGE_FILE_NAME="imsprog" \
             -D CPACK_CMAKE_GENERATOR="Unix Makefiles"
-          
+
           # 3. Create destination directory and safely migrate the package
           mkdir -p ../dist-deb
           mv imsprog*.deb ../dist-deb/imsprog-${{ matrix.name }}-amd64.deb
