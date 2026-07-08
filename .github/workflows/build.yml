@@ -30,7 +30,6 @@ jobs:
         cpp_compiler: [g++]
         include:
           - name: Ubuntu-22
-            # Uses gcc 12.2.0, cmake 3.24.2
             image: "ubuntu:22.04"
             ubuntu: 22
             deps: cmake g++ libusb-1.0-0-dev qtbase5-dev qttools5-dev pkgconf udev
@@ -51,7 +50,6 @@ jobs:
             cpp_compiler: clang++
             deps: cmake clang libusb-1.0-0-dev pkgconf qt6-base-dev qt6-tools-dev linguist-qt6 qt6-l10n-tools qt6-base-dev-tools qt6-tools-dev-tools systemd-dev
           - name: Debian-12
-            # Uses gcc 12.2.0, clang 15.0.6, cmake 3.25.1
             image: "debian:bookworm"
             deps: cmake g++ libusb-1.0-0-dev pkgconf qt6-base-dev qt6-tools-dev linguist-qt6 qt6-l10n-tools qt6-base-dev-tools qt6-tools-dev-tools udev
           - name: Debian-12
@@ -100,8 +98,6 @@ jobs:
           cmake --build build/ --parallel
           cmake --install build/
 
-# ... (your existing amd64 job remains unchanged)
-
   fedora-rpm:
     runs-on: ubuntu-latest
     container:
@@ -109,38 +105,73 @@ jobs:
     steps:
       - name: Checkout source code
         uses: actions/checkout@v7
-
       - name: Install build dependencies
         run: |
-          # Install development tools, linters, and spellcheck dictionaries
           dnf install -y dnf-plugins-core rpm-build rpmlint rpmdevtools wget \
                          hunspell-es hunspell-it hunspell-pt
-          # Automatically install all BuildRequires listed in your spec file
           dnf builddep -y rpm/*.spec
-
       - name: Prepare build environment
         run: |
-          # Create the required directory structure for rpmbuild
           mkdir -p ~/rpmbuild/{BUILD,RPMS,SOURCES,SPECS,SRPMS}
-          
-          # Copy the spec file to the dedicated SPECS directory
           cp rpm/*.spec ~/rpmbuild/SPECS/
-          
-          # Download the actual source tarball from the URL specified in Source0 of the spec file
           spectool -g -R ~/rpmbuild/SPECS/*.spec
-
       - name: Build RPM package
         run: |
           rpmbuild -ba ~/rpmbuild/SPECS/*.spec
-
       - name: Check RPM with rpmlint
         run: |
-          # Run rpmlint, but add || true just in case to prevent CI from breaking 
-          # on pedantic environment-specific style warnings
           rpmlint ~/rpmbuild/RPMS/*/*.rpm || true
-
       - name: Upload RPM Artifacts
-        uses: actions/upload-artifact@main
+        uses: actions/upload-artifact@v4
         with:
           name: fedora-44-rpm
           path: ~/rpmbuild/RPMS/*/*.rpm
+
+  # --- НОВОЕ ЗАДАНИЕ ДЛЯ MACOS ---
+  macos:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v7
+
+      - name: Install dependencies via Homebrew
+        run: |
+          brew update
+          # Устанавливаем Qt 6, libusb и pkg-config
+          brew install qt@6 libusb pkg-config
+
+      - name: Configure CMake
+        run: |
+          # Передаем путь к установленной через Homebrew версии Qt 6
+          # Также форсируем сборку Universal Binary (и для процессоров Intel, и для Apple M1/M2/M3)
+          cmake -S . -B build \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DCMAKE_PREFIX_PATH=$(brew --prefix qt@6) \
+            -DCMAKE_OSX_ARCHITECTURES="x86_64;arm64"
+
+      - name: Build Application
+        run: |
+          cmake --build build --config Release --parallel
+
+      - name: Prepare Deployment Artifacts
+        run: |
+          # В macOS вместо системного install принято упаковывать бинарник 
+          # Создаем временную папку и архивируем её в ZIP
+          mkdir -p dist
+          
+          # Пытаемся найти результат сборки (поддерживает и обычный бинарник, и macOS .app корзину)
+          if [ -d "build/Release" ]; then
+              cp -r build/Release/* dist/
+          elif [ -d "build" ]; then
+              # Если CMake собирает напрямую в корень папки build
+              find build -maxdepth 2 -name "*.app" -exec cp -r {} dist/ \; || true
+              find build -maxdepth 1 -type f -permalink +111 -exec cp {} dist/ \; || true
+          fi
+          
+          cd dist && zip -r ../macos-universal-build.zip .
+
+      - name: Upload macOS Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: macos-universal-application
+          path: macos-universal-build.zip
