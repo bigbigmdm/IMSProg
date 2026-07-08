@@ -90,7 +90,7 @@ jobs:
           echo "Installing dependencies for ${{ matrix.item }}"
           apt-get update -qq
           apt-get install -yq ${{ matrix.deps }}
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@v4.2.2
       - name: Build
         working-directory: .
         run: |
@@ -104,7 +104,7 @@ jobs:
       image: fedora:44
     steps:
       - name: Checkout source code
-        uses: actions/checkout@v7
+        uses: actions/checkout@v4.2.2
       - name: Install build dependencies
         run: |
           dnf install -y dnf-plugins-core rpm-build rpmlint rpmdevtools wget \
@@ -122,32 +122,30 @@ jobs:
         run: |
           rpmlint ~/rpmbuild/RPMS/*/*.rpm || true
       - name: Upload RPM Artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v4.6.1
         with:
           name: fedora-44-rpm
           path: ~/rpmbuild/RPMS/*/*.rpm
 
-  # --- НОВОЕ ЗАДАНИЕ ДЛЯ MACOS ---
+  # --- MacOS ---
   macos:
-    runs-on: macos-latest
+    # 1. Pin specific OS version to avoid 'macos-latest' migration notices
+    runs-on: macos-15
     steps:
+      # 2. Use the exact latest patch version of checkout to satisfy Node 24 requirements
       - name: Checkout source code
-        uses: actions/checkout@v7
+        uses: actions/checkout@v4.2.2.2.2
 
       - name: Install dependencies via Homebrew
         run: |
+          # 3. Clean up the pre-installed untrusted tap to fix the Homebrew warning
+          brew untap aws/tap || true
           brew update
-          # Install Qt 6, libusb, and pkg-config
           brew install qt@6 libusb pkg-config
 
       - name: Configure CMake
         run: |
-          # 1. Help pkg-config find libusb metadata files on ARM64 macOS
           export PKG_CONFIG_PATH="/opt/homebrew/lib/pkgconfig:$PKG_CONFIG_PATH"
-          
-          # 2. Run clean configuration
-          # Pass the -L flag via CMAKE_EXE_LINKER_FLAGS to explicitly force the 
-          # linker to look for the "usb-1.0" string inside the Homebrew library folder
           cmake -S . -B build \
             -DCMAKE_BUILD_TYPE=Release \
             -DCMAKE_PREFIX_PATH=$(brew --prefix qt@6) \
@@ -160,15 +158,9 @@ jobs:
 
       - name: Prepare Deployment Artifacts
         run: |
-          # Create a temporary staging directory
           mkdir -p dist
-          
-          # Safely locate and copy all built macOS executables/apps from subdirectories
-          # This approach works flawlessly with native macOS BSD 'find'
           find build -type f -perm +111 -not -path "*/CMakeFiles/*" -exec cp {} dist/ \; || true
           find build -name "*.app" -type d -maxdepth 3 -exec cp -r {} dist/ \; || true
-          
-          # Verify that files exist before archiving to prevent 'Nothing to do' zip error
           cd dist
           if [ "$(ls -A)" ]; then
               zip -r ../macos-arm64-build.zip .
@@ -177,8 +169,9 @@ jobs:
               exit 1
           fi
 
+      # 4. Use the updated upload-artifact version built for the new Node environment
       - name: Upload macOS Artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v4.6.1.6.1
         with:
           name: macos-arm64-application
           path: macos-arm64-build.zip
