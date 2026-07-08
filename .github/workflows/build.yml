@@ -90,7 +90,8 @@ jobs:
           echo "Installing dependencies for ${{ matrix.name }}"
           apt-get update -qq
           apt-get install -yq ${{ matrix.deps }}
-      - uses: actions/checkout@v4.2.2
+      # Returned to modern v7 security standards as requested by Dependabot
+      - uses: actions/checkout@v7
       - name: Build
         working-directory: .
         run: |
@@ -103,8 +104,9 @@ jobs:
     container:
       image: fedora:44
     steps:
+      # Returned to modern v7 security standards
       - name: Checkout source code
-        uses: actions/checkout@v4.2.2
+        uses: actions/checkout@v7
       - name: Install build dependencies
         run: |
           dnf install -y dnf-plugins-core rpm-build rpmlint rpmdevtools wget \
@@ -131,13 +133,14 @@ jobs:
   macos:
     runs-on: macos-15
     steps:
+      # Returned to modern v7 security standards
       - name: Checkout source code
-        uses: actions/checkout@v4.2.2
+        uses: actions/checkout@v7
 
       - name: Install dependencies via Homebrew
         run: |
-          # Run update directly, ignoring the untrusted AWS tap warning to prevent build failures
-          brew update
+          # Use env flag to bypass third-party untrusted tap APIs and quiet down the logs
+          HOMEBREW_NO_INSTALL_FROM_API=1 brew update
           brew install qt@6 libusb pkg-config
 
       - name: Configure CMake
