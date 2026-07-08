@@ -106,7 +106,7 @@ jobs:
           cpack -G DEB \
             -D CPACK_PACKAGE_NAME="imsprog" \
             -D CPACK_PACKAGE_VENDOR="BigBigMDM" \
-            -D CPACK_PACKAGE_VERSION="1.2.0" \
+            -D CPACK_PACKAGE_VERSION="v1.8.6" \
             -D CPACK_PACKAGE_DESCRIPTION_SUMMARY="IMSProg - I2C/SPI/MicroWire Flash Programmer Suite" \
             -D CPACK_PACKAGE_DESCRIPTION="IMSProg is a Linux/macOS programmer suite for I2C, SPI, and MicroWire EEPROM/Flash chips, featuring fully integrated database management, hardware controllers, and visual editor tools." \
             -D CPACK_PACKAGE_CONTACT="Your Email <your.email@example.com>" \
