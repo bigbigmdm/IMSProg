@@ -134,7 +134,7 @@ jobs:
     steps:
       # 2. Use the exact latest patch version of checkout to satisfy Node 24 requirements
       - name: Checkout source code
-        uses: actions/checkout@v4.2.2.2.2
+        uses: actions/checkout@v4.2.2
 
       - name: Install dependencies via Homebrew
         run: |
@@ -171,7 +171,7 @@ jobs:
 
       # 4. Use the updated upload-artifact version built for the new Node environment
       - name: Upload macOS Artifacts
-        uses: actions/upload-artifact@v4.6.1.6.1
+        uses: actions/upload-artifact@v4.6.1
         with:
           name: macos-arm64-application
           path: macos-arm64-build.zip
