@@ -90,21 +90,37 @@ jobs:
           echo "Installing dependencies for ${{ matrix.name }}"
           apt-get update -qq
           apt-get install -yq ${{ matrix.deps }}
-      # Returned to modern v7 security standards as requested by Dependabot
+      
       - uses: actions/checkout@v7
-      - name: Build
+      
+      - name: Build and Package DEB
         working-directory: .
         run: |
-          cmake -S . -B build/
+          # 1. Standard build phase
+          cmake -S . -B build/ -DCMAKE_BUILD_TYPE=Release
           cmake --build build/ --parallel
           cmake --install build/
+          
+          # 2. Package generation phase using CPack
+          cd build
+          cpack -G DEB
+          
+          # 3. Restructure output to distinct folder and append target OS to filename
+          mkdir -p ../dist-deb
+          mv *.deb ../dist-deb/imsprog-${{ matrix.name }}-amd64.deb
+
+      # 4. Upload DEB package to unique GitHub Action artifact block
+      - name: Upload DEB Artifacts
+        uses: actions/upload-artifact@v4.6.1
+        with:
+          name: deb-${{ matrix.name }}
+          path: dist-deb/*.deb
 
   fedora-rpm:
     runs-on: ubuntu-latest
     container:
       image: fedora:44
     steps:
-      # Returned to modern v7 security standards
       - name: Checkout source code
         uses: actions/checkout@v7
       - name: Install build dependencies
@@ -133,13 +149,12 @@ jobs:
   macos:
     runs-on: macos-15
     steps:
-      # Returned to modern v7 security standards
       - name: Checkout source code
         uses: actions/checkout@v7
 
       - name: Install dependencies via Homebrew
         run: |
-          # Use env flag to bypass third-party untrusted tap APIs and quiet down the logs
+          # Run update with API bypass flag to prevent untrusted tap warnings
           HOMEBREW_NO_INSTALL_FROM_API=1 brew update
           brew install qt@6 libusb pkg-config
 
