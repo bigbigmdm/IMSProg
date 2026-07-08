@@ -142,17 +142,17 @@ jobs:
 
       - name: Configure CMake
         run: |
-          # 1. Помогаем pkg-config найти конфигурационные файлы libusb на ARM64
+          # 1. Help pkg-config find libusb metadata files on ARM64 macOS
           export PKG_CONFIG_PATH="/opt/homebrew/lib/pkgconfig:$PKG_CONFIG_PATH"
           
-          # 2. Передаем CMake точные пути поиска заголовков и библиотек Homebrew ARM64.
-          # CMAKE_LIBRARY_PATH заставит линковщик искать захардкоженный "usb-1.0" в /opt/homebrew/lib
+          # 2. Run clean configuration
+          # Pass the -L flag via CMAKE_EXE_LINKER_FLAGS to explicitly force the 
+          # linker to look for the "usb-1.0" string inside the Homebrew library folder
           cmake -S . -B build \
             -DCMAKE_BUILD_TYPE=Release \
             -DCMAKE_PREFIX_PATH=$(brew --prefix qt@6) \
             -DCMAKE_OSX_ARCHITECTURES="arm64" \
-            -DCMAKE_INCLUDE_PATH="/opt/homebrew/include" \
-            -DCMAKE_LIBRARY_PATH="/opt/homebrew/lib"
+            -DCMAKE_EXE_LINKER_FLAGS="-L/opt/homebrew/lib"
 
       - name: Build Application
         run: |
