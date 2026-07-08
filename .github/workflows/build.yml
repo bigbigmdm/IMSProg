@@ -19,6 +19,8 @@ on:
 
 env:
   CMAKE_INSTALL_PARALLEL_LEVEL: 4
+  # Global override to completely suppress Node.js runtime deprecation warnings in logs
+  NODE_NO_WARNINGS: 1
 
 jobs:
   amd64:
@@ -73,66 +75,59 @@ jobs:
             c_compiler: clang
             cpp_compiler: clang++
             deps: cmake clang libusb-1.0-0-dev pkgconf qt6-base-dev qt6-tools-dev linguist-qt6 qt6-l10n-tools qt6-base-dev-tools qt6-tools-dev-tools systemd-dev
+    container:
+      image: ${{ matrix.image }}
+      env:
+        LANG: en_US.UTF-8
+        BUILD_TYPE: ${{ matrix.build_type }}
+        CC: ${{ matrix.c_compiler }}
+        CXX: ${{ matrix.cpp_compiler }}
+        WITH_PROJ: ON
+        APT_LISTCHANGES_FRONTEND: none
+        DEBIAN_FRONTEND: noninteractive
     steps:
-      # FIX: Run checkout on the host machine using modern Node.js, BEFORE entering the container
-      - name: Checkout source code
-        uses: actions/checkout@v4.2.2
-
-      # Run the build inside the container, utilizing the checked-out source files
-      - name: Build inside Container
-        uses: docker://bash:latest
-        container:
-          image: ${{ matrix.image }}
-          env:
-            LANG: en_US.UTF-8
-            BUILD_TYPE: ${{ matrix.build_type }}
-            CC: ${{ matrix.c_compiler }}
-            CXX: ${{ matrix.cpp_compiler }}
-            WITH_PROJ: ON
-            APT_LISTCHANGES_FRONTEND: none
-            DEBIAN_FRONTEND: noninteractive
+      - name: Install packages required
         shell: bash
         run: |
           echo "Installing dependencies for ${{ matrix.name }}"
           apt-get update -qq
           apt-get install -yq ${{ matrix.deps }}
-          
+      - uses: actions/checkout@v4.2.2
+      - name: Build
+        working-directory: .
+        run: |
           cmake -S . -B build/
           cmake --build build/ --parallel
           cmake --install build/
 
   fedora-rpm:
     runs-on: ubuntu-latest
+    container:
+      image: fedora:44
     steps:
-      # FIX: Move checkout to host level to bypass container's Node.js constraints
       - name: Checkout source code
         uses: actions/checkout@v4.2.2
-
-      - name: Build RPM Package inside Fedora Container
-        uses: docker://bash:latest
-        container:
-          image: fedora:44
+      - name: Install build dependencies
         run: |
           dnf install -y dnf-plugins-core rpm-build rpmlint rpmdevtools wget \
                          hunspell-es hunspell-it hunspell-pt
           dnf builddep -y rpm/*.spec
-          
+      - name: Prepare build environment
+        run: |
           mkdir -p ~/rpmbuild/{BUILD,RPMS,SOURCES,SPECS,SRPMS}
           cp rpm/*.spec ~/rpmbuild/SPECS/
           spectool -g -R ~/rpmbuild/SPECS/*.spec
-          
+      - name: Build RPM package
+        run: |
           rpmbuild -ba ~/rpmbuild/SPECS/*.spec
+      - name: Check RPM with rpmlint
+        run: |
           rpmlint ~/rpmbuild/RPMS/*/*.rpm || true
-          
-          # Move target files back to workspace for uploading
-          mkdir -p dist-rpm
-          cp ~/rpmbuild/RPMS/*/*.rpm dist-rpm/
-
       - name: Upload RPM Artifacts
         uses: actions/upload-artifact@v4.6.1
         with:
           name: fedora-44-rpm
-          path: dist-rpm/*.rpm
+          path: ~/rpmbuild/RPMS/*/*.rpm
 
   # --- MacOS ---
   macos:
@@ -143,7 +138,7 @@ jobs:
 
       - name: Install dependencies via Homebrew
         run: |
-          # FIX: Target both potential naming variants for the untrusted AWS tap on macOS 15
+          # Clean up pre-installed AWS taps to clear the Homebrew environment warnings
           brew untap aws/tap || true
           brew untap aws/aws || true
           brew update
