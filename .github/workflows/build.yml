@@ -142,12 +142,14 @@ jobs:
 
       - name: Configure CMake
         run: |
-          # Передаем путь к установленной через Homebrew версии Qt 6
-          # Также форсируем сборку Universal Binary (и для процессоров Intel, и для Apple M1/M2/M3)
+          # 1. Задаем пути для pkg-config, чтобы CMake легко обнаружил libusb в недрах Homebrew
+          export PKG_CONFIG_PATH="/opt/homebrew/lib/pkgconfig:$PKG_CONFIG_PATH"
+          
+          # 2. Убираем "x86_64;arm64" во избежание конфликтов несовместимости ABI Qt и собираем чисто под ARM64 (нативный Apple Silicon)
           cmake -S . -B build \
             -DCMAKE_BUILD_TYPE=Release \
             -DCMAKE_PREFIX_PATH=$(brew --prefix qt@6) \
-            -DCMAKE_OSX_ARCHITECTURES="x86_64;arm64"
+            -DCMAKE_OSX_ARCHITECTURES="arm64"
 
       - name: Build Application
         run: |
@@ -155,23 +157,20 @@ jobs:
 
       - name: Prepare Deployment Artifacts
         run: |
-          # В macOS вместо системного install принято упаковывать бинарник 
-          # Создаем временную папку и архивируем её в ZIP
           mkdir -p dist
           
-          # Пытаемся найти результат сборки (поддерживает и обычный бинарник, и macOS .app корзину)
+          # Ищем скомпилированное приложение
           if [ -d "build/Release" ]; then
               cp -r build/Release/* dist/
           elif [ -d "build" ]; then
-              # Если CMake собирает напрямую в корень папки build
               find build -maxdepth 2 -name "*.app" -exec cp -r {} dist/ \; || true
               find build -maxdepth 1 -type f -permalink +111 -exec cp {} dist/ \; || true
           fi
           
-          cd dist && zip -r ../macos-universal-build.zip .
+          cd dist && zip -r ../macos-arm64-build.zip .
 
       - name: Upload macOS Artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: macos-universal-application
-          path: macos-universal-build.zip
+          name: macos-arm64-application
+          path: macos-arm64-build.zip
