@@ -40,39 +40,39 @@ jobs:
           - name: Ubuntu-26
             image: "ubuntu:26.04"
             ubuntu: 26
-            deps: cmake g++ libusb-1.0-0-dev pkgconf qt6-base-dev qt6-tools-dev linguist-qt6 qt6-l10n-tools qt6-base-dev-tools qt6-tools-dev-tools systemd-dev
+            deps: cmake g++ libusb-1.0-0-dev pkgconf qt6-base-dev qt6-tools-dev linguist-qt6 qt6-l10n-tools qt6-base-dev-tools qt6-tools-dev-tools systemd-dev file
           - name: Debian-13
             image: "debian:trixie"
-            deps: cmake g++ libusb-1.0-0-dev pkgconf qt6-base-dev qt6-tools-dev linguist-qt6 qt6-l10n-tools qt6-base-dev-tools qt6-tools-dev-tools systemd-dev
+            deps: cmake g++ libusb-1.0-0-dev pkgconf qt6-base-dev qt6-tools-dev linguist-qt6 qt6-l10n-tools qt6-base-dev-tools qt6-tools-dev-tools systemd-dev file
           - name: Debian-13
             image: "debian:trixie"
             c_compiler: clang
             cpp_compiler: clang++
-            deps: cmake clang libusb-1.0-0-dev pkgconf qt6-base-dev qt6-tools-dev linguist-qt6 qt6-l10n-tools qt6-base-dev-tools qt6-tools-dev-tools systemd-dev
+            deps: cmake clang libusb-1.0-0-dev pkgconf qt6-base-dev qt6-tools-dev linguist-qt6 qt6-l10n-tools qt6-base-dev-tools qt6-tools-dev-tools systemd-dev file
           - name: Debian-12
             image: "debian:bookworm"
-            deps: cmake g++ libusb-1.0-0-dev pkgconf qt6-base-dev qt6-tools-dev linguist-qt6 qt6-l10n-tools qt6-base-dev-tools qt6-tools-dev-tools udev
+            deps: cmake g++ libusb-1.0-0-dev pkgconf qt6-base-dev qt6-tools-dev linguist-qt6 qt6-l10n-tools qt6-base-dev-tools qt6-tools-dev-tools udev file
           - name: Debian-12
             image: "debian:bookworm"
             c_compiler: clang
             cpp_compiler: clang++
-            deps: cmake clang libusb-1.0-0-dev pkgconf qt6-base-dev qt6-tools-dev linguist-qt6 qt6-l10n-tools qt6-base-dev-tools qt6-tools-dev-tools udev
+            deps: cmake clang libusb-1.0-0-dev pkgconf qt6-base-dev qt6-tools-dev linguist-qt6 qt6-l10n-tools qt6-base-dev-tools qt6-tools-dev-tools udev file
           - name: Debian-Testing
             image: "debian:testing"
-            deps: cmake g++ libusb-1.0-0-dev pkgconf qt6-base-dev qt6-tools-dev linguist-qt6 qt6-l10n-tools qt6-base-dev-tools qt6-tools-dev-tools systemd-dev
+            deps: cmake g++ libusb-1.0-0-dev pkgconf qt6-base-dev qt6-tools-dev linguist-qt6 qt6-l10n-tools qt6-base-dev-tools qt6-tools-dev-tools systemd-dev file
           - name: Debian-Testing
             image: "debian:testing"
             c_compiler: clang
             cpp_compiler: clang++
-            deps: cmake clang libusb-1.0-0-dev pkgconf qt6-base-dev qt6-tools-dev linguist-qt6 qt6-l10n-tools qt6-base-dev-tools qt6-tools-dev-tools systemd-dev
+            deps: cmake clang libusb-1.0-0-dev pkgconf qt6-base-dev qt6-tools-dev linguist-qt6 qt6-l10n-tools qt6-base-dev-tools qt6-tools-dev-tools systemd-dev file
           - name: Debian-Experimental
             image: "debian:experimental"
-            deps: cmake g++ libusb-1.0-0-dev pkgconf qt6-base-dev qt6-tools-dev linguist-qt6 qt6-l10n-tools qt6-base-dev-tools qt6-tools-dev-tools systemd-dev
+            deps: cmake g++ libusb-1.0-0-dev pkgconf qt6-base-dev qt6-tools-dev linguist-qt6 qt6-l10n-tools qt6-base-dev-tools qt6-tools-dev-tools systemd-dev file
           - name: Debian-Experimental
             image: "debian:experimental"
             c_compiler: clang
             cpp_compiler: clang++
-            deps: cmake clang libusb-1.0-0-dev pkgconf qt6-base-dev qt6-tools-dev linguist-qt6 qt6-l10n-tools qt6-base-dev-tools qt6-tools-dev-tools systemd-dev
+            deps: cmake clang libusb-1.0-0-dev pkgconf qt6-base-dev qt6-tools-dev linguist-qt6 qt6-l10n-tools qt6-base-dev-tools qt6-tools-dev-tools systemd-dev file
     container:
       image: ${{ matrix.image }}
       env:
@@ -102,7 +102,6 @@ jobs:
           cmake --install build/
           
           # 2. Package generation phase using CPack with full metadata and CMake layout mappings.
-          # We supply CPACK_CMAKE_GENERATOR to explicitly tell CPack that the project used Makefiles.
           cd build
           cpack -G DEB \
             -D CPACK_PACKAGE_NAME="imsprog" \
@@ -117,7 +116,7 @@ jobs:
             -D CPACK_PACKAGE_FILE_NAME="imsprog" \
             -D CPACK_CMAKE_GENERATOR="Unix Makefiles"
           
-          # 3. Create destination directory and safely migrate the package to prevent file loss
+          # 3. Create destination directory and safely migrate the package
           mkdir -p ../dist-deb
           mv imsprog*.deb ../dist-deb/imsprog-${{ matrix.name }}-amd64.deb
 
