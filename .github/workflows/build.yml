@@ -137,7 +137,7 @@ jobs:
       - name: Install dependencies via Homebrew
         run: |
           brew update
-          # Устанавливаем Qt 6, libusb и pkg-config
+          # Install Qt 6, libusb, and pkg-config
           brew install qt@6 libusb pkg-config
 
       - name: Configure CMake
@@ -160,17 +160,22 @@ jobs:
 
       - name: Prepare Deployment Artifacts
         run: |
+          # Create a temporary staging directory
           mkdir -p dist
           
-          # Ищем скомпилированное приложение
-          if [ -d "build/Release" ]; then
-              cp -r build/Release/* dist/
-          elif [ -d "build" ]; then
-              find build -maxdepth 2 -name "*.app" -exec cp -r {} dist/ \; || true
-              find build -maxdepth 1 -type f -permalink +111 -exec cp {} dist/ \; || true
-          fi
+          # Safely locate and copy all built macOS executables/apps from subdirectories
+          # This approach works flawlessly with native macOS BSD 'find'
+          find build -type f -perm +111 -not -path "*/CMakeFiles/*" -exec cp {} dist/ \; || true
+          find build -name "*.app" -type d -maxdepth 3 -exec cp -r {} dist/ \; || true
           
-          cd dist && zip -r ../macos-arm64-build.zip .
+          # Verify that files exist before archiving to prevent 'Nothing to do' zip error
+          cd dist
+          if [ "$(ls -A)" ]; then
+              zip -r ../macos-arm64-build.zip .
+          else
+              echo "Error: No build artifacts found in dist/ directory!"
+              exit 1
+          fi
 
       - name: Upload macOS Artifacts
         uses: actions/upload-artifact@v4
