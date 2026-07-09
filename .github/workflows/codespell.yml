@@ -7,12 +7,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v7
+        uses: actions/checkout@main
       - name: codespell
-        uses: codespell-project/actions-codespell@v2
+        uses: codespell-project/actions-codespell@master
         with:
           # only show the typo detected but don't make workflow to fail
           only_warn: 1
           skip: "*.ts"
-          # word to exclude must be always lowercase as must be same of the codespell dictionary
-          ignore_words_list: ba
+          ignore_words_list: ba,DOUT,WEL

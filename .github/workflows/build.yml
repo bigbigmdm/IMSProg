@@ -26,60 +26,26 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        name: [Ubuntu-22, Ubuntu-24, Ubuntu-26, Debian-13, Debian-12, Debian-Testing, Debian-Experimental]
+        # Optimized layout: Keeping only target production Ubuntu systems
+        name: [Ubuntu-22, Ubuntu-24, Ubuntu-26]
         cpp_compiler: [g++]
         include:
           - name: Ubuntu-22
-            # Uses gcc 12.2.0, cmake 3.24.2
             image: "ubuntu:22.04"
             ubuntu: 22
-            deps: cmake g++ libusb-1.0-0-dev qtbase5-dev qttools5-dev pkgconf udev
+            deps: cmake g++ libusb-1.0-0-dev qtbase5-dev qttools5-dev pkgconf udev file
           - name: Ubuntu-24
             image: "ubuntu:24.04"
             ubuntu: 24
-            deps: cmake g++ libusb-1.0-0-dev pkgconf qt6-base-dev qt6-tools-dev linguist-qt6 qt6-l10n-tools qt6-base-dev-tools qt6-tools-dev-tools systemd-dev
+            deps: cmake g++ libusb-1.0-0-dev pkgconf qt6-base-dev qt6-tools-dev linguist-qt6 qt6-l10n-tools qt6-base-dev-tools qt6-tools-dev-tools systemd-dev file
           - name: Ubuntu-26
             image: "ubuntu:26.04"
             ubuntu: 26
-            deps: cmake g++ libusb-1.0-0-dev pkgconf qt6-base-dev qt6-tools-dev linguist-qt6 qt6-l10n-tools qt6-base-dev-tools qt6-tools-dev-tools systemd-dev
-          - name: Debian-13
-            image: "debian:trixie"
-            deps: cmake g++ libusb-1.0-0-dev pkgconf qt6-base-dev qt6-tools-dev linguist-qt6 qt6-l10n-tools qt6-base-dev-tools qt6-tools-dev-tools systemd-dev
-          - name: Debian-13
-            image: "debian:trixie"
-            c_compiler: clang
-            cpp_compiler: clang++
-            deps: cmake clang libusb-1.0-0-dev pkgconf qt6-base-dev qt6-tools-dev linguist-qt6 qt6-l10n-tools qt6-base-dev-tools qt6-tools-dev-tools systemd-dev
-          - name: Debian-12
-            # Uses gcc 12.2.0, clang 15.0.6, cmake 3.25.1
-            image: "debian:bookworm"
-            deps: cmake g++ libusb-1.0-0-dev pkgconf qt6-base-dev qt6-tools-dev linguist-qt6 qt6-l10n-tools qt6-base-dev-tools qt6-tools-dev-tools udev
-          - name: Debian-12
-            image: "debian:bookworm"
-            c_compiler: clang
-            cpp_compiler: clang++
-            deps: cmake clang libusb-1.0-0-dev pkgconf qt6-base-dev qt6-tools-dev linguist-qt6 qt6-l10n-tools qt6-base-dev-tools qt6-tools-dev-tools udev
-          - name: Debian-Testing
-            image: "debian:testing"
-            deps: cmake g++ libusb-1.0-0-dev pkgconf qt6-base-dev qt6-tools-dev linguist-qt6 qt6-l10n-tools qt6-base-dev-tools qt6-tools-dev-tools systemd-dev
-          - name: Debian-Testing
-            image: "debian:testing"
-            c_compiler: clang
-            cpp_compiler: clang++
-            deps: cmake clang libusb-1.0-0-dev pkgconf qt6-base-dev qt6-tools-dev linguist-qt6 qt6-l10n-tools qt6-base-dev-tools qt6-tools-dev-tools systemd-dev
-          - name: Debian-Experimental
-            image: "debian:experimental"
-            deps: cmake g++ libusb-1.0-0-dev pkgconf qt6-base-dev qt6-tools-dev linguist-qt6 qt6-l10n-tools qt6-base-dev-tools qt6-tools-dev-tools systemd-dev
-          - name: Debian-Experimental
-            image: "debian:experimental"
-            c_compiler: clang
-            cpp_compiler: clang++
-            deps: cmake clang libusb-1.0-0-dev pkgconf qt6-base-dev qt6-tools-dev linguist-qt6 qt6-l10n-tools qt6-base-dev-tools qt6-tools-dev-tools systemd-dev
+            deps: cmake g++ libusb-1.0-0-dev pkgconf qt6-base-dev qt6-tools-dev linguist-qt6 qt6-l10n-tools qt6-base-dev-tools qt6-tools-dev-tools systemd-dev file
     container:
       image: ${{ matrix.image }}
       env:
         LANG: en_US.UTF-8
-        BUILD_TYPE: ${{ matrix.build_type }}
         CC: ${{ matrix.c_compiler }}
         CXX: ${{ matrix.cpp_compiler }}
         WITH_PROJ: ON
@@ -89,18 +55,41 @@ jobs:
       - name: Install packages required
         shell: bash
         run: |
-          echo "Installing dependencies for ${{ matrix.item }}"
+          echo "Installing dependencies for ${{ matrix.name }}"
           apt-get update -qq
           apt-get install -yq ${{ matrix.deps }}
+      
       - uses: actions/checkout@v7
-      - name: Build
+      
+      - name: Build and Package DEB
         working-directory: .
         run: |
-          cmake -S . -B build/
+          cmake -S . -B build/ -DCMAKE_BUILD_TYPE=Release
           cmake --build build/ --parallel
           cmake --install build/
+          
+          cd build
+          cpack -G DEB \
+            -D CPACK_PACKAGE_NAME="imsprog" \
+            -D CPACK_PACKAGE_VENDOR="BigBigMDM" \
+            -D CPACK_PACKAGE_VERSION="1.8.6" \
+            -D CPACK_PACKAGE_DESCRIPTION_SUMMARY="IMSProg - I2C/SPI/MicroWire Flash Programmer Suite" \
+            -D CPACK_PACKAGE_DESCRIPTION="IMSProg is a Linux/macOS programmer suite for I2C, SPI, and MicroWire EEPROM/Flash chips, featuring fully integrated database management, hardware controllers, and visual editor tools." \
+            -D CPACK_PACKAGE_CONTACT="BigBigMDM <https://github.com>" \
+            -D CPACK_DEBIAN_PACKAGE_SHLIBDEPS=ON \
+            -D CPACK_DEBIAN_PACKAGE_ARCHITECTURE="amd64" \
+            -D CPACK_INSTALL_CMAKE_PROJECTS=".;IMSProg;ALL;/" \
+            -D CPACK_PACKAGE_FILE_NAME="imsprog" \
+            -D CPACK_CMAKE_GENERATOR="Unix Makefiles"
+          
+          mkdir -p ../dist-deb
+          mv imsprog*.deb ../dist-deb/imsprog-${{ matrix.name }}-amd64.deb
 
-# ... (your existing amd64 job remains unchanged)
+      - name: Upload DEB Artifacts
+        uses: actions/upload-artifact@v4.6.1
+        with:
+          name: deb-${{ matrix.name }}
+          path: dist-deb/*.deb
 
   fedora-rpm:
     runs-on: ubuntu-latest
@@ -109,38 +98,97 @@ jobs:
     steps:
       - name: Checkout source code
         uses: actions/checkout@v7
-
       - name: Install build dependencies
         run: |
-          # Install development tools, linters, and spellcheck dictionaries
           dnf install -y dnf-plugins-core rpm-build rpmlint rpmdevtools wget \
                          hunspell-es hunspell-it hunspell-pt
-          # Automatically install all BuildRequires listed in your spec file
           dnf builddep -y rpm/*.spec
-
       - name: Prepare build environment
         run: |
-          # Create the required directory structure for rpmbuild
           mkdir -p ~/rpmbuild/{BUILD,RPMS,SOURCES,SPECS,SRPMS}
-          
-          # Copy the spec file to the dedicated SPECS directory
           cp rpm/*.spec ~/rpmbuild/SPECS/
-          
-          # Download the actual source tarball from the URL specified in Source0 of the spec file
           spectool -g -R ~/rpmbuild/SPECS/*.spec
-
       - name: Build RPM package
         run: |
           rpmbuild -ba ~/rpmbuild/SPECS/*.spec
-
       - name: Check RPM with rpmlint
         run: |
-          # Run rpmlint, but add || true just in case to prevent CI from breaking 
-          # on pedantic environment-specific style warnings
           rpmlint ~/rpmbuild/RPMS/*/*.rpm || true
-
       - name: Upload RPM Artifacts
-        uses: actions/upload-artifact@main
+        uses: actions/upload-artifact@v4.6.1
         with:
           name: fedora-44-rpm
           path: ~/rpmbuild/RPMS/*/*.rpm
+
+  # --- MacOS ---
+  macos:
+    runs-on: macos-15
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v7
+
+      - name: Install dependencies via Homebrew
+        run: |
+          HOMEBREW_NO_INSTALL_FROM_API=1 brew update
+          brew install qt@6 libusb pkg-config
+
+      - name: Configure CMake
+        run: |
+          export PKG_CONFIG_PATH="/opt/homebrew/lib/pkgconfig:$PKG_CONFIG_PATH"
+          cmake -S . -B build \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DCMAKE_PREFIX_PATH=$(brew --prefix qt@6) \
+            -DCMAKE_OSX_ARCHITECTURES="arm64" \
+            -DCMAKE_EXE_LINKER_FLAGS="-L/opt/homebrew/lib"
+
+      - name: Build Application
+        run: |
+          cmake --build build --config Release --parallel
+
+      - name: Prepare Deployment Artifacts (Create Multi-App DMG)
+        run: |
+          # 1. Create a clean staging layout for our final disk image
+          mkdir -p dmg_staging
+          
+          # 2. Find and copy ALL three compiled .app bundles into the staging directory
+          echo "Locating and copying all Qt .app bundles..."
+          find build -name "IMSProg.app" -type d -exec cp -r {} dmg_staging/ \; || true
+          find build -name "IMSProg_editor.app" -type d -exec cp -r {} dmg_staging/ \; || true
+          find build -name "IMSProg_database_update.app" -type d -exec cp -r {} dmg_staging/ \; || true
+
+          # 3. Handle icon integration for each separate app bundle
+          # macOS requires standard Apple icon resources (.icns). If your source tree contains them, 
+          # we map them directly into each application's internal bundle layout.
+          echo "Integrating custom application icons..."
+          mkdir -p dmg_staging/IMSProg.app/Contents/Resources
+          mkdir -p dmg_staging/IMSProg_editor.app/Contents/Resources
+          mkdir -p dmg_staging/IMSProg_database_update.app/Contents/Resources
+          
+          # Copy your existing icons into the bundles (adjust paths if they are located elsewhere)
+          cp IMSProg_programmer/IMSProg64.png dmg_staging/IMSProg.app/Contents/Resources/ || true
+          cp IMSProg_editor/chipEdit64.png dmg_staging/IMSProg_editor.app/Contents/Resources/ || true
+          cp IMSProg_database_update/IMSProg_database_update.png dmg_staging/IMSProg_database_update.app/Contents/Resources/ || true
+
+          # 4. Inject runtime environment overrides so deployment utilities find the dynamic libusb
+          export DYLD_LIBRARY_PATH="/opt/homebrew/lib:$DYLD_LIBRARY_PATH"
+
+          # 5. Run macdeployqt on every application sequentially to bundle dependencies standalone
+          echo "Processing standalone dependencies with macdeployqt..."
+          $(brew --prefix qt@6)/bin/macdeployqt dmg_staging/IMSProg.app
+          $(brew --prefix qt@6)/bin/macdeployqt dmg_staging/IMSProg_editor.app
+          $(brew --prefix qt@6)/bin/macdeployqt dmg_staging/IMSProg_database_update.app
+
+          # 6. Create the final unified graphical DMG image containing all three configured apps
+          # We use the built-in hdiutil tool to generate a professional distribution image
+          echo "Compiling the final unified multi-app DMG file..."
+          hdiutil create -volname "IMSProg Programmer Suite" -srcfolder dmg_staging -ov -format UDZO imsprog-macos-arm64.dmg
+          
+          # Move file to artifacts upload root
+          mkdir -p dist-dmg
+          mv imsprog-macos-arm64.dmg dist-dmg/
+
+      - name: Upload macOS Artifacts
+        uses: actions/upload-artifact@v4.6.1
+        with:
+          name: macos-arm64-dmg
+          path: dist-dmg/*.dmg
