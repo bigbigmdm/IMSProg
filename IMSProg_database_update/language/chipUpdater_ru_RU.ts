@@ -15,7 +15,7 @@
     </message>
     <message>
         <location filename="../mainwindow.ui" line="70"/>
-        <location filename="../mainwindow.cpp" line="150"/>
+        <location filename="../mainwindow.cpp" line="194"/>
         <source>Ok</source>
         <translation>Ok</translation>
     </message>
@@ -25,22 +25,22 @@
         <translation>Выход</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="82"/>
+        <location filename="../mainwindow.cpp" line="84"/>
         <source>Downloading file IMSProg.Dat</source>
         <translation>Загрузка файла IMSProg.Dat</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="88"/>
+        <location filename="../mainwindow.cpp" line="90"/>
         <source>Invalid URL</source>
         <translation>Неверный URL-адрес</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="96"/>
+        <location filename="../mainwindow.cpp" line="99"/>
         <source>Cannot create temporary file for download</source>
         <translation>Не удается создать временный файл для загрузки</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="148"/>
+        <location filename="../mainwindow.cpp" line="192"/>
         <source>The database has been updated!
 
 The old database contained %1 chips,
@@ -51,12 +51,12 @@ The new database contains %2 chips.</source>
 в новой базе данных сейчас %2 микросхем.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="152"/>
+        <location filename="../mainwindow.cpp" line="196"/>
         <source>Failed to replace the database file</source>
         <translation>Не удалось заменить файл базы данных</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="155"/>
+        <location filename="../mainwindow.cpp" line="199"/>
         <source>Downloaded file is too small (corrupted?)</source>
         <translation>Загруженный файл слишком мал (возможно, поврежден?)</translation>
     </message>
@@ -75,12 +75,12 @@ The new database contains %2 chips.</source>
 новая база данных содержит %2 микросхем.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="181"/>
+        <location filename="../mainwindow.cpp" line="226"/>
         <source>Error loading file: </source>
         <translation>Ошибка при загрузке файла: </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="199"/>
+        <location filename="../mainwindow.cpp" line="232"/>
         <source>Error:</source>
         <translation>Ошибка:</translation>
     </message>

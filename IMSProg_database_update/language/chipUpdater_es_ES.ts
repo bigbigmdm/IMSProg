@@ -15,7 +15,7 @@
     </message>
     <message>
         <location filename="../mainwindow.ui" line="70"/>
-        <location filename="../mainwindow.cpp" line="150"/>
+        <location filename="../mainwindow.cpp" line="194"/>
         <source>Ok</source>
         <translation>Ok</translation>
     </message>
@@ -25,22 +25,22 @@
         <translation>Salir</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="82"/>
+        <location filename="../mainwindow.cpp" line="84"/>
         <source>Downloading file IMSProg.Dat</source>
         <translation>Descargando el archivo IMSProg.Dat</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="88"/>
+        <location filename="../mainwindow.cpp" line="90"/>
         <source>Invalid URL</source>
         <translation>URL no válida</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="96"/>
+        <location filename="../mainwindow.cpp" line="99"/>
         <source>Cannot create temporary file for download</source>
         <translation>No se puede crear el archivo temporal para la descarga</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="148"/>
+        <location filename="../mainwindow.cpp" line="192"/>
         <source>The database has been updated!
 
 The old database contained %1 chips,
@@ -51,12 +51,12 @@ La base de datos antigua contiene %1 chips,
 La nueva base de datos contiene %2 chips.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="152"/>
+        <location filename="../mainwindow.cpp" line="196"/>
         <source>Failed to replace the database file</source>
         <translation>No se ha podido sustituir el archivo de la base de datos</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="155"/>
+        <location filename="../mainwindow.cpp" line="199"/>
         <source>Downloaded file is too small (corrupted?)</source>
         <translation>El archivo descargado es demasiado pequeño (¿está dañado?)</translation>
     </message>
@@ -65,12 +65,12 @@ La nueva base de datos contiene %2 chips.</translation>
         <translation type="vanished">Error en la descarga: </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="181"/>
+        <location filename="../mainwindow.cpp" line="226"/>
         <source>Error loading file: </source>
         <translation>Error al cargar el archivo: </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="199"/>
+        <location filename="../mainwindow.cpp" line="232"/>
         <source>Error:</source>
         <translation>Error:</translation>
     </message>
