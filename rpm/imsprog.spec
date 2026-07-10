@@ -1,5 +1,5 @@
 Name: imsprog
-Version: 1.8.5
+Version: 1.8.6
 Release: 1%dist
 
 Summary: I2C, SPI and MicroWire EEPROM/Flash chip programmer for CH341a/CH347t devices
@@ -199,6 +199,16 @@ appstream-util validate-relax --nonet %{buildroot}%{_datadir}/metainfo/*.xml
 %license LICENSE
 
 %changelog
+* Fri Jul 10 2026 Mikhail Medvedev 1.8.6-1
+- Removed unused files
+- Copyright added/changed
+- Fixed: if an error was detected, the sequence of operations was not interrupted
+- Fixed: when erasing I2C or SPI Flash, the STOP button did not stop the chip erasing
+- Fixed: the programmer version is not displayed after any chip operation
+- Fixed: chip database updater crashed when the internet connection was lost
+- Fixed: issues on macOS when using file selection dialogs
+- Added: support for 24LC515, 24LC1025
+
 * Fri Jun 05 2026 Mikhail Medvedev 1.8.5-1
 - Fixed: the first highlighted area in HexEdit was not being cleared
 - Fixed: combobox Operations was not reset if chip type changed

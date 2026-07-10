@@ -125,7 +125,7 @@
   </developer>  
   <screenshots>
     <screenshot type="default">
-	  <caption>Main screen with chip connection form.</caption>
+      <caption>Main screen with chip connection form.</caption>
       <caption xml:lang="de">Hauptbildschirm mit Chipverbindungsformular.</caption>
       <caption xml:lang="es">Pantalla principal con formulario de conexión de chips.</caption>
       <caption xml:lang="hu">Főképernyő a chipcsatlakozási űrlappal.</caption>
@@ -133,12 +133,12 @@
       <caption xml:lang="pt_BR">Tela principal com formulário de conexão de chips.</caption>
       <caption xml:lang="ru">Главный экран с формой подключения микросхемы.</caption>
       <caption xml:lang="uk">Головний екран з формою підключення чіпа.</caption>
-      <caption xml:lang="zn_CH">主屏幕显示芯片连接表。</caption>	
+      <caption xml:lang="zn_CH">主屏幕显示芯片连接表。</caption>    
       <caption xml:lang="zh_TW">主畫面與晶片連結表單。</caption>
       <image type="source" width="905" height="650">https://github.com/bigbigmdm/IMSProg/raw/main/img/IMSProg.png</image>
     </screenshot>
     <screenshot>
-	  <caption>Main screen.</caption>
+      <caption>Main screen.</caption>
       <caption xml:lang="de">Hauptbildschirm.</caption>
       <caption xml:lang="es">Pantalla principal.</caption>
       <caption xml:lang="hu">Főképernyő.</caption>
@@ -151,7 +151,7 @@
       <image type="source" width="905" height="650">https://github.com/bigbigmdm/IMSProg/raw/main/img/IMSProg_1.png</image>
     </screenshot>
     <screenshot>
-	  <caption>Form of chip information (SFDP and status registers).</caption>
+      <caption>Form of chip information (SFDP and status registers).</caption>
       <caption xml:lang="de">Form der Chipinformationen (SFDP und Statusregister).</caption>
       <caption xml:lang="es">Forma de la información del chip (SFDP y registros de estado).</caption>
       <caption xml:lang="hu">A chipinformáció formája (SFDP és állapotregiszterek).</caption>
@@ -159,18 +159,30 @@
       <caption xml:lang="pt_BR">Formulário de informações do chip (SFDP e registros de status).</caption>
       <caption xml:lang="ru">Форма информации о микросхеме (SFDP и регистры статуса).</caption>
       <caption xml:lang="uk">Форма інформації про чіп (SFDP та регістри стану).</caption>
-      <caption xml:lang="zn_CH">芯片信息表（SFDP 和状态寄存器）。</caption>	
+      <caption xml:lang="zn_CH">芯片信息表（SFDP 和状态寄存器）。</caption>    
       <caption xml:lang="zh_TW">晶片資訊表單（SFDP和狀態暫存器）。</caption>
       <image type="source" width="954" height="660">https://github.com/bigbigmdm/IMSProg/raw/main/img/sfdp_unblock_en.png</image>
     </screenshot>
   </screenshots>
   <releases>
+  <release version="1.8.6" date="2025-07-10" urgency="medium">
+    <description>
+        <p>Removed unused files.</p>
+        <p>Copyright added/changed.</p>
+        <p>Fixed: if an error was detected, the sequence of operations was not interrupted.</p>
+        <p>Fixed: when erasing I2C or SPI Flash, the STOP button did not stop the chip erasing.</p>
+        <p>Fixed: the programmer version is not displayed after any chip operation.</p>
+        <p>Fixed: chip database updater crashed when the internet connection was lost.</p>
+        <p>Fixed: issues on macOS when using file selection dialogs.</p>
+        <p>Added: support for 24LC515, 24LC1025</p>
+    </description>
+  </release>
   <release version="1.8.5" date="2026-06-02" urgency="medium">
     <description>
-        <p>Fix: the first highlighted area in HexEdit was not being cleared.</p>
-        <p>Fix: combobox Operations was not reset if chip type changed.</p>
-        <p>Fix: program crashed if current chip is nothing and combobox Operation changed</p>
-        <p>Fix: Operations label showed for all chip types.</p>
+        <p>Fixed: the first highlighted area in HexEdit was not being cleared.</p>
+        <p>Fixed: combobox Operations was not reset if chip type changed.</p>
+        <p>Fixed: program crashed if current chip is nothing and combobox Operation changed</p>
+        <p>Fixed: Operations label showed for all chip types.</p>
         <p>Added: Support for I2C and SPI FeRAM chips.</p>
         <p>I2C 5v0 images on info form.</p>
     </description>
@@ -202,7 +214,7 @@
         <p>The Zenity package is no longer used</p>
     </description>
   </release>
-  <release version="1.8.2" date="2026-03-18" urgency="medium">	  
+  <release version="1.8.2" date="2026-03-18" urgency="medium">      
     <description>
         <p>Fixed: Error reading/writing data from I2C chips on the CH347T version 5.44.</p>
         <p>Fixed: Bit error during NOR/NAND operations in the CH347V1.1 programmer.</p>
@@ -211,133 +223,133 @@
         <p>Added: Filling code function</p>
     </description>
   </release>
-  <release version="1.8.1" date="2026-03-11" urgency="medium">	  
+  <release version="1.8.1" date="2026-03-11" urgency="medium">      
     <description>
         <p>Added: Support for the CH347T programmer.</p>
-	    <p>Fixed: Incorrect chip page sizes values removed.</p>
-	    <p>Increased interface speed and SPI NOR Flash erase speed.</p>
-	    <p>SPI NOR Flash write speed increased by 30%.</p>
+        <p>Fixed: Incorrect chip page sizes values removed.</p>
+        <p>Increased interface speed and SPI NOR Flash erase speed.</p>
+        <p>SPI NOR Flash write speed increased by 30%.</p>
     </description>
   </release>
-  <release version="1.7.3" date="2026-01-26" urgency="medium">	  
+  <release version="1.7.3" date="2026-01-26" urgency="medium">      
     <description>
-	    <p>Fixed: Incorrect HexEdit size when starting the program.</p>
-	    <p>Added: When closing the program, the programmer type, chip image directory, and main window size are saved in the ini file.</p>
+        <p>Fixed: Incorrect HexEdit size when starting the program.</p>
+        <p>Added: When closing the program, the programmer type, chip image directory, and main window size are saved in the ini file.</p>
     </description>
   </release>
-  <release version="1.7.2" date="2025-11-25" urgency="medium">	  
+  <release version="1.7.2" date="2025-11-25" urgency="medium">      
     <description>
-	    <p>Fixed: NAND Flash information form freeze.</p>
-	    <p>Added: Programmer type menu.</p>
-	    <p>Added: New images for CH341A v1.7.</p>
-	    <p>Added: support for the AT24CM02 chip.</p>
+        <p>Fixed: NAND Flash information form freeze.</p>
+        <p>Added: Programmer type menu.</p>
+        <p>Added: New images for CH341A v1.7.</p>
+        <p>Added: support for the AT24CM02 chip.</p>
     </description>
   </release>
-  <release version="1.7.1" date="2025-11-05" urgency="medium">	  
+  <release version="1.7.1" date="2025-11-05" urgency="medium">      
     <description>
-	    <p>Fixed: pressing the Stop key did not stop auto operations.</p>
-	    <p>Added: New feature - support for SPI NAND flash.</p>
+        <p>Fixed: pressing the Stop key did not stop auto operations.</p>
+        <p>Added: New feature - support for SPI NAND flash.</p>
     </description>
   </release>
-  <release version="1.6.2" date="2025-07-01" urgency="medium">	  
+  <release version="1.6.2" date="2025-07-01" urgency="medium">      
     <description>
-	    <p>Fixed: program crashed if security registers was less than 256 bytes.</p>
-	    <p>Fixed: Information in the status bar disappears when hovering over a menu.</p>
-	    <p>Added: close and minimise buttons for subordinate forms.</p>
-	    <p>Added: comparison of INTEL HEX and ASUS CAP with other files.</p>
-	    <p>Added: new chips to the database.</p>
+        <p>Fixed: program crashed if security registers was less than 256 bytes.</p>
+        <p>Fixed: Information in the status bar disappears when hovering over a menu.</p>
+        <p>Added: close and minimise buttons for subordinate forms.</p>
+        <p>Added: comparison of INTEL HEX and ASUS CAP with other files.</p>
+        <p>Added: new chips to the database.</p>
     </description>
   </release>
-  <release version="1.6.1" date="2025-05-19" urgency="medium">	  
+  <release version="1.6.1" date="2025-05-19" urgency="medium">      
     <description>
-	    <p>Fixed: when the page size is changed, the buffer is cleared.</p>
-	    <p>Fixed: the code is executed twice and the code slows down the display of the interface.</p>
-	    <p>Added: New feature - compare files.</p>
-	    <p>Added: New feature - fill test array.</p>
+        <p>Fixed: when the page size is changed, the buffer is cleared.</p>
+        <p>Fixed: the code is executed twice and the code slows down the display of the interface.</p>
+        <p>Added: New feature - compare files.</p>
+        <p>Added: New feature - fill test array.</p>
     </description>
   </release>
-  <release version="1.5.3" date="2025-04-29" urgency="medium">	  
+  <release version="1.5.3" date="2025-04-29" urgency="medium">      
     <description>
         <p>Copyright information updated.</p>
-	    <p>Fixed: incorrect uninstall script.</p>
-	    <p>Fixed: i2C 128K size is repeated twice.</p>
-	    <p>Fixed: error calculating file size.</p>
-	    <p>Added: Last version of QHexEdit used.</p>
-	    <p>Added: Hex-functions optimised.</p>
-	    <p>Added: Added support GIANTEC, DOSILICON NOR FLASH chips.</p>
+        <p>Fixed: incorrect uninstall script.</p>
+        <p>Fixed: i2C 128K size is repeated twice.</p>
+        <p>Fixed: error calculating file size.</p>
+        <p>Added: Last version of QHexEdit used.</p>
+        <p>Added: Hex-functions optimised.</p>
+        <p>Added: Added support GIANTEC, DOSILICON NOR FLASH chips.</p>
     </description>
   </release>
-  <release version="1.5.2" date="2025-03-05" urgency="medium">	  
+  <release version="1.5.2" date="2025-03-05" urgency="medium">      
     <description>
-	    <p>Fixed: Gigadevice status registers write error.</p>
-	    <p>Fixed: Memory leaks.</p>
-	    <p>Added: New SPI chip sizes added.</p>
-	    <p>Added: New Boya, Winbond chips added to database.</p>
-	    <p>Added: Fidelix, Zetta, MXIC OTP algorithm.</p>
+        <p>Fixed: Gigadevice status registers write error.</p>
+        <p>Fixed: Memory leaks.</p>
+        <p>Added: New SPI chip sizes added.</p>
+        <p>Added: New Boya, Winbond chips added to database.</p>
+        <p>Added: Fidelix, Zetta, MXIC OTP algorithm.</p>
     </description>
   </release>
-  <release version="1.5.1" date="2025-02-19" urgency="medium">	  
+  <release version="1.5.1" date="2025-02-19" urgency="medium">      
     <description>
-	    <p>Fixed: Incorrect install dir for udev while cross compiling.</p>
-	    <p>Added: Form for working with security registers for SPI NOR flash memory chips.</p>
+        <p>Fixed: Incorrect install dir for udev while cross compiling.</p>
+        <p>Added: Form for working with security registers for SPI NOR flash memory chips.</p>
     </description>
   </release>
-  <release version="1.4.5" date="2025-01-17" urgency="medium">	  
+  <release version="1.4.5" date="2025-01-17" urgency="medium">      
     <description>
-	    <p>Fixed: Incorrect block/page size after first read procedure.</p>
-	    <p>Fixed: Incorrect reading/writing I2C low speed chips.</p>
-	    <p>Added support for MXIC MX25V8035F</p>
-	    <p>Added I2C bus speed combobox to the main form</p>
+        <p>Fixed: Incorrect block/page size after first read procedure.</p>
+        <p>Fixed: Incorrect reading/writing I2C low speed chips.</p>
+        <p>Added support for MXIC MX25V8035F</p>
+        <p>Added I2C bus speed combobox to the main form</p>
     </description>
-  </release>	  
-  <release version="1.4.4" date="2024-09-23" urgency="medium">	  
+  </release>      
+  <release version="1.4.4" date="2024-09-23" urgency="medium">      
     <description>
-	    <p>Fixed: In the Save menu, the cancel button causes an error message.</p>
-	    <p>Fixed: Incorrect names of DataFlash chips.</p>
-	    <p>Fixed: incorrect reading of the DataFlash chips status register.</p>
-	    <p>Fedora repository added</p>
-	    <p>MacOS build support added</p>
-	    <p>Uninstall script added</p>
-    </description>
-  </release>
-  <release version="1.4.3" date="2024-07-26" urgency="medium">	  
-    <description>
-	    <p>Fixed: On the GNOME desktop, programm does not respond when erasing SPI NOR FLASH.</p>
-	    <p>Fixed: The progress bar did not display correctly when SPI NOR FLASH was erased.</p>
-	    <p>Fixed: When erasing SPI NOR Flash, the STOP button does not work.</p>
+        <p>Fixed: In the Save menu, the cancel button causes an error message.</p>
+        <p>Fixed: Incorrect names of DataFlash chips.</p>
+        <p>Fixed: incorrect reading of the DataFlash chips status register.</p>
+        <p>Fedora repository added</p>
+        <p>MacOS build support added</p>
+        <p>Uninstall script added</p>
     </description>
   </release>
-  <release version="1.4.2" date="2024-06-27" urgency="medium">	  
+  <release version="1.4.3" date="2024-07-26" urgency="medium">      
     <description>
-	    <p>Corrected German translation</p>
-	    <p>German translator added to copyright</p>
-	    <p>Corrected chip database</p>
+        <p>Fixed: On the GNOME desktop, programm does not respond when erasing SPI NOR FLASH.</p>
+        <p>Fixed: The progress bar did not display correctly when SPI NOR FLASH was erased.</p>
+        <p>Fixed: When erasing SPI NOR Flash, the STOP button does not work.</p>
     </description>
-  </release>	  
-  <release version="1.4.1" date="2024-05-23" urgency="medium">	
+  </release>
+  <release version="1.4.2" date="2024-06-27" urgency="medium">      
+    <description>
+        <p>Corrected German translation</p>
+        <p>German translator added to copyright</p>
+        <p>Corrected chip database</p>
+    </description>
+  </release>      
+  <release version="1.4.1" date="2024-05-23" urgency="medium">    
     <description>  
-	    <p>Added AT45DBxx series  SPI FLASH (Menu item type -> 45_EEPROM)</p>
-	    <p>The inline images of the chip adapters have been changed.</p>
-	    <p>Fixed metadata errors and warnings.</p>
+        <p>Added AT45DBxx series  SPI FLASH (Menu item type -> 45_EEPROM)</p>
+        <p>The inline images of the chip adapters have been changed.</p>
+        <p>Fixed metadata errors and warnings.</p>
     </description> 
-  </release>	  
+  </release>      
   <release version="1.3.9" date="2024-05-06" urgency="medium">
     <description>
-      <p>Fixed: There is a spelling error in in 99-CH341.rules.</p>
-      <p>Fixed: (metadata changed): appstream-metadata-missing-modalias-provide usr/lib/udev/rules.d/99-CH341.rules</p>
-      <p>Splitting long lines in README.md</p>
-      <p>Removed language .qm files - it is generated when the package is built.</p>
-      <p>Removed unused tags from language files.</p>
+        <p>Fixed: There is a spelling error in in 99-CH341.rules.</p>
+        <p>Fixed: (metadata changed): appstream-metadata-missing-modalias-provide usr/lib/udev/rules.d/99-CH341.rules</p>
+        <p>Splitting long lines in README.md</p>
+        <p>Removed language .qm files - it is generated when the package is built.</p>
+        <p>Removed unused tags from language files.</p>
     </description>
   </release>
   <release version="1.3.8" date="2024-05-06" urgency="medium">
     <description>
-      <p>This stable release fixes bugs, updated translations, translate chip database update script.</p>
+        <p>This stable release fixes bugs, updated translations, translate chip database update script.</p>
     </description>
-  </release>	  
+  </release>      
   <release version="1.3.7" date="2024-04-27" urgency="medium">
     <description>
-      <p>This stable release fixes bugs, updated translations.</p>
+        <p>This stable release fixes bugs, updated translations.</p>
     </description>
   </release>
   </releases>  
