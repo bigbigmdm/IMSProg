@@ -14,7 +14,7 @@
    <string>About IMSProg</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="recource.qrc">
+   <iconset resource="resource.qrc">
     <normaloff>:/res/img/write64.png</normaloff>:/res/img/write64.png</iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -38,7 +38,7 @@
           <string/>
          </property>
          <property name="pixmap">
-          <pixmap resource="recource.qrc">:/res/img/ch341_green150.png</pixmap>
+          <pixmap resource="resource.qrc">:/res/img/ch341_green150.png</pixmap>
          </property>
         </widget>
        </item>
@@ -58,7 +58,7 @@
           <string/>
          </property>
          <property name="pixmap">
-          <pixmap resource="recource.qrc">:/res/img/ch341_black150.png</pixmap>
+          <pixmap resource="resource.qrc">:/res/img/ch341_black150.png</pixmap>
          </property>
         </widget>
        </item>
@@ -78,7 +78,7 @@
           <string/>
          </property>
          <property name="pixmap">
-          <pixmap resource="recource.qrc">:/res/img/ch341v1_7.png</pixmap>
+          <pixmap resource="resource.qrc">:/res/img/ch341v1_7.png</pixmap>
          </property>
         </widget>
        </item>
@@ -195,7 +195,7 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
   </layout>
  </widget>
  <resources>
-  <include location="recource.qrc"/>
+  <include location="resource.qrc"/>
  </resources>
  <connections/>
 </ui>
