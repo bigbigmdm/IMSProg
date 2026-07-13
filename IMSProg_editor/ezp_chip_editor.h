@@ -82,7 +82,6 @@ private slots:
     void on_actionMove_down_triggered();
     void on_actionExport_to_CSV_triggered();
     void on_actionExport_to_CSV_2_triggered();
-    void on_actionImport_from_CSV_triggered();
     bool correctChipTyte(QString str);
 };
 

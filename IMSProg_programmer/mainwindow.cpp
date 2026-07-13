@@ -251,7 +251,7 @@ void MainWindow::on_pushButton_clicked()
              step = currentPageSize;
              numBlocks = currentChipSize / step;
           break;
-          case 6:             //NAND 35xx, GD5xx, W25xx             
+          case 6:             //NAND 35xx, GD5xx, W25xx
              numBlocks = currentChipSize / currentBlockSize;
              sectorsPerBlock = currentBlockSize / currentPageSize;
              if (nandRaw == true) step = currentBlockSize + currentECCsize * sectorsPerBlock;
