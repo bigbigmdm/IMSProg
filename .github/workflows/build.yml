@@ -86,7 +86,7 @@ jobs:
           mv imsprog*.deb ../dist-deb/imsprog-${{ matrix.name }}-amd64.deb
 
       - name: Upload DEB Artifacts
-        uses: actions/upload-artifact@v4.6.1
+        uses: actions/upload-artifact@v7.0.1
         with:
           name: deb-${{ matrix.name }}
           path: dist-deb/*.deb
@@ -115,7 +115,7 @@ jobs:
         run: |
           rpmlint ~/rpmbuild/RPMS/*/*.rpm || true
       - name: Upload RPM Artifacts
-        uses: actions/upload-artifact@v4.6.1
+        uses: actions/upload-artifact@v7.0.1
         with:
           name: fedora-44-rpm
           path: ~/rpmbuild/RPMS/*/*.rpm
@@ -188,7 +188,7 @@ jobs:
           mv imsprog-macos-arm64.dmg dist-dmg/
 
       - name: Upload macOS Artifacts
-        uses: actions/upload-artifact@v4.6.1
+        uses: actions/upload-artifact@v7.0.1
         with:
           name: macos-arm64-dmg
           path: dist-dmg/*.dmg
