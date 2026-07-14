@@ -78,8 +78,8 @@
 
 
 struct xxx {
-  uint8_t ibuf[512];
-  uint8_t obuf[512];
+  uint8_t ibuf[548];
+  uint8_t obuf[548];
 } spi_buf;
 
 
@@ -822,6 +822,7 @@ int at45_read_param(unsigned char *buf, unsigned long from, unsigned long len, u
     unsigned char addrLen = 9;
     unsigned int sector_addr = 0;
     int retval;
+    uint8_t *ptr = spi_buf.obuf;
 
     programmerType = progType;
 
@@ -846,38 +847,35 @@ int at45_read_param(unsigned char *buf, unsigned long from, unsigned long len, u
         physical_read_addr = read_addr;
         data_offset = (physical_read_addr % (sector_size));
 
-
         SPI_CONTROLLER_Chip_Select_Low(programmerType);
+        *ptr++ = 0xe8;
+        *ptr++ = (physical_read_addr >> 16) & 0xff;
+        *ptr++ = (physical_read_addr >> 8) & 0xff;
+        *ptr++ = physical_read_addr & 0xff;
+        *ptr++ = 0xff;
+        *ptr++ = 0xff;
+        *ptr++ = 0xff;
+        *ptr++ = 0xff;
 
-        //SPI_CONTROLLER_Write_One_Byte(0x52); //read command
-        SPI_CONTROLLER_Write_One_Byte(0xE8, programmerType); //read command
-        SPI_CONTROLLER_Write_One_Byte((physical_read_addr >> 16) & 0xff, programmerType);
-        SPI_CONTROLLER_Write_One_Byte((physical_read_addr >> 8) & 0xff, programmerType);
-        SPI_CONTROLLER_Write_One_Byte(physical_read_addr & 0xff, programmerType);
-
-        SPI_CONTROLLER_Write_One_Byte(0xff, programmerType);
-        SPI_CONTROLLER_Write_One_Byte(0xff, programmerType);
-        SPI_CONTROLLER_Write_One_Byte(0xff, programmerType);
-        SPI_CONTROLLER_Write_One_Byte(0xff, programmerType);
-
+        retval = SPI_CONTROLLER_Write_NByte(spi_buf.obuf, 8, SPI_CONTROLLER_SPEED_SINGLE, programmerType);
         retval = SPI_CONTROLLER_Read_NByte(&buf[0],sector_size,SPI_CONTROLLER_SPEED_SINGLE, programmerType);
 
         if (retval)
         {
-           return 0;//error
+           return 0; //error
         }
-         SPI_CONTROLLER_Chip_Select_High(programmerType);
+
+        SPI_CONTROLLER_Chip_Select_High(programmerType);
      return 1;
 }
 
-
 int at45_write_param(unsigned char *buf, unsigned long from, unsigned long len, unsigned int sector_size, unsigned char currentAlgorithm, u8 progType)
-{    u32 physical_read_addr, remain_len, data_offset;
+{    u32 physical_read_addr;
      u32 read_addr;
-     unsigned char algorythm = (currentAlgorithm & 0xf0) >> 8;
      unsigned char addrLen = 9;
      unsigned int sector_addr = 0;
      int retval;
+     uint8_t *ptr = spi_buf.obuf;
 
      programmerType = progType;
 
@@ -895,28 +893,24 @@ int at45_write_param(unsigned char *buf, unsigned long from, unsigned long len, 
      sector_addr = read_addr / sector_size;
      read_addr = read_addr % len;
      read_addr = read_addr + (sector_addr << addrLen);
-     remain_len = (u32)len;
 
          physical_read_addr = read_addr;
-         data_offset = (physical_read_addr % (sector_size));
-
 
          SPI_CONTROLLER_Chip_Select_Low(programmerType);
 
-         SPI_CONTROLLER_Write_One_Byte(0x82, programmerType); //write command
-         SPI_CONTROLLER_Write_One_Byte((physical_read_addr >> 16) & 0xff, programmerType);
-         SPI_CONTROLLER_Write_One_Byte((physical_read_addr >> 8) & 0xff, programmerType);
-         SPI_CONTROLLER_Write_One_Byte(physical_read_addr & 0xff, programmerType);
+         *ptr++ = 0x82;
+         *ptr++ = (physical_read_addr >> 16) & 0xff;
+         *ptr++ = (physical_read_addr >> 8) & 0xff;
+         *ptr++ = physical_read_addr & 0xff;
+         memcpy(ptr, buf, sector_size);
 
-         //SPI_CONTROLLER_Write_One_Byte(0xff);
-
-         retval = SPI_CONTROLLER_Write_NByte(buf, sector_size, SPI_CONTROLLER_SPEED_SINGLE, programmerType);
-
+         retval = SPI_CONTROLLER_Write_NByte(spi_buf.obuf, 4 + sector_size, SPI_CONTROLLER_SPEED_SINGLE, programmerType);
          if (retval)
          {
-            return 0;//error
+            return 0; //error
          }
-          SPI_CONTROLLER_Chip_Select_High(programmerType);
+
+         SPI_CONTROLLER_Chip_Select_High(programmerType);
 
       return 1;
  }
