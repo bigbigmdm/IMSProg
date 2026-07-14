@@ -964,11 +964,14 @@ int at45_sector_erase(unsigned int sectorNumber,  unsigned int pageSize, u8 prog
 static int nand_read_main_sr(u8 *val)
 {
     int retval = 0;
+    unsigned char cmdbuf[4];
     SPI_CONTROLLER_Chip_Select_Low(programmerType);
-    SPI_CONTROLLER_Write_One_Byte(0x0f, programmerType);
-    SPI_CONTROLLER_Write_One_Byte(0xc0, programmerType); //main status / feature register address
 
+    cmdbuf[0] = 0x0f;
+    cmdbuf[1] = 0xc0;
+    retval = SPI_CONTROLLER_Write_NByte(cmdbuf, 2, SPI_CONTROLLER_SPEED_SINGLE, programmerType);
     retval = SPI_CONTROLLER_Read_NByte(val, 1, SPI_CONTROLLER_SPEED_SINGLE, programmerType);
+
     SPI_CONTROLLER_Chip_Select_High(programmerType);
     if (retval) {
         printf("%s: ret: %x\n", __func__, retval);
@@ -1094,8 +1097,6 @@ int nand_page_write(unsigned char *buf, unsigned int page_size, uint32_t sector_
     if (retval == -1) return retval;
     SPI_CONTROLLER_Chip_Select_High(programmerType);
     nand_wait_ready(200);
-    nand_write_enable();
-
     cmdbuf[0] = 0x10; //From buffer to chip
     cmdbuf[1] = (sector_number >> 16) & 0xff;
     cmdbuf[2] = (sector_number >>  8) & 0xff;
