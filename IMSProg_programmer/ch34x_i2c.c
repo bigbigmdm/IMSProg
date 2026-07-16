@@ -39,7 +39,7 @@
 extern struct libusb_device_handle *handle;
 extern struct ch347_priv *priv;
 
-struct xxx {
+struct {
   uint8_t ibuf[512];
   uint8_t obuf[512];
 } i2c_buf;
