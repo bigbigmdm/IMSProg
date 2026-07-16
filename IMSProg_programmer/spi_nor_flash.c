@@ -77,7 +77,7 @@
 /* #define snor_dbg(args...) do { if (1) printf(args); } while(0) */
 
 
-struct xxx {
+struct {
   uint8_t ibuf[548];
   uint8_t obuf[548];
 } spi_buf;
