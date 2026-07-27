@@ -78,6 +78,7 @@
 
 
 struct {
+  //AT45DBxxx chips have a non-standard sector size of 528 bytes, plus a few bytes for write commands, making a total of 532–534 bytes. 548 should be more then enough
   uint8_t ibuf[548];
   uint8_t obuf[548];
 } spi_buf;
