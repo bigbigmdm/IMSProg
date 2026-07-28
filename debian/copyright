@@ -47,19 +47,6 @@ Files: IMSProg_programmer/language/chipProgrammer_de_DE.ts
 Copyright: 2024, wucke13 <https://github.com/wucke13>
 License: GPL-3+
 
-Files: IMSProg_database_update/main.cpp
-       IMSProg_editor/delegates.cpp
-       IMSProg_editor/delegates.h
-       IMSProg_editor/ezp_chip_editor.cpp
-       IMSProg_editor/ezp_chip_editor.h
-       IMSProg_programmer/dialognandsr.cpp
-       IMSProg_programmer/dialogrp.h
-       IMSProg_programmer/dialogsp.cpp
-       IMSProg_programmer/dialogsp.h
-       IMSProg_programmer/main.cpp
-Copyright: 2023-2026, Mikhail Medvedev
-License: GPL-2+
-
 Files: IMSProg_programmer/dialogabout.cpp
        IMSProg_programmer/dialogabout.h
        IMSProg_programmer/dialogbbm.cpp
@@ -87,9 +74,22 @@ Files: IMSProg_programmer/dialogabout.cpp
 Copyright: 2023-2026, Mikhail Medvedev
 License: GPL-3+
 
-Files: IMSProg_programmer/ch341funcs.c
-       IMSProg_programmer/ch341funcs.h
-Copyright: 2011, asbokid <ballymunboy@gmail.com>
+Files: IMSProg_editor/delegates.cpp
+       IMSProg_editor/delegates.h
+       IMSProg_editor/ezp_chip_editor.cpp
+       IMSProg_editor/ezp_chip_editor.h
+       IMSProg_programmer/main.cpp
+Copyright: 2024-2026, Mikhail Medvedev
+License: GPL-3+
+
+Files: IMSProg_programmer/dialogrp.h
+       IMSProg_programmer/dialogsp.cpp
+       IMSProg_programmer/dialogsp.h
+Copyright: 2023, Mikhail Medvedev
+License: GPL-3+
+
+Files: IMSProg_database_update/main.cpp
+Copyright: 2026, Mikhail Medvedev
 License: GPL-3+
 
 Files: IMSProg_programmer/ch34x_i2c.c
@@ -114,12 +114,8 @@ License: GPL-2+
 Files: IMSProg_programmer/ch341a_gpio.c
        IMSProg_programmer/ch341a_gpio.h
        IMSProg_programmer/ch341a_spi.h
-       IMSProg_programmer/flashcmd_api.c
-       IMSProg_programmer/flashcmd_api.h
        IMSProg_programmer/mw_eeprom.c
        IMSProg_programmer/mw_eeprom_api.h
-       IMSProg_programmer/nandcmd_api.h
-       IMSProg_programmer/spi_eeprom_api.h
        IMSProg_programmer/timer.c
        IMSProg_programmer/timer.h
        IMSProg_programmer/types.h
