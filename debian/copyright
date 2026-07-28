@@ -130,16 +130,16 @@ Copyright: 2011, asbokid <ballymunboy@gmail.com>
            2018-2021, McMCC <mcmcc@mail.ru>
 License: GPL-2+
 
-Files: IMSProg_programmer/commands.h
-       IMSProg_programmer/commands.cpp
-       IMSProg_programmer/qhexedit.h
-       IMSProg_programmer/qhexedit.cpp
-       IMSProg_programmer/qhexedit.sip
-       IMSProg_programmer/chunks.cpp
-       IMSProg_programmer/chunks.h
-       IMSProg_programmer/searchdialog.h
-       IMSProg_programmer/color_manager.h
-       IMSProg_programmer/color_manager.cpp
+Files: IMSProg_programmer/qhexedit2/src/commands.h
+       IMSProg_programmer/qhexedit2/src/commands.cpp
+       IMSProg_programmer/qhexedit2/src/qhexedit.h
+       IMSProg_programmer/qhexedit2/src/qhexedit.cpp
+       IMSProg_programmer/qhexedit2/src/qhexedit.sip
+       IMSProg_programmer/qhexedit2/src/chunks.cpp
+       IMSProg_programmer/qhexedit2/src/chunks.h
+       IMSProg_programmer/qhexedit2/src/searchdialog.h
+       IMSProg_programmer/qhexedit2/src/color_manager.h
+       IMSProg_programmer/qhexedit2/src/color_manager.cpp
 Copyright: 2010-2025, Winfried Simon
 Comment: from https://github.com/Simsys/qhexedit2/
 License: LGPL-2.1+
