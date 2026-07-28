@@ -134,10 +134,9 @@ Files: IMSProg_programmer/qhexedit2/src/commands.h
        IMSProg_programmer/qhexedit2/src/commands.cpp
        IMSProg_programmer/qhexedit2/src/qhexedit.h
        IMSProg_programmer/qhexedit2/src/qhexedit.cpp
-       IMSProg_programmer/qhexedit2/src/qhexedit.sip
        IMSProg_programmer/qhexedit2/src/chunks.cpp
        IMSProg_programmer/qhexedit2/src/chunks.h
-       IMSProg_programmer/qhexedit2/src/searchdialog.h
+       IMSProg_programmer/searchdialog.h
        IMSProg_programmer/qhexedit2/src/color_manager.h
        IMSProg_programmer/qhexedit2/src/color_manager.cpp
 Copyright: 2010-2025, Winfried Simon
