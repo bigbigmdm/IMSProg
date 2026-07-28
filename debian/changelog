@@ -1,3 +1,13 @@
+imsprog (1.8.6-1) unstable; urgency=medium
+
+  * New upstream version:
+    * Update debian/copyright:
+    - Unused files have been removed.
+    - The license for some files has been changed from GPL-2+ to GPL-3+.
+    - Files with the same authors and licences have been regrouped.
+
+ -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Tue, 28 Jul 2026 09:23:04 +0300
+
 imsprog (1.8.5-2) unstable; urgency=medium
 
   * Update debian/control:
