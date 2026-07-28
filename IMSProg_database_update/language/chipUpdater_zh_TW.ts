@@ -16,7 +16,7 @@
     </message>
     <message>
         <location filename="../mainwindow.ui" line="70"/>
-        <location filename="../mainwindow.cpp" line="150"/>
+        <location filename="../mainwindow.cpp" line="194"/>
         <source>Ok</source>
         <translation>Ok</translation>
     </message>
@@ -27,22 +27,22 @@
 退出</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="82"/>
+        <location filename="../mainwindow.cpp" line="84"/>
         <source>Downloading file IMSProg.Dat</source>
         <translation>正在下載檔案 IMSProg.Dat</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="88"/>
+        <location filename="../mainwindow.cpp" line="90"/>
         <source>Invalid URL</source>
         <translation>網址無效</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="96"/>
+        <location filename="../mainwindow.cpp" line="99"/>
         <source>Cannot create temporary file for download</source>
         <translation>無法替換資料庫檔案</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="148"/>
+        <location filename="../mainwindow.cpp" line="192"/>
         <source>The database has been updated!
 
 The old database contained %1 chips,
@@ -53,12 +53,12 @@ The new database contains %2 chips.</source>
 新資料庫包含 %2 個晶片。</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="152"/>
+        <location filename="../mainwindow.cpp" line="196"/>
         <source>Failed to replace the database file</source>
         <translation>無法替換資料庫檔案</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="155"/>
+        <location filename="../mainwindow.cpp" line="199"/>
         <source>Downloaded file is too small (corrupted?)</source>
         <translation>下載的檔案過小（可能已損毀？）</translation>
     </message>
@@ -67,12 +67,12 @@ The new database contains %2 chips.</source>
         <translation type="vanished">下載失敗： </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="181"/>
+        <location filename="../mainwindow.cpp" line="226"/>
         <source>Error loading file: </source>
         <translation>載入檔案時發生錯誤： </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="199"/>
+        <location filename="../mainwindow.cpp" line="232"/>
         <source>Error:</source>
         <translation>錯誤：</translation>
     </message>

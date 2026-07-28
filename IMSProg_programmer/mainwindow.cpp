@@ -719,6 +719,7 @@ void MainWindow::on_actionErase_triggered()
                    QMessageBox::about(this, tr("Error"), tr("Error erasing sector ") + QString::number(curBlock));
                    ProgDeviceClose(current_programmer);
                    doNotDisturbCancel();
+                   clearCheckboxes();
                    return;
                  }
                qApp->processEvents();
@@ -742,13 +743,6 @@ void MainWindow::on_actionErase_triggered()
         numBlocks = currentChipSize / step;
         std::shared_ptr<uint8_t[]> buf(new uint8_t[step]);
         config_stream(2);
-        if (isHalted)
-        {
-            isHalted = false;
-            ProgDeviceClose(current_programmer);
-            doNotDisturbCancel();
-            return;
-        }
         ui->progressBar->setRange(0, static_cast<int>(numBlocks));
         for (k = 0; k < step; k++)
         {
@@ -759,11 +753,19 @@ void MainWindow::on_actionErase_triggered()
             res =  s95_write_param(buf.get(), curBlock * step, step, step, currentAlgorithm, current_programmer);
             qApp->processEvents();
             ui->progressBar->setValue( static_cast<int>(curBlock));
+        if (isHalted)
+        {
+            isHalted = false;
+            ProgDeviceClose(current_programmer);
+            doNotDisturbCancel();
+            return;
+        }
             if (res <= 0)
               {
                 QMessageBox::about(this, tr("Error"), tr("Error erasing sector ") + QString::number(curBlock));
                 ProgDeviceClose(current_programmer);
                 doNotDisturbCancel();
+                clearCheckboxes();
                 return;
               }
         }
@@ -792,13 +794,6 @@ void MainWindow::on_actionErase_triggered()
         numBlocks = currentChipSize / step;
         std::shared_ptr<uint8_t[]> buf(new uint8_t[step]);
         config_stream(2);
-        if (isHalted)
-        {
-            isHalted = false;
-            ProgDeviceClose(current_programmer);
-            doNotDisturbCancel();
-            return;
-        }
         ui->progressBar->setRange(0, static_cast<int>(numBlocks));
         for (k = 0; k < step; k++)
         {
@@ -810,11 +805,19 @@ void MainWindow::on_actionErase_triggered()
             if (res==0) res = 1;
             qApp->processEvents();
             ui->progressBar->setValue( static_cast<int>(curBlock));
+        if (isHalted)
+        {
+            isHalted = false;
+            ProgDeviceClose(current_programmer);
+            doNotDisturbCancel();
+            return;
+        }
             if (res <= 0)
               {
                 QMessageBox::about(this, tr("Error"), tr("Error erasing sector ") + QString::number(curBlock));
                 ProgDeviceClose(current_programmer);
                 doNotDisturbCancel();
+                clearCheckboxes();
                 return;
               }
         }
@@ -834,7 +837,14 @@ void MainWindow::on_actionErase_triggered()
         for (curBlock = 0; curBlock < numBlocks; curBlock++)
         {
             at45_sector_erase(curBlock,  currentPageSize, current_programmer);
-             ui->progressBar->setValue(static_cast<int>(curBlock));
+            ui->progressBar->setValue(static_cast<int>(curBlock));
+            if (isHalted)
+            {
+               isHalted = false;
+               ProgDeviceClose(current_programmer);
+               doNotDisturbCancel();
+               return;
+            }
         }
     }
     if (currentChipType == 6)
@@ -862,6 +872,7 @@ void MainWindow::on_actionErase_triggered()
                        QMessageBox::about(this, tr("Error"), tr("Error erasing sector ") + QString::number(curBlock));
                        ProgDeviceClose(current_programmer);
                        doNotDisturbCancel();
+                       clearCheckboxes();
                        return;
                      }
                }
@@ -1130,6 +1141,7 @@ void MainWindow::on_actionWrite_triggered()
            {
              QMessageBox::about(this, tr("Error"), tr("Error writing sector ") + QString::number(curBlock));
              doNotDisturbCancel();
+             clearCheckboxes();
              ProgDeviceClose(current_programmer);
              return;
            }
@@ -1408,6 +1420,7 @@ void MainWindow::on_actionVerify_triggered()
                         ProgDeviceClose(current_programmer);
                         ui->pushButton->setStyleSheet(grnKeyStyle);
                         doNotDisturbCancel();
+                        clearCheckboxes();
                         return;
                     }
                     for (j = 0; j < step; j++)
@@ -1420,6 +1433,7 @@ void MainWindow::on_actionVerify_triggered()
                             ui->checkBox_3->setStyleSheet("");
                             ProgDeviceClose(current_programmer);
                             doNotDisturbCancel();
+                            clearCheckboxes();
                             return;
                            }
                      }
@@ -1466,10 +1480,10 @@ void MainWindow::on_actionVerify_triggered()
 void MainWindow::on_pushButton_3_clicked()
 {
     ui->pushButton_3->setStyleSheet(redKeyStyle);
-    if (ui->checkBox->isChecked()) MainWindow::on_actionErase_triggered();
-    if (ui->checkBox_1->isChecked()) MainWindow::on_actionCheck_erase_triggered();
-    if (ui->checkBox_2->isChecked()) MainWindow::on_actionWrite_triggered();
-    if (ui->checkBox_3->isChecked()) MainWindow::on_actionVerify_triggered();
+    if (ui->checkBox->isChecked())   on_actionErase_triggered();
+    if (ui->checkBox_1->isChecked()) on_actionCheck_erase_triggered();
+    if (ui->checkBox_2->isChecked()) on_actionWrite_triggered();
+    if (ui->checkBox_3->isChecked()) on_actionVerify_triggered();
     ui->pushButton_3->setStyleSheet(grnKeyStyle);
 }
 
@@ -1962,7 +1976,7 @@ void MainWindow::doNotDisturbCancel()
    ui->actionCH341A_v1_7->setDisabled(false);
    ui->actionCH347T->setDisabled(false);
    ui->actionCH347T_v1_1->setDisabled(false);
-   ui->actionShow_programmer_version->setDisabled(true);
+   ui->actionShow_programmer_version->setDisabled(false);
    if ((currentChipType == 0) || (currentChipType == 6) || (currentChipType > 2)) ui->actionChip_info->setDisabled(false);
    if ((currentChipType == 0) || (currentChipType == 6)) ui->actionSecurity_registers->setDisabled(false);
    if (currentChipType == 6) ui->actionBad_block_management->setDisabled(false);
@@ -1995,6 +2009,12 @@ void MainWindow::on_actionStop_triggered()
   ui->crcEdit->setText(getCRC32(chipData));
   isHalted = true;
   QMessageBox::about(this, tr("Stop"), tr("Operation aborted!"));
+  clearCheckboxes();
+  return;
+}
+
+void MainWindow::clearCheckboxes()
+{
   ui->pushButton->setStyleSheet(grnKeyStyle);
   ui->checkBox->setStyleSheet("");
   ui->checkBox_1->setStyleSheet("");
@@ -2816,6 +2836,7 @@ void MainWindow::on_actionCheck_erase_triggered()
                         ProgDeviceClose(current_programmer);
                         ui->pushButton->setStyleSheet(grnKeyStyle);
                         doNotDisturbCancel();
+                        clearCheckboxes();
                         return;
                     }
                     for (j = 0; j < step; j++)
@@ -2828,6 +2849,7 @@ void MainWindow::on_actionCheck_erase_triggered()
                             ui->checkBox_1->setStyleSheet("");
                             ProgDeviceClose(current_programmer);
                             doNotDisturbCancel();
+                            clearCheckboxes();
                             return;
                            }
                      }

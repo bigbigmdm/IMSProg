@@ -42,12 +42,10 @@ extern "C" {
 #include "ch341a_gpio.h"
 #include "ch341a_spi.h"
 #include "ch347.h"
-#include "flashcmd_api.h"
 #include "mw_eeprom_api.h"
 #include "res.h"
 #include "snorcmd_api.h"
 #include "spi_controller.h"
-#include "spi_eeprom_api.h"
 #include "timer.h"
 #include "types.h"
 #include "ch34x_i2c.h"
@@ -136,6 +134,7 @@ private slots:
     void on_actionFill_with_code_triggered();
     void on_comboBox_raw_currentIndexChanged(int index);
     void handleScroll();
+    void clearCheckboxes();
 
 private:
     Ui::MainWindow *ui;

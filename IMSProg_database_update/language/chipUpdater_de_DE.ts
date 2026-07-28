@@ -15,7 +15,7 @@
     </message>
     <message>
         <location filename="../mainwindow.ui" line="70"/>
-        <location filename="../mainwindow.cpp" line="150"/>
+        <location filename="../mainwindow.cpp" line="194"/>
         <source>Ok</source>
         <translation>Ok</translation>
     </message>
@@ -25,22 +25,22 @@
         <translation>Beenden</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="82"/>
+        <location filename="../mainwindow.cpp" line="84"/>
         <source>Downloading file IMSProg.Dat</source>
         <translation>Datei IMSProg.Dat wird heruntergeladen</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="88"/>
+        <location filename="../mainwindow.cpp" line="90"/>
         <source>Invalid URL</source>
         <translation>Ungültige URL</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="96"/>
+        <location filename="../mainwindow.cpp" line="99"/>
         <source>Cannot create temporary file for download</source>
         <translation>Temporäre Datei für den Download kann nicht erstellt werden</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="148"/>
+        <location filename="../mainwindow.cpp" line="192"/>
         <source>The database has been updated!
 
 The old database contained %1 chips,
@@ -51,12 +51,12 @@ Die alte Datenbank enthält %1 Chips,
 die neue Datenbank enthält %2 Chips.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="152"/>
+        <location filename="../mainwindow.cpp" line="196"/>
         <source>Failed to replace the database file</source>
         <translation>Das Ersetzen der Datenbankdatei ist fehlgeschlagen</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="155"/>
+        <location filename="../mainwindow.cpp" line="199"/>
         <source>Downloaded file is too small (corrupted?)</source>
         <translation>Die heruntergeladene Datei ist zu klein (beschädigt?)</translation>
     </message>
@@ -65,12 +65,12 @@ die neue Datenbank enthält %2 Chips.</translation>
         <translation type="vanished">Download fehlgeschlagen: </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="181"/>
+        <location filename="../mainwindow.cpp" line="226"/>
         <source>Error loading file: </source>
         <translation>Fehler beim Laden der Datei: </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="199"/>
+        <location filename="../mainwindow.cpp" line="232"/>
         <source>Error:</source>
         <translation>Fehler:</translation>
     </message>

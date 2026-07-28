@@ -7,6 +7,7 @@
 #include <QNetworkRequest>
 #include <QSaveFile>
 #include <QDir>
+#include <QTimer>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -66,8 +67,9 @@ void MainWindow::startDownload()
 
     totalBytesReceived = 0;
     lastBytesReceived = 0;
+    bytesAtLastCheck = 0; // Explicitly reset the progress tracker for the new download
 
-    // count of chips
+    // Calculate the number of chips currently in the local database
     QFileInfo fileInfo(fileName);
     if (fileInfo.exists() && fileInfo.size() > 0x44) {
         oldRecords = static_cast<int>(fileInfo.size() / 0x44 - 1);
@@ -90,6 +92,7 @@ void MainWindow::startDownload()
         return;
     }
 
+    // Set up a temporary file to store incoming data safely
     tempFile = new QTemporaryFile(this);
     tempFile->setFileTemplate(QDir::tempPath() + "/IMSProg-XXXXXX.Dat");
     if (!tempFile->open()) {
@@ -99,8 +102,31 @@ void MainWindow::startDownload()
     }
 
     QNetworkRequest request(url);
+
+    // Initiate the network GET request
     currentReply = manager->get(request);
 
+    // Universal Watchdog Timer for both Qt5 and Qt6.
+    // It monitors active network data flow regardless of OS-level socket freezes.
+    QTimer *timeoutTimer = new QTimer(currentReply);
+    timeoutTimer->setSingleShot(false); // Run periodically every 5 seconds
+
+    connect(timeoutTimer, &QTimer::timeout, currentReply, [this, timeoutTimer]() {
+        // If the counter hasn't changed since the last check, the connection is dead
+        if (totalBytesReceived == bytesAtLastCheck) {
+            if (currentReply) {
+                currentReply->abort(); // Force abort the frozen request
+            }
+            timeoutTimer->stop();
+        } else {
+            // Transfer is active; update the checkpoint for the next verification
+            bytesAtLastCheck = totalBytesReceived;
+        }
+    });
+
+    timeoutTimer->start(5000); // Start monitoring with a 5-second interval
+
+    // Establish signal-slot connections for download lifecycle handling
     connect(currentReply, &QNetworkReply::readyRead, this, &MainWindow::onReadyRead);
     connect(currentReply, &QNetworkReply::downloadProgress, this, &MainWindow::onDownloadProgress);
     connect(currentReply, &QNetworkReply::finished, this, &MainWindow::onFinished);
@@ -114,6 +140,7 @@ void MainWindow::startDownload()
 
 void MainWindow::onReadyRead()
 {
+    // Read data only if both the reply and the temporary file are valid
     if (currentReply && tempFile) {
         QByteArray data = currentReply->readAll();
         if (!data.isEmpty()) {
@@ -133,10 +160,27 @@ void MainWindow::onDownloadProgress(qint64 bytesReceived, qint64 bytesTotal)
 
 void MainWindow::onFinished()
 {
+    // Create a local copy of the pointer for thread/signal safety
+    QNetworkReply *reply = currentReply;
+    currentReply = nullptr; // Reset the global pointer immediately
+
+    if (!reply) {
+        if (tempFile) {
+            tempFile->close();
+            delete tempFile;
+            tempFile = nullptr;
+        }
+        ui->startButton->setEnabled(true);
+        ui->progressBar->setValue(0);
+        ui->statusbar->clearMessage();
+        return;
+    }
+
     bool success = false;
     int newRecords = 0;
 
-    if (currentReply && currentReply->error() == QNetworkReply::NoError) {
+    // Check if the download completed without network errors
+    if (reply->error() == QNetworkReply::NoError) {
         if (totalBytesReceived > 0x88) {
             tempFile->close();
 
@@ -146,7 +190,7 @@ void MainWindow::onFinished()
                 newRecords = static_cast<int>(totalBytesReceived / 0x44 - 1);
                 ui->progressBar->setValue(100);
                 QString msg = (tr("The database has been updated!\n\nThe old database contained %1 chips,\nThe new database contains %2 chips."))
-                              .arg(oldRecords).arg(newRecords);
+                                  .arg(oldRecords).arg(newRecords);
                 QMessageBox::information(this, tr("Ok"), msg);
             } else {
                 showError(tr("Failed to replace the database file"));
@@ -156,17 +200,17 @@ void MainWindow::onFinished()
         }
     }
 
+    // Safely clean up the temporary file resources
     if (tempFile) {
         tempFile->close();
         delete tempFile;
         tempFile = nullptr;
     }
 
-    if (currentReply) {
-        currentReply->deleteLater();
-        currentReply = nullptr;
-    }
+    // Schedule the network reply object for safe deletion
+    reply->deleteLater();
 
+    // Restore the user interface state
     ui->startButton->setEnabled(true);
     if (!success) {
         ui->progressBar->setValue(0);
@@ -177,21 +221,10 @@ void MainWindow::onFinished()
 void MainWindow::onError(QNetworkReply::NetworkError code)
 {
     Q_UNUSED(code);
+    // Only display the error message; do not delete or nullify the reply object here
     if (currentReply) {
         showError(tr("Error loading file: ") + currentReply->errorString());
-        currentReply->deleteLater();
-        currentReply = nullptr;
     }
-
-    if (tempFile) {
-        tempFile->close();
-        delete tempFile;
-        tempFile = nullptr;
-    }
-
-    ui->startButton->setEnabled(true);
-    ui->progressBar->setValue(0);
-    ui->statusbar->clearMessage();
 }
 
 void MainWindow::showError(const QString &message)
@@ -203,4 +236,5 @@ void MainWindow::on_exitButton_clicked()
 {
     MainWindow::close();
 }
+
 

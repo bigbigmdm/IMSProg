@@ -1,10 +1,10 @@
 /*
- * Copyright (C) 2023 Mikhail Medvedev <e-ink-reader@yandex.ru>
+ * Copyright (C) 2024 - 2026 Mikhail Medvedev <e-ink-reader@yandex.ru>
  *
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
- * as published by the Free Software Foundation; either version 2
+ * as published by the Free Software Foundation; either version 3
  * of the License, or (at your option) any later version.
  *
  * This program is distributed in the hope that it will be useful,
@@ -83,6 +83,10 @@ static void initPaths()
 int main(int argc, char *argv[])
 {
     QCoreApplication::setApplicationName("imsprog");
+    #ifdef Q_OS_MACOS
+        //Using QT's built-in dialog boxes to work with files on macOS
+        QCoreApplication::setAttribute(Qt::AA_DontUseNativeDialogs); 
+    #endif
     qDebug() << "Used Qt version:" << QT_VERSION_STR;
     QApplication a(argc, argv);
     initPaths();

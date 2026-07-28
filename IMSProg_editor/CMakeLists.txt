@@ -130,7 +130,7 @@ target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 if (QT_VERSION_MAJOR EQUAL 5)
     target_link_libraries(${PROJECT_NAME} Qt5::Core Qt5::Widgets)
 else()
-    target_link_libraries(${PROJECT_NAME} Qt::Core Qt::Widgets)
+    target_link_libraries(${PROJECT_NAME} PRIVATE Qt::Core Qt::Widgets)
 endif()
 
 install(TARGETS ${PROJECT_NAME} DESTINATION ${CMAKE_INSTALL_BINDIR})

@@ -14,7 +14,7 @@
    <string>Status register</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="recource.qrc">
+   <iconset resource="resource.qrc">
     <normaloff>:/res/img/write64.png</normaloff>:/res/img/write64.png</iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
@@ -577,7 +577,7 @@ QPushButton:!enabled
   </layout>
  </widget>
  <resources>
-  <include location="recource.qrc"/>
+  <include location="resource.qrc"/>
  </resources>
  <connections/>
 </ui>

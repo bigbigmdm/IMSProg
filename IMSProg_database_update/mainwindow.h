@@ -38,6 +38,7 @@ private:
     int oldRecords;
     QString fileUrl;
     QString fileName;
+    qint64 bytesAtLastCheck; // Track download progress for watchdog timer
 
     void showError(const QString &message);
     void setupConnections();
