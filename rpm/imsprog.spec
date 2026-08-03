@@ -172,16 +172,12 @@ pushd IMSProg_database_update
 %cmake_install
 popd
 
-# rename README
-cp IMSProg_editor/README.md IMSProg_editor.md
-cp IMSProg_programmer/README.md IMSProg_programmer.md
-
 %check
 desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
 appstream-util validate-relax --nonet %{buildroot}%{_datadir}/metainfo/*.xml
 
 %files
-%doc README.md IMSProg_editor.md IMSProg_programmer.md ChangeLog
+%doc README.md ChangeLog
 %_docdir/imsprog/
 %_bindir/IMSProg
 %_bindir/IMSProg_editor
@@ -199,7 +195,7 @@ appstream-util validate-relax --nonet %{buildroot}%{_datadir}/metainfo/*.xml
 %license LICENSE
 
 %changelog
-* Fri Jul 10 2026 Mikhail Medvedev 1.8.6-1
+* Wed Jul 29 2026 Mikhail Medvedev 1.8.6-1
 - Removed unused files
 - Copyright added/changed
 - Fixed: if an error was detected, the sequence of operations was not interrupted
