@@ -37,6 +37,7 @@
 #include "dialogcompare.h"
 #include "searchdialog.h"
 #include "hexutility.h"
+#include "ft232all.h"
 extern "C" {
 #include "bitbang_microwire.h"
 #include "ch341a_gpio.h"
