@@ -136,6 +136,7 @@ private slots:
     void on_comboBox_raw_currentIndexChanged(int index);
     void handleScroll();
     void clearCheckboxes();
+    void on_actionFT232H_v1_2_triggered();
 
 private:
     Ui::MainWindow *ui;

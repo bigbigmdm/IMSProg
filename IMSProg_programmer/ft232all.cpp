@@ -22,7 +22,8 @@
 #include <iostream>
 #include <string.h>
 #include <unistd.h>
-
+#include "ft232all.h"
+#include <libusb.h>
 
 #define VENDOR  0x0403
 #define PRODUCT 0x6014
@@ -65,6 +66,8 @@ static uint8_t swap_byte(uint8_t x)
 	return x;
 }
 struct ftdi_context ftdi;
+struct libusb_device *dev;
+struct libusb_device_descriptor desc;
 
 int initFt232h(void)
 {
@@ -100,6 +103,16 @@ void closeFt232h(void)
     }
 
     //ftdi_deinit(&ftdi);
+}
+
+int ft232hGetDescriptor(uint8_t *buf)
+{
+    int ret = 0;
+    dev = libusb_get_device(ftdi.usb_dev);
+    ret = libusb_get_device_descriptor(dev, &desc);
+    if(ret < 0) printf("Failed to get device descriptor: '%x'\n", ret);
+    else memcpy(buf, &desc, 0x12);
+    return ret;
 }
 
 //---------------------------I2C-----------------------------------------
@@ -522,9 +535,9 @@ int ft232hSetSpeedSPI(uint16_t speed_khz)
    return 0;
 }
 
-int ft232WriteNbytes(uint8_t *buffer, uint16_t sizeToWrite)
+int ft232WriteNbytes(uint8_t *buffer, uint32_t sizeToWrite)
 {
-   unsigned char buf[512] = {0};
+   unsigned char buf[32768] = {0};
    uint8_t ptr = 0;
    uint32_t i;
    

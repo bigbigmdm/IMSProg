@@ -164,6 +164,7 @@ MainWindow::MainWindow(QWidget *parent) :
               ui->actionCH347T_v1_1->setChecked(true);
               SetItemStatus("comboBox_type", 2, true);
           }
+       if (current_programmer == 4) ui->actionFT232H_v1_2->setChecked(true);
      settings.endGroup();
      settings.beginGroup("FormPosition");
      if (settings.contains("geometry"))
@@ -174,7 +175,8 @@ MainWindow::MainWindow(QWidget *parent) :
  }
  // connect and status check
  if (current_programmer < 2) ui->lStatus->setText("CH341A");
- if (current_programmer >= 2) ui->lStatus->setText("CH347T");
+ if ((current_programmer == 2) || (current_programmer == 3)) ui->lStatus->setText("CH347T");
+ if (current_programmer == 4) ui->lStatus->setText("FT232H");
  statusCH341 =  ProgDeviceInit(current_programmer, currentChipType, currentI2CBusSpeed);
  ch341StatusFlashing();
  ProgDeviceClose(current_programmer);
@@ -283,12 +285,14 @@ void MainWindow::on_pushButton_clicked()
                  res = snor_read_param(buf.get(), curBlock * step, step, step, currentAddr4bit, current_programmer);
               break;
               case 1:            //I2C
-                   res = ch34xi2cBlockRead(buf.get(), curBlock * step, step, currentAlgorithm, current_programmer);
+                   if (current_programmer < 4) res = ch34xi2cBlockRead(buf.get(), curBlock * step, step, currentAlgorithm, current_programmer);
+                   else res = ft232I2cBlockRead(buf.get(), curBlock * step, step, currentAlgorithm);
                    if (res==0) res = 1;
               break;
               case 2:
                  //MicroWire
-                   res = Read_EEPROM_3wire_param(buf.get(), static_cast<int>(curBlock * step), static_cast<int>(step), static_cast<int>(currentChipSize), currentAlgorithm);
+                   if (current_programmer < 4) res = Read_EEPROM_3wire_param(buf.get(), static_cast<int>(curBlock * step), static_cast<int>(step), static_cast<int>(currentChipSize), currentAlgorithm);
+                   else res = ft232MWReadBlock(buf.get(), static_cast<int>(curBlock * step), static_cast<int>(step), currentAlgorithm);
                    if (res==0) res = 1;
               break;
               case 3:
@@ -2643,6 +2647,14 @@ void MainWindow::on_actionCH347T_v1_1_triggered()
     current_programmer = 3;
     ui->lStatus->setText("CH347T");
     SetItemStatus("comboBox_type", 2, true);
+    SetItemStatus("comboBox_vcc", 3, false);
+}
+
+void MainWindow::on_actionFT232H_v1_2_triggered()
+{
+    current_programmer = 4;
+    ui->lStatus->setText("FT232H");
+    SetItemStatus("comboBox_type", 2, false);
     SetItemStatus("comboBox_vcc", 3, false);
 }
 

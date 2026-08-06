@@ -13,20 +13,23 @@
  * GNU General Public License for more details.
  */
 
-#ifndef __FT232ALL_H__
-#define __FT232ALL_H__
+#ifndef FT232ALL_H
+#define FT232ALL_H
+#include <ftdi.h>
 
-#include <ftdi.hpp>
-
+#ifdef __cplusplus
+extern "C" {
+#endif
 //ALL PROTOCOLS
 int initFt232h(void);
 void closeFt232h(void);
+int ft232hGetDescriptor(uint8_t *buf);
 
 //SPI
 int ft232hSetSpeedSPI(uint16_t speed_khz);
 int ft232h_CS_LO(void);
 int ft232h_CS_HI(void);
-int ft232WriteNbytes(uint8_t *buffer, uint16_t sizeToWrite);
+int ft232WriteNbytes(uint8_t *buffer, uint32_t sizeToWrite);
 int ft232ReadNbytes(uint8_t *buffer, uint32_t sizeToRead);
 
 //I2C
@@ -42,5 +45,8 @@ int ft232hMWEraseAll(uint8_t algorithm);
 int ft232MWReadBlock(uint8_t *buffer, uint16_t startAddr, uint16_t sizeToRead, uint8_t algorithm);
 int ft232MWWriteBlock(uint8_t *buffer, uint16_t startAddr, uint16_t sizeToWrite, uint8_t algorithm);
 
-#endif /* __FT232ALL_H__ */
+#ifdef __cplusplus
+}
+#endif
+#endif // FT232ALL_H
 
