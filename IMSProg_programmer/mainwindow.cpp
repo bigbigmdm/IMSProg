@@ -785,7 +785,8 @@ void MainWindow::on_actionErase_triggered()
         config_stream(1);
         mw_gpio_init();
         ui->progressBar->setValue(50);
-        Erase_EEPROM_3wire_param(currentAlgorithm);
+        if (current_programmer < 4) Erase_EEPROM_3wire_param(currentAlgorithm);
+        else ft232hMWEraseAll(currentAlgorithm);
         sleep(1);
     }
     if (currentChipType == 1)
@@ -1101,7 +1102,8 @@ void MainWindow::on_actionWrite_triggered()
                        break;
                        case 2:                           //MicroWire
                           addrSrc = addrSrc + step;
-                          res = Write_EEPROM_3wire_param(buf.get(), static_cast<int>(curBlock * step), static_cast<int>(step), static_cast<int>(currentChipSize), currentAlgorithm);
+                          if (current_programmer < 4) res = Write_EEPROM_3wire_param(buf.get(), static_cast<int>(curBlock * step), static_cast<int>(step), static_cast<int>(currentChipSize), currentAlgorithm);
+                          else res = ft232MWWriteBlock(buf.get(), static_cast<int>(curBlock * step), static_cast<int>(step), currentAlgorithm);
                           if (res==0) res = 1;
                        break;
                        case 3:                           //25xxx
@@ -1388,7 +1390,8 @@ void MainWindow::on_actionVerify_triggered()
                       break;
                       case 2:
                          //MicroWire
-                         res = Read_EEPROM_3wire_param(buf.get(), static_cast<int>(curBlock * step), static_cast<int>(step), static_cast<int>(currentChipSize), currentAlgorithm);
+                         if (current_programmer < 4) res = Read_EEPROM_3wire_param(buf.get(), static_cast<int>(curBlock * step), static_cast<int>(step), static_cast<int>(currentChipSize), currentAlgorithm);
+                         else res = ft232MWReadBlock(buf.get(), static_cast<int>(curBlock * step), static_cast<int>(step), currentAlgorithm);
                          if (res==0) res = 1;
                       break;
                       case 3:
@@ -2814,7 +2817,8 @@ void MainWindow::on_actionCheck_erase_triggered()
                       break;
                       case 2:
                          //MicroWire
-                         res = Read_EEPROM_3wire_param(buf.get(), static_cast<int>(curBlock * step), static_cast<int>(step), static_cast<int>(currentChipSize), currentAlgorithm);
+                         if (current_programmer < 4) res = Read_EEPROM_3wire_param(buf.get(), static_cast<int>(curBlock * step), static_cast<int>(step), static_cast<int>(currentChipSize), currentAlgorithm);
+                         else res = ft232MWReadBlock(buf.get(), static_cast<int>(curBlock * step), static_cast<int>(step), currentAlgorithm);
                          if (res==0) res = 1;
                       break;
                       case 3:
