@@ -15,7 +15,7 @@
 
 // Compile: g++ ft232all.cpp -o ft232all -lftdi
 
-#include <ftdi.hpp>
+#include <ftdi.h>
 #include <usb.h>
 #include <stdio.h>
 #include <stdint.h>  
@@ -27,7 +27,7 @@
 #define VENDOR  0x0403
 #define PRODUCT 0x6014
 
-using namespace Ftdi;
+//using namespace Ftdi;
 
 namespace Pin {
     enum bus_t {
