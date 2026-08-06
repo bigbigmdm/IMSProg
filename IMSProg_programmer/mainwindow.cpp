@@ -805,7 +805,8 @@ void MainWindow::on_actionErase_triggered()
         }
         for (curBlock = 0; curBlock < numBlocks; curBlock++)
         {
-            res = ch34xi2cBlockWrite(buf.get(), curBlock * step, step, currentPageSize, currentAlgorithm, current_programmer);
+            if (current_programmer < 4) res = ch34xi2cBlockWrite(buf.get(), curBlock * step, step, currentPageSize, currentAlgorithm, current_programmer);
+            else res = ft232I2cBlockWrite(buf.get(), curBlock * step, step, currentPageSize, currentAlgorithm);
             if (res==0) res = 1;
             qApp->processEvents();
             ui->progressBar->setValue( static_cast<int>(curBlock));
@@ -1094,7 +1095,8 @@ void MainWindow::on_actionWrite_triggered()
                        break;
                        case 1:                           //I2C
                           addrSrc = addrSrc + step;
-                          res = ch34xi2cBlockWrite(buf.get(), curBlock * step, step, currentPageSize, currentAlgorithm, current_programmer);
+                           if (current_programmer < 4) res = ch34xi2cBlockWrite(buf.get(), curBlock * step, step, currentPageSize, currentAlgorithm, current_programmer);
+                           else res = ft232I2cBlockWrite(buf.get(), curBlock * step, step, currentPageSize, currentAlgorithm);
                           if (res==0) res = 1;
                        break;
                        case 2:                           //MicroWire
@@ -1380,7 +1382,8 @@ void MainWindow::on_actionVerify_triggered()
                       break;
                       case 1:
                          //I2C
-                         res = ch34xi2cBlockRead(buf.get(), curBlock * step, step, currentAlgorithm, current_programmer);
+                          if (current_programmer < 4) res = ch34xi2cBlockRead(buf.get(), curBlock * step, step, currentAlgorithm, current_programmer);
+                          else res = ft232I2cBlockRead(buf.get(), curBlock * step, step, currentAlgorithm);
                          if (res==0) res = 1;
                       break;
                       case 2:
@@ -2805,7 +2808,8 @@ void MainWindow::on_actionCheck_erase_triggered()
                       break;
                       case 1:
                          //I2C
-                         res = ch34xi2cBlockRead(buf.get(), curBlock * step, step, currentAlgorithm, current_programmer);
+                         if (current_programmer < 4) res = ch34xi2cBlockRead(buf.get(), curBlock * step, step, currentAlgorithm, current_programmer);
+                         else res = ft232I2cBlockRead(buf.get(), curBlock * step, step, currentAlgorithm);
                          if (res==0) res = 1;
                       break;
                       case 2:
