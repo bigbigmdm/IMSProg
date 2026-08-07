@@ -16,7 +16,7 @@
 // Compile: g++ ft232all.cpp -o ft232all -lftdi
 
 #include <ftdi.h>
-#include <usb.h>
+//#include <usb.h>
 #include <stdio.h>
 #include <stdint.h>  
 #include <iostream>
