@@ -101,7 +101,7 @@ jobs:
       - name: Install build dependencies
         run: |
           dnf install -y dnf-plugins-core rpm-build rpmlint rpmdevtools wget \
-                         hunspell-es hunspell-it hunspell-pt
+                         hunspell-es hunspell-it hunspell-pt libftdi-devel
           dnf builddep -y rpm/*.spec
       - name: Prepare build environment
         run: |
@@ -130,7 +130,7 @@ jobs:
       - name: Install dependencies via Homebrew
         run: |
           HOMEBREW_NO_INSTALL_FROM_API=1 brew update
-          brew install qt@6 libusb pkg-config
+          brew install qt@6 libusb pkg-config libftdi
 
       - name: Configure CMake
         run: |
