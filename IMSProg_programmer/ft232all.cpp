@@ -440,7 +440,9 @@ int ft232I2cBlockRead(uint8_t *data, uint32_t address, uint32_t blockSize, uint8
     
         while (total_read < total_expected && timeout < 100) 
         {
-            int read_bytes = ftdi_read_data(&ftdi, rx_buf + total_read, total_expected - total_read);
+            int read_bytes;
+            if ((algorithm & 0x0f) == 0x01) read_bytes = ftdi_read_data(&ftdi, rx_buf + total_read, total_expected - total_read);
+            else read_bytes = ftdi_read_data(&ftdi, rx_buf + total_read -1, total_expected - total_read +1);
             if (read_bytes > 0) total_read += read_bytes;
             timeout++;
             usleep(100);
