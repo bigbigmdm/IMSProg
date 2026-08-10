@@ -799,7 +799,7 @@ int ft232MWWriteEnable(uint8_t algorithm)
 
     enAddress = 0x03 << ((algorithm & 0x0f) - 3);
     if ((algorithm & 0xf0) == 0) enAddress = enAddress << 1;
-    ret = ft232MWSendCommandAndAddress(0, 0, enAddress, algorithm, 1);//Write enable
+    ret = ft232MWSendCommandAndAddress(0, 0, enAddress, algorithm, 1); // Write enable
     return ret;
 }
 
@@ -807,7 +807,7 @@ int ft232MWWriteDisable(uint8_t algorithm)
 {
     int ret = 0;
 
-    ret = ft232MWSendCommandAndAddress(0, 0, 0x0000, 0x17, 1);//Write disable
+    ret = ft232MWSendCommandAndAddress(0, 0, 0x0000, 0x17, 1); // Write disable
     return ret;
 }
 
@@ -952,7 +952,7 @@ int ft232MWWriteBlock(uint8_t *buffer, uint16_t startAddr, uint16_t sizeToWrite,
 }
 
 // -----------------------------
-// REMOVE FOR USING AS LIBRARY
+// REMOVE IF USING AS LIBRARY
 // -----------------------------
 /*int main(void)
 {
