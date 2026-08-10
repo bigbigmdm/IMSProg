@@ -725,8 +725,6 @@ static int ft232MWSendCommandAndAddress(bool command1, bool command0, uint16_t a
 
     addressHi = (address & 0xff00) >> 8;
     addressLo = address & 0x00ff;
-printf ("addrlen=%d\n",addrLenght);
-printf("addr hi= %d lo=%d\n", addressHi, addressLo);
 
     // 1. Set CS = HIGH (0x08), CLK = LOW, DO = LOW
     buf[ptr++] = 0x80; // Set Data Bits Low Byte
@@ -753,8 +751,6 @@ printf("addr hi= %d lo=%d\n", addressHi, addressLo);
     {
         lenLo = 7;
         lenHi = addrLenght - 9;
-printf("addr lenHi= %x lenLo=%x\n", lenHi, lenLo);
-printf("addr addressHi=%02X addressLo=%02X", addressHi, addressLo);
         buf[ptr++] = 0x1B;
         buf[ptr++] = lenHi; //Address lenght without command lenght
         addressHi = swap_byte(addressHi) >> (7 - lenHi);
@@ -766,10 +762,6 @@ printf("addr addressHi=%02X addressLo=%02X", addressHi, addressLo);
     buf[ptr++] = lenLo; //Address lenght without command lenght
     addressLo = swap_byte(addressLo) >> (7 - lenLo);
     buf[ptr++] = addressLo;
-printf("rotated addr addressHi=%02X addressLo=%02X", addressHi, addressLo);
-std::printf(" %08b ", addressHi); // Выведет: 00000101
-std::printf(" %08b ", addressLo); // Выведет: 00000101
-std::printf("\n"); // Выведет: 00000101
 
     if (stopped)
     {
@@ -876,15 +868,15 @@ int ft232MWReadBlock(uint8_t *buffer, uint16_t startAddr, uint16_t sizeToRead, u
     }
 
     // SWAP bytes
-    //if ((algorithm & 0x10) != 0)
-    //{
+    if ((algorithm & 0x10) != 0)
+    {
         for (int i = 0; i < sizeToRead; i = i + 2)
         {
             j = buffer[i + 1];
             buffer[i + 1]  = buffer[i];
             buffer[i] = j;
         }
-    //}
+    }
 
    ftdi_tcioflush(&ftdi);
    usleep(5000);
@@ -909,12 +901,17 @@ int ft232MWWriteBlock(uint8_t *buffer, uint16_t startAddr, uint16_t sizeToWrite,
 {
     unsigned char buf[2048] = {0};
     uint32_t ptr = 0;
-    uint8_t nextBytes, i, j, mask, busyStatus;
-    if ((algorithm & 0x10) == 0) nextBytes = algorithm & 0x0f;
+    uint8_t nextBytes, i, j, mask, step;
+    if ((algorithm & 0x10) == 0)
+    {
+        nextBytes = algorithm & 0x0f;
+        step = 1;
+    }
     else
     {
         nextBytes = algorithm & 0x0f - 1;
         startAddr = startAddr >> 1;
+        step = 2;
     }
 
     // calculating high mask address
@@ -922,21 +919,20 @@ int ft232MWWriteBlock(uint8_t *buffer, uint16_t startAddr, uint16_t sizeToWrite,
     {
         mask = mask << 1;
     }
-    //ft232MWSendCommandAndAddress(0, 0, 0x0030, algorithm, 1); //Write enable
+    ft232MWWriteEnable(algorithm);
 
 
-    for (i = 0; i < sizeToWrite; i = i + 2)
+    for (i = 0; i < sizeToWrite; i = i + step) // send two bytes in 16 bit mode or one byte in 8 bit mode
     {
-        //ft232MWSendCommandAndAddress(0, 0, 0x0030, algorithm, 1); //Write enable
         usleep(100);
         ptr = 0;
-        ft232MWSendCommandAndAddress(0, 1, startAddr + (i >> 1), algorithm, 0);
+        ft232MWSendCommandAndAddress(0, 1, startAddr + (i >> (step - 1)), algorithm, 0);
         buf[ptr++] = MPSSE_DO_WRITE | MPSSE_WRITE_NEG; //0x11
 
-        buf[ptr++] = 0x01;
+        buf[ptr++] = step - 1;//0x01;
         buf[ptr++] = 0x00;
 
-        buf[ptr++] = buffer[i + 1];
+        if (step == 2) buf[ptr++] = buffer[i + 1];
         buf[ptr++] = buffer[i];
 
         // SET SK = LOW
@@ -965,7 +961,7 @@ int ft232MWWriteBlock(uint8_t *buffer, uint16_t startAddr, uint16_t sizeToWrite,
 
         if (ft232hMWWaitForReady() != 0) return -1;
     }
-
+    //ft232MWWriteDisable(algorithm);
     ftdi_tcioflush(&ftdi);
     return 0;
 }
