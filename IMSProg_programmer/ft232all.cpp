@@ -815,19 +815,9 @@ int ft232MWReadBlock(uint8_t *buffer, uint16_t startAddr, uint16_t sizeToRead, u
 {
     unsigned char buf[16384] = {0};
     uint32_t ptr = 0;
-    uint8_t nextBytes, i, j, mask;
-    if ((algorithm & 0x10) == 0) nextBytes = algorithm & 0x0f; // 8 bit mode
-    else // 16 bit mode
-    {
-        nextBytes = algorithm & 0x0f - 1;
-        startAddr = startAddr >> 1;
-    }
+    uint8_t j;
 
-    // calculating high mask address
-    for (i = 0; i < nextBytes - 1; i++)
-    {
-        mask = mask << 1;
-    }
+    if ((algorithm & 0x10) != 0)  startAddr = startAddr >> 1;
 
     ft232MWSendCommandAndAddress(1, 0, startAddr, algorithm, 0);
     // Reading 16 / 8 bits
@@ -903,24 +893,17 @@ int ft232MWWriteBlock(uint8_t *buffer, uint16_t startAddr, uint16_t sizeToWrite,
 {
     unsigned char buf[2048] = {0};
     uint32_t ptr = 0;
-    uint8_t nextBytes, i, j, mask, step;
+    uint8_t i, step;
     if ((algorithm & 0x10) == 0)
     {
-        nextBytes = algorithm & 0x0f;
         step = 1;
     }
     else
     {
-        nextBytes = algorithm & 0x0f - 1;
         startAddr = startAddr >> 1;
         step = 2;
     }
 
-    // calculating high mask address
-    for (i = 0; i < nextBytes - 1; i++)
-    {
-        mask = mask << 1;
-    }
     ft232MWWriteEnable(algorithm);
 
 
