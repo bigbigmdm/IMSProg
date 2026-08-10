@@ -77,7 +77,7 @@ void DialogSFDP::on_pushButton_clicked()
         //Reading JEDEC ID
         SPI_CONTROLLER_Chip_Select_Low(programmerType);
         SPI_CONTROLLER_Write_One_Byte(0x9f, programmerType);
-        retval = SPI_CONTROLLER_Read_NByte(sfdpBuf.get(),3,SPI_CONTROLLER_SPEED_SINGLE, programmerType);
+        retval = SPI_CONTROLLER_Read_NByte(sfdpBuf.get(),5,SPI_CONTROLLER_SPEED_SINGLE, programmerType);
         SPI_CONTROLLER_Chip_Select_High(programmerType);
         if (retval)
         {

@@ -61,7 +61,7 @@ int ProgDeviceInit( u8 deviceType, u8 chipType, u8 i2cSpeed )
             break;
         case 4: // FT232H v1.2
             ret = initFt232h();
-            ft232hSetSpeedSPI(30000);
+            ft232hSetSpeedSPI(30000); //30000
             break;
         default: //Unsupported types
             ret = -1;

@@ -75,13 +75,13 @@ int initFt232h(void)
     int ftdi_status = 0;
     ftdi_status = ftdi_init(&ftdi);
     if ( ftdi_status != 0 ) {
-        std::cout << "Failed to initialize device\n";
+        std::cout << "Failed to initialize FT232H device\n";
         return -1;
     }
     ftdi_status = ftdi_usb_open(&ftdi, VENDOR, PRODUCT);
     if ( ftdi_status != 0 )
     {
-        std::cout << "Can't open device. Got error\n"
+        std::cout << "Can't open FT232H device. Got error\n"
                   << ftdi_get_error_string(&ftdi) << '\n';
         return -1;
     }
@@ -302,7 +302,7 @@ int ft232I2cBlockWrite(uint8_t *data, uint32_t address, uint32_t blockSize, uint
             return -1;
         }
 
-        int expected_acks = size + 1;
+        int expected_acks = size + 2; //1
         unsigned char rx_buf[1024] = {0};
         int total_read = 0;
         int timeout = 0;
@@ -431,8 +431,11 @@ int ft232I2cBlockRead(uint8_t *data, uint32_t address, uint32_t blockSize, uint8
             return -1;
         }
 
-        // Wait for responses: 3 ACKs (write address + memory address + read address) + len bytes of data
-        int expected_acks = 3; 
+        // For one byte address - Wait for responses: 3 ACKs (write address + memory address + read address) + len bytes of data
+        // For two byte address - Wait for responses: 4 ACKs (write address + memory address + read address) + len bytes of data
+        int expected_acks;
+        if ((algorithm & 0x0f) == 0x01) expected_acks = 3;
+        else expected_acks = 4;
         int total_expected = expected_acks + size;
         unsigned char rx_buf[2048] = {0};
         int total_read = 0;
@@ -441,8 +444,7 @@ int ft232I2cBlockRead(uint8_t *data, uint32_t address, uint32_t blockSize, uint8
         while (total_read < total_expected && timeout < 100) 
         {
             int read_bytes;
-            if ((algorithm & 0x0f) == 0x01) read_bytes = ftdi_read_data(&ftdi, rx_buf + total_read, total_expected - total_read);
-            else read_bytes = ftdi_read_data(&ftdi, rx_buf + total_read -1, total_expected - total_read +1);
+            read_bytes = ftdi_read_data(&ftdi, rx_buf + total_read, total_expected - total_read);
             if (read_bytes > 0) total_read += read_bytes;
             timeout++;
             usleep(100);
@@ -453,7 +455,7 @@ int ft232I2cBlockRead(uint8_t *data, uint32_t address, uint32_t blockSize, uint8
         // Extract useful data that come right after all configuration ACK bits
         for (uint16_t j = 0; j < size; j++) 
         {
-            data[j + step * size] = rx_buf[expected_acks + j];
+            data[j + step * size] = rx_buf[expected_acks + j];  //maybe +1
         }
         address = address + size;
         ftdi_tcioflush(&ftdi);
