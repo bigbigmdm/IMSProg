@@ -28,8 +28,6 @@
 #define VENDOR  0x0403
 #define PRODUCT 0x6014
 
-//using namespace Ftdi;
-
 namespace Pin {
     enum bus_t {
        // I2C
@@ -474,7 +472,7 @@ int ft232h_CS_LO(void)
    buf[ptr++] = 0x80;
    buf[ptr++] = 0x00;
    buf[ptr++] = 0x1b;
-//   buf[ptr++] = SEND_IMMEDIATE;
+   //buf[ptr++] = SEND_IMMEDIATE;
 
    if ( ftdi_write_data(&ftdi, buf, ptr) != ptr ) 
    {
@@ -493,7 +491,7 @@ int ft232h_CS_HI(void)
    buf[ptr++] = 0x80;
    buf[ptr++] = 0x08;
    buf[ptr++] = 0x1b;
-//   buf[ptr++] = SEND_IMMEDIATE;
+   //buf[ptr++] = SEND_IMMEDIATE;
 
    if ( ftdi_write_data(&ftdi, buf, ptr) != ptr ) 
    {
@@ -511,8 +509,8 @@ int ft232hSetSpeedSPI(uint16_t speed_khz)
    
    // Constraint frequency to the FT232H limits (in kHz)
    if (speed_khz < 100) speed_khz = 100;
-   if (speed_khz > 30000) speed_khz = 30000; // Hardware limit is 30 MHz!
-   
+   if (speed_khz > 50000) speed_khz = 50000; // Hardware limit is 30 MHz!
+
    // Calculate the divisor
    // Formula: TCK = 60000 kHz / ((1 + Divisor) * 2)
    // Derived: Divisor = (30000 / TCK) - 1
@@ -532,7 +530,7 @@ int ft232hSetSpeedSPI(uint16_t speed_khz)
    buf[ptr++] = 0x00;            // argument: initial pin states
    buf[ptr++] = 0x0B;            // argument: pin direction (1 = output, 0 = input)
 
-//   buf[ptr++] = SEND_IMMEDIATE;
+   buf[ptr++] = SEND_IMMEDIATE;
    // Send packet to FTDI
    if ( ftdi_write_data(&ftdi, buf, ptr) != ptr ) 
    {
@@ -554,63 +552,19 @@ int ft232WriteNbytes(uint8_t *buffer, uint32_t sizeToWrite)
    buf[ptr++] = uint8_t(sizeToWrite & 0xff);
    buf[ptr++] = uint8_t(sizeToWrite >> 8);
    for (i = 0; i <= sizeToWrite; i++) buf[ptr++] = buffer[i];
- //  buf[ptr++] = 0xAB;  //Unsupported command for check buffer status
- //  buf[ptr++] = SEND_IMMEDIATE;
+   buf[ptr++] = SEND_IMMEDIATE;
    if ( ftdi_write_data(&ftdi, buf, ptr) != ptr )
    {
       std::cout << "Write failed\n";
       return -1;
    }
-   usleep(800);
-
-
-   // if (ftdi_tcoflush(&ftdi) < 0) {
-   //     std::cout << "Flush failed\n";
-   //     return -1;
-   // }
-
-   //ftdi_tciflush(&ftdi);
-   // Устанавливаем малый таймаут чтения
-   // int old_timeout = ftdi.usb_read_timeout;
-   // ftdi.usb_read_timeout = 10; // 10 мс
-
-   // unsigned char dummy;
-   // int bytesRead = ftdi_read_data(&ftdi, &dummy, 1);
-   // if (bytesRead < 0) {
-   //     std::cout << "Read after write failed\n";
-   //     // Не критично, можно продолжить
-   // }
-
-   // // Восстанавливаем таймаут (по желанию)
-   // ftdi.usb_read_timeout = old_timeout;
-
-
- //   uint8_t sync_resp[2] = {0};
- //   int total_read = 0;
-
- //   while (total_read < 2) {
- //       int res = ftdi_read_data(&ftdi, sync_resp + total_read, 2 - total_read);
- // //      printf("%x\n",total_read);
- //       if (res < 0) {
- //           std::cout << "Sync failed / timeout\n";
- //           return -1;
- //       }
- //       total_read += res;
- //   }
-   //ftdi_tcioflush(&ftdi);
+   usleep(10);
    return 0;
-   // Проверяем, что это действительно подтверждение 0xFA 0xAB
-   // if (sync_resp[0] == 0xFA && sync_resp[1] == 0xAB) {
-   //     return 0; // Успех! Передача физически завершена.
-   // }
-
-   // std::cout << "Sync invalid response\n";
-   // return -1;
 }
 
 int ft232ReadNbytes(uint8_t *buffer, uint32_t sizeToRead)
 {
-   unsigned char buf[131072] = {0};
+   unsigned char buf[8] = {0};
    uint8_t ptr = 0;
    uint32_t i;
    sizeToRead--;
@@ -628,10 +582,11 @@ int ft232ReadNbytes(uint8_t *buffer, uint32_t sizeToRead)
     // Reading FTDI buffer
     int bytes_read = 0;
     int total_read = 0;
-    while (total_read < sizeToRead) {
+    while (total_read <= sizeToRead) {
         bytes_read = ftdi_read_data(&ftdi, buffer + total_read, sizeToRead - total_read + 1);
         if (bytes_read < 0) break;
         total_read += bytes_read;
+        usleep(10);
     }
 
    ftdi_tcioflush(&ftdi);
@@ -690,7 +645,7 @@ static int ft232hMWWaitForReady()
     uint8_t gpio_val = 0;
     usleep(50);
     ptr = 0;
-    j = 0;
+
     for (j = 0; j < 8; j++)
     {
         buf[ptr++] = 0x80;
