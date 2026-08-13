@@ -232,7 +232,6 @@ int ft232I2cBlockWrite(uint8_t *data, uint32_t address, uint32_t blockSize, uint
     
     int ret;
     uint32_t step, maxstep;
-    int32_t actuallen = 0;
     uint32_t size = blockSize;
     
     if (size > sectorSize) size = sectorSize;
@@ -333,13 +332,10 @@ int ft232I2cBlockRead(uint8_t *data, uint32_t address, uint32_t blockSize, uint8
     uint8_t deviceAddress = 0;
     uint8_t wordAddressLo = 0;
     uint8_t wordAddressHi = 0;
-    
-    int ret;
+
     uint32_t step, maxstep;
-    int32_t actuallen = 0;
     uint32_t size = blockSize;
     
-    //if (size > 64) size = 64;
     if (size > 8) size = 8;
     maxstep = blockSize / size;
 
@@ -552,7 +548,6 @@ int ft232WriteNbytes(uint8_t *buffer, uint32_t sizeToWrite)
    buf[ptr++] = uint8_t(sizeToWrite & 0xff);
    buf[ptr++] = uint8_t(sizeToWrite >> 8);
    for (i = 0; i <= sizeToWrite; i++) buf[ptr++] = buffer[i];
-   buf[ptr++] = SEND_IMMEDIATE;
    if ( ftdi_write_data(&ftdi, buf, ptr) != ptr )
    {
       std::cout << "Write failed\n";
@@ -568,7 +563,7 @@ int ft232ReadNbytes(uint8_t *buffer, uint32_t sizeToRead)
    uint8_t ptr = 0;
    uint32_t i;
    sizeToRead--;
-   buf[ptr++] = 0x20; // MPSSE_DO_READ (или 0x24 с READ_NEG, проверьте что стабильнее)
+   buf[ptr++] = 0x24; // MPSSE_DO_READ 0x20 or 0x24
    buf[ptr++] = sizeToRead & 0xFF;
    buf[ptr++] = sizeToRead >> 8;
    buf[ptr++] = SEND_IMMEDIATE;
