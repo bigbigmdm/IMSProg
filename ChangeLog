@@ -1,3 +1,4 @@
+- Ver. 1.9.1 - Added support for the FH232H v1.2 device.
 - Ver. 1.8.6 - Unused files removed, copyright added/changed. Added support for 
 24LC515, 24LC1025. Fix: if an error was detected, the sequence of operations was
 not interrupted. Fix: When erasing I2C or SPI Flash, the STOP button did not 

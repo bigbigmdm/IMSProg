@@ -15,7 +15,8 @@
 
 **IMSProg** - **I**2C, **M**icroWire and **S**PI EEPROM/Flash chip
 **Prog**rammer - is a program to read, write EEPROM chips use the
-`CH341A programmer` device and `CH347T programmer` device.
+`CH341A programmer` device, `CH347T programmer` device and `FT232H v1.2
+programmer` device.
 
 | CH341A/B v1.2 | CH341A v1.7| CH347T v1.0| CH347T v1.1|
 | :---:         | :---:      | :---:      | :---:      |
@@ -53,6 +54,7 @@ For build are needed:
 - g++ or clang
 - CMake
 - libusb 1.0
+- libftdi
 - Qt5 or Qt6
 - Qt5LinguistTools or Qt6LinguistTools
 - pkgconf or pkg-config
@@ -62,12 +64,13 @@ On Debian and derivatives:
 
 - for Qt5:
 
-`sudo apt-get install cmake g++ libusb-1.0-0-dev qtbase5-dev qttools5-dev pkgconf`
+`sudo apt-get install cmake g++ libusb-1.0-0-dev qtbase5-dev qttools5-dev pkgconf libftdi1-dev`
 
 - for Qt6:
 
-`sudo apt-get install cmake g++ libusb-1.0-0-dev pkgconf qt6-base-dev qt6-tools-dev
- linguist-qt6 qt6-l10n-tools qt6-base-dev-tools qt6-tools-dev-tools`
+`sudo apt-get install cmake g++ libusb-1.0-0-dev pkgconf qt6-base-dev 
+qt6-tools-dev libftdi1-dev linguist-qt6 qt6-l10n-tools qt6-base-dev-tools 
+qt6-tools-dev-tools`
 
 On Debian >=13 and Ubuntu >=24.04:
 
@@ -86,14 +89,14 @@ On Fedora and derivatives:
 
 ```
 sudo dnf install cmake libusb libusb1 libusb1-devel qt5-qtbase-devel
-sudo dnf install pkgconf-pkg-config qt5-linguist
+sudo dnf install pkgconf-pkg-config qt5-linguist libftdi-devel
 ```
 
 - for Qt6:
 
 ```
 sudo dnf install cmake gcc-c++ libusb1-devel pkgconf-pkg-config qt6-qtbase-devel
-sudo dnf install qt6-qttools-devel qt6-linguist
+sudo dnf install qt6-qttools-devel qt6-linguist libftdi-devel
 ```
 
 On OpenSUSE and derivatiles:
@@ -103,6 +106,7 @@ On OpenSUSE and derivatiles:
 ```
 sudo zypper install cmake gcc-c++ libqt5-qtbase-devel
 sudo zypper install libqt5-linguist-devel libusb-1_0-devel
+sudo zypper install libftdi1-devel
 ```
 
 - for Qt6:
@@ -110,6 +114,7 @@ sudo zypper install libqt5-linguist-devel libusb-1_0-devel
 ```
 sudo zypper install cmake gcc-c++ libqt6-qtbase-devel
 sudo zypper install libqt6-linguist-devel libusb-1_0-devel
+sudo zypper install libftdi1-devel
 ```
 
 ### macOS
@@ -125,7 +130,7 @@ install the required packages
 using brew:  
 
 ```
-brew install qt@6 libusb cmake pkgconf
+brew install qt@6 libusb cmake pkgconf libftdi
 ```
 
 if not using the [build_all.sh](build_all.sh) script then make sure `libusb` is
