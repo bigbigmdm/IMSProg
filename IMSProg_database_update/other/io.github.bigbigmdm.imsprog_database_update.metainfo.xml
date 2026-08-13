@@ -81,6 +81,11 @@
      <name>Mikhail Medvedev</name>
   </developer>
   <releases>
+  <release version="1.9.1" date="2025-08-13" urgency="medium">
+    <description>
+        <p>Added: Support for the FT232H programmer.</p>
+    </description>
+  </release>
   <release version="1.8.6" date="2025-07-10" urgency="medium">
     <description>
         <p>Removed unused files.</p>
