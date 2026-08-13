@@ -61,5 +61,14 @@
         <file>img/v1_7_spi_2v5.png</file>
         <file>img/v1_7_i2c_5v0.png</file>
         <file>img/v1_1_i2c_5v0.png</file>
+        <file>img/FT232H_i2c_3v3.png</file>
+        <file>img/FT232H_i2c_5v0.png</file>
+        <file>img/FT232H_mw_3v3.png</file>
+        <file>img/FT232H_NAND_1v8.png</file>
+        <file>img/FT232H_NAND_3v3.png</file>
+        <file>img/FT232H_spi_1v8.png</file>
+        <file>img/FT232H_spi_2v5.png</file>
+        <file>img/FT232H_spi_3v3.png</file>
+        <file>img/FT232H_45_3v3.png</file>
     </qresource>
 </RCC>
