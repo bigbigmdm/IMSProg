@@ -18,9 +18,9 @@
 `CH341A programmer` device, `CH347T programmer` device and `FT232H v1.2
 programmer` device.
 
-| CH341A/B v1.2 | CH341A v1.7| CH347T v1.0| CH347T v1.1|
-| :---:         | :---:      | :---:      | :---:      |
-| ![CH341A black](img/ch341_black150.png)  ![CH341A green](img/ch341_green150.png) | ![CH341A green](img/ch341v1_7.png) |![CH347T v1.0](img/ch347_150.png) |![CH347T v1.1](img/ch347_v1_1_150.png) |
+| CH341A/B v1.2 | CH341A v1.7| CH347T v1.0| CH347T v1.1| FT232H v1.2|
+| :---:         | :---:      | :---:      | :---:      | :---:      |
+| ![CH341A black](img/ch341_black150.png)  ![CH341A green](img/ch341_green150.png) | ![CH341A green](img/ch341v1_7.png) |![CH347T v1.0](img/ch347_150.png) |![CH347T v1.1](img/ch347_v1_1_150.png) |![CH347T v1.1](img/ft232h_150.png) |
 
 The IMSProg makes respect to [QHexEdit2](https://github.com/Simsys/qhexedit2)
 hex editor and [SNANDer programmer](https://github.com/McMCCRU/SNANDer). The
