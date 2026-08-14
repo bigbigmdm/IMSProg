@@ -10,8 +10,8 @@ set(CMAKE_AUTOUIC ON)
 project(IMSProg LANGUAGES C CXX)
 
 include(FindPkgConfig)
-pkg_check_modules(LIBUSB REQUIRED libusb-1.0)
-pkg_check_modules(LIBFTDI REQUIRED libftdi1)
+pkg_check_modules(LIBUSB REQUIRED IMPORTED_TARGET libusb-1.0)
+pkg_check_modules(LIBFTDI REQUIRED IMPORTED_TARGET libftdi1)
 
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
   set(CMAKE_INSTALL_DO_STRIP FALSE)
@@ -238,22 +238,20 @@ add_executable(${PROJECT_NAME}
 
 target_include_directories(${PROJECT_NAME} PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}")
 target_include_directories(${PROJECT_NAME} PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/qhexedit2/src/")
-target_include_directories(${PROJECT_NAME} PRIVATE "${LIBUSB_INCLUDE_DIRS}")
-target_include_directories(${PROJECT_NAME} PRIVATE "${LIBFTDI_INCLUDE_DIRS}")
 
 if (QT_VERSION_MAJOR EQUAL 5)
     target_link_libraries(${PROJECT_NAME}
         Qt5::Core
         Qt5::Widgets
-        ${LIBUSB_LIBRARIES}
-        ${LIBFTDI_LIBRARIES}
+        PkgConfig::LIBUSB
+        PkgConfig::LIBFTDI
     )
 else()
     target_link_libraries(${PROJECT_NAME} PRIVATE
         Qt::Core
         Qt::Widgets
-        ${LIBUSB_LIBRARIES}
-        ${LIBFTDI_LIBRARIES}
+        PkgConfig::LIBUSB
+        PkgConfig::LIBFTDI
     )
 endif()
 
