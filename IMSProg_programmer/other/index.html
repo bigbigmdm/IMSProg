@@ -28,7 +28,7 @@ code{border-radius:5px;border: 1px #ddd;background:#ddd;padding:2px;}
 <li><a href="#Licensing">Licensing</a></li>
 <li><a href="#Translations">Translations</a></li>
 </ul>
-<p><strong>IMSProg</strong> - <strong>I</strong>2C, <strong>M</strong>icroWire and <strong>S</strong>PI EEPROM/Flash chip <strong>Prog</strong>rammer - is a program to read, write EEPROM chips use the <code>CH341A programmer</code> device and <code>CH347T programmer</code> device.</p>
+<p><strong>IMSProg</strong> - <strong>I</strong>2C, <strong>M</strong>icroWire and <strong>S</strong>PI EEPROM/Flash chip <strong>Prog</strong>rammer - is a program to read, write EEPROM chips use the <code>CH341A programmer</code> device, <code>CH347T programmer</code> device and <code>FT232H v1.2 programmer</code> device.</p>
 <table>
 <thead>
 <tr class="header">
@@ -36,6 +36,7 @@ code{border-radius:5px;border: 1px #ddd;background:#ddd;padding:2px;}
 <th style="text-align: center;">CH341A v1.7</th>
 <th style="text-align: center;">CH347T v1.0</th>
 <th style="text-align: center;">CH347T v1.1</th>
+<th style="text-align: center;">FT232H v1.2</th>
 </tr>
 </thead>
 <tbody>
@@ -44,6 +45,7 @@ code{border-radius:5px;border: 1px #ddd;background:#ddd;padding:2px;}
 <td style="text-align: center;"><img src="ch341v1_7.png" alt="CH341A green" /></td>
 <td style="text-align: center;"><img src="ch347_150.png" alt="CH347T v1.0" /></td>
 <td style="text-align: center;"><img src="ch347_v1_1_150.png" alt="CH347T v1.1" /></td>
+<td style="text-align: center;"><img src="ft232h_150.png" alt="CH347T v1.1" /></td>
 </tr>
 </tbody>
 </table>
@@ -65,16 +67,16 @@ code{border-radius:5px;border: 1px #ddd;background:#ddd;padding:2px;}
 sudo ./build_all.sh</code></pre>
 <h2 id="system-software-requirements">System software requirements</h2>
 <h3 id="linux">Linux</h3>
-<p>For build are needed: - g++ or clang - CMake - libusb 1.0 - Qt5 or Qt6 - Qt5LinguistTools or Qt6LinguistTools - pkgconf or pkg-config - udev</p>
+<p>For build are needed: - g++ or clang - CMake - libusb 1.0 - libftdi - Qt5 or Qt6 - Qt5LinguistTools or Qt6LinguistTools - pkgconf or pkg-config - udev</p>
 <p>On Debian and derivatives:</p>
 <ul>
 <li>for Qt5:</li>
 </ul>
-<p><code>sudo apt-get install cmake g++ libusb-1.0-0-dev qtbase5-dev qttools5-dev pkgconf</code></p>
+<p><code>sudo apt-get install cmake g++ libusb-1.0-0-dev qtbase5-dev qttools5-dev pkgconf libftdi1-dev</code></p>
 <ul>
 <li>for Qt6:</li>
 </ul>
-<p><code>sudo apt-get install cmake g++ libusb-1.0-0-dev pkgconf qt6-base-dev qt6-tools-dev  linguist-qt6 qt6-l10n-tools qt6-base-dev-tools qt6-tools-dev-tools</code></p>
+<p><code>sudo apt-get install cmake g++ libusb-1.0-0-dev pkgconf qt6-base-dev  qt6-tools-dev libftdi1-dev linguist-qt6 qt6-l10n-tools qt6-base-dev-tools  qt6-tools-dev-tools</code></p>
 <p>On Debian &gt;=13 and Ubuntu &gt;=24.04:</p>
 <p><code>sudo apt-get install systemd-dev</code></p>
 <p>On older:</p>
@@ -85,29 +87,31 @@ sudo ./build_all.sh</code></pre>
 <li>for Qt5:</li>
 </ul>
 <pre><code>sudo dnf install cmake libusb libusb1 libusb1-devel qt5-qtbase-devel
-sudo dnf install pkgconf-pkg-config qt5-linguist</code></pre>
+sudo dnf install pkgconf-pkg-config qt5-linguist libftdi-devel</code></pre>
 <ul>
 <li>for Qt6:</li>
 </ul>
 <pre><code>sudo dnf install cmake gcc-c++ libusb1-devel pkgconf-pkg-config qt6-qtbase-devel
-sudo dnf install qt6-qttools-devel qt6-linguist</code></pre>
+sudo dnf install qt6-qttools-devel qt6-linguist libftdi-devel</code></pre>
 <p>On OpenSUSE and derivatiles:</p>
 <ul>
 <li>for Qt5:</li>
 </ul>
 <pre><code>sudo zypper install cmake gcc-c++ libqt5-qtbase-devel
-sudo zypper install libqt5-linguist-devel libusb-1_0-devel</code></pre>
+sudo zypper install libqt5-linguist-devel libusb-1_0-devel
+sudo zypper install libftdi1-devel</code></pre>
 <ul>
 <li>for Qt6:</li>
 </ul>
 <pre><code>sudo zypper install cmake gcc-c++ libqt6-qtbase-devel
-sudo zypper install libqt6-linguist-devel libusb-1_0-devel</code></pre>
+sudo zypper install libqt6-linguist-devel libusb-1_0-devel
+sudo zypper install libftdi1-devel</code></pre>
 <h3 id="macos">macOS</h3>
 <p>if using Homebrew then Xcode Command Line Tools will install by default, if not then install manually from terminal:</p>
 <pre><code>xcode-select --install</code></pre>
 <p>install the required packages</p>
 <p>using brew:</p>
-<pre><code>brew install qt@6 libusb cmake pkgconf</code></pre>
+<pre><code>brew install qt@6 libusb cmake pkgconf libftdi</code></pre>
 <p>if not using the <a href="build_all.sh">build_all.sh</a> script then make sure <code>libusb</code> is in your <code>C_INCLUDE_PATH</code></p>
 <pre><code>export C_INCLUDE_PATH=/usr/local/opt/libusb/include</code></pre>
 <h2 id="how-to-use">How to use:</h2>
