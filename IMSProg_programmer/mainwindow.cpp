@@ -1489,12 +1489,15 @@ void MainWindow::on_actionVerify_triggered()
 
 void MainWindow::on_pushButton_3_clicked()
 {
-    ui->pushButton_3->setStyleSheet(redKeyStyle);
-    if (ui->checkBox->isChecked())   on_actionErase_triggered();
-    if (ui->checkBox_1->isChecked()) on_actionCheck_erase_triggered();
-    if (ui->checkBox_2->isChecked()) on_actionWrite_triggered();
-    if (ui->checkBox_3->isChecked()) on_actionVerify_triggered();
-    ui->pushButton_3->setStyleSheet(grnKeyStyle);
+    if (QMessageBox::Yes == QMessageBox::question(this, tr("Warning"), tr("This operation will erase the chip. Do you want to continue?"), QMessageBox::Yes | QMessageBox::Cancel))
+    {
+        ui->pushButton_3->setStyleSheet(redKeyStyle);
+        if (ui->checkBox->isChecked())   on_actionErase_triggered();
+        if (ui->checkBox_1->isChecked()) on_actionCheck_erase_triggered();
+        if (ui->checkBox_2->isChecked()) on_actionWrite_triggered();
+        if (ui->checkBox_3->isChecked()) on_actionVerify_triggered();
+        ui->pushButton_3->setStyleSheet(grnKeyStyle);
+    }
 }
 
 void MainWindow::receiveAddr(QString addressData)
