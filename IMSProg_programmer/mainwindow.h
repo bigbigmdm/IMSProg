@@ -146,14 +146,14 @@ private:
     int statusCH341;
     QByteArray chipData, oldChipData;
     uint32_t currentChipSize, currentNumBlocks, currentBlockSize, currentPageSize, currentECCsize;
-    uint8_t currentAlgorithm, currentChipType, currentI2CBusSpeed;
+    uint8_t currentAlgorithm, currentChipType;
+    uint16_t currentDelay, defaultSpeed, currentI2CBusSpeed;
     unsigned int currentAddr4bit;
     bool isHalted;
     bool filled;
     bool nandRaw;
     uint8_t numberOfReads;
     QTimer *timer;
-    QVector <QString> chType = {"SPI_FLASH","25_EEPROM","93_EEPROM","24_EEPROM","95_EEPROM"};
     struct chip_data {
         QString chipManuf;
         QString chipTypeTxt;

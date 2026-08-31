@@ -41,58 +41,34 @@
 
 extern struct ch347_priv *priv;
 
-int ProgDeviceInit( u8 deviceType, u8 chipType, u8 i2cSpeed )
+int ProgDeviceInit( u8 deviceType, u8 chipType, u16 speed )
 {
     int ret = 0;
-    uint speed = 20;
     switch (deviceType)
         {
         case 0: // CH341A v1.2
-            ret = ch341a_init(chipType, i2cSpeed);
+            ret = ch341a_init(chipType, speed);
             break;
         case 1: // CH341A v1.7
-            ret = ch341a_init(chipType, i2cSpeed);
+            ret = ch341a_init(chipType, speed);
             break;
         case 2: // CH347T v1.0
-            ret = ch347_spi_init(chipType, i2cSpeed, false);
+            ret = ch347_spi_init(chipType, speed, false);
             break;
         case 3: // CH347T v1.1
-            ret = ch347_spi_init(chipType, i2cSpeed, true);
+            ret = ch347_spi_init(chipType, speed, true);
             break;
         case 4: // FT232H v1.2
             ret = initFt232h();
             if (ret != 0) return ret;
-            if  (chipType == 2) ft232hSetSpeedSPI(20);
-            if ((chipType == 3) || (chipType == 4) || (chipType == 5)) ft232hSetSpeedSPI(5000);
-            if ((chipType == 0) || (chipType == 6)) ft232hSetSpeedSPI(30000);
+            if (chipType == 1) ft232hSetSpeedI2C(speed);
+            if (chipType == 2) ft232hSetSpeedI2C(20);
+            if (chipType  > 2) ft232hSetSpeedSPI(speed);
             break;
         default: //Unsupported types
             ret = -1;
             break;
         }
-        if ((chipType == 1) && (deviceType == 4))
-        {
-            switch (i2cSpeed)
-            {
-            case 0:
-                speed = 20;
-                break;
-            case 1:
-                speed = 100;
-                break;
-            case 2:
-                speed = 400;
-                break;
-            case 3:
-                speed = 750;
-                break;
-            default:
-                speed = 20;
-                break;
-            }
-            ft232hSetSpeedI2C(speed);
-        }
-        if ((chipType == 2) && (deviceType == 4)) ft232hSetSpeedI2C(20);
     return ret;
 }
 
@@ -150,6 +126,25 @@ int getDeviceDescriptor(u8 *data, u8 deviceType)
         break;
     }
     return 0;
+}
+
+uint16_t getInterfaceSpeed(u8 deviceType, u8 chipType, u16 delay)
+{
+    u16 interfaceSpeed = 400;
+    static u16 defaultSpeed[6][7] = {
+        //SPINOR 24xx   93xx   25xx   95xx   45xx   SPINAND
+        { 1600,   400,  1600,  1600,  1600,  1600,  1600}, // CH341A v1.2
+        { 1600,   400,  1600,  1600,  1600,  1600,  1600}, // CH341A v1.7
+        {30000,   400,  1600,  5000,  5000,  5000, 60000}, // CH347T v1.0
+        {15000,   400,  1600,  5000,  5000,  5000, 15000}, // CH347T v1.1
+        {30000,   400,  1600,  5000,  5000,  5000, 30000}, // FT232H v1.2
+        {30000,   400,  1600,  5000,  5000,  5000, 30000}  // Reserved
+    };
+    if ((delay > 40) && (delay < 2100)) interfaceSpeed = defaultSpeed[deviceType][chipType] * delay / 1000;
+    else interfaceSpeed = defaultSpeed[deviceType][chipType];
+    if ((interfaceSpeed) < 20) interfaceSpeed = 20;
+    if ((interfaceSpeed) > 60000) interfaceSpeed = 60000;
+    return interfaceSpeed;
 }
 
 SPI_CONTROLLER_RTN_T SPI_CONTROLLER_Enable_Manual_Mode( void )

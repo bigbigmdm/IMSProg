@@ -335,7 +335,7 @@ void ch347_close(struct ch347_priv *priv) {
 }
 
 
-bool ch347_spi_init(uint8_t ch_type, uint8_t i2cBusSpeed, bool version) {
+bool ch347_spi_init(uint8_t ch_type, uint16_t busSpeed, bool version) {
     int ret;
     priv = ch347_open();
     if (!priv)  return 1;
@@ -349,13 +349,11 @@ bool ch347_spi_init(uint8_t ch_type, uint8_t i2cBusSpeed, bool version) {
     switch (ch_type)
           {
              case 0: //SPI NOR FLASH
-                if (!version) freq = 30000;
-                else freq = 15000;
+                freq = busSpeed;
                 break;
              case 1: //24xxx I2C
-                freq = 100;
                 ch347setSDAandSCLHighlevels();
-                ch347setI2Cstream(i2cBusSpeed);
+                ret = ch347setI2Cstream(busSpeed);
                 break;
              case 2: //93xxx Microwire
                 freq = 100;
@@ -363,19 +361,16 @@ bool ch347_spi_init(uint8_t ch_type, uint8_t i2cBusSpeed, bool version) {
              case 3: //25xxx
              case 4: //95xxx
              case 5: //45xxx DataFlash
-                freq = 5000;
-                break;
              case 6:
-                if (!version) freq = 60000;
-                else freq = 15000;
+                freq = busSpeed;
                 break;
              default:
-                freq = 60000;
+                freq = 30000;
                 break;
           }
 
-    if (ch_type != 1) ret = ch347_set_spi_freq(priv, &freq);
-    return ret == 1;
+    if (ch_type != 1) ch347_set_spi_freq(priv, &freq);
+    return ret;
 }
 
 void ch347_spi_shutdown()

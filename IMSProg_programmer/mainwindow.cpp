@@ -107,10 +107,11 @@ MainWindow::MainWindow(QWidget *parent) :
  ui->comboBox_ECC->addItem("128", 2);
  ui->comboBox_ECC->addItem("256", 3);
 
- ui->comboBox_i2cSpeed->addItem("20 kHz",  0);
- ui->comboBox_i2cSpeed->addItem("100 kHz", 1);
- ui->comboBox_i2cSpeed->addItem("400 kHz", 2);
- ui->comboBox_i2cSpeed->addItem("750 kHz", 3);
+ ui->comboBox_i2cSpeed->addItem("       ",   0);
+ ui->comboBox_i2cSpeed->addItem("20 kHz ",  20);
+ ui->comboBox_i2cSpeed->addItem("100 kHz", 100);
+ ui->comboBox_i2cSpeed->addItem("400 kHz", 400);
+ ui->comboBox_i2cSpeed->addItem("750 kHz", 750);
  ui->comboBox_i2cSpeed->setCurrentIndex(2);
  currentI2CBusSpeed = 2;
 
@@ -125,6 +126,7 @@ MainWindow::MainWindow(QWidget *parent) :
  currentPageSize = 0;
  currentAlgorithm = 0;
  currentChipType = 0;
+ currentDelay = 1000;
  blockStartAddr = 0;
  blockLen = 0;
  currentAddr4bit = 0;
@@ -199,6 +201,7 @@ MainWindow::MainWindow(QWidget *parent) :
         }
    }
  progInit();
+ defaultSpeed = getInterfaceSpeed(current_programmer, currentChipType, currentDelay);
  if (cmdStarted) on_actionOpen_triggered();
 }
 
@@ -213,7 +216,19 @@ void MainWindow::on_pushButton_clicked()
   newFileName = ui->comboBox_name->currentText();
   int res = 0;
   uint32_t numBlocks, step, sectorsPerBlock;
-  statusCH341 = ProgDeviceInit(current_programmer, currentChipType, currentI2CBusSpeed);
+  defaultSpeed = getInterfaceSpeed(current_programmer, currentChipType, currentDelay);
+
+  if (currentChipType != 1)
+  {
+      statusCH341 = ProgDeviceInit(current_programmer, currentChipType, defaultSpeed);
+      qDebug() << "Interface speed" << defaultSpeed << " KHZ\n";
+  }
+  else
+  {
+      statusCH341 = ProgDeviceInit(current_programmer, currentChipType, currentI2CBusSpeed);
+      qDebug() << "Interface speed" << currentI2CBusSpeed << " KHZ\n";
+  }
+
   if (statusCH341 == 0)
   {
     ui->crcEdit->setText("");
@@ -696,8 +711,18 @@ void MainWindow::on_actionErase_triggered()
     //statusCH341 = ch341a_spi_init();
     int ret;
     uint32_t curBlock, numBlocks, step;
-    statusCH341 = ProgDeviceInit(current_programmer, currentChipType, currentI2CBusSpeed);//ch341a_init(currentChipType, currentI2CBusSpeed);
-    ch341StatusFlashing();
+
+    if (currentChipType != 1)
+    {
+        statusCH341 = ProgDeviceInit(current_programmer, currentChipType, defaultSpeed);
+        qDebug() << "Interface speed" << defaultSpeed << " KHZ\n";
+    }
+    else
+    {
+        statusCH341 = ProgDeviceInit(current_programmer, currentChipType, currentI2CBusSpeed);
+        qDebug() << "Interface speed" << currentI2CBusSpeed << " KHZ\n";
+    }
+
     if (statusCH341 != 0)
       {
         QMessageBox::about(this, tr("Error"), tr("Programmer ") + ui->lStatus->text() + tr(" is not connected!"));
@@ -1016,7 +1041,18 @@ void MainWindow::on_actionWrite_triggered()
     //Writting data to chip
     int res = 0, badResult = 0;
     uint32_t numBlocks, step, sectorsPerBlock;
-    statusCH341 = ProgDeviceInit(current_programmer, currentChipType, currentI2CBusSpeed);//statusCH341 = ProgDeviceInit(current_programmer);//ch341a_init(currentChipType, currentI2CBusSpeed);
+
+    if (currentChipType != 1)
+    {
+        statusCH341 = ProgDeviceInit(current_programmer, currentChipType, defaultSpeed);
+        qDebug() << "Interface speed" << defaultSpeed << " KHZ\n";
+    }
+    else
+    {
+        statusCH341 = ProgDeviceInit(current_programmer, currentChipType, currentI2CBusSpeed);
+        qDebug() << "Interface speed" << currentI2CBusSpeed << " KHZ\n";
+    }
+
     if (statusCH341 == 0)
     {
     chipData = hexEdit->data();
@@ -1272,6 +1308,14 @@ void MainWindow::on_comboBox_name_currentTextChanged(const QString &arg1)
                   ui->comboBox_ECC->setCurrentIndex(index);
                }
                currentAlgorithm = chips[i].algorithmCode;
+               currentDelay = chips[i].delay;
+
+               defaultSpeed = getInterfaceSpeed(current_programmer, currentChipType, currentDelay);
+               index = ui->comboBox_i2cSpeed->findData(defaultSpeed);
+               if ( index != -1 )
+               { // -1 for not found
+                   ui->comboBox_i2cSpeed->setCurrentIndex(index);
+               }
            }
        }
        currentChipSize = ui->comboBox_size->currentData().toUInt();
@@ -1315,7 +1359,19 @@ void MainWindow::on_actionVerify_triggered()
     //Reading and veryfying data from chip
     int res = 0;
     uint32_t step, numBlocks, sectorsPerBlock;
-    statusCH341 = ProgDeviceInit(current_programmer, currentChipType, currentI2CBusSpeed);//ch341a_init(currentChipType, currentI2CBusSpeed);
+    //statusCH341 = ProgDeviceInit(current_programmer, currentChipType, currentI2CBusSpeed);//ch341a_init(currentChipType, currentI2CBusSpeed);
+
+    if (currentChipType != 1)
+    {
+        statusCH341 = ProgDeviceInit(current_programmer, currentChipType, defaultSpeed);
+        qDebug() << "Interface speed" << defaultSpeed << " KHZ\n";
+    }
+    else
+    {
+        statusCH341 = ProgDeviceInit(current_programmer, currentChipType, currentI2CBusSpeed);
+        qDebug() << "Interface speed" << currentI2CBusSpeed << " KHZ\n";
+    }
+
     if (statusCH341 == 0)
     {
        if (((currentNumBlocks > 0) && (currentBlockSize >0) && (currentChipType == 0)) ||
@@ -1836,7 +1892,7 @@ void MainWindow::on_comboBox_addr4bit_currentIndexChanged(int index)
 
 void MainWindow::on_comboBox_i2cSpeed_currentIndexChanged(int index)
 {
-   currentI2CBusSpeed = static_cast<uint8_t>(ui->comboBox_i2cSpeed->currentData().toUInt());
+   currentI2CBusSpeed = static_cast<uint16_t>(ui->comboBox_i2cSpeed->currentData().toUInt());
    index++;
 }
 
@@ -2745,7 +2801,19 @@ void MainWindow::on_actionCheck_erase_triggered()
     //Verification of data erasure from the chip
     int res = 0;
     uint32_t step, numBlocks;
-    statusCH341 = ProgDeviceInit(current_programmer, currentChipType, currentI2CBusSpeed);
+
+    if (currentChipType != 1)
+    {
+        statusCH341 = ProgDeviceInit(current_programmer, currentChipType, defaultSpeed);
+        qDebug() << "Interface speed" << defaultSpeed << " KHZ\n";
+    }
+    else
+    {
+        statusCH341 = ProgDeviceInit(current_programmer, currentChipType, currentI2CBusSpeed);
+        qDebug() << "Interface speed" << currentI2CBusSpeed << " KHZ\n";
+    }
+
+    //statusCH341 = ProgDeviceInit(current_programmer, currentChipType, currentI2CBusSpeed);
     if (statusCH341 == 0)
     {
        if (((currentNumBlocks > 0) && (currentBlockSize >0) && (currentChipType == 0)) ||
