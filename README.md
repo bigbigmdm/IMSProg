@@ -872,12 +872,13 @@ The end record is 0x44 (68) zero bytes.
 Default bus speed:
 
 | Chip type / Programmer | CH341a v1.2 | CH341a v1.7 | CH347t v1.0 | CH347T v1.1 | FH232H v1.2 |
-| :---                   |      :---:  |     :---:   |     :---:   |    :---:    |   :---:    |
-| SPI NOR Flash          |   1,6 Mhz   |     1,6 Mhz |     30 Mhz  |    15 Mhz   |   30 Mhz |
-| 25xxx EPROM            |   1,6 Mhz   |     1,6 Mhz |      5  Mhz |    5  Mhz   |  5 Mhz |
-| 93xxx EPROM            |   1,6 Mhz   |     1,6 Mhz |      5  Mhz |    5  Mhz   |  5 Mhz |
-| 45xxx DataFlash        |   1,6 Mhz   |     1,6 Mhz |      5  Mhz |    5  Mhz   |  5 Mhz |
-| SPI NAND Flash         |   1,6 Mhz   |     1,6 Mhz |     60 Mhz  |    15 Mhz   |  30 Mhz |
+| :---                   |      :---:  |     :---:   |     :---:   |    :---:    | :---:  |
+| SPI NOR Flash          |   1.6 Mhz   |     1.6 Mhz |     30 Mhz  |    15 Mhz   | 30 Mhz |
+| 25xxx EPROM            |   1.6 Mhz   |     1.6 Mhz |      5  Mhz |    5  Mhz   |  5 Mhz |
+| 24xxx EPROM            |   0.4 Mhz   |     0.4 Mhz |    0.4  Mhz |  0.4  Mhz   | 0.4 Mhz |
+| 93xxx EPROM            |   1.6 Mhz   |     1.6 Mhz |      5  Mhz |    5  Mhz   |  5 Mhz |
+| 45xxx DataFlash        |   1.6 Mhz   |     1.6 Mhz |      5  Mhz |    5  Mhz   |  5 Mhz |
+| SPI NAND Flash         |   1.6 Mhz   |     1.6 Mhz |     60 Mhz  |    15 Mhz   | 30 Mhz |
 
 ## Licensing
 
