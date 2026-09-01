@@ -18,7 +18,8 @@ code{border-radius:5px;border: 1px #ddd;background:#ddd;padding:2px;}
 <h2 id="imsprog">IMSProg</h2>
 <p><img align="right" src="mini_logo_IMSProg.svg"></p>
 <ul>
-<li><a href="#system-software-requirements">System software requirements</a></li>
+<li><a href="#system-software-requirements">System software
+requirements</a></li>
 <li><a href="#how-to-use">How to use</a></li>
 <li><a href="#list-of-supported-chips">List of supported chips</a></li>
 <li><a href="#packages">Packages</a></li>
@@ -28,8 +29,20 @@ code{border-radius:5px;border: 1px #ddd;background:#ddd;padding:2px;}
 <li><a href="#Licensing">Licensing</a></li>
 <li><a href="#Translations">Translations</a></li>
 </ul>
-<p><strong>IMSProg</strong> - <strong>I</strong>2C, <strong>M</strong>icroWire and <strong>S</strong>PI EEPROM/Flash chip <strong>Prog</strong>rammer - is a program to read, write EEPROM chips use the <code>CH341A programmer</code> device, <code>CH347T programmer</code> device and <code>FT232H v1.2 programmer</code> device.</p>
+<p><strong>IMSProg</strong> - <strong>I</strong>2C,
+<strong>M</strong>icroWire and <strong>S</strong>PI EEPROM/Flash chip
+<strong>Prog</strong>rammer - is a program to read, write EEPROM chips
+use the <code>CH341A programmer</code> device,
+<code>CH347T programmer</code> device and
+<code>FT232H v1.2 programmer</code> device.</p>
 <table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
 <thead>
 <tr class="header">
 <th style="text-align: center;">CH341A/B v1.2</th>
@@ -41,33 +54,49 @@ code{border-radius:5px;border: 1px #ddd;background:#ddd;padding:2px;}
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: center;"><img src="ch341_black150.png" alt="CH341A black" /> <img src="ch341_green150.png" alt="CH341A green" /></td>
-<td style="text-align: center;"><img src="ch341v1_7.png" alt="CH341A green" /></td>
-<td style="text-align: center;"><img src="ch347_150.png" alt="CH347T v1.0" /></td>
-<td style="text-align: center;"><img src="ch347_v1_1_150.png" alt="CH347T v1.1" /></td>
-<td style="text-align: center;"><img src="ft232h_150.png" alt="CH347T v1.1" /></td>
+<td style="text-align: center;"><img src="ch341_black150.png"
+alt="CH341A black" /> <img src="ch341_green150.png"
+alt="CH341A green" /></td>
+<td style="text-align: center;"><img src="ch341v1_7.png"
+alt="CH341A green" /></td>
+<td style="text-align: center;"><img src="ch347_150.png"
+alt="CH347T v1.0" /></td>
+<td style="text-align: center;"><img src="ch347_v1_1_150.png"
+alt="CH347T v1.1" /></td>
+<td style="text-align: center;"><img src="ft232h_150.png"
+alt="CH347T v1.1" /></td>
 </tr>
 </tbody>
 </table>
-<p>The IMSProg makes respect to <a href="https://github.com/Simsys/qhexedit2">QHexEdit2</a> hex editor and <a href="https://github.com/McMCCRU/SNANDer">SNANDer programmer</a>. The format of the chip database is based on the format used in EZP2019, EZP2020, EZP2023, Minpro I, XP866+ programmers. Warning, format is not the same!</p>
+<p>The IMSProg makes respect to <a
+href="https://github.com/Simsys/qhexedit2">QHexEdit2</a> hex editor and
+<a href="https://github.com/McMCCRU/SNANDer">SNANDer programmer</a>. The
+format of the chip database is based on the format used in EZP2019,
+EZP2020, EZP2023, Minpro I, XP866+ programmers. Warning, format is not
+the same!</p>
 <p>IMSProg is a collection of tools:</p>
 <ol type="1">
 <li><p>IMSProg - the chip programmer (it’s the main part).</p></li>
 <li><p>IMSProg_editor - chip database editor.</p></li>
-<li><p>IMSProg_database_update - update chip database using external web-server.</p></li>
+<li><p>IMSProg_database_update - update chip database using external
+web-server.</p></li>
 </ol>
 <figure>
-<img src="IMSProg_1.png" alt="" /><figcaption>CH341A EEPROM programmer</figcaption>
+<img src="IMSProg_1.png" alt="CH341A EEPROM programmer" />
+<figcaption aria-hidden="true">CH341A EEPROM programmer</figcaption>
 </figure>
 <figure>
-<img src="IMSProg.png" alt="" /><figcaption>CH341A EEPROM programmer</figcaption>
+<img src="IMSProg.png" alt="CH341A EEPROM programmer" />
+<figcaption aria-hidden="true">CH341A EEPROM programmer</figcaption>
 </figure>
 <h2 id="compiling-project">Compiling project</h2>
 <pre><code>git clone https://github.com/bigbigmdm/IMSProg.git &amp;&amp; cd IMSProg
 sudo ./build_all.sh</code></pre>
 <h2 id="system-software-requirements">System software requirements</h2>
 <h3 id="linux">Linux</h3>
-<p>For build are needed: - g++ or clang - CMake - libusb 1.0 - libftdi - Qt5 or Qt6 - Qt5LinguistTools or Qt6LinguistTools - pkgconf or pkg-config - udev</p>
+<p>For build are needed: - g++ or clang - CMake - libusb 1.0 - libftdi -
+Qt5 or Qt6 - Qt5LinguistTools or Qt6LinguistTools - pkgconf or
+pkg-config - udev</p>
 <p>On Debian and derivatives:</p>
 <ul>
 <li>for Qt5:</li>
@@ -81,7 +110,8 @@ sudo ./build_all.sh</code></pre>
 <p><code>sudo apt-get install systemd-dev</code></p>
 <p>On older:</p>
 <p><code>sudo apt-get install udev</code></p>
-<p>:information_source: Debian &lt; 11 and Ubuntu &lt; 20.04 are not supported, you may unable to have it working on them.</p>
+<p>:information_source: Debian &lt; 11 and Ubuntu &lt; 20.04 are not
+supported, you may unable to have it working on them.</p>
 <p>On Fedora and derivatives:</p>
 <ul>
 <li>for Qt5:</li>
@@ -107,109 +137,247 @@ sudo zypper install libftdi1-devel</code></pre>
 sudo zypper install libqt6-linguist-devel libusb-1_0-devel
 sudo zypper install libftdi1-devel</code></pre>
 <h3 id="macos">macOS</h3>
-<p>if using Homebrew then Xcode Command Line Tools will install by default, if not then install manually from terminal:</p>
+<p>if using Homebrew then Xcode Command Line Tools will install by
+default, if not then install manually from terminal:</p>
 <pre><code>xcode-select --install</code></pre>
 <p>install the required packages</p>
 <p>using brew:</p>
 <pre><code>brew install qt@6 libusb cmake pkgconf libftdi</code></pre>
-<p>if not using the <a href="build_all.sh">build_all.sh</a> script then make sure <code>libusb</code> is in your <code>C_INCLUDE_PATH</code></p>
+<p>if not using the <a href="build_all.sh">build_all.sh</a> script then
+make sure <code>libusb</code> is in your <code>C_INCLUDE_PATH</code></p>
 <pre><code>export C_INCLUDE_PATH=/usr/local/opt/libusb/include</code></pre>
 <h2 id="how-to-use">How to use:</h2>
-<p>Note: for macOS use CMD <code>⌘</code> instead of CTRL for keyboard shortcuts.</p>
+<p>Note: for macOS use CMD <code>⌘</code> instead of CTRL for keyboard
+shortcuts.</p>
 <h2 id="chip-programmer">Chip programmer</h2>
 <h3 id="launching">Launching</h3>
 <p>Can be launched from Terminal by running the command</p>
 <pre><code>$ IMSProg</code></pre>
 <h3 id="connecting">Connecting</h3>
 <ul>
-<li>Insert the chip into the appropriate slot of the CH341A programmer. The <code>24xxx</code> and <code>25xxx</code> series chips must be inserted directly, according to the markings on the PCB of the CH341A programmer. The <code>93xxx</code> series chips must be inserted into the <code>93xxx adapter</code> and the adapter into the marking <code>25xxx</code> programmer slot. The DataFlash <code>AT45DBxxx</code> series chips must be mounted in a <code>SOP-8 DIP-8</code> and this adapter shall be inserted into the <code>45xxx</code> adapter. The <code>45xxx</code> adapter must be installed in the programmer slot marked <code>25xxx</code>. The SPI NAND Flash chips must be mounted in a <code>WSON-8 DIP-8</code> adapter. This adapter must be installed in the programmer slot marked <code>25xxx</code>.</li>
+<li>Insert the chip into the appropriate slot of the CH341A programmer.
+The <code>24xxx</code> and <code>25xxx</code> series chips must be
+inserted directly, according to the markings on the PCB of the CH341A
+programmer. The <code>93xxx</code> series chips must be inserted into
+the <code>93xxx adapter</code> and the adapter into the marking
+<code>25xxx</code> programmer slot. The DataFlash <code>AT45DBxxx</code>
+series chips must be mounted in a <code>SOP-8 DIP-8</code> and this
+adapter shall be inserted into the <code>45xxx</code> adapter. The
+<code>45xxx</code> adapter must be installed in the programmer slot
+marked <code>25xxx</code>. The SPI NAND Flash chips must be mounted in a
+<code>WSON-8 DIP-8</code> adapter. This adapter must be installed in the
+programmer slot marked <code>25xxx</code>.</li>
 </ul>
 <blockquote>
-<p>[!NOTE] <em>In the current version, the MicroWire (93Cxx) protocol is not supported by the CH347 programming device.</em></p>
-<p><em>CH347T V1.1 - a device with a lower speed than the CH347T V1.0.</em></p>
+<p>[!NOTE] <em>In the current version, the MicroWire (93Cxx) protocol is
+not supported by the CH347 programming device.</em></p>
+<p><em>CH347T V1.1 - a device with a lower speed than the CH347T
+V1.0.</em></p>
 </blockquote>
 <figure>
-<img src="93xxx_adapter.png" alt="" /><figcaption>Adapter</figcaption>
+<img src="93xxx_adapter.png" alt="Adapter" />
+<figcaption aria-hidden="true">Adapter</figcaption>
 </figure>
 <ul>
-<li>If the chip supply voltage is 1.8 volt he must be inserted in <code>1.8 volt adapter</code> and the adapter into needed programmer slot.</li>
+<li>If the chip supply voltage is 1.8 volt he must be inserted in
+<code>1.8 volt adapter</code> and the adapter into needed programmer
+slot.</li>
 </ul>
 <figure>
-<img src="1_8_adapter.png" alt="" /><figcaption>Adapter</figcaption>
+<img src="1_8_adapter.png" alt="Adapter" />
+<figcaption aria-hidden="true">Adapter</figcaption>
 </figure>
 <ul>
-<li>Plug the CH341A programmer into the USB socket of your computer and running the <code>IMSProg</code>.</li>
-<li>You can plug and unplug the programmer device (CH341A) to the USB port at any time when basic operations (reading, checking, and programming) are not in progress.</li>
-<li>Read more about adapters <a href="https://github.com/bigbigmdm/Tools_for_CH341A_programmer?tab=readme-ov-file#Homemade-Chip-adapters">here</a>.</li>
+<li>Plug the CH341A programmer into the USB socket of your computer and
+running the <code>IMSProg</code>.</li>
+<li>You can plug and unplug the programmer device (CH341A) to the USB
+port at any time when basic operations (reading, checking, and
+programming) are not in progress.</li>
+<li>Read more about adapters <a
+href="https://github.com/bigbigmdm/Tools_for_CH341A_programmer?tab=readme-ov-file#Homemade-Chip-adapters">here</a>.</li>
 </ul>
 <h3 id="chip-type-selecting">Chip type selecting</h3>
-<p>Select the type of chip used from the <code>Type</code> pop-up menu: <code>SPI_FLASH</code> when using SPI NOR FLASH chips of the <code>25xxx</code> series, <code>SPI_NAND</code> when using SPI NAND FLASH chips, <code>24_EEPROM</code> when using I2C EEPROM of the <code>24xxx</code> series, <code>93_EEPROM</code> when using MicroWire EEPROM of the <code>93xxx</code> series, <code>45_EEPROM</code> when using DataFlash chips <code>AT45DBxxx</code> series. When using <code>25xxx</code> series SPI NOR FLASH chips (Menu item <code>type</code> -&gt; <code>SPI_FLASH</code>), or SPI NAND FLASH chips (Menu item <code>type</code> -&gt; <code>SPI_NAND</code>), or <code>AT45DBxx</code> series SPI FLASH (Menu item <code>type</code> -&gt; <code>45_EEPROM</code>) the <code>Detect</code> button will be available. When the <code>Detect</code> button or <img src="test64.png" alt="Detect" /> or <code>&lt;Ctrl+D&gt;</code> is pressed, the JEDEC information is read from the chip and all parameters of that chip are loaded from the chip database. Any parameter (<code>size</code>, <code>page size</code>, <code>block size</code>, <code>VCC voltage</code>, <code>and 4-bit address length</code>) can be changed manually. You can manually enter the <code>Manufacture</code> and <code>Name</code> pop-up menu data - all other parameters will be automatically loaded from the chip database. When using <code>24xxx</code> or <code>93xxx</code> or <code>95xxx</code> or <code>25xxx</code> SPI EEPROM (non NOR FLASH) series chips, it is necessary to manually enter the <code>Manufacture</code> and <code>Name</code> pop-up menu data - all other parameters will be automatically loaded from the chip database.</p>
+<p>Select the type of chip used from the <code>Type</code> pop-up menu:
+<code>SPI_FLASH</code> when using SPI NOR FLASH chips of the
+<code>25xxx</code> series, <code>SPI_NAND</code> when using SPI NAND
+FLASH chips, <code>24_EEPROM</code> when using I2C EEPROM of the
+<code>24xxx</code> series, <code>93_EEPROM</code> when using MicroWire
+EEPROM of the <code>93xxx</code> series, <code>45_EEPROM</code> when
+using DataFlash chips <code>AT45DBxxx</code> series. When using
+<code>25xxx</code> series SPI NOR FLASH chips (Menu item
+<code>type</code> -&gt; <code>SPI_FLASH</code>), or SPI NAND FLASH chips
+(Menu item <code>type</code> -&gt; <code>SPI_NAND</code>), or
+<code>AT45DBxx</code> series SPI FLASH (Menu item <code>type</code>
+-&gt; <code>45_EEPROM</code>) the <code>Detect</code> button will be
+available. When the <code>Detect</code> button or <img
+src="test64.png" alt="Detect" /> or <code>&lt;Ctrl+D&gt;</code> is
+pressed, the JEDEC information is read from the chip and all parameters
+of that chip are loaded from the chip database. Any parameter
+(<code>size</code>, <code>page size</code>, <code>block size</code>,
+<code>VCC voltage</code>, <code>and 4-bit address length</code>) can be
+changed manually. You can manually enter the <code>Manufacture</code>
+and <code>Name</code> pop-up menu data - all other parameters will be
+automatically loaded from the chip database. When using
+<code>24xxx</code> or <code>93xxx</code> or <code>95xxx</code> or
+<code>25xxx</code> SPI EEPROM (non NOR FLASH) series chips, it is
+necessary to manually enter the <code>Manufacture</code> and
+<code>Name</code> pop-up menu data - all other parameters will be
+automatically loaded from the chip database.</p>
 <h3 id="file-operations">File operations</h3>
 <ul>
-<li><p>The <img src="save64.png" alt="Save" /> or <code>&lt;Ctrl+S&gt;</code> button is used to save the computer buffer to a file.</p></li>
-<li><p>The <img src="open64.png" alt="Open" /> or <code>&lt;Ctrl+O&gt;</code> button is used to save the file in the computer buffer.</p></li>
-<li><p>The <img src="saveBlock64.png" alt="SavePart" /> or <code>&lt;Ctrl+Shift-S&gt;</code> button is used to save a part of the computer buffer to a file (the start address and length of the part must be entered). This operation can be used when splitting a binary data image into parts.</p></li>
-<li><p>The <img src="loadBlock64.png" alt="LoadPart" /> or <code>&lt;Ctrl+Shift-S&gt;</code> button is used to load a small file to a certain address in the buffer. The data fragment in the buffer will be replaced with new data from the file.</p></li>
-<li><p>The <img src="chipEdit64.png" alt="Edit" /> or <code>&lt;Ctrl+Q&gt;</code> button is used to invoke the chip database editor.</p></li>
-<li><p>The menu item <code>File / Import from Intel HEX</code> is used to save the Intel HEX file in the computer buffer.</p></li>
-<li><p>The menu item <code>File / Export to Intel HEX</code> is used to save the computer buffer to a file in Intel HEX format.</p></li>
+<li><p>The <img src="save64.png" alt="Save" /> or
+<code>&lt;Ctrl+S&gt;</code> button is used to save the computer buffer
+to a file.</p></li>
+<li><p>The <img src="open64.png" alt="Open" /> or
+<code>&lt;Ctrl+O&gt;</code> button is used to save the file in the
+computer buffer.</p></li>
+<li><p>The <img src="saveBlock64.png" alt="SavePart" /> or
+<code>&lt;Ctrl+Shift-S&gt;</code> button is used to save a part of the
+computer buffer to a file (the start address and length of the part must
+be entered). This operation can be used when splitting a binary data
+image into parts.</p></li>
+<li><p>The <img src="loadBlock64.png" alt="LoadPart" /> or
+<code>&lt;Ctrl+Shift-S&gt;</code> button is used to load a small file to
+a certain address in the buffer. The data fragment in the buffer will be
+replaced with new data from the file.</p></li>
+<li><p>The <img src="chipEdit64.png" alt="Edit" /> or
+<code>&lt;Ctrl+Q&gt;</code> button is used to invoke the chip database
+editor.</p></li>
+<li><p>The menu item <code>File / Import from Intel HEX</code> is used
+to save the Intel HEX file in the computer buffer.</p></li>
+<li><p>The menu item <code>File / Export to Intel HEX</code> is used to
+save the computer buffer to a file in Intel HEX format.</p></li>
 </ul>
 <h3 id="basic-programmer-operations">Basic programmer operations</h3>
 <ul>
-<li><p>Pressing <code>Read</code> or <img src="read64.png" alt="Read" /> or <code>&lt;Ctrl+R&gt;</code> to read data from the chip into the computer buffer.</p></li>
-<li><p>Pressing <img src="write64.png" alt="Write" /> or <code>&lt;Ctrl+W&gt;</code> to write data from the computer buffer into the chip.</p></li>
-<li><p>Pressing <img src="erase64.png" alt="Erase" /> or <code>&lt;Ctrl+E&gt;</code> will erase all data in the chip.</p></li>
-<li><p>By selecting <code>Main Menu -&gt; Chip -&gt; Check erase</code> or pressing <code>&lt;Ctrl+J&gt;</code>, you can check whether all data has been correctly deleted from the chip.</p></li>
-<li><p>Pressing the <img src="verify64.png" alt="Verify" /> or <code>&lt;Ctrl+T&gt;</code> button causes the data in the chip and in the computer buffer to be compared.</p></li>
+<li><p>Pressing <code>Read</code> or <img src="read64.png"
+alt="Read" /> or <code>&lt;Ctrl+R&gt;</code> to read data from the chip
+into the computer buffer.</p></li>
+<li><p>Pressing <img src="write64.png" alt="Write" /> or
+<code>&lt;Ctrl+W&gt;</code> to write data from the computer buffer into
+the chip.</p></li>
+<li><p>Pressing <img src="erase64.png" alt="Erase" /> or
+<code>&lt;Ctrl+E&gt;</code> will erase all data in the chip.</p></li>
+<li><p>By selecting <code>Main Menu -&gt; Chip -&gt; Check erase</code>
+or pressing <code>&lt;Ctrl+J&gt;</code>, you can check whether all data
+has been correctly deleted from the chip.</p></li>
+<li><p>Pressing the <img src="verify64.png" alt="Verify" /> or
+<code>&lt;Ctrl+T&gt;</code> button causes the data in the chip and in
+the computer buffer to be compared.</p></li>
 </ul>
-<p>The progress bar shows the progress of the read, erase, and verify operations.</p>
+<p>The progress bar shows the progress of the read, erase, and verify
+operations.</p>
 <ul>
-<li><p>The <code>Auto</code> button is used to perform erase, check erase, write and verify operations in sequence. If one of these operations is not needed, you can uncheck the checkbox for that operation.</p></li>
-<li><p>The <img src="stop64.png" alt="Stop" /> or <code>&lt;Ctrl+I&gt;</code> key is used to force interruption of chip read/write/erase/verify operations.</p></li>
-<li><p>The <code>i</code> key show the connection chip to CH341A device image form.</p></li>
-<li><p>The <code>Main menu -&gt; Chip -&gt; Chip info</code> or <code>&lt;Ctrl+P&gt;</code> item shows the Serial Flash Discoverable Parameter (SFDP) register and the status registers of the SPI NOR flash memory chips.</p></li>
+<li><p>The <code>Auto</code> button is used to perform erase, check
+erase, write and verify operations in sequence. If one of these
+operations is not needed, you can uncheck the checkbox for that
+operation.</p></li>
+<li><p>The <img src="stop64.png" alt="Stop" /> or
+<code>&lt;Ctrl+I&gt;</code> key is used to force interruption of chip
+read/write/erase/verify operations.</p></li>
+<li><p>The <code>i</code> key show the connection chip to CH341A device
+image form.</p></li>
+<li><p>The <code>Main menu -&gt; Chip -&gt; Chip info</code> or
+<code>&lt;Ctrl+P&gt;</code> item shows the Serial Flash Discoverable
+Parameter (SFDP) register and the status registers of the SPI NOR flash
+memory chips.</p></li>
 </ul>
 <figure>
-<img src="sfdp_unblock_en.png" alt="" /><figcaption>SFDP</figcaption>
+<img src="sfdp_unblock_en.png" alt="SFDP" />
+<figcaption aria-hidden="true">SFDP</figcaption>
 </figure>
-<p>If the SPI NOR FLASH chip is detected normally, but is not read (gives the message <code>Error reading sector 0</code>), then in the <code>Chip info</code> window you can change bits <code>BP4</code> and <code>BP3</code> to zero and press the <code>Write registers</code> button. Then repeat the chip reading operation.</p>
+<p>If the SPI NOR FLASH chip is detected normally, but is not read
+(gives the message <code>Error reading sector 0</code>), then in the
+<code>Chip info</code> window you can change bits <code>BP4</code> and
+<code>BP3</code> to zero and press the <code>Write registers</code>
+button. Then repeat the chip reading operation.</p>
 <figure>
-<img src="sfdp_unblock_en2.png" alt="" /><figcaption>SFDP</figcaption>
+<img src="sfdp_unblock_en2.png" alt="SFDP" />
+<figcaption aria-hidden="true">SFDP</figcaption>
 </figure>
-<p>If the SPI NOR FLASH chip is read unreliably (with a different checksum each time) and <code>Status Register 2</code> is available in the chip, you can change bits <code>DRV0</code> and <code>DRV1</code> to zero and press the Write Registers button. This will increase the power of the output stage of the <code>DO</code> pin of the chip. Then repeat the chip read operation.</p>
-<p>For <code>25xxx</code>, <code>95xxx</code> and <code>45xxx</code> series chips that have only one status register, the <code>Chip info</code> form is as follows:</p>
+<p>If the SPI NOR FLASH chip is read unreliably (with a different
+checksum each time) and <code>Status Register 2</code> is available in
+the chip, you can change bits <code>DRV0</code> and <code>DRV1</code> to
+zero and press the Write Registers button. This will increase the power
+of the output stage of the <code>DO</code> pin of the chip. Then repeat
+the chip read operation.</p>
+<p>For <code>25xxx</code>, <code>95xxx</code> and <code>45xxx</code>
+series chips that have only one status register, the
+<code>Chip info</code> form is as follows:</p>
 <figure>
-<img src="sr0_en.png" alt="" /><figcaption>SFDP</figcaption>
+<img src="sr0_en.png" alt="SFDP" />
+<figcaption aria-hidden="true">SFDP</figcaption>
 </figure>
-<p>For <code>SPI NAND FLASH</code> chips the <code>Chip info</code> form is as follows:</p>
+<p>For <code>SPI NAND FLASH</code> chips the <code>Chip info</code> form
+is as follows:</p>
 <figure>
-<img src="sr_nand_en.png" alt="" /><figcaption>SFDP</figcaption>
+<img src="sr_nand_en.png" alt="SFDP" />
+<figcaption aria-hidden="true">SFDP</figcaption>
 </figure>
 <ul>
-<li>The <code>Main menu -&gt; Chip -&gt; Security Registers</code> or <code>&lt;Ctrl+U&gt;</code> item is used to work with <code>SPI NOR Flash</code> and <code>SPI NAND FLASH</code> security registers data. This form allows reading, write, erase, save and load security register data from the computer.</li>
+<li>The <code>Main menu -&gt; Chip -&gt; Security Registers</code> or
+<code>&lt;Ctrl+U&gt;</code> item is used to work with
+<code>SPI NOR Flash</code> and <code>SPI NAND FLASH</code> security
+registers data. This form allows reading, write, erase, save and load
+security register data from the computer.</li>
 </ul>
 <figure>
-<img src="Security_registers_form.png" alt="" /><figcaption>Security registers</figcaption>
+<img src="Security_registers_form.png" alt="Security registers" />
+<figcaption aria-hidden="true">Security registers</figcaption>
 </figure>
-<p>The buttons at the bottom of the form (<img src="read64.png" alt="Read" />, <img src="erase64.png" alt="Erase" />, <img src="write64.png" alt="Write" />, <img src="open64.png" alt="Open" />, <img src="save64.png" alt="Save" />) perform a similar function to the top buttons on the main form. The <code>Security register number:</code> drop-down menu allows you to select one of the valid registers for the current chip for operation. The security registers can be locked for writing forever. If you want to know about this, please see <code>Main Menu -&gt; Chip -&gt; Chip Information</code> item or &lt;Ctrl+P&gt;, data fields in <code>LB3</code>, <code>LB2</code> and <code>LB1</code> in <code>Status register 1</code>. Please refer to the datasheet of your chip for detailed information. For NAND FLASH chips you can scanning bad blocks, use <code>Main Menu -&gt; Chip -&gt; Bad block management</code> or <code>&lt;Ctrl+B&gt;</code> key.</p>
+<p>The buttons at the bottom of the form (<img src="read64.png"
+alt="Read" />, <img src="erase64.png" alt="Erase" />, <img
+src="write64.png" alt="Write" />, <img src="open64.png"
+alt="Open" />, <img src="save64.png" alt="Save" />) perform a
+similar function to the top buttons on the main form. The
+<code>Security register number:</code> drop-down menu allows you to
+select one of the valid registers for the current chip for operation.
+The security registers can be locked for writing forever. If you want to
+know about this, please see
+<code>Main Menu -&gt; Chip -&gt; Chip Information</code> item or
+&lt;Ctrl+P&gt;, data fields in <code>LB3</code>, <code>LB2</code> and
+<code>LB1</code> in <code>Status register 1</code>. Please refer to the
+datasheet of your chip for detailed information. For NAND FLASH chips
+you can scanning bad blocks, use
+<code>Main Menu -&gt; Chip -&gt; Bad block management</code> or
+<code>&lt;Ctrl+B&gt;</code> key.</p>
 <figure>
-<img src="bbm_chip_scan_en.png" alt="" /><figcaption>Bad block scan</figcaption>
+<img src="bbm_chip_scan_en.png" alt="Bad block scan" />
+<figcaption aria-hidden="true">Bad block scan</figcaption>
 </figure>
-<p>For these chips, you can also change the erase and write parameters in this menu.</p>
+<p>For these chips, you can also change the erase and write parameters
+in this menu.</p>
 <figure>
-<img src="bbm_settings_en.png" alt="" /><figcaption>Bad block scan</figcaption>
+<img src="bbm_settings_en.png" alt="Bad block scan" />
+<figcaption aria-hidden="true">Bad block scan</figcaption>
 </figure>
 <blockquote>
-<p>[!NOTE] <em>In this version of IMSProg, damaged blocks are not skipped when executing the <code>Verify</code> and <code>Check erase</code> functions for NAND Flash chips. If your chip contains damaged blocks, please do not use these functions.</em></p>
+<p>[!NOTE] <em>In this version of IMSProg, damaged blocks are not
+skipped when executing the <code>Verify</code> and
+<code>Check erase</code> functions for NAND Flash chips. If your chip
+contains damaged blocks, please do not use these functions.</em></p>
 </blockquote>
-<h3 id="buffer-hex-editor-operations">Buffer (Hex editor) operations</h3>
-<p>The hexadecimal chip editor (right side of the screen) is used to display and modify buffer data.</p>
-<p>It contains the following controls: <img src="undo64.png" alt="Undo" /> undo, <img src="redo64.png" alt="Redo" /> redo, and the <img src="hexsearch64.png" alt="Search" /> search/replace. The <code>[Ctrl+A]</code> key used to update the CRC24 checksum. The <code>[Ctrl+G]</code> key used to move the cursor to the entered address. The <code>[Ctrl+L]</code> key is used to fill the hex editor buffer with a special test array. The <code>[Ctrl+K]</code> key is used to fill the hex editor buffer with a user code. The <code>[Ctrl+M]</code> key used for compares the results of the last and penultimate chip read or file open operation.</p>
+<h3 id="buffer-hex-editor-operations">Buffer (Hex editor)
+operations</h3>
+<p>The hexadecimal chip editor (right side of the screen) is used to
+display and modify buffer data.</p>
+<p>It contains the following controls: <img src="undo64.png"
+alt="Undo" /> undo, <img src="redo64.png" alt="Redo" /> redo, and
+the <img src="hexsearch64.png" alt="Search" /> search/replace. The
+<code>[Ctrl+A]</code> key used to update the CRC24 checksum. The
+<code>[Ctrl+G]</code> key used to move the cursor to the entered
+address. The <code>[Ctrl+L]</code> key is used to fill the hex editor
+buffer with a special test array. The <code>[Ctrl+K]</code> key is used
+to fill the hex editor buffer with a user code. The
+<code>[Ctrl+M]</code> key used for compares the results of the last and
+penultimate chip read or file open operation.</p>
 <figure>
-<img src="compare_files_en.png" alt="" /><figcaption>compare</figcaption>
+<img src="compare_files_en.png" alt="compare" />
+<figcaption aria-hidden="true">compare</figcaption>
 </figure>
 <h3 id="programmer-type">Programmer type</h3>
-<p>The <code>Main menu -&gt; Programmer</code> item is used to change the programmer type.</p>
+<p>The <code>Main menu -&gt; Programmer</code> item is used to change
+the programmer type.</p>
 <h3 id="list-of-hotkeys">List of hotkeys:</h3>
 <table>
 <thead>
@@ -327,69 +495,107 @@ sudo zypper install libftdi1-devel</code></pre>
 </table>
 <h2 id="chip-database-editor">Chip database editor</h2>
 <figure>
-<img src="chip_editor_eng.png" alt="" /><figcaption>Chip editor</figcaption>
+<img src="chip_editor_eng.png" alt="Chip editor" />
+<figcaption aria-hidden="true">Chip editor</figcaption>
 </figure>
-<p>Chip base editor - IMSProg_editor is a stand-alone program that can be launched from the <code>Development</code> menu or from the IMSProg program by clicking on <img src="chipEdit64.png" alt="Edit" />.</p>
-<p>All operations in the editor become available only after loading a chip base file with .Dat extension.</p>
+<p>Chip base editor - IMSProg_editor is a stand-alone program that can
+be launched from the <code>Development</code> menu or from the IMSProg
+program by clicking on <img src="chipEdit64.png" alt="Edit" />.</p>
+<p>All operations in the editor become available only after loading a
+chip base file with .Dat extension.</p>
 <p>Menu <code>File</code>.</p>
 <ul>
-<li><code>Open</code> or <code>[Ctrl+O]</code> or <img src="open.png" alt="open" /> allows you to load the data file.</li>
-<li><code>Save</code> or <code>[Ctrl+S]</code> or <img src="save.png" alt="save" /> saves the chip parameter table to a database file.</li>
-<li><code>Exit</code> or <code>[Ctrl+X]</code> or <img src="exit.png" alt="exit" /> - exits the editor.</li>
-<li><code>Export to CSV format</code> or <code>[Ctrl+X]</code> or <img src="tocsv.png" alt="export" /> allows to unload data about chips in CSV format for further processing by spreadsheet software - LibreOffice Calc, OpenOffice Calc, Google Tables, etc.</li>
-<li><code>Import from CSV file</code> or <code>[Ctrl+Shift+X]</code> or <img src="import.png" alt="import" /> - loads a table in CSV format and adds data from it to the existing data in the table.</li>
+<li><code>Open</code> or <code>[Ctrl+O]</code> or <img
+src="open.png" alt="open" /> allows you to load the data file.</li>
+<li><code>Save</code> or <code>[Ctrl+S]</code> or <img
+src="save.png" alt="save" /> saves the chip parameter table to a
+database file.</li>
+<li><code>Exit</code> or <code>[Ctrl+X]</code> or <img
+src="exit.png" alt="exit" /> - exits the editor.</li>
+<li><code>Export to CSV format</code> or <code>[Ctrl+X]</code> or <img
+src="tocsv.png" alt="export" /> allows to unload data about chips in
+CSV format for further processing by spreadsheet software - LibreOffice
+Calc, OpenOffice Calc, Google Tables, etc.</li>
+<li><code>Import from CSV file</code> or <code>[Ctrl+Shift+X]</code> or
+<img src="import.png" alt="import" /> - loads a table in CSV format
+and adds data from it to the existing data in the table.</li>
 </ul>
 <p>Menu <code>Edit</code>.</p>
 <ul>
-<li><code>Delete Rows</code> or <code>Del</code> or <img src="del.png" alt="delete" /> - deletes one or more rows.</li>
-<li><code>Add Row</code> or <code>Ins</code> or <img src="plus.png" alt="add" /> - adds a row below the selected row and copies all data from the selected row to the new row.</li>
-<li><code>Move Up</code> or ’[Ctrl+Up]` or <img src="undo.png" alt="up" /> - moves the selected line up.</li>
-<li><code>Move Down' or</code>[Ctrl+Down]` or <img src="redo.png" alt="down" /> - moves the selected row down.</li>
-<li><code>Import selected rows to CSV format</code> or <img src="import.png" alt="import" /></li>
+<li><code>Delete Rows</code> or <code>Del</code> or <img
+src="del.png" alt="delete" /> - deletes one or more rows.</li>
+<li><code>Add Row</code> or <code>Ins</code> or <img src="plus.png"
+alt="add" /> - adds a row below the selected row and copies all data
+from the selected row to the new row.</li>
+<li><code>Move Up</code> or ’[Ctrl+Up]` or <img src="undo.png"
+alt="up" /> - moves the selected line up.</li>
+<li><code>Move Down' or</code>[Ctrl+Down]` or <img src="redo.png"
+alt="down" /> - moves the selected row down.</li>
+<li><code>Import selected rows to CSV format</code> or <img
+src="import.png" alt="import" /></li>
 <li>saves selected rows to CSV file.</li>
 </ul>
-<p>The most recent version of the chip database file can be downloaded from this page in both .Dat and .csv formats.</p>
+<p>The most recent version of the chip database file can be downloaded
+from this page in both .Dat and .csv formats.</p>
 <h2 id="chip-updater">Chip updater</h2>
-<p>Once IMSProg_database_update app has been run, the downloaded database is copied to the ~/.local/share/imsprog folder. The script then displays the number of chips in the database before and after the update.</p>
+<p>Once IMSProg_database_update app has been run, the downloaded
+database is copied to the ~/.local/share/imsprog folder. The script then
+displays the number of chips in the database before and after the
+update.</p>
 <h2 id="list-of-supported-chips">List of supported chips</h2>
 <h3 id="i2c-eeprom">I2C EEPROM</h3>
-<p>24C01, 24C02, 24C04, 24C08, 24C16, 24C32, 24C64, 24C128, 24C256, 24C512, 24LC515<em>, 24C1024, 24LC1025</em>, 24M02</p>
+<p>24C01, 24C02, 24C04, 24C08, 24C16, 24C32, 24C64, 24C128, 24C256,
+24C512, 24LC515<em>, 24C1024, 24LC1025</em>, 24M02</p>
 <blockquote>
-<p>[!NOTE] <em>For 24LC515 and 24LC1025: Pin 3 must be disconnected from the ground pin and connected to the VCC pin via a 4.7 kΩ resistor.</em></p>
+<p>[!NOTE] <em>For 24LC515 and 24LC1025: Pin 3 must be disconnected from
+the ground pin and connected to the VCC pin via a 4.7 kΩ
+resistor.</em></p>
 </blockquote>
 <h3 id="i2c-feram">I2C FeRAM</h3>
 <ul>
 <li>RAMXEED</li>
 </ul>
-<p>MB85RC04, MB85RC16, MBRC64, MB85RC128, MB85RC256, MB85RC512, MB85RC1MT</p>
+<p>MB85RC04, MB85RC16, MBRC64, MB85RC128, MB85RC256, MB85RC512,
+MB85RC1MT</p>
 <ul>
 <li>RAMTRON</li>
 </ul>
-<p>FM24C04A, FM24C16A, FM24C32A, FM24C64A, FM24C128, FM24C256, FM24C512, FM24CL04A, FM24CL16A, FM24CL32A, FM24CL64A</p>
-<h3 id="microwire-eeprom-only-for-ch341a-programmer">MicroWire EEPROM (only for CH341A programmer)</h3>
+<p>FM24C04A, FM24C16A, FM24C32A, FM24C64A, FM24C128, FM24C256, FM24C512,
+FM24CL04A, FM24CL16A, FM24CL32A, FM24CL64A</p>
+<h3 id="microwire-eeprom-only-for-ch341a-programmer">MicroWire EEPROM
+(only for CH341A programmer)</h3>
 <p>93C46, 93C56, 93C66, 93C76, 93C86</p>
 <h3 id="serial-spi-bus-eeprom">Serial SPI Bus EEPROM</h3>
 <ul>
 <li>ST</li>
 </ul>
-<p>M95010, M95020, M95040, M95080, M95160, M95320, M95640, M95128, M95256, M95512, M95M01, M95M02</p>
+<p>M95010, M95020, M95040, M95080, M95160, M95320, M95640, M95128,
+M95256, M95512, M95M01, M95M02</p>
 <ul>
 <li>ATMEL</li>
 </ul>
-<p>AT25010, AT25020, AT25040, AT25080, AT25160, AT25320, AT25640, AT25128, AT25256, AT25F512, AT25F1024, AT25F2048, AT25F4096</p>
+<p>AT25010, AT25020, AT25040, AT25080, AT25160, AT25320, AT25640,
+AT25128, AT25256, AT25F512, AT25F1024, AT25F2048, AT25F4096</p>
 <ul>
 <li>MICROCHIP</li>
 </ul>
-<p>25AA010, 25AA020, 25AA040, 25AA080, 25AA160, 25AA320, 25AA640, 25AA128, 25AA256, 25AAF512, 25AAF1024, 25LC010, 25LC020, 25LC040, 25LC080, 25LC160, 25LC320, 25LC640, 25LC128, 25LC256, 25LC512, 25LC1024</p>
+<p>25AA010, 25AA020, 25AA040, 25AA080, 25AA160, 25AA320, 25AA640,
+25AA128, 25AA256, 25AAF512, 25AAF1024, 25LC010, 25LC020, 25LC040,
+25LC080, 25LC160, 25LC320, 25LC640, 25LC128, 25LC256, 25LC512,
+25LC1024</p>
 <ul>
 <li>ONSEMI</li>
 </ul>
-<p>CAT25C01, CAT25C02, CAT25C04, CAT25C08, CAT25C16, CAT25C32, CAT25C64, CAT25C128, CAT25C256, CAT25C512</p>
+<p>CAT25C01, CAT25C02, CAT25C04, CAT25C08, CAT25C16, CAT25C32, CAT25C64,
+CAT25C128, CAT25C256, CAT25C512</p>
 <h3 id="serial-spi-bus-feram">Serial SPI Bus FeRAM</h3>
 <ul>
 <li>RAMXEED</li>
 </ul>
-<p>MB85RS16N, MB85RD16LX, MB85RS64VY, MB85RS64V, MB85RS128TY, MB85RS128B, MB85RS256TY, MB85RS256LYA, MB85RS256B, MB85RS512TY, MB85RS512LY, MS85RS1MLY, MB85RS1MT, MB85RS2MTY, MB85RS2MLY, MB85RS4MTY, MB85RS4MLY</p>
+<p>MB85RS16N, MB85RD16LX, MB85RS64VY, MB85RS64V, MB85RS128TY,
+MB85RS128B, MB85RS256TY, MB85RS256LYA, MB85RS256B, MB85RS512TY,
+MB85RS512LY, MS85RS1MLY, MB85RS1MT, MB85RS2MTY, MB85RS2MLY, MB85RS4MTY,
+MB85RS4MLY</p>
 <h3 id="dataflash-45xx">DataFlash 45xx</h3>
 <ul>
 <li>ATMEL</li>
@@ -398,16 +604,21 @@ sudo zypper install libftdi1-devel</code></pre>
 <ul>
 <li>ADESTO</li>
 </ul>
-<p>AT45DB011, AT45DB021, AT45DB041, AT45DB081, AT45DB161, AT45DB321, AT45DB641</p>
+<p>AT45DB011, AT45DB021, AT45DB041, AT45DB081, AT45DB161, AT45DB321,
+AT45DB641</p>
 <h3 id="spi-nor-flash">SPI NOR Flash</h3>
 <ul>
 <li>SPANSION</li>
 </ul>
-<p>FL016AIF, S25FL016P, S25FL032P, FL064AIF, S25FL064P, S25FL256S, S25FL128P, S25FL129P, S25FL204K, S25FL208K, S25FL116K, S25FL132K, S25FL164K</p>
+<p>FL016AIF, S25FL016P, S25FL032P, FL064AIF, S25FL064P, S25FL256S,
+S25FL128P, S25FL129P, S25FL204K, S25FL208K, S25FL116K, S25FL132K,
+S25FL164K</p>
 <ul>
 <li>XTX</li>
 </ul>
-<p>XT25F02E, XT25F04D, XT25F08B, XT25F16B, XT25F32F, XT25F64F, XT25F128F, XT25F256B, XT25W02E, XT25W04D, XT25Q08D(1.8V), XT25Q16D(1.8V), XT25Q64D(1.8V), XT25F128D(1.8V)</p>
+<p>XT25F02E, XT25F04D, XT25F08B, XT25F16B, XT25F32F, XT25F64F,
+XT25F128F, XT25F256B, XT25W02E, XT25W04D, XT25Q08D(1.8V),
+XT25Q16D(1.8V), XT25Q64D(1.8V), XT25F128D(1.8V)</p>
 <ul>
 <li>ACE</li>
 </ul>
@@ -415,27 +626,49 @@ sudo zypper install libftdi1-devel</code></pre>
 <ul>
 <li>EON</li>
 </ul>
-<p>EN25B10T, EN25B20T, EN25B40T, EN25B80T, EN25B16T, EN25B32T, EN25B64T, EN25P64, EN25Q40A, EN25Q80B, EN25Q16, EN25Q32C, EN25Q64, EN25Q128, EN25F10A, EN25F20A, EN25F40, EN25F80, EN25F16, EN25F32, EN25S10A(1.8V), EN25S20A(1.8V), EN25S40A(1.8V), EN25S80B(1.8V), EN25S16B(1.8V), EN25S64A(1.8V), EN25QE16A, EN25QE32A, EN25E10A, EN25E40A, EN25SE16A(1.8V), EN25SE32A(1.8V), EN25T80, EN25T16, EN25QA32B, EN25QA64A, EN25QA128A, EN25QW16A, EN25QW32A, EN25QH16, EN25QH32B, EN25QH64A, EN25QH128A, EN25Q256, EN25QX64A, EN25QX128A, EN25QX256A, EN25QY256A, EN25SX64A(1.8V), EN25SX128A(1.8V)</p>
+<p>EN25B10T, EN25B20T, EN25B40T, EN25B80T, EN25B16T, EN25B32T, EN25B64T,
+EN25P64, EN25Q40A, EN25Q80B, EN25Q16, EN25Q32C, EN25Q64, EN25Q128,
+EN25F10A, EN25F20A, EN25F40, EN25F80, EN25F16, EN25F32, EN25S10A(1.8V),
+EN25S20A(1.8V), EN25S40A(1.8V), EN25S80B(1.8V), EN25S16B(1.8V),
+EN25S64A(1.8V), EN25QE16A, EN25QE32A, EN25E10A, EN25E40A,
+EN25SE16A(1.8V), EN25SE32A(1.8V), EN25T80, EN25T16, EN25QA32B,
+EN25QA64A, EN25QA128A, EN25QW16A, EN25QW32A, EN25QH16, EN25QH32B,
+EN25QH64A, EN25QH128A, EN25Q256, EN25QX64A, EN25QX128A, EN25QX256A,
+EN25QY256A, EN25SX64A(1.8V), EN25SX128A(1.8V)</p>
 <ul>
 <li>ATMEL</li>
 </ul>
-<p>AT25LS321(1.8V), AT25LS128A(1.8V), AT25LS641(1.8V), AT26DF161, AT25DF321, AT25DF641</p>
+<p>AT25LS321(1.8V), AT25LS128A(1.8V), AT25LS641(1.8V), AT26DF161,
+AT25DF321, AT25DF641</p>
 <ul>
 <li>MICRON</li>
 </ul>
-<p>M25P10, M25P20, M25P40, M25P80, M25P016, M25P32, M25P64, M25P128, N25Q032A, N25Q064A, MT25QL64AB, N25Q128A, MT25QL128AB, N25Q256A, MT25QL256AB, MT25QL512AB, N25Q032A(1.8V), N25Q064A(1.8V), MT25QU64AB(1.8V), N25Q128A(1.8V), MT25QU128AB(1.8V), MT25QU256AB(1.8V), MT25QU512AB(1.8V)</p>
+<p>M25P10, M25P20, M25P40, M25P80, M25P016, M25P32, M25P64, M25P128,
+N25Q032A, N25Q064A, MT25QL64AB, N25Q128A, MT25QL128AB, N25Q256A,
+MT25QL256AB, MT25QL512AB, N25Q032A(1.8V), N25Q064A(1.8V),
+MT25QU64AB(1.8V), N25Q128A(1.8V), MT25QU128AB(1.8V), MT25QU256AB(1.8V),
+MT25QU512AB(1.8V)</p>
 <ul>
 <li>XMC</li>
 </ul>
-<p>XM25QH10B, XM25QH20B, XM25QH40B, XM25QH80B, XM25QH16C, XM25QH32B, XM25QH64C, XM25QH128C, XM25QH256C, XM25QH512C, XM25LU64C(1.8V), XM25LU128C(1.8V), XM25QU256C(1.8V), XM25QU512C(1.8V), XM25QW16C, XM25QW32C, XM25QW64C, XM25QW128C, XM25QW256C, XM25QW512C, XM25QU41B(1.8V), XM25QU80B(1.8V), XM25QU16C(1.8V), XM25LU32C(1.8V), XM25QH32A, XM25QH64A, XM25QH128A</p>
+<p>XM25QH10B, XM25QH20B, XM25QH40B, XM25QH80B, XM25QH16C, XM25QH32B,
+XM25QH64C, XM25QH128C, XM25QH256C, XM25QH512C, XM25LU64C(1.8V),
+XM25LU128C(1.8V), XM25QU256C(1.8V), XM25QU512C(1.8V), XM25QW16C,
+XM25QW32C, XM25QW64C, XM25QW128C, XM25QW256C, XM25QW512C,
+XM25QU41B(1.8V), XM25QU80B(1.8V), XM25QU16C(1.8V), XM25LU32C(1.8V),
+XM25QH32A, XM25QH64A, XM25QH128A</p>
 <ul>
 <li>AMIC</li>
 </ul>
-<p>AT25L05P, A25L10PU, A25L20PU, A25L40PU, A25L80PU, A25L16PU, A25L10PT, A25L20PT, A25L40PT, A25L80PT, A25L16PT, A25L010, A25L020, A25L040, A25L040, A25L080, A25L016, A25L032, A25LQ080, A25LQ16, A25LQ32, A25LQ64</p>
+<p>AT25L05P, A25L10PU, A25L20PU, A25L40PU, A25L80PU, A25L16PU, A25L10PT,
+A25L20PT, A25L40PT, A25L80PT, A25L16PT, A25L010, A25L020, A25L040,
+A25L040, A25L080, A25L016, A25L032, A25LQ080, A25LQ16, A25LQ32,
+A25LQ64</p>
 <ul>
 <li>EXCELSEMI</li>
 </ul>
-<p>ES25P10, ES25P20, ES25P40, ES25P80, ES25P16, ES25P32, ES25M40A, ES25M80A, ES25M16A</p>
+<p>ES25P10, ES25P20, ES25P40, ES25P80, ES25P16, ES25P32, ES25M40A,
+ES25M80A, ES25M16A</p>
 <ul>
 <li>DOUQI</li>
 </ul>
@@ -443,7 +676,11 @@ sudo zypper install libftdi1-devel</code></pre>
 <ul>
 <li>Zbit</li>
 </ul>
-<p>ZB25LD10A(1.8V), ZB25LD20A(1.8V), ZB25LD40B(1.8V), ZB25LD80(1.8V), ZB25D10A, ZB25D20A, ZB25D40B, ZB25D80B, ZB25VQ16, ZB25VQ32, ZB25VQ64, ZB25VQ128, ZB25LQ16(1.8V), ZB25LQ32(1.8V), ZB25LQ64(1.8V), ZB25LQ128(1.8V), ZB25VQ20A, ZB25VQ40A, ZB25VQ80A, ZB25VQ16A, ZD25D20, ZD25D40, ZD25D80</p>
+<p>ZB25LD10A(1.8V), ZB25LD20A(1.8V), ZB25LD40B(1.8V), ZB25LD80(1.8V),
+ZB25D10A, ZB25D20A, ZB25D40B, ZB25D80B, ZB25VQ16, ZB25VQ32, ZB25VQ64,
+ZB25VQ128, ZB25LQ16(1.8V), ZB25LQ32(1.8V), ZB25LQ64(1.8V),
+ZB25LQ128(1.8V), ZB25VQ20A, ZB25VQ40A, ZB25VQ80A, ZB25VQ16A, ZD25D20,
+ZD25D40, ZD25D80</p>
 <ul>
 <li>ONSemi</li>
 </ul>
@@ -451,47 +688,80 @@ sudo zypper install libftdi1-devel</code></pre>
 <ul>
 <li>Boya</li>
 </ul>
-<p>BY25Q05AW, BY25Q10AW, BY25Q20BL(1.8V), BY25Q40BL, BY25Q80AW(1.8V), BY25Q16BL(1.8V), BY25D05AS, BY25D10AS, BY25D20AS, BY25D40AS, BY25Q80BS, BY25Q16BS, BY25Q32BS, BY25Q64AS, BY25Q128AS, BY25Q256ES, BY25Q10AL(1.8V), BY25Q20AL(1.8V), BY25Q40AL(1.8V), BY25Q32AL(1.8V), BY25Q64AL(1.8V), BY25Q128EL(1.8V)</p>
+<p>BY25Q05AW, BY25Q10AW, BY25Q20BL(1.8V), BY25Q40BL, BY25Q80AW(1.8V),
+BY25Q16BL(1.8V), BY25D05AS, BY25D10AS, BY25D20AS, BY25D40AS, BY25Q80BS,
+BY25Q16BS, BY25Q32BS, BY25Q64AS, BY25Q128AS, BY25Q256ES,
+BY25Q10AL(1.8V), BY25Q20AL(1.8V), BY25Q40AL(1.8V), BY25Q32AL(1.8V),
+BY25Q64AL(1.8V), BY25Q128EL(1.8V)</p>
 <ul>
 <li>PFLASH</li>
 </ul>
-<p>Pm25LQ512B, Pm25LQ010B, Pm25LD020, Pm25LQ020B, PM25LQ016, PM25LQ032, PM25LQ064, PM25LQ128, Pm25LV010, Pm25LV020, Pm25LQ040B, Pm25LV040</p>
+<p>Pm25LQ512B, Pm25LQ010B, Pm25LD020, Pm25LQ020B, PM25LQ016, PM25LQ032,
+PM25LQ064, PM25LQ128, Pm25LV010, Pm25LV020, Pm25LQ040B, Pm25LV040</p>
 <ul>
 <li>Puya</li>
 </ul>
-<p>P25Q06H, P25Q40H, PY25Q128HA, PY25Q256HB, PY25Q512HB, P25Q11H, P25Q21H, P25Q10H, P25Q20H, P25Q80H, P25Q16H, P25Q32H, P25Q64H, P25Q128H</p>
+<p>P25Q06H, P25Q40H, PY25Q128HA, PY25Q256HB, PY25Q512HB, P25Q11H,
+P25Q21H, P25Q10H, P25Q20H, P25Q80H, P25Q16H, P25Q32H, P25Q64H,
+P25Q128H</p>
 <ul>
 <li>ESMT</li>
 </ul>
-<p>F25L004A, F25L008A, F25L016, F25L032, F25L064, F25L16QA, F25L32QA, F25L64QA</p>
+<p>F25L004A, F25L008A, F25L016, F25L032, F25L064, F25L16QA, F25L32QA,
+F25L64QA</p>
 <ul>
 <li>ISSI</li>
 </ul>
-<p>IS25WQ020(1.8V), IS25WQ040(1.8V), IS25WQ080(1.8V), IS25LQ010, IS25LQ020, IS25LP040E, IS25LP080D, IS25LP016D, IS25LP032D, IS25LP064D, IS25LP128F, IS25LP256D, IS25LP512D, IS25WP512E(1.8V), IS25WP010E(1.8V), IS25WP020E(1.8V), IS25WP040D(1.8V), IS25WP080D(1.8V), IS25WP016D(1.8V), IS25WP032D(1.8V), IS25WP064D(1.8V), IS25WP128F(1.8V), IS25WP256D(1.8V), IS25WP512D(1.8V)</p>
+<p>IS25WQ020(1.8V), IS25WQ040(1.8V), IS25WQ080(1.8V), IS25LQ010,
+IS25LQ020, IS25LP040E, IS25LP080D, IS25LP016D, IS25LP032D, IS25LP064D,
+IS25LP128F, IS25LP256D, IS25LP512D, IS25WP512E(1.8V), IS25WP010E(1.8V),
+IS25WP020E(1.8V), IS25WP040D(1.8V), IS25WP080D(1.8V), IS25WP016D(1.8V),
+IS25WP032D(1.8V), IS25WP064D(1.8V), IS25WP128F(1.8V), IS25WP256D(1.8V),
+IS25WP512D(1.8V)</p>
 <ul>
 <li>Fudan</li>
 </ul>
-<p>FM25W02, FM25W04, FM25W16, FM25W32, FM25W64, FM25W128, FM25F005, FM25F01B, FM25F02A, FM25F04A, FM25Q04, FM25Q08, FM25Q16, FS25Q32, FS25Q64, FS25Q128</p>
+<p>FM25W02, FM25W04, FM25W16, FM25W32, FM25W64, FM25W128, FM25F005,
+FM25F01B, FM25F02A, FM25F04A, FM25Q04, FM25Q08, FM25Q16, FS25Q32,
+FS25Q64, FS25Q128</p>
 <ul>
 <li>Zetta</li>
 </ul>
-<p>ZD25Q64B, ZD25LQ128(1.8V), ZD25LQ64(1.8V), ZD25WD20B, ZD25WD40B, ZD25Q80C, ZD25Q16B, ZD25Q32C</p>
+<p>ZD25Q64B, ZD25LQ128(1.8V), ZD25LQ64(1.8V), ZD25WD20B, ZD25WD40B,
+ZD25Q80C, ZD25Q16B, ZD25Q32C</p>
 <ul>
 <li>PCT</li>
 </ul>
-<p>PCT25VF016B, PCT25VF032B, PCT25VF064C, PCT25VF020B, PCT25VF040B, PCT25VF080B, PCT26VF016, PCT26VF032, PCT25VF010A</p>
+<p>PCT25VF016B, PCT25VF032B, PCT25VF064C, PCT25VF020B, PCT25VF040B,
+PCT25VF080B, PCT26VF016, PCT26VF032, PCT25VF010A</p>
 <ul>
 <li>MXIC</li>
 </ul>
-<p>MX25L512E, MX25L1006E, MX25L2005, MX25L4005A, MX25L8005M, MX25L1605D, MX25L3205D, MX25L6405D, MX25L12805D, MX25L25635E, MX25L51245G, MX25L5121E, MX25L1021E, MX25L1633E, MX25L1635E, MX25U5121E(1.8V), MX25U1001E(1.8V), MX25U2035F(1.8V), MX25U4035F(1.8V), MX25U80356(1.8V), MX25U1632F(1.8V), MX25U3232F(1.8V), MX25U6432F(1.8V), MX25U12832F(1.8V), MX25U25643G(1.8V), MX25U51245G(1.8V), MX25L1655D, MX25L6455E, MX25L12855E, MX25L25655E, MX25R1035F, MX25R2035F, MX25R4035F, MX25R8035F, MX25R1635F, MX25R3235F, MX25R6435F, MX25L3225D, MX25L3255D</p>
+<p>MX25L512E, MX25L1006E, MX25L2005, MX25L4005A, MX25L8005M, MX25L1605D,
+MX25L3205D, MX25L6405D, MX25L12805D, MX25L25635E, MX25L51245G,
+MX25L5121E, MX25L1021E, MX25L1633E, MX25L1635E, MX25U5121E(1.8V),
+MX25U1001E(1.8V), MX25U2035F(1.8V), MX25U4035F(1.8V), MX25U80356(1.8V),
+MX25U1632F(1.8V), MX25U3232F(1.8V), MX25U6432F(1.8V), MX25U12832F(1.8V),
+MX25U25643G(1.8V), MX25U51245G(1.8V), MX25L1655D, MX25L6455E,
+MX25L12855E, MX25L25655E, MX25R1035F, MX25R2035F, MX25R4035F,
+MX25R8035F, MX25R1635F, MX25R3235F, MX25R6435F, MX25L3225D,
+MX25L3255D</p>
 <ul>
 <li>Giantec</li>
 </ul>
-<p>GT25D05C, GT25D10C, GT25D20C, GT25Q40C, GT25D05E, GT25D10E, GT25D20E, GT25Q80A, GT25Q16A, GT25Q32A-H, GT25Q64A-S</p>
+<p>GT25D05C, GT25D10C, GT25D20C, GT25Q40C, GT25D05E, GT25D10E, GT25D20E,
+GT25Q80A, GT25Q16A, GT25Q32A-H, GT25Q64A-S</p>
 <ul>
 <li>GigaDevice</li>
 </ul>
-<p>GD25F40, GD25F80, GD25D40, GD25D80, GD25D05C, GD25D10C, GD25Q20C, GD25Q40C, GD25Q80C, GD25Q16C, GD25Q32, GD25Q64CSIG, GD25Q128CSIG, GD25Q256CSIG, GD25VQ21B, GD25VQ40C, GD25VQ80C, GD25VQ16C, GD25LD05C(1.8V), GD25LD10C(1.8V), GD25LD20C(1.8V), GD25LD40C(1.8V), GD25LQ80C, GD25LQ16C, GD25LQ32E, GD25LQ64E(1.8V), GD25LQ128(1.8V), GD25LQ256D(1.8V), GD25WD05C, GD25WD10C, GD25WD20E, GD25WD40E, GD25WD80C, GD25WQ20E, GD25WQ40E, GD25WQ80E, GD25WQ16E, GD25WQ32E, GD25WQ64E, GD25WQ128E, GD25WB256E, GD25LB512ME(1.8V), YC25Q128</p>
+<p>GD25F40, GD25F80, GD25D40, GD25D80, GD25D05C, GD25D10C, GD25Q20C,
+GD25Q40C, GD25Q80C, GD25Q16C, GD25Q32, GD25Q64CSIG, GD25Q128CSIG,
+GD25Q256CSIG, GD25VQ21B, GD25VQ40C, GD25VQ80C, GD25VQ16C,
+GD25LD05C(1.8V), GD25LD10C(1.8V), GD25LD20C(1.8V), GD25LD40C(1.8V),
+GD25LQ80C, GD25LQ16C, GD25LQ32E, GD25LQ64E(1.8V), GD25LQ128(1.8V),
+GD25LQ256D(1.8V), GD25WD05C, GD25WD10C, GD25WD20E, GD25WD40E, GD25WD80C,
+GD25WQ20E, GD25WQ40E, GD25WQ80E, GD25WQ16E, GD25WQ32E, GD25WQ64E,
+GD25WQ128E, GD25WB256E, GD25LB512ME(1.8V), YC25Q128</p>
 <ul>
 <li>Nantronix</li>
 </ul>
@@ -503,19 +773,29 @@ sudo zypper install libftdi1-devel</code></pre>
 <ul>
 <li>DOSILICON</li>
 </ul>
-<p>DS25Q64A, DS25Q4AA, DS25M4CB, DS25M64E, DS25M4AE, DS25M4AB, DS25M4BA</p>
+<p>DS25Q64A, DS25Q4AA, DS25M4CB, DS25M64E, DS25M4AE, DS25M4AB,
+DS25M4BA</p>
 <ul>
 <li>WINBOND</li>
 </ul>
-<p>W25P80, W25P16, W25P32, W25P64, W25X05, W25X10, W25X20, W25X40, W25X80, W25X16, W25X32VS, W25X64, W25Q05CL, W25Q10Cl, W25Q20CL, W25Q40BV, W25Q80BL, W25Q16DV, W25Q32BV, W25Q64BV, W25Q128BV, W25Q256FV, W25Q20BW(1.8V), W25Q80, W25Q10EW(1.8V), W25Q20EW(1.8V), W25Q40EW(1.8V), W25Q80EW(1.8V), W25Q16JW(1.8V), W25Q32FW(1.8V), W25Q64DW(1.8V), W25Q128FW(1.8V), W25Q256JW(1.8V), W25M512JW(1.8V), W25Q512JV, W25M512JV, W25Q32JW(1.8V)</p>
+<p>W25P80, W25P16, W25P32, W25P64, W25X05, W25X10, W25X20, W25X40,
+W25X80, W25X16, W25X32VS, W25X64, W25Q05CL, W25Q10Cl, W25Q20CL,
+W25Q40BV, W25Q80BL, W25Q16DV, W25Q32BV, W25Q64BV, W25Q128BV, W25Q256FV,
+W25Q20BW(1.8V), W25Q80, W25Q10EW(1.8V), W25Q20EW(1.8V), W25Q40EW(1.8V),
+W25Q80EW(1.8V), W25Q16JW(1.8V), W25Q32FW(1.8V), W25Q64DW(1.8V),
+W25Q128FW(1.8V), W25Q256JW(1.8V), W25M512JW(1.8V), W25Q512JV, W25M512JV,
+W25Q32JW(1.8V)</p>
 <ul>
 <li>Fidelix</li>
 </ul>
-<p>FM25Q04A, FM25Q08A, FM25Q16A, FM25Q32A, FM25Q64A, FM25Q128A, FM25M04A(1.8V), FM25M08A(1.8V), FM25M16A(1.8V), FM25M32A(1.8V), FM25M64A(1.8V), FM25M4AA(1.8V)</p>
+<p>FM25Q04A, FM25Q08A, FM25Q16A, FM25Q32A, FM25Q64A, FM25Q128A,
+FM25M04A(1.8V), FM25M08A(1.8V), FM25M16A(1.8V), FM25M32A(1.8V),
+FM25M64A(1.8V), FM25M4AA(1.8V)</p>
 <ul>
 <li>UCUNDATA (UCUN Technology)</li>
 </ul>
-<p>UC25HQ05, UC25HQ10, UC25HQ20, UC25HQ40, UC25HQ80, UC25HQ16, UC25HQ32, UC25HQ64, UC25IQ128</p>
+<p>UC25HQ05, UC25HQ10, UC25HQ20, UC25HQ40, UC25HQ80, UC25HQ16, UC25HQ32,
+UC25HQ64, UC25IQ128</p>
 <h3 id="spi-nand-flash">SPI NAND Flash</h3>
 <ul>
 <li>ESMT</li>
@@ -524,23 +804,32 @@ sudo zypper install libftdi1-devel</code></pre>
 <ul>
 <li>MICRON</li>
 </ul>
-<p>MT29F4G01ABBFD12, MT29F4G01ABAFD12, MX35LF1G24AD-Z41, MX35LF2G24AD-Z41</p>
+<p>MT29F4G01ABBFD12, MT29F4G01ABAFD12, MX35LF1G24AD-Z41,
+MX35LF2G24AD-Z41</p>
 <ul>
 <li>MXIC</li>
 </ul>
-<p>MX35LF4G24AD-Z41, MX35LF2G24AD-Z418, MX35LF4G24AD-Z418, MX35LF1GE4AB, MX35UF1G24AD-Z4I, MX35UF2G24AD-Z4I, MX35UF4G24AD-Z4I, MX35UF2G24AD-Z4I8, MX35UF4G24AD-Z4I8, MX35UF1G14AC, MX35UF2G14AC, MX35UF1GE4AC, MX35UF2GE4AC, MX35UF1GE4AD, MX35UF2GE4AD, MX35UF4GE4AD, MX35LF2GE4AD, MX35LF4GE4AD</p>
+<p>MX35LF4G24AD-Z41, MX35LF2G24AD-Z418, MX35LF4G24AD-Z418, MX35LF1GE4AB,
+MX35UF1G24AD-Z4I, MX35UF2G24AD-Z4I, MX35UF4G24AD-Z4I, MX35UF2G24AD-Z4I8,
+MX35UF4G24AD-Z4I8, MX35UF1G14AC, MX35UF2G14AC, MX35UF1GE4AC,
+MX35UF2GE4AC, MX35UF1GE4AD, MX35UF2GE4AD, MX35UF4GE4AD, MX35LF2GE4AD,
+MX35LF4GE4AD</p>
 <ul>
 <li>WINBOND</li>
 </ul>
-<p>W25N512GW, W25N512GV, W25N01KW, W25N01KV, W25N01JW, W25N01GW, W25N01GV, W25N02KW, W25N02KV, W25N02JW, W25N04LW, W25N04KW, W25N04KV</p>
+<p>W25N512GW, W25N512GV, W25N01KW, W25N01KV, W25N01JW, W25N01GW,
+W25N01GV, W25N02KW, W25N02KV, W25N02JW, W25N04LW, W25N04KW, W25N04KV</p>
 <ul>
 <li>XTX</li>
 </ul>
-<p>XT26G01C, XT26G01A, XT26G01D, XT26G11C, XT26G11D, XT26Q01D, XT26G02D, XT26G02C, XT26G12D-B, XT26Q02D, XT26Q04D XTX XT26Q14D</p>
+<p>XT26G01C, XT26G01A, XT26G01D, XT26G11C, XT26G11D, XT26Q01D, XT26G02D,
+XT26G02C, XT26G12D-B, XT26Q02D, XT26Q04D XTX XT26Q14D</p>
 <ul>
 <li>Dosilicon</li>
 </ul>
-<p>DS35Q12B, DS35M12B, DS35Q12C, DS35M12C, DS35Q1GA, DS35M1GA, DS35Q1GB, DS35M1GB, DS35Q2GA, DS35M2GA, DS35Q2GB, DS35M2GB, DS35Q2GBS, DS35M2GBS, DS35Q4GM, DS35Q4GM, DS35Q4GB, DS35M4GB</p>
+<p>DS35Q12B, DS35M12B, DS35Q12C, DS35M12C, DS35Q1GA, DS35M1GA, DS35Q1GB,
+DS35M1GB, DS35Q2GA, DS35M2GA, DS35Q2GB, DS35M2GB, DS35Q2GBS, DS35M2GBS,
+DS35Q4GM, DS35Q4GM, DS35Q4GB, DS35M4GB</p>
 <ul>
 <li>ZETTA</li>
 </ul>
@@ -548,34 +837,58 @@ sudo zypper install libftdi1-devel</code></pre>
 <ul>
 <li>FORESEE</li>
 </ul>
-<p>F35SQA001G, F35SQB004G, F35SQA512M, F35UQA002G, F35SQA002G, GD5F1GQ5UExxG</p>
+<p>F35SQA001G, F35SQB004G, F35SQA512M, F35UQA002G, F35SQA002G,
+GD5F1GQ5UExxG</p>
 <ul>
 <li>GigaDevice</li>
 </ul>
-<p>GD5F1GQ5RExxG, GD5F1GM7UExxG, GD5F1GM7RExxG, GD5F1GM9UExxG, GD5F1GM9RExxG, GD5F1GQ4UFxxG, GD5F1GQ4RFxxG, GD5F1GQ4UAxxG, GD5F2GQ5UExxG, GD5F2GQ5RExxG, GD5F2GM7UExxG, GD5F2GM7RExxG, GD5F4GQ6UExxG, GD5F4GQ6RExxG, GD5F4GM8UExxG, GD5F4GM8RExxG, GD5F1GQ4UExxG, GD5F1GQ4RExxG, GD5F1GQ4UFxxS, GD5F1GQ4RFxxS, GD5F2GQ4UExxG, GD5F2GQ4RExxG</p>
-<p>The latest version of the chip database can be found <a href="https://antenna-dvb-t2.ru/dl_all/IMSProg.Dat">here</a>. You can download it and copy it to the ~/.local/share/imsprog folder:</p>
+<p>GD5F1GQ5RExxG, GD5F1GM7UExxG, GD5F1GM7RExxG, GD5F1GM9UExxG,
+GD5F1GM9RExxG, GD5F1GQ4UFxxG, GD5F1GQ4RFxxG, GD5F1GQ4UAxxG,
+GD5F2GQ5UExxG, GD5F2GQ5RExxG, GD5F2GM7UExxG, GD5F2GM7RExxG,
+GD5F4GQ6UExxG, GD5F4GQ6RExxG, GD5F4GM8UExxG, GD5F4GM8RExxG,
+GD5F1GQ4UExxG, GD5F1GQ4RExxG, GD5F1GQ4UFxxS, GD5F1GQ4RFxxS,
+GD5F2GQ4UExxG, GD5F2GQ4RExxG</p>
+<p>The latest version of the chip database can be found <a
+href="https://antenna-dvb-t2.ru/dl_all/IMSProg.Dat">here</a>. You can
+download it and copy it to the ~/.local/share/imsprog folder:</p>
 <p><code>cp IMSProg.Dat ~/.local/share/imsprog</code></p>
 <h2 id="packages">Packages</h2>
 <ul>
-<li><p>There is a work in progress for add IMSProg to official <code>Debian</code> (and derivatives repositories)</p>
-<p>For some Ubuntu versions you can use this PPA by adding <code>ppa:bigmdm/imsprog</code> to your system’s Software Sources.</p>
+<li><p>There is a work in progress for add IMSProg to official
+<code>Debian</code> (and derivatives repositories)</p>
+<p>For some Ubuntu versions you can use this PPA by adding
+<code>ppa:bigmdm/imsprog</code> to your system’s Software Sources.</p>
 <pre><code>sudo add-apt-repository ppa:bigmdm/imsprog
 sudo apt update
 sudo apt install imsprog</code></pre>
-<p>Is also possible manually build deb package using <code>debian/latest</code> branch.</p></li>
-<li><p>For some versions of Fedora, you can use the official repositories.</p></li>
+<p>Is also possible manually build deb package using
+<code>debian/latest</code> branch.</p></li>
+<li><p>For some versions of Fedora, you can use the official
+repositories.</p></li>
 </ul>
 <pre><code>sudo dnf install imsprog</code></pre>
 
 <ul>
-<li>The <code>RPM package</code> by <a href="https://redos.red-soft.ru/">Red Soft</a> can be downloaded<br />
-<a href="http://repo.red-soft.ru/redos/7.3/x86_64/updates/">here</a></li>
-<li>The <code>RPM package</code> by <a href="https://packages.altlinux.org/en/sisyphus/srpms/IMSProg/">ALT Linux</a></li>
-<li>The <code>RPM package</code> by <a href="https://mirror.rosalinux.ru/rosa/rosa2021.1/repository/x86_64/contrib/release/">ROSA Linux</a></li>
-<li>The <code>ARCH AUR repository</code> by <a href="https://github.com/kjkent">kjkent</a> is <a href="https://aur.archlinux.org/packages/imsprog">here</a></li>
-<li>The <code>openSUSE</code> package is <a href="https://software.opensuse.org/package/IMSProg?search_term=imsprog">here</a></li>
-<li>The <code>Debian</code> package is <a href="https://tracker.debian.org/pkg/imsprog">here</a></li>
-<li>The Windows release by <a href="https://github.com/Anime4000">Anime4000</a> is <a href="https://github.com/Anime4000/IMSProg/releases/latest">here</a></li>
+<li>The <code>RPM package</code> by <a
+href="https://redos.red-soft.ru/">Red Soft</a> can be downloaded<br />
+<a
+href="http://repo.red-soft.ru/redos/7.3/x86_64/updates/">here</a></li>
+<li>The <code>RPM package</code> by <a
+href="https://packages.altlinux.org/en/sisyphus/srpms/IMSProg/">ALT
+Linux</a></li>
+<li>The <code>RPM package</code> by <a
+href="https://mirror.rosalinux.ru/rosa/rosa2021.1/repository/x86_64/contrib/release/">ROSA
+Linux</a></li>
+<li>The <code>ARCH AUR repository</code> by <a
+href="https://github.com/kjkent">kjkent</a> is <a
+href="https://aur.archlinux.org/packages/imsprog">here</a></li>
+<li>The <code>openSUSE</code> package is <a
+href="https://software.opensuse.org/package/IMSProg?search_term=imsprog">here</a></li>
+<li>The <code>Debian</code> package is <a
+href="https://tracker.debian.org/pkg/imsprog">here</a></li>
+<li>The Windows release by <a
+href="https://github.com/Anime4000">Anime4000</a> is <a
+href="https://github.com/Anime4000/IMSProg/releases/latest">here</a></li>
 </ul>
 <h2 id="project-structure">Project structure</h2>
 <pre><code>IMSProg _files_                                   _folder_
@@ -686,8 +999,8 @@ IMSProg_database_update/other/io.github.bigbigmdm.imsprog_database_update.metain
                 - 45xxx SPI EEPROM  - 0x?F - 15 bit sector address number
                 - SPI NOR Flash - algorithm number for working with  security registers
                 - SPI NAND Flash - algorithm number for reading status and security registers
-3C        2     Timing parameter:
-3D              3000/1000/500/300/200/100 - NOR FLASH, 4000/2000 - 24xxx, 100 - 93xxx
+3C        2     Delay bus speed factor:
+3D              bus_speed = default_bus_speed * Delay / 1000
 3E        2     SPI NOR Flash 4bit address type:
                 - 0x?0 - Not used (3 bit address data)
                 - 0x?1 - Used (4 bit address data)
@@ -701,20 +1014,126 @@ IMSProg_database_update/other/io.github.bigbigmdm.imsprog_database_update.metain
                 - For SPI NAND Flash - ECC Size / 64
 43        1     VCC 00=&gt;3.3V 01=&gt;1.8V 02=&gt;5.0V 03=&gt;2.5V
 The end record is 0x44 (68) zero bytes.</code></pre>
+<p>Default bus speed:</p>
+<table>
+<colgroup>
+<col style="width: 13%" />
+<col style="width: 17%" />
+<col style="width: 17%" />
+<col style="width: 17%" />
+<col style="width: 17%" />
+<col style="width: 17%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Chip type / Programmer</th>
+<th style="text-align: center;">CH341a v1.2</th>
+<th style="text-align: center;">CH341a v1.7</th>
+<th style="text-align: center;">CH347t v1.0</th>
+<th style="text-align: center;">CH347T v1.1</th>
+<th style="text-align: center;">FH232H v1.2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">SPI NOR Flash</td>
+<td style="text-align: center;">1.6 Mhz</td>
+<td style="text-align: center;">1.6 Mhz</td>
+<td style="text-align: center;">30 Mhz</td>
+<td style="text-align: center;">15 Mhz</td>
+<td style="text-align: center;">30 Mhz</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">25xxx EPROM</td>
+<td style="text-align: center;">1.6 Mhz</td>
+<td style="text-align: center;">1.6 Mhz</td>
+<td style="text-align: center;">5 Mhz</td>
+<td style="text-align: center;">5 Mhz</td>
+<td style="text-align: center;">5 Mhz</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">24xxx EPROM</td>
+<td style="text-align: center;">0.4 Mhz</td>
+<td style="text-align: center;">0.4 Mhz</td>
+<td style="text-align: center;">0.4 Mhz</td>
+<td style="text-align: center;">0.4 Mhz</td>
+<td style="text-align: center;">0.4 Mhz</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">93xxx EPROM</td>
+<td style="text-align: center;">1.6 Mhz</td>
+<td style="text-align: center;">1.6 Mhz</td>
+<td style="text-align: center;">5 Mhz</td>
+<td style="text-align: center;">5 Mhz</td>
+<td style="text-align: center;">5 Mhz</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">45xxx DataFlash</td>
+<td style="text-align: center;">1.6 Mhz</td>
+<td style="text-align: center;">1.6 Mhz</td>
+<td style="text-align: center;">5 Mhz</td>
+<td style="text-align: center;">5 Mhz</td>
+<td style="text-align: center;">5 Mhz</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SPI NAND Flash</td>
+<td style="text-align: center;">1.6 Mhz</td>
+<td style="text-align: center;">1.6 Mhz</td>
+<td style="text-align: center;">60 Mhz</td>
+<td style="text-align: center;">15 Mhz</td>
+<td style="text-align: center;">30 Mhz</td>
+</tr>
+</tbody>
+</table>
 <h2 id="licensing">Licensing</h2>
-<p>Copyright (C) 2023 - 2026 Mikhail Medvedev. This project use <a href="https://www.gnu.org/licenses/gpl-3.0.html">GPL-3+ License</a>, some parts taken from project <a href="https://github.com/McMCCRU/SNANDer/commits?author=McMCCRU">SNANDer</a> are <a href="https://www.gnu.org/licenses/old-licenses/gpl-2.0.html">GPL-2+</a> and from <a href="https://github.com/Simsys/qhexedit2">QHexEdit2</a> is <a href="https://www.gnu.org/licenses/old-licenses/lgpl-2.1.html">LGPL-2.1</a> and <a href="https://github.com/981213/ch347-nor-prog/tree/master">CH347</a> parts is <a href="https://github.com/spdx/license-list-data/blob/main/text/BSD-1-Clause.txt">BSD-1-Clause</a>.</p>
+<p>Copyright (C) 2023 - 2026 Mikhail Medvedev. This project use <a
+href="https://www.gnu.org/licenses/gpl-3.0.html">GPL-3+ License</a>,
+some parts taken from project <a
+href="https://github.com/McMCCRU/SNANDer/commits?author=McMCCRU">SNANDer</a>
+are <a
+href="https://www.gnu.org/licenses/old-licenses/gpl-2.0.html">GPL-2+</a>
+and from <a href="https://github.com/Simsys/qhexedit2">QHexEdit2</a> is
+<a
+href="https://www.gnu.org/licenses/old-licenses/lgpl-2.1.html">LGPL-2.1</a>
+and <a
+href="https://github.com/981213/ch347-nor-prog/tree/master">CH347</a>
+parts is <a
+href="https://github.com/spdx/license-list-data/blob/main/text/BSD-1-Clause.txt">BSD-1-Clause</a>.</p>
 <h2 id="translations">Translations</h2>
 <ul>
-<li>Hungarian translation by <a href="https://github.com/blackPantherOS">blackPantherOS</a></li>
-<li>Italian translation by Marino Pasquale and <a href="https://github.com/giovanni69">Giovanni Scafora</a></li>
-<li>Brasil translation by <a href="https://github.com/alexandrecleite">Alexandre C. Leite</a></li>
-<li>Ukrainian translation by <a href="https://github.com/cappelikan">Sergey Golovko</a></li>
-<li>Chinese translation by <a href="https://github.com/Tian-HP">Tian-HP</a></li>
-<li>German translation by <a href="https://github.com/wucke13">wucke13</a></li>
-<li>Traditional Chinese translation by <a href="https://github.com/ystartgo">ystartgo</a></li>
+<li>Hungarian translation by <a
+href="https://github.com/blackPantherOS">blackPantherOS</a></li>
+<li>Italian translation by Marino Pasquale and <a
+href="https://github.com/giovanni69">Giovanni Scafora</a></li>
+<li>Brasil translation by <a
+href="https://github.com/alexandrecleite">Alexandre C. Leite</a></li>
+<li>Ukrainian translation by <a
+href="https://github.com/cappelikan">Sergey Golovko</a></li>
+<li>Chinese translation by <a
+href="https://github.com/Tian-HP">Tian-HP</a></li>
+<li>German translation by <a
+href="https://github.com/wucke13">wucke13</a></li>
+<li>Traditional Chinese translation by <a
+href="https://github.com/ystartgo">ystartgo</a></li>
 </ul>
-<p>Anyone can add or improve a translation by making a pull request. Translations files are located in: <a href="https://github.com/bigbigmdm/IMSProg/tree/main/IMSProg_programmer/language">IMSProg_programmer/language/</a> and <a href="https://github.com/bigbigmdm/IMSProg/tree/main/IMSProg_editor/language">IMSProg_editor/language/</a> and <a href="https://github.com/bigbigmdm/IMSProg/tree/main/IMSProg_database_update/language">IMSProg_database_update/language/</a></p>
-<p>You can also add translation to the desktop files (<a href="https://github.com/bigbigmdm/IMSProg/blob/main/IMSProg_programmer/other/IMSProg.desktop">IMSProg.desktop</a>, <a href="https://github.com/bigbigmdm/IMSProg/blob/main/IMSProg_programmer/other/IMSProg_database_update.desktop">IMSProg_database_update.desktop</a>, <a href="https://github.com/bigbigmdm/IMSProg/blob/main/IMSProg_editor/other/IMSProg_editor.desktop">IMSProg_editor.desktop</a>),</p>
-<p>and to the appstream metadata files (<a href="https://github.com/bigbigmdm/IMSProg/blob/main/IMSProg_editor/other/io.github.bigbigmdm.imsprog_editor.metainfo.xml">io.github.bigbigmdm.imsprog_editor.metainfo.xml</a>, <a href="https://github.com/bigbigmdm/IMSProg/blob/main/IMSProg_programmer/other/io.github.bigbigmdm.imsprog_database_update.metainfo.xml">io.github.bigbigmdm.imsprog_database_update.metainfo.xml</a>, <a href="https://github.com/bigbigmdm/IMSProg/blob/main/IMSProg_programmer/other/io.github.bigbigmdm.imsprog.metainfo.xml">io.github.bigbigmdm.imsprog.metainfo.xml</a>).</p>
+<p>Anyone can add or improve a translation by making a pull request.
+Translations files are located in: <a
+href="https://github.com/bigbigmdm/IMSProg/tree/main/IMSProg_programmer/language">IMSProg_programmer/language/</a>
+and <a
+href="https://github.com/bigbigmdm/IMSProg/tree/main/IMSProg_editor/language">IMSProg_editor/language/</a>
+and <a
+href="https://github.com/bigbigmdm/IMSProg/tree/main/IMSProg_database_update/language">IMSProg_database_update/language/</a></p>
+<p>You can also add translation to the desktop files (<a
+href="https://github.com/bigbigmdm/IMSProg/blob/main/IMSProg_programmer/other/IMSProg.desktop">IMSProg.desktop</a>,
+<a
+href="https://github.com/bigbigmdm/IMSProg/blob/main/IMSProg_programmer/other/IMSProg_database_update.desktop">IMSProg_database_update.desktop</a>,
+<a
+href="https://github.com/bigbigmdm/IMSProg/blob/main/IMSProg_editor/other/IMSProg_editor.desktop">IMSProg_editor.desktop</a>),</p>
+<p>and to the appstream metadata files (<a
+href="https://github.com/bigbigmdm/IMSProg/blob/main/IMSProg_editor/other/io.github.bigbigmdm.imsprog_editor.metainfo.xml">io.github.bigbigmdm.imsprog_editor.metainfo.xml</a>,
+<a
+href="https://github.com/bigbigmdm/IMSProg/blob/main/IMSProg_programmer/other/io.github.bigbigmdm.imsprog_database_update.metainfo.xml">io.github.bigbigmdm.imsprog_database_update.metainfo.xml</a>,
+<a
+href="https://github.com/bigbigmdm/IMSProg/blob/main/IMSProg_programmer/other/io.github.bigbigmdm.imsprog.metainfo.xml">io.github.bigbigmdm.imsprog.metainfo.xml</a>).</p>
 </body>
 </html>
