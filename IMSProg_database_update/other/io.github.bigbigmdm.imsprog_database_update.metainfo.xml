@@ -81,9 +81,10 @@
      <name>Mikhail Medvedev</name>
   </developer>
   <releases>
-  <release version="1.9.1" date="2025-08-13" urgency="medium">
+  <release version="1.9.1" date="2025-09-01" urgency="medium">
     <description>
         <p>Added: Support for the FT232H programmer.</p>
+        <p>Added: The chip's delay database parameter used to adjust the SPI and I2C bus speed.</p>
     </description>
   </release>
   <release version="1.8.6" date="2025-07-10" urgency="medium">
