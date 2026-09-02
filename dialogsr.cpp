@@ -49,7 +49,6 @@ void DialogSR::on_pushButton_read_clicked()
            if (currentChipType != 5) SPI_CONTROLLER_Write_One_Byte(0x05, programmerType);
            else SPI_CONTROLLER_Write_One_Byte(0xd7, programmerType);
            retval = SPI_CONTROLLER_Read_NByte(buf,1,SPI_CONTROLLER_SPEED_SINGLE, programmerType);
-           qDebug() << "retval=" << retval;
            SPI_CONTROLLER_Chip_Select_High(programmerType);
            usleep(1);
            if (retval)
