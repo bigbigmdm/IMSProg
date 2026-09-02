@@ -504,10 +504,28 @@ close_handle:
 /* End of [ch341a_spi.c] package */
 
 
-int ch341a_init(uint8_t chipType, uint8_t i2cSpeed)
+int ch341a_init(uint8_t chipType, uint16_t i2cSpeed)
 {
 //chipType = 0 for SPI, chipType = 1 for i2c, chipType = 2 for MicroWire
 //i2cSppeed - 0 = 20kHz; 1 = 100kHz, 2 = 400kHz, 3 = 750kHz).
+switch (i2cSpeed)
+{
+   case 20:
+        i2cSpeed = 0;
+        break;
+   case 100:
+        i2cSpeed = 1;
+        break;
+   case 400:
+        i2cSpeed = 2;
+        break;
+   case 750:
+        i2cSpeed = 3;
+        break;
+   default:
+        i2cSpeed = 2;
+        break;
+}
 if (i2cSpeed > 3) i2cSpeed = 3;
     if (handle != NULL) {
         printf("%s: handle already set!\n", __func__);
