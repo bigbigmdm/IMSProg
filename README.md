@@ -875,7 +875,7 @@ Default bus speed:
 | :---                   |      :---:  |     :---:   |     :---:   |    :---:    | :---:  |
 | SPI NOR Flash          |   1.6 Mhz   |     1.6 Mhz |     30 Mhz  |    15 Mhz   | 30 Mhz |
 | 25xxx EPROM            |   1.6 Mhz   |     1.6 Mhz |      5  Mhz |    5  Mhz   |  5 Mhz |
-| 24xxx EPROM            |   0.4 Mhz   |     0.4 Mhz |    0.4  Mhz |  0.4  Mhz   | 0.4 Mhz |
+| 24xxx EPROM            |   0.4 Mhz   |     0.4 Mhz |    0.4  Mhz |  0.4  Mhz   | 0.4 Mhz|
 | 93xxx EPROM            |   1.6 Mhz   |     1.6 Mhz |      5  Mhz |    5  Mhz   |  5 Mhz |
 | 45xxx DataFlash        |   1.6 Mhz   |     1.6 Mhz |      5  Mhz |    5  Mhz   |  5 Mhz |
 | SPI NAND Flash         |   1.6 Mhz   |     1.6 Mhz |     60 Mhz  |    15 Mhz   | 30 Mhz |
