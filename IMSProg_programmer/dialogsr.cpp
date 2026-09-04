@@ -42,14 +42,13 @@ void DialogSR::on_pushButton_read_clicked()
     int retval;
     int stCH341 = 0;
     buf = (uint8_t *)malloc(2);
-    stCH341 = ProgDeviceInit(programmerType, 3, 1);
+    stCH341 = ProgDeviceInit(programmerType, 3, 5000); // 5MHz
     if (stCH341 == 0)
         {
            SPI_CONTROLLER_Chip_Select_Low(programmerType);
            if (currentChipType != 5) SPI_CONTROLLER_Write_One_Byte(0x05, programmerType);
            else SPI_CONTROLLER_Write_One_Byte(0xd7, programmerType);
            retval = SPI_CONTROLLER_Read_NByte(buf,1,SPI_CONTROLLER_SPEED_SINGLE, programmerType);
-           qDebug() << "retval=" << retval;
            SPI_CONTROLLER_Chip_Select_High(programmerType);
            usleep(1);
            if (retval)
@@ -76,7 +75,7 @@ void DialogSR::on_pushButton_write_clicked()
     //WRITING STATUS REGISTER
     uint8_t r0 = 0;
     int stCH341 = 0;
-    stCH341 = ProgDeviceInit(programmerType, 3, 1);
+    stCH341 = ProgDeviceInit(programmerType, 3, 5000);  // 5MHz
     if (stCH341 == 0)
         {
            if (regReaded)

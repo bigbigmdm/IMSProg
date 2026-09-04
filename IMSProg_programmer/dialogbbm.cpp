@@ -49,7 +49,7 @@ void DialogBBM::on_pushButton_clicked()
     uint32_t sectInBlock;
     uint8_t tmp_hi, tmp_lo;
     QString col_block, col_start, col_end;
-    stCH341 = ProgDeviceInit(programmerType, 6, 1);
+    stCH341 = ProgDeviceInit(programmerType, 6, 15000); // 15MHz
     bbmCount = 0;
     sectInBlock = blSize / sectSize;
     ui->label_scan->clear();
@@ -124,7 +124,7 @@ void DialogBBM::on_pushButton_2_clicked()
     uint8_t stringResult;
     QString numBlock;
     std::shared_ptr<uint8_t[]> buf(new uint8_t[256]);
-    stCH341 = ProgDeviceInit(programmerType, 6, 1);
+    stCH341 = ProgDeviceInit(programmerType, 6, 15000); // 15MHz
     if (stCH341 == 0)
     {
         SPI_CONTROLLER_Chip_Select_Low(programmerType);

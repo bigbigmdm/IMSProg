@@ -145,7 +145,7 @@ int ch347_spi_tx(struct ch347_priv *priv, const void *tx, uint32_t len);
 
 int ch347_spi_rx(struct ch347_priv *priv, void *rx, uint32_t len);
 
-bool ch347_spi_init(uint8_t ch_type, uint16_t busSpeed, bool version);
+bool ch347_spi_init(uint8_t ch_type, uint16_t busSpeed);
 
 void ch347_spi_shutdown();
 

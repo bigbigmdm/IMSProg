@@ -42,7 +42,7 @@ void DialogNandSecurity::on_toolButton_read_clicked()
 qDebug()<<"curregister="<<curRegister;
     bool otp;
     //READING OTP PAGE
-    stCH341 = ProgDeviceInit(programmerType, 6, 1);
+    stCH341 = ProgDeviceInit(programmerType, 6, 15000); // 15 MHz
 
     if (stCH341 == 0)
     {
@@ -140,7 +140,7 @@ void DialogNandSecurity::on_toolButton_write_clicked()
     uint8_t curRegister = static_cast<uint8_t>(ui->comboBox_regnum->currentData().toUInt()) + startSector - 1;
     bool otp;
     //READING OTP PAGE
-    stCH341 = ProgDeviceInit(programmerType, 6, 1);
+    stCH341 = ProgDeviceInit(programmerType, 6, 15000); // 15 MHz
 
     if (stCH341 == 0)
     {
