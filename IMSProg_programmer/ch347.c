@@ -335,7 +335,7 @@ void ch347_close(struct ch347_priv *priv) {
 }
 
 
-bool ch347_spi_init(uint8_t ch_type, uint16_t busSpeed, bool version) {
+bool ch347_spi_init(uint8_t ch_type, uint16_t busSpeed) {
     int ret;
     priv = ch347_open();
     if (!priv)  return 1;
