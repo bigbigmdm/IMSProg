@@ -64,7 +64,7 @@ void DialogSFDP::on_pushButton_clicked()
     std::shared_ptr<uint8_t[]> sfdpBuf(new uint8_t[256]);
     QString regData = "", VCCmin = "", VCCmax = "", speeds = "Single", addrTxt="";
     int retval = 0;
-    stCH341 = ProgDeviceInit(programmerType, 0, 1);
+    stCH341 = ProgDeviceInit(programmerType, 0, 5000); // 5MHz
     ui->lineEdit_vcc_max->setText("");
     ui->lineEdit_vcc_min->setText("");
     ui->lineEdit_block->setText("");
@@ -293,7 +293,7 @@ void DialogSFDP::on_pushButton_3_clicked()
    if (numOfRegisters < 3)
    {
     int stCH341 = 0;
-    stCH341 = ProgDeviceInit(programmerType, 0, 1);
+    stCH341 = ProgDeviceInit(programmerType, 0, 5000); // 5MHz
     if (stCH341 == 0)
     {
        //scanning data from the form
@@ -349,7 +349,7 @@ void DialogSFDP::on_pushButton_3_clicked()
        //Writing status registers 0,1 for not Winbond
        if (numOfRegisters > 0)
        {
-           stCH341 = ProgDeviceInit(programmerType, 0, 1);
+           stCH341 = ProgDeviceInit(programmerType, 0, 5000); // 5MHz
 
            SPI_CONTROLLER_Chip_Select_Low(programmerType);
            SPI_CONTROLLER_Write_One_Byte(0x06, programmerType);
@@ -376,7 +376,7 @@ void DialogSFDP::on_pushButton_3_clicked()
            ProgDeviceClose(programmerType);
            usleep(1);
 
-           stCH341 = ProgDeviceInit(programmerType, 0, 1);
+           stCH341 = ProgDeviceInit(programmerType, 0, 5000); // 5MHz
            SPI_CONTROLLER_Chip_Select_Low(programmerType);
            SPI_CONTROLLER_Write_One_Byte(0x06, programmerType);
            SPI_CONTROLLER_Chip_Select_High(programmerType);
@@ -405,7 +405,7 @@ void DialogSFDP::on_pushButton_3_clicked()
        //Writing status register 2
        if (numOfRegisters > 1)
        {
-           stCH341 = ProgDeviceInit(programmerType, 0, 1);
+           stCH341 = ProgDeviceInit(programmerType, 0, 5000); //5MHz
 
            SPI_CONTROLLER_Chip_Select_Low(programmerType);
            SPI_CONTROLLER_Write_One_Byte(0x06, programmerType);

@@ -84,7 +84,7 @@ void DialogNANDSr::on_pushButton_read_clicked()
         uint8_t  currBit, currByte, idBlockAddr;
         int stCH341 = 0;
         idBlockAddr = 0x00;
-        stCH341 = ProgDeviceInit(programmerType, 6, 1);
+        stCH341 = ProgDeviceInit(programmerType, 6, 15000); // 15MHz
         if (stCH341 == 0)
             {
             for (currRegister = 0; currRegister < 5; currRegister++)
@@ -315,7 +315,7 @@ void DialogNANDSr::on_pushButton_write_clicked()
     int stCH341 = 0;
     uint8_t currRegister, currBit, currByte;
     QString currRegName, currValue;
-    stCH341 = ProgDeviceInit(programmerType, 6, 1);
+    stCH341 = ProgDeviceInit(programmerType, 6, 15000); // 15MHz
     if (stCH341 == 0)
     {
         for (currRegister = 0; currRegister < 6; currRegister++)
