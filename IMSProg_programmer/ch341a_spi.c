@@ -508,7 +508,7 @@ int ch341a_init(uint8_t chipType, uint16_t i2cSpeed)
 {
 //chipType = 0 for SPI, chipType = 1 for i2c, chipType = 2 for MicroWire
 //i2cSppeed - 0 = 20kHz; 1 = 100kHz, 2 = 400kHz, 3 = 750kHz).
-switch (i2cSpeed)
+switch (i2cSpeed) //speed selector
 {
    case 20:
         i2cSpeed = 0;
