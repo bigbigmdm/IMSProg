@@ -25,7 +25,7 @@ BuildRequires: pkgconfig(Qt6Core)
 BuildRequires: pkgconfig(Qt6Widgets)
 BuildRequires: cmake(Qt6LinguistTools)
 BuildRequires: pkgconfig(libusb-1.0)
-BuildRequires: pkgconfig(libftdi)
+BuildRequires: libftdi-devel
 BuildRequires: cmake
 BuildRequires: desktop-file-utils
 BuildRequires: libappstream-glib
