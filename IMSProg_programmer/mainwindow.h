@@ -37,6 +37,7 @@
 #include "dialogcompare.h"
 #include "searchdialog.h"
 #include "hexutility.h"
+#include "ft232all.h"
 extern "C" {
 #include "bitbang_microwire.h"
 #include "ch341a_gpio.h"
@@ -135,6 +136,7 @@ private slots:
     void on_comboBox_raw_currentIndexChanged(int index);
     void handleScroll();
     void clearCheckboxes();
+    void on_actionFT232H_v1_2_triggered();
 
 private:
     Ui::MainWindow *ui;
@@ -144,14 +146,14 @@ private:
     int statusCH341;
     QByteArray chipData, oldChipData;
     uint32_t currentChipSize, currentNumBlocks, currentBlockSize, currentPageSize, currentECCsize;
-    uint8_t currentAlgorithm, currentChipType, currentI2CBusSpeed;
+    uint8_t currentAlgorithm, currentChipType;
+    uint16_t currentDelay, defaultSpeed, currentI2CBusSpeed;
     unsigned int currentAddr4bit;
     bool isHalted;
     bool filled;
     bool nandRaw;
     uint8_t numberOfReads;
     QTimer *timer;
-    QVector <QString> chType = {"SPI_FLASH","25_EEPROM","93_EEPROM","24_EEPROM","95_EEPROM"};
     struct chip_data {
         QString chipManuf;
         QString chipTypeTxt;

@@ -15,11 +15,12 @@
 
 **IMSProg** - **I**2C, **M**icroWire and **S**PI EEPROM/Flash chip
 **Prog**rammer - is a program to read, write EEPROM chips use the
-`CH341A programmer` device and `CH347T programmer` device.
+`CH341A programmer` device, `CH347T programmer` device and `FT232H v1.2
+programmer` device.
 
-| CH341A/B v1.2 | CH341A v1.7| CH347T v1.0| CH347T v1.1|
-| :---:         | :---:      | :---:      | :---:      |
-| ![CH341A black](img/ch341_black150.png)  ![CH341A green](img/ch341_green150.png) | ![CH341A green](img/ch341v1_7.png) |![CH347T v1.0](img/ch347_150.png) |![CH347T v1.1](img/ch347_v1_1_150.png) |
+| CH341A/B v1.2 | CH341A v1.7| CH347T v1.0| CH347T v1.1| FT232H v1.2|
+| :---:         | :---:      | :---:      | :---:      | :---:      |
+| ![CH341A black](img/ch341_black150.png)  ![CH341A green](img/ch341_green150.png) | ![CH341A green](img/ch341v1_7.png) |![CH347T v1.0](img/ch347_150.png) |![CH347T v1.1](img/ch347_v1_1_150.png) |![CH347T v1.1](img/ft232h_150.png) |
 
 The IMSProg makes respect to [QHexEdit2](https://github.com/Simsys/qhexedit2)
 hex editor and [SNANDer programmer](https://github.com/McMCCRU/SNANDer). The
@@ -53,6 +54,7 @@ For build are needed:
 - g++ or clang
 - CMake
 - libusb 1.0
+- libftdi
 - Qt5 or Qt6
 - Qt5LinguistTools or Qt6LinguistTools
 - pkgconf or pkg-config
@@ -62,12 +64,13 @@ On Debian and derivatives:
 
 - for Qt5:
 
-`sudo apt-get install cmake g++ libusb-1.0-0-dev qtbase5-dev qttools5-dev pkgconf`
+`sudo apt-get install cmake g++ libusb-1.0-0-dev qtbase5-dev qttools5-dev pkgconf libftdi1-dev`
 
 - for Qt6:
 
-`sudo apt-get install cmake g++ libusb-1.0-0-dev pkgconf qt6-base-dev qt6-tools-dev
- linguist-qt6 qt6-l10n-tools qt6-base-dev-tools qt6-tools-dev-tools`
+`sudo apt-get install cmake g++ libusb-1.0-0-dev pkgconf qt6-base-dev 
+qt6-tools-dev libftdi1-dev linguist-qt6 qt6-l10n-tools qt6-base-dev-tools 
+qt6-tools-dev-tools`
 
 On Debian >=13 and Ubuntu >=24.04:
 
@@ -86,14 +89,14 @@ On Fedora and derivatives:
 
 ```
 sudo dnf install cmake libusb libusb1 libusb1-devel qt5-qtbase-devel
-sudo dnf install pkgconf-pkg-config qt5-linguist
+sudo dnf install pkgconf-pkg-config qt5-linguist libftdi-devel
 ```
 
 - for Qt6:
 
 ```
 sudo dnf install cmake gcc-c++ libusb1-devel pkgconf-pkg-config qt6-qtbase-devel
-sudo dnf install qt6-qttools-devel qt6-linguist
+sudo dnf install qt6-qttools-devel qt6-linguist libftdi-devel
 ```
 
 On OpenSUSE and derivatiles:
@@ -103,6 +106,7 @@ On OpenSUSE and derivatiles:
 ```
 sudo zypper install cmake gcc-c++ libqt5-qtbase-devel
 sudo zypper install libqt5-linguist-devel libusb-1_0-devel
+sudo zypper install libftdi1-devel
 ```
 
 - for Qt6:
@@ -110,6 +114,7 @@ sudo zypper install libqt5-linguist-devel libusb-1_0-devel
 ```
 sudo zypper install cmake gcc-c++ libqt6-qtbase-devel
 sudo zypper install libqt6-linguist-devel libusb-1_0-devel
+sudo zypper install libftdi1-devel
 ```
 
 ### macOS
@@ -125,7 +130,7 @@ install the required packages
 using brew:  
 
 ```
-brew install qt@6 libusb cmake pkgconf
+brew install qt@6 libusb cmake pkgconf libftdi
 ```
 
 if not using the [build_all.sh](build_all.sh) script then make sure `libusb` is
@@ -848,8 +853,8 @@ offset	 Size   Value
                 - 45xxx SPI EEPROM  - 0x?F - 15 bit sector address number
                 - SPI NOR Flash - algorithm number for working with  security registers
                 - SPI NAND Flash - algorithm number for reading status and security registers
-3C        2     Timing parameter:
-3D              3000/1000/500/300/200/100 - NOR FLASH, 4000/2000 - 24xxx, 100 - 93xxx
+3C        2     Delay bus speed factor:
+3D              bus_speed = default_bus_speed * Delay / 1000
 3E        2     SPI NOR Flash 4bit address type:
                 - 0x?0 - Not used (3 bit address data)
                 - 0x?1 - Used (4 bit address data)
@@ -864,6 +869,17 @@ offset	 Size   Value
 43        1     VCC 00=>3.3V 01=>1.8V 02=>5.0V 03=>2.5V
 The end record is 0x44 (68) zero bytes.
 ```
+Default bus speed:
+
+| Chip type / Programmer | CH341a v1.2 | CH341a v1.7 | CH347t v1.0 | CH347T v1.1 | FH232H v1.2 |
+| :---                   |      :---:  |     :---:   |     :---:   |    :---:    | :---:  |
+| SPI NOR Flash          |   1.6 Mhz   |     1.6 Mhz |     30 Mhz  |    15 Mhz   | 30 Mhz |
+| 25xxx EPROM            |   1.6 Mhz   |     1.6 Mhz |      5  Mhz |    5  Mhz   |  5 Mhz |
+| 24xxx EPROM            |   0.4 Mhz   |     0.4 Mhz |    0.4  Mhz |  0.4  Mhz   | 0.4 Mhz|
+| 93xxx EPROM            |   1.6 Mhz   |     1.6 Mhz |      5  Mhz |    5  Mhz   |  5 Mhz |
+| 45xxx DataFlash        |   1.6 Mhz   |     1.6 Mhz |      5  Mhz |    5  Mhz   |  5 Mhz |
+| SPI NAND Flash         |   1.6 Mhz   |     1.6 Mhz |     60 Mhz  |    15 Mhz   | 30 Mhz |
+
 ## Licensing
 
 Copyright (C) 2023 - 2026 Mikhail Medvedev.

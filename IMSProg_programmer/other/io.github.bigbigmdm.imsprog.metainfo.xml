@@ -119,6 +119,7 @@
      <mediatype>application/octet-stream</mediatype>
      <modalias>usb:v1A86p5512d*</modalias>
      <modalias>usb:v1A86p55DBd*</modalias>
+     <modalias>usb:v0403p6014d*</modalias>
   </provides>
   <developer id="io.github.bigbigmdm">
      <name>Mikhail Medvedev</name>
@@ -165,6 +166,12 @@
     </screenshot>
   </screenshots>
   <releases>
+  <release version="1.9.1" date="2025-09-01" urgency="medium">
+    <description>
+        <p>Added: Support for the FT232H programmer.</p>
+        <p>Added: The chip's delay database parameter used to adjust the SPI and I2C bus speed.</p>
+    </description>
+  </release>
   <release version="1.8.6" date="2025-07-10" urgency="medium">
     <description>
         <p>Removed unused files.</p>

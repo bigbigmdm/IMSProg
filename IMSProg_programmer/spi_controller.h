@@ -66,9 +66,10 @@ typedef enum{
 	SPI_CONTROLLER_MODE_NO
 } SPI_CONTROLLER_MODE_T;
 
-int ProgDeviceInit( u8 deviceType, u8 chipType, u8 i2cSpeed );
+int ProgDeviceInit( u8 deviceType, u8 chipType, u16 speed );
 int ProgDeviceClose( u8 deviceType );
 int getDeviceDescriptor(u8 *data, u8 deviceType);
+uint16_t getInterfaceSpeed(u8 deviceType, u8 chipType, u16 delay);
 
 /*------------------------------------------------------------------------------------
  * FUNCTION: SPI_CONTROLLER_RTN_T SPI_CONTROLLER_Enable_Manual_Mode( void )

@@ -42,7 +42,7 @@ void DialogSR::on_pushButton_read_clicked()
     int retval;
     int stCH341 = 0;
     buf = (uint8_t *)malloc(2);
-    stCH341 = ProgDeviceInit(programmerType, 3, 5000); // 5MHz
+    stCH341 = ProgDeviceInit(programmerType, 3, 5000);
     if (stCH341 == 0)
         {
            SPI_CONTROLLER_Chip_Select_Low(programmerType);
@@ -75,7 +75,7 @@ void DialogSR::on_pushButton_write_clicked()
     //WRITING STATUS REGISTER
     uint8_t r0 = 0;
     int stCH341 = 0;
-    stCH341 = ProgDeviceInit(programmerType, 3, 5000);  // 5MHz
+    stCH341 = ProgDeviceInit(programmerType, 3, 5000);
     if (stCH341 == 0)
         {
            if (regReaded)

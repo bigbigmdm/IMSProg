@@ -57,6 +57,15 @@ DialogInfo::DialogInfo(QWidget *parent) :
     pix35x347_1v8_1 = new QPixmap(":/res/img/v1_1_NAND_1v8.png");
     pix35x347_3v3_1 = new QPixmap(":/res/img/v1_1_NAND_3v3.png");
 
+    pix24x232_3v3_2 = new QPixmap(":/res/img/FT232H_i2c_3v3.png");
+    pix24x232_5v0_2 = new QPixmap(":/res/img/FT232H_i2c_5v0.png");
+    pix25x232_1v8_2 = new QPixmap(":/res/img/FT232H_spi_1v8.png");
+    pix25x232_2v5_2 = new QPixmap(":/res/img/FT232H_spi_2v5.png");
+    pix25x232_3v3_2 = new QPixmap(":/res/img/FT232H_spi_3v3.png");
+    pix93x232_3v3_2 = new QPixmap(":/res/img/FT232H_mw_3v3.png");
+    pix45x232_3v3_2 = new QPixmap(":/res/img/FT232H_45_3v3.png");
+    pix35x232_1v8_2 = new QPixmap(":/res/img/FT232H_NAND_1v8.png");
+    pix35x232_3v3_2 = new QPixmap(":/res/img/FT232H_NAND_3v3.png");
 
     pixnone = new QPixmap(":/res/img/ch341_unknown.png");
 }
@@ -98,6 +107,16 @@ DialogInfo::~DialogInfo()
     delete pix35x347_1v8_1;
     delete pix35x347_3v3_1;
 
+    delete pix24x232_3v3_2;
+    delete pix24x232_5v0_2;
+    delete pix25x232_1v8_2;
+    delete pix25x232_2v5_2;
+    delete pix25x232_3v3_2;
+    delete pix93x232_3v3_2;
+    delete pix45x232_3v3_2;
+    delete pix35x232_1v8_2;
+    delete pix35x232_3v3_2;
+
     delete pixnone;
     delete ui;
 }
@@ -120,6 +139,7 @@ void DialogInfo::setChip(const uint chipType)
         if (currentProg == 1) ui->label->setPixmap(*pix24v7);
         if (currentProg == 2) ui->label->setPixmap(*pix24x347_3v3_0);
         if (currentProg == 3) ui->label->setPixmap(*pix24x347_3v3_1);
+        if (currentProg == 4) ui->label->setPixmap(*pix24x232_3v3_2);
         ui->label_slot->setText("24xx");
         ui->label_adapter->setText("-");
      break;
@@ -128,6 +148,7 @@ void DialogInfo::setChip(const uint chipType)
        if (currentProg == 1) ui->label->setPixmap(*pix25v733);
        if (currentProg == 2) ui->label->setPixmap(*pix25x347_3v3_0);
        if (currentProg == 3) ui->label->setPixmap(*pix25x347_3v3_1);
+       if (currentProg == 4) ui->label->setPixmap(*pix25x232_3v3_2);
        ui->label_slot->setText("25xx");
        ui->label_adapter->setText("-");
      break;
@@ -137,11 +158,13 @@ void DialogInfo::setChip(const uint chipType)
        if (currentProg == 1) ui->label->setPixmap(*pix25v718);
        if (currentProg == 2) ui->label->setPixmap(*pix25x347_1v8_0);
        if (currentProg == 3) ui->label->setPixmap(*pix25x347_1v8_1);
+       if (currentProg == 4) ui->label->setPixmap(*pix25x232_1v8_2);
        ui->label_slot->setText("25xx");
        if (currentProg == 0) ui->label_adapter->setText("1.8V-Adapter");
        if (currentProg == 1) ui->label_adapter->setText("-");
        if (currentProg == 2) ui->label_adapter->setText("1.8V-Adapter");
        if (currentProg == 3) ui->label_adapter->setText("-");
+       if (currentProg == 4) ui->label_adapter->setText("-");
      break;
      case 4:
        ui->label_slot->setText("25xx");
@@ -150,6 +173,7 @@ void DialogInfo::setChip(const uint chipType)
        if (currentProg == 1) ui->label->setPixmap(*pix93v17);
        if (currentProg == 2) ui->label->setPixmap(*pix93x347_3v3_0);
        if (currentProg == 3) ui->label->setPixmap(*pix93x347_3v3_1);
+       if (currentProg == 4) ui->label->setPixmap(*pix93x232_3v3_2);
      break;
      case 5:
        ui->label_slot->setText("25xx");
@@ -158,6 +182,7 @@ void DialogInfo::setChip(const uint chipType)
        if (currentProg == 1) ui->label->setPixmap(*pix45v17);
        if (currentProg == 2) ui->label->setPixmap(*pix45x347_3v3_0);
        if (currentProg == 3) ui->label->setPixmap(*pix45x347_3v3_1);
+       if (currentProg == 4) ui->label->setPixmap(*pix45x232_3v3_2);
      break;
      case 6:
        ui->label_slot->setText("25xx");
@@ -166,21 +191,25 @@ void DialogInfo::setChip(const uint chipType)
        if (currentProg == 1) ui->label->setPixmap(*pix35v733);
        if (currentProg == 2) ui->label->setPixmap(*pix35x347_3v3_0);
        if (currentProg == 3) ui->label->setPixmap(*pix35x347_3v3_1);
+       if (currentProg == 4) ui->label->setPixmap(*pix35x232_3v3_2);
      break;
      case 7:
        if (currentProg == 0) ui->label->setPixmap(*pix3518);
        if (currentProg == 1) ui->label->setPixmap(*pix35v718);
        if (currentProg == 2) ui->label->setPixmap(*pix35x347_1v8_0);
        if (currentProg == 3) ui->label->setPixmap(*pix35x347_1v8_1);
+       if (currentProg == 4) ui->label->setPixmap(*pix35x232_1v8_2);
        ui->label_slot->setText("25xx");
        if (currentProg == 0) ui->label_adapter->setText("1.8V + WSON");
        if (currentProg == 1) ui->label_adapter->setText("WSON");
        if (currentProg == 2) ui->label_adapter->setText("1.8V + WSON");
        if (currentProg == 3) ui->label_adapter->setText("WSON");
+       if (currentProg == 4) ui->label_adapter->setText("WSON");
      break;
      case 8:
        if (currentProg == 1) ui->label->setPixmap(*pix25v725);
        if (currentProg == 3) ui->label->setPixmap(*pix25x347_2v5_1);
+       if (currentProg == 4) ui->label->setPixmap(*pix25x232_2v5_2);
        ui->label_slot->setText("25xx");
      break;
    case 9:
@@ -188,6 +217,7 @@ void DialogInfo::setChip(const uint chipType)
       if (currentProg == 1) ui->label->setPixmap(*pix24v750);
       if (currentProg == 2) ui->label->setPixmap(*pix24x347_3v3_0);
       if (currentProg == 3) ui->label->setPixmap(*pix24x347_5v0_1);
+      if (currentProg == 4) ui->label->setPixmap(*pix24x232_5v0_2);
       ui->label_slot->setText("24xx");
       ui->label_adapter->setText("-");
    break;

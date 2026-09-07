@@ -107,10 +107,11 @@ MainWindow::MainWindow(QWidget *parent) :
  ui->comboBox_ECC->addItem("128", 2);
  ui->comboBox_ECC->addItem("256", 3);
 
- ui->comboBox_i2cSpeed->addItem("20 kHz",  0);
- ui->comboBox_i2cSpeed->addItem("100 kHz", 1);
- ui->comboBox_i2cSpeed->addItem("400 kHz", 2);
- ui->comboBox_i2cSpeed->addItem("750 kHz", 3);
+ ui->comboBox_i2cSpeed->addItem("       ",   0);
+ ui->comboBox_i2cSpeed->addItem("20 kHz ",  20);
+ ui->comboBox_i2cSpeed->addItem("100 kHz", 100);
+ ui->comboBox_i2cSpeed->addItem("400 kHz", 400);
+ ui->comboBox_i2cSpeed->addItem("750 kHz", 750);
  ui->comboBox_i2cSpeed->setCurrentIndex(2);
  currentI2CBusSpeed = 2;
 
@@ -125,6 +126,7 @@ MainWindow::MainWindow(QWidget *parent) :
  currentPageSize = 0;
  currentAlgorithm = 0;
  currentChipType = 0;
+ currentDelay = 1000;
  blockStartAddr = 0;
  blockLen = 0;
  currentAddr4bit = 0;
@@ -164,6 +166,7 @@ MainWindow::MainWindow(QWidget *parent) :
               ui->actionCH347T_v1_1->setChecked(true);
               SetItemStatus("comboBox_type", 2, true);
           }
+       if (current_programmer == 4) ui->actionFT232H_v1_2->setChecked(true);
      settings.endGroup();
      settings.beginGroup("FormPosition");
      if (settings.contains("geometry"))
@@ -174,7 +177,8 @@ MainWindow::MainWindow(QWidget *parent) :
  }
  // connect and status check
  if (current_programmer < 2) ui->lStatus->setText("CH341A");
- if (current_programmer >= 2) ui->lStatus->setText("CH347T");
+ if ((current_programmer == 2) || (current_programmer == 3)) ui->lStatus->setText("CH347T");
+ if (current_programmer == 4) ui->lStatus->setText("FT232H");
  statusCH341 =  ProgDeviceInit(current_programmer, currentChipType, currentI2CBusSpeed);
  ch341StatusFlashing();
  ProgDeviceClose(current_programmer);
@@ -197,6 +201,7 @@ MainWindow::MainWindow(QWidget *parent) :
         }
    }
  progInit();
+ defaultSpeed = getInterfaceSpeed(current_programmer, currentChipType, currentDelay);
  if (cmdStarted) on_actionOpen_triggered();
 }
 
@@ -211,7 +216,19 @@ void MainWindow::on_pushButton_clicked()
   newFileName = ui->comboBox_name->currentText();
   int res = 0;
   uint32_t numBlocks, step, sectorsPerBlock;
-  statusCH341 = ProgDeviceInit(current_programmer, currentChipType, currentI2CBusSpeed);
+  defaultSpeed = getInterfaceSpeed(current_programmer, currentChipType, currentDelay);
+
+  if (currentChipType != 1)
+  {
+      statusCH341 = ProgDeviceInit(current_programmer, currentChipType, defaultSpeed);
+      qDebug() << "Interface speed" << defaultSpeed << " KHZ\n";
+  }
+  else
+  {
+      statusCH341 = ProgDeviceInit(current_programmer, currentChipType, currentI2CBusSpeed);
+      qDebug() << "Interface speed" << currentI2CBusSpeed << " KHZ\n";
+  }
+
   if (statusCH341 == 0)
   {
     ui->crcEdit->setText("");
@@ -283,12 +300,14 @@ void MainWindow::on_pushButton_clicked()
                  res = snor_read_param(buf.get(), curBlock * step, step, step, currentAddr4bit, current_programmer);
               break;
               case 1:            //I2C
-                   res = ch34xi2cBlockRead(buf.get(), curBlock * step, step, currentAlgorithm, current_programmer);
+                   if (current_programmer < 4) res = ch34xi2cBlockRead(buf.get(), curBlock * step, step, currentAlgorithm, current_programmer);
+                   else res = ft232I2cBlockRead(buf.get(), curBlock * step, step, currentAlgorithm);
                    if (res==0) res = 1;
               break;
               case 2:
                  //MicroWire
-                   res = Read_EEPROM_3wire_param(buf.get(), static_cast<int>(curBlock * step), static_cast<int>(step), static_cast<int>(currentChipSize), currentAlgorithm);
+                   if (current_programmer < 4) res = Read_EEPROM_3wire_param(buf.get(), static_cast<int>(curBlock * step), static_cast<int>(step), static_cast<int>(currentChipSize), currentAlgorithm);
+                   else res = ft232MWReadBlock(buf.get(), static_cast<int>(curBlock * step), static_cast<int>(step), currentAlgorithm);
                    if (res==0) res = 1;
               break;
               case 3:
@@ -692,8 +711,18 @@ void MainWindow::on_actionErase_triggered()
     //statusCH341 = ch341a_spi_init();
     int ret;
     uint32_t curBlock, numBlocks, step;
-    statusCH341 = ProgDeviceInit(current_programmer, currentChipType, currentI2CBusSpeed);//ch341a_init(currentChipType, currentI2CBusSpeed);
-    ch341StatusFlashing();
+
+    if (currentChipType != 1)
+    {
+        statusCH341 = ProgDeviceInit(current_programmer, currentChipType, defaultSpeed);
+        qDebug() << "Interface speed" << defaultSpeed << " KHZ\n";
+    }
+    else
+    {
+        statusCH341 = ProgDeviceInit(current_programmer, currentChipType, currentI2CBusSpeed);
+        qDebug() << "Interface speed" << currentI2CBusSpeed << " KHZ\n";
+    }
+
     if (statusCH341 != 0)
       {
         QMessageBox::about(this, tr("Error"), tr("Programmer ") + ui->lStatus->text() + tr(" is not connected!"));
@@ -781,7 +810,8 @@ void MainWindow::on_actionErase_triggered()
         config_stream(1);
         mw_gpio_init();
         ui->progressBar->setValue(50);
-        Erase_EEPROM_3wire_param(currentAlgorithm);
+        if (current_programmer < 4) Erase_EEPROM_3wire_param(currentAlgorithm);
+        else ft232hMWEraseAll(currentAlgorithm);
         sleep(1);
     }
     if (currentChipType == 1)
@@ -801,7 +831,8 @@ void MainWindow::on_actionErase_triggered()
         }
         for (curBlock = 0; curBlock < numBlocks; curBlock++)
         {
-            res = ch34xi2cBlockWrite(buf.get(), curBlock * step, step, currentPageSize, currentAlgorithm, current_programmer);
+            if (current_programmer < 4) res = ch34xi2cBlockWrite(buf.get(), curBlock * step, step, currentPageSize, currentAlgorithm, current_programmer);
+            else res = ft232I2cBlockWrite(buf.get(), curBlock * step, step, currentPageSize, currentAlgorithm);
             if (res==0) res = 1;
             qApp->processEvents();
             ui->progressBar->setValue( static_cast<int>(curBlock));
@@ -1010,7 +1041,18 @@ void MainWindow::on_actionWrite_triggered()
     //Writting data to chip
     int res = 0, badResult = 0;
     uint32_t numBlocks, step, sectorsPerBlock;
-    statusCH341 = ProgDeviceInit(current_programmer, currentChipType, currentI2CBusSpeed);//statusCH341 = ProgDeviceInit(current_programmer);//ch341a_init(currentChipType, currentI2CBusSpeed);
+
+    if (currentChipType != 1)
+    {
+        statusCH341 = ProgDeviceInit(current_programmer, currentChipType, defaultSpeed);
+        qDebug() << "Interface speed" << defaultSpeed << " KHZ\n";
+    }
+    else
+    {
+        statusCH341 = ProgDeviceInit(current_programmer, currentChipType, currentI2CBusSpeed);
+        qDebug() << "Interface speed" << currentI2CBusSpeed << " KHZ\n";
+    }
+
     if (statusCH341 == 0)
     {
     chipData = hexEdit->data();
@@ -1090,12 +1132,14 @@ void MainWindow::on_actionWrite_triggered()
                        break;
                        case 1:                           //I2C
                           addrSrc = addrSrc + step;
-                          res = ch34xi2cBlockWrite(buf.get(), curBlock * step, step, currentPageSize, currentAlgorithm, current_programmer);
+                           if (current_programmer < 4) res = ch34xi2cBlockWrite(buf.get(), curBlock * step, step, currentPageSize, currentAlgorithm, current_programmer);
+                           else res = ft232I2cBlockWrite(buf.get(), curBlock * step, step, currentPageSize, currentAlgorithm);
                           if (res==0) res = 1;
                        break;
                        case 2:                           //MicroWire
                           addrSrc = addrSrc + step;
-                          res = Write_EEPROM_3wire_param(buf.get(), static_cast<int>(curBlock * step), static_cast<int>(step), static_cast<int>(currentChipSize), currentAlgorithm);
+                          if (current_programmer < 4) res = Write_EEPROM_3wire_param(buf.get(), static_cast<int>(curBlock * step), static_cast<int>(step), static_cast<int>(currentChipSize), currentAlgorithm);
+                          else res = ft232MWWriteBlock(buf.get(), static_cast<int>(curBlock * step), static_cast<int>(step), currentAlgorithm);
                           if (res==0) res = 1;
                        break;
                        case 3:                           //25xxx
@@ -1264,6 +1308,14 @@ void MainWindow::on_comboBox_name_currentTextChanged(const QString &arg1)
                   ui->comboBox_ECC->setCurrentIndex(index);
                }
                currentAlgorithm = chips[i].algorithmCode;
+               currentDelay = chips[i].delay;
+
+               defaultSpeed = getInterfaceSpeed(current_programmer, currentChipType, currentDelay);
+               index = ui->comboBox_i2cSpeed->findData(defaultSpeed);
+               if ( index != -1 )
+               { // -1 for not found
+                   ui->comboBox_i2cSpeed->setCurrentIndex(index);
+               }
            }
        }
        currentChipSize = ui->comboBox_size->currentData().toUInt();
@@ -1307,7 +1359,19 @@ void MainWindow::on_actionVerify_triggered()
     //Reading and veryfying data from chip
     int res = 0;
     uint32_t step, numBlocks, sectorsPerBlock;
-    statusCH341 = ProgDeviceInit(current_programmer, currentChipType, currentI2CBusSpeed);//ch341a_init(currentChipType, currentI2CBusSpeed);
+    //statusCH341 = ProgDeviceInit(current_programmer, currentChipType, currentI2CBusSpeed);//ch341a_init(currentChipType, currentI2CBusSpeed);
+
+    if (currentChipType != 1)
+    {
+        statusCH341 = ProgDeviceInit(current_programmer, currentChipType, defaultSpeed);
+        qDebug() << "Interface speed" << defaultSpeed << " KHZ\n";
+    }
+    else
+    {
+        statusCH341 = ProgDeviceInit(current_programmer, currentChipType, currentI2CBusSpeed);
+        qDebug() << "Interface speed" << currentI2CBusSpeed << " KHZ\n";
+    }
+
     if (statusCH341 == 0)
     {
        if (((currentNumBlocks > 0) && (currentBlockSize >0) && (currentChipType == 0)) ||
@@ -1376,12 +1440,14 @@ void MainWindow::on_actionVerify_triggered()
                       break;
                       case 1:
                          //I2C
-                         res = ch34xi2cBlockRead(buf.get(), curBlock * step, step, currentAlgorithm, current_programmer);
+                          if (current_programmer < 4) res = ch34xi2cBlockRead(buf.get(), curBlock * step, step, currentAlgorithm, current_programmer);
+                          else res = ft232I2cBlockRead(buf.get(), curBlock * step, step, currentAlgorithm);
                          if (res==0) res = 1;
                       break;
                       case 2:
                          //MicroWire
-                         res = Read_EEPROM_3wire_param(buf.get(), static_cast<int>(curBlock * step), static_cast<int>(step), static_cast<int>(currentChipSize), currentAlgorithm);
+                         if (current_programmer < 4) res = Read_EEPROM_3wire_param(buf.get(), static_cast<int>(curBlock * step), static_cast<int>(step), static_cast<int>(currentChipSize), currentAlgorithm);
+                         else res = ft232MWReadBlock(buf.get(), static_cast<int>(curBlock * step), static_cast<int>(step), currentAlgorithm);
                          if (res==0) res = 1;
                       break;
                       case 3:
@@ -1826,7 +1892,7 @@ void MainWindow::on_comboBox_addr4bit_currentIndexChanged(int index)
 
 void MainWindow::on_comboBox_i2cSpeed_currentIndexChanged(int index)
 {
-   currentI2CBusSpeed = static_cast<uint8_t>(ui->comboBox_i2cSpeed->currentData().toUInt());
+   currentI2CBusSpeed = static_cast<uint16_t>(ui->comboBox_i2cSpeed->currentData().toUInt());
    index++;
 }
 
@@ -2646,6 +2712,14 @@ void MainWindow::on_actionCH347T_v1_1_triggered()
     SetItemStatus("comboBox_vcc", 3, false);
 }
 
+void MainWindow::on_actionFT232H_v1_2_triggered()
+{
+    current_programmer = 4;
+    ui->lStatus->setText("FT232H");
+    SetItemStatus("comboBox_type", 2, false);
+    SetItemStatus("comboBox_vcc", 3, false);
+}
+
 void MainWindow::closeEvent(QCloseEvent( *event))
 {
     //Storing parameters in ini file
@@ -2727,7 +2801,19 @@ void MainWindow::on_actionCheck_erase_triggered()
     //Verification of data erasure from the chip
     int res = 0;
     uint32_t step, numBlocks;
-    statusCH341 = ProgDeviceInit(current_programmer, currentChipType, currentI2CBusSpeed);
+
+    if (currentChipType != 1)
+    {
+        statusCH341 = ProgDeviceInit(current_programmer, currentChipType, defaultSpeed);
+        qDebug() << "Interface speed" << defaultSpeed << " KHZ\n";
+    }
+    else
+    {
+        statusCH341 = ProgDeviceInit(current_programmer, currentChipType, currentI2CBusSpeed);
+        qDebug() << "Interface speed" << currentI2CBusSpeed << " KHZ\n";
+    }
+
+    //statusCH341 = ProgDeviceInit(current_programmer, currentChipType, currentI2CBusSpeed);
     if (statusCH341 == 0)
     {
        if (((currentNumBlocks > 0) && (currentBlockSize >0) && (currentChipType == 0)) ||
@@ -2793,12 +2879,14 @@ void MainWindow::on_actionCheck_erase_triggered()
                       break;
                       case 1:
                          //I2C
-                         res = ch34xi2cBlockRead(buf.get(), curBlock * step, step, currentAlgorithm, current_programmer);
+                         if (current_programmer < 4) res = ch34xi2cBlockRead(buf.get(), curBlock * step, step, currentAlgorithm, current_programmer);
+                         else res = ft232I2cBlockRead(buf.get(), curBlock * step, step, currentAlgorithm);
                          if (res==0) res = 1;
                       break;
                       case 2:
                          //MicroWire
-                         res = Read_EEPROM_3wire_param(buf.get(), static_cast<int>(curBlock * step), static_cast<int>(step), static_cast<int>(currentChipSize), currentAlgorithm);
+                         if (current_programmer < 4) res = Read_EEPROM_3wire_param(buf.get(), static_cast<int>(curBlock * step), static_cast<int>(step), static_cast<int>(currentChipSize), currentAlgorithm);
+                         else res = ft232MWReadBlock(buf.get(), static_cast<int>(curBlock * step), static_cast<int>(step), currentAlgorithm);
                          if (res==0) res = 1;
                       break;
                       case 3:

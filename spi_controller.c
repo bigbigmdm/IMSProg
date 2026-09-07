@@ -61,7 +61,6 @@ int ProgDeviceInit( u8 deviceType, u8 chipType, u16 speed )
         case 4: // FT232H v1.2
             ret = initFt232h();
             if (ret != 0) return ret;
-            if (chipType == 0) ft232hSetSpeedSPI(speed);
             if (chipType == 1) ft232hSetSpeedI2C(speed);
             if (chipType == 2) ft232hSetSpeedI2C(20);
             if (chipType  > 2) ft232hSetSpeedSPI(speed);

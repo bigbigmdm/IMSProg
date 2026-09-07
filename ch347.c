@@ -361,7 +361,7 @@ bool ch347_spi_init(uint8_t ch_type, uint16_t busSpeed) {
              case 3: //25xxx
              case 4: //95xxx
              case 5: //45xxx DataFlash
-             case 6:
+             case 6: //NAND Flash
                 freq = busSpeed;
                 break;
              default:
