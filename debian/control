@@ -6,6 +6,7 @@ Build-Depends:
  debhelper-compat (= 13),
  architecture-is-little-endian,
  libusb-1.0-0-dev,
+ libftdi1-dev,
  pkgconf,
  qt6-base-dev,
  qt6-tools-dev,
@@ -22,7 +23,7 @@ Vcs-Browser: https://github.com/bigbigmdm/IMSProg/tree/debian/latest
 Package: imsprog
 Architecture: any
 Depends: ${misc:Depends}, ${shlibs:Depends}
-Description: Linux chip programmer for CH341A/CH347T devices
+Description: Linux chip programmer for CH341A/CH347T/FT232H devices
  Linux IMSProg - I2C, SPI and MicroWire chip programmer for CH341/CH347 devices.
- The IMSProg is a free EEPROM programmer tool for CH341A device based on
- QHexEdit2 and modified SNANDer programmer.
+ The IMSProg is a free EEPROM programmer tool for CH341A/CH347/FT232H device 
+ based on QHexEdit2 and modified SNANDer programmer.

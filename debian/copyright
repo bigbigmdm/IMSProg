@@ -79,6 +79,10 @@ Files: IMSProg_editor/delegates.cpp
        IMSProg_editor/ezp_chip_editor.cpp
        IMSProg_editor/ezp_chip_editor.h
        IMSProg_programmer/main.cpp
+       IMSProg_programmer/dialognandsecurity.cpp
+       IMSProg_programmer/dialognandsecurity.h
+       IMSProg_programmer/dialognandsr.cpp
+       IMSProg_editor/main.cpp
 Copyright: 2024-2026, Mikhail Medvedev
 License: GPL-3+
 
@@ -89,6 +93,8 @@ Copyright: 2023, Mikhail Medvedev
 License: GPL-3+
 
 Files: IMSProg_database_update/main.cpp
+       IMSProg_programmer/ft232all.h
+       IMSProg_programmer/ft232all.cpp
 Copyright: 2026, Mikhail Medvedev
 License: GPL-3+
 
@@ -128,6 +134,15 @@ Copyright: 2011, asbokid <ballymunboy@gmail.com>
            2015, Urja Rannikko <urjaman@gmail.com>
            2015-2016, Stefan Tauner
            2018-2021, McMCC <mcmcc@mail.ru>
+License: GPL-2+
+
+Files: IMSProg_programmer/spi_controller.c
+Copyright: 2018-2021, McMCC
+           2023-2026, Mikhail Medvedev
+License: GPL-2+
+
+Files: IMSProg_programmer/spi_controller.h
+Copyright: 2022, McMCC
 License: GPL-2+
 
 Files: IMSProg_programmer/qhexedit2/src/commands.h
