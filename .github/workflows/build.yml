@@ -145,7 +145,7 @@ jobs:
         run: |
           cmake --build build --config Release --parallel
 
-- name: Prepare Deployment Artifacts (Create Multi-App DMG)
+      - name: Prepare Deployment Artifacts (Create Multi-App DMG)
         run: |
           mkdir -p dmg_staging
 
