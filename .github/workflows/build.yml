@@ -138,7 +138,6 @@ jobs:
           cmake -S . -B build \
             -DCMAKE_BUILD_TYPE=Release \
             -DCMAKE_PREFIX_PATH=$(brew --prefix qt@6) \
-            # support arm and 86_64 -DCMAKE_OSX_ARCHITECTURES="arm64;x86_64" \
             -DCMAKE_OSX_ARCHITECTURES="arm64" \
             -DCMAKE_EXE_LINKER_FLAGS="-L/opt/homebrew/lib -L/usr/local/lib"
 
