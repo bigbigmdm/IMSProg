@@ -229,9 +229,14 @@ jobs:
           export DYLD_LIBRARY_PATH="/opt/homebrew/lib:$DYLD_LIBRARY_PATH"
           QT_BIN="$(brew --prefix qt@6)/bin"
 
-          $QT_BIN/macdeployqt dmg_staging/IMSProg.app
-          $QT_BIN/macdeployqt dmg_staging/IMSProg_editor.app
-          $QT_BIN/macdeployqt dmg_staging/IMSProg_database_update.app
+          $QT_BIN/macdeployqt dmg_staging/IMSProg.app -no-codesign
+          $QT_BIN/macdeployqt dmg_staging/IMSProg_editor.app -no-codesign
+          $QT_BIN/macdeployqt dmg_staging/IMSProg_database_update.app -no-codesign
+          
+          # Removing signatures
+          codesign --remove-signature --deep dmg_staging/IMSProg.app || true
+          codesign --remove-signature --deep dmg_staging/IMSProg_editor.app || true
+          codesign --remove-signature --deep dmg_staging/IMSProg_database_update.app || true
 
           # Create final unified DMG disk image
           hdiutil create -volname "IMSProg Programmer Suite" -srcfolder dmg_staging -ov -format UDZO imsprog-macos-arm64.dmg
