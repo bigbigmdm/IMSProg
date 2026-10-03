@@ -221,9 +221,9 @@ jobs:
           EDITOR_BIN=$(find build -name "IMSProg_editor" -type f -not -path "*/.*" | head -n 1)
           DB_BIN=$(find build -name "IMSProg_database_update" -type f -not -path "*/.*" | head -n 1)
 
-          package_binary_to_app "IMSProg" "$IMSPROG_BIN" "IMSProg_programmer/IMSProg64.png" "IMSProg"
-          package_binary_to_app "IMSProg_editor" "$EDITOR_BIN" "IMSProg_editor/chipEdit64.png" "chipEdit"
-          package_binary_to_app "IMSProg_database_update" "$DB_BIN" "IMSProg_database_update/IMSProg_database_update.png" "IMSProg_db"
+          package_binary_to_app "IMSProg" "$IMSPROG_BIN" "IMSProg_programmer/img/IMSProg64.png" "IMSProg"
+          package_binary_to_app "IMSProg_editor" "$EDITOR_BIN" "IMSProg_editor/img/chipEdit64.png" "chipEdit"
+          package_binary_to_app "IMSProg_database_update" "$DB_BIN" "IMSProg_database_update/img/IMSProg_database_update.png" "IMSProg_db"
 
           # Deploy Qt dependencies using macdeployqt
           export DYLD_LIBRARY_PATH="/opt/homebrew/lib:$DYLD_LIBRARY_PATH"
