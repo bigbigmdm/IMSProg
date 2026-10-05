@@ -216,7 +216,8 @@ jobs:
             fi
 
             # 4. Copy database file
-            [ -f "IMSProg_programmer/other/IMSProg.Dat" ] && cp "IMSProg_programmer/IMSProg.Dat" "${bundle_dir}/Contents/Resources/"
+            
+            [ -f "IMSProg_programmer/database/IMSProg.Dat" ] && cp "IMSProg_programmer/IMSProg.Dat" "${bundle_dir}/Contents/Resources/"
             # 5. Create and copy translation files
           }
 
