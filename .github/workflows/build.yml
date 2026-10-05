@@ -214,11 +214,12 @@ jobs:
               cp "${icon_name}.icns" "${bundle_dir}/Contents/Resources/"
               rm -rf icon.iconset "${icon_name}.icns"
             fi
-
-            # 4. Copy database file
-            [ -f "IMSProg_programmer/database/IMSProg.Dat" ] && cp "IMSProg_programmer/database/IMSProg.Dat" "${bundle_dir}/Contents/Resources/"
-            # 5. Create and copy translation files
-            find build/ -name "*.qm" -exec cp {} "${bundle_dir}/Contents/Resources/" \;
+            # 5. Create directory /share/imsprog
+            mkdir -p "${bundle_dir}/Contents/share/imsprog"
+            # 6. Copy database file
+            [ -f "IMSProg_programmer/database/IMSProg.Dat" ] && cp "IMSProg_programmer/database/IMSProg.Dat" "${bundle_dir}/Contents/share/imsprog/"
+            # 7. Create and copy translation files
+            find build/ -name "*.qm" -exec cp {} "${bundle_dir}/Contents/share/imsprog/" \;
           }
 
           # Search for compiled binaries inside build folder and wrap them into .app bundles
@@ -238,10 +239,10 @@ jobs:
           $QT_BIN/macdeployqt dmg_staging/IMSProg_editor.app -no-codesign
           $QT_BIN/macdeployqt dmg_staging/IMSProg_database_update.app -no-codesign
           
-          # Removing signatures
-          codesign --remove-signature --deep dmg_staging/IMSProg.app || true
-          codesign --remove-signature --deep dmg_staging/IMSProg_editor.app || true
-          codesign --remove-signature --deep dmg_staging/IMSProg_database_update.app || true
+          # Apply Ad-hoc signature (required for ARM64 macOS)
+          codesign --force --deep --sign - dmg_staging/IMSProg.app
+          codesign --force --deep --sign - dmg_staging/IMSProg_editor.app
+          codesign --force --deep --sign - dmg_staging/IMSProg_database_update.app
 
           # Create final unified DMG disk image
           hdiutil create -volname "IMSProg Programmer Suite" -srcfolder dmg_staging -ov -format UDZO imsprog-macos-arm64.dmg
