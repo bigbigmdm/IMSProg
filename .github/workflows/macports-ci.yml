@@ -30,17 +30,18 @@ jobs:
 
       - name: Set up local Portfile repository
         run: |
-          # Create local port site structure and copy Portfile
-          sudo mkdir -p /opt/local/var/macports/sources/localsite/engineering/imsprog
-          sudo cp deployment/macports/Portfile /opt/local/var/macports/sources/localsite/engineering/imsprog/
+          # 1. Create local repository layout
+          LOCAL_REPO="/opt/local/var/macports/sources/localsite"
+          sudo mkdir -p "${LOCAL_REPO}/engineering/imsprog"
+          sudo cp deployment/macports/Portfile "${LOCAL_REPO}/engineering/imsprog/"
 
-          # Register local source AT THE TOP of sources.conf safely without YAML multiline breaks
-          printf "file:///opt/local/var/macports/sources/localsite [default]\nrsync://rsync.macports.org/macports/release/tarballs/ports.tar [default]\n" | sudo tee /opt/local/etc/macports/sources.conf
+          # 2. Configure sources.conf correctly (local site ON TOP without [default], official rsync with [default])
+          printf "file://%s\nrsync://rsync.macports.org/macports/release/tarballs/ports.tar [default]\n" "${LOCAL_REPO}" | sudo tee /opt/local/etc/macports/sources.conf
 
-          # Index local source
-          cd /opt/local/var/macports/sources/localsite && sudo /opt/local/bin/portindex
+          # 3. Generate PortIndex inside the local repository root
+          cd "${LOCAL_REPO}" && sudo /opt/local/bin/portindex
 
-          # Fetch official ports tree index for dependencies
+          # 4. Sync official ports for dependencies (Qt6, libusb, etc.)
           sudo /opt/local/bin/port sync
 
       - name: Compile and Install IMSProg via MacPorts
