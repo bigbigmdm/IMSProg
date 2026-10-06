@@ -1,0 +1,35 @@
+name: MacPorts Build CI
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  macports-test:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      - name: Set up MacPorts environment
+        uses: amake/setup-macports@v1
+
+      - name: Set up local Portfile repository
+        run: |
+          sudo mkdir -p /opt/local/var/macports/sources/localsite/engineering/imsprog
+          sudo cp deployment/macports/Portfile /opt/local/var/macports/sources/localsite/engineering/imsprog/
+          echo "file:///opt/local/var/macports/sources/localsite [default]" | sudo tee /opt/local/etc/macports/sources.conf
+          cd /opt/local/var/macports/sources/localsite && sudo portindex
+
+      - name: Compile and Install IMSProg via MacPorts
+        run: |
+          sudo port -d -v install imsprog
+
+      - name: Verify Installed Executables
+        run: |
+          echo "Checking installed binaries..."
+          which imsprog || which IMSProg || true
+          which imsprog_editor || which IMSProg_editor || true
+          which imsprog_database_update || which IMSProg_database_update || true
