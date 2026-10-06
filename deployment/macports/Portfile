@@ -11,7 +11,7 @@ github.tarball_from archive
 categories          engineering development
 platforms           darwin
 license             GPL-3
-maintainers         @bigbigmdm @wucke13 openmaintainer
+maintainers         @bigbigmdm @wucke13 @Andyllk openmaintainer
 
 description         I2C, SPI and MicroWire EEPROM/Flash chip programmer for CH341a devices
 long_description    IMSProg is a free software suite for CH341A/CH347T based chip programmers \
