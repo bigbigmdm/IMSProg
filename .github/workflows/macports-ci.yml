@@ -13,22 +13,53 @@ jobs:
       - name: Checkout source code
         uses: actions/checkout@v4
 
-      - name: Set up MacPorts environment
-        uses: amake/setup-macports@v1
+      - name: Install MacPorts
+        run: |
+          # Download and install official MacPorts pkg installer for macOS
+          MACPORTS_VER="2.10.5"
+          OS_VER=$(sw_vers -productVersion | cut -d. -f1)
+          
+          # Download corresponding pkg installer
+          curl -LO "https://github.com/macports/macports-base/releases/download/v${MACPORTS_VER}/MacPorts-${MACPORTS_VER}-${OS_VER}-Sonoma.pkg" || \
+          curl -LO "https://github.com/macports/macports-base/releases/download/v${MACPORTS_VER}.tar.bz2"
+          
+          if [ -f "MacPorts-${MACPORTS_VER}-${OS_VER}-Sonoma.pkg" ]; then
+            sudo installer -pkg "MacPorts-${MACPORTS_VER}-${OS_VER}-Sonoma.pkg" -target /
+          else
+            # Fallback: build from source if matching pkg is not available
+            tar -xjf "MacPorts-${MACPORTS_VER}.tar.bz2"
+            cd "MacPorts-${MACPORTS_VER}"
+            ./configure && make && sudo make install
+            cd ..
+          fi
+          
+          # Add MacPorts binaries to PATH for current and subsequent steps
+          echo "/opt/local/bin:/opt/local/sbin" >> $GITHUB_PATH
+          export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
+          
+          # Update the ports tree
+          sudo /opt/local/bin/port selfupdate || true
 
       - name: Set up local Portfile repository
         run: |
+          # Create local port site structure and copy Portfile
           sudo mkdir -p /opt/local/var/macports/sources/localsite/engineering/imsprog
           sudo cp deployment/macports/Portfile /opt/local/var/macports/sources/localsite/engineering/imsprog/
+          
+          # Register local source with top priority in sources.conf
           echo "file:///opt/local/var/macports/sources/localsite [default]" | sudo tee /opt/local/etc/macports/sources.conf
-          cd /opt/local/var/macports/sources/localsite && sudo portindex
+          
+          # Index the local repository
+          cd /opt/local/var/macports/sources/localsite && sudo /opt/local/bin/portindex
 
       - name: Compile and Install IMSProg via MacPorts
         run: |
-          sudo port -d -v install imsprog
+          # Install imsprog with detailed debug logging
+          sudo /opt/local/bin/port -d -v install imsprog
 
       - name: Verify Installed Executables
         run: |
+          # Check if all three generated executables are installed
           echo "Checking installed binaries..."
           which imsprog || which IMSProg || true
           which imsprog_editor || which IMSProg_editor || true
