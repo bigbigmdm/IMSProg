@@ -6,6 +6,7 @@ PortGroup           cmake 1.1
 PortGroup           qt6 1.0
 
 github.setup        bigbigmdm IMSProg 1.9.1 v
+github.tarball_from archive
 
 categories          engineering development
 platforms           darwin
