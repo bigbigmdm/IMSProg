@@ -28,20 +28,24 @@ jobs:
           echo "/opt/local/bin:/opt/local/sbin" >> $GITHUB_PATH
           export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
 
-          # Sync ports database
-          sudo /opt/local/bin/port sync || true
-
       - name: Set up local Portfile repository
         run: |
           # Create local port site structure and copy Portfile
           sudo mkdir -p /opt/local/var/macports/sources/localsite/engineering/imsprog
           sudo cp deployment/macports/Portfile /opt/local/var/macports/sources/localsite/engineering/imsprog/
 
-          # Register local source with top priority in sources.conf
-          echo "file:///opt/local/var/macports/sources/localsite [default]" | sudo tee /opt/local/etc/macports/sources.conf
+          # Register local source AT THE TOP of sources.conf
+          # Adding fallback offical rsync source for dependencies (qt6, libusb, etc.)
+          cat << 'EOF' | sudo tee /opt/local/etc/macports/sources.conf
+file:///opt/local/var/macports/sources/localsite [default]
+rsync://rsync.macports.org/macports/release/tarballs/ports.tar [default]
+EOF
 
-          # Index the local repository
+          # Index local source
           cd /opt/local/var/macports/sources/localsite && sudo /opt/local/bin/portindex
+          
+          # Fetch official ports tree index for dependencies
+          sudo /opt/local/bin/port sync
 
       - name: Compile and Install IMSProg via MacPorts
         run: |
