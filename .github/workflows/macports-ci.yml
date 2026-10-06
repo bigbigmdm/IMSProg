@@ -13,32 +13,8 @@ jobs:
       - name: Checkout source code
         uses: actions/checkout@v4
 
-      - name: Install MacPorts
-        run: |
-          # Download and install official MacPorts pkg installer for macOS
-          MACPORTS_VER="2.10.5"
-          OS_VER=$(sw_vers -productVersion | cut -d. -f1)
-          
-          # Download corresponding pkg installer
-          curl -LO "https://github.com/macports/macports-base/releases/download/v${MACPORTS_VER}/MacPorts-${MACPORTS_VER}-${OS_VER}-Sonoma.pkg" || \
-          curl -LO "https://github.com/macports/macports-base/releases/download/v${MACPORTS_VER}.tar.bz2"
-          
-          if [ -f "MacPorts-${MACPORTS_VER}-${OS_VER}-Sonoma.pkg" ]; then
-            sudo installer -pkg "MacPorts-${MACPORTS_VER}-${OS_VER}-Sonoma.pkg" -target /
-          else
-            # Fallback: build from source if matching pkg is not available
-            tar -xjf "MacPorts-${MACPORTS_VER}.tar.bz2"
-            cd "MacPorts-${MACPORTS_VER}"
-            ./configure && make && sudo make install
-            cd ..
-          fi
-          
-          # Add MacPorts binaries to PATH for current and subsequent steps
-          echo "/opt/local/bin:/opt/local/sbin" >> $GITHUB_PATH
-          export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
-          
-          # Update the ports tree
-          sudo /opt/local/bin/port selfupdate || true
+      - name: Set up MacPorts environment
+        uses: macports/setup-macports@v1
 
       - name: Set up local Portfile repository
         run: |
@@ -50,12 +26,12 @@ jobs:
           echo "file:///opt/local/var/macports/sources/localsite [default]" | sudo tee /opt/local/etc/macports/sources.conf
           
           # Index the local repository
-          cd /opt/local/var/macports/sources/localsite && sudo /opt/local/bin/portindex
+          cd /opt/local/var/macports/sources/localsite && sudo portindex
 
       - name: Compile and Install IMSProg via MacPorts
         run: |
           # Install imsprog with detailed debug logging
-          sudo /opt/local/bin/port -d -v install imsprog
+          sudo port -d -v install imsprog
 
       - name: Verify Installed Executables
         run: |
