@@ -13,25 +13,40 @@ jobs:
       - name: Checkout source code
         uses: actions/checkout@v4
 
-      - name: Set up MacPorts environment
-        uses: macports/setup-macports@v1
+      - name: Build and Install MacPorts Base
+        run: |
+          # Clone macports-base repository and build it
+          git clone --depth 1 https://github.com/macports/macports-base.git
+          cd macports-base
+          ./configure --enable-shared
+          make
+          sudo make install
+          cd ..
+          rm -rf macports-base
+
+          # Add MacPorts to PATH for GitHub Actions runner
+          echo "/opt/local/bin:/opt/local/sbin" >> $GITHUB_PATH
+          export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
+
+          # Sync ports database
+          sudo /opt/local/bin/port sync || true
 
       - name: Set up local Portfile repository
         run: |
           # Create local port site structure and copy Portfile
           sudo mkdir -p /opt/local/var/macports/sources/localsite/engineering/imsprog
           sudo cp deployment/macports/Portfile /opt/local/var/macports/sources/localsite/engineering/imsprog/
-          
+
           # Register local source with top priority in sources.conf
           echo "file:///opt/local/var/macports/sources/localsite [default]" | sudo tee /opt/local/etc/macports/sources.conf
-          
+
           # Index the local repository
-          cd /opt/local/var/macports/sources/localsite && sudo portindex
+          cd /opt/local/var/macports/sources/localsite && sudo /opt/local/bin/portindex
 
       - name: Compile and Install IMSProg via MacPorts
         run: |
           # Install imsprog with detailed debug logging
-          sudo port -d -v install imsprog
+          sudo /opt/local/bin/port -d -v install imsprog
 
       - name: Verify Installed Executables
         run: |
