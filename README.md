@@ -723,8 +723,8 @@ sudo apt install imsprog
 sudo dnf install imsprog
 ```
 
-<a href="https://repology.amdmi3.ru/project/imsprog/versions">
-    <img src="https://repology.amdmi3.ru/badge/vertical-allrepos/imsprog.svg" alt="Packaging status" align="right">
+<a href="https://repology.org/project/imsprog/versions">
+    <img src="https://repology.org/badge/vertical-allrepos/imsprog.svg" alt="Packaging status" align="right">
 </a>
 
 - The `RPM package` by [Red Soft](https://redos.red-soft.ru/) can be downloaded  
