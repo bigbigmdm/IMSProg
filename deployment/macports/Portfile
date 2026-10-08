@@ -8,7 +8,7 @@ PortGroup           qt6 1.0
 github.setup        bigbigmdm IMSProg 1.9.1 v
 github.tarball_from archive
 
-categories          engineering development
+categories          engineeringv devel electronics
 platforms           darwin
 license             GPL-3
 maintainers         @bigbigmdm @wucke13 @Andyllk openmaintainer
