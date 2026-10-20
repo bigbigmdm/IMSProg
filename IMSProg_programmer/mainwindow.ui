@@ -402,8 +402,9 @@ QGroupBox::title {
               <string notr="true">QPushButton{
 color: rgb(255, 255, 255);
 background-color: rgb(120, 183, 140);
-border-radius: 20px;
-border: 2px solid #094065;border-radius:8px;font-weight:600;
+border-radius: 8px;
+border: 2px solid #094065;
+font-weight:600;
 }
 QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
              </property>
@@ -602,12 +603,19 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
                <height>25</height>
               </size>
              </property>
+             <property name="maximumSize">
+              <size>
+               <width>110</width>
+               <height>25</height>
+              </size>
+             </property>
              <property name="styleSheet">
               <string notr="true">QPushButton{
 color: rgb(255, 255, 255);
 background-color: rgb(120, 183, 140);
-border-radius: 20px;
-border: 2px solid #094065;border-radius:8px;font-weight:600;
+border-radius: 8px;
+border: 2px solid #094065;
+font-weight:600;
 }
 QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
              </property>
@@ -621,9 +629,12 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
              <property name="orientation">
               <enum>Qt::Horizontal</enum>
              </property>
+             <property name="sizeType">
+              <enum>QSizePolicy::Expanding</enum>
+             </property>
              <property name="sizeHint" stdset="0">
               <size>
-               <width>28</width>
+               <width>10</width>
                <height>20</height>
               </size>
              </property>
@@ -637,12 +648,21 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
                <height>25</height>
               </size>
              </property>
+             <property name="maximumSize">
+              <size>
+               <width>110</width>
+               <height>25</height>
+              </size>
+             </property>
              <property name="styleSheet">
               <string notr="true">QPushButton{
 color: rgb(255, 255, 255);
 background-color: rgb(120, 183, 140);
-border-radius: 20px;
-border: 2px solid #094065;border-radius:8px;font-weight:600;
+border-radius: 8px;
+border: 2px solid #094065;
+font-weight:600;
+padding-left: 1px;
+padding-right: 1px;
 }
 QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
              </property>
@@ -666,7 +686,7 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
         </property>
         <property name="maximumSize">
          <size>
-          <width>400</width>
+          <width>420</width>
           <height>16777215</height>
          </size>
         </property>
@@ -781,8 +801,11 @@ QGroupBox::title {
               <string notr="true">QPushButton{
 color: rgb(255, 255, 255);
 background-color: rgb(120, 183, 140);
-border-radius: 20px;
-border: 2px solid #094065;border-radius:8px;font-weight:600;
+border-radius: 8px;
+border: 2px solid #094065;
+font-weight:600;
+padding-left: 1px;
+padding-right: 1px;
 }
 QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
              </property>
