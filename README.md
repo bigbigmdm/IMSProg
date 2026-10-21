@@ -722,6 +722,8 @@ sudo apt install imsprog
 ```
 sudo dnf install imsprog
 ```
+For installation on macOS using Homebrew, please refer to 
+[this](https://github.com/bigbigmdm/homebrew-imsprog) guide.
 
 <a href="https://repology.org/project/imsprog/versions">
     <img src="https://repology.org/badge/vertical-allrepos/imsprog.svg" alt="Packaging status" align="right">
