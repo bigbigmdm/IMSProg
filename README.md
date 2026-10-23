@@ -737,7 +737,7 @@ sudo port selfupdate
 sudo port install imsprog
 ```
 
-<a href="https://repology.amdmi3.ru/project/imsprog/versions">
+<a href="https://repology.org/project/imsprog/versions">
     <img src="https://repology.amdmi3.ru/badge/vertical-allrepos/imsprog.svg" alt="Packaging status" align="right">
 </a>
 
