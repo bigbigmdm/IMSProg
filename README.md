@@ -722,6 +722,12 @@ sudo apt install imsprog
 ```
 sudo dnf install imsprog
 ```
+
+- For some versions of OpenSUSE, you can use the `electronics` repository.
+```
+sudo zypper install IMSProg
+```
+
 - To install on macOS using Homebrew, run the following commands:
 ```
 brew tap bigbigmdm/imsprog
