@@ -728,7 +728,7 @@ sudo dnf install imsprog
 sudo zypper install IMSProg
 ```
 
-- To install on macOS using Homebrew, run the following commands:
+- To install on MacOS using `Homebrew`, run the following commands:
 ```
 brew tap bigbigmdm/imsprog
 brew trust bigbigmdm/imsprog
@@ -737,7 +737,7 @@ brew install --cask imsprog
 For more details, see
 [this](https://github.com/bigbigmdm/homebrew-imsprog) guide.
 
-- To install on macOS using MacPorts, run the following commands:
+- To install on MacOS using `Mac Ports`, run the following commands:
 ```
 sudo port selfupdate
 sudo port install imsprog
