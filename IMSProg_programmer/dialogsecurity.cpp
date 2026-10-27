@@ -41,7 +41,7 @@ void DialogSecurity::setAlgorithm(uint8_t currentAlg)
     securCommands comPattern[] = {
     // id RDSCUR WRSCUR ERSCUR  ENSO  EXSO DUMRD
       { 0,     0,     0,    0,    0,     0,    0},
-      { 1,  0x48,  0x42, 0x44,    0,     0,    1},  //Winbond, Gigadevice, Boya, UCUNDATA, Fudan, Zetta, Zbit, XMC
+      { 1,  0x48,  0x42, 0x44,    0,     0,    1},  //Winbond, Gigadevice, Boya, UCUNDATA, Fudan, Zetta, Zbit, XMC, XTX
       { 2,  0x03,  0x02, 0x20, 0x3a,  0x04,    0},  //EON
       { 3,  0x68,  0x62, 0x64,    0,     0,    1},  //ISSI
       { 4,  0x03,  0x02, 0x00, 0xb1,  0xc1,    0},  //MXIC, Fidelix, Zetta
@@ -81,6 +81,7 @@ void DialogSecurity::setAlgorithm(uint8_t currentAlg)
       { 0x1d,      0,     3,  16,  0x0000,  0x0008,  0x0010,       0,       0,     0,         1}, //Giantec GT25Q64A
       { 0x1e,      0,     1,   1,  0x0000,       0,       0,       0,       0,     0,         5}, //Pm25LQ032
       { 0x1f,      0,     2,  16,  0x0010,  0x0020,       0,       0,       0,     1,         1}, //XTX
+      { 0x20,      0,     3,  16,  0x0040,  0x0080,  0x00c0,       0,       0,     1,         1}, //XTX
 
     };
     curAlg = currentAlg;
