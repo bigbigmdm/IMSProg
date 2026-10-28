@@ -82,6 +82,8 @@ void DialogSecurity::setAlgorithm(uint8_t currentAlg)
       { 0x1e,      0,     1,   1,  0x0000,       0,       0,       0,       0,     0,         5}, //Pm25LQ032
       { 0x1f,      0,     2,  16,  0x0010,  0x0020,       0,       0,       0,     1,         1}, //XTX
       { 0x20,      0,     3,  16,  0x0040,  0x0080,  0x00c0,       0,       0,     0,         1}, //XTX
+      { 0x21,      0,     3,   8,  0x0002,  0x0004,  0x0006,       0,       0,     0,         1}, //XTX
+
 
     };
     curAlg = currentAlg;
