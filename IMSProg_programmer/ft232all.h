@@ -15,7 +15,11 @@
 
 #ifndef FT232ALL_H
 #define FT232ALL_H
-#include <ftdi.h>
+#if defined(__APPLE__)
+    #include <libftdi1/ftdi.h>
+#else
+    #include <ftdi.h>
+#endif
 
 #ifdef __cplusplus
 extern "C" {

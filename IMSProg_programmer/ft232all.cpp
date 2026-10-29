@@ -15,7 +15,11 @@
 
 // Compile: g++ ft232all.cpp -o ft232all -lftdi
 
-#include <ftdi.h>
+#if defined(__APPLE__)
+    #include <libftdi1/ftdi.h>
+#else
+    #include <ftdi.h>
+#endif
 //#include <usb.h>
 #include <stdio.h>
 #include <stdint.h>  
