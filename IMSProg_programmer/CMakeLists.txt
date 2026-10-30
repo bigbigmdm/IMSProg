@@ -153,7 +153,7 @@ endif()
 
 add_custom_target(translations DEPENDS ${QM_FILES})
 
-add_executable(${PROJECT_NAME}
+add_executable(${PROJECT_NAME} MACOSX_BUNDLE
     qhexedit2/src/chunks.cpp
     qhexedit2/src/color_manager.cpp
     qhexedit2/src/commands.cpp
@@ -236,6 +236,14 @@ add_executable(${PROJECT_NAME}
     ${QM_FILES}
 )
 
+if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+    configure_macos_bundle(${PROJECT_NAME} "img/logo_${PROJECT_NAME}.svg")
+    set(BUNDLE_DEST "/Applications")
+    if(BUILD_ON_MACPORTS)
+        set(BUNDLE_DEST "/Applications/MacPorts")
+    endif()    
+endif()
+
 target_include_directories(${PROJECT_NAME} PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}")
 target_include_directories(${PROJECT_NAME} PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/qhexedit2/src/")
 
@@ -255,7 +263,11 @@ else()
     )
 endif()
 
-install(TARGETS ${PROJECT_NAME} DESTINATION ${CMAKE_INSTALL_BINDIR})
+install(TARGETS ${PROJECT_NAME}
+    BUNDLE DESTINATION ${BUNDLE_DEST}           # installs ${PROJECT_NAME}.app under macOS
+    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR} # fallback Linux (bin/)
+)
+
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/img/IMSProg64.png" DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/pixmaps")
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/database/IMSProg.Dat" DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/imsprog")
 

@@ -8,6 +8,7 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 
 project(IMSProg_database_update LANGUAGES CXX)
+get_filename_component(PROJECT_ROOT "${CMAKE_CURRENT_SOURCE_DIR}/.." ABSOLUTE)
 
 # Set the CMAKE_INSTALL_PREFIX to /usr if not specified and /usr/local for macOS
 if (CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
@@ -117,7 +118,7 @@ endif()
 
 add_custom_target(translations2 DEPENDS ${QM_FILES})
 
-add_executable(${PROJECT_NAME}
+add_executable(${PROJECT_NAME} MACOSX_BUNDLE
     main.cpp
     mainwindow.cpp
     mainwindow.h
@@ -125,6 +126,14 @@ add_executable(${PROJECT_NAME}
     resource.qrc
     ${QM_FILES}
 )
+
+if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+    configure_macos_bundle(${PROJECT_NAME} "IMSProg_programmer/img/${PROJECT_NAME}.png")
+    set(BUNDLE_DEST "/Applications")
+    if(BUILD_ON_MACPORTS)
+        set(BUNDLE_DEST "/Applications/MacPorts")
+    endif()
+endif()
 
 target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 
@@ -134,7 +143,22 @@ else()
     target_link_libraries(${PROJECT_NAME} PRIVATE Qt::Core Qt::Widgets Qt::Network)
 endif()
 
-install(TARGETS ${PROJECT_NAME} DESTINATION ${CMAKE_INSTALL_BINDIR})
+install(TARGETS ${PROJECT_NAME}
+    BUNDLE DESTINATION ${BUNDLE_DEST}           # installs ${PROJECT_NAME}.app under macOS
+    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR} # fallback Linux (bin/)
+)
+
+if(BUILD_ON_MACPORTS)
+    install(TARGETS ${PROJECT_NAME}
+    BUNDLE DESTINATION "/Applications/MacPorts" # installs ${PROJECT_NAME}.app under macOS
+    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR} # fallback Linux (bin/)
+    )
+else()
+    install(TARGETS ${PROJECT_NAME}
+    BUNDLE DESTINATION "/Applications"          # installs ${PROJECT_NAME}.app under macOS
+    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR} # fallback Linux (bin/)
+    )
+endif()
 
 if(NOT ${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
         install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/other/IMSProg_database_update.desktop" DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/applications")
