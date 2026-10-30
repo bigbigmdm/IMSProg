@@ -15,7 +15,7 @@
 
 // Compile: g++ ft232all.cpp -o ft232all -lftdi
 
-#if defined(__APPLE__)
+#if defined(BUILD_ON_MACPORTS)
     #include <libftdi1/ftdi.h>
 #else
     #include <ftdi.h>

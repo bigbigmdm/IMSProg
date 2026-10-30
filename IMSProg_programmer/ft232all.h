@@ -15,7 +15,7 @@
 
 #ifndef FT232ALL_H
 #define FT232ALL_H
-#if defined(__APPLE__)
+#if defined(BUILD_ON_MACPORTS)
     #include <libftdi1/ftdi.h>
 #else
     #include <ftdi.h>

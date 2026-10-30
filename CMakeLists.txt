@@ -1,25 +1,18 @@
 cmake_minimum_required(VERSION 3.10.0)
 project(IMSProg LANGUAGES CXX C)
 
-execute_process(
-  COMMAND which port
-  RESULT_VARIABLE _port_found
-  OUTPUT_VARIABLE _port_path
-  ERROR_QUIET
-  OUTPUT_STRIP_TRAILING_WHITESPACE
-)
-
-if(_port_found EQUAL 0)
-  get_filename_component(_macports_bin ${_port_path} DIRECTORY)   # /opt/local/bin
-  get_filename_component(MACPORTS_PREFIX ${_macports_bin} DIRECTORY) # /opt/local
-
-  if(CMAKE_COMMAND MATCHES "^${MACPORTS_PREFIX}/")
+if(DEFINED ENV{MACPORTS_PORTFILE_DIR} OR DEFINED ENV{PORTNAME})
     set(BUILD_ON_MACPORTS TRUE)
-  else()
-    set(BUILD_ON_MACPORTS FALSE)
-  endif()
 else()
-  set(BUILD_ON_MACPORTS FALSE)
+    if(CMAKE_INSTALL_PREFIX MATCHES "^/opt/local" OR CMAKE_PREFIX_PATH MATCHES "/opt/local")
+        set(BUILD_ON_MACPORTS TRUE)
+    else()
+        set(BUILD_ON_MACPORTS FALSE)
+    endif()
+endif()
+
+if(BUILD_ON_MACPORTS)
+    add_compile_definitions(BUILD_ON_MACPORTS=1)
 endif()
 
 function(configure_macos_bundle target_name target_icon)
