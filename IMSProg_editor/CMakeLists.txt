@@ -139,7 +139,16 @@ if(NOT ${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
         install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/other/IMSProg_editor.desktop" DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/applications")
 endif()
 
+# need remove:
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/img/chipEdit64.png" DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/pixmaps")
+
+#installing different sizes icons in Linux
+foreach(SIZE 16x16 22x22 24x24 32x32 48x48 64x64 128x128 256x256 512x512 scalable)
+message(STATUS "Will install icons for ${SIZE} from ${CMAKE_CURRENT_SOURCE_DIR}/img/icons/${SIZE}/")
+    install(DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/img/icons/${SIZE}/"
+            DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/icons/hicolor/${SIZE}/apps"
+            FILES_MATCHING PATTERN "*.png" PATTERN "*.svg")
+endforeach()
 
 install(FILES ${QM_FILES} DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/imsprog")
 
