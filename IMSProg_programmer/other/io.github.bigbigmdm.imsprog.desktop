@@ -2,7 +2,7 @@
 Version=1.0
 Type=Application
 Name=IMSProg
-Icon=/usr/share/pixmaps/IMSProg64.png
+Icon=io.github.bigbigmdm.imsprog
 Exec=/usr/bin/IMSProg
 Path=/usr/bin/
 NoDisplay=false
