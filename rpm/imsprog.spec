@@ -184,13 +184,17 @@ appstream-util validate-relax --nonet %{buildroot}%{_datadir}/metainfo/*.xml
 %_bindir/IMSProg_editor
 %_bindir/IMSProg_database_update
 %_datadir/imsprog
-%_datadir/applications/IMSProg.desktop
-%_datadir/applications/IMSProg_editor.desktop
-%_datadir/applications/IMSProg_database_update.desktop
+%{_datadir}/applications/io.github.bigbigmdm.imsprog.desktop
+%{_datadir}/applications/io.github.bigbigmdm.imsprog_editor.desktop
+%{_datadir}/applications/io.github.bigbigmdm.imsprog_database_update.desktop
 %_datadir/metainfo/*.xml
 /usr/lib/udev/rules.d/*.rules
-%{_datadir}/icons/hicolor/*/apps/imsprog.png
-%{_datadir}/icons/hicolor/scalable/apps/imsprog.svg
+%{_datadir}/icons/hicolor/*/apps/io.github.bigbigmdm.imsprog.png
+%{_datadir}/icons/hicolor/*/apps/io.github.bigbigmdm.imsprog.svg
+%{_datadir}/icons/hicolor/*/apps/io.github.bigbigmdm.imsprog_editor.png
+%{_datadir}/icons/hicolor/*/apps/io.github.bigbigmdm.imsprog_editor.svg
+%{_datadir}/icons/hicolor/*/apps/io.github.bigbigmdm.imsprog_database_update.png
+%{_datadir}/icons/hicolor/*/apps/io.github.bigbigmdm.imsprog_database_update.svg
 %_datadir/man/man1/*.1.*
 %license LICENSE
 
