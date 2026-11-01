@@ -67,4 +67,9 @@ for file in "${files[@]}"; do
     else
         sudo rm -rf "$file"
     fi
+# Linux icon cashe update
+if [[ "$OSTYPE" != "darwin"* ]] && command -v gtk-update-icon-cache &> /dev/null; then
+    sudo gtk-update-icon-cache -f -t /usr/share/icons/hicolor &> /dev/null
+fi
+
 done && echo Uninstall Complete
