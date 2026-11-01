@@ -1,5 +1,5 @@
 Name: imsprog
-Version: 1.9.1
+Version: 1.9.2
 Release: 1%dist
 
 Summary: I2C, SPI and MicroWire EEPROM/Flash chip programmer for CH341A/CH347T/FT232H devices
@@ -199,6 +199,12 @@ appstream-util validate-relax --nonet %{buildroot}%{_datadir}/metainfo/*.xml
 %license LICENSE
 
 %changelog
+* Sun Nov 01 2026 Mikhail Medvedev 1.9.2-1
+- Added: different sizes icons
+- Removed old icon folder /pixmaps
+- Changed names of meta and desktop files with freedesktop specifications
+- Forms optimized
+
 * Sat Sep 05 2026 Mikhail Medvedev 1.9.1-1
 - Added: support for the FH232H v1.2 device
 - Added: The chip delay database parameter used to adjust the SPI and I2C bus speed
