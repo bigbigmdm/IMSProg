@@ -4,7 +4,7 @@
   <id>io.github.bigbigmdm.imsprog_database_update</id>
   <metadata_license>GFDL-1.3</metadata_license>
   <project_license>GPL-3.0+</project_license>
-  <name>IMSProg_database_update.desktop</name>
+  <name>IMSProg_database_update</name>
   <summary>Chip database update script for IMSProg programmer</summary>  
   <summary xml:lang="de">Skript zur Aktualisierung der Chipdatenbank für IMSProg-Programmierer</summary>
   <summary xml:lang="es">Script de actualización de la base de datos de chips para el programador IMSProg</summary>
