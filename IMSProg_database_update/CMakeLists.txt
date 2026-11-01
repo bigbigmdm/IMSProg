@@ -137,7 +137,7 @@ endif()
 install(TARGETS ${PROJECT_NAME} DESTINATION ${CMAKE_INSTALL_BINDIR})
 
 if(NOT ${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
-        install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/other/IMSProg_database_update.desktop" DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/applications")
+        install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/other/io.github.bigbigmdm.imsprog_database_update.desktop" DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/applications")
 endif()
 
 # need remove:

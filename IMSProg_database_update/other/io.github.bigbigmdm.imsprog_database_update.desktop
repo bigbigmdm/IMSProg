@@ -2,7 +2,7 @@
 Version=1.0
 Type=Application
 Name=IMSProg_updater
-Icon=/usr/share/pixmaps/IMSProg_database_update.png
+Icon=io.github.bigbigmdm.imsprog_database_update
 Exec=/usr/bin/IMSProg_database_update
 Path=/usr/bin/
 NoDisplay=false
