@@ -140,9 +140,6 @@ if(NOT ${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
         install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/other/io.github.bigbigmdm.imsprog_database_update.desktop" DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/applications")
 endif()
 
-# need remove:
-install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/img/IMSProg_database_update.png" DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/pixmaps")
-
 #installing different sizes icons in Linux
 foreach(SIZE 16x16 22x22 24x24 32x32 48x48 64x64 128x128 256x256 512x512 scalable)
     install(DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/img/icons/${SIZE}/"
