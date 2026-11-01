@@ -189,9 +189,8 @@ appstream-util validate-relax --nonet %{buildroot}%{_datadir}/metainfo/*.xml
 %_datadir/applications/IMSProg_database_update.desktop
 %_datadir/metainfo/*.xml
 /usr/lib/udev/rules.d/*.rules
-%_datadir/pixmaps/chipEdit64.png
-%_datadir/pixmaps/IMSProg64.png
-%_datadir/pixmaps/IMSProg_database_update.png
+%{_datadir}/icons/hicolor/*/apps/imsprog.png
+%{_datadir}/icons/hicolor/scalable/apps/imsprog.svg
 %_datadir/man/man1/*.1.*
 %license LICENSE
 
