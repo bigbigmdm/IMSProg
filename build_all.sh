@@ -9,6 +9,7 @@ fi
 cd IMSProg_programmer
 rm -rf build/
 mkdir build/
+# cmake -S . -B build/ -DFORCE_QT5=ON
 cmake -S . -B build/
 cmake --build build/ --parallel 2
 cmake --install build/
@@ -18,6 +19,7 @@ rm -rf build/
 cd IMSProg_editor
 rm -rf build/
 mkdir build/
+# cmake -S . -B build/ -DFORCE_QT5=ON
 cmake -S . -B build/
 cmake --build build/ --parallel 2
 cmake --install build/
@@ -27,6 +29,7 @@ rm -rf build/
 cd IMSProg_database_update
 rm -rf build/
 mkdir build/
+# cmake -S . -B build/ -DFORCE_QT5=ON
 cmake -S . -B build/
 cmake --build build/ --parallel 2
 cmake --install build/
