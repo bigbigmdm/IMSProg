@@ -240,11 +240,7 @@ if(APPLE)
         MACOSX_BUNDLE_ICON_FILE "IMSProg.icns"
     )
 
-    if(BUILD_ON_MACPORTS)
-        set(BUNDLE_DEST "/Applications/MacPorts")
-    else()
-        set(BUNDLE_DEST "/Applications")
-    endif()
+    set(BUNDLE_DEST "${CMAKE_INSTALL_PREFIX}/Applications")
 else()
     set(BUNDLE_DEST "${CMAKE_INSTALL_BINDIR}")
 endif()
