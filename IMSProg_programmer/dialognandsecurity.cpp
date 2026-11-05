@@ -333,6 +333,8 @@ void DialogNandSecurity::setAlgorithm(unsigned int currentAlg)
        { 16,   0x02,  0x3f },
        { 17,   0x00,  0x03 },
        { 18,   0x00,  0x03 },
+       { 19,   0x00,  0x07 },
+       { 20,   0x00,  0x07 }
      };
    startSector = algSet[currentAlg].secStart;
    endSector = algSet[currentAlg].secEnd;

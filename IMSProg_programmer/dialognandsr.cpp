@@ -630,7 +630,36 @@ void DialogNANDSr::setPattern(const uint pattern)
            setRegLabels(2, QString("X     ,X     ,ECC-1 ,ECC-0 ,P-FAIL,E-FAIL,WEL   ,BUSY "));
            setRegLabels(3, QString("X     ,DS_S1 ,DS-S0 ,X     ,X     ,X     ,X     ,X    "));
            setRegLabels(4, QString("X     ,X     ,ECCS1 ,ECCS0 ,BPS   ,X     ,X     ,X    "));
-    break;
+         break
+         
+         case 19: //FUDAN1
+           RegNumbers[0] = 0xa0;
+           RegNumbers[1] = 0xb0;
+           RegNumbers[2] = 0xc0;
+           RegNumbers[3] = 0xff;
+           RegNumbers[4] = 0xff;
+           setRegDisabled(3);
+           setRegDisabled(4);
+           //                       7      6      5      4      3      2      1      0
+           setRegLabels(0, QString("BPWRD ,X     ,BP2   ,BP1   ,BP0   ,INV   ,CMP   ,X     "));
+           setRegLabels(1, QString("OTP-P ,OTP-E ,WPS   ,ECC-E ,X     ,X     ,X     ,QE    "));
+           setRegLabels(2, QString("X     ,ECCS2 ,ECCS1 ,ECCS0 ,P-FAIL,E-FAIL,WEL   ,OIP   "));
+         break;
+         
+         case 20: //FUDAN2
+           RegNumbers[0] = 0x90;
+           RegNumbers[1] = 0xa0;
+           RegNumbers[2] = 0xb0;
+           RegNumbers[3] = 0xc0;
+           RegNumbers[4] = 0xff;
+           setRegDisabled(3);
+           setRegDisabled(4);
+           //                       7      6      5      4      3      2      1      0
+           setRegLabels(0, QString("X     ,X     ,X     ,ECC_E ,X     ,X     ,X     ,X     "));
+           setRegLabels(1, QString("BPWRD ,X     ,BP2   ,BP1   ,BP0   ,INV   ,CMP   ,X     "));
+           setRegLabels(2, QString("OTP-P ,OTP-E ,WPS   ,X     ,X     ,X     ,X     ,QE    "));
+           setRegLabels(3, QString("X     ,ECCS2 ,ECCS1 ,ECCS0 ,P-FAIL,E-FAIL,WEL   ,OIP   "));
+         break;
        }
 }
 
