@@ -7,10 +7,10 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 
-project(IMSProg_database_update LANGUAGES CXX)
+project(IMSProg_database_update VERSION ${PROJECT_VERSION} LANGUAGES CXX)
 
 # --- Force /usr prefix on Linux by default ---
-if(NOT APPLE)
+if(${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
     if(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
         set(CMAKE_INSTALL_PREFIX "/usr" CACHE PATH "Default install prefix for Linux" FORCE)
     endif()
@@ -20,7 +20,7 @@ endif()
 include(GNUInstallDirs)
 
 # --- Automatic path detection on macOS (Homebrew / MacPorts) ---
-if(APPLE)
+if(CMAKE_SYSTEM_NAME MATCHES "Darwin")
     if(EXISTS "/opt/local")
         # MacPorts
         list(APPEND CMAKE_PREFIX_PATH "/opt/local")
@@ -36,6 +36,11 @@ if(APPLE)
         list(APPEND CMAKE_PREFIX_PATH "/usr/local/opt")
         message(STATUS "Configured for Homebrew Intel at /usr/local")
     endif()
+endif()
+
+# Set the CMAKE_INSTALL_BINDIR to /bin if not specified
+if(NOT DEFINED CMAKE_INSTALL_BINDIR)
+  set(CMAKE_INSTALL_BINDIR "bin" CACHE PATH "user executables (bin)")
 endif()
 
 # --- Find Qt (Qt6 with automatic fallback to Qt5) ---
@@ -71,25 +76,24 @@ endif()
 
 add_custom_target(translations2 DEPENDS ${QM_FILES})
 
-# --- macOS Icon asset definition ---
-set(MACOS_ICON_FILE "img/icons/apple/IMSProg_database_update.icns")
-
-if(APPLE AND EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/${MACOS_ICON_FILE}")
-    set_source_files_properties("${MACOS_ICON_FILE}" PROPERTIES
-        MACOSX_PACKAGE_LOCATION "Resources"
-    )
-endif()
-
 # --- Executable target ---
-add_executable(${PROJECT_NAME}
+add_executable(${PROJECT_NAME} MACOSX_BUNDLE
     main.cpp
     mainwindow.cpp
     mainwindow.h
     mainwindow.ui
     resource.qrc
     ${QM_FILES}
-    $<$<BOOL:${APPLE}>:${MACOS_ICON_FILE}>
 )
+
+if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+    configure_macos_bundle(${PROJECT_NAME} "img/icons/apple/${PROJECT_NAME}.icns")    
+    if(BUILD_ON_MACPORTS)
+        set(BUNDLE_DEST "/Applications/MacPorts")
+    else()
+        set(BUNDLE_DEST "/Applications")
+    endif()    
+endif()
 
 target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 
@@ -99,29 +103,13 @@ else()
     target_link_libraries(${PROJECT_NAME} PRIVATE Qt::Core Qt::Widgets Qt::Network)
 endif()
 
-# --- macOS Bundle configuration ---
-if(APPLE)
-    set_target_properties(${PROJECT_NAME} PROPERTIES
-        MACOSX_BUNDLE TRUE
-        MACOSX_BUNDLE_GUI_IDENTIFIER "com.bigbigmdm.imsprog.${PROJECT_NAME}"
-        MACOSX_BUNDLE_BUNDLE_VERSION "1.9.1"
-        MACOSX_BUNDLE_SHORT_VERSION_STRING "1.9.1"
-        MACOSX_BUNDLE_ICON_FILE "IMSProg_database_update.icns"
-    )
-
-    set(BUNDLE_DEST "${CMAKE_INSTALL_PREFIX}/Applications")
-else()
-    set(BUNDLE_DEST "${CMAKE_INSTALL_BINDIR}")
-endif()
-
 # --- Installation rules ---
-
 install(TARGETS ${PROJECT_NAME}
-    BUNDLE DESTINATION ${BUNDLE_DEST}           # Bundles into .app on macOS
-    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR} # Standard binary for Linux/Flatpak
+    BUNDLE DESTINATION ${BUNDLE_DEST}               # Bundles into .app on macOS
+    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}     # Standard binary for Linux/Flatpak
 )
 
-if(APPLE)
+if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
     # Automatically bundle .qm files inside .app/Contents/Resources for local installation
     install(FILES ${QM_FILES} DESTINATION "${PROJECT_NAME}.app/Contents/Resources")
 else()
