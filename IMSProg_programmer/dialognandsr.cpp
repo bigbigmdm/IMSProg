@@ -630,7 +630,7 @@ void DialogNANDSr::setPattern(const uint pattern)
            setRegLabels(2, QString("X     ,X     ,ECC-1 ,ECC-0 ,P-FAIL,E-FAIL,WEL   ,BUSY "));
            setRegLabels(3, QString("X     ,DS_S1 ,DS-S0 ,X     ,X     ,X     ,X     ,X    "));
            setRegLabels(4, QString("X     ,X     ,ECCS1 ,ECCS0 ,BPS   ,X     ,X     ,X    "));
-         break
+         break;
          
          case 19: //FUDAN1
            RegNumbers[0] = 0xa0;
