@@ -7,7 +7,7 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 
-project(IMSProg_editor VERSION ${PROJECT_VERSION} LANGUAGES CXX)
+project(IMSProg_editor LANGUAGES CXX)
 
 # --- Force /usr prefix on Linux by default ---
 if(${CMAKE_SYSTEM_NAME} STREQUAL "Linux")

@@ -4,7 +4,7 @@ set(VERSION_MAJOR 1)
 set(VERSION_MINOR 9)
 set(VERSION_PATCH 1)
 
-project(IMSProg 
+project(imsprog 
     VERSION ${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}
     LANGUAGES C CXX
 )
@@ -24,8 +24,8 @@ if(BUILD_ON_MACPORTS)
 endif()
 
 function(configure_macos_bundle target_name target_icon)
-    message(STATUS "Configuring macOS Application Bundle ${target_name}.app v${PROJECT_VERSION} on Darwin")
-    
+    message(STATUS "Configuring macOS Application Bundle ${target_name}.app v${imsprog_VERSION} on Darwin")
+
     # Define paths for the source image and icns file
     message(STATUS "CMAKE_CURRENT_SOURCE_DIR=${CMAKE_CURRENT_SOURCE_DIR}/${target_icon}")
     set(TARGET_ICNS "${CMAKE_CURRENT_SOURCE_DIR}/${target_icon}")
@@ -36,8 +36,8 @@ function(configure_macos_bundle target_name target_icon)
         MACOSX_BUNDLE_BUNDLE_NAME "${target_name}"
         MACOSX_BUNDLE_GUI_IDENTIFIER "com.bigbigmdm.imsprog.${PROJECT_NAME}"
         MACOSX_BUNDLE_ICON_FILE "${target_name}.icns"
-        MACOSX_BUNDLE_SHORT_VERSION_STRING "${PROJECT_VERSION}"
-        MACOSX_BUNDLE_BUNDLE_VERSION "${PROJECT_VERSION}"
+        MACOSX_BUNDLE_SHORT_VERSION_STRING "${imsprog_VERSION}"
+        MACOSX_BUNDLE_BUNDLE_VERSION "${imsprog_VERSION}"
         MACOSX_BUNDLE_COPYRIGHT "Copyright © 2023-2026 Mikhail Medvedev"
     )
     
