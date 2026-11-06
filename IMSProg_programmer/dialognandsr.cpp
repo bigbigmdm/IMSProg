@@ -664,14 +664,14 @@ void DialogNANDSr::setPattern(const uint pattern)
            RegNumbers[0] = 0xa0;
            RegNumbers[1] = 0xb0;
            RegNumbers[2] = 0xc0;
-           RegNumbers[3] = 0xff;
+           RegNumbers[3] = 0xd0;
            RegNumbers[4] = 0xff;
-           setRegDisabled(3);
            setRegDisabled(4);
            //                       7      6      5      4      3      2      1      0
            setRegLabels(0, QString("SRP0  ,BP3   ,BP2   ,BP1   ,BP0   ,TB    ,WPE   ,SRP1  "));
            setRegLabels(1, QString("OTP-P ,OTP-E ,PR_L  ,ECC-E ,X     ,X     ,X     ,X     "));
            setRegLabels(2, QString("X     ,X     ,ECCS1 ,ECCS0 ,P-FAIL,E-FAIL,WEL   ,OIP   "));
+           setRegLabels(3, QString("X     ,DRS1  ,DRS0  ,X     ,X     ,X     ,X     ,X     "));
          break;
        }
 }
