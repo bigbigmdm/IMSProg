@@ -1,8 +1,9 @@
 cmake_minimum_required(VERSION 3.10.0)
+set(CMAKE_CXX_STANDARD 17)
 
-set(VERSION_MAJOR 1)
-set(VERSION_MINOR 9)
-set(VERSION_PATCH 1)
+set(VERSION_MAJOR 1 CACHE STRING "Major version")
+set(VERSION_MINOR 9 CACHE STRING "Minor version")
+set(VERSION_PATCH 1 CACHE STRING "Patch version")
 
 project(IMSProg 
     VERSION ${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}
