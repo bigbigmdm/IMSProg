@@ -7,10 +7,10 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 
-project(IMSProg LANGUAGES C CXX)
+project(IMSProg VERSION ${PROJECT_VERSION} LANGUAGES C CXX)
 
 # --- Force /usr prefix on Linux by default ---
-if(NOT APPLE)
+if(${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
     if(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
         set(CMAKE_INSTALL_PREFIX "/usr" CACHE PATH "Default install prefix for Linux" FORCE)
     endif()
@@ -20,7 +20,7 @@ endif()
 include(GNUInstallDirs)
 
 # --- Automatic path detection on macOS (Homebrew / MacPorts) ---
-if(APPLE)
+if(CMAKE_SYSTEM_NAME MATCHES "Darwin")
     if(EXISTS "/opt/local")
         # MacPorts
         list(APPEND CMAKE_PREFIX_PATH "/opt/local")
@@ -47,6 +47,11 @@ if(CMAKE_BUILD_TYPE STREQUAL "Debug")
 endif()
 
 get_filename_component(PROJECT_ROOT "${CMAKE_CURRENT_SOURCE_DIR}/.." ABSOLUTE)
+
+# Set the CMAKE_INSTALL_BINDIR to /bin if not specified
+if(NOT DEFINED CMAKE_INSTALL_BINDIR)
+  set(CMAKE_INSTALL_BINDIR "bin" CACHE PATH "user executables (bin)")
+endif()
 
 # Set the CMAKE_INSTALL_LIBDIR to /lib if not specified
 if(NOT DEFINED CMAKE_INSTALL_LIBDIR)
@@ -77,7 +82,7 @@ else()
 endif()
 
 # Udev rules configuration for Linux system installations
-if(NOT APPLE)
+if(${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
     set(UDEVDIR "/usr/lib/udev")
     if (CMAKE_INSTALL_PREFIX STREQUAL "/usr" OR CMAKE_INSTALL_PREFIX STREQUAL "/" AND NOT CMAKE_CROSSCOMPILING)
         if (PKG_CONFIG_FOUND)
@@ -117,17 +122,8 @@ endif()
 
 add_custom_target(translations DEPENDS ${QM_FILES})
 
-# --- macOS Icon asset definition ---
-set(MACOS_ICON_FILE "img/icons/apple/IMSProg.icns")
-
-if(APPLE AND EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/${MACOS_ICON_FILE}")
-    set_source_files_properties("${MACOS_ICON_FILE}" PROPERTIES
-        MACOSX_PACKAGE_LOCATION "Resources"
-    )
-endif()
-
 # --- Executable target ---
-add_executable(${PROJECT_NAME}
+add_executable(${PROJECT_NAME} MACOSX_BUNDLE
     qhexedit2/src/chunks.cpp
     qhexedit2/src/color_manager.cpp
     qhexedit2/src/commands.cpp
@@ -208,8 +204,16 @@ add_executable(${PROJECT_NAME}
     dialogabout.ui
     resource.qrc
     ${QM_FILES}
-    $<$<BOOL:${APPLE}>:${MACOS_ICON_FILE}>
 )
+
+if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+    configure_macos_bundle(${PROJECT_NAME} "img/icons/apple/${PROJECT_NAME}.icns")    
+    if(BUILD_ON_MACPORTS)
+        set(BUNDLE_DEST "/Applications/MacPorts")
+    else()
+        set(BUNDLE_DEST "/Applications")
+    endif()    
+endif()
 
 target_include_directories(${PROJECT_NAME} PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}")
 target_include_directories(${PROJECT_NAME} PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/qhexedit2/src/")
@@ -230,29 +234,13 @@ else()
     )
 endif()
 
-# --- macOS Bundle configuration ---
-if(APPLE)
-    set_target_properties(${PROJECT_NAME} PROPERTIES
-        MACOSX_BUNDLE TRUE
-        MACOSX_BUNDLE_GUI_IDENTIFIER "com.bigbigmdm.imsprog.${PROJECT_NAME}"
-        MACOSX_BUNDLE_BUNDLE_VERSION "1.9.1"
-        MACOSX_BUNDLE_SHORT_VERSION_STRING "1.9.1"
-        MACOSX_BUNDLE_ICON_FILE "IMSProg.icns"
-    )
-
-    set(BUNDLE_DEST "${CMAKE_INSTALL_PREFIX}/Applications")
-else()
-    set(BUNDLE_DEST "${CMAKE_INSTALL_BINDIR}")
-endif()
-
 # --- Installation rules ---
-
 install(TARGETS ${PROJECT_NAME}
-    BUNDLE DESTINATION ${BUNDLE_DEST}           # Bundles into .app on macOS
-    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR} # Standard binary for Linux/Flatpak
+    BUNDLE DESTINATION ${BUNDLE_DEST}               # Bundles into .app on macOS
+    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}     # Standard binary for Linux/Flatpak
 )
 
-if(APPLE)
+if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
     # Automatically bundle database and .qm files inside .app/Contents/Resources for local installation
     install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/database/IMSProg.Dat" DESTINATION "${PROJECT_NAME}.app/Contents/Resources")
     install(FILES ${QM_FILES} DESTINATION "${PROJECT_NAME}.app/Contents/Resources")
