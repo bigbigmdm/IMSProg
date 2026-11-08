@@ -5,9 +5,8 @@ PortGroup           github 1.0
 PortGroup           cmake 1.1
 PortGroup           qt6 1.0
 
-github.setup        bigbigmdm imsprog 1.9.1 v
+github.setup        bigbigmdm imsprog HEAD_SHA
 github.tarball_from archive
-revision            1
 
 categories          devel sysutils
 license             GPL-3
@@ -19,9 +18,8 @@ long_description    IMSProg is a free software suite for CH341A/CH347T based chi
                     program, and erase I2C, SPI, SPI NOR, MicroWire, and Dataflash EEPROM chips. \
                     Includes the main programmer GUI, chip database editor, and database update utility.
 
-checksums           rmd160  ceac29777c7c0ae3236c592d414809b640ab42f2 \
-                    sha256  8be3cc8775929944ddd3c4dc0b3111c3269dc894cc086c151ff2117e0450c984 \
-                    size    2299653
+# https://guide.macports.org/#development.examples.eliminate
+checksum {}
 
 depends_build-append \
                     path:bin/pkg-config:pkgconfig \
@@ -44,13 +42,11 @@ configure.args-append \
                     -DPKG_CONFIG_EXECUTABLE=${prefix}/bin/pkg-config
 
 post-destroot {
-    set git_dir "IMSProg-${version}"
-
     # Definition of the three apps: { "App-Name" "bin file" "Icon" }
     set app_list [list \
-        [list "IMSProg" "IMSProg" "${workpath}/${git_dir}/img/logo_IMSProg.svg"] \
-        [list "IMSProg Editor" "IMSProg_editor" "${workpath}/${git_dir}/IMSProg_editor/img/chipEdit64.png"] \
-        [list "IMSProg Database Update" "IMSProg_database_update" "${workpath}/${git_dir}/IMSProg_programmer/img/IMSProg_database_update.png"] \
+        [list "IMSProg" "IMSProg" "${worksrcpath}/img/logo_IMSProg.svg"] \
+        [list "IMSProg Editor" "IMSProg_editor" "${worksrcpath}/IMSProg_editor/img/chipEdit64.png"] \
+        [list "IMSProg Database Update" "IMSProg_database_update" "${worksrcpath}/IMSProg_database_update/img/IMSProg_database_update.png"] \
     ]
 
     foreach app_info $app_list {
