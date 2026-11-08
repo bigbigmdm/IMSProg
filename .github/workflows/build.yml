@@ -130,7 +130,7 @@ jobs:
       - name: Install dependencies via Homebrew
         run: |
           HOMEBREW_NO_INSTALL_FROM_API=1 brew update
-          brew install qt@6 libusb pkg-config libftdi
+          brew install qt@6 libusb pkg-config libftdi create-dmg
 
       - name: Configure CMake
         run: |
@@ -146,7 +146,7 @@ jobs:
         run: |
           cmake --build build --config Release --parallel
 
-      - name: Prepare Deployment Artifacts (Create Multi-App DMG)
+      - name: Prepare macOS App Bundles
         run: |
           mkdir -p dmg_staging
 
@@ -244,10 +244,19 @@ jobs:
           codesign --force --deep --sign - dmg_staging/IMSProg_editor.app
           codesign --force --deep --sign - dmg_staging/IMSProg_database_update.app
 
-          # Create final unified DMG disk image
-          hdiutil create -volname "IMSProg Programmer Suite" -srcfolder dmg_staging -ov -format UDZO imsprog-macos-arm64.dmg
+      - name: Create DMG
+        run: |
           mkdir -p dist-dmg
-          mv imsprog-macos-arm64.dmg dist-dmg/
+          create-dmg \
+            --volname "IMSProg Programmer Suite" \
+            --window-size 900 400 \
+            --icon-size 80 \
+            --icon "IMSProg.app" 120 180 \
+            --icon "IMSProg_editor.app" 340 180 \
+            --icon "IMSProg_database_update.app" 560 180 \
+            --app-drop-link 780 180 \
+            dist-dmg/imsprog-macos-arm64.dmg \
+            dmg_staging/
 
       - name: Upload macOS Artifacts
         uses: actions/upload-artifact@main
