@@ -166,7 +166,20 @@
     </screenshot>
   </screenshots>
   <releases>
-  <release version="1.9.1" date="2025-09-01" urgency="medium">
+  <release version="1.9.2" date="2026-11-07" urgency="medium">
+    <description>
+        <p>Fixed: Main form artifacts on macOS.</p>
+        <p>Fixed: C compiler warnings.</p>
+        <p>Fixed: Warnings in desktop and metadata files.</p>
+        <p>Fixed: Build script aborts on out-of-memory condition.</p>
+        <p>Added: Support for new NOR and NAND chips.</p>
+        <p>Added: macOS application bundles.</p>
+        <p>Added: Icons in various sizes.</p>
+        <p>Changed names of meta and desktop files with freedesktop specifications.</p>
+        <p>Removed old icon folder /pixmaps</p>
+    </description>
+  </release>
+  <release version="1.9.1" date="2026-09-01" urgency="medium">
     <description>
         <p>Added: Support for the FT232H programmer.</p>
         <p>Added: The chip's delay database parameter used to adjust the SPI and I2C bus speed.</p>

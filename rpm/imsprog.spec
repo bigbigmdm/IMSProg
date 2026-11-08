@@ -199,11 +199,16 @@ appstream-util validate-relax --nonet %{buildroot}%{_datadir}/metainfo/*.xml
 %license LICENSE
 
 %changelog
-* Sun Nov 01 2026 Mikhail Medvedev 1.9.2-1
-- Added: different sizes icons
-- Removed old icon folder /pixmaps
+* Sun Nov 08 2026 Mikhail Medvedev 1.9.2-1
+- Fixed: Main form artifacts on macOS
+- Fixed: C compiler warnings
+- Fixed: Warnings in desktop and metadata files
+- Fixed: Build script aborts on out-of-memory condition
+- Added: Support for new NOR and NAND chips
+- Added: macOS application bundles
+- Added: Icons in various sizes
 - Changed names of meta and desktop files with freedesktop specifications
-- Forms optimized
+- Removed old icon folder /pixmaps
 
 * Sat Sep 05 2026 Mikhail Medvedev 1.9.1-1
 - Added: support for the FH232H v1.2 device

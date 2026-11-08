@@ -1,3 +1,8 @@
+- Ver. 1.9.2 - Fixed: Main form artifacts on macOS, C compiler warnings, 
+warnings in desktop and metadata files, build script aborts on out-of-memory 
+condition. Added: Support for new NOR and NAND chips, macOS application bundles,
+icons in various sizes. Changed names of meta and desktop files with freedesktop
+specifications, removed old icon folder /pixmaps.
 - Ver. 1.9.1 - Added support for the FH232H v1.2 device. The chip's delay 
 database parameter is now used to adjust the SPI and I2C bus speed.
 - Ver. 1.8.6 - Unused files removed, copyright added/changed. Added support for 
