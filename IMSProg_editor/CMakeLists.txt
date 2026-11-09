@@ -133,6 +133,8 @@ else()
     target_link_libraries(${PROJECT_NAME} PRIVATE Qt::Core Qt::Widgets)
 endif()
 
+include("${CMAKE_CURRENT_LIST_DIR}/../cmake/MacOSBundle.cmake")
+
 install(TARGETS ${PROJECT_NAME} DESTINATION ${CMAKE_INSTALL_BINDIR})
 
 if(NOT ${CMAKE_SYSTEM_NAME} MATCHES "Darwin")

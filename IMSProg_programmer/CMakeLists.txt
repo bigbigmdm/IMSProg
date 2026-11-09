@@ -255,6 +255,8 @@ else()
     )
 endif()
 
+include("${CMAKE_CURRENT_LIST_DIR}/../cmake/MacOSBundle.cmake")
+
 install(TARGETS ${PROJECT_NAME} DESTINATION ${CMAKE_INSTALL_BINDIR})
 
 #installing different sizes icons in Linux
