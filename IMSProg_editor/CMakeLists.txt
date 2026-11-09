@@ -116,6 +116,8 @@ else()
     target_link_libraries(${PROJECT_NAME} PRIVATE Qt::Core Qt::Widgets)
 endif()
 
+include("${CMAKE_CURRENT_LIST_DIR}/../cmake/MacOSBundle.cmake")
+
 # --- Installation rules ---
 install(TARGETS ${PROJECT_NAME}
     BUNDLE DESTINATION ${BUNDLE_DEST}               # Bundles into .app on macOS
