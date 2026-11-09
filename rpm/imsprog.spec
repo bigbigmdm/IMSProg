@@ -1,5 +1,5 @@
 Name: imsprog
-Version: 1.9.1
+Version: 1.9.2
 Release: 1%dist
 
 Summary: I2C, SPI and MicroWire EEPROM/Flash chip programmer for CH341A/CH347T/FT232H devices
@@ -184,18 +184,32 @@ appstream-util validate-relax --nonet %{buildroot}%{_datadir}/metainfo/*.xml
 %_bindir/IMSProg_editor
 %_bindir/IMSProg_database_update
 %_datadir/imsprog
-%_datadir/applications/IMSProg.desktop
-%_datadir/applications/IMSProg_editor.desktop
-%_datadir/applications/IMSProg_database_update.desktop
+%{_datadir}/applications/io.github.bigbigmdm.imsprog.desktop
+%{_datadir}/applications/io.github.bigbigmdm.imsprog_editor.desktop
+%{_datadir}/applications/io.github.bigbigmdm.imsprog_database_update.desktop
 %_datadir/metainfo/*.xml
 /usr/lib/udev/rules.d/*.rules
-%_datadir/pixmaps/chipEdit64.png
-%_datadir/pixmaps/IMSProg64.png
-%_datadir/pixmaps/IMSProg_database_update.png
+%{_datadir}/icons/hicolor/*/apps/io.github.bigbigmdm.imsprog.png
+%{_datadir}/icons/hicolor/*/apps/io.github.bigbigmdm.imsprog.svg
+%{_datadir}/icons/hicolor/*/apps/io.github.bigbigmdm.imsprog_editor.png
+%{_datadir}/icons/hicolor/*/apps/io.github.bigbigmdm.imsprog_editor.svg
+%{_datadir}/icons/hicolor/*/apps/io.github.bigbigmdm.imsprog_database_update.png
+%{_datadir}/icons/hicolor/*/apps/io.github.bigbigmdm.imsprog_database_update.svg
 %_datadir/man/man1/*.1.*
 %license LICENSE
 
 %changelog
+* Sun Nov 08 2026 Mikhail Medvedev 1.9.2-1
+- Fixed: Main form artifacts on macOS
+- Fixed: C compiler warnings
+- Fixed: Warnings in desktop and metadata files
+- Fixed: Build script aborts on out-of-memory condition
+- Added: Support for new NOR and NAND chips
+- Added: macOS application bundles
+- Added: Icons in various sizes
+- Changed names of meta and desktop files with freedesktop specifications
+- Removed old icon folder /pixmaps
+
 * Sat Sep 05 2026 Mikhail Medvedev 1.9.1-1
 - Added: support for the FH232H v1.2 device
 - Added: The chip delay database parameter used to adjust the SPI and I2C bus speed

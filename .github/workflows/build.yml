@@ -1,20 +1,20 @@
 name: Build
 
 on:
-  push:
-    branches-ignore:
-      - "debian/**"
-    paths-ignore:
-      - "README.md"
-      - "**/README.md"
-      - "**/index.html"
-  pull_request:
-    branches-ignore:
-      - "debian/**"
-    paths-ignore:
-      - "README.md"
-      - "**/README.md"
-      - "**/index.html"
+#  push:
+#    branches-ignore:
+#      - "debian/**"
+#    paths-ignore:
+#      - "README.md"
+#      - "**/README.md"
+#      - "**/index.html"
+#  pull_request:
+#    branches-ignore:
+#      - "debian/**"
+#    paths-ignore:
+#      - "README.md"
+#      - "**/README.md"
+#      - "**/index.html"
   workflow_dispatch:
 
 env:
