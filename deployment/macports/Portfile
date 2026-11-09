@@ -55,6 +55,23 @@ post-destroot {
         set a_exec [lindex $app_info 1]
         set a_icon [lindex $app_info 2]
 
+        set native_app "${applications_dir}/${a_exec}.app"
+        set native_app_dir "${destroot}${native_app}"
+        if {[file isfile "${native_app_dir}/Contents/MacOS/${a_exec}"]} {
+            # CMake already installed the bundle; keep its executable and metadata.
+            set resource_app_dir "${destroot}${prefix}/${a_exec}.app"
+            if {[file isdirectory "${resource_app_dir}/Contents/Resources"]} {
+                move {*}[glob "${resource_app_dir}/Contents/Resources/*"] \
+                    "${native_app_dir}/Contents/Resources"
+                delete ${resource_app_dir}
+            }
+
+            xinstall -d ${destroot}${prefix}/bin
+            ln -s "${native_app}/Contents/MacOS/${a_exec}" \
+                "${destroot}${prefix}/bin/${a_exec}"
+            continue
+        }
+
         set app_dir "${destroot}${applications_dir}/${a_name}.app"
 
         # create Apple App-Skelett
