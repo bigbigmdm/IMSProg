@@ -11,7 +11,7 @@ revision            0
 
 categories          devel sysutils
 license             GPL-3
-maintainers         @bigbigmdm @wucke13 @wu21-web openmaintainer
+maintainers         @bigbigmdm @wucke13 @wu21-web @s-em-i openmaintainer
 
 description         I2C, SPI and MicroWire EEPROM/Flash chip programmer for CH341a devices
 long_description    IMSProg is a free software suite for CH341A/CH347T based chip programmers \
