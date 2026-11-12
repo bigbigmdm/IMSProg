@@ -14,8 +14,8 @@ license             GPL-3
 maintainers         @bigbigmdm @wucke13 @wu21-web @s-em-i openmaintainer
 
 description         I2C, SPI and MicroWire EEPROM/Flash chip programmer for CH341a devices
-long_description    IMSProg is a free software suite for CH341A/CH347T based chip programmers \
-                    with a graphical Qt interface. With IMSProg you can read, verify, \
+long_description    IMSProg is a free software suite for CH341A/CH347T/FT232H based chip \
+                    programmers with a graphical Qt interface. With IMSProg you can read, verify, \
                     program, and erase I2C, SPI, SPI NOR, MicroWire, and Dataflash EEPROM chips. \
                     Includes the main programmer GUI, chip database editor, and database update utility.
 
@@ -24,8 +24,7 @@ checksums           rmd160  ceac29777c7c0ae3236c592d414809b640ab42f2 \
                     size    2299653
 
 depends_build-append \
-                    path:bin/pkg-config:pkgconfig \
-                    port:makeicns
+                    path:bin/pkg-config:pkgconfig
 
 depends_lib-append  \
                     path:lib/pkgconfig/libusb-1.0.pc:libusb \
@@ -33,12 +32,8 @@ depends_lib-append  \
 
 qt6.depends_lib     qttools
 
-configure.env-append \
-                    PKG_CONFIG_PATH=${prefix}/lib/pkgconfig
-
 configure.cppflags-prepend  \
                     -I${prefix}/include/libftdi1
 
 configure.args-append \
-                    -DSTATIC_BUILD=OFF \
-                    -DPKG_CONFIG_EXECUTABLE=${prefix}/bin/pkg-config
+                    -DSTATIC_BUILD=OFF
