@@ -114,7 +114,7 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
     install(FILES ${QM_FILES} DESTINATION "${PROJECT_NAME}.app/Contents/Resources")
 else()
     # --- Specific rules for Linux / Flatpak ---
-    install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/other/io.github.bigbigmdm.imsprog_database_update.desktop" 
+    install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/other/io.github.bigbigmdm.imsprog.database_update.desktop" 
             DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/applications")
     
     # Application icons
@@ -128,6 +128,6 @@ else()
     install(FILES ${QM_FILES} DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/imsprog")
     install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/other/IMSProg_database_update.1.gz" 
             DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/man/man1")
-    install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/other/io.github.bigbigmdm.imsprog_database_update.metainfo.xml" 
+    install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/other/io.github.bigbigmdm.imsprog.database_update.metainfo.xml" 
             DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/metainfo")
 endif()

@@ -2,7 +2,7 @@
 Version=1.0
 Type=Application
 Name=IMSProg_updater
-Icon=io.github.bigbigmdm.imsprog_database_update
+Icon=io.github.bigbigmdm.imsprog.database_update
 Exec=IMSProg_database_update
 NoDisplay=false
 Categories=Electronics;Development;

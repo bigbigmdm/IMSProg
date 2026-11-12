@@ -2,7 +2,7 @@
 Version=1.0
 Type=Application
 Name=IMSProg_editor
-Icon=io.github.bigbigmdm.imsprog_editor
+Icon=io.github.bigbigmdm.imsprog.editor
 Exec=IMSProg_editor
 Terminal=false
 Categories=Electronics;Development;
