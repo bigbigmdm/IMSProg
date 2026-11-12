@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Copyright 2024 Mikhail Medvedev < e-ink-reader@yandex.ru > --> 
 <component type="desktop-application">
-  <id>io.github.bigbigmdm.imsprog_editor</id>
+  <id>io.github.bigbigmdm.imsprog.editor</id>
   <metadata_license>GFDL-1.3</metadata_license>
   <project_license>GPL-3.0+</project_license>
   <name>IMSProg_editor</name>
@@ -15,7 +15,6 @@
   <summary xml:lang="uk">Редактор бази даних мікросхем для програматорі IMSProg</summary>
   <summary xml:lang="zh_CN">IMSProg 编程器的芯片数据库编辑器。</summary>
   <summary xml:lang="zh_TW">IMSProg 燒錄器的晶片資料庫編輯器</summary>
-  <icon type="remote" width="64" height="64">https://github.com/bigbigmdm/IMSProg/tree/main/IMSProg_editor/img/chipEdit64.png</icon>
   <description>
     <p>IMSProg_editor is used to modify and supplement or export/import in csv format the chip database for the IMSProg programmer.</p>
     <p xml:lang="de">IMSProg_editor dient zur Modifikation und Ergänzung bzw. zum Export/Import im csv-Format der Chipdatenbank für den IMSProg-Programmierer.</p>
@@ -73,7 +72,7 @@
   <url type="homepage">https://github.com/bigbigmdm/IMSProg/tree/main</url>
   <url type="contact">https://github.com/bigbigmdm</url>
   <url type="bugtracker">https://github.com/bigbigmdm/IMSProg/issues</url>  
-  <launchable type="desktop-id">IMSProg_editor.desktop</launchable>
+  <launchable type="desktop-id">io.github.bigbigmdm.imsprog.editor.desktop</launchable>
   <provides>
      <mediatype>application/octet-stream</mediatype>
   </provides>  

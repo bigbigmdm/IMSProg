@@ -8,23 +8,24 @@ PortGroup           qt6 1.0
 name                imsprog
 github.setup        SOURCE_OWNER SOURCE_REPO HEAD_SHA
 github.tarball_from archive
+revision            0
 
 categories          devel sysutils
 license             GPL-3
-maintainers         @bigbigmdm @wucke13 @wu21-web openmaintainer
+maintainers         @bigbigmdm @wucke13 @wu21-web @s-em-i openmaintainer
 
 description         I2C, SPI and MicroWire EEPROM/Flash chip programmer for CH341a devices
-long_description    IMSProg is a free software suite for CH341A/CH347T based chip programmers \
-                    with a graphical Qt interface. With IMSProg you can read, verify, \
+long_description    IMSProg is a free software suite for CH341A/CH347T/FT232H based chip \
+                    programmers with a graphical Qt interface. With IMSProg you can read, verify, \
                     program, and erase I2C, SPI, SPI NOR, MicroWire, and Dataflash EEPROM chips. \
                     Includes the main programmer GUI, chip database editor, and database update utility.
 
-# https://guide.macports.org/#development.examples.eliminate
-checksum {}
+checksums           rmd160  ceac29777c7c0ae3236c592d414809b640ab42f2 \
+                    sha256  8be3cc8775929944ddd3c4dc0b3111c3269dc894cc086c151ff2117e0450c984 \
+                    size    2299653
 
 depends_build-append \
-                    path:bin/pkg-config:pkgconfig \
-                    port:makeicns
+                    path:bin/pkg-config:pkgconfig
 
 depends_lib-append  \
                     path:lib/pkgconfig/libusb-1.0.pc:libusb \
@@ -32,72 +33,8 @@ depends_lib-append  \
 
 qt6.depends_lib     qttools
 
-configure.env-append \
-                    PKG_CONFIG_PATH=${prefix}/lib/pkgconfig
-
 configure.cppflags-prepend  \
                     -I${prefix}/include/libftdi1
 
 configure.args-append \
-                    -DSTATIC_BUILD=OFF \
-                    -DPKG_CONFIG_EXECUTABLE=${prefix}/bin/pkg-config
-
-post-destroot {
-    # Definition of the three apps: { "App-Name" "bin file" "Icon" }
-    set app_list [list \
-        [list "IMSProg" "IMSProg" "${worksrcpath}/img/logo_IMSProg.svg"] \
-        [list "IMSProg Editor" "IMSProg_editor" "${worksrcpath}/IMSProg_editor/img/chipEdit64.png"] \
-        [list "IMSProg Database Update" "IMSProg_database_update" "${worksrcpath}/IMSProg_database_update/img/IMSProg_database_update.png"] \
-    ]
-
-    foreach app_info $app_list {
-        set a_name [lindex $app_info 0]
-        set a_exec [lindex $app_info 1]
-        set a_icon [lindex $app_info 2]
-
-        set native_app "${applications_dir}/${a_exec}.app"
-        set native_app_dir "${destroot}${native_app}"
-        if {[file isfile "${native_app_dir}/Contents/MacOS/${a_exec}"]} {
-            # CMake already installed the bundle; keep its executable and metadata.
-            set resource_app_dir "${destroot}${prefix}/${a_exec}.app"
-            if {[file isdirectory "${resource_app_dir}/Contents/Resources"]} {
-                move {*}[glob "${resource_app_dir}/Contents/Resources/*"] \
-                    "${native_app_dir}/Contents/Resources"
-                delete ${resource_app_dir}
-            }
-
-            xinstall -d ${destroot}${prefix}/bin
-            ln -s "${native_app}/Contents/MacOS/${a_exec}" \
-                "${destroot}${prefix}/bin/${a_exec}"
-            continue
-        }
-
-        set app_dir "${destroot}${applications_dir}/${a_name}.app"
-
-        # create Apple App-Skelett
-        xinstall -d "${app_dir}/Contents/MacOS"
-        xinstall -d "${app_dir}/Contents/Resources"
-
-        # native symlink (resolves dock icon)
-        ln -s "${prefix}/bin/${a_exec}" "${app_dir}/Contents/MacOS/${a_exec}"
-
-        # convert to Apple .icns format and embed
-        system "makeicns -in '${a_icon}' -out '${app_dir}/Contents/Resources/icon.icns'"
-
-        # create Info.plist
-        set plist_path "${app_dir}/Contents/Info.plist"
-        set fp [open $plist_path w]
-        puts $fp {<?xml version="1.0" encoding="UTF-8"?>}
-        puts $fp {<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://apple.com">}
-        puts $fp {<plist version="1.0">}
-        puts $fp {<dict>}
-        puts $fp "    <key>CFBundleExecutable</key><string>${a_exec}</string>"
-        puts $fp "    <key>CFBundleIconFile</key><string>icon.icns</string>"
-        puts $fp "    <key>CFBundleName</key><string>${a_name}</string>"
-        puts $fp {    <key>CFBundlePackageType</key><string>APPL</string>}
-        puts $fp "    <key>CFBundleShortVersionString</key><string>${version}</string>"
-        puts $fp {</dict>}
-        puts $fp {</plist>}
-        close $fp
-    }
-}
+                    -DSTATIC_BUILD=OFF

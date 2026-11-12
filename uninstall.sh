@@ -23,15 +23,15 @@ files+=(
     "${CMAKE_INSTALL_PREFIX}/share/doc/imsprog"
     "${CMAKE_INSTALL_PREFIX}/bin/IMSProg_database_update"
     "${CMAKE_INSTALL_PREFIX}/share/applications/io.github.bigbigmdm.imsprog.desktop"
-    "${CMAKE_INSTALL_PREFIX}/share/applications/io.github.bigbigmdm.imsprog_editor.desktop"
-    "${CMAKE_INSTALL_PREFIX}/share/applications/io.github.bigbigmdm.imsprog_database_update.desktop"
+    "${CMAKE_INSTALL_PREFIX}/share/applications/io.github.bigbigmdm.imsprog.editor.desktop"
+    "${CMAKE_INSTALL_PREFIX}/share/applications/io.github.bigbigmdm.imsprog.database_update.desktop"
     "${CMAKE_INSTALL_PREFIX}/share/man/man1/IMSProg.1.gz"
     "${CMAKE_INSTALL_PREFIX}/share/man/man1/IMSProg_database_update.1.gz"
     "${CMAKE_INSTALL_PREFIX}/share/metainfo/io.github.bigbigmdm.imsprog.metainfo.xml"
-    "${CMAKE_INSTALL_PREFIX}/share/metainfo/io.github.bigbigmdm.imsprog_database_update.metainfo.xml"
+    "${CMAKE_INSTALL_PREFIX}/share/metainfo/io.github.bigbigmdm.imsprog.database_update.metainfo.xml"
     "${CMAKE_INSTALL_PREFIX}/bin/IMSProg_editor"
     "${CMAKE_INSTALL_PREFIX}/share/man/man1/IMSProg_editor.1.gz"
-    "${CMAKE_INSTALL_PREFIX}/share/metainfo/io.github.bigbigmdm.imsprog_editor.metainfo.xml"
+    "${CMAKE_INSTALL_PREFIX}/share/metainfo/io.github.bigbigmdm.imsprog.editor.metainfo.xml"
     "${HOME}/.local/share/imsprog")
 
 # Removing hicolor icons (only for Linux)
@@ -42,7 +42,7 @@ if [[ "$OSTYPE" != "darwin"* ]]; then
         if [ -d "$apps_dir" ]; then
             while IFS= read -r -d '' icon; do
                 files+=("$icon")
-            done < <(find "$apps_dir" -maxdepth 1 \( -name "io.github.bigbigmdm.imsprog.*" -o -name "io.github.bigbigmdm.imsprog_editor.*" -o -name "io.github.bigbigmdm.imsprog_database_update.*" \) -print0)
+            done < <(find "$apps_dir" -maxdepth 1 \( -name "io.github.bigbigmdm.imsprog.*" -o -name "io.github.bigbigmdm.imsprog.editor.*" -o -name "io.github.bigbigmdm.imsprog.database_update.*" \) -print0)
         fi
     done
 fi
