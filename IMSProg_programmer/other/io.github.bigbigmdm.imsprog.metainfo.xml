@@ -15,7 +15,6 @@
   <summary xml:lang="uk">Читання, запис і стирання мікросхем EEPROM</summary>
   <summary xml:lang="zh_CN">读取、写入和擦除 EEPROM 芯片</summary>
   <summary xml:lang="zh_TW">讀取、寫入及清除 EEPROM 晶片</summary>
-  <icon type="remote" width="64" height="64">https://github.com/bigbigmdm/IMSProg/tree/main/IMSProg_programmer/img/IMSProg64.png</icon>
   <description>
     <p>IMSProg is a free software for CH341A and CH347T based chip programmers with graphical interface. With IMSProg you can read, verify, program, erase i2C, SPI, SPI NOR, SPI NAND, MicroWire EEPROM chips using the CH341A or CH347T programmer device.</p>
     <p xml:lang="de">IMSProg ist eine kostenlose Software für CH341A- und CH347T-basierte Chip-Programmiergeräte mit grafischer Oberfläche. Mit IMSProg können Sie i2C, SPI, SPI NOR, SPI NAND, MicroWire EEPROM Chips mit dem CH341A Programmiergerät lesen, verifizieren, programmieren, löschen.</p>
@@ -114,7 +113,7 @@
   <url type="homepage">https://github.com/bigbigmdm/IMSProg/tree/main</url>
   <url type="contact">https://github.com/bigbigmdm</url>
   <url type="bugtracker">https://github.com/bigbigmdm/IMSProg/issues</url> 
-  <launchable type="desktop-id">IMSProg.desktop</launchable>
+  <launchable type="desktop-id">io.github.bigbigmdm.imsprog.desktop</launchable>
   <provides>
      <mediatype>application/octet-stream</mediatype>
      <modalias>usb:v1A86p5512d*</modalias>
@@ -136,7 +135,7 @@
       <caption xml:lang="uk">Головний екран з формою підключення чіпа.</caption>
       <caption xml:lang="zn_CH">主屏幕显示芯片连接表。</caption>    
       <caption xml:lang="zh_TW">主畫面與晶片連結表單。</caption>
-      <image type="source" width="905" height="650">https://github.com/bigbigmdm/IMSProg/raw/main/img/IMSProg.png</image>
+      <image type="source" width="905" height="650">https://raw.githubusercontent.com/bigbigmdm/IMSProg/main/img/IMSProg.png</image>
     </screenshot>
     <screenshot>
       <caption>Main screen.</caption>
@@ -149,7 +148,7 @@
       <caption xml:lang="uk">Головний екран.</caption>
       <caption xml:lang="zn_CH">主屏幕。</caption>
       <caption xml:lang="zh_TW">主畫面。</caption>
-      <image type="source" width="905" height="650">https://github.com/bigbigmdm/IMSProg/raw/main/img/IMSProg_1.png</image>
+      <image type="source" width="905" height="650">https://raw.githubusercontent.com/bigbigmdm/IMSProg/main/img/IMSProg_1.png</image>
     </screenshot>
     <screenshot>
       <caption>Form of chip information (SFDP and status registers).</caption>
@@ -162,7 +161,7 @@
       <caption xml:lang="uk">Форма інформації про чіп (SFDP та регістри стану).</caption>
       <caption xml:lang="zn_CH">芯片信息表（SFDP 和状态寄存器）。</caption>    
       <caption xml:lang="zh_TW">晶片資訊表單（SFDP和狀態暫存器）。</caption>
-      <image type="source" width="954" height="660">https://github.com/bigbigmdm/IMSProg/raw/main/img/sfdp_unblock_en.png</image>
+      <image type="source" width="954" height="660">https://raw.githubusercontent.com/bigbigmdm/IMSProg/main/img/sfdp_unblock_en.png</image>
     </screenshot>
   </screenshots>
   <releases>
