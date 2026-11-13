@@ -67,16 +67,8 @@ else()
 endif()
 
 # --- Translation files ---
-set(TS_FILES
-    language/chipEditor_ru_RU.ts
-    language/chipEditor_de_DE.ts
-    language/chipEditor_es_ES.ts
-    language/chipEditor_zh_CN.ts
-    language/chipEditor_zh_TW.ts
-    language/chipEditor_uk_UA.ts
-    language/chipEditor_hu_HU.ts
-    language/chipEditor_pt_BR.ts
-    language/chipEditor_it_IT.ts
+file(GLOB TS_FILES
+    "${CMAKE_CURRENT_SOURCE_DIR}/language/*.ts"
 )
 
 if (QT_VERSION_MAJOR EQUAL 5)
@@ -123,8 +115,8 @@ install(TARGETS ${PROJECT_NAME}
 )
 
 if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
-    # Automatically bundle .qm files inside .app/Contents/Resources for local installation
-    install(FILES ${QM_FILES} DESTINATION "${PROJECT_NAME}.app/Contents/Resources")
+    # Automatically bundle database and .qm files inside .app/Contents/share/imsprog for local installation
+    set_source_files_properties(${QM_FILES} PROPERTIES MACOSX_PACKAGE_LOCATION "share/imsprog")
 else()
     # --- Specific rules for Linux / Flatpak ---
     install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/other/io.github.bigbigmdm.imsprog.editor.desktop" 
