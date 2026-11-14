@@ -102,16 +102,8 @@ if(${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
 endif()
 
 # --- Translation files ---
-set(TS_FILES
-    language/chipProgrammer_ru_RU.ts
-    language/chipProgrammer_de_DE.ts
-    language/chipProgrammer_es_ES.ts
-    language/chipProgrammer_zh_CN.ts
-    language/chipProgrammer_zh_TW.ts
-    language/chipProgrammer_uk_UA.ts
-    language/chipProgrammer_hu_HU.ts
-    language/chipProgrammer_pt_BR.ts
-    language/chipProgrammer_it_IT.ts
+file(GLOB TS_FILES
+    "${CMAKE_CURRENT_SOURCE_DIR}/language/*.ts"
 )
 
 if (QT_VERSION_MAJOR EQUAL 5)
@@ -204,6 +196,7 @@ add_executable(${PROJECT_NAME} MACOSX_BUNDLE
     dialogabout.ui
     resource.qrc
     ${QM_FILES}
+    database/IMSProg.Dat
 )
 
 if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
@@ -241,9 +234,9 @@ install(TARGETS ${PROJECT_NAME}
 )
 
 if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
-    # Automatically bundle database and .qm files inside .app/Contents/Resources for local installation
-    install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/database/IMSProg.Dat" DESTINATION "${PROJECT_NAME}.app/Contents/Resources")
-    install(FILES ${QM_FILES} DESTINATION "${PROJECT_NAME}.app/Contents/Resources")
+    # Automatically bundle database and .qm files inside .app/Contents/share/imsprog for local installation
+    set_source_files_properties(${QM_FILES} PROPERTIES MACOSX_PACKAGE_LOCATION "share/imsprog")
+    set_source_files_properties("${CMAKE_CURRENT_SOURCE_DIR}/database/IMSProg.Dat" PROPERTIES MACOSX_PACKAGE_LOCATION "share/imsprog")    
 else()
     # --- Specific rules for Linux / Flatpak ---
     
