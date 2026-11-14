@@ -14,18 +14,24 @@ jobs:
     runs-on: macos-15
     timeout-minutes: 15
     env:
+      SOURCE_OWNER: ${{ github.event.pull_request.head.repo.owner.login || github.repository_owner }}
+      SOURCE_REPO: ${{ github.event.pull_request.head.repo.name || github.event.repository.name }}
       SOURCE_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
     steps:
       - uses: actions/checkout@v7
         with:
-          repository: ${{ github.repository }}
+          repository: ${{ env.SOURCE_OWNER }}/${{ env.SOURCE_REPO }}
           ref: ${{ env.SOURCE_SHA }}
           path: imsprog
 
       - name: Prepare Portfile for the source commit
         run: |
           mkdir -p /var/tmp/runner/devel/imsprog
-          sed "s/HEAD_SHA/${SOURCE_SHA}/g" imsprog/deployment/macports/Portfile > /var/tmp/runner/devel/imsprog/Portfile
+          sed \
+            -e "s/SOURCE_OWNER/${SOURCE_OWNER}/g" \
+            -e "s/SOURCE_REPO/${SOURCE_REPO}/g" \
+            -e "s/HEAD_SHA/${SOURCE_SHA}/g" \
+            imsprog/deployment/macports/Portfile > /var/tmp/runner/devel/imsprog/Portfile
 
       - uses: actions/checkout@v7
         with:
@@ -50,14 +56,21 @@ jobs:
 
       - name: Test
         working-directory: /var/tmp/runner/devel/imsprog
-        run: sudo /opt/local/bin/port test
+        run: sudo /opt/local/bin/port -d test
 
       - name: Install
         working-directory: /var/tmp/runner/devel/imsprog
-        run: sudo /opt/local/bin/port -vst install
+        run: sudo /opt/local/bin/port -dkst install
 
       - name: Verify Installed Executables
         run: |
           test -x /opt/local/bin/IMSProg
           test -x /opt/local/bin/IMSProg_editor
           test -x /opt/local/bin/IMSProg_database_update
+
+      - name: Upload MacPorts logs
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: macports-logs
+          path: /opt/local/var/macports/logs/

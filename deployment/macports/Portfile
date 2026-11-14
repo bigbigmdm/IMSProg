@@ -5,7 +5,8 @@ PortGroup           github 1.0
 PortGroup           cmake 1.1
 PortGroup           qt6 1.0
 
-github.setup        bigbigmdm imsprog 1.9.2 v
+name                imsprog
+github.setup        SOURCE_OWNER SOURCE_REPO HEAD_SHA
 github.tarball_from archive
 revision            0
 
