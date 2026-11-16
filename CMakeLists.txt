@@ -5,7 +5,7 @@ set(VERSION_MAJOR 1 CACHE STRING "Major version")
 set(VERSION_MINOR 9 CACHE STRING "Minor version")
 set(VERSION_PATCH 2 CACHE STRING "Patch version")
 
-project(imsprog 
+project(imsprog
     VERSION ${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}
     LANGUAGES C CXX
 )
@@ -24,7 +24,19 @@ if(BUILD_ON_MACPORTS)
     add_compile_definitions(BUILD_ON_MACPORTS=1)
 endif()
 
-function(configure_macos_bundle target_name target_icon)
+if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+    # find PlistBuddy even if it is not in the standard dir
+    find_program(PLISTBUDDY_EXECUTABLE
+        NAMES PlistBuddy
+        HINTS
+            ENV PATH
+            /usr/libexec
+        REQUIRED
+    )
+    message(STATUS "Found PlistBuddy: ${PLISTBUDDY_EXECUTABLE}")
+endif()
+
+function(configure_macos_bundle target_name target_icon target_locals)
     message(STATUS "Configuring macOS Application Bundle ${target_name}.app v${imsprog_VERSION} on Darwin")
 
     # Define paths for the source image and icns file
@@ -41,13 +53,30 @@ function(configure_macos_bundle target_name target_icon)
         MACOSX_BUNDLE_BUNDLE_VERSION "${imsprog_VERSION}"
         MACOSX_BUNDLE_COPYRIGHT "Copyright © 2023-2026 Mikhail Medvedev"
     )
-    
+
     # App icons
     # Ensure the .icns file is placed into the bundle's Resources directory
     set_source_files_properties("${TARGET_ICNS}" PROPERTIES MACOSX_PACKAGE_LOCATION "Resources")
-        
+
     # Link the icon file to the target so CMake tracks and triggers the custom command
     target_sources(${target_name} PRIVATE "${TARGET_ICNS}")
+
+    # adding locals via PlistBuddy
+    set(pb_args
+        -c "Add :CFBundleLocalizations array"
+    )
+    foreach(local IN LISTS target_locals)
+        list(APPEND pb_args -c "Add :CFBundleLocalizations: string ${local}")
+    endforeach()
+
+    add_custom_command(TARGET ${target_name} POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E echo "Info.plist = $<TARGET_BUNDLE_CONTENT_DIR:${target_name}>/Info.plist"
+        COMMAND ${CMAKE_COMMAND} -E echo "Running PlistBuddy …"
+        COMMAND "${PLISTBUDDY_EXECUTABLE}" ${pb_args}
+                "$<TARGET_BUNDLE_CONTENT_DIR:${target_name}>/Info.plist"
+        COMMENT "CFBundleLocalizations → ${target_locals}"
+        VERBATIM
+    )
 endfunction()
 
 add_subdirectory("IMSProg_programmer")

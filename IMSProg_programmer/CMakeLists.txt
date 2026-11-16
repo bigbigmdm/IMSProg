@@ -106,6 +106,19 @@ file(GLOB TS_FILES
     "${CMAKE_CURRENT_SOURCE_DIR}/language/*.ts"
 )
 
+# --- extract locals from supported translation files ---
+set(BUNDLE_LOCALIZATIONS en)
+foreach(ts ${TS_FILES})
+    get_filename_component(_name "${ts}" NAME_WE)
+    string(REGEX MATCH "[a-z][a-z](_[A-Z][A-Z])?$" _loc "${_name}")
+    if(_loc)
+        string(REPLACE "_" "-" _loc "${_loc}")   # de_DE → de-DE
+        list(APPEND BUNDLE_LOCALIZATIONS "${_loc}")
+    endif()
+endforeach()
+list(REMOVE_DUPLICATES BUNDLE_LOCALIZATIONS)
+message(STATUS "BUNDLE_LOCALIZATIONS=${BUNDLE_LOCALIZATIONS}")
+
 if (QT_VERSION_MAJOR EQUAL 5)
     qt5_add_translation(QM_FILES ${TS_FILES})
 else()
@@ -200,7 +213,10 @@ add_executable(${PROJECT_NAME} MACOSX_BUNDLE
 )
 
 if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
-    configure_macos_bundle(${PROJECT_NAME} "img/icons/apple/${PROJECT_NAME}.icns")    
+    configure_macos_bundle(${PROJECT_NAME}
+        "img/icons/apple/${PROJECT_NAME}.icns"
+        "${BUNDLE_LOCALIZATIONS}"
+    )    
     if(BUILD_ON_MACPORTS)
         set(BUNDLE_DEST "/Applications/MacPorts")
     else()
