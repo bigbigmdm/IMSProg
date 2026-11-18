@@ -71,10 +71,7 @@ Files: IMSProg_programmer/dialogabout.cpp
        IMSProg_programmer/hexutility.h
        IMSProg_programmer/mainwindow.cpp
        IMSProg_programmer/mainwindow.h
-Copyright: 2023-2026, Mikhail Medvedev
-License: GPL-3+
-
-Files: IMSProg_editor/delegates.cpp
+       IMSProg_editor/delegates.cpp
        IMSProg_editor/delegates.h
        IMSProg_editor/ezp_chip_editor.cpp
        IMSProg_editor/ezp_chip_editor.h
@@ -83,19 +80,13 @@ Files: IMSProg_editor/delegates.cpp
        IMSProg_programmer/dialognandsecurity.h
        IMSProg_programmer/dialognandsr.cpp
        IMSProg_editor/main.cpp
-Copyright: 2024-2026, Mikhail Medvedev
-License: GPL-3+
-
-Files: IMSProg_programmer/dialogrp.h
+       IMSProg_programmer/dialogrp.h
        IMSProg_programmer/dialogsp.cpp
        IMSProg_programmer/dialogsp.h
-Copyright: 2023, Mikhail Medvedev
-License: GPL-3+
-
-Files: IMSProg_database_update/main.cpp
+       IMSProg_database_update/main.cpp
        IMSProg_programmer/ft232all.h
        IMSProg_programmer/ft232all.cpp
-Copyright: 2026, Mikhail Medvedev
+Copyright: 2023-2026, Mikhail Medvedev
 License: GPL-3+
 
 Files: IMSProg_programmer/ch34x_i2c.c
