@@ -67,7 +67,7 @@ void MainWindow::startDownload()
 
     totalBytesReceived = 0;
     lastBytesReceived = 0;
-    bytesAtLastCheck = 0; // Explicitly reset the progress tracker for the new download
+    bytesAtLastCheck = 0;
 
     // Calculate the number of chips currently in the local database
     QFileInfo fileInfo(fileName);
@@ -112,14 +112,15 @@ void MainWindow::startDownload()
     timeoutTimer->setSingleShot(false); // Run periodically every 5 seconds
 
     connect(timeoutTimer, &QTimer::timeout, currentReply, [this, timeoutTimer]() {
-        // If the counter hasn't changed since the last check, the connection is dead
-        if (totalBytesReceived == bytesAtLastCheck) {
+        // Check for stall only if the download has actually started (payload bytes received),
+        // preventing premature abort during DNS/TLS connection setup.
+        if (totalBytesReceived > 0 && totalBytesReceived == bytesAtLastCheck) {
             if (currentReply) {
                 currentReply->abort(); // Force abort the frozen request
             }
             timeoutTimer->stop();
         } else {
-            // Transfer is active; update the checkpoint for the next verification
+            // Transfer is active or connection is still establishing; update the checkpoint for the next verification
             bytesAtLastCheck = totalBytesReceived;
         }
     });
@@ -146,6 +147,8 @@ void MainWindow::onReadyRead()
         if (!data.isEmpty()) {
             tempFile->write(data);
             totalBytesReceived += data.size();
+            // Update the checkpoint immediately when new data arrives
+            bytesAtLastCheck = totalBytesReceived;
         }
     }
 }

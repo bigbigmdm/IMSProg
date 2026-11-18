@@ -1,0 +1,62 @@
+<svg width="256" height="256" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+<style>
+.dim{stroke:#333;fill:none;stroke-width:2;stroke-linejoin:round;stroke-linecap:round;}
+</style>
+<defs>
+<radialGradient id="Gradient1">
+<stop offset="0%" stop-color="#fff" />
+<stop offset="100%" stop-color="#ddd" />
+</radialGradient>
+<linearGradient id="Gradient2">
+<stop offset="0%" stop-color="#555" />
+<stop offset="50%" stop-color="#bbb" />
+<stop offset="100%" stop-color="#555" />
+</linearGradient>
+<linearGradient id="Gradient3">
+<stop offset="0%" stop-color="#555" />
+<stop offset="25%" stop-color="#bbb" />
+<stop offset="100%" stop-color="#555" />
+</linearGradient>
+<linearGradient id="Gradient4" x1="30%" y1="50%" x2="100%" y2="100%">
+<stop offset="0%" stop-color="#555" />
+<stop offset="100%" stop-color="#bbb" />
+</linearGradient>
+<linearGradient id="Gradient5" x1="30%" y1="50%" x2="100%" y2="100%">
+<stop offset="00%" stop-color="#cfcfcf" />
+<stop offset="40%" stop-color="#888" />
+<stop offset="100%" stop-color="#afafaf" />
+</linearGradient>
+<linearGradient id="Gradient6" x1="30%" y1="50%" x2="100%" y2="100%">
+<stop offset="00%" stop-color="#6b6b6b" />
+<stop offset="40%" stop-color="#e1e1e1" />
+<stop offset="100%" stop-color="#a0a0a0" />
+</linearGradient>
+<linearGradient id="Gradient7" x1="30%" y1="50%" x2="100%" y2="100%">
+<stop offset="00%" stop-color="#e22c04" />
+<stop offset="40%" stop-color="#b62602" />
+<stop offset="100%" stop-color="#f02b00" />
+</linearGradient>
+</defs>
+<rect x="7" y="7" width="286" height="286" stroke="#888" fill="none" stroke-width="4" rx="50" ry="50"/>
+<rect x="8" y="8" width="284" height="284" stroke="#ccc" fill="url(#Gradient1)" stroke-width="4" rx="50" ry="50"/>
+<rect x="10" y="10" width="280" height="280" stroke="#888" fill="none" stroke-width="2" rx="50" ry="50"/>
+<path d="M40 250v-140c20 30,140 30,160 0v140c-20 30,-140 30,-160 0" stroke="#888" stroke-width="1" fill="url(#Gradient2)" stroke-linejoin="round" stroke-linecap="round"/>
+<ellipse cx="120" cy="104" rx="80" ry="28" stroke="#888" fill="url(#Gradient4)" stroke-width="2"/>
+<path d="M42 108c20 30,140 30,156 0" stroke="url(#Gradient3)" stroke-width="6" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M43 155c20 30,140 30,154 0" stroke="url(#Gradient3)" stroke-width="6" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M43 202c20 30,140 30,154 0" stroke="url(#Gradient3)" stroke-width="6" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M43 248c20 30,140 30,154 0" stroke="url(#Gradient3)" stroke-width="6" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M63 238l-4 10l7-3z" stroke="#000" stroke-width="1" fill="#000" />
+<path d="M63 238l18 -50c-1 6,4 9, 20 -2l-37 54" stroke="#c2c2c2" stroke-width="1" fill="#c2c2c2" />
+<path d="M81 188c-1 6,4 9, 20 -2l94 -102l-13 -10z" stroke="#3ea0ff" stroke-width="1" fill="#3ea0ff" />
+<path d="M64 240l38 -54c-1 6,4 29, 30 14l-66 42" stroke="#a7a7a7" stroke-width="1" fill="#a7a7a7" />
+<path d="M101 186c-1 6,4 29, 30 14l87 -96l-23 -20z" stroke="#0b86ee" stroke-width="1" fill="#0b86ee" />
+<path d="M65 242l66 -41c-3 6,-8 26, 10 22l-73 22" stroke="#8f8f8f" stroke-width="1" fill="#8f8f8f" />
+<path d="M122 204c-3 6,-8 26, 10 22l100 -109l-17 -15z" stroke="#006dba" stroke-width="1" fill="#006dba" />
+<path d="M182 74l50 43l6-6l-50-43z" stroke="#000" stroke-width="1" fill="#000" />
+<path d="M185 70l51 44l25-28l-50-43z" stroke="#cacaca" stroke-width="0" fill="url(#Gradient5)" />
+<path d="M190 65l50 43l3-3l-50-43z" stroke="#000" stroke-width="0" fill="url(#Gradient6)" />
+<path d="M195 59l50 43l3-3l-50-43z" stroke="#000" stroke-width="0" fill="url(#Gradient6)" />
+<path d="M201 53l50 43l3-3l-50-43z" stroke="#000" stroke-width="0" fill="url(#Gradient6)" />
+<path d="M211 43l50 43l14-16c10 -18,-7 -18, 0 -17l-32-27c-12 -10,-20 3, -15 -2z" stroke="#cacaca" stroke-width="0" fill="url(#Gradient7)" />
+</svg>

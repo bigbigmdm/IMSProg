@@ -61,6 +61,7 @@ int ProgDeviceInit( u8 deviceType, u8 chipType, u16 speed )
         case 4: // FT232H v1.2
             ret = initFt232h();
             if (ret != 0) return ret;
+            if (chipType == 0) ft232hSetSpeedSPI(speed);
             if (chipType == 1) ft232hSetSpeedI2C(speed);
             if (chipType == 2) ft232hSetSpeedI2C(20);
             if (chipType  > 2) ft232hSetSpeedSPI(speed);
@@ -158,19 +159,16 @@ SPI_CONTROLLER_RTN_T SPI_CONTROLLER_Write_One_Byte( u8  data, u8 deviceType )
     {
     case 0: // CH341A v1.2
         return (SPI_CONTROLLER_RTN_T)ch341a_spi_send_command(1, 0, &data, NULL);
-        break;
     case 1: // CH341A v1.7
         return (SPI_CONTROLLER_RTN_T)ch341a_spi_send_command(1, 0, &data, NULL);
-        break;
     case 2: // CH347T v1.0
         return (SPI_CONTROLLER_RTN_T)ch347_spi_tx(priv, &data, 1);
-        break;
     case 3: // CH347T v1.1
         return (SPI_CONTROLLER_RTN_T)ch347_spi_tx(priv, &data, 1);
-        break;
     case 4: // FT232H v1.2
         return (SPI_CONTROLLER_RTN_T)ft232WriteNbytes(&data, 1);
-        break;
+    default:
+        return -1;
     }
 }
 
@@ -180,19 +178,16 @@ SPI_CONTROLLER_RTN_T SPI_CONTROLLER_Chip_Select_High( u8 deviceType )
     {
     case 0: // CH341A v1.2
         return (SPI_CONTROLLER_RTN_T)enable_pins(false);
-        break;
     case 1: // CH341A v1.7
         return (SPI_CONTROLLER_RTN_T)enable_pins(false);
-        break;
     case 2: // CH347T v1.0
         return (SPI_CONTROLLER_RTN_T)ch347_set_cs(priv, 0, 1);
-        break;
     case 3: // CH347T v1.1
         return (SPI_CONTROLLER_RTN_T)ch347_set_cs(priv, 0, 1);
-        break;
     case 4: // FT232H v1.2
         return (SPI_CONTROLLER_RTN_T)ft232h_CS_HI();
-        break;
+    default:
+        return -1;
     }
 }
 
@@ -202,19 +197,16 @@ SPI_CONTROLLER_RTN_T SPI_CONTROLLER_Chip_Select_Low( u8 deviceType )
     {
     case 0: // CH341A v1.2
         return (SPI_CONTROLLER_RTN_T)enable_pins(true);
-        break;
     case 1: // CH341A v1.7
         return (SPI_CONTROLLER_RTN_T)enable_pins(true);
-        break;
     case 2: // CH347T v1.0
         return (SPI_CONTROLLER_RTN_T)ch347_set_cs(priv, 0, 0);
-        break;
     case 3: // CH347T v1.1
         return (SPI_CONTROLLER_RTN_T)ch347_set_cs(priv, 0, 0);
-        break;
     case 4: // FT232H v1.2
         return (SPI_CONTROLLER_RTN_T)ft232h_CS_LO();
-        break;
+    default:
+        return -1;
     }
 }
 
@@ -224,19 +216,16 @@ SPI_CONTROLLER_RTN_T SPI_CONTROLLER_Read_NByte( u8 *ptr_rtn_data, u32 len, SPI_C
     {
     case 0: // CH341A v1.2
         return (SPI_CONTROLLER_RTN_T)ch341a_spi_send_command(0, len, NULL, ptr_rtn_data);
-        break;
     case 1: // CH341A v1.7
         return (SPI_CONTROLLER_RTN_T)ch341a_spi_send_command(0, len, NULL, ptr_rtn_data);
-        break;
     case 2: // CH347T v1.0
         return (SPI_CONTROLLER_RTN_T)ch347_spi_rx(priv, ptr_rtn_data, len);
-        break;
     case 3: // CH347T v1.1
         return (SPI_CONTROLLER_RTN_T)ch347_spi_rx(priv, ptr_rtn_data, len);
-        break;
     case 4: // FT232H v1.2
         return (SPI_CONTROLLER_RTN_T)ft232ReadNbytes(ptr_rtn_data, len);
-        break;
+    default:
+        return -1;
     }
 }
 
@@ -246,26 +235,23 @@ SPI_CONTROLLER_RTN_T SPI_CONTROLLER_Write_NByte( u8 *ptr_data, u32 len, SPI_CONT
     {
     case 0: // CH341A v1.2
         return (SPI_CONTROLLER_RTN_T)ch341a_spi_send_command(len, 0, ptr_data, NULL);
-        break;
     case 1: // CH341A v1.7
         return (SPI_CONTROLLER_RTN_T)ch341a_spi_send_command(len, 0, ptr_data, NULL);
-        break;
     case 2: // CH347T v1.0
         return (SPI_CONTROLLER_RTN_T)ch347_spi_tx(priv, ptr_data, len);
-        break;
     case 3: // CH347T v1.1
         return (SPI_CONTROLLER_RTN_T)ch347_spi_tx(priv, ptr_data, len);
-        break;
     case 4: // FT232H v1.2
         return (SPI_CONTROLLER_RTN_T)ft232WriteNbytes(ptr_data, len);
-        break;
+    default:
+        return -1;
     }
 }
 
 #if 0
 SPI_CONTROLLER_RTN_T SPI_CONTROLLER_Xfer_NByte( u8 *ptr_data_in, u32 len_in, u8 *ptr_data_out, u32 len_out, SPI_CONTROLLER_SPEED_T speed )
 {
-	return (SPI_CONTROLLER_RTN_T)ch341a_spi_send_command(len_out, len_in, ptr_data_out, ptr_data_in);
+    return (SPI_CONTROLLER_RTN_T)ch341a_spi_send_command(len_out, len_in, ptr_data_out, ptr_data_in);
 }
 #endif
 /* End of [spi_controller.c] package */

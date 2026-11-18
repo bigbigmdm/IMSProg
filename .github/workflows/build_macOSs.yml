@@ -1,0 +1,113 @@
+name: Build-MacOSs
+
+on:
+  workflow_dispatch:
+
+env:
+  CMAKE_INSTALL_PARALLEL_LEVEL: 4
+
+jobs:
+  build:
+    name: Build (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-15, macos-15-intel]
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v7
+
+      - name: Install dependencies via Homebrew
+        run: |
+          brew install qt@6 libftdi create-dmg
+          # already installed:libusb cmake pkgconf pkg-config
+          
+          # get rid of QT plugins that are not needed
+          brew uninstall --ignore-dependencies qtsvg qtvirtualkeyboard || true
+          
+          HOST_ARCH=$(uname -m)
+          echo "HOST_ARCH=$HOST_ARCH" >> $GITHUB_ENV
+          echo HOST_ARCH=$HOST_ARCH
+
+      - name: Configure CMake
+        run: |
+          export PKG_CONFIG_PATH="/opt/homebrew/lib/pkgconfig:$PKG_CONFIG_PATH"
+          cmake -S . -B build \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DCMAKE_PREFIX_PATH=$(brew --prefix qt@6) \
+            -DCMAKE_OSX_ARCHITECTURES="${{ env.HOST_ARCH }}" \
+            -DCMAKE_OSX_DEPLOYMENT_TARGET="11.0" \
+            -DCMAKE_EXE_LINKER_FLAGS="-L/opt/homebrew/lib -L/usr/local/lib"
+
+      - name: Build and Install Applications
+        run: |
+          cmake --build build --config Release --parallel
+          sudo cmake --install build/
+
+      - name: Create DMG Package
+        run: |
+          mkdir dmg_staging && ARTIFACT_DIR="${PWD}/dmg_staging"
+          echo "ARTIFACT_DIR=$ARTIFACT_DIR" >> $GITHUB_ENV
+          VOLNAME="imsprog-macos-${{ env.HOST_ARCH }}"
+          IMSProgDMG="$VOLNAME.dmg"
+          
+          echo "VOLNAME=$VOLNAME" >> $GITHUB_ENV
+          echo "IMSProgDMG=$IMSProgDMG" >> $GITHUB_ENV
+          echo "VOLNAME=$VOLNAME"
+          echo "IMSProgDMG=$IMSProgDMG"
+
+          cd $ARTIFACT_DIR
+            ln -s /Applications Applications
+            cp -R /Applications/IMSProg* .
+            chmod +x *.app
+
+            # purging remains of unused plugins
+            echo "get rid of unused Plugins"
+            PLUGIN_DIR="$(brew --prefix qt@6)/share/qt/plugins"
+            rm -rf "$PLUGIN_DIR/imageformats/libqsvg.dylib" || true
+            rm -rf "$PLUGIN_DIR/printsupport" || true
+            rm -rf "$PLUGIN_DIR/virtualkeyboard" || true
+            QT_PREFIX=$(brew --prefix qtbase)
+            rm -rf "$QT_PREFIX/share/qt/plugins/imageformats/libqpdf.dylib"|| true
+            rm -rf "$QT_PREFIX/plugins/imageformats/libqpdf.dylib" || true
+            find /opt/homebrew -name "libqpdf.dylib" -delete 2>/dev/null || true
+            find /usr/local -name "libqpdf.dylib" -delete 2>/dev/null || true
+
+            # Deploy Qt dependencies using macdeployqt
+            export DYLD_LIBRARY_PATH="/opt/homebrew/lib:$DYLD_LIBRARY_PATH"
+            QT_BIN="$(brew --prefix qt@6)/bin"
+            
+            for app in IMSProg*.app; do
+                echo "Deploy Qt dependencies into $app"
+                "$QT_BIN/macdeployqt" "$app" -no-codesign
+                echo "removing unused plugin remains from the app bundle"
+                # qt-pdf is tricky to delete...
+                rm -rf "$app"/Contents/PlugIns/imageformats/libqpdf.dylib
+                rm -rf "$app"/Contents/PlugIns/iconengines
+                rm -rf "$app"/Contents/PlugIns/platforminputcontexts
+                # Apply Ad-hoc signature (required for ARM64 macOS)
+                echo "codesigning $app"
+                codesign --force --deep --sign - "$app"
+            done
+            lipo -info IMSProg*.app/Contents/MacOS/IMSProg*
+          cd -
+
+          # Create final unified DMG disk image
+          create-dmg \
+            --volname "$VOLNAME" \
+            --window-pos 200 120 \
+            --window-size 600 400 \
+            --icon "Applications" 450 180 \
+            --hide-extension "Applications" \
+            "$IMSProgDMG" \
+            "$ARTIFACT_DIR"
+          
+          cp $IMSProgDMG $ARTIFACT_DIR/
+
+      - name: Upload macOS Artifacts
+        uses: actions/upload-artifact@main
+        with:
+          name: macos-${{ matrix.os }}-dmg
+          path: ${{ env.ARTIFACT_DIR }}/*.dmg

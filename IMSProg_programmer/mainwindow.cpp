@@ -94,9 +94,6 @@ MainWindow::MainWindow(QWidget *parent) :
  ui->comboBox_addr4bit->addItem("Winbond", 0x11);
  ui->comboBox_addr4bit->addItem("Spansion", 0x21);
 
- ui->comboBox_page->addItem(" ", 0);
- ui->comboBox_page->addItem("256", 256);
-
  ui->comboBox_block->addItem(" ", 0);
  ui->comboBox_block->addItem("64 K",   64 * 1024);
  ui->comboBox_block->addItem("128 K", 128 * 1024);

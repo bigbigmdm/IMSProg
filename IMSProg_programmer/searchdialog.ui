@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>526</width>
+    <width>545</width>
     <height>382</height>
    </rect>
   </property>
@@ -368,7 +368,7 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
       <widget class="QPushButton" name="pbFind">
        <property name="minimumSize">
         <size>
-         <width>90</width>
+         <width>100</width>
          <height>25</height>
         </size>
        </property>
@@ -396,7 +396,7 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
       <widget class="QPushButton" name="pbReplace">
        <property name="minimumSize">
         <size>
-         <width>90</width>
+         <width>100</width>
          <height>25</height>
         </size>
        </property>
@@ -418,7 +418,7 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
       <widget class="QPushButton" name="pbReplaceAll">
        <property name="minimumSize">
         <size>
-         <width>90</width>
+         <width>100</width>
          <height>25</height>
         </size>
        </property>
@@ -440,7 +440,7 @@ QPushButton::pressed{background-color: rgb(115, 210, 22);}</string>
       <widget class="QPushButton" name="pbCancel">
        <property name="minimumSize">
         <size>
-         <width>90</width>
+         <width>100</width>
          <height>25</height>
         </size>
        </property>

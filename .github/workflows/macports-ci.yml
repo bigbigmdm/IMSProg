@@ -1,0 +1,63 @@
+name: MacPorts Build CI
+
+on:
+  push:
+    branches: [main, master, beta]
+  pull_request:
+    branches: [main, master, beta]
+
+permissions:
+  contents: read
+
+jobs:
+  macports-test:
+    runs-on: macos-15
+    timeout-minutes: 15
+    env:
+      SOURCE_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          repository: ${{ github.repository }}
+          ref: ${{ env.SOURCE_SHA }}
+          path: imsprog
+
+      - name: Prepare Portfile for the source commit
+        run: |
+          mkdir -p /var/tmp/runner/devel/imsprog
+          sed "s/HEAD_SHA/${SOURCE_SHA}/g" imsprog/deployment/macports/Portfile > /var/tmp/runner/devel/imsprog/Portfile
+
+      - uses: actions/checkout@v7
+        with:
+          repository: macports/macports-base
+          ref: v2.12.7
+          fetch-depth: 1
+          path: macports-base
+
+      - name: Setup MacPorts
+        working-directory: macports-base
+        run: |
+          ./configure
+          make
+          sudo make install
+
+      - name: Sync official ports
+        run: sudo /opt/local/bin/port sync
+
+      - name: Lint
+        working-directory: /var/tmp/runner/devel/imsprog
+        run: sudo /opt/local/bin/port lint
+
+      - name: Test
+        working-directory: /var/tmp/runner/devel/imsprog
+        run: sudo /opt/local/bin/port test
+
+      - name: Install
+        working-directory: /var/tmp/runner/devel/imsprog
+        run: sudo /opt/local/bin/port -vst install
+
+      - name: Verify Installed Executables
+        run: |
+          test -x /opt/local/bin/IMSProg
+          test -x /opt/local/bin/IMSProg_editor
+          test -x /opt/local/bin/IMSProg_database_update

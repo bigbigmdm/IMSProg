@@ -201,3 +201,6 @@ build/
 # The targets themselves
 IMSProg_editor/IMSProg_editor
 IMSProg_programmer/IMSProg
+
+# Mac specific metadata files
+.DS_Store

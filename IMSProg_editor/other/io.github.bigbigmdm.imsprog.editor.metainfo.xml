@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2024 Mikhail Medvedev < e-ink-reader@yandex.ru > --> 
+<component type="desktop-application">
+  <id>io.github.bigbigmdm.imsprog.editor</id>
+  <metadata_license>GFDL-1.3</metadata_license>
+  <project_license>GPL-3.0+</project_license>
+  <name>IMSProg_editor</name>
+  <summary>Chip database editor for IMSProg programmer</summary>  
+  <summary xml:lang="de">Chipdatenbank-Editor für IMSProg-Programmierer</summary>
+  <summary xml:lang="es">Editor de bases de datos de chips para el programador IMSProg</summary>
+  <summary xml:lang="hu">Chip adatbázis szerkesztő az IMSProg programozó számára</summary>
+  <summary xml:lang="it">Editor del database dei chip per il programmatore IMSProg</summary>
+  <summary xml:lang="pt_BR">Editor do banco de dados de chips para programador IMSProg</summary>
+  <summary xml:lang="ru">Редактор баз данных микросхем для программатора IMSProg</summary>
+  <summary xml:lang="uk">Редактор бази даних мікросхем для програматорі IMSProg</summary>
+  <summary xml:lang="zh_CN">IMSProg 编程器的芯片数据库编辑器。</summary>
+  <summary xml:lang="zh_TW">IMSProg 燒錄器的晶片資料庫編輯器</summary>
+  <description>
+    <p>IMSProg_editor is used to modify and supplement or export/import in csv format the chip database for the IMSProg programmer.</p>
+    <p xml:lang="de">IMSProg_editor dient zur Modifikation und Ergänzung bzw. zum Export/Import im csv-Format der Chipdatenbank für den IMSProg-Programmierer.</p>
+    <p xml:lang="es">IMSProg_editor se utiliza para modificar y complementar o exportar/importar en formato csv la base de datos de chips para el programador IMSProg.</p>
+    <p xml:lang="hu">Az IMSProg_editor az IMSProg programozó számára a chip adatbázis módosítására és kiegészítésére vagy csv formátumú exportálására/importálására szolgál.</p>
+    <p xml:lang="it">IMSProg_editor è utilizzato per modificare, integrare o esportare/importare in formato csv il database dei chip per il programmatore IMSProg.</p>
+    <p xml:lang="pt_BR">O IMSProg_editor é usado para modificar e complementar ou exportar/importar em formato csv o banco de dados de chips para o programador do IMSProg.</p>
+    <p xml:lang="ru">IMSProg_editor используется для изменения и дополнения или экспорта/импорта в формате csv базы данных микросхем для программиста IMSProg.</p>
+    <p xml:lang="uk">IMSProg_editor використовується для зміни та доповнення або експорту/імпорту у форматі csv бази даних мікросхем для програматорі IMSProg.</p>
+    <p xml:lang="zh_CN">IMSProg_editor 用于修改、补充或以 CSV 格式导出/导入芯片数据库，供 IMSProg 编程器使用。</p>
+    <p xml:lang="zh_TW">IMSProg_editor 用於修改、補充或以 CSV 格式匯出/匯入晶片資料庫，供 IMSProg 燒錄器使用。</p>
+  </description>
+  <categories>
+     <category>Development</category>
+     <category>Electronics</category>
+  </categories>
+  <keywords>
+     <keyword translate="no">Programmer</keyword>
+     <keyword translate="no">BIOS</keyword>
+     <keyword translate="no">EEPROM</keyword>
+     <keyword translate="no">MicroWire</keyword>
+     <keyword translate="no">IC</keyword>
+     <keyword translate="no">chip</keyword>
+     <keyword>Microcircuit</keyword>
+     <keyword>Microchip</keyword>
+     <keyword>IC</keyword>
+     <keyword>Integrated circuit</keyword>
+     <keyword xml:lang="de">Mikroschaltkreis</keyword>
+     <keyword xml:lang="de">Mikrochip</keyword>
+     <keyword xml:lang="de">Integrierte Schaltung</keyword>
+     <keyword xml:lang="es">Microcircuito</keyword>
+     <keyword xml:lang="es">Microchip</keyword>
+     <keyword xml:lang="es">Circuito integrado</keyword>
+     <keyword xml:lang="hu">Mikroáramkör</keyword>
+     <keyword xml:lang="hu">Mikrochip</keyword>
+     <keyword xml:lang="hu">Integrált áramkör</keyword>
+     <keyword xml:lang="it">Microcircuito</keyword>
+     <keyword xml:lang="it">Microchip</keyword>
+     <keyword xml:lang="it">Circuito integrato</keyword>
+     <keyword xml:lang="pt_BR">Microcircuito</keyword>
+     <keyword xml:lang="pt_BR">Microchip</keyword>
+     <keyword xml:lang="pt_BR">Circuito integrado</keyword>
+     <keyword xml:lang="ru">Микросхема</keyword>
+     <keyword xml:lang="ru">Микрочип</keyword>
+     <keyword xml:lang="ru">Интегральная схема</keyword>
+     <keyword xml:lang="uk">Мікросхема</keyword>
+     <keyword xml:lang="uk">Інтегральна схема</keyword>
+     <keyword xml:lang="zh_CN">微电路</keyword>
+     <keyword xml:lang="zh_CN">微芯片</keyword>
+     <keyword xml:lang="zh_CN">集成电路</keyword>
+     <keyword xml:lang="zh_TW">微電路</keyword>
+     <keyword xml:lang="zh_TW">微晶片</keyword>
+     <keyword xml:lang="zh_TW">積體電路</keyword>
+  </keywords>
+  <url type="homepage">https://github.com/bigbigmdm/IMSProg/tree/main</url>
+  <url type="contact">https://github.com/bigbigmdm</url>
+  <url type="bugtracker">https://github.com/bigbigmdm/IMSProg/issues</url>  
+  <launchable type="desktop-id">io.github.bigbigmdm.imsprog.editor.desktop</launchable>
+  <provides>
+     <mediatype>application/octet-stream</mediatype>
+  </provides>  
+  <developer id="io.github.bigbigmdm">
+     <name>Mikhail Medvedev</name>
+  </developer>    
+  <screenshots>
+    <screenshot type="default">
+      <caption>Main screen.</caption>
+      <caption xml:lang="de">Hauptbildschirm.</caption>
+      <caption xml:lang="es">Pantalla principal.</caption>
+      <caption xml:lang="hu">Főképernyő.</caption>
+      <caption xml:lang="it">Schermata principale.</caption>
+      <caption xml:lang="pt_BR">Tela principal.</caption>
+      <caption xml:lang="ru">Главный экран.</caption>
+      <caption xml:lang="uk">Головний екран.</caption>
+      <caption xml:lang="zn_CH">主屏幕。</caption>
+      <caption xml:lang="zh_TW">主畫面。</caption>
+      <image type="source" width="889" height="436">https://github.com/bigbigmdm/IMSProg/raw/main/IMSProg_editor/img/ezp_editor.png</image>
+    </screenshot>
+  </screenshots>
+  <releases>
+  <release version="1.9.2" date="2026-11-07" urgency="medium">
+    <description>
+        <p>Fixed: Main form artifacts on macOS.</p>
+        <p>Fixed: C compiler warnings.</p>
+        <p>Fixed: Warnings in desktop and metadata files.</p>
+        <p>Fixed: Build script aborts on out-of-memory condition.</p>
+        <p>Added: Support for new NOR and NAND chips.</p>
+        <p>Added: macOS application bundles.</p>
+        <p>Added: Icons in various sizes.</p>
+        <p>Changed names of meta and desktop files with freedesktop specifications.</p>
+        <p>Removed old icon folder /pixmaps</p>
+    </description>
+  </release>
+  <release version="1.9.1" date="2026-09-01" urgency="medium">
+    <description>
+        <p>Added: Support for the FT232H programmer.</p>
+        <p>Added: The chip's delay database parameter used to adjust the SPI and I2C bus speed.</p>
+    </description>
+  </release>
+  <release version="1.8.6" date="2025-07-10" urgency="medium">
+    <description>
+        <p>Removed unused files.</p>
+        <p>Copyright added/changed.</p>
+        <p>Fixed: if an error was detected, the sequence of operations was not interrupted.</p>
+        <p>Fixed: when erasing I2C or SPI Flash, the STOP button did not stop the chip erasing.</p>
+        <p>Fixed: the programmer version is not displayed after any chip operation.</p>
+        <p>Fixed: chip database updater crashed when the internet connection was lost.</p>
+        <p>Fixed: issues on macOS when using file selection dialogs.</p>
+        <p>Added: support for 24LC515, 24LC1025</p>
+    </description>
+  </release>
+  <release version="1.8.5" date="2026-06-02" urgency="medium">
+    <description>
+        <p>Fixed: the first highlighted area in HexEdit was not being cleared.</p>
+        <p>Fixed: combobox Operations was not reset if chip type changed.</p>
+        <p>Fixed: program crashed if current chip is nothing and combobox Operation changed</p>
+        <p>Fixed: Operations label showed for all chip types.</p>
+        <p>Added: Support for I2C and SPI FeRAM chips.</p>
+        <p>I2C 5v0 images on info form.</p>
+    </description>
+  </release>
+  <release version="1.8.4" date="2026-05-20" urgency="medium">
+    <description>
+        <p>Fixed: segmentation fault in Qt6.</p>
+        <p>Fixed: incorrect interface display on macOS.</p>
+        <p>Fixed: write error to sector 0 in Windows.</p>
+        <p>Fixed: incorrect saving of the database file in the chip editor.</p>
+        <p>Fixed: unable to erase the 93C66, 93C76 and 93C86 chips.</p>
+        <p>Fixed: the font is too large in Qt6.</p>
+        <p>Added: migration to Qt6.</p>
+        <p>Added: universal Qt5/Qt6 CmakeLists.txt.</p>
+        <p>Added: specification file for Fedora.</p>
+        <p>Added: support for the spare area for NAND flash memory.</p>
+    </description>
+  </release>
+  <release version="1.8.3" date="2026-04-15" urgency="medium">
+    <description>
+        <p>Fixed: If no chip is selected, the programmer was not detected.</p>
+        <p>Fixed: MACOS library compatibility.</p>
+        <p>Fixed: MACOS invalid pathes.</p>
+        <p>Fixed: libusb detection.</p>
+        <p>Fixed: udev rules install</p>
+        <p>Added: 2.5v VCC item</p>
+        <p>SPI NOR FLASH writing speed increased</p>
+        <p>Changed chip database update bash script to Qt app</p>
+        <p>The Zenity package is no longer used</p>
+    </description>
+  </release>
+  <release version="1.8.2" date="2026-03-18" urgency="medium">      
+    <description>
+        <p>Fixed: Error reading/writing data from I2C chips on the CH347T version 5.44.</p>
+        <p>Fixed: Bit error during NOR/NAND operations in the CH347V1.1 programmer.</p>
+        <p>Added: Showing the programmer revision function</p>
+        <p>Added: Erase check function</p>
+        <p>Added: Filling code function</p>
+    </description>
+  </release>
+  <release version="1.8.1" date="2026-03-11" urgency="medium">      
+    <description>
+        <p>Added: Support for the CH347T programmer.</p>
+        <p>Fixed: Incorrect chip page sizes values removed.</p>
+        <p>Increased interface speed and SPI NOR Flash erase speed.</p>
+        <p>SPI NOR Flash write speed increased by 30%.</p>
+    </description>
+  </release>
+  <release version="1.7.3" date="2026-01-26" urgency="medium">      
+    <description>
+        <p>Fixed: Incorrect HexEdit size when starting the program.</p>
+        <p>Added: When closing the program, the programmer type, chip image directory, and main window size are saved in the ini file.</p>
+    </description>
+  </release>
+  <release version="1.7.2" date="2025-11-25" urgency="medium">      
+    <description>
+        <p>Fixed: NAND Flash information form freeze.</p>
+        <p>Added: Programmer type menu.</p>
+        <p>Added: New images for CH341A v1.7.</p>
+        <p>Added: support for the AT24CM02 chip.</p>
+    </description>
+  </release>
+  <release version="1.7.1" date="2025-11-05" urgency="medium">      
+    <description>
+        <p>Fixed: pressing the Stop key did not stop auto operations.</p>
+        <p>Added: New feature - support for SPI NAND flash.</p>
+    </description>
+  </release>
+  <release version="1.6.2" date="2025-07-01" urgency="medium">      
+    <description>
+        <p>Fixed: program crashed if security registers was less than 256 bytes.</p>
+        <p>Fixed: Information in the status bar disappears when hovering over a menu.</p>
+        <p>Added: close and minimise buttons for subordinate forms.</p>
+        <p>Added: comparison of INTEL HEX and ASUS CAP with other files.</p>
+        <p>Added: new chips to the database.</p>
+    </description>
+  </release>
+  <release version="1.6.1" date="2025-05-19" urgency="medium">      
+    <description>
+        <p>Fixed: when the page size is changed, the buffer is cleared.</p>
+        <p>Fixed: the code is executed twice and the code slows down the display of the interface.</p>
+        <p>Added: New feature - compare files.</p>
+        <p>Added: New feature - fill test array.</p>
+    </description>
+  </release>
+  <release version="1.5.3" date="2025-04-29" urgency="medium">      
+    <description>
+        <p>Copyright information updated.</p>
+        <p>Fixed: incorrect uninstall script.</p>
+        <p>Fixed: i2C 128K size is repeated twice.</p>
+        <p>Fixed: error calculating file size.</p>
+        <p>Added: Last version of QHexEdit used.</p>
+        <p>Added: Hex-functions optimised.</p>
+        <p>Added: Added support GIANTEC, DOSILICON NOR FLASH chips.</p>
+    </description>
+  </release>
+  <release version="1.5.2" date="2025-03-05" urgency="medium">      
+    <description>
+        <p>Fixed: Gigadevice status registers write error.</p>
+        <p>Fixed: Memory leaks.</p>
+        <p>Added: New SPI chip sizes added.</p>
+        <p>Added: New Boya, Winbond chips added to database.</p>
+        <p>Added: Fidelix, Zetta, MXIC OTP algorithm.</p>
+    </description>
+  </release>
+  <release version="1.5.1" date="2025-02-19" urgency="medium">      
+    <description>
+        <p>Fixed: Incorrect install dir for udev while cross compiling.</p>
+        <p>Added: Form for working with security registers for SPI NOR flash memory chips.</p>
+    </description>
+  </release>
+  <release version="1.4.5" date="2025-01-17" urgency="medium">      
+    <description>
+        <p>Fixed: Incorrect block/page size after first read procedure.</p>
+        <p>Fixed: Incorrect reading/writing I2C low speed chips.</p>
+        <p>Added support for MXIC MX25V8035F</p>
+        <p>Added I2C bus speed combobox to the main form</p>
+    </description>
+  </release>
+  <release version="1.4.4" date="2024-09-23" urgency="medium">      
+    <description>
+        <p>Fixed: In the Save menu, the cancel button causes an error message.</p>
+        <p>Fixed: Incorrect names of DataFlash chips.</p>
+        <p>Fixed: incorrect reading of the DataFlash chips status register.</p>
+        <p>Fedora repository added</p>
+        <p>MacOS build support added</p>
+        <p>Uninstall script added</p>
+    </description>
+  </release>
+  <release version="1.4.3" date="2024-07-26" urgency="medium">      
+    <description>
+        <p>Fixed: On the GNOME desktop, programm does not respond when erasing SPI NOR FLASH.</p>
+        <p>Fixed: The progress bar did not display correctly when SPI NOR FLASH was erased.</p>
+        <p>Fixed: When erasing SPI NOR Flash, the STOP button does not work.</p>
+    </description>
+  </release>
+  <release version="1.4.2" date="2024-06-27" urgency="medium">     
+    <description>
+        <p>Corrected German translation</p>
+        <p>German translator added to copyright</p>
+        <p>Corrected chip database</p>
+    </description>
+  </release>      
+  <release version="1.4.1" date="2024-05-23" urgency="medium">    
+    <description> 
+        <p>Added AT45DBxx series  SPI FLASH (Menu item type -> 45_EEPROM)</p>
+        <p>The inline images of the chip adapters have been changed.</p>
+        <p>Fixed metadata errors and warnings.</p>
+    </description>
+  </release>      
+  <release version="1.3.9" date="2024-05-06" urgency="medium">
+    <description>
+        <p>Fixed: There is a spelling error in in 99-CH341.rules.</p>
+        <p>Fixed: (metadata changed): appstream-metadata-missing-modalias-provide usr/lib/udev/rules.d/99-CH341.rules</p>
+        <p>Splitting long lines in README.md</p>
+        <p>Removed language .qm files - it is generated when the package is built.</p>
+        <p>Removed unused tags from language files.</p>
+    </description>
+  </release>
+  <release version="1.3.8" date="2024-05-06" urgency="medium">
+    <description>
+        <p>This stable release fixes bugs, updated translations, translate chip database update script.</p>
+    </description>
+  </release>  
+  <release version="1.3.7" date="2024-04-27" urgency="low">
+    <description>
+        <p>This stable release, updated translations.</p>
+    </description>
+  </release>
+  </releases>
+  <content_rating type="oars-1.1" />
+  <update_contact>e-ink-reader@yandex.ru</update_contact>
+</component>

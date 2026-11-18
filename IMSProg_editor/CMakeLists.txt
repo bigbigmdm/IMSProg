@@ -9,41 +9,38 @@ set(CMAKE_AUTOUIC ON)
 
 project(IMSProg_editor LANGUAGES CXX)
 
-# Set the CMAKE_INSTALL_PREFIX to /usr if not specified and /usr/local for macOS
-if (CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
-  if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
-      set(CMAKE_INSTALL_PREFIX "/usr/local" CACHE PATH "The default install prefix on macOS" FORCE)
+# --- Force /usr prefix on Linux by default ---
+if(${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
+    if(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
+        set(CMAKE_INSTALL_PREFIX "/usr" CACHE PATH "Default install prefix for Linux" FORCE)
+    endif()
+endif()
 
-      # Set up Qt paths on macOS
-      # If user hasn't set CMAKE_PREFIX_PATH, try to find Qt automatically
-      if(NOT CMAKE_PREFIX_PATH)
-          # Check for Qt6 via Homebrew
-          if(EXISTS "/usr/local/opt/qt@6")
-              set(CMAKE_PREFIX_PATH "/usr/local/opt/qt@6" CACHE PATH "Path to Qt6 on macOS" FORCE)
-              message(STATUS "Found Qt6 at /usr/local/opt/qt@6")
-          # Check for Qt5 via Homebrew
-          elseif(EXISTS "/usr/local/opt/qt@5")
-              set(CMAKE_PREFIX_PATH "/usr/local/opt/qt@5" CACHE PATH "Path to Qt5 on macOS" FORCE)
-              message(STATUS "Found Qt5 at /usr/local/opt/qt@5")
-          # Standard Qt path from Homebrew (without version)
-          elseif(EXISTS "/usr/local/opt/qt")
-              set(CMAKE_PREFIX_PATH "/usr/local/opt/qt" CACHE PATH "Path to Qt on macOS" FORCE)
-              message(STATUS "Found Qt at /usr/local/opt/qt")
-          endif()
-      endif()
-  else()
-      set(CMAKE_INSTALL_PREFIX "/usr" CACHE PATH "The default install prefix" FORCE)
-  endif()
+# Standard cross-platform installation paths (bin, share, etc.)
+include(GNUInstallDirs)
+
+# --- Automatic path detection on macOS (Homebrew / MacPorts) ---
+if(CMAKE_SYSTEM_NAME MATCHES "Darwin")
+    if(EXISTS "/opt/local")
+        # MacPorts
+        list(APPEND CMAKE_PREFIX_PATH "/opt/local")
+        list(APPEND PKG_CONFIG_PATH "/opt/local/lib/pkgconfig")
+        message(STATUS "Configured for MacPorts at /opt/local")
+    elseif(EXISTS "/opt/homebrew")
+        # Homebrew Apple Silicon (M1/M2/M3/M4)
+        list(APPEND CMAKE_PREFIX_PATH "/opt/homebrew")
+        list(APPEND PKG_CONFIG_PATH "/opt/homebrew/lib/pkgconfig")
+        message(STATUS "Configured for Homebrew Apple Silicon at /opt/homebrew")
+    elseif(EXISTS "/usr/local/opt")
+        # Homebrew Intel
+        list(APPEND CMAKE_PREFIX_PATH "/usr/local/opt")
+        message(STATUS "Configured for Homebrew Intel at /usr/local")
+    endif()
 endif()
 
 # Set the CMAKE_INSTALL_BINDIR to /bin if not specified
 if(NOT DEFINED CMAKE_INSTALL_BINDIR)
   set(CMAKE_INSTALL_BINDIR "bin" CACHE PATH "user executables (bin)")
-endif()
-
-# Set the CMAKE_INSTALL_DATAROOTDIR to /share if not specified
-if(NOT DEFINED CMAKE_INSTALL_DATAROOTDIR)
-  set(CMAKE_INSTALL_DATAROOTDIR "share" CACHE PATH "read-only architecture-independent data root (share)")
 endif()
 
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
@@ -53,18 +50,6 @@ option(FORCE_QT5 "Force using Qt5 instead of Qt6" OFF)
 
 if(FORCE_QT5)
     message(STATUS "Forced Qt5 mode for IMSProg_editor")
-
-    # On macOS, additionally check the path to Qt5
-    if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin" AND NOT CMAKE_PREFIX_PATH)
-        if(EXISTS "/usr/local/opt/qt@5")
-            set(CMAKE_PREFIX_PATH "/usr/local/opt/qt@5" CACHE PATH "Path to Qt5 on macOS" FORCE)
-            message(STATUS "Setting CMAKE_PREFIX_PATH to /usr/local/opt/qt@5 for Qt5")
-        elseif(EXISTS "/usr/local/opt/qt")
-            set(CMAKE_PREFIX_PATH "/usr/local/opt/qt" CACHE PATH "Path to Qt on macOS" FORCE)
-            message(STATUS "Setting CMAKE_PREFIX_PATH to /usr/local/opt/qt for Qt5")
-        endif()
-    endif()
-
     find_package(Qt5 REQUIRED COMPONENTS Core Widgets LinguistTools)
     set(QT_VERSION_MAJOR 5)
 else()
@@ -75,36 +60,29 @@ else()
         set(QT_VERSION_MAJOR 6)
         find_package(Qt6LinguistTools REQUIRED)
     else()
-        message(STATUS "Qt6 not found, using Qt5 for IMSProg_editor")
-
-        # On macOS, additionally check the path to Qt5
-        if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin" AND NOT CMAKE_PREFIX_PATH)
-            if(EXISTS "/usr/local/opt/qt@5")
-                set(CMAKE_PREFIX_PATH "/usr/local/opt/qt@5" CACHE PATH "Path to Qt5 on macOS" FORCE)
-                message(STATUS "Setting CMAKE_PREFIX_PATH to /usr/local/opt/qt@5 for Qt5")
-            elseif(EXISTS "/usr/local/opt/qt")
-                set(CMAKE_PREFIX_PATH "/usr/local/opt/qt" CACHE PATH "Path to Qt on macOS" FORCE)
-                message(STATUS "Setting CMAKE_PREFIX_PATH to /usr/local/opt/qt for Qt5")
-            endif()
-        endif()
-
+        message(STATUS "Qt6 not found, falling back to Qt5 for IMSProg_editor")
         find_package(Qt5 REQUIRED COMPONENTS Core Widgets LinguistTools)
         set(QT_VERSION_MAJOR 5)
     endif()
 endif()
 
-# Translation files
-set(TS_FILES
-    language/chipEditor_ru_RU.ts
-    language/chipEditor_de_DE.ts
-    language/chipEditor_es_ES.ts
-    language/chipEditor_zh_CN.ts
-    language/chipEditor_zh_TW.ts
-    language/chipEditor_uk_UA.ts
-    language/chipEditor_hu_HU.ts
-    language/chipEditor_pt_BR.ts
-    language/chipEditor_it_IT.ts
+# --- Translation files ---
+file(GLOB TS_FILES
+    "${CMAKE_CURRENT_SOURCE_DIR}/language/*.ts"
 )
+
+# --- extract locals from supported translation files ---
+set(BUNDLE_LOCALIZATIONS en)
+foreach(ts ${TS_FILES})
+    get_filename_component(_name "${ts}" NAME_WE)
+    string(REGEX MATCH "[a-z][a-z](_[A-Z][A-Z])?$" _loc "${_name}")
+    if(_loc)
+        string(REPLACE "_" "-" _loc "${_loc}")   # de_DE → de-DE
+        list(APPEND BUNDLE_LOCALIZATIONS "${_loc}")
+    endif()
+endforeach()
+list(REMOVE_DUPLICATES BUNDLE_LOCALIZATIONS)
+message(STATUS "BUNDLE_LOCALIZATIONS=${BUNDLE_LOCALIZATIONS}")
 
 if (QT_VERSION_MAJOR EQUAL 5)
     qt5_add_translation(QM_FILES ${TS_FILES})
@@ -114,7 +92,8 @@ endif()
 
 add_custom_target(translations1 DEPENDS ${QM_FILES})
 
-add_executable(${PROJECT_NAME}
+# --- Executable target ---
+add_executable(${PROJECT_NAME} MACOSX_BUNDLE
     ezp_chip_editor.h
     ezp_chip_editor.cpp
     ezp_chip_editor.ui
@@ -125,23 +104,51 @@ add_executable(${PROJECT_NAME}
     ${QM_FILES}
 )
 
+if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+    configure_macos_bundle(${PROJECT_NAME}
+        "img/icons/apple/${PROJECT_NAME}.icns"
+        "${BUNDLE_LOCALIZATIONS}"
+        )
+    if(BUILD_ON_MACPORTS)
+        set(BUNDLE_DEST "/Applications/MacPorts")
+    else()
+        set(BUNDLE_DEST "/Applications")
+    endif()
+endif()
+
 target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 
 if (QT_VERSION_MAJOR EQUAL 5)
-    target_link_libraries(${PROJECT_NAME} Qt5::Core Qt5::Widgets)
+    target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::Core Qt5::Widgets)
 else()
     target_link_libraries(${PROJECT_NAME} PRIVATE Qt::Core Qt::Widgets)
 endif()
 
-install(TARGETS ${PROJECT_NAME} DESTINATION ${CMAKE_INSTALL_BINDIR})
+# --- Installation rules ---
+install(TARGETS ${PROJECT_NAME}
+    BUNDLE DESTINATION ${BUNDLE_DEST}               # Bundles into .app on macOS
+    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}     # Standard binary for Linux/Flatpak
+)
 
-if(NOT ${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
-        install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/other/IMSProg_editor.desktop" DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/applications")
+if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+    # Automatically bundle database and .qm files inside .app/Contents/share/imsprog for local installation
+    set_source_files_properties(${QM_FILES} PROPERTIES MACOSX_PACKAGE_LOCATION "share/imsprog")
+else()
+    # --- Specific rules for Linux / Flatpak ---
+    install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/other/io.github.bigbigmdm.imsprog.editor.desktop"
+            DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/applications")
+
+    # Installing different sizes icons in Linux
+    foreach(SIZE 16x16 22x22 24x24 32x32 48x48 64x64 128x128 256x256 512x512 scalable)
+        install(DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/img/icons/${SIZE}/"
+                DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/icons/hicolor/${SIZE}/apps"
+                FILES_MATCHING PATTERN "*.png" PATTERN "*.svg")
+    endforeach()
+
+    # Translations and Linux system files
+    install(FILES ${QM_FILES} DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/imsprog")
+    install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/other/IMSProg_editor.1.gz"
+            DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/man/man1")
+    install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/other/io.github.bigbigmdm.imsprog.editor.metainfo.xml"
+            DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/metainfo")
 endif()
-
-install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/img/chipEdit64.png" DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/pixmaps")
-
-install(FILES ${QM_FILES} DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/imsprog")
-
-install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/other/IMSProg_editor.1.gz" DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/man/man1")
-install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/other/io.github.bigbigmdm.imsprog_editor.metainfo.xml" DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/metainfo")

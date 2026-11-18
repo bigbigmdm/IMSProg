@@ -723,6 +723,26 @@ sudo apt install imsprog
 sudo dnf install imsprog
 ```
 
+- For some versions of OpenSUSE, you can use the `electronics` repository.
+```
+sudo zypper install IMSProg
+```
+
+- To install on MacOS using `Homebrew`, run the following commands:
+```
+brew tap bigbigmdm/imsprog
+brew trust bigbigmdm/imsprog
+brew install --cask imsprog
+```
+For more details, see
+[this](https://github.com/bigbigmdm/homebrew-imsprog) guide.
+
+- To install on MacOS using `Mac Ports`, run the following commands:
+```
+sudo port selfupdate
+sudo port install imsprog
+```
+
 <a href="https://repology.org/project/imsprog/versions">
     <img src="https://repology.org/badge/vertical-allrepos/imsprog.svg" alt="Packaging status" align="right">
 </a>
