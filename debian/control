@@ -2,7 +2,7 @@ Source: imsprog
 Section: devel
 Maintainer: Mikhail Medvedev <e-ink-reader@yandex.ru>
 Build-Depends:
- debhelper-compat (= 13),
+ debhelper-compat (= 14),
  architecture-is-little-endian,
  cmake,
  libusb-1.0-0-dev,

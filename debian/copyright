@@ -47,7 +47,13 @@ Files: IMSProg_programmer/language/chipProgrammer_de_DE.ts
 Copyright: 2024, wucke13 <https://github.com/wucke13>
 License: GPL-3+
 
-Files: IMSProg_programmer/dialogabout.cpp
+Files: IMSProg_database_update/main.cpp
+       IMSProg_editor/delegates.cpp
+       IMSProg_editor/delegates.h
+       IMSProg_editor/ezp_chip_editor.cpp
+       IMSProg_editor/ezp_chip_editor.h
+       IMSProg_editor/main.cpp
+       IMSProg_programmer/dialogabout.cpp
        IMSProg_programmer/dialogabout.h
        IMSProg_programmer/dialogbbm.cpp
        IMSProg_programmer/dialogbbm.h
@@ -57,35 +63,29 @@ Files: IMSProg_programmer/dialogabout.cpp
        IMSProg_programmer/dialogfill.h
        IMSProg_programmer/dialoginfo.cpp
        IMSProg_programmer/dialoginfo.h
+       IMSProg_programmer/dialognandsecurity.cpp
+       IMSProg_programmer/dialognandsecurity.h
+       IMSProg_programmer/dialognandsr.cpp
        IMSProg_programmer/dialognandsr.h
        IMSProg_programmer/dialogrp.cpp
+       IMSProg_programmer/dialogrp.h
        IMSProg_programmer/dialogsecurity.cpp
        IMSProg_programmer/dialogsecurity.h
        IMSProg_programmer/dialogsetaddr.cpp
        IMSProg_programmer/dialogsetaddr.h
        IMSProg_programmer/dialogsfdp.cpp
        IMSProg_programmer/dialogsfdp.h
-       IMSProg_programmer/dialogsr.cpp
-       IMSProg_programmer/dialogsr.h
-       IMSProg_programmer/hexutility.cpp
-       IMSProg_programmer/hexutility.h
-       IMSProg_programmer/mainwindow.cpp
-       IMSProg_programmer/mainwindow.h
-       IMSProg_editor/delegates.cpp
-       IMSProg_editor/delegates.h
-       IMSProg_editor/ezp_chip_editor.cpp
-       IMSProg_editor/ezp_chip_editor.h
-       IMSProg_programmer/main.cpp
-       IMSProg_programmer/dialognandsecurity.cpp
-       IMSProg_programmer/dialognandsecurity.h
-       IMSProg_programmer/dialognandsr.cpp
-       IMSProg_editor/main.cpp
-       IMSProg_programmer/dialogrp.h
        IMSProg_programmer/dialogsp.cpp
        IMSProg_programmer/dialogsp.h
-       IMSProg_database_update/main.cpp
+       IMSProg_programmer/dialogsr.cpp
+       IMSProg_programmer/dialogsr.h
        IMSProg_programmer/ft232all.h
        IMSProg_programmer/ft232all.cpp
+       IMSProg_programmer/hexutility.cpp
+       IMSProg_programmer/hexutility.h
+       IMSProg_programmer/main.cpp
+       IMSProg_programmer/mainwindow.cpp
+       IMSProg_programmer/mainwindow.h
 Copyright: 2023-2026, Mikhail Medvedev
 License: GPL-3+
 

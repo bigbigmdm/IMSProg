@@ -1,11 +1,14 @@
 imsprog (1.9.2-1) unstable; urgency=medium
 
   * New upstream version:
+  * New upstream version:
+    - Changed names of meta, desktop and icon files with FreeDesktop
+    specifications.
+    - Added: hicolor icons in various sizes.
   * Update debian/copyright.
-  * debian/control: Update Build-Depends and package description.
-  * Changed names of meta, desktop and icon files with freedesktop
-    specifications
-  * Added: hicolor icons in various sizes
+  * debian/control:
+    - Add cmake to Build-Depends and sort list.
+    - Update package description.
 
  -- Mikhail Medvedev <e-ink-reader@yandex.ru>  Wed, 18 Nov 2026 10:12:31 +0300
 
