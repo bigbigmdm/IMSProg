@@ -3,10 +3,11 @@ Section: devel
 Maintainer: Mikhail Medvedev <e-ink-reader@yandex.ru>
 Build-Depends:
  debhelper-compat (= 14),
+ dh-sequence-single-binary,
  architecture-is-little-endian,
  cmake,
- libusb-1.0-0-dev,
  libftdi1-dev,
+ libusb-1.0-0-dev,
  linguist-qt6,
  pkgconf,
  qt6-base-dev,
@@ -22,7 +23,6 @@ Vcs-Browser: https://github.com/bigbigmdm/IMSProg/tree/debian/latest
 
 Package: imsprog
 Architecture: any
-Depends: ${misc:Depends}, ${shlibs:Depends}
 Description: Linux chip programmer for CH341A/CH347T/FT232H devices
  IMSProg (I2C, MicroWire and SPI EEPROM/Flash chip Programmer) reads
  from and writes to EEPROM chips in CH341A, CH347T and FT232H devices.
