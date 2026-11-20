@@ -25,5 +25,5 @@ Architecture: any
 Depends: ${misc:Depends}, ${shlibs:Depends}
 Description: Linux chip programmer for CH341A/CH347T/FT232H devices
  IMSProg (I2C, MicroWire and SPI EEPROM/Flash chip Programmer) reads
- from and writes to EEPROM chips in CH341A, CH347T and FT232H devices. 
+ from and writes to EEPROM chips in CH341A, CH347T and FT232H devices.
  IMSProg is free and based on QHexEdit2 and a modified SNANDer programmer.
