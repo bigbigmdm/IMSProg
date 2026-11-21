@@ -5,7 +5,8 @@ PortGroup           github 1.0
 PortGroup           cmake 1.1
 PortGroup           qt6 1.0
 
-github.setup        bigbigmdm imsprog 1.9.2 v
+name                imsprog
+github.setup        SOURCE_OWNER SOURCE_REPO HEAD_SHA
 github.tarball_from archive
 revision            0
 
@@ -31,6 +32,9 @@ depends_lib-append  \
                     port:libftdi1
 
 qt6.depends_lib     qttools
+
+compiler.cxx_standard \
+                    2017
 
 configure.cppflags-prepend  \
                     -I${prefix}/include/libftdi1
