@@ -33,6 +33,9 @@ depends_lib-append  \
 
 qt6.depends_lib     qttools
 
+compiler.cxx_standard \
+                    2017
+
 configure.cppflags-prepend  \
                     -I${prefix}/include/libftdi1
 
