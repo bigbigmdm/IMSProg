@@ -56,17 +56,22 @@ else()
 endif()
 
 # --- Translation files ---
-set(TS_FILES
-    language/chipUpdater_ru_RU.ts
-    language/chipUpdater_es_ES.ts
-    language/chipUpdater_de_DE.ts
-    language/chipUpdater_zh_CN.ts
-    language/chipUpdater_zh_TW.ts
-    language/chipUpdater_uk_UA.ts
-    language/chipUpdater_hu_HU.ts
-    language/chipUpdater_pt_BR.ts
-    language/chipUpdater_it_IT.ts
+file(GLOB TS_FILES
+    "${CMAKE_CURRENT_SOURCE_DIR}/language/*.ts"
 )
+
+# --- extract locals from supported translation files ---
+set(BUNDLE_LOCALIZATIONS en)
+foreach(ts ${TS_FILES})
+    get_filename_component(_name "${ts}" NAME_WE)
+    string(REGEX MATCH "[a-z][a-z](_[A-Z][A-Z])?$" _loc "${_name}")
+    if(_loc)
+        string(REPLACE "_" "-" _loc "${_loc}")   # de_DE → de-DE
+        list(APPEND BUNDLE_LOCALIZATIONS "${_loc}")
+    endif()
+endforeach()
+list(REMOVE_DUPLICATES BUNDLE_LOCALIZATIONS)
+message(STATUS "BUNDLE_LOCALIZATIONS=${BUNDLE_LOCALIZATIONS}")
 
 if (QT_VERSION_MAJOR EQUAL 5)
     qt5_add_translation(QM_FILES ${TS_FILES})
@@ -87,12 +92,15 @@ add_executable(${PROJECT_NAME} MACOSX_BUNDLE
 )
 
 if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
-    configure_macos_bundle(${PROJECT_NAME} "img/icons/apple/${PROJECT_NAME}.icns")    
+    configure_macos_bundle(${PROJECT_NAME}
+        "img/icons/apple/${PROJECT_NAME}.icns"
+        "${BUNDLE_LOCALIZATIONS}"
+        )
     if(BUILD_ON_MACPORTS)
         set(BUNDLE_DEST "/Applications/MacPorts")
     else()
         set(BUNDLE_DEST "/Applications")
-    endif()    
+    endif()
 endif()
 
 target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
@@ -110,13 +118,13 @@ install(TARGETS ${PROJECT_NAME}
 )
 
 if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
-    # Automatically bundle .qm files inside .app/Contents/Resources for local installation
-    install(FILES ${QM_FILES} DESTINATION "${PROJECT_NAME}.app/Contents/Resources")
+    # Automatically bundle database and .qm files inside .app/Contents/share/imsprog for local installation
+    set_source_files_properties(${QM_FILES} PROPERTIES MACOSX_PACKAGE_LOCATION "share/imsprog")
 else()
     # --- Specific rules for Linux / Flatpak ---
-    install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/other/io.github.bigbigmdm.imsprog.database_update.desktop" 
+    install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/other/io.github.bigbigmdm.imsprog.database_update.desktop"
             DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/applications")
-    
+
     # Application icons
     foreach(SIZE 16x16 22x22 24x24 32x32 48x48 64x64 128x128 256x256 512x512 scalable)
         install(DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/img/icons/${SIZE}/"
@@ -126,8 +134,8 @@ else()
 
     # Translations and Linux system files
     install(FILES ${QM_FILES} DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/imsprog")
-    install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/other/IMSProg_database_update.1.gz" 
+    install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/other/IMSProg_database_update.1.gz"
             DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/man/man1")
-    install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/other/io.github.bigbigmdm.imsprog.database_update.metainfo.xml" 
+    install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/other/io.github.bigbigmdm.imsprog.database_update.metainfo.xml"
             DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/metainfo")
 endif()
